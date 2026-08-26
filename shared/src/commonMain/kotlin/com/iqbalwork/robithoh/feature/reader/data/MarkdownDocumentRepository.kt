@@ -61,21 +61,27 @@ class MarkdownDocumentRepository {
         // Manaqib Indonesia
         LiturgyDocument(
             id = "mc_manaqib_id",
-            title = "MC & Susunan Acara Manaqib",
-            subtitle = "Protokol dan tertib acara Manaqib Syaikh Abdul Qodir Al-Jailani",
+            title = "MC Manaqib",
+            subtitle = "Susunan acara & protokol MC Manaqib TQN",
             category = "Manaqib",
             fileName = "MC_MANAQIB_INDONESIA.md",
-            arabicTitle = "مَرَاسِمُ الْمَنَاقِبِ",
-            iconName = "mc"
+            arabicTitle = "",
+            languageBadge = "INDONESIA",
+            iconName = "mc",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "mc_manaqib_su"
         ),
         LiturgyDocument(
             id = "tanbih_id",
-            title = "Tanbih Guru Mursyid (Indonesia)",
+            title = "Tanbih Guru Mursyid",
             subtitle = "Wasiat luhur Syaikh Abdullah Mubarok bin Nur Muhammad",
             category = "Manaqib",
             fileName = "TANBIH_INDONESIA.md",
-            arabicTitle = "التَّنْبِيهُ",
-            iconName = "tanbih"
+            arabicTitle = "",
+            languageBadge = "INDONESIA",
+            iconName = "tanbih",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "tanbih_su"
         ),
         LiturgyDocument(
             id = "tawassul_tqn",
@@ -88,12 +94,15 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "manqobah_id",
-            title = "Kitab Manqobah 1 - 56",
+            title = "Manqobah",
             subtitle = "Kisah kemuliaan Syaikh Abdul Qodir Al-Jailani r.a.",
             category = "Manaqib",
             fileName = "MANQOBAH_INDONESIA.md",
-            arabicTitle = "الْمَنْقَبَةُ الْكُبْرَى",
-            iconName = "manqobah"
+            arabicTitle = "",
+            languageBadge = "INDONESIA",
+            iconName = "manqobah",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "manqobah_su"
         ),
         LiturgyDocument(
             id = "doa_manqobah_id",
@@ -102,19 +111,22 @@ class MarkdownDocumentRepository {
             category = "Manaqib",
             fileName = "DOA_MANQOBAH_INDONESIA.md",
             arabicTitle = "دُعَاءُ الْمَنَاقِبِ",
-            iconName = "doa"
+            iconName = "doa",
+            alternateLanguageDocId = "doa_manqobah_su"
         ),
 
         // Manaqib Sunda
         LiturgyDocument(
             id = "mc_manaqib_su",
             title = "MC Manaqib (Basa Sunda)",
-            subtitle = "Susunan acara manaqib basa Sunda",
+            subtitle = "Runtuyan acara & protokol MC Manaqib TQN",
             category = "Manaqib Sunda",
             fileName = "MC_MANAQIB_SUNDA.md",
-            arabicTitle = "مَرَاسِمُ الْمَنَاقِبِ",
+            arabicTitle = "",
             languageBadge = "SUNDA",
-            iconName = "mc_sunda"
+            iconName = "mc_sunda",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "mc_manaqib_id"
         ),
         LiturgyDocument(
             id = "tanbih_su",
@@ -122,19 +134,23 @@ class MarkdownDocumentRepository {
             subtitle = "Wasiat Pangersa Abah Sepuh dina basa Sunda",
             category = "Manaqib Sunda",
             fileName = "TANBIH_SUNDA.md",
-            arabicTitle = "التَّنْبِيهُ",
+            arabicTitle = "",
             languageBadge = "SUNDA",
-            iconName = "tanbih_sunda"
+            iconName = "tanbih_sunda",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "tanbih_id"
         ),
         LiturgyDocument(
             id = "manqobah_su",
-            title = "Manqobah 1-56 (Basa Sunda)",
+            title = "Manqobah (Basa Sunda)",
             subtitle = "Riwayat karomah Syaikh Abdul Qodir Al-Jailani dina basa Sunda",
             category = "Manaqib Sunda",
             fileName = "MANQOBAH_SUNDA.md",
-            arabicTitle = "الْمَنْقَبَةُ",
+            arabicTitle = "",
             languageBadge = "SUNDA",
-            iconName = "manqobah_sunda"
+            iconName = "manqobah_sunda",
+            isSingleDocumentView = true,
+            alternateLanguageDocId = "manqobah_id"
         ),
         LiturgyDocument(
             id = "doa_manqobah_su",
@@ -144,7 +160,8 @@ class MarkdownDocumentRepository {
             fileName = "DOA_MANQOBAH_SUNDA.md",
             arabicTitle = "دُعَاءُ الْمَنَاقِبِ",
             languageBadge = "SUNDA",
-            iconName = "doa"
+            iconName = "doa",
+            alternateLanguageDocId = "doa_manqobah_id"
         ),
 
         // Sholat Sunnah
@@ -339,6 +356,12 @@ class MarkdownDocumentRepository {
         LiturgyDocument(id = "amaliyah_dzulhijjah", title = "Amaliyah Bulan Dzulhijjah", subtitle = "Bulan Haji, Idul Adha & Hari Tasyriq", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_DZULHIJJAH.md", arabicTitle = "عَمَلِيَّةُ ذِي الْحِجَّةِ", iconName = "dzulhijjah")
     )
 
+    private val documentCache = mutableMapOf<String, ParsedDocument>()
+
+    fun getCachedDocument(id: String): ParsedDocument? {
+        return documentCache[id]
+    }
+
     fun getDocumentById(id: String): LiturgyDocument? {
         return allDocuments.find { it.id.equals(id, ignoreCase = true) }
     }
@@ -349,14 +372,37 @@ class MarkdownDocumentRepository {
 
     @OptIn(ExperimentalResourceApi::class)
     suspend fun loadDocumentContent(document: LiturgyDocument): ParsedDocument = withContext(Dispatchers.Default) {
+        documentCache[document.id]?.let { return@withContext it }
+
         val rawText = try {
             val bytes = Res.readBytes("files/${document.fileName}")
             bytes.decodeToString()
         } catch (e: Exception) {
             "# ${document.title}\n\n${document.subtitle}\n\n*Konten dokumen sedang dimuat dari arsip lokal.*"
         }
-        val verses = parseMarkdownToVerses(rawText)
-        ParsedDocument(info = document, rawContent = rawText, verses = verses)
+        val verses = if (document.isSingleDocumentView) {
+            emptyList()
+        } else {
+            parseMarkdownToVerses(rawText)
+        }
+        val parsed = ParsedDocument(info = document, rawContent = rawText, verses = verses)
+        documentCache[document.id] = parsed
+
+        // Asynchronously preload alternate language document if available
+        document.alternateLanguageDocId?.let { altId ->
+            if (!documentCache.containsKey(altId)) {
+                getDocumentById(altId)?.let { altDoc ->
+                    try {
+                        val altBytes = Res.readBytes("files/${altDoc.fileName}")
+                        val altText = altBytes.decodeToString()
+                        val altVerses = if (altDoc.isSingleDocumentView) emptyList() else parseMarkdownToVerses(altText)
+                        documentCache[altId] = ParsedDocument(info = altDoc, rawContent = altText, verses = altVerses)
+                    } catch (_: Exception) {}
+                }
+            }
+        }
+
+        parsed
     }
 
     private fun parseMarkdownToVerses(rawMarkdown: String): List<LiturgyVerse> {

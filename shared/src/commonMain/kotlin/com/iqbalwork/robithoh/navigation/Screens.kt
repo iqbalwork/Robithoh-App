@@ -77,10 +77,9 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        "Selamat Datang di Robithoh — Panduan Amaliyah, Dzikir Khofi/Jahr, Kitab Manqobah Syekh Abdul Qodir Al-Jailani r.a. dan Al-Qur'an Digital 114 Surah.",
-                        fontSize = 13.sp,
-                        color = Color.DarkGray,
-                        lineHeight = 18.sp
+                        "Selamat Datang di Robithoh — Panduan Amaliyah, Dzikir Khofi/Jahr, Manqobah Syekh Abdul Qodir Al-Jailani r.a. dan Al-Qur'an Digital 114 Surah.",
+                        modifier = Modifier.padding(16.dp),
+                        style = MaterialTheme.typography.bodyLarge
                     )
                 }
             }
@@ -94,9 +93,9 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
 
             // Navigation Grid Buttons
             MenuNavigationCard(
-                title = "Amaliyah Harian & Dzikir",
-                subtitle = "Dzikir Jahr/Khofi ba'da sholat, jadwal sholat & wirid",
-                badge = "Offline",
+                title = "Buku Saku Amaliyah",
+                subtitle = "Tata Tertib Sholat, Kaifiyat Dzikir Khofi/Jahr, & Doa-Doa",
+                badge = "TQN",
                 onClick = { onNavigate(ScreenKey.Amaliyah) }
             )
 
@@ -108,7 +107,7 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
             )
 
             MenuNavigationCard(
-                title = "Kitab Manqobah 1-56",
+                title = "Manqobah 1-56",
                 subtitle = "MC Acara, Tanbih, Silsilah 1-38 & Manqobah 3 Bahasa",
                 badge = "3 Bahasa",
                 onClick = { onNavigate(ScreenKey.ManaqibList) }
@@ -260,17 +259,11 @@ fun ManaqibDetailScreen(
 @Composable
 fun QuranListScreen(
     onSurahClick: (Int) -> Unit,
-    onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = androidx.compose.runtime.remember {
-        com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
-            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl()
-        )
-    }
+    onBack: () -> Unit
 ) {
-    com.iqbalwork.robithoh.feature.quran.presentation.QuranListScreen(
-        viewModel = viewModel,
-        onSurahClick = onSurahClick,
-        onBackClick = onBack
+    com.iqbalwork.robithoh.feature.library.ui.KitabTabContent(
+        onNavigateToSurah = onSurahClick,
+        onBack = onBack
     )
 }
 

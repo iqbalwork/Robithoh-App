@@ -11,7 +11,9 @@ data class LiturgyDocument(
     val fileName: String,
     val arabicTitle: String = "",
     val languageBadge: String? = null,
-    val iconName: String? = null
+    val iconName: String? = null,
+    val isSingleDocumentView: Boolean = false,
+    val alternateLanguageDocId: String? = null
 )
 
 @Serializable

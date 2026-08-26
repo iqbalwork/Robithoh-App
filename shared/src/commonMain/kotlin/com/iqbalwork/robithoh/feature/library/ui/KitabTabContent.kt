@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,7 +22,8 @@ import com.iqbalwork.robithoh.feature.quran.model.RevelationType
 
 @Composable
 fun KitabTabContent(
-    onNavigateToSurah: (Int) -> Unit
+    onNavigateToSurah: (Int) -> Unit,
+    onBack: (() -> Unit)? = null
 ) {
     var searchQuery by remember { mutableStateOf("") }
 
@@ -68,18 +71,36 @@ fun KitabTabContent(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
-                    Text(
-                        text = "Al-Qur'an",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = TextCharcoal
-                    )
-                    Text(
-                        text = "114 Surah · Mushaf Digital",
-                        fontSize = 12.sp,
-                        color = TextMuted
-                    )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    if (onBack != null) {
+                        Surface(
+                            color = MerahMerdeka,
+                            shape = CircleShape,
+                            modifier = Modifier
+                                .size(38.dp)
+                                .clip(CircleShape)
+                                .clickable { onBack() }
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("←", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                    }
+
+                    Column {
+                        Text(
+                            text = "Al-Qur'an",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = TextCharcoal
+                        )
+                        Text(
+                            text = "114 Surah · Mushaf Digital",
+                            fontSize = 12.sp,
+                            color = TextMuted
+                        )
+                    }
                 }
 
                 Surface(

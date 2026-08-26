@@ -60,37 +60,11 @@ Bismillaahirrohmaanirroohim. Alhamdulillaahi Robbil ‘aalamin, wal ‘aaqibatu 
 
 “Dengan menyebut Nama Alloh Yang Maha Pengasih Maha Penyayang. Puji bagi Alloh pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya Alloh dan para pengikutnya sampai hari akhir.”
 
-Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab  “Uquudul LaAali Fii Manaaqibil Jayli” dan kitab  “Tafriihul Khootir Fii Manaaqibisy Syaikhi Abdul Qodir”, semoga dengan dibacakan manaqib ini, Alloh  SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin. Adapun diantara manaqib Syaikh Abdul Qodir Al Jailani sebagai berikut:
+Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab “Uquudul LaAali Fii Manaaqibil Jayli” dan kitab “Tafriihul Khootir Fii Manaaqibisy Syaikhi Abdul Qodir”, semoga dengan dibacakan manaqib ini, Alloh SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin. Adapun diantara manaqib Syaikh Abdul Qodir Al Jailani sebagai berikut:
 
-Ke-MUHARROM
+---
 
-Ke-SHOOFAR
-
-Ke-ROBIULAWAL
-
-Ke-ROBIUTSTSANI
-
-Ke-JUMADILULA
-
-Ke-JUMADITSTSANIYAH
-
-Ke-ROJAB
-
-Ke-SYABAN
-
-Ke-ROMADHON
-
-Ke-SYAWAL
-
-Ke-DZULQODAH
-
-Ke-DZULHIJJAH
-
-Ke-DOAMANQOBAH
-
-———۞۞۞———
-
-MUHARROM
+### MUHARROM
 
 Manqobah Ke-39 : Setiap Datang Tahun Baru, Memberitahu Kepada Syaikh Abdul Qodir Peristiwa Yang Akan Terjadi Pada Tahun Itu
 
@@ -120,7 +94,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SHOOFAR
+### SHOOFAR
 
 Manqobah Ke-24 : Masyarakat Yang Menderita Penyakit Tho’un, Sembuh Dengan Rumput Dan Air Madrasah Syaikh Abdul Qodir
 
@@ -150,7 +124,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UL AWAL
+### ROBI'UL AWAL
 
 Manqobah Ke-3 : Kecerdasan Syaikh Abdul Qodir Waktu Menuntut Ilmu
 
@@ -178,7 +152,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UST STANI
+### ROBI'UTS TSANI
 
 Manqobah Ke-51 : Wasiat Syaikh Abdul Qodir Kepada Putranya Abdul Rozak
 
@@ -230,7 +204,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADIL ULA
+### JUMADIL ULA
 
 Manqobah Ke-35 : Syaikh Ahmad Kanji Menjadi Murid Syaikh Abdul Qodir Atas Petunjuk Gurunya
 
@@ -262,7 +236,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADIST TSANIYAH
+### JUMADITS TSANIYAH
 
 Manqobah Ke-15 : Nama Syaikh Abdul Qodir Seperti Ismul A’zhom
 
@@ -308,7 +282,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROJAB
+### ROJAB
 
 Manqobah Ke-11 : Telapak Kaki Nabi Muhammad SAW Memijak Pundak Syaikh Abdul Qodir Pada Malam Mi’roj
 
@@ -326,7 +300,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SYABAN
+### SYA'BAN
 
 Manqobah Ke-7 : Kebiasaan Syaikh Abdul Qodir Setiap Malam Digunakan Untuk Ibadah Sholat Dan Dzikir
 
@@ -346,7 +320,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROMADHON
+### ROMADHON
 
 Manqobah Ke-2: Beberapa Macam Tanda Kemuliaan Pada Waktu Syaikh Abdul Qodir Dilahirkan
 
@@ -382,7 +356,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SYAWAL
+### SYAWAL
 
 Manqobah Ke-22 : Syaikh Abdul Qodir Setiap Tahun Membebaskan Hamba Sahaya Dari Perbudakan, Serta Nilai Busana Yang Beliau Pakai
 
@@ -412,7 +386,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DZULQO’DAH
+### DZULQO'DAH
 
 Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Saw Dan Mencium Tangan Beliau
 
@@ -452,7 +426,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DZULHIJJAH
+### DZULHIJJAH
 
 Manqobah Ke-8 : Berlaku Benar Adalah Dasar Hidup Syaikh Abdul Qodir
 
@@ -484,7 +458,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DOA MANQOBAH
+### DOA MANQOBAH
 
 ilaa hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbur robbanii wal ghoutsish shomadani sayyidis syeikh ‘Abdul Qodir al-Jailani qsn … alfatihah .
 

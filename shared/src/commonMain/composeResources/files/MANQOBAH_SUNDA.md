@@ -48,35 +48,9 @@ Maka ieu sapucuk kitab anu kalintang ringkesna, nyarioskeun manaqibna Sulthonul 
 
 Mudah-mudahan aya manfaatna ka sadayana dulur anu kersa ngaos atanapi ngadangu kalawan ngagungkeun kanu kagungan ieu manaqib. Mudah-mudahan ku berkahna anu kagungan ieu manaqib, Gusti anu Maha Suci ka urang sadayana (khususna ka shohibul hajat sakulawargi….,) nurunkeun rohmat sareng nulak tina bahla dunya akherat. dihasilkeun pamaksadan diwuwuh kasalametan. Aamiin..
 
-Ka-MUHARROM
+---
 
-Ka-SHOFAR
-
-Ka-ROBIULAWAL
-
-Ka-ROBIUTSTSANI
-
-Ka-JUMADILULA
-
-Ka-JUMADITSTSANIYAH
-
-Ka-ROJAB
-
-Ka-SYABAN
-
-Ka-ROMADHON
-
-Ka-SYAWAL
-
-Ka-DZULQODAH
-
-Ka-DZULHIJJAH
-
-Ka-DOAMANQOBAH
-
-———۞۞۞———
-
-MUHARROM
+### MUHARROM
 
 MANQOBAH KA 39 NYARIOSKEUN UNGGAL DATANG TAUN ANYAR SOK ULUK SALAM KA ANJEUNA JEUNG SOK NYARITAKEUN NAON-NAON NU BAKAL KAJADIAN DINA TAUN ETA
 
@@ -106,7 +80,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SHOOFAR
+### SHOOFAR
 
 MANQOBAH KA 24 NYARIOSKEUN CALAGEURNA JALMA2 KU NGADAHAR JUJUKUTAN SARENG NGALEUEUT CAI MADROSAHNA SAYYID ABDUL QODIR
 
@@ -138,7 +112,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UL AWAL
+### ROBI'UL AWAL
 
 MANQOBAH KA 3 NYARIOSKEUN NGAOSNA SAYYID ABDUL QODIR
 
@@ -168,7 +142,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UTS TSANI
+### ROBI'UTS TSANI
 
 MANQOBAH KA 51 NYARIOSKEUN WASIAT SAYYID ABDUL QODIR
 
@@ -286,7 +260,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADIL ULA
+### JUMADIL ULA
 
 MANQOBAH KA 35 NYARIOSKEUN SYEKH AHMAD KANJI JADI MURIDNA SAYYID ABDUL QODIR KALAWAN PITUDUH GURUNA
 
@@ -344,7 +318,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADITS TSANIYAH
+### JUMADITS TSANIYAH
 
 MANQOBAH KA 15 NYARIOSKEUN JENENGAN SAYYID ABDUL QODIR CARA ISMUL A’ZHOM
 
@@ -518,7 +492,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROJAB
+### ROJAB
 
 MANQOBAH KA 11 NYARIOSKEUN NGADAMPALNA KANGJENG NABI KANA PUNDAKNA SAYYID ABDUL QODIR
 
@@ -564,7 +538,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SYA’BAN
+### SYA'BAN
 
 MANQOBAH KA 7 NYARIOSKEUN IBADAHNA SAYYID ABDUL QODIR
 
@@ -610,7 +584,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROMADHON
+### ROMADHON
 
 MANQOBAH KA 2 NYARIOSKEUN DIPEDALKEUNANA SAYYID ABDUL QODIR
 
@@ -660,7 +634,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SYAWAL
+### SYAWAL
 
 MANQOBAH KA 22 NYARIOSKEUN NGAMERDEKAKEUN ABID SARENG ANGGOANANA
 
@@ -704,7 +678,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DZULQO’DAH
+### DZULQO'DAH
 
 MANQOBAH KA 31 NYARIOSKEUN SAYYID ABDUL QODIR NYIUM PANANGAN KANGJENG NABI WAKTOS ZIARAH
 
@@ -742,7 +716,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DZULHIJJAH
+### DZULHIJJAH
 
 MANQOBAH KA 8 NYARIOSKEUN NU DIDAMEL DADASAR PADAMELAN SAYYID ABDUL QODIR
 
@@ -838,7 +812,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DOA MANQOBAH
+### DOA MANQOBAH
 
 اِلَى حَضْرَةِ سُلْطَانِ الْاَوْلِيَاءِ وَقُدْوَةِ الْاَصْفِيَاءِ قُطْبِ الرَّبَّانِيْ وَالْغَوْثِ الصَّمَدَنِي السَّيِّدِ الشَّيْخِ عَبْدُالْقَادِرِاَلْجَيْلَانِيْ (اَلْفَاتِحَةْ)
 

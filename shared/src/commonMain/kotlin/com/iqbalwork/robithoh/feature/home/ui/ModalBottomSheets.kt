@@ -46,12 +46,6 @@ fun ManaqibModalBottomSheet(
         SheetGridItem("badriyyah_id", "Badriyyah", "🌟", false, "sholawat_badriyyah")
     )
 
-    val manaqibSuItems = listOf(
-        SheetGridItem("mc_su", "MC", "🎤", true, "mc_manaqib_su"),
-        SheetGridItem("tanbih_su", "Tanbih", "🏛️", true, "tanbih_su"),
-        SheetGridItem("manqobah_su", "Manqobah", "📜", true, "manqobah_su")
-    )
-
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         containerColor = Color.White,
@@ -71,7 +65,7 @@ fun ManaqibModalBottomSheet(
             )
             Spacer(modifier = Modifier.height(14.dp))
 
-            // Manaqib Indonesia Grid (4 columns)
+            // Manaqib Grid (4 columns)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -92,28 +86,6 @@ fun ManaqibModalBottomSheet(
                         SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
                     }
                 }
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "Manaqib Sunda",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(14.dp))
-
-            // Manaqib Sunda Grid
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                manaqibSuItems.forEach { item ->
-                    Box(modifier = Modifier.weight(1f)) {
-                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
-                    }
-                }
-                Spacer(modifier = Modifier.weight(1f))
             }
         }
     }

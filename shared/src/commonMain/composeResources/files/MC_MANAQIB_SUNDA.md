@@ -1,55 +1,51 @@
-# MC Sunda
+# MC Manaqib
 
 ---
 
-MC MANAQIB
-
-Assalamualaikum warohmatulloh wabarokatuh. Bismillahirrohmanirrohim Alhamdulillahi robbil alamin Washsholatu wassalaamu ala syamsil mursalin wa qomarin nabiyyin wa sidroti muntahal ‘arifin sayidina Muhammadin wa ala alihi washohbihi ajma’in. ( ammaa ba’ad ).
+Assalamualaikum warohmatulloh wabarokatuh. Bismillahirrohmanirrohim Alhamdulillahi robbil alamin Washsholatu wassalaamu ala syamsil mursalin wa qomarin nabiyyin wa sidroti muntahal ‘arifin sayidina Muhammadin wa ala alihi washohbihi ajma’in (ammaa ba’ad).
 
 Pangajian anti gempa manaqib ieu dina raraga ngarayakeun 9 kamenangan :
 
-La’alakum tattaquun
+1. La’alakum tattaquun
+2. Nuzulul Qur’an
+3. Lailatur Qodar
+4. Idul Fitri
+5. Minal ‘aa idiin wal faa iziin
+6. Maulid sareng Maulud Nabi Muhammad SAW
+7. Kajayaan Agama sareng Nagara (Kabinet Merah Putih)
+8. Katahanan Nasional NKRI (Kabinet Merah Putih)
+9. Peradaban Dunia (Kabinet Merah Putih)
 
-Nuzulul Qur’an
+Kalayan Acara Runtuyan Salajengna :
 
-Lailatur Qodar
+### A. Kalayan acara Khidmat ‘Amaliyah
+1. Ngaoskeun ayat Al-Qur’an ku kersana : ……………………..
+2. Ngaoskeun sholawat thoriqiyyah ku kersana : ……………………..
+3. Ngaoskeun tanbih sareng teks pancasila ku kersana : ……………………..
+4. Ngaoskeun tawassul ku kersana : ……………………..
+5. Ngaoskeun Manqobah ku kersana : ……………………..
 
-Idul Fitri
+### B. Tabaruk Kitab Fadhoilussyuhuur ku kersana : …………………….. (upami aya)
 
-Minal ‘aa idiin wal faa iziin
+### C. Khidmat ‘Ilmiyyah disanggakeun ku :
+1. ……………………..
+2. ……………………..
+3. Pangersa Abah Aos
 
-Maulid sareng Maulud Nabi Muhammad SAW
+### E. Ditutup ku aosan Bani Hasyim (3x) sareng Sholawat Badriyyah
 
-Kajayaan Agama sareng Nagara (Kabinet Merah Putih).
+Kanggo para petugas disanggakeun sacara estafet.
 
-Katahanan Nasional NKRI (Kabinet Merah Putih).
+Wassalamu’alaikum warohmatulloh wabarokatuh.
 
-Peradaban Dunia (Kabinet Merah Putih).
+---
 
-A.  Kalayan acara Khidmat ‘amaliyah
+### Catetan Penting:
+*#UlahDirobahDitambahUlahDikurangan*  
+*#SapertosAnuParantosDimaklumatkeunKuPangersaAbah*
 
-Ngaosken ayat Al-quran ku kersana : ………….
+Upami shohibul hajat hoyong disebat hajatna anu seueur…. Dugikeun wae ku MC sateuacan dibuka acara manaqib.
 
-Ngaosken sholawat thoriqiyyah ku kersana : ………….
+Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna ngadikte Alloh, nganggep Alloh teu uninga kana hajat urang. Parantos…. Cekap dina manah wae Alloh parantos MAHA UNINGA. Sanaos teu disebat oge Alloh Maha Uninga.
 
-Ngaosken tanbih sareng teks pancasila ku kersana : ………….
-
-Ngaosken tawassul ku kersana : ………….
-
-Ngaosken Manqobah ku kersana : ………….
-
-B. Tabaruk Kitab Fadhoilussyuhuur ku kersana : ………(upami aya)
-
-C. Khidmat ‘ilmiyyah
-
-………….
-
-………….
-
-Pangersa Abah Aos
-
-E. Ditutup ku aosan Bani Hasyim (3x) sareng Sholawat Badriyyah
-
-kangge kapara petugas disanggakeun secara estapet
-
-Wassalamua’alaikum warohmatulloh wabarokatuh.
+*\* Upami aya sambutan, sateuacan dibuka acara atanapi saparantos do’a manaqib sateuacan khidmah ‘ilmiyyah… Sareng maksimal 5 menit wae \**
