@@ -1,0 +1,118 @@
+CREATE TABLE ManqobahEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    chapter_number INTEGER NOT NULL,
+    title_arabic TEXT NOT NULL,
+    title_indonesian TEXT NOT NULL,
+    title_sundanese TEXT NOT NULL,
+    content_arabic TEXT NOT NULL,
+    content_indonesian TEXT NOT NULL,
+    content_sundanese TEXT NOT NULL,
+    audio_path TEXT
+);
+
+CREATE INDEX manqobah_chapter_idx ON ManqobahEntity(chapter_number);
+
+CREATE TABLE BookmarkEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    item_type TEXT NOT NULL,
+    item_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    subtitle TEXT NOT NULL,
+    page_or_surah INTEGER NOT NULL DEFAULT 0,
+    verse_or_section INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX bookmark_type_idx ON BookmarkEntity(item_type);
+
+CREATE TABLE AmaliyahProgressEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    current_count INTEGER NOT NULL DEFAULT 0,
+    target_count INTEGER NOT NULL DEFAULT 33,
+    last_updated INTEGER NOT NULL,
+    is_completed INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE INDEX amaliyah_progress_idx ON AmaliyahProgressEntity(id);
+
+-- Manqobah Queries
+getAllManqobah:
+SELECT * FROM ManqobahEntity ORDER BY chapter_number ASC;
+
+getManqobahByChapter:
+SELECT * FROM ManqobahEntity WHERE chapter_number = :chapterNumber LIMIT 1;
+
+searchManqobah:
+SELECT * FROM ManqobahEntity
+WHERE title_indonesian LIKE '%' || :query || '%'
+   OR title_sundanese LIKE '%' || :query || '%'
+   OR content_indonesian LIKE '%' || :query || '%'
+   OR content_sundanese LIKE '%' || :query || '%'
+ORDER BY chapter_number ASC;
+
+insertManqobah:
+INSERT OR REPLACE INTO ManqobahEntity(
+    id, chapter_number, title_arabic, title_indonesian, title_sundanese,
+    content_arabic, content_indonesian, content_sundanese, audio_path
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteManqobahByChapter:
+DELETE FROM ManqobahEntity WHERE chapter_number = :chapterNumber;
+
+deleteAllManqobah:
+DELETE FROM ManqobahEntity;
+
+-- Bookmark Queries
+getAllBookmarks:
+SELECT * FROM BookmarkEntity ORDER BY updated_at DESC;
+
+getBookmarksByType:
+SELECT * FROM BookmarkEntity WHERE item_type = :itemType ORDER BY updated_at DESC;
+
+getBookmarkByItem:
+SELECT * FROM BookmarkEntity WHERE item_type = :itemType AND item_id = :itemId LIMIT 1;
+
+getLastReadBookmark:
+SELECT * FROM BookmarkEntity WHERE item_type = :itemType ORDER BY updated_at DESC LIMIT 1;
+
+insertOrUpdateBookmark:
+INSERT OR REPLACE INTO BookmarkEntity(
+    id, item_type, item_id, title, subtitle, page_or_surah, verse_or_section, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteBookmarkById:
+DELETE FROM BookmarkEntity WHERE id = :id;
+
+deleteBookmarkByItem:
+DELETE FROM BookmarkEntity WHERE item_type = :itemType AND item_id = :itemId;
+
+-- Amaliyah Progress Queries
+getAllAmaliyahProgress:
+SELECT * FROM AmaliyahProgressEntity ORDER BY last_updated DESC;
+
+getAmaliyahProgressById:
+SELECT * FROM AmaliyahProgressEntity WHERE id = :id LIMIT 1;
+
+insertOrUpdateAmaliyahProgress:
+INSERT OR REPLACE INTO AmaliyahProgressEntity(
+    id, title, current_count, target_count, last_updated, is_completed
+) VALUES (?, ?, ?, ?, ?, ?);
+
+updateAmaliyahCount:
+UPDATE AmaliyahProgressEntity
+SET current_count = :currentCount,
+    last_updated = :lastUpdated,
+    is_completed = :isCompleted
+WHERE id = :id;
+
+resetAmaliyahProgress:
+UPDATE AmaliyahProgressEntity
+SET current_count = 0,
+    is_completed = 0,
+    last_updated = :lastUpdated
+WHERE id = :id;
+
+deleteAmaliyahProgress:
+DELETE FROM AmaliyahProgressEntity WHERE id = :id;

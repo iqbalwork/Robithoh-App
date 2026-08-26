@@ -1,0 +1,593 @@
+package com.iqbalwork.robithoh.feature.amaliyah.data
+
+import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.HijriyahAmaliyah
+import com.iqbalwork.robithoh.feature.amaliyah.model.SpecialPrayer
+
+/**
+ * Authentic Data Repository for TQN Sirnarasa 38 Amaliyah,
+ * Dzikir Harian Ba'da Sholat (Jahr & Khofi), Daily Special Prayers,
+ * 12 Bulan Hijriyah, and Sholat Sunnah with 3-language liturgical text.
+ */
+class AmaliyahRepository {
+
+    fun getDzikirJahrList(): List<DzikirItem> = listOf(
+        DzikirItem(
+            id = "dzikir_harian_1",
+            number = 1,
+            title = "Hadhrot / Tawassul Pembuka",
+            arabicText = "اِلٰى حَضْرَةِ النَّبِيِّ الْمُصْطَفٰى مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ وَاَزْوَاجِهٖ وَذُرِّيّٰتِهٖ وَاَهْلِ بَيْتِهٖ وَلِمَنْ دَخَلَ فِي بَيْتِهٖ اَجْمَعِيْنَ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+            latinText = "Ilaa hadrotin nabiyyil musthofaa Muhammadin Shollalloohu ‘Alaihi Wa sallam wa ‘alaa Aalihii wa Ashhabihii wa Azwaajihii wa Dzurriyyaatihii wa Ahli Baitihii wa Liman dakhola fii Baitihii ajma ‘iin, kullu syai’in lillahi lahum, Al-Fatihah",
+            indonesianText = "Yaa Alloh semoga disampaikan pahala bacaan fatihah ini kehadapan Nabi Besar Muhammad SAW dan kepada keluarga, sahabat, istri, anak cucu dan ahli baitnya. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Faatihah",
+            sundaneseText = "Khatur ka payuneun Kangjeng Nabi Muhammad SAW sakulawargi, para sahabatna, garwana, turunanana, ahli baitna, sareng sing saha bae anu lebet ka bumina sadayana, Al-Faatihah",
+            repetitionCount = 1,
+            category = "Tawassul",
+            kaifiyatNote = "Dibaca dengan khusyuk menghadapkan ruhani kepada Baginda Nabi SAW."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_2",
+            number = 2,
+            title = "Istighfar Pembuka (3x)",
+            arabicText = "أَسْتَغْفِرُ اللّٰهَ الْغَفُوْرَ الرَّحِيْمَ",
+            latinText = "Astaghfirulloohal Ghofuuror Rohiim (3x)",
+            indonesianText = "Aku memohon ampunan kepada Alloh yang Maha Pengampun dan Maha Penyayang.",
+            sundaneseText = "Abdi neda panghampura ka Gusti Alloh Nu Maha Ngahapunten tur Maha Asih.",
+            repetitionCount = 3,
+            category = "Istighfar",
+            kaifiyatNote = "Dibaca 3x dengan merendahkan hati memohon ampunan."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_3",
+            number = 3,
+            title = "Sholawat Pembuka (3x)",
+            arabicText = "اَللّٰهُمَّ صَلِّ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَصَحْبِهٖ وَسَلِّمْ",
+            latinText = "Alloohumma sholli ‘alaa Sayyidinaa Muhammadiw wa ‘alaa aalihii Wa shohbihii wa sallim (3x)",
+            indonesianText = "Yaa Alloh limpahkanlah rahmat-Mu kepada sayyidina Muhammad SAW dan kepada keluarga, dan para sahabatnya, serta limpahkanlah keselamatan baginya.",
+            sundaneseText = "Nun Gusti Alloh mugi ngalungsurkeun rahmat ka Gusti junjungan abdi sadaya Kangjeng Nabi Muhammad SAW miwah kulawargana, para sahabatna, sareng salam karahayuan.",
+            repetitionCount = 3,
+            category = "Sholawat",
+            kaifiyatNote = "Dibaca 3x menyambung mahabbah kepada Rasulullah SAW."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_4",
+            number = 4,
+            title = "Munajat Ilahi Anta Maqshudi",
+            arabicText = "اِلَهِي اَنْتَ مَقْصُودِيْ وَرِضاَكَ مَطْلُوبِي اَعْطِنِيْ مَحَبَتَكَ وَمَعْرِفَتَكَ وَاَعْطِنِيْ مَعَكَ اَبَدَا",
+            latinText = "Ilaahii Anta maqshuudii wa ridhoo-Ka mathluubii, a’thinii Mahabbata-Ka wa Ma’rifata-Ka wa ‘athinii ma’aka abada.",
+            indonesianText = "Tuhanku Engkaulah yang menjadi maksudku dan keridhoan-Mu yang menjadi pintaku. Berikanlah kepadaku kecintaan dan ma’rifat kepada-Mu dan berikan aku selamanya bersamaMu.",
+            sundaneseText = "Nun Gusti Pangeran abdi, Gusti anu janten tujuan abdi sareng karidhoan Gusti anu dipilari ku abdi, mugi Gusti maparin katresnan Gusti sareng ma'rifat ka Gusti sarta lungsurkeun abdi salamina sareng Gusti.",
+            repetitionCount = 1,
+            category = "Munajat",
+            kaifiyatNote = "Niat ikhlas memurnikan tujuan ibadah hanya kepada Allah SWT semata."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_5",
+            number = 5,
+            title = "Tahlil Pembuka (3x)",
+            arabicText = "لَا إِلٰهَ إِلَّا اللّٰهُ",
+            latinText = "Laa Ilaaha Illallooh (3x)",
+            indonesianText = "Tiada Tuhan selain Alloh (3x)",
+            sundaneseText = "Teu aya deui Pangeran lian ti Gusti Alloh (3x)",
+            repetitionCount = 3,
+            category = "Tahlil",
+            kaifiyatNote = "Dibaca 3x dengan irama nafi itsbat."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_6",
+            number = 6,
+            title = "Dzikir Nafi Itsbat (165x)",
+            arabicText = "لَا إِلٰهَ إِلَّا اللّٰهُ",
+            latinText = "LAA ILAAHA ILLALLOOH",
+            indonesianText = "Kemudian dilanjutkan dengan Zikir sekurang-kurangnya 165x. Lebih banyak lebih baik dan Zikir diakhiri pada hitungan bilangan ganjil.",
+            sundaneseText = "Lajeng diteraskeun dzikir sakirang-kirangna 165x. Langkung seueur langkung sae tur dipungkas dina etangan ganjil.",
+            repetitionCount = 165,
+            category = "Dzikir Jahr Inti",
+            kaifiyatNote = "Dzikir Jahr diucapkan bersuara dengan irama TQN: memalingkan kepala dari lambung kanan kemudian dihunjamkan ke arah lathifah qolbi (dada kiri bawah). Standar hitungan 165x."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_7",
+            number = 7,
+            title = "Penutup Dzikir Jahr",
+            arabicText = "سَيِّدُنَا مُحَمَّدٌ رَسُوْلُ اللّٰهِ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ",
+            latinText = "Sayyidunaa Muhammadur Rosuululloohi Shollalloohu ‘Alaihi wa Sallam",
+            indonesianText = "Sayyidina Muhammad Rosulnya Alloh, semoga Alloh melimpahkan Rahmat dan keselamatan atas beliau.",
+            sundaneseText = "Sayyidina Muhammad Rosululloh, mugi Alloh ngalimpahkeun Rahmat sareng kasalametan ka anjeunna.",
+            repetitionCount = 1,
+            category = "Penutup Dzikir",
+            kaifiyatNote = "Dibaca dengan khusyuk sebagai penutup dzikir jahr."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_8",
+            number = 8,
+            title = "Doa Ba'da Dzikir (Munjiyat, Bai'at & Doa Miskin)",
+            arabicText = "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\nاَللّٰهُمَّ صَلِّ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى أٰلِ سَيِّدِنَا مُحَمَّدٍ صَلَاةً تُنْجِيْنَا بِهَا مِنْ جَمِيْعِ الْأَهْوَالِ وَالْأٰفَاتِ وَتَقْضِي لَنَا بِهَا جَمِيْعَ الْحَاجَاتِ وَتُطَهِّرُنَا بِهَا مِنْ جَمِيْعِ السَّيِّأٰتِ وَتَرْفَعُنَا بِهَا عِنْدَكَ أَعْلَى الدَّرَجَاتِ وَتُبَلِّغُنَا بِهَا أَقْصَى الْغَايَاتِ مِنْ جَمِيْعِ الْـخَيْرَاتِ فِي الْحَيَاةِ وَبَعْدَ الْمَمَاتِ، إِنَّ الَّذِينَ يُبَايِعُوْنَكَ إِنَّمَا يُبَايِعُوْنَ اللّٰهَ يَدُ اللّٰهِ فَوْقَ أَيْدِيْهِمْ فَمَنْ نَكَثَ فَإِنَّمَا يَنْكُثُ عَلٰى نَفْسِهٖ وَمَنْ اَوْفٰى بِمَا عَاهَد عَلَيْهُ اللّٰهَ فَسَيُؤْتِيْهِ أَجْرًا عَظِيْمًا\nٱللَّٰهُمَّ أَحْيِنِي مِسْكِينًا وَأَمِتْنِي مِسْكِينًا وَاحْشُرْنِي فِي زُمْرَةِ ٱلْمَسَاكِينِ",
+            latinText = "Bismillaahirrohmaanirrohiim. Allohumma sholli ‘alaa Sayyidinaa Muhammad wa ‘alaa Aali Sayyidinaa Muhammad, sholaatan tunjiinaa bihaa min jamii’il ahwaali wal aafaat, wa taqdhiilanaa bihaa jamii’al haajaat, wa tuthohhirunaa bihaa min jamii’is sayyi’aat, wa tarfa’unaa bihaa ‘indaka a’lad darojaat, wa tuballighunaa bihaa aqshol ghooyaat min jamii’il khoiroot fil hayaati wa ba’dal mamaat. Innal ladziina yubaayi‘uunaka innamaa yubaayi ‘uunalloha, yadulloohi fauqo aidiihim, faman nakatsa fa’innamaa yankutsu ‘alaa nafsih, wa man aufaa bimaa ‘aahada ‘alaihullooha fasayu’tiihi ajron ‘azhiimaa. Allohumma ahyinii miskiinan, wa amitnii miskiinan, wahsyurnii fii jumrotil masaakiin",
+            indonesianText = "Dengan menyebut nama Alloh yang Maha Pengasih lagi Maha Penyayang. Yaa Alloh limpahkan rahmat-Mu kepada Nabi Muhammad SAW dan keluarganya dengan rahmat yang akan menyelamatkan kami dari semua marabahaya dan mengabulkan bagi kami semua keperluan kami, dan membersihkan kami dari segala kesalahan, dan mengangkat kami ke derajat yang tinggi serta menyampaikan kami ke puncak sejak masih hidup sampai meninggal dunia. Sesungguhnya orang-orang yang berjanji setia kepada-Mu, itu sebenarnya mereka berjanji kepada Alloh. ‘Tangan Alloh’ di atas tangan-tangan (kekuasaan) mereka, maka barangsiapa melanggar janjinya, niscaya akibat dari melanggar janji itu akan menimpa dirinya sendiri, dan barangsiapa yang menepati janjinya kepada Alloh maka Alloh akan memberinya pahala yang besar. Ya Alloh, hidupkanlah aku dalam keadaan miskin, matikanlah aku dalam keadaan miskin, dan kumpulkanlah aku bersama rombongan orang-orang miskin (HR. Ibnu Majah: permohonan sifat tawadhu, khusyuk dan kerendahan hati).",
+            sundaneseText = "Kalayan nyebat jenengan Gusti Alloh Nu Maha Welas tur Maha Asih. Nun Gusti mugi ngalimpahkeun rahmat kasalametan, ngabersihkeun sagala dosa, ngangkat darajat luhur, sarta nempatkeun abdi sadaya dina golongan jalma-jalma anu tawadhu tur dipikacinta ku Mantenna.",
+            repetitionCount = 1,
+            category = "Doa Ba'da Dzikir",
+            kaifiyatNote = "Doa Sholawat Munjiyat, ikrar bai'at thariqah, serta doa ketawadhuan yang diajarkan Rasulullah SAW."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_9",
+            number = 9,
+            title = "Hadhrot Rasulullah SAW (Kedua)",
+            arabicText = "اِلٰى حَضْرَةِ النَّبِيِّ الْمُصْطَفٰى مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ وَاَزْوَاجِهٖ وَذُرِّيّٰتِهٖ وَاَهْلِ بَيْتِهٖ وَلِمَنْ دَخَلَ فِي بَيْتِهٖ اَجْمَعِيْنَ كُلُّ شَيْئٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+            latinText = "Ilaa hadrotin nabiyyil musthofaa Muhammadin Shollalloohu ‘Alaihi Wa sallam wa ‘alaa Aalihii wa Ashhabihii wa Azwaajihii wa Dzurriyyaatihii wa Ahli Baitihii wa Liman dakhola fii Baitihii ajma ‘iin, kullu syai’in lillahi lahum, Al-Fatihah",
+            indonesianText = "Semoga disampaikan kepada junjungan kami Nabi Muhammad SAW, semoga Alloh melimpahkan rahmat dan keselamatan kepanya, kepada keluarganya, para sahabatnya, istrinya, keturunannya serta ahli baitnya. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah",
+            sundaneseText = "Khatur ka payuneun Kangjeng Nabi Muhammad SAW sakulawargi, para sahabatna, garwana, turunanana, ahli baitna sadayana, Al-Faatihah",
+            repetitionCount = 1,
+            category = "Tawassul",
+            kaifiyatNote = "Membaca Al-Fatihah kedua untuk Baginda Nabi SAW."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_10",
+            number = 10,
+            title = "Tawassul Silsilah TQN Suryalaya Sirnarasa PPKN",
+            arabicText = "ثُمَّ اِلٰى أَهْلِ السِّلْسِلَةِ الْقَادِرِيَّةِ النَّقْشَبَنْدِيَّةِ مَعْهَدِ سُرْيَالَيَا سِرْناَ رَاسَا وَجَمِيْعِ أَهْلِ الطُّرُقِ خُصُوْصًا اِلٰى حَضْرَةِ سُلْطَانِ الْأَوْلِيَاءِ غَوْثِ الْأَعْظَمِ قُطْبِ الْعَالَمِيْنَ السَّيِّدِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلَانِي قَدَّسَ اللّٰهُ سِرَّهُ وَالسَّيِّدِ الشَّيْخِ أبِي الْقَاسِمِ جُنَيْدِ الْبَغْدَادِي وَالسَّيِّدِ الشَّيْخِ أَحْمَدَ خَاطِبِ ابْنِ عَبْدِ الْغَفَّارِ السَّمْبَاسِيِّ وَالسَّيِّدِ الشَّيْخِ طَلْحَةَ كَالِي سَافُو السِرْبَوْنِي وَالسَّيِّدِ الشَّيْخِ عَبْدِ اللّٰهِ مُبَارَكِ بْنِ نُوْرِ مُحَمَّدٍ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ أَحْمَدَ صَاحِبِ الْوَفٰى تَاجِ الْعَارِفِيْنَ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّهمُ وَأُصُوْلِهِمْ وَفُرُوْعِهِمْ وَاَهْلِ سِلْسِلَتِهِمْ وَالْأۤخِذِيْنَ عَنْهُمْ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+            latinText = "Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah Ma’had Suryalaya Sirnarasa PPKN wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah",
+            indonesianText = "Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah Ma’had Suryalaya Sirnarasa dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama Alloh Syaikh Abdul Qodir al Jailani. Semoga Alloh melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga Alloh melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah",
+            sundaneseText = "Lajeng khatur ka para ahli Silsilah TQN Ma'had Suryalaya Sirnarasa PPKN, Syekh Abdul Qodir Al-Jailani Qs., Syekh Junaid Al-Baghdadi, Syekh Ahmad Khatib Sambas, Syekh Tolhah Kalisapu, Syekh Abdullah Mubarok (Abah Sepuh), Syekh Ahmad Shohibulwafa Tajul Arifin (Abah Anom), miwah Guru Mursyid urang sadaya Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos Ra. Qs. 38), Al-Faatihah.",
+            repetitionCount = 1,
+            category = "Silsilah TQN",
+            kaifiyatNote = "Menyambungkan rabithah qolbiyyah kepada Silsilah Emas TQN 38."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_11",
+            number = 11,
+            title = "Hadiah Fatihah untuk Orang Tua & Kaum Muslimin",
+            arabicText = "ثُمَّ اِلٰى أَرْوَاحِ أٰبَائِنَا وَأُمَّهَاتِنَا وَلِكَافَّةِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ .والمحسنين والمحسنات.الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
+            latinText = "Tsumma ilaa arwaahi Aaba’inaa wa Ummahaatinaa wa likaaffatil Muslimiina wal Muslimaat wal Mu’miniina wal Mu’minaat wal muhsiniina wal muhsinaati al Ahyaa’i minhum wal amwaat, kullu syai’in lillaahi lahum, Al-Fatihah",
+            indonesianText = "Selanjutnya semoga Alloh menyampaikan kepada bapak-bapak kami dan ibu-ibu kami dan kepada semua muslimin dan muslimat, mukminin dan mukminat, yang masih hidup maupun yang telah meninggal dunia. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah",
+            sundaneseText = "Lajeng khatur ka arwah sepuh urang sadaya, ibu rama urang, ka sakumna muslimin muslimat, mukminin mukminat, anu masih keneh jumeneng atanapi parantos ngantunkeun, Al-Faatihah.",
+            repetitionCount = 1,
+            category = "Tawassul",
+            kaifiyatNote = "Mendoakan keselamatan dan barokah bagi kedua orang tua dan umat Islam."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_12",
+            number = 12,
+            title = "Istighfar Taubat (3x)",
+            arabicText = "اَسْتَغْفِرُ اللّٰهَ رَبِّي مِنْ كُلِّ ذَنْبٍ وَاَتُوْبُ اِلَيْهِ",
+            latinText = "Astaghfirullooha Robbii min kulli dzanbin wa atuubu ilaihi (3x)",
+            indonesianText = "Aku memohon ampunan kepada Alloh Tuhanku dari segala dosa dan aku bertaubat kepada-Nya.",
+            sundaneseText = "Abdi neda panghampura ka Gusti Alloh Pangeran abdi tina saniskara dosa tur abdi tobat ka Mantenna.",
+            repetitionCount = 3,
+            category = "Istighfar",
+            kaifiyatNote = "Dibaca 3x dengan ketundukan jiwa."
+        ),
+        DzikirItem(
+            id = "dzikir_harian_13",
+            number = 13,
+            title = "Sholawat Ibrahimiyah",
+            arabicText = "اَللّٰهُمَّ صَلِّ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى أٰلِ سَيِّدِنَا مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلٰى أٰلِ اِبْرَاهِيْمَ وَبَارِكْ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى أٰلِ سَيِّدِنَا مُحَمَّدٍ كَمَا بَارَكْتَ عَلٰى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلٰى أٰلِ اِبْرَاهِيْمَ فِي الْعَالَمِيْنَ إِنَّكَ حَمِيْدٌ مَجِيْدٌ",
+            latinText = "Alloohumma sholli ‘alaa sayyidinaa Muhammad wa ‘alaa Aali Sayyidinaa Muhammad, kamaa shollaita ‘alaa sayyidinaa Ibroohim wa ‘alaa Aali sayyidinaa Ibroohim, wa baarik ‘alaa sayyidinaa Muhammad Wa ‘alaa Aali sayyidinaa Muhammad, kamaa baarokta ‘alaa sayyidinaa Ibroohim wa ‘alaa Aali sayyidinaa Ibroohim, fil ‘aalamiina innaka Hamiidum Majiid.",
+            indonesianText = "Yaa Alloh Semoga Engkau melimpahkan rahmat kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan rahmat kepada Nabi Ibrahim dan keluarganya dan semoga Engkau melimpahkan barokah kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan barokah kepada Nabi Ibrahim dan keluarganya di seluruh alam. Engkau Maha Terpuji lagi Maha Agung.",
+            sundaneseText = "Nun Gusti Alloh mugi ngalimpahkeun rahmat sareng kabarokahan ka Kangjeng Nabi Muhammad miwah kulawargana sakumaha Gusti parantos maparin rahmat ka Kangjeng Nabi Ibrahim miwah kulawargana di sakuliah alam. Saestuna Gusti Maha Pinuji tur Maha Agung.",
+            repetitionCount = 1,
+            category = "Sholawat Ibrahimiyah",
+            kaifiyatNote = "Dibaca dengan penuh khidmat sebelum memasuki sesi Tawajuh Dzikir Khofi."
+        )
+    )
+
+    fun getDzikirKhofiList(): List<DzikirItem> = listOf(
+        DzikirItem(
+            id = "dzikir_khofi_tawajuh",
+            number = 1,
+            title = "Tata Cara Tawajuh (129 Detik / 2 Menit 9 Detik)",
+            arabicText = "اللَّهُ • اللَّهُ • اللَّهُ (فِي الْقَلْبِ)",
+            latinText = "ALLOH... ALLOH... ALLOH... (Dzikir Khofi di dalam Lathifah Qolbi)",
+            indonesianText = "Selanjutnya Tawajuh Selama 129 Detik ( 2 menit 9 detik ) dengan cara:\n– Kedua mata terpejam\n– Bibir dirapatkan\n– Lidah dilipatkan ke langit-langit\n– Gigi dirapatkan tidak bergerak\n– Menahan nafas sekuatnya\n– Kepala ditundukkan ke sebelah kiri\n– Hati tanpa berhenti ber- Dzikir Khofi sekuatnya.",
+            sundaneseText = "Tawajuh salami 129 detik (2 menit 9 detik) kalayan tata cara: panon peureum, lambey dirapetkeun, letah ditilepkeun ka lalangit, waos dirapetkeun teu usik, nahan napas sakuatna, mastaka ditundukkeun ka kenca, manah teu kendat dzikir khofi sakuatna.",
+            repetitionCount = 129,
+            category = "Tawajuh Khofi",
+            kaifiyatNote = "Tawajuh 129 detik dengan 7 adab dzikir khofi dan menyambungkan rabithah kepada Guru Mursyid 38."
+        ),
+        DzikirItem(
+            id = "dzikir_khofi_asy_syura",
+            number = 2,
+            title = "Ayat Asy-Syura: 19 (38x)",
+            arabicText = "اَللّٰهُ لَطِيْفٌۢ بِعِبَادِهٖ يَرْزُقُ مَنْ يَّشَاۤءُۚ وَهُوَ الْقَوِيُّ الْعَزِيْزُࣖ",
+            latinText = "Allāhu laṭīfum bi’ibādihī yarzuqu may yasyā’, wa huwal-qawiyyul-‘azīz (38x)",
+            indonesianText = "Alloh Mahalembut terhadap hamba-hamba-Nya. Dia memberi rezeki kepada siapa yang Dia kehendaki. Dia Mahakuat lagi Mahaperkasa. (Dibaca 38x)",
+            sundaneseText = "Gusti Alloh Maha Lembut ka para hamba-Na. Mantenna maparin rezeki ka sing saha anu dipikersa ku Mantenna. Mantenna Maha Kiat tur Maha Gagah Perkasa. (Dimaos 38x)",
+            repetitionCount = 38,
+            category = "Ayat Pilihan 38x",
+            kaifiyatNote = "Dibaca 38x ba'da Tawajuh Dzikir Khofi."
+        )
+    )
+
+    fun getDailyPrayersList(): List<SpecialPrayer> = listOf(
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_persatuan",
+            title = "Doa Persatuan & Kesatuan (Subuh & Maghrib)",
+            arabicTitle = "دعاء جمع الشمل والوحدة",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "عَسَى اللّٰهُ أَن يَجْعَلَ بَيْنَكُمْ وبَيْنَ الَّذِيْنَ عَادَيْتُم مِّنْهُم مَّوَدَّةً وَاللّٰهُ قَدِيْرٌ وَاللّٰهُ غَفُوْرٌ رَّحِيْمٌ، رَبِّ إِنِّي ظَلَمْتُ نَفْسِي فَاغْفِرْ لِي ذَنْبِيْ، لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ",
+            latinText = "‘Asalloohu ayyaj’ala bainakum wa bainal ladziina ‘adaitum minhhum mawadataw walloohhu qodiiruw walloohhu ghofuurur rohiimu robbi innii zholamtu nafsii faghfirlii dzambii laa ilaahha illa angta subhaanaka innii kungtu minazh zhoolimiina (3x).",
+            indonesianText = "Semoga Alloh menumbuhkan kasih sayang di antara kalian dan termasuk pada orang-orang yang memusuhi kalian. Alloh Maha Kuasa dan Maha Pengampun lagi Maha Penyayang. Tiada Tuhan selain Engkau. Maha Suci Engkau, sesungguhnya aku adalah orang yang menganiaya kepada diriku sendiri. (3x)",
+            sundaneseText = "Mugia Gusti Alloh numwuhkeun rasa nyaah di antawis aranjeun sareng jalma-jalma anu mikangewa ka aranjeun. Alloh Maha Kawasa tur Maha Asih...",
+            kaifiyat = "Doa untuk menggalang persatuan dan kesatuan baik lingkungan keluarga, masyarakat maupun negara. Dibaca 3x khusus ba'da Subuh dan Maghrib.",
+            virtue = "Mengharmoniskan hubungan antar sesama dan meredam permusuhan.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_benteng",
+            title = "Doa Benteng dari Gangguan Musuh (Subuh & Maghrib)",
+            arabicTitle = "دعاء الحصن والاعتصام",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "اَللّٰهُمَّ صَحًّا صَحًّا صَحًّا وَحًّا بَحًّا حٰمۤ لَا يُنْصَرُوْنَ ، وَجَعَلْنَا مِنْ بَيْنِ أَيْدِيهِمْ سَدًّا وَّمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنَاهُمْ فَهُمْ لَا يُبْصِرُوْنَ ، كۤهٰيٰعۤصۤ حٰمۤ عۤسۤقۤ لَا يُصَدَّعُوْنَ عَنْهَا وَلَا يُنْزِفُوْنَ ، يَا رَبُّ يَا رَبُّ يَا رَبُّ وَلَاحَوْلَ وَلَاقُوَّةَ إِلَّا بِاللّٰهِ الْعَلِيِّ الْعَظِيْم",
+            latinText = "Alloohhumma shohhan-shohhan-shohhan wa han bahan haa-mim laa yungshoruuna wa ja’alnaa mim baini aydiihhim saddaw wa min kholfihhim saddang fa-aghsyainaahhum fahhum laa yubshiruuna kaf-hha-ya-‘ain-shod-ha-mim-‘ain-sin-qof laa yushodda’uuna ‘anhhaa wa laa yungzifuuna yaa robbu-yaa robbu-yaa robbu wa laa haula wa laa quwwata illa billaahhil ‘aliyyil ‘azhiimi (3x).",
+            indonesianText = "Ya Alloh, sehatkanlah-sehatkanlah-sehatkanlah, tuluskanlah ha-mim orang yang zholim tidak akan mendapat pertolongan. Dan Kami adakan di hadapan mereka dinding, dan di belakang mereka dinding. Dan Kami tutup mata mereka, sehingga mereka tidak melihat, kaf-hha-ya-‘ain-shod-ha-mim-‘ain-sin-qof, tiadalah mereka mematahkan dari pada-Nya, dan tidaklah mereka bisa mengeluarkan. Ya Rob-Ya Rob-Ya Rob, tiada daya dan upaya kecuali dari Alloh Yang Maha Luhur dan Maha Agung. (3x)",
+            sundaneseText = "Nun Gusti Alloh mugi maparin kasalametan, kasehatan, sareng panyalindungan tina sagala rereged gangguan lahir batin...",
+            kaifiyat = "Doa sebagai benteng dari gangguan musuh baik dari dalam dan luar, serta berserah diri total hanya pada Alloh. Dibaca 3x ba'da Subuh dan Maghrib.",
+            virtue = "Benteng perlindungan kokoh dari segala makar dan marabahaya musuh.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_penangkal_bala",
+            title = "Doa Penangkal Penyakit & Bala / Asy-Syafii",
+            arabicTitle = "دعاء الشفاء ودفع البلاء",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "بِسْمِ اللّٰهِ الشَّافِي بِسْمِ اللّٰهِ الْكَافِي بِسْمِ اللّٰهِ الْمَعَافِي بِسْمِ اللّٰهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+            latinText = "Bismillaahisy syaafii bismillaahhil kaafii bismillaahhil ma’aafii bismillaahhil ladzii laa yadlurru ma’asmihhii syai-um fiil ardli wa laa fiis samaa-i wa hhuwas samii’ul ‘aliimu (3x).",
+            indonesianText = "Dengan Nama Alloh Yang Maha Menyembuhkan, dengan Nama Alloh Yang Maha Mencukupi, dengan Nama Alloh Yang Maha Menyehatkan, dengan Nama Alloh yang melalui Nama-Nya segala sesuatu yang ada di bumi dan di langit tidak membahayakan. Dan Dia-lah Yang Maha Mengetahui. (3x)",
+            sundaneseText = "Kalayan Jenengan Alloh Nu Maha Nyageurkeun, Maha Nyukupan, Maha Nga'afiatkeun, anu ku Jenengan-Na teu aya bahaya naon wae di bumi sareng di langit...",
+            kaifiyat = "Doa untuk penangkal dari berbagai penyakit / bala lahir bathin. Dibaca 3x ba'da Subuh dan Maghrib.",
+            virtue = "Pencegah segala wabah penyakit dan marabahaya.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_keberkahan_posisi",
+            title = "Doa Keberkahan Posisi & Profesi",
+            arabicTitle = "دعاء البركة في المنزلة",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "رَبَّنَا أَنْزِلْنَا مُنْزَلًا مُّبَارَكًا وَّأَنْتَ خَيْرُ الْمُنْزِلِيْنَ",
+            latinText = "Robbanaa angzilnaa mungzalam mubaarokaw wa angta khoirul mungziliina (3x).",
+            indonesianText = "Ya Tuhanku, tempatkanlah aku pada tempat yang penuh berkah. Dan Engkaulah Dzat yang sebaik-baiknya memberikan tempat. (3x)",
+            sundaneseText = "Nun Gusti Pangeran abdi sadaya, mugi nempatkeun abdi dina tempat anu pinuh ku kabarokahan...",
+            kaifiyat = "Doa untuk keberkahan dalam posisi dan profesi yang di ridhoi Alloh. Dibaca 3x.",
+            virtue = "Meraih kemuliaan dan keberkahan dalam pekerjaan dan kedudukan hidup.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_pintu_hidayah",
+            title = "Doa Pembuka Pintu Hidayah",
+            arabicTitle = "دعاء فتح أبواب الهداية",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "رَبَّنَا افْتَحْ بَيْنَنَا وَبَيْنَ قَوْمِنَا بِالْحَقِّ وَأَنْتَ خَيْرُ الْفَاتِحيْنَ",
+            latinText = "Robbanaftah bainana wabaina qouminaa bil haqqi wa anta khoirul faatihiin (3x).",
+            indonesianText = "Ya Tuhanku, bukakanlah di antara kami dan di antara kaum kami kebenaran. Dan hanya Engkaulah sebaik-baik pembukanya. (3x)",
+            sundaneseText = "Nun Gusti Pangeran abdi, mugi muka lawang bebeneran di antawis abdi sadaya sareng kaum abdi sadaya...",
+            kaifiyat = "Doa untuk membukakan pintu hidayah urusan dunia maupun akhirat. Dibaca 3x.",
+            virtue = "Membuka solusi persoalan dan jalan hidayah kebenaran.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_kesabaran",
+            title = "Doa Kesabaran & Pertolongan",
+            arabicTitle = "دعاء الصبر والنصر",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "رَبَّنَاۤ أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى القَوْمِ الْكَافِرِينَ",
+            latinText = "Rabbana afrigh ‘alaina shabran wa tsabbit aqdamana wanshurna ‘alal qoumil kafirin (3x).",
+            indonesianText = "Ya Tuhanku, limpahkanlah kesabaran atas diri kami, kokohkanlah pendirian kami serta tolonglah kami dalam mengalahkan orang-orang kafir. (3x)",
+            sundaneseText = "Nun Gusti Pangeran abdi sadaya, kucurkeun kasabaran dina diri abdi sadaya, pancegkeun pendirian abdi sadaya...",
+            kaifiyat = "Doa agar diberi kesabaran hati dan pertolongan dari orang-orang kafir. Dibaca 3x.",
+            virtue = "Meneguhkan ketabahan iman dan kemenangan batin.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_masker_anti_virus",
+            title = "Doa Masker Anti Segala Virus",
+            arabicTitle = "دعاء الوقاية من الأوبئة",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "اَللَّهُمَّ اِنِّى اَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِيْ وَمِنْ شَرِّ كُلِّ دَابَّةٍ اَنْتَ أخِذٌ بِناَصِيَتِهَا اِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيْمْ",
+            latinText = "Allohumma inni a’udzu bika min syarri nafsiy wamin syarri kulli daaabbatin anta aakhidzun bina shiyatihaa inna robbii ‘alla shiroothin mustaqiem",
+            indonesianText = "Ya Alloh, sesungguhnya aku berlindung kepada-Mu dari keburukan diriku sendiri dan dari keburukan setiap makhluk melata yang Engkau genggam ubun-ubunnya. Sesungguhnya Tuhanku berada di atas jalan yang lurus.",
+            sundaneseText = "Nun Gusti Alloh, saestuna abdi nyalindung ka Gusti tina kajahatan hawa nafsu abdi sareng kajahatan sakur makhluq...",
+            kaifiyat = "Doa masker batin anti segala virus dan penyakit. Dilaksanakan 1x setelah Sholat Maghrib dan 1x setelah Sholat Shubuh.",
+            virtue = "Tameng perlindungan biologis dan spiritual.",
+            recommendedTime = "1x Ba'da Sholat Maghrib & 1x Ba'da Sholat Shubuh"
+        ),
+        SpecialPrayer(
+            id = "doa_subuh_maghrib_robbi_yassir",
+            title = "Doa Kemudahan & Kesempurnaan Amal (Robbii Yassir)",
+            arabicTitle = "دعاء التيسير والتمام",
+            category = "Doa Khusus Subuh & Maghrib",
+            arabicText = "رَبِّ يَسِّرْ لَنَا وَلَا تُعَسِّرْ عَلَيْنَا رَبِّي تَمِّمْ لَنَا بِالـْخَيْرِ أَعْمَالَنَا",
+            latinText = "Robbii yassir lanaa, walaa tu’assir ‘alainaa, Robbii tammim lanaa bikhairi a’malana (3x)",
+            indonesianText = "Ya Tuhanku, mudahkanlah segala sesuatu bagi kami, janganlah Kau persulit atas kami. Yaa Alloh Tuhanku, berikanlah kesempurnaan atas kami dengan segala kebaikan atas perbuatan kami. (3x)",
+            sundaneseText = "Nun Gusti Pangeran abdi, mugi ngagampilkeun sagala rupi perkawis ka abdi sadaya, tong disulitkeun, sarta sampurnakeun sagala amal kasaean abdi sadaya.",
+            kaifiyat = "Doa agar dimudahkan dan disempurnakan Alloh Azza Wa Jalla segala urusan amal dan ibadah. Dibaca 3x.",
+            virtue = "Pembuka kemudahan urusan dunia dan akhirat.",
+            recommendedTime = "Ba'da Sholat Shubuh & Maghrib"
+        ),
+        SpecialPrayer(
+            id = "doa_sebelum_tidur",
+            title = "Doa & Wirid Sebelum Tidur",
+            arabicTitle = "دعاء قبل النوم",
+            category = "Harian",
+            arabicText = "بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوتُ • أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+            latinText = "Bismika Allahumma ahyaa wa bismika amuut. A'uudzu bikalimaatillaahit taammaati min syarri maa khalaq.",
+            indonesianText = "Dengan nama-Mu ya Allah aku hidup dan dengan nama-Mu aku mati. Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan apa yang Dia ciptakan.",
+            sundaneseText = "Kalayan jenengan Gusti nun Allah abdi hirup tur kalayan jenengan Gusti abdi maot. Abdi nyalindung kalayan kalimah-kalimah Allah anu sampurna tina kajahatan saniskara makhluq.",
+            kaifiyat = "Amaliyah TQN sebelum tidur: Berwudhu, membaca Ayat Kursi, Surat Al-Ikhlas, Al-Falaq, An-Nas 3x ditiupkan ke telapak tangan lalu diusapkan ke seluruh tubuh, membaca doa tidur dan menyandarkan rabithah kepada Guru Mursyid sambil meneruskan Dzikir Khofi hingga tertidur.",
+            virtue = "Menjaga ruhani senantiasa tersambung dengan Allah SWT dan terpelihara dari gangguan syaitan saat terlelap.",
+            recommendedTime = "Sebelum tidur malam"
+        ),
+        SpecialPrayer(
+            id = "tarhim_subuh",
+            title = "Tarhim Fajar",
+            arabicTitle = "الترحيم قبل الصبح",
+            category = "Tarhim",
+            arabicText = "الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا إِمَامَ الْمُجَاهِدِينَ، يَا رَسُولَ اللَّهِ. الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا نَاصِرَ الْهُدَى، يَا خَيْرَ خَلْقِ اللَّهِ. الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا مَنْ أَسْرَى بِكَ الْمُهَيْمِنُ لَيْلًا، نِلْتَ مَا نِلْتَ وَالْأَنَامُ نِيَامٌ.",
+            latinText = "Ash-shalaatu was salaamu 'alaik, yaa imaamal mujaahidiin, yaa Rasuulallaah. Ash-shalaatu was salaamu 'alaik, yaa naashiral hudaa, yaa khaira khalqillaah. Ash-shalaatu was salaamu 'alaik, yaa man asraa bikal muhaiminu lailan, nilta maa nilta wal anaamu niyaam.",
+            indonesianText = "Shalawat dan salam semoga tercurah kepadamu, wahai pemimpin para pejuang, wahai Rasulullah. Shalawat dan salam semoga tercurah kepadamu wahai penolong petunjuk, wahai sebaik-baik makhluk Allah. Shalawat dan salam semoga tercurah kepadamu wahai sosok yang diperjalankan oleh Allah di waktu malam, engkau meraih derajat agung tatkala seluruh manusia terlelap.",
+            sundaneseText = "Shalawat miwah salam mugi lungsur ka Gusti panutan, Nun pamingpin para pejuang, Nun Rasulullah...",
+            kaifiyat = "Dilantunkan menjelang adzan Shubuh untuk membangunkan jiwa dan menyambut fajar shodiq.",
+            virtue = "Menenangkan hati dan menggetarkan kecintaan kepada Baginda Rasulullah SAW.",
+            recommendedTime = "15-30 menit sebelum Adzan Shubuh"
+        ),
+        SpecialPrayer(
+            id = "salam_wali_mursyid",
+            title = "Salam Kepada Wali Mursyid & Rijalul Ghoib",
+            arabicTitle = "السلام على الأولياء ورجال الغيب",
+            category = "Tawassul Khusus",
+            arabicText = "السَّلَامُ عَلَيْكُمْ يَا رِجَالَ الْغَيْبِ، السَّلَامُ عَلَيْكُمْ يَا أَيُّهَا الْأَرْوَاحُ الْمُقَدَّسَةُ، أَغِيثُونِي بِغَوْثَةٍ وَانْظُرُونِي بِنَظْرَةٍ يَا قُطْبَ الْغَوْثِ، السَّلَامُ عَلَيْكَ يَا سَيِّدِي الشَّيْخَ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللَّهِ مَسْلُولْ رَضِيَ اللَّهُ عَنْهُ وَقَدَّسَ اللَّهُ سِرَّهُ الْعَزِيزَ.",
+            latinText = "Assalaamu 'alaikum yaa rijaalal ghaib, assalaamu 'alaikum yaa ayyuhal arwaahul muqaddasah, aghiitsuunii bighauthatin wandhuruunii binadhrah yaa Quthbal Ghauts, assalaamu 'alaika yaa Sayyidisy Syaikh Muhammad Abdul Gaos Saefulloh Maslul Ra. Qs.",
+            indonesianText = "Salam sejahtera atasmu wahai para Rijalul Ghaib, salam sejahtera atasmu wahai ruh-ruh yang suci. Tolonglah kami dengan pertolongan barakah dan pandanglah kami dengan pandangan kasih sayang wahai Quthbul Ghauts. Salam sejahtera atasmu wahai junjungan kami Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos 38).",
+            sundaneseText = "Salam karahayuan mugi tetep ka anjeun he para Rijalul Ghaib, salam karahayuan ka arwah anu saruci...",
+            kaifiyat = "Dibaca ketika hendak memulai amalan penting, tawassul, atau saat memasuki majlis ziarah.",
+            virtue = "Memperkuat ikatan batin (Rabithah) dengan para kekasih Allah SWT penghubung sanad 38.",
+            recommendedTime = "Setiap saat / Ba'da Sholat & Manaqib"
+        ),
+        SpecialPrayer(
+            id = "doa_istighotsah",
+            title = "Doa Istighotsah Sirnarasa",
+            arabicTitle = "دعاء الاستغاثة",
+            category = "Istighotsah",
+            arabicText = "يَا رَبَّنَا اعْتَرَفْنَا • بِأَنَّنَا اقْتَرَفْنَا • وَأَنَّنَا أَسْرَفْنَا • عَلَى لَظَى أَشْرَفْنَا • فَتُبْ عَلَيْنَا تَوْبَةً • تَغْسِلُ كُلَّ حَوْبَةً • وَاسْتُرْ لَنَا الْعَوْرَاتِ • وَآمِنِ الرَّوْعَاتِ • يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ نَسْتَغِيثُ",
+            latinText = "Yaa Rabbana' tarafnaa, bi annanaq tarafnaa, wa annanaa asrafnaa, 'alaa lazhaa asyrafnaa, fatub 'alainaa taubah, taghsilu kulla haubah, wastur lanal 'auraat, wa aaminir rau'aat, Yaa Hayyu Yaa Qayyuum bi rahmatika nastaghiits.",
+            indonesianText = "Wahai Tuhan kami, kami mengakui bahwa kami telah berbuat dosa, kami telah melampaui batas hingga hampir terjerumus ke jurang api. Maka terimalah taubat kami, taubat yang membasuh segala noda dosa, dan tutupilah aib-aib kami serta amankanlah dari segala ketakutan. Wahai Dzat Yang Maha Hidup lagi Maha Berdiri Sendiri, dengan rahmat-Mu kami memohon pertolongan.",
+            sundaneseText = "Nun Gusti Pangeran abdi sadaya, abdi ngiring ngaku kana pirang-pirang dosa anu parantos dilampahkeun...",
+            kaifiyat = "Dibaca bersama dalam majlis istighotsah atau munajat pribadi saat menghadapi kesulitan hajat.",
+            virtue = "Pembasuh dosa, penenang jiwa, dan penarik pertolongan Allah SWT di saat genting.",
+            recommendedTime = "Malam Jumat / Sepertiga Malam Akhir"
+        ),
+        SpecialPrayer(
+            id = "doa_rajab_syaban",
+            title = "Doa Bulan Rajab & Nisfu Sya'ban",
+            arabicTitle = "دعاء شهر رجب وشعبان",
+            category = "Bulanan",
+            arabicText = "اللَّهُمَّ بَارِكْ لَنَا فِي رَجَبَ وَشَعْبَانَ وَبَلِّغْنَا رَمَضَانَ وَسَلِّمْنَا لِرَمَضَانَ وَسَلِّمْ رَمَضَانَ لَنَا وَتَسَلَّمْهُ مِنَّا مُتَقَبَّلًا",
+            latinText = "Allaahumma baarik lanaa fii Rajaba wa Sya'baana wa ballighnaa Ramadhaana, wa sallimnaa li Ramadhaana wa sallim Ramadhaana lanaa wa tasallamhu minnaa mutaqabbalaa.",
+            indonesianText = "Ya Allah, berkahilah kami di bulan Rajab dan Sya'ban, dan sampaikanlah usia kami pada bulan Ramadhan, selamatkanlah kami untuk Ramadhan, selamatkanlah Ramadhan untuk kami, dan terimalah amalan Ramadhan dari kami.",
+            sundaneseText = "Nun Gusti Allah, mugi ngalimpahkeun kabarokahan ka abdi sadaya dina sasih Rajab sareng Sya'ban...",
+            kaifiyat = "Dibaca setiap hari sejak awal masuk bulan Rajab hingga akhir Sya'ban.",
+            virtue = "Meraih berkah kesucian Rajab, kemuliaan Sya'ban, dan kesiapan ruhani menyambut Ramadhan.",
+            recommendedTime = "Sepanjang bulan Rajab & Sya'ban"
+        )
+    )
+
+    fun get12BulanHijriyahList(): List<HijriyahAmaliyah> = listOf(
+        HijriyahAmaliyah(
+            monthNumber = 1,
+            monthName = "Muharram",
+            arabicName = "مُحَرَّم",
+            virtues = "Bulan pembuka tahun Hijriyah, salah satu dari 4 bulan haram yang mulia. Di dalamnya terdapat hari Asyura (10 Muharram) yang penuh berkah dan ampunan.",
+            recommendedAmalan = listOf(
+                "Puasa Sunnah Tasu'a (9 Muharram) dan Asyura (10 Muharram).",
+                "Menyantuni dan mengusap kepala anak yatim pada 10 Muharram.",
+                "Memperbanyak sedekah dan melapangkan nafkah untuk keluarga.",
+                "Membaca Doa Awal & Akhir Tahun serta Dzikir Khofi."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 2,
+            monthName = "Shafar",
+            arabicName = "صَفَر",
+            virtues = "Bulan kedua Hijriyah. TQN Sirnarasa mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
+            recommendedAmalan = listOf(
+                "Sholat Sunnah Li Daf'il Bala' 4 rakaat 2 salam pada Rebo Wekasan.",
+                "Membaca Surat Yasin dan doa permohonan keselamatan dari segala marabahaya.",
+                "Memperbanyak sedekah tolak bala dan shalawat munjiyat.",
+                "Memperteguh Dzikir Jahr 165x ba'da sholat."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 3,
+            monthName = "Rabi'ul Awwal",
+            arabicName = "رَبِيعُ الْأَوَّل",
+            virtues = "Bulan kelahiran Baginda Nabi Agung Muhammad SAW (Maulidur Rasul). Bulan bertabur shalawat dan rasa syukur atas rahmat terbesar alam semesta.",
+            recommendedAmalan = listOf(
+                "Mengikuti majlis pembacaan Maulid Nabi (Barzanji, Diba'i, Simthuddurar).",
+                "Memperbanyak membaca Shalawat Bani Hasyim dan Shalawat Badriyah.",
+                "Mempelajari Sirah Nabawiyyah dan meneladani akhlak Rasulullah SAW.",
+                "Menyelenggarakan tasyakuran dan berbagi hidangan keberkahan."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 4,
+            monthName = "Rabi'ul Akhir",
+            arabicName = "رَبِيعُ الْآخِر",
+            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib TQN Sirnarasa.",
+            recommendedAmalan = listOf(
+                "Menghadiri atau menyelenggarakan Khidmat Amaliah Manaqib Syekh Abdul Qodir Al-Jailani.",
+                "Mengkhatamkan pembacaan Tanbih, Tawassul, Manqobah, dan Sholawat.",
+                "Memperbanyak sedekah manaqib dan menjamu tamu ikhwan.",
+                "Meningkatkan Dzikir Nafi Itsbat dan Dzikir Khofi."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 5,
+            monthName = "Jumadil Ula",
+            arabicName = "جُمَادَى الْأُولَى",
+            virtues = "Bulan kelima Hijriyah. Momentum muhasabah diri, keteguhan menuntut ilmu agama, dan istiqomah di majlis dzikir.",
+            recommendedAmalan = listOf(
+                "Istiqomah Dzikir Ba'da Sholat Maktubah (Jahr 165x & Khofi).",
+                "Membaca Al-Qur'an dan memperbanyak sholat sunnah rawatib.",
+                "Menjaga kerukunan dan silaturahmi antar ikhwan thoriqoh.",
+                "Menghadiri pengajian kitab dan majlis ta'lim."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 6,
+            monthName = "Jumadil Akhir",
+            arabicName = "جُمَادَى الْآخِرَة",
+            virtues = "Bulan keenam Hijriyah. Penguatan amalan dzikir harian dan pembersihan hati menyongsong bulan-bulan haram berikutnya.",
+            recommendedAmalan = listOf(
+                "Memperbanyak istighfar dan taubat nasuha.",
+                "Meningkatkan frekuensi Dzikir Khofi saat beraktivitas sehari-hari.",
+                "Sholat Tahajjud dan sholat sunnah Taubat di sepertiga malam.",
+                "Sedekah subuh istiqomah."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 7,
+            monthName = "Rajab",
+            arabicName = "رَجَب",
+            virtues = "Bulan Rajab, bulannya Allah Ta'ala. Salah satu bulan haram yang agung, peristiwa Isra Mi'raj (27 Rajab), dan anjuran sholat sunnah Rajab.",
+            recommendedAmalan = listOf(
+                "Membaca Doa Masuk Bulan Rajab & Sya'ban setiap hari.",
+                "Sholat Sunnah Rajab khusus (malam 1, malam Jumat pertama, pertengahan, dan akhir Rajab).",
+                "Puasa sunnah Rajab (terutama tanggal 1, 27, dan Ayyamul Bidh).",
+                "Memperbanyak membaca Sayyidul Istighfar dan Shalawat."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 8,
+            monthName = "Sya'ban",
+            arabicName = "شَعْبَان",
+            virtues = "Bulan Sya'ban, bulannya Rasulullah SAW. Bulan pelaporan amal, bertabur ampunan pada Malam Nisfu Sya'ban (15 Sya'ban).",
+            recommendedAmalan = listOf(
+                "Sholat Sunnah Nisfu Sya'ban dan membaca Surat Yasin 3x setelah Maghrib.",
+                "Memperbanyak puasa sunnah di bulan Sya'ban sebagaimana kebiasaan Rasulullah SAW.",
+                "Membaca doa Nisfu Sya'ban untuk panjang umur barakah, keluasan rezeki, dan husnul khotimah.",
+                "Memperbanyak shalawat atas Nabi SAW."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 9,
+            monthName = "Ramadhan",
+            arabicName = "رَمَضَان",
+            virtues = "Sayyidus Syuhur (Penghulu segala bulan). Bulan diturunkannya Al-Qur'an, kewajiban puasa, Sholat Tarawih, Nuzulul Qur'an, dan Malam Lailatul Qadar.",
+            recommendedAmalan = listOf(
+                "Menunaikan ibadah Puasa Ramadhan dengan menjaga lisan dan hati.",
+                "Sholat Tarawih 20 Rakaat dan Witir 3 Rakaat berjamaah dengan amaliyah TQN.",
+                "Tadarus dan khataman Al-Qur'an.",
+                "I'tikaf dan Sholat Lailatul Qadar pada 10 malam terakhir.",
+                "Membayar Zakat Fitrah dan memperbanyak infaq sedekah."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 10,
+            monthName = "Syawwal",
+            arabicName = "شَوَّال",
+            virtues = "Bulan kemenangan Hari Raya Idul Fitri (1 Syawwal) dan keutamaan Puasa Sunnah 6 hari Syawwal yang pahalanya setara berpuasa setahun penuh.",
+            recommendedAmalan = listOf(
+                "Sholat Idul Fitri dan saling bermaaf-maafan.",
+                "Puasa Sunnah 6 hari di bulan Syawwal.",
+                "Menyambung silaturahmi ke Guru Mursyid, orang tua, kerabat, dan sahabat.",
+                "Mempertahankan kualitas ibadah Ramadhan."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 11,
+            monthName = "Dzulqa'dah",
+            arabicName = "ذُو الْقَعْدَة",
+            virtues = "Bulan kesebelas Hijriyah, salah satu dari 4 bulan haram yang mulia. Bulan ketenangan, persiapan ibadah haji, dan pengendalian hawa nafsu.",
+            recommendedAmalan = listOf(
+                "Puasa sunnah Senin-Kamis dan Ayyamul Bidh (13, 14, 15 Dzulqa'dah).",
+                "Memperbanyak Dzikir Jahr 165x dan Dzikir Khofi terus-menerus.",
+                "Menghindari pertikaian, maksiat, dan menjaga kesucian hati.",
+                "Mendoakan para jamaah calon haji."
+            )
+        ),
+        HijriyahAmaliyah(
+            monthNumber = 12,
+            monthName = "Dzulhijjah",
+            arabicName = "ذُو الْحِجَّة",
+            virtues = "Bulan puncak ibadah Haji, 10 hari pertama yang paling dicintai Allah, Hari Arafah (9 Dzulhijjah), Sholat Idul Adha (10 Dzulhijjah), dan Hari Tasyrik.",
+            recommendedAmalan = listOf(
+                "Puasa Sunnah 9 hari pertama Dzulhijjah (khususnya Puasa Tarwiyah dan Arafah).",
+                "Melaksanakan Ibadah Qurban bagi yang mampu.",
+                "Sholat Hari Raya Idul Adha berjamaah.",
+                "Membaca Takbir pada hari-hari Tasyrik (11, 12, 13 Dzulhijjah).",
+                "Membaca Doa Akhir Tahun Hijriyah pada sore hari akhir Dzulhijjah."
+            )
+        )
+    )
+
+    fun getSholatSunnahList(): List<SpecialPrayer> = listOf(
+        SpecialPrayer(
+            id = "sholat_rajab",
+            title = "Sholat Sunnah Rajab Khusus",
+            arabicTitle = "صلاة رجب المخصوصة",
+            category = "Sholat Sunnah",
+            arabicText = "أُصَلِّي سُنَّةَ رَجَبَ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
+            latinText = "Ushallii sunnata Rajaba rak'ataini lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah Rajab dua rakaat karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Rajab dua rakaat karana Allah Ta'ala.",
+            kaifiyat = "Dikerjakan pada malam pertama Rajab, malam Jumat pertama Rajab, malam 15 Rajab, dan malam terakhir Rajab. Setiap rakaat setelah Al-Fatihah membaca Surat Al-Ikhlas 3x dan Surat Al-Kafirun 3x.",
+            virtue = "Melebur dosa setahun, diberi pahala orang yang beribadah setahun, dan ditulis sebagai ahli surga.",
+            recommendedTime = "Malam hari di bulan Rajab ba'da Maghrib / Isya",
+            rakaatCount = 2
+        ),
+        SpecialPrayer(
+            id = "sholat_nisfu_syaban",
+            title = "Sholat Sunnah Nisfu Sya'ban",
+            arabicTitle = "صلاة ليلة نصف شعبان",
+            category = "Sholat Sunnah",
+            arabicText = "أُصَلِّي سُنَّةَ نِصْفِ شَعْبَانَ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
+            latinText = "Ushallii sunnata nisfi Sya'baana rak'ataini lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah Nisfu Sya'ban dua rakaat karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Nisfu Sya'ban dua rakaat karana Allah Ta'ala.",
+            kaifiyat = "Dikerjakan pada malam ke-15 Sya'ban. Setiap rakaat setelah Al-Fatihah membaca Surat Al-Ikhlas 10x atau membaca Surat Yasin 3x diselingi doa Nisfu Sya'ban setelah sholat.",
+            virtue = "Mendapat ampunan Allah SWT, ditetapkan takdir yang baik, dan dijauhkan dari segala marabahaya.",
+            recommendedTime = "Malam 15 Sya'ban (ba'da Maghrib)",
+            rakaatCount = 2
+        ),
+        SpecialPrayer(
+            id = "sholat_tarawih_tqn",
+            title = "Sholat Tarawih 20 Rakaat & Witir TQN",
+            arabicTitle = "صلاة التراويح والوتر",
+            category = "Sholat Sunnah",
+            arabicText = "أُصَلِّي سُنَّةَ التَّرَاوِيحِ رَكْعَتَيْنِ (إِمَامًا / مَأْمُومًا) لِلَّهِ تَعَالَى",
+            latinText = "Ushallii sunnatat taraawiihi rak'ataini (imaaman / ma'muuman) lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah Tarawih dua rakaat (sebagai imam/makmum) karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Tarawih dua rakaat (imam/makmum) karana Allah Ta'ala.",
+            kaifiyat = "Dikerjakan 20 rakaat (10 salam) tiap 2 rakaat salam, diselingi shalawat dan doa tarawih tiap 4 rakaat. Dilanjutkan Sholat Witir 3 rakaat (2 rakaat salam + 1 rakaat salam) dan membaca doa witir serta Dzikir TQN.",
+            virtue = "Menghidupkan malam Ramadhan, melebur dosa-dosa yang telah lalu, dan meraih ridha Allah.",
+            recommendedTime = "Malam hari di bulan Ramadhan ba'da Isya",
+            rakaatCount = 20
+        ),
+        SpecialPrayer(
+            id = "sholat_lailatul_qadar",
+            title = "Sholat Sunnah Lailatul Qadar",
+            arabicTitle = "صلاة ليلة القدر",
+            category = "Sholat Sunnah",
+            arabicText = "أُصَلِّي سُنَّةَ لَيْلَةِ الْقَدْرِ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
+            latinText = "Ushallii sunnata lailatil qadri rak'ataini lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah Lailatul Qadar dua rakaat karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Lailatul Qadar dua rakaat karana Allah Ta'ala.",
+            kaifiyat = "Dilaksanakan pada 10 malam terakhir Ramadhan (terutama malam-malam ganjil). Tiap rakaat ba'da Al-Fatihah membaca Surat At-Takatsur 1x dan Al-Ikhlas 3x (atau Al-Qadr 1x dan Al-Ikhlas 3x). Ba'da sholat memperbanyak doa: Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'annii.",
+            virtue = "Meraih kemuliaan malam yang lebih utama daripada seribu bulan.",
+            recommendedTime = "10 malam terakhir Ramadhan sepertiga malam",
+            rakaatCount = 2
+        ),
+        SpecialPrayer(
+            id = "sholat_lidafil_bala",
+            title = "Sholat Sunnah Li Daf'il Bala' (Rebo Wekasan)",
+            arabicTitle = "صلاة لدفع البلاء",
+            category = "Sholat Sunnah",
+            arabicText = "أُصَلِّي سُنَّةً لِدَفْعِ الْبَلَاءِ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
+            latinText = "Ushallii sunnatan li daf'il balaa-i rak'ataini lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah tolak bala dua rakaat karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah tolak bala dua rakaat karana Allah Ta'ala.",
+            kaifiyat = "Dilaksanakan pada hari Rabu terakhir bulan Shafar pada waktu Dhuha sebanyak 4 rakaat (2 kali salam). Setiap rakaat setelah Al-Fatihah membaca:\n1. Surat Al-Kautsar 17x\n2. Surat Al-Ikhlas 5x\n3. Surat Al-Falaq 1x\n4. Surat An-Nas 1x\nSetelah salam membaca Doa Tolak Bala / Doa Rebo Wekasan.",
+            virtue = "Memohon perlindungan Allah SWT dari 320.000 marabahaya dan bala yang diturunkan pada akhir bulan Shafar.",
+            recommendedTime = "Rabu terakhir bulan Shafar waktu Dhuha",
+            rakaatCount = 4
+        )
+    )
+}

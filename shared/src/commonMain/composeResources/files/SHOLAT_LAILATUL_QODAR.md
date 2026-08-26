@@ -1,0 +1,60 @@
+# Sholat Lailatul qodar
+
+---
+
+SHOLAT SUNAT LAILATUL QODAR
+
+Tembusan:
+
+Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
+
+Sekpri Guru Agung
+
+Adc
+
+Arsip
+
+Tata Cara Pelaksanaan
+
+Setelah melaksanakan Dzikir Harian pada rangkaian sholat waktu isya dilanjutkan dengan :
+
+Sholat Sunnah Syukri Lailatul Qodar
+
+Do’a
+
+Setiap malam 21 Hijriah s/d Akhir bulan hijriah, Sholat Sunnah Syukri Lailatul Qodar 4 roka’at 2x salam. Dilaksanakan setelah sholat Isya tanpa sholat Lidaf’il bala dan khotaman. (Khotaman dipindahkan setelah DZIKIR ba’da ashar.)
+
+
+
+
+Jumlah : 4 Roka’at 2x Salam.
+
+Niat Sholat :
+
+Ushollii sunnatan syukri lailatul qodar rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena Alloh Ta’ala.
+
+Setelah Al-Fatihah membaca : At-Takatsur (1x) & Al-Ikhlash (3x)
+
+At-Takatsur
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+أَلْهَاكُمُ التَّكَاثُرُ . حَتَّى زُرْتُمُ الْمَقَابِرَ . كَلَّا سَوْفَ تَعْلَمُونَ . ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ . كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ . لَتَرَوُنَّ الْجَحِيمَ . ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ . ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ
+
+Alhaakumut takaatsur. Hattaa zurtumul maqoobir. Kallaa saufa ta’lamuun. Tsumma kallaa saufa ta’lamuun. Kallaa lau ta’lamuuna ‘ilmal yaqiin. Latarowunnal jahiim. Tsumma latarowunnahaa ‘ainal yaqiin. Tsumma latus-alunna yauma-idzin ‘anin na’iim
+
+Al-Ikhlash
+
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
+
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
+
+Dilanjutkan dengan Do’a :
+
+اَللَّهُمَّ اِنَّكَ عَفُوٌّ كَرِيْمٌ تُحِبُّ الْعَفْوَ، فَاعْفُ عَنَّا
+
+Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 26x
+
+Artinya : Yaa Alloh , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.

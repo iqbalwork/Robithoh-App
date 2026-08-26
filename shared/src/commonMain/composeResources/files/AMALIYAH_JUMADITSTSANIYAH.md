@@ -1,0 +1,143 @@
+# JUMADITSTSANIYAH
+
+---
+
+MUQODIMAH MANQOBAH
+
+السلام عليكم ورحمة الله وبركاته
+
+Assalamu’alaikum warohmatullohi wabarokatuh
+
+ياامام المتقين
+
+ويا صفوةالعابدين
+
+YAA IMAMAL MUTTAQIINA
+
+WA YAA SHOFWATAL ‘AABIDIINA.
+
+وياقوي الاركان
+
+وياحبيب الرحمان
+
+WA YAA QOWIYAL ARKAAN
+
+WA YAA HABIBAR ROHMAAN.
+
+ويامجلي الكلام القديم
+
+وياشفاءاسقام السقيم
+
+WA YAA MUJLIYAL KALAAMIL QODIMI
+
+WA YAA SYIFAAA ASQOOMIS SAQIIMI.
+
+بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+اَلَآ اِنَّ اَوْلِيَآءَ اللّٰهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُوْنَۚ ۞ اَلَّذِيْنَ اٰمَنُوْا وَكَانُوا يَتَّقُوْنَۗ ۞ لَهُمُ الْبُشْرٰى فِي الْـحَيٰوةِ الدُّنْيَا وَفِي الْآخِرَةِۗ لَا تَبْدِيْلَ لِكَلِمٰتِ اللّٰهِۗ ذٰلِكَ هُوَ الْفَوْزُ الْعَظِيْمُ
+
+Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim wa laahum yahzanuun. Alladziina aamanuu wakaanuu yattaquun. Lahumul busyroo fil hayaatid dunyaa wa fiil aakhiroh,  laa tabdiila likalimaatillaah, dzaalika huwal fauzul ‘azhiim.
+
+بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمِيْنَ ، وَالْعَاقِبَةُ لِلْمُتَّقِيْنَ ، وَلَا عُدْوَانَ اِلَّا عَلَى الظَّالِمِيْنَ ، وَالصَّلَاةُ وَالسَّلَامُ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَصَحْبِهٖ اَجْمَعِيْنَ ، اَمَّا بَعْدُ :
+
+Bismillaahirrohmaanirroohim. Alhamdulillaahi Robbil ‘aalamin, wal ‘aaqibatu lill Muttaqiin, walaa ‘udwaana illaa ‘alazh zhoolimiin, wash sholaatu was salaamu ‘alaa Sayidinaa Muhammadin wa ‘alaa aalihii wa shohbihii ajma’iin, Ammaa ba’du:
+
+“Dengan menyebut Nama Alloh Yang Maha Pengasih Maha Penyayang. Puji bagi Alloh pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya Alloh dan para pengikutnya sampai hari akhir.”
+
+Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab  “Uquudul La’aali Fii Manaqibil Jayli” dan kitab  “Tafrìhul Khòtir Fì Manàqibis Sayyid ‘Abdul Qòdir.”, semoga dengan dibacakan manaqib ini, Alloh SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin.
+
+JUMADIST TSANIYAH
+
+Manqobah Ke-15 : Nama Syaikh Abdul Qodir Seperti Ismul A’zhom
+
+Diriwayatkan di dalam kitab Haqo’iqul Haqo’iq, ada seorang perempuan datang menghadap Syaikh Abdul Qodir mengadukan hal anaknya, “Saya mempunyai seorang anak, kini ia hilang tenggelam ke dalam laut, saya yakin tuan Syaikh bisa mengembalikan anak saya hidup kembali, saya mohon pertolongan Tuan. “Mendengar perempun itu, Syaikh berkata “Sekarang kamu pulang, anakmu sudah ada di rumahmu”. Perempuan itu pulang dengan tergesa-gesa, setibanya dirumah, anaknya itu belum ada.
+
+Segera ia menghadap lagi kepada Syaikh sambil menangis melaporkan bahwa anaknya itu belum ada. Syaikh berkata, “Sekarang anakmu sudah ada di rumahmu, sebaiknya kamu segera pulang”. Perasaan rindu pada anaknya menggebu-gebu, namun setibanya di rumah, anaknya belum ada juga.
+
+Dengan penuh keyakinan ia datang lagi menghadap Syaikh sambil menangis mohon anaknya hidup kembali. Kemudian Syaikh menundukkan kepalanya dan tegak kembali sambil berkata, “Sekarang tidak akan salah lagi, pasti anakmu sudah ada dirumah. “Dengan penuh harapan ia pulang menuju rumahnya, anaknya sudah ada berkat karomah Syaikh Abdul Qodir.
+
+Mengenai peristiwa ini Syaikh munajat kepada Alloh, “Ya Alloh, Engkau Maha Kuasa menciptakan mahluk dengan mudah, demikian pula halnya pada waktu mengumpulkan mahluk dipadang mahsyar hanya dalam tempo yang singkat sudah berkumpul, mengapa hanya menghidupkan seorang saja sampai 3 kali, hamba malu oleh perempuan itu. Dan apa hikmahnya?”. Alloh SWT menjawab, “Semua ucapanmu kepada perempuan itu tidak salah, pertama kali kamu mengatakan kepada perempuan itu anaknya sudah ada dirumah, malaikat baru mengumpulkan tulang belulangnya yang berserakan, dan yang kedua kalinya seluruh anggota tubuhnya baru utuh kembali dan dihidupkan, ketiga kalinya si anak di angkat dari dasar laut dikembalikan kerumahnya.”
+
+Alloh berfirman: “Wahai Abdul Qodir! Kamu jangan kecewa. Sekarang silahkan kamu minta, pasti kuberi.” Spontan Syaikh merebahkan kepalanya bersujud sambil berkata, “Engkau Kholiq, apa saja yang Engkau berikan akan kuterima”. Lalu Alloh memberi hadiah kepada Syaikh dan berfirman, “Barang siapa melihatmu pada hari Jum’at, ia akan kujadikan wali, dan kalau kamu melihat tanah tentu akan menjadi emas.” Syaikh berkata, “Ya Alloh, semua pemberian-Mu kurang begitu manfaat bagiku, aku mohon karuniamu yang lebih bermanfaat dan lebih mulia setelah aku tiada”. Alloh SWT berfirman, “Namamu dibuat seperti nama-Ku, barang siapa menyebut namamu, pahalanya sama dengan yang menyebut nama-Ku.”
+
+اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
+
+Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
+
+———۞۞۞———
+
+Manqobah Ke-16 : Syaikh Abdul Qodir Menghidupkan Orang Yang Sudah Mati.
+
+Diriwayatkan di dalam kitab Asrorut Tholibin, Syaikh Abdul Qodir pada waktu melewati suatu tempat, bertemu dengan seorang umat Islam sedang berdebat dengan seorang umat Nasrani. Beliau menyikapi dengan seksama dan menanyakan apa yang menjadi sebab perdebatan itu, kata orang Muslim: ” Kami sedang membangga-banggakan Nabi kami masing-masing, dan saya berkata padanya, Nabi Muhammad-lah yang paling utama”. Kata orang Nasrani: “Nabi Isa-lah yamg paling sempurna”. Lalu Syaikh bertanya kepada orang Nasrani: “Apa yang menjadi dasar kamu mengatakan bahwa Nabi Isa-lah lebih sempurna daripada Nabi Muhammad?”.
+
+Orang Nasrani menjawab: “Nabi Isa bisa menghidupkan orang yang sudah mati”. Syekh berkata lagi: “Kamu tahu aku bukan Nabi, aku hanya pengikut Nabi Muhammad SAW? Kalau aku bisa menghidupkan orang yang sudah mati, kamu bersedia untuk beriman kepada Nabi Muhammad SAW ?”. “Baik, saya mau beriman dan masuk agama Islam”, jawab orang Nasrani itu. “Kalau begitu, mari kita mencari kuburan”. Lanjut Syaikh.
+
+Setelah mereka menemukan sebuah kuburan tua, sudah berusia lima ratus tahun, lalu Syaikh mengulangi lagi pertanyaannya: “Nabi Isa kalau menghidupkan orang yang sudah mati bagaimana caranya?”. Orang Nasrani menjawab: “Beliau cukup dengan mengucapkan QUM BIIDZNILLAH (Bangunlah dengan Izin Alloh)”. “Nah sekarang kamu perhatikan dan dengarkan baik-baik !”, kata Syaikh, lalu beliau menghadap ke kuburan tadi sambil mengucapkan: “QUM BIIDZNII (Bangunlah dengan izinku)”. Kuburan terbelah dua, keluarlah mayat itu sambil bernyanyi. Konon pada waktu hidupnya ia seorang penyanyi. Melihat dan menyaksikan peristiwa tersebut, orang Nasrani itu berubah keyakinan menjadi beriman kepada Nabi Muhammad SAW dan masuk agama Islam.
+
+اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
+
+Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
+
+———۞۞۞———
+
+Manqobah Ke-17 : Syekh Abdul Qodir Merebut Ruh Dari Malakul Maut
+
+Abu Abbas Ahmad Rifa’i meriwayatkan : Ada seorang pelayan Syaikh Abdul Qodir yang meninggal dunia, kemudian isterinya datang menghadap beliau mengadukan halnya sambil menangis. Karena ratapnya itu, Syaikh menundukkan kepala bertawajjuh kepada Alloh, ketika itulah beliau melihat malaikat maut sedang kelangit membawa keranjang maknawi penuh dengan ruh-ruh manusia yang baru selesai dicabut pada hari itu. Kemudian beliau meminta kepada malaikat maut supaya menyerahkan nyawa muridnya. Permintaan itu ditolak oleh malaikat maut. Lalu beliau merebut keranjang maknawi itu, dan tumpahlah semua nyawa yang ada di dalamnya dan kembali ke jasadnya masing-masing.
+
+Menghadapi kejadian ini malaikat unjuk pihatur kepada Alloh SWT : “Ya Alloh, Engkau Maha Mengetahui tentang kekasih-Mu dan wali-Mu Abdul Qodir”. Alloh berfirman : “Memang benar, Abdul Qodir itu kekasih-Ku, karena tadi nyawa pelayannya tidak kamu berikan, akibatnya seluruh ruh itu terlepas, dan sekarang kamu menyesal karena kamu tidak memberikannya”.
+
+اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
+
+Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
+
+———۞۞۞———
+
+DOA MANQOBAH
+
+اِلَى حَضْرَةِ سُلْطَانِ الْاَوْلِيَاءِ وَقُدْوَةِ الْاَصْفِيَاءِ قُطْبِ الرَّبَّانِيْ وَالْغَوْثِ الصَّمَدَنِي السَّيِّدِ الشَّيْخِ عَبْدُالْقَادِرِاَلْجَيْلَانِيْ (اَلْفَاتِحَةْ)
+
+Ila hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbir robani wal ghoutsush shomadani sayyidi syaikh ‘abdul qodir aljailani. Al-Fatihah
+
+اللّٰهُمَّ صَلِّ وَسَلِّمْ عَلٰى سَيِّدِنَا وَحَبِيْبِنَا وَشَفِيعِناَ وَمَوْلَانَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ اَجْمَعِيْنَ اٰمِينْ
+
+Allohhumma sholli wa sallim ‘ala sayyidina wa habibina wa syafi’ina wa maulana muhammadiw wa ‘ala alihhi wa ashhabihhi ajma’ina. Aamiin
+
+اَللّٰهُمَّ بِاَسْمَائِكَ الْحُسْنَى, وَبِاَسْمَاءِ نَبِيِّكَ الْمُصْطَفٰى, وَبِاَسْمَاءِ وَلِيِّكَ,
+
+عَبْدُ الْقَادِرِ الْمُجْتَبَى طَهِّرْ قُلُوْبَنَا مِنْ كُلِّ وَصْفٍ يُبَاعِدُنَا عَنْ مُشَاهَدَتِكَ
+
+Allohhumma bi asma-ikal husna , wa bi-asma-i nabiyyikal mushthofa , wa bi-asma-i waliyyika, ‘Abdul Qòdiril mujtaba thohhir quluubana ming kulli washfiy yuba’iduna ‘am musyahhadatika,
+
+وَمَحَبَّتِكَ وَاَمِتْنَا عَلَى السُّنَّةِ وَالْجَمَاعَةِ, وَشَرِّحْ بِهَا صُدُوْرُنَا, وَيَسِّربِهَا اُمُوْرَنَا, وَفَرِّجْ بِهَا هُمُوْمَنَا,
+
+Wa mahabbatika wa amitna ‘ala sunnati wal jama’ah , wa syarrih bihaa shuduuronaa , wa yassir bihaa umuuronaa, wa farij bihaa humuumanaa,
+
+وَاكْشِفْ بِهَا غُمُوْمَنَا, وَاغْفِرْ بِهَا ذُنُوْبَنَا, وَاقْضِ بِهَا دُيُوْنَنَا, وَاَصْلِحْ بِهَا اَحْوَالَنَا,
+
+Waksyif bihaa ghumuu manaa , waghfir bihaa dzunuubanaa , waqdli bihaa duyuunanaa ,wa ashlih bihaa ahwalana ,
+
+وَبَلِّغْ بِهَا اٰمَالَنَا, وَتَقَبَّلْ بِهَا تَوْبَتَنَا, وَاغْسِلْ بِهَا حَوْبَتَنَا, وَانْصُرْ بِهَا حُجَّتَنَا,
+
+Wa balligh bihaa aamaalanaa , wa taqobbal bihaa taubatanaa , waghsil bihaa haubatanaa , wangshur bihaa hujjatanaa ,
+
+وَاجْعَلْنَا بِهَا مِنَ الْمُتَّبِعِيْنَ, لِشَرِيْعَةِ نَبِيِّكَ الْمُتَّصِفِيْنَ, بِمَحَبَّتِهِ الْمُهْتَدِيْنَ
+
+Waj ‘alnaa bihaa minal muttabi’iina , Lisyarii’ati nabiyyikal muttashifiina,  bi-mahabbatihil muhtadiin,
+
+بِهَدْيِهٖ وَسِيْرَتِهٖ وَتَوَفَّنَا بِهَا عَلىَ سُنَّتِهٖ, وَلَا تَحْرِمْنَا فَضْلَ شَفَاعَتِهٖ, وَاحْشُرْنَا فِيْ زُمْرَتِه,
+
+Bihadyihi wa siirotihi wa tawaffanaa bihaa ‘ala sunnatihi , wa laa tahrimnaa fadl-la syafaa’atihi , wahsyurnaa fii zumrotihi ,
+
+وَاَتْبَاعِهِ الْغُرِّ الْمُحَجِّلِيْنَ, وَاشْيَاعِهِ السَّابِقِيْنَ, وَاَصْحَابِ الْيَمِيْنَ يٰااَرْحَمَ الرَّاحِمِيْنَ.
+
+وَصَلَّى اللّٰهُ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهِ وَسَلَّمَ وَعَلَى سَائِرِِ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَعَلٰى اٰلِهِمْ وَاَصْحَابِهِمْ اَجْمَعِيْنَ وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+
+بِالْبَرَكَهْ وَالْكَرَمَهْ . الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّه . اَلْفَاتِحَةْ
+
+Wa atbaa’ihil ghurril muhajjiliina, wa asy-yaa’ihis saabiqiina, wa ash-haabil yamiin yaa arhamar roohimiina.
+
+Washollalloohu alaa sayyidinaa Muhammadin wa alaa aalihii wa ash-haabihi, Wa’ala saa-iril anbiyaa-i wal mursaliin, wa ‘alaa aalihim wa ash-haabihim ajma’iin Wal hamdulillahi robbil ‘aalamiin.
+
+Bilbarokah wallkaromah. Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohu.  Al-Fatihah.
