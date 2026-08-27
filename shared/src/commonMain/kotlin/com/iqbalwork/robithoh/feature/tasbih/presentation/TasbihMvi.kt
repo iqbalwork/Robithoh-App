@@ -16,7 +16,7 @@ data class TasbihDzikirPreset(
 
 data class TasbihUiState(
     val currentCount: Int = 0,
-    val targetCount: Int = 33,
+    val targetCount: Int = 165,
     val lapCount: Int = 0,
     val totalCount: Int = 0,
     val selectedDzikirId: String = "dzikir_nafi_itsbat",
@@ -27,6 +27,8 @@ data class TasbihUiState(
     val isTargetReached: Boolean = false,
     val showResetDialog: Boolean = false,
     val showCustomTargetDialog: Boolean = false,
+    val isFloatingExpanded: Boolean = false,
+    val isFloatingVisible: Boolean = true,
     val scaleFactor: Float = 1.0f,
     val availablePresets: List<TasbihDzikirPreset> = listOf(
         TasbihDzikirPreset(
@@ -40,35 +42,35 @@ data class TasbihUiState(
             id = "tasbih_subhanallah",
             title = "Tasbih (Subhanallah)",
             arabic = "سُبْحَانَ اللَّهِ",
-            defaultTarget = 33,
+            defaultTarget = 165,
             virtue = "Penyucian Dzat Allah SWT dari segala kekurangan."
         ),
         TasbihDzikirPreset(
             id = "tahmid_alhamdulillah",
             title = "Tahmid (Alhamdulillah)",
             arabic = "الْحَمْدُ لِلَّهِ",
-            defaultTarget = 33,
+            defaultTarget = 165,
             virtue = "Pujian syukur atas limpahan nikmat dan karunia."
         ),
         TasbihDzikirPreset(
             id = "takbir_allahuakbar",
             title = "Takbir (Allahu Akbar)",
             arabic = "اللَّهُ أَكْبَرُ",
-            defaultTarget = 33,
+            defaultTarget = 165,
             virtue = "Pengagungan kebesaran Allah di atas seluruh alam."
         ),
         TasbihDzikirPreset(
             id = "istighfar_tqn",
             title = "Istighfar",
             arabic = "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ",
-            defaultTarget = 100,
+            defaultTarget = 165,
             virtue = "Pelebur noda dosa dan pembuka pintu ampunan Ilahi."
         ),
         TasbihDzikirPreset(
             id = "shalawat_bani_hasyim",
             title = "Shalawat Bani Hasyim",
             arabic = "اللَّهُمَّ صَلِّ عَلَى النَّبِيِّ الْهَاشِمِيِّ مُحَمَّدٍ وَعَلَى آلِهِ وَسَلِّمْ تَسْلِيمًا",
-            defaultTarget = 100,
+            defaultTarget = 165,
             virtue = "Shalawat kebanggaan ikhwan TQN pembuka futuh dan mahabbah Rasulullah."
         )
     )
@@ -88,6 +90,9 @@ sealed interface TasbihUiIntent : UiIntent {
     data object ToggleSound : TasbihUiIntent
     data object DismissTargetReached : TasbihUiIntent
     data class LoadProgress(val dzikirId: String) : TasbihUiIntent
+    data object ToggleFloatingExpand : TasbihUiIntent
+    data class SetFloatingExpanded(val expanded: Boolean) : TasbihUiIntent
+    data class SetFloatingVisible(val visible: Boolean) : TasbihUiIntent
 }
 
 sealed interface TasbihUiEffect : UiEffect {

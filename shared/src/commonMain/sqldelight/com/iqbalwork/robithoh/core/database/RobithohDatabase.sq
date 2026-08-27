@@ -116,3 +116,46 @@ WHERE id = :id;
 
 deleteAmaliyahProgress:
 DELETE FROM AmaliyahProgressEntity WHERE id = :id;
+
+-- Prayer Settings Entity
+CREATE TABLE PrayerSettingsEntity (
+    id INTEGER NOT NULL PRIMARY KEY DEFAULT 1,
+    method_id TEXT NOT NULL DEFAULT 'KEMENAG',
+    imsak_offset INTEGER NOT NULL DEFAULT 0,
+    subuh_offset INTEGER NOT NULL DEFAULT 0,
+    terbit_offset INTEGER NOT NULL DEFAULT 0,
+    dzuhur_offset INTEGER NOT NULL DEFAULT 0,
+    ashar_offset INTEGER NOT NULL DEFAULT 0,
+    maghrib_offset INTEGER NOT NULL DEFAULT 0,
+    isya_offset INTEGER NOT NULL DEFAULT 0,
+    madhab TEXT NOT NULL DEFAULT 'SHAFI',
+    custom_lat REAL,
+    custom_lng REAL,
+    custom_location_name TEXT,
+    custom_timezone_offset REAL,
+    is_gps INTEGER NOT NULL DEFAULT 0
+);
+
+getPrayerSettings:
+SELECT * FROM PrayerSettingsEntity WHERE id = 1 LIMIT 1;
+
+insertOrUpdatePrayerSettings:
+INSERT OR REPLACE INTO PrayerSettingsEntity(
+    id, method_id, imsak_offset, subuh_offset, terbit_offset, dzuhur_offset, ashar_offset, maghrib_offset, isya_offset, madhab,
+    custom_lat, custom_lng, custom_location_name, custom_timezone_offset, is_gps
+) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateCalculationMethod:
+UPDATE PrayerSettingsEntity
+SET method_id = :methodId
+WHERE id = 1;
+
+updateLocation:
+UPDATE PrayerSettingsEntity
+SET custom_lat = :customLat,
+    custom_lng = :customLng,
+    custom_location_name = :customLocationName,
+    custom_timezone_offset = :customTimezoneOffset,
+    is_gps = :isGps
+WHERE id = 1;
+

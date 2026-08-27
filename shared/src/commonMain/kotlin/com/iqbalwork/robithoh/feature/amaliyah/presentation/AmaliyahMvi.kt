@@ -21,7 +21,15 @@ data class AmaliyahUiState(
     val qiblaInfo: QiblaInfo? = null,
     val locationPresets: List<LocationPreset> = PrayerTimesCalculator.PRESET_LOCATIONS,
     val selectedLocation: LocationPreset = PrayerTimesCalculator.DEFAULT_LOCATION,
+    val selectedCalculationMethod: PrayerCalculationMethodItem = PrayerCalculationMethods.DEFAULT,
+    val prayerAdjustments: PrayerTimeAdjustments = PrayerTimeAdjustments(),
+    val availableCalculationMethods: List<PrayerCalculationMethodItem> = PrayerCalculationMethods.ALL_METHODS,
+    val activeAdjustmentPrayerType: PrayerType? = null,
+    val isGpsActive: Boolean = false,
+    val isFetchingLocation: Boolean = false,
+    val locationErrorMessage: String? = null,
     val expandedItemId: String? = null,
+    val selectedDateOffsetDays: Int = 0,
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 ) : UiState
@@ -31,9 +39,18 @@ sealed interface AmaliyahUiIntent : UiIntent {
     data class SelectCategory(val category: AmaliyahCategory) : AmaliyahUiIntent
     data class SelectDzikirType(val dzikirType: DzikirType) : AmaliyahUiIntent
     data class SelectLocation(val location: LocationPreset) : AmaliyahUiIntent
+    data class SetGpsLocation(val location: com.iqbalwork.robithoh.core.location.UserLocation) : AmaliyahUiIntent
+    data class SetFetchingLocation(val isFetching: Boolean) : AmaliyahUiIntent
+    data class SetLocationError(val message: String?) : AmaliyahUiIntent
+    data class SelectCalculationMethod(val method: PrayerCalculationMethodItem) : AmaliyahUiIntent
+    data class UpdatePrayerAdjustment(val prayerType: PrayerType, val offsetMinutes: Int) : AmaliyahUiIntent
+    data class OpenAdjustmentPicker(val prayerType: PrayerType) : AmaliyahUiIntent
+    data object CloseAdjustmentPicker : AmaliyahUiIntent
     data class ToggleExpandItem(val itemId: String) : AmaliyahUiIntent
     data class TickCountdown(val hour: Int, val minute: Int, val second: Int) : AmaliyahUiIntent
     data object RefreshSchedule : AmaliyahUiIntent
+    data class ChangeDateOffset(val deltaDays: Int) : AmaliyahUiIntent
+    data object ResetDateOffset : AmaliyahUiIntent
     data class OpenTasbihWithTarget(val targetCount: Int, val dzikirTitle: String) : AmaliyahUiIntent
 }
 

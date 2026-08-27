@@ -1,19 +1,9 @@
 package com.iqbalwork.robithoh.feature.tasbih.ui
 
-import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -21,25 +11,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
-import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihDzikirPreset
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiState
-import kotlinx.coroutines.launch
+import com.iqbalwork.robithoh.feature.tasbih.ui.component.TasbihCounterDisk
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,10 +31,13 @@ fun TasbihScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
-    val coroutineScope = rememberCoroutineScope()
-    val scaleAnim = remember { Animatable(1f) }
     var showDzikirSelectorSheet by remember { mutableStateOf(false) }
     var customTargetInput by remember { mutableStateOf(state.targetCount.toString()) }
+
+    val isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0
+    val progressPercent = if (state.targetCount > 0) {
+        ((state.currentCount.toFloat() / state.targetCount.toFloat()) * 100).toInt().coerceIn(0, 100)
+    } else 0
 
     Scaffold(
         topBar = {
@@ -92,7 +76,7 @@ fun TasbihScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // Top Section: Selected Dzikir Card & Presets
+            // Top Section: Selected Dzikir Card & Presets (165x & Kustom)
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -102,7 +86,7 @@ fun TasbihScreen(
                 GoldCrimsonCard(
                     variant = GoldCrimsonCardVariant.CRIMSON_HERO,
                     onClick = { showDzikirSelectorSheet = true },
-                    contentPadding = PaddingValues(12.dp)
+                    contentPadding = PaddingValues(14.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -146,43 +130,40 @@ fun TasbihScreen(
                     }
                 }
 
-                // Preset Targets Row (33x, 100x, 165x, Custom)
+                // Preset Targets Row: 165x (TQN) and Kustom
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    val presets = listOf(33, 100, 165)
-                    presets.forEach { target ->
-                        val isSelected = state.targetCount == target
-                        Surface(
-                            shape = RoundedCornerShape(12.dp),
-                            color = if (isSelected) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
-                            border = if (isSelected) BorderStroke(1.dp, EmasKhidmat) else null,
-                            modifier = Modifier
-                                .weight(1f)
-                                .clickable { onIntent(TasbihUiIntent.SetTarget(target)) }
+                    val is165 = state.targetCount == 165
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (is165) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
+                        border = if (is165) BorderStroke(1.dp, EmasKhidmat) else null,
+                        modifier = Modifier
+                            .weight(1f)
+                            .clickable { onIntent(TasbihUiIntent.SetTarget(165)) }
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.padding(vertical = 10.dp)
                         ) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.padding(vertical = 8.dp)
-                            ) {
-                                Text(
-                                    text = "${target}x",
-                                    color = if (isSelected) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 13.sp
-                                )
-                                Text(
-                                    text = if (target == 165) "TQN" else "Preset",
-                                    color = if (isSelected) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                    fontSize = 9.sp
-                                )
-                            }
+                            Text(
+                                text = "165x",
+                                color = if (is165) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp
+                            )
+                            Text(
+                                text = "TQN Sirnarasa 38",
+                                color = if (is165) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
+                                fontSize = 10.sp
+                            )
                         }
                     }
 
                     // Custom Target Button
-                    val isCustom = state.targetCount !in presets
+                    val isCustom = state.targetCount != 165
                     Surface(
                         shape = RoundedCornerShape(12.dp),
                         color = if (isCustom) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
@@ -196,18 +177,18 @@ fun TasbihScreen(
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.padding(vertical = 8.dp)
+                            modifier = Modifier.padding(vertical = 10.dp)
                         ) {
                             Text(
                                 text = if (isCustom) "${state.targetCount}x" else "Kustom",
                                 color = if (isCustom) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 13.sp
+                                fontSize = 14.sp
                             )
                             Text(
-                                text = "Bebas",
+                                text = if (isCustom) "Aktif" else "Ubah Target Bebas",
                                 color = if (isCustom) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                fontSize = 9.sp
+                                fontSize = 10.sp
                             )
                         }
                     }
@@ -216,133 +197,80 @@ fun TasbihScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Center Interactive Spring-Animated Tap Surface
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .size(270.dp)
-                    .scale(scaleAnim.value)
-                    .clip(CircleShape)
-                    .shadow(elevation = 8.dp, shape = CircleShape)
-                    .background(
-                        brush = Brush.radialGradient(
-                            colors = if (isDark) listOf(
-                                MerahMarunGelap,
-                                Color(0xFF280306),
-                                DarkSurface
-                            ) else listOf(
-                                Color(0xFFFFF0F0),
-                                Color(0xFFFFE5E5),
-                                PutihBersih
-                            )
-                        )
-                    )
-                    .pointerInput(Unit) {
-                        detectTapGestures(
-                            onPress = {
-                                coroutineScope.launch {
-                                    scaleAnim.animateTo(
-                                        targetValue = 0.92f,
-                                        animationSpec = spring(
-                                            dampingRatio = Spring.DampingRatioMediumBouncy,
-                                            stiffness = Spring.StiffnessLow
-                                        )
-                                    )
-                                }
-                                tryAwaitRelease()
-                                coroutineScope.launch {
-                                    scaleAnim.animateTo(
-                                        targetValue = 1f,
-                                        animationSpec = spring(
-                                            dampingRatio = Spring.DampingRatioMediumBouncy,
-                                            stiffness = Spring.StiffnessLow
-                                        )
-                                    )
-                                }
-                                onIntent(TasbihUiIntent.Increment)
-                            }
-                        )
-                    }
-            ) {
-                // Circular Progress Arc Canvas
-                val progressFraction = (state.currentCount.toFloat() / state.targetCount.toFloat()).coerceIn(0f, 1f)
-                val primaryColor = MerahMerdeka
-                val goldColor = EmasKhidmat
-                val ringBgColor = if (isDark) Color(0xFF3A1215) else Color(0xFFFFD4D8)
-
-                Canvas(modifier = Modifier.fillMaxSize().padding(14.dp)) {
-                    // Background track ring
-                    drawCircle(
-                        color = ringBgColor,
-                        style = Stroke(width = 10.dp.toPx(), cap = StrokeCap.Round)
-                    )
-                    // Progress arc
-                    drawArc(
-                        brush = Brush.sweepGradient(
-                            listOf(primaryColor, goldColor, primaryColor)
-                        ),
-                        startAngle = -90f,
-                        sweepAngle = progressFraction * 360f,
-                        useCenter = false,
-                        style = Stroke(width = 12.dp.toPx(), cap = StrokeCap.Round)
-                    )
-                }
-
-                // Center Count & Subtitle Display
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "${state.currentCount}",
-                        style = MaterialTheme.typography.displayMedium.copy(
-                            fontSize = 62.sp,
-                            fontWeight = FontWeight.Black,
-                            color = if (isDark) PutihBersih else MerahMarunGelap
-                        )
-                    )
-                    Text(
-                        text = "dari ${state.targetCount}x",
-                        color = if (isDark) EmasMuda else EmasKhidmat,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Surface(
-                        color = MerahMerdeka.copy(alpha = 0.15f),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text(
-                            text = "Putaran ke-${state.lapCount + 1}",
-                            color = MerahMerdeka,
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Ketuk untuk hitung",
-                        color = if (isDark) DarkMuted else SlateMuted,
-                        fontSize = 10.sp
-                    )
-                }
-            }
+            // Center Interactive Counter Disk
+            TasbihCounterDisk(
+                currentCount = state.currentCount,
+                targetCount = state.targetCount,
+                isMilestone = isMilestone,
+                onTap = { onIntent(TasbihUiIntent.Increment) },
+                diskSize = 270.dp,
+                isCompact = false
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Bottom Actions Section: Total count, Decrement (-1), Reset button
+            // Bottom Actions & Stats Section: Putaran, Kemajuan, Decrement (-1), Reset
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = "Total Wirid Sesi Ini: ${state.totalCount} kali",
-                    fontSize = 13.sp,
-                    color = if (isDark) PutihBersih else SlateCharcoalText,
-                    fontWeight = FontWeight.Medium
-                )
+                // Stats Card
+                Surface(
+                    color = if (isDark) DarkSurface else Color.White,
+                    shape = RoundedCornerShape(16.dp),
+                    border = BorderStroke(1.dp, if (isDark) DarkBorder else Color(0xFFE2E8F0)),
+                    shadowElevation = 2.dp,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text("Putaran Selesai", fontSize = 11.sp, color = if (isDark) DarkMuted else SlateMuted)
+                            Text(
+                                text = "${state.lapCount}x",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = if (isDark) PutihBersih else TextCharcoal
+                            )
+                        }
+
+                        VerticalDivider(
+                            modifier = Modifier.height(28.dp),
+                            color = if (isDark) DarkBorder else Color(0xFFE2E8F0)
+                        )
+
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text("Kemajuan", fontSize = 11.sp, color = if (isDark) DarkMuted else SlateMuted)
+                            Text(
+                                text = "$progressPercent%",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = EmasKhidmat
+                            )
+                        }
+
+                        VerticalDivider(
+                            modifier = Modifier.height(28.dp),
+                            color = if (isDark) DarkBorder else Color(0xFFE2E8F0)
+                        )
+
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text("Total Sesi", fontSize = 11.sp, color = if (isDark) DarkMuted else SlateMuted)
+                            Text(
+                                text = "${state.totalCount}x",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                color = MerahMerdeka
+                            )
+                        }
+                    }
+                }
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -415,7 +343,7 @@ fun TasbihScreen(
             confirmButton = {
                 Button(
                     onClick = {
-                        val count = customTargetInput.toIntOrNull() ?: 33
+                        val count = customTargetInput.toIntOrNull() ?: 165
                         onIntent(TasbihUiIntent.SetTarget(count.coerceAtLeast(1)))
                         onIntent(TasbihUiIntent.DismissCustomTargetDialog)
                     },

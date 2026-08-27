@@ -2,7 +2,6 @@ package com.iqbalwork.robithoh.feature.amaliyah.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -16,22 +15,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
-import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
+import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
+import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiState
+import kotlinx.coroutines.launch
 
 @Composable
 fun PrayerTimesScreen(
     state: AmaliyahUiState,
     onIntent: (AmaliyahUiIntent) -> Unit,
+    onNavigateToMethods: () -> Unit = {},
+    onNavigateToAdjustments: () -> Unit = {},
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -39,6 +40,28 @@ fun PrayerTimesScreen(
     val schedule = state.prayerSchedule
     val countdown = state.nextPrayerCountdown
     val qibla = state.qiblaInfo
+    val scope = rememberCoroutineScope()
+    val locationProvider = rememberLocationProvider()
+
+    val fetchGps = {
+        scope.launch {
+            onIntent(AmaliyahUiIntent.SetFetchingLocation(true))
+            val loc = locationProvider.getCurrentLocation()
+            if (loc != null) {
+                onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
+            } else {
+                onIntent(AmaliyahUiIntent.SetLocationError("Gagal mendeteksi lokasi GPS."))
+            }
+        }
+    }
+
+    val requestPermissionAndFetch = rememberLocationPermissionLauncher { granted ->
+        if (granted) {
+            fetchGps()
+        } else {
+            onIntent(AmaliyahUiIntent.SetLocationError("Izin lokasi tidak diberikan."))
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -60,21 +83,74 @@ fun PrayerTimesScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Location Presets Picker
+            // Location Presets & GPS Picker
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    text = "Pilih Lokasi Wilayah:",
-                    style = MaterialTheme.typography.labelLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = if (isDark) PutihBersih else SlateCharcoalText
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Pilih Lokasi Wilayah:",
+                        style = MaterialTheme.typography.labelLarge.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = if (isDark) PutihBersih else SlateCharcoalText
+                        )
                     )
-                )
+                    if (state.isFetchingLocation) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(12.dp),
+                                strokeWidth = 2.dp,
+                                color = MerahMerdeka
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "Mencari GPS...",
+                                fontSize = 11.sp,
+                                color = MerahMerdeka
+                            )
+                        }
+                    }
+                }
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
+                    // 1. GPS Location Button
+                    item {
+                        val isGpsActive = state.isGpsActive
+                        Surface(
+                            shape = RoundedCornerShape(16.dp),
+                            color = if (isGpsActive) Color(0xFF1E824C) else (if (isDark) DarkSurfaceVariant else Color(0xFFE8F5E9)),
+                            border = BorderStroke(1.dp, if (isGpsActive) EmasKhidmat else Color(0xFF81C784)),
+                            modifier = Modifier.clickable {
+                                if (locationProvider.hasLocationPermission()) {
+                                    fetchGps()
+                                } else {
+                                    requestPermissionAndFetch()
+                                }
+                            }
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                            ) {
+                                Text("📍", fontSize = 12.sp)
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = if (isGpsActive) "GPS: ${state.selectedLocation.name}" else "GPS Lokasi Saya",
+                                    color = if (isGpsActive) PutihBersih else Color(0xFF1E824C),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+
+                    // 2. Preset Locations
                     items(state.locationPresets) { loc ->
-                        val isSelected = loc.name == state.selectedLocation.name
+                        val isSelected = !state.isGpsActive && loc.name == state.selectedLocation.name
                         Surface(
                             shape = RoundedCornerShape(16.dp),
                             color = if (isSelected) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
@@ -165,11 +241,119 @@ fun PrayerTimesScreen(
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Lokasi: ${state.selectedLocation.name}",
+                            color = PutihBersih.copy(alpha = 0.85f),
+                            fontSize = 11.sp
+                        )
+                        Text(
+                            text = state.selectedCalculationMethod.name,
+                            color = EmasMuda,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                }
+            }
+
+            // Calculation Method & Adjustments Quick Settings Card
+            GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = "Lokasi: ${state.selectedLocation.name} (${state.selectedLocation.province})",
-                        color = PutihBersih.copy(alpha = 0.8f),
-                        fontSize = 11.sp
+                        text = "Pengaturan Perhitungan & Koreksi",
+                        style = MaterialTheme.typography.titleSmall.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = if (isDark) PutihBersih else SlateCharcoalText
+                        )
                     )
+                    Text("⚙️", fontSize = 16.sp)
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // 1. Calculation Method Setting Tile
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = if (isDark) DarkSurfaceVariant else Color(0xFFF7F7F8),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = onNavigateToMethods)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Metode Perhitungan",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) PutihBersih else SlateCharcoalText
+                            )
+                            Text(
+                                text = state.selectedCalculationMethod.name,
+                                fontSize = 11.sp,
+                                color = MerahMerdeka
+                            )
+                        }
+                        Text(
+                            text = "Ubah ›",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = EmasKhidmat
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                // 2. Prayer Time Adjustments Tile
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = if (isDark) DarkSurfaceVariant else Color(0xFFF7F7F8),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = onNavigateToAdjustments)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Penyesuaian Waktu Salat",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) PutihBersih else SlateCharcoalText
+                            )
+                            Text(
+                                text = "Koreksi manual Imsak, Subuh, Dzuhur, Ashar, Maghrib, Isya (+/- menit)",
+                                fontSize = 11.sp,
+                                color = if (isDark) DarkMuted else SlateMuted
+                            )
+                        }
+                        Text(
+                            text = "Koreksi ›",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = EmasKhidmat
+                        )
+                    }
                 }
             }
 

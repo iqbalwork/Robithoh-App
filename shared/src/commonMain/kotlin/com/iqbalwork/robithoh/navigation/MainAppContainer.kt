@@ -21,11 +21,16 @@ import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
 import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
+import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
 import com.iqbalwork.robithoh.feature.home.ui.*
 import com.iqbalwork.robithoh.feature.library.ui.KitabTabContent
 import com.iqbalwork.robithoh.feature.prayer.ui.SalatTabContent
 import com.iqbalwork.robithoh.feature.profile.ui.ProfileTabContent
+import kotlinx.coroutines.launch
 
 enum class MainTab(val title: String, val icon: String) {
     HOME("Home", "🏠"),
@@ -45,12 +50,11 @@ fun MainAppContainer(
     onNavigateToLanggam: () -> Unit,
     onNavigateToTasbih: () -> Unit,
     onNavigateToProfilePesantren: () -> Unit,
+    onNavigateToCalculationMethods: () -> Unit = {},
+    onNavigateToPrayerAdjustments: () -> Unit = {},
+    amaliyahViewModel: AmaliyahViewModel,
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() }
 ) {
-    // currentTab / activeSheet are hoisted to App() (the composable root that
-    // NavDisplay never disposes) so they survive being navigated away from and
-    // back to — MainAppContainer itself gets torn down and rebuilt by NavDisplay
-    // whenever the backstack top changes away from ScreenKey.Home.
     BackHandler(enabled = activeSheet != null) {
         onSheetChange(null)
     }
@@ -60,14 +64,39 @@ fun MainAppContainer(
     val currentPositionMs by audioPlayer.currentPositionMs.collectAsState()
     val durationMs by audioPlayer.durationMs.collectAsState()
 
+    val scope = rememberCoroutineScope()
+    val locationProvider = rememberLocationProvider()
+
+    val requestPermissionAndFetch = rememberLocationPermissionLauncher { granted ->
+        if (granted) {
+            scope.launch {
+                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetFetchingLocation(true))
+                val loc = locationProvider.getCurrentLocation()
+                if (loc != null) {
+                    amaliyahViewModel.onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
+                }
+            }
+        }
+    }
+
+    // Auto-fetch GPS or request location on first launch
+    LaunchedEffect(Unit) {
+        if (locationProvider.hasLocationPermission()) {
+            val loc = locationProvider.getCurrentLocation()
+            if (loc != null) {
+                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
+            }
+        } else {
+            requestPermissionAndFetch()
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(PaperBackgroundLight)
     ) {
-        // Tab Content — fills the whole screen; each tab's own list scrolls
-        // beneath the floating nav dock, which stays translucent so content
-        // remains visible through it (see nav Surface below).
+        // Tab Content
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -78,12 +107,17 @@ fun MainAppContainer(
                         onNavigateToDocument = onNavigateToDocument,
                         onNavigateToLanggam = onNavigateToLanggam,
                         onNavigateToTasbih = onNavigateToTasbih,
-                        onOpenSheet = { onSheetChange(it) }
+                        onNavigateToPrayerTimes = { onTabChange(MainTab.SALAT) },
+                        onOpenSheet = { onSheetChange(it) },
+                        viewModel = amaliyahViewModel
                     )
                 }
                 MainTab.SALAT -> {
                     SalatTabContent(
-                        onNavigateToDocument = onNavigateToDocument
+                        onNavigateToDocument = onNavigateToDocument,
+                        onNavigateToCalculationMethods = onNavigateToCalculationMethods,
+                        onNavigateToPrayerAdjustments = onNavigateToPrayerAdjustments,
+                        viewModel = amaliyahViewModel
                     )
                 }
                 MainTab.KITAB -> {
@@ -131,10 +165,7 @@ fun MainAppContainer(
                 onCloseClick = { audioPlayer.stop() }
             )
 
-            // Modern Floating Pill Dock Navigation Bar — the pill itself
-            // stays solid; only the area outside its rounded shape is
-            // transparent, so content scrolling behind the dock is visible
-            // around it without washing out the dock's own legibility.
+            // Modern Floating Pill Dock Navigation Bar
             Surface(
                 modifier = Modifier
                     .padding(bottom = 16.dp)
@@ -189,9 +220,6 @@ fun MainAppContainer(
     }
 
     // Modal Bottom Sheets
-    // Note: onItemClick intentionally does NOT clear activeSheet — the sheet
-    // stays "open" in saved state while the destination screen is on top of
-    // the backstack, so it reappears automatically when the user navigates back.
     when (activeSheet) {
         "manaqib" -> {
             ManaqibModalBottomSheet(

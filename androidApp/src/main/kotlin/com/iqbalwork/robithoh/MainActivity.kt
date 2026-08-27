@@ -11,6 +11,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        com.iqbalwork.robithoh.core.designsystem.setGlobalAppContext(this)
 
         setContent {
             App()

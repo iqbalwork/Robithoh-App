@@ -36,4 +36,10 @@ sealed interface ScreenKey {
 
     @Serializable
     data object Langgam : ScreenKey
+
+    @Serializable
+    data object PrayerCalculationMethods : ScreenKey
+
+    @Serializable
+    data object PrayerAdjustments : ScreenKey
 }

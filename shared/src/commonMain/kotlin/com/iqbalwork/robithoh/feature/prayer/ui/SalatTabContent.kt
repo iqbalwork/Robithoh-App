@@ -16,6 +16,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import kotlinx.coroutines.launch
 
 data class PrayerScheduleItem(
     val name: String,
@@ -28,19 +31,67 @@ data class PrayerScheduleItem(
 
 @Composable
 fun SalatTabContent(
-    onNavigateToDocument: (String) -> Unit
+    onNavigateToDocument: (String) -> Unit,
+    onNavigateToCalculationMethods: () -> Unit = {},
+    onNavigateToPrayerAdjustments: () -> Unit = {},
+    viewModel: AmaliyahViewModel? = null
 ) {
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val vm = viewModel ?: remember(database) {
+        AmaliyahViewModel(database = database)
+    }
+    val state by vm.uiState.collectAsState()
+    val schedule = state.prayerSchedule
+    val countdown = state.nextPrayerCountdown
+
     var pinnedScheduleSwitch by remember { mutableStateOf(true) }
 
-    val prayerList = listOf(
-        PrayerScheduleItem("Imsak", "04:28", isMandatory = false, isPast = true),
-        PrayerScheduleItem("Subuh", "04:38", isMandatory = true, isPast = true, initialDone = true),
-        PrayerScheduleItem("Syuruq", "05:52", isMandatory = false, isPast = true),
-        PrayerScheduleItem("Dzuhur", "11:54", isMandatory = true, isPast = true, initialDone = true),
-        PrayerScheduleItem("Ashar", "15:14", isMandatory = true, isPast = true, initialDone = true),
-        PrayerScheduleItem("Maghrib", "17:52", isMandatory = true, isPast = true, initialDone = true),
-        PrayerScheduleItem("Isya", "19:02", isMandatory = true, isCurrent = true, initialDone = false)
-    )
+    val nextName = countdown?.nextPrayerName ?: "Subuh"
+
+    val prayerList = if (schedule != null) {
+        listOf(
+            PrayerScheduleItem("Imsak", schedule.imsak, isMandatory = false, isCurrent = nextName == "Imsak"),
+            PrayerScheduleItem("Subuh", schedule.subuh, isMandatory = true, isCurrent = nextName == "Subuh"),
+            PrayerScheduleItem("Syuruq", schedule.isyroq, isMandatory = false, isCurrent = nextName == "Syuruq" || nextName == "Isyroq"),
+            PrayerScheduleItem("Dzuhur", schedule.dzuhur, isMandatory = true, isCurrent = nextName == "Dzuhur"),
+            PrayerScheduleItem("Ashar", schedule.ashar, isMandatory = true, isCurrent = nextName == "Ashar"),
+            PrayerScheduleItem("Maghrib", schedule.maghrib, isMandatory = true, isCurrent = nextName == "Maghrib"),
+            PrayerScheduleItem("Isya", schedule.isya, isMandatory = true, isCurrent = nextName == "Isya")
+        )
+    } else {
+        listOf(
+            PrayerScheduleItem("Imsak", "04:28", isMandatory = false),
+            PrayerScheduleItem("Subuh", "04:38", isMandatory = true, isCurrent = true),
+            PrayerScheduleItem("Syuruq", "05:52", isMandatory = false),
+            PrayerScheduleItem("Dzuhur", "11:54", isMandatory = true),
+            PrayerScheduleItem("Ashar", "15:14", isMandatory = true),
+            PrayerScheduleItem("Maghrib", "17:52", isMandatory = true),
+            PrayerScheduleItem("Isya", "19:02", isMandatory = true)
+        )
+    }
+
+    val scope = rememberCoroutineScope()
+    val locationProvider = com.iqbalwork.robithoh.core.location.rememberLocationProvider()
+
+    val fetchGps = {
+        scope.launch {
+            vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.SetFetchingLocation(true))
+            val loc = locationProvider.getCurrentLocation()
+            if (loc != null) {
+                vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.SetGpsLocation(loc))
+            } else {
+                vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.SetLocationError("Gagal mendeteksi lokasi GPS."))
+            }
+        }
+    }
+
+    val requestPermissionAndFetch = com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher { granted ->
+        if (granted) {
+            fetchGps()
+        } else {
+            vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.SetLocationError("Izin lokasi tidak diberikan."))
+        }
+    }
 
     LazyColumn(
         modifier = Modifier
@@ -76,18 +127,25 @@ fun SalatTabContent(
                 }
 
                 Surface(
-                    color = Color(0xFFDDF5E6),
-                    shape = RoundedCornerShape(20.dp)
+                    color = if (state.isGpsActive) Color(0xFFDDF5E6) else Color(0xFFF0F0F0),
+                    shape = RoundedCornerShape(20.dp),
+                    modifier = Modifier.clickable {
+                        if (locationProvider.hasLocationPermission()) {
+                            fetchGps()
+                        } else {
+                            requestPermissionAndFetch()
+                        }
+                    }
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
                     ) {
-                        Text("📍", fontSize = 12.sp)
+                        Text(if (state.isFetchingLocation) "⏳" else "📍", fontSize = 12.sp)
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            "Panjalu / Ciamis",
-                            color = Color(0xFF1E824C),
+                            text = if (state.isFetchingLocation) "Mencari GPS..." else (schedule?.locationName ?: "Panjalu / Ciamis"),
+                            color = if (state.isGpsActive) Color(0xFF1E824C) else TextCharcoal,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -111,24 +169,30 @@ fun SalatTabContent(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    IconButton(onClick = {}) {
-                        Text("‹", fontSize = 24.sp, color = TextMuted)
+                    IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(-1)) }) {
+                        Text("‹", fontSize = 24.sp, color = TextCharcoal)
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "Senin, 24 Agustus 2026",
+                            text = schedule?.dateFormatted ?: "Hari ini",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = TextCharcoal
                         )
+                        val relativeLabel = when (state.selectedDateOffsetDays) {
+                            0 -> "Hari ini"
+                            -1 -> "Kemarin"
+                            1 -> "Besok"
+                            else -> if (state.selectedDateOffsetDays > 0) "+${state.selectedDateOffsetDays} hari" else "${state.selectedDateOffsetDays} hari"
+                        }
                         Text(
-                            text = "11 Rabiul Awal 1448 H · Hari ini",
+                            text = "${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"} · $relativeLabel",
                             fontSize = 11.sp,
                             color = TextMuted
                         )
                     }
-                    IconButton(onClick = {}) {
-                        Text("›", fontSize = 24.sp, color = TextMuted)
+                    IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(1)) }) {
+                        Text("›", fontSize = 24.sp, color = TextCharcoal)
                     }
                 }
             }
@@ -137,7 +201,7 @@ fun SalatTabContent(
         // 3. Section Header
         item {
             Text(
-                text = "JADWAL SHOLAT",
+                text = "JADWAL SHOLAT (${schedule?.methodName ?: state.selectedCalculationMethod.name})",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextMuted,
@@ -150,7 +214,7 @@ fun SalatTabContent(
             val p = prayerList[i]
 
             if (p.isCurrent) {
-                // Highlighted Card for Current Prayer
+                // Highlighted Card for Current / Next Prayer
                 Card(
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(containerColor = Color(0xFFFDE8C4)),
@@ -199,16 +263,18 @@ fun SalatTabContent(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(10.dp))
-                        LinearProgressIndicator(
-                            progress = { 0.45f },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(4.dp)
-                                .clip(RoundedCornerShape(2.dp)),
-                            color = MerahMerdeka,
-                            trackColor = Color(0xFFE2C99D)
-                        )
+                        if (countdown != null) {
+                            Spacer(modifier = Modifier.height(10.dp))
+                            LinearProgressIndicator(
+                                progress = { countdown.progressFraction },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(4.dp)
+                                    .clip(RoundedCornerShape(2.dp)),
+                                color = MerahMerdeka,
+                                trackColor = Color(0xFFE2C99D)
+                            )
+                        }
                     }
                 }
             } else {
@@ -317,14 +383,16 @@ fun SalatTabContent(
                         icon = "⏰",
                         iconBg = Color(0xFFE3F2FD),
                         title = "Metode perhitungan",
-                        subtitle = "Kemenag RI"
+                        subtitle = state.selectedCalculationMethod.name,
+                        onClick = onNavigateToCalculationMethods
                     )
                     HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     SettingItemRow(
                         icon = "⏱️",
                         iconBg = Color(0xFFE0F7FA),
                         title = "Koreksi waktu sholat",
-                        subtitle = "+2 menit (Ihtiyath)"
+                        subtitle = "Subuh: ${state.prayerAdjustments.getOffsetLabel(PrayerType.SUBUH)}, Dzuhur: ${state.prayerAdjustments.getOffsetLabel(PrayerType.DZUHUR)}, Ashar: ${state.prayerAdjustments.getOffsetLabel(PrayerType.ASHAR)}",
+                        onClick = onNavigateToPrayerAdjustments
                     )
                 }
             }
@@ -341,14 +409,20 @@ private fun SettingItemRow(
     icon: String,
     iconBg: Color,
     title: String,
-    subtitle: String
+    subtitle: String,
+    onClick: () -> Unit = {}
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.weight(1f)
+        ) {
             Surface(
                 color = iconBg,
                 shape = CircleShape,

@@ -52,6 +52,9 @@ class TasbihViewModel(
             is TasbihUiIntent.ToggleSound -> updateState { copy(isSoundEnabled = !isSoundEnabled) }
             is TasbihUiIntent.DismissTargetReached -> updateState { copy(isTargetReached = false) }
             is TasbihUiIntent.LoadProgress -> loadInitialProgress(intent.dzikirId)
+            is TasbihUiIntent.ToggleFloatingExpand -> updateState { copy(isFloatingExpanded = !isFloatingExpanded) }
+            is TasbihUiIntent.SetFloatingExpanded -> updateState { copy(isFloatingExpanded = intent.expanded) }
+            is TasbihUiIntent.SetFloatingVisible -> updateState { copy(isFloatingVisible = intent.visible) }
         }
     }
 

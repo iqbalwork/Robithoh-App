@@ -41,6 +41,7 @@ import kotlinx.coroutines.launch
 fun GenericDocumentReaderScreen(
     documentId: String,
     onBack: () -> Unit,
+    onNavigateToTasbih: (() -> Unit)? = null,
     repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() }
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -54,6 +55,14 @@ fun GenericDocumentReaderScreen(
     var showSettingsDialog by remember { mutableStateOf(false) }
 
     val docInfo = remember(currentDocId) { repository.getDocumentById(currentDocId) }
+    val isDzikirDoc = currentDocId.contains("dzikir", ignoreCase = true) ||
+        docInfo?.id?.contains("dzikir", ignoreCase = true) == true
+
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val tasbihViewModel = remember(database) {
+        com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
+    }
+    val tasbihState by tasbihViewModel.uiState.collectAsState()
 
     LaunchedEffect(currentDocId) {
         val cached = repository.getCachedDocument(currentDocId)
@@ -204,7 +213,7 @@ fun GenericDocumentReaderScreen(
                             }
 
                             item(key = "bottom_spacer") {
-                                Spacer(modifier = Modifier.height(32.dp))
+                                Spacer(modifier = Modifier.height(80.dp))
                             }
                         }
                     }
@@ -213,6 +222,14 @@ fun GenericDocumentReaderScreen(
                         Text("Dokumen tidak ditemukan.", color = TextMuted)
                     }
                 }
+            }
+
+            if (isDzikirDoc) {
+                com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
+                    state = tasbihState,
+                    onIntent = tasbihViewModel::onIntent,
+                    onOpenFullScreen = { onNavigateToTasbih?.invoke() }
+                )
             }
         }
     }

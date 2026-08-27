@@ -15,6 +15,7 @@ kotlin = "2.4.10"
 material3 = "1.11.0-alpha07"
 kotlinx-coroutines = "1.10.1"
 kotlinx-serialization = "1.8.0"
+kotlinx-datetime = "0.6.1"
 koin = "4.0.2"
 sqldelight = "2.0.2"
 media3 = "1.5.1"
@@ -44,8 +45,9 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
-# Serialization
+# Serialization & Datetime
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 # Koin 4.0
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -67,6 +69,9 @@ androidx-media3-common = { module = "androidx.media3:media3-common", version.ref
 
 # Navigation 3
 navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
+
+# Adhan Prayer Times (Kotlin Multiplatform)
+adhan = { module = "com.batoulapps.adhan:adhan2", version = "0.0.7" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

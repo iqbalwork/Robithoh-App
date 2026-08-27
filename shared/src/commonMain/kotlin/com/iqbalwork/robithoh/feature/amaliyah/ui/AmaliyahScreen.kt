@@ -176,7 +176,7 @@ fun AmaliyahScreen(
                                     color = if (isDark) PutihBersih else SlateCharcoalText
                                 )
                                 Text(
-                                    text = "Preset 33x, 100x, 165x (Dzikir Jahr TQN)",
+                                    text = "Preset 165x (Dzikir Jahr TQN) & Kustom",
                                     fontSize = 12.sp,
                                     color = if (isDark) DarkMuted else SlateMuted
                                 )

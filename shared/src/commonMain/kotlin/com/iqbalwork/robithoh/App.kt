@@ -16,7 +16,13 @@ import com.iqbalwork.robithoh.navigation.*
 @Composable
 fun App() {
     RabithohTheme {
+        com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
         val backstack = remember { mutableStateListOf<ScreenKey>(ScreenKey.Home) }
+
+        val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val amaliyahViewModel = remember(database) {
+            com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
+        }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
         // so the Home tab/sheet selection survives navigating away and back,
@@ -62,12 +68,16 @@ fun App() {
                                 },
                                 onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
                                 onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
-                                onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) }
+                                onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
+                                onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
+                                onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
+                                amaliyahViewModel = amaliyahViewModel
                             )
                         }
                         is ScreenKey.DocumentReader -> {
                             com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
                                 documentId = key.documentId,
+                                onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
                                 onBack = {
                                     if (backstack.size > 1) {
                                         backstack.removeAt(backstack.lastIndex)
@@ -91,7 +101,8 @@ fun App() {
                                     if (backstack.size > 1) {
                                         backstack.removeAt(backstack.lastIndex)
                                     }
-                                }
+                                },
+                                viewModel = amaliyahViewModel
                             )
                         }
                         is ScreenKey.Tasbih -> {
@@ -150,11 +161,37 @@ fun App() {
                         }
                         is ScreenKey.Settings -> {
                             SettingsScreen(
+                                onNavigateToCalculationMethods = {
+                                    backstack.add(ScreenKey.PrayerCalculationMethods)
+                                },
+                                onNavigateToPrayerAdjustments = {
+                                    backstack.add(ScreenKey.PrayerAdjustments)
+                                },
                                 onBack = {
                                     if (backstack.size > 1) {
                                         backstack.removeAt(backstack.lastIndex)
                                     }
                                 }
+                            )
+                        }
+                        is ScreenKey.PrayerCalculationMethods -> {
+                            PrayerCalculationMethodScreen(
+                                onBack = {
+                                    if (backstack.size > 1) {
+                                        backstack.removeAt(backstack.lastIndex)
+                                    }
+                                },
+                                viewModel = amaliyahViewModel
+                            )
+                        }
+                        is ScreenKey.PrayerAdjustments -> {
+                            PrayerAdjustmentsScreen(
+                                onBack = {
+                                    if (backstack.size > 1) {
+                                        backstack.removeAt(backstack.lastIndex)
+                                    }
+                                },
+                                viewModel = amaliyahViewModel
                             )
                         }
                         is ScreenKey.ProfilePesantren -> {

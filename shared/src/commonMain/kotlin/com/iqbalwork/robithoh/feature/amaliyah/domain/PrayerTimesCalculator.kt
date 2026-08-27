@@ -1,16 +1,18 @@
 package com.iqbalwork.robithoh.feature.amaliyah.domain
 
-import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
-import com.iqbalwork.robithoh.feature.amaliyah.model.NextPrayerCountdown
-import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
-import com.iqbalwork.robithoh.feature.amaliyah.model.QiblaInfo
+import com.batoulapps.adhan2.Coordinates
+import com.batoulapps.adhan2.Madhab
+import com.batoulapps.adhan2.PrayerTimes
+import com.batoulapps.adhan2.data.DateComponents
+import com.iqbalwork.robithoh.feature.amaliyah.model.*
+import kotlinx.datetime.Instant
 import kotlin.math.*
 
 /**
  * Offline Astronomical Prayer Times & Tasawuf Schedule Calculator Engine.
- * Implements high-precision solar geometry calculations (declination, equation of time,
- * hour angle) per Kemenag / Islamic astronomical standards, plus TQN Sirnarasa Tasawuf
- * specific schedules (Waktu Malam / Tahajjud, Isyroq, Waktal).
+ * Powered by adhan-kotlin (com.batoulapps.adhan:adhan2) for high-precision
+ * international calculation methods and manual prayer adjustments, combined with
+ * TQN Sirnarasa Tasawuf specific schedules (Tahajjud, Waktal, Isyroq, Dhuha).
  */
 class PrayerTimesCalculator {
 
@@ -96,7 +98,7 @@ class PrayerTimesCalculator {
     }
 
     /**
-     * Calculate daily prayer schedule for a specific date and geographic coordinate.
+     * Calculate daily prayer schedule for a specific date, coordinates, calculation method, and adjustments.
      */
     fun calculateSchedule(
         year: Int,
@@ -105,71 +107,47 @@ class PrayerTimesCalculator {
         latitude: Double,
         longitude: Double,
         timezoneOffset: Double,
-        locationName: String = "Sirnarasa Panjalu"
+        locationName: String = "Sirnarasa Panjalu",
+        method: PrayerCalculationMethodItem = PrayerCalculationMethods.DEFAULT,
+        adjustments: PrayerTimeAdjustments = PrayerTimeAdjustments(),
+        madhab: Madhab = Madhab.SHAFI
     ): PrayerSchedule {
-        val julianDay = getJulianDay(year, month, day)
-        val d = julianDay - 2451545.0
-
-        // Solar coordinates
-        val meanAnomaly = fixAngle(357.529 + 0.98560028 * d)
-        val meanLongitude = fixAngle(280.459 + 0.98564736 * d)
-        val apparentLongitude = fixAngle(
-            meanLongitude + 1.915 * sin(degToRad(meanAnomaly)) + 0.020 * sin(degToRad(2 * meanAnomaly))
-        )
-        val obliquity = 23.439 - 0.00000036 * d
-        val solarDeclination = radToDeg(
-            asin(sin(degToRad(obliquity)) * sin(degToRad(apparentLongitude)))
+        val coordinates = Coordinates(latitude, longitude)
+        val dateComponents = DateComponents(year, month, day)
+        val calculationParameters = method.toCalculationParameters(madhab).copy(
+            prayerAdjustments = adjustments.toAdhanPrayerAdjustments()
         )
 
-        // Equation of Time (EoT) in minutes
-        val y = tan(degToRad(obliquity) / 2.0).pow(2.0)
-        val ecc = 0.01671
-        val eqTimeMinutes = 4.0 * radToDeg(
-            y * sin(2.0 * degToRad(meanLongitude))
-                    - 2.0 * ecc * sin(degToRad(meanAnomaly))
-                    + 4.0 * ecc * y * sin(degToRad(meanAnomaly)) * cos(2.0 * degToRad(meanLongitude))
-                    - 0.5 * y * y * sin(4.0 * degToRad(meanLongitude))
-                    - 1.25 * ecc * ecc * sin(2.0 * degToRad(meanAnomaly))
-        )
+        val prayerTimes = PrayerTimes(coordinates, dateComponents, calculationParameters)
 
-        // Solar Transit (Dzuhur standard) in decimal hours
-        val solarTransit = 12.0 + timezoneOffset - (longitude / 15.0) - (eqTimeMinutes / 60.0)
-        val ihtiyatHours = 2.0 / 60.0 // 2 minutes ihtiyat (safety buffer)
+        // Formatted prayer strings
+        val subuhFormatted = formatInstantToLocalTime(prayerTimes.fajr, timezoneOffset)
+        val terbitFormatted = formatInstantToLocalTime(prayerTimes.sunrise, timezoneOffset)
+        val dzuhurFormatted = formatInstantToLocalTime(prayerTimes.dhuhr, timezoneOffset)
+        val asharFormatted = formatInstantToLocalTime(prayerTimes.asr, timezoneOffset)
+        val maghribFormatted = formatInstantToLocalTime(prayerTimes.maghrib, timezoneOffset)
+        val isyaFormatted = formatInstantToLocalTime(prayerTimes.isha, timezoneOffset)
 
-        // Fajr / Shubuh angle: -20.0 degrees (Kemenag standard)
-        val fajrHourAngle = computeHourAngle(-20.0, latitude, solarDeclination)
-        val rawFajr = solarTransit - fajrHourAngle
-        val fajrTime = rawFajr + ihtiyatHours
-        val imsakTime = fajrTime - (10.0 / 60.0) // 10 minutes before Fajr
+        // Imsak: 10 minutes before Fajr + user imsak adjustment
+        val imsakEpoch = (prayerTimes.fajr.epochSeconds - 600) + (adjustments.imsak * 60)
+        val imsakFormatted = formatEpochToLocalTime(imsakEpoch, timezoneOffset)
 
-        // Sunrise (Syuruq): -0.833 degrees
-        val sunriseHourAngle = computeHourAngle(-0.833, latitude, solarDeclination)
-        val sunriseTime = solarTransit - sunriseHourAngle
-        val isyroqTime = sunriseTime + (15.0 / 60.0) // 15 mins after sunrise
-        val dhuhaTime = sunriseTime + (25.0 / 60.0)  // 25 mins after sunrise
+        // Isyroq: 15 minutes after Sunrise
+        val isyroqEpoch = prayerTimes.sunrise.epochSeconds + (15 * 60)
+        val isyroqFormatted = formatEpochToLocalTime(isyroqEpoch, timezoneOffset)
 
-        // Dzuhur
-        val dzuhurTime = solarTransit + ihtiyatHours
-
-        // Asr: Shadow angle formula for Shafi'i
-        val asrAngle = computeAsrAltitude(latitude, solarDeclination)
-        val asrHourAngle = computeHourAngle(asrAngle, latitude, solarDeclination)
-        val asrTime = solarTransit + asrHourAngle + ihtiyatHours
-
-        // Maghrib: -0.833 degrees
-        val maghribTime = solarTransit + sunriseHourAngle + ihtiyatHours
-
-        // Isha: -18.0 degrees (Kemenag standard)
-        val ishaHourAngle = computeHourAngle(-18.0, latitude, solarDeclination)
-        val ishaTime = solarTransit + ishaHourAngle + ihtiyatHours
+        // Dhuha: 25 minutes after Sunrise
+        val dhuhaEpoch = prayerTimes.sunrise.epochSeconds + (25 * 60)
+        val dhuhaFormatted = formatEpochToLocalTime(dhuhaEpoch, timezoneOffset)
 
         // Tasawuf Schedule: Waktu Malam / Tahajjud (1/3 akhir malam)
-        val nightDuration = ((fajrTime + 24.0) - maghribTime) % 24.0
-        val tahajjudStart = (maghribTime + (2.0 / 3.0) * nightDuration) % 24.0
+        val nightSeconds = (prayerTimes.fajr.epochSeconds + 86400 - prayerTimes.maghrib.epochSeconds) % 86400
+        val tahajjudEpoch = prayerTimes.maghrib.epochSeconds + ((2.0 / 3.0) * nightSeconds).toLong()
+        val tahajjudFormatted = formatEpochToLocalTime(tahajjudEpoch, timezoneOffset)
 
-        // Waktal (Waktu Talqin / Wirid Khusus TQN Sirnarasa)
-        // Prime meditation slot is 02:30 or 1 hour before Fajr
-        val waktalTime = (fajrTime - 1.5 + 24.0) % 24.0
+        // Waktal (Wirid Khusus TQN Sirnarasa: 1.5 jam sebelum Subuh)
+        val waktalEpoch = prayerTimes.fajr.epochSeconds - (90 * 60)
+        val waktalFormatted = formatEpochToLocalTime(waktalEpoch, timezoneOffset)
 
         val tzLabel = when (timezoneOffset.toInt()) {
             7 -> "WIB"
@@ -178,20 +156,25 @@ class PrayerTimesCalculator {
             else -> "UTC+${timezoneOffset.toInt()}"
         }
 
+        val indonesianDate = com.iqbalwork.robithoh.core.datetime.formatIndonesianDate(year, month, day)
+        val hijriDate = com.iqbalwork.robithoh.core.datetime.getHijriDateFormatted(year, month, day)
+
         return PrayerSchedule(
-            dateFormatted = "$year-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}",
-            imsak = formatDecimalHours(imsakTime),
-            subuh = formatDecimalHours(fajrTime),
-            isyroq = formatDecimalHours(isyroqTime),
-            dhuha = formatDecimalHours(dhuhaTime),
-            dzuhur = formatDecimalHours(dzuhurTime),
-            ashar = formatDecimalHours(asrTime),
-            maghrib = formatDecimalHours(maghribTime),
-            isya = formatDecimalHours(ishaTime),
-            tahajjud = formatDecimalHours(tahajjudStart),
-            waktal = formatDecimalHours(waktalTime),
+            dateFormatted = indonesianDate,
+            hijriDateFormatted = hijriDate,
+            imsak = imsakFormatted,
+            subuh = subuhFormatted,
+            isyroq = isyroqFormatted,
+            dhuha = dhuhaFormatted,
+            dzuhur = dzuhurFormatted,
+            ashar = asharFormatted,
+            maghrib = maghribFormatted,
+            isya = isyaFormatted,
+            tahajjud = tahajjudFormatted,
+            waktal = waktalFormatted,
             timezone = tzLabel,
-            locationName = locationName
+            locationName = locationName,
+            methodName = method.name
         )
     }
 
@@ -280,7 +263,6 @@ class PrayerTimesCalculator {
         val remainingSec = if (found) {
             nextTimeSec - currentTotalSeconds
         } else {
-            // Next is tomorrow's first prayer
             val first = prayerEntries.first()
             nextName = first.first
             nextTimeSec = first.second
@@ -326,6 +308,19 @@ class PrayerTimesCalculator {
         )
     }
 
+    private fun formatInstantToLocalTime(instant: Instant, timezoneOffset: Double): String {
+        return formatEpochToLocalTime(instant.epochSeconds, timezoneOffset)
+    }
+
+    private fun formatEpochToLocalTime(epochSeconds: Long, timezoneOffset: Double): String {
+        val offsetSeconds = (timezoneOffset * 3600.0).roundToLong()
+        val localSeconds = epochSeconds + offsetSeconds
+        val secondsInDay = ((localSeconds % 86400L) + 86400L) % 86400L
+        val hour = (secondsInDay / 3600L).toInt()
+        val minute = ((secondsInDay % 3600L) / 60L).toInt()
+        return "${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}"
+    }
+
     private fun parseTimeToSeconds(timeStr: String): Long {
         val parts = timeStr.split(":")
         if (parts.size < 2) return 0L
@@ -334,50 +329,6 @@ class PrayerTimesCalculator {
         return h * 3600L + m * 60L
     }
 
-    private fun computeHourAngle(altitudeDeg: Double, latitudeDeg: Double, declinationDeg: Double): Double {
-        val latRad = degToRad(latitudeDeg)
-        val decRad = degToRad(declinationDeg)
-        val altRad = degToRad(altitudeDeg)
-
-        val numerator = sin(altRad) - sin(latRad) * sin(decRad)
-        val denominator = cos(latRad) * cos(decRad)
-        val cosH = (numerator / denominator).coerceIn(-1.0, 1.0)
-        return radToDeg(acos(cosH)) / 15.0
-    }
-
-    private fun computeAsrAltitude(latitudeDeg: Double, declinationDeg: Double): Double {
-        val delta = abs(latitudeDeg - declinationDeg)
-        val shadowRatio = 1.0 + tan(degToRad(delta))
-        return radToDeg(atan(1.0 / shadowRatio))
-    }
-
-    private fun getJulianDay(year: Int, month: Int, day: Int): Double {
-        var y = year
-        var m = month
-        if (m <= 2) {
-            y -= 1
-            m += 12
-        }
-        val a = floor(y / 100.0)
-        val b = 2.0 - a + floor(a / 4.0)
-        return floor(365.25 * (y + 4716)) + floor(30.6001 * (m + 1)) + day + b - 1524.5
-    }
-
-    private fun fixAngle(deg: Double): Double {
-        val res = deg % 360.0
-        return if (res < 0.0) res + 360.0 else res
-    }
-
     private fun degToRad(deg: Double): Double = deg * (PI / 180.0)
     private fun radToDeg(rad: Double): Double = rad * (180.0 / PI)
-
-    private fun formatDecimalHours(hours: Double): String {
-        val normalized = (hours % 24.0 + 24.0) % 24.0
-        val h = normalized.toInt()
-        val totalMinutes = (normalized - h) * 60.0
-        val m = totalMinutes.roundToInt()
-        val finalH = if (m == 60) (h + 1) % 24 else h
-        val finalM = if (m == 60) 0 else m
-        return "${finalH.toString().padStart(2, '0')}:${finalM.toString().padStart(2, '0')}"
-    }
 }

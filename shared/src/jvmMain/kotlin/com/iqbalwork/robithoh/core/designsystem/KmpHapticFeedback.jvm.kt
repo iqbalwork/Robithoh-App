@@ -1,5 +1,7 @@
 package com.iqbalwork.robithoh.core.designsystem
 
+import androidx.compose.runtime.Composable
+
 class JvmHapticFeedback : KmpHapticFeedback {
     override fun performClick() {
         // No-op on JVM/Desktop
@@ -14,4 +16,10 @@ class JvmHapticFeedback : KmpHapticFeedback {
     }
 }
 
+@Composable
+actual fun InitHapticContext() {
+    // No-op on JVM
+}
+
 actual fun getHapticFeedback(): KmpHapticFeedback = JvmHapticFeedback()
+

@@ -40,12 +40,23 @@ fun HomeTabContent(
     onNavigateToDocument: (String) -> Unit,
     onNavigateToLanggam: () -> Unit,
     onNavigateToTasbih: () -> Unit,
-    onOpenSheet: (String) -> Unit
+    onNavigateToPrayerTimes: () -> Unit = {},
+    onOpenSheet: (String) -> Unit,
+    viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
 ) {
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val vm = viewModel ?: remember(database) {
+        com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
+    }
+    val state by vm.uiState.collectAsState()
+    val countdown = state.nextPrayerCountdown
+    val schedule = state.prayerSchedule
+
     val menuGridItems = listOf(
-        HomeGridMenuItem("dzikir", "Dzikir", "📿"),
-        HomeGridMenuItem("khotaman", "Khotaman", "📖"),
-        HomeGridMenuItem("manaqib", "Manaqib", "📜"),
+        HomeGridMenuItem("dzikir", "Dzikir", "📖"),
+        HomeGridMenuItem("tasbih", "Tasbih", "📿"),
+        HomeGridMenuItem("khotaman", "Khotaman", "📜"),
+        HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),
         HomeGridMenuItem("langgam", "Langgam", "🎵"),
         HomeGridMenuItem("tarhim", "Tarhim", "📢"),
@@ -86,7 +97,7 @@ fun HomeTabContent(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "Senin, 24 Agustus 2026 · 11 Rabiul Awal 1448 H",
+                        text = "${schedule?.dateFormatted ?: "Hari ini"} · ${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"}",
                         fontSize = 12.sp,
                         color = TextMuted
                     )
@@ -104,31 +115,45 @@ fun HomeTabContent(
             }
         }
 
-        // 2. Next Prayer Hero Card
+        // 2. Next Prayer Hero Card (Live Calculated from adhan-kotlin)
         item {
             Card(
                 shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFFFEE8C8)),
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onNavigateToPrayerTimes)
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(18.dp)
                 ) {
-                    Text(
-                        text = "SHOLAT BERIKUTNYA",
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF8C5B00),
-                        letterSpacing = 0.5.sp
-                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "SHOLAT BERIKUTNYA",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF8C5B00),
+                            letterSpacing = 0.5.sp
+                        )
+                        Text(
+                            text = "Jadwal Lengkap ›",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MerahMerdeka
+                        )
+                    }
                     Spacer(modifier = Modifier.height(4.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("🌅 ", fontSize = 18.sp)
                         Text(
-                            text = "Subuh (besok)",
+                            text = countdown?.nextPrayerName ?: "Subuh",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             color = TextCharcoal
@@ -136,7 +161,11 @@ fun HomeTabContent(
                     }
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "08:23:34",
+                        text = if (countdown != null) {
+                            "${countdown.remainingHours.toString().padStart(2, '0')}:${countdown.remainingMinutes.toString().padStart(2, '0')}:${countdown.remainingSeconds.toString().padStart(2, '0')}"
+                        } else {
+                            "00:00:00"
+                        },
                         fontSize = 32.sp,
                         fontWeight = FontWeight.ExtraBold,
                         color = TextCharcoal,
@@ -144,7 +173,7 @@ fun HomeTabContent(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "04:37 · Panjalu, Ciamis / West Java",
+                        text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${schedule?.locationName ?: "Panjalu, Ciamis"} (${schedule?.timezone ?: "WIB"})",
                         fontSize = 12.sp,
                         color = Color(0xFF785B28)
                     )
@@ -179,6 +208,7 @@ fun HomeTabContent(
                                     onClick = {
                                         when (item.id) {
                                             "dzikir" -> onNavigateToDocument("dzikir_tqn")
+                                            "tasbih" -> onNavigateToTasbih()
                                             "khotaman" -> onNavigateToDocument("khotaman_tqn")
                                             "tarhim" -> onNavigateToDocument("tarhim_tqn")
                                             "silsilah" -> onNavigateToDocument("silsilah_tqn")

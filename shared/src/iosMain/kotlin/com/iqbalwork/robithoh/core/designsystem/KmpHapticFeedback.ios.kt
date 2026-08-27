@@ -1,5 +1,6 @@
 package com.iqbalwork.robithoh.core.designsystem
 
+import androidx.compose.runtime.Composable
 import platform.UIKit.UIImpactFeedbackGenerator
 import platform.UIKit.UIImpactFeedbackStyle
 import platform.UIKit.UINotificationFeedbackGenerator
@@ -26,4 +27,10 @@ class IosHapticFeedback : KmpHapticFeedback {
     }
 }
 
+@Composable
+actual fun InitHapticContext() {
+    // No-op on iOS
+}
+
 actual fun getHapticFeedback(): KmpHapticFeedback = IosHapticFeedback()
+

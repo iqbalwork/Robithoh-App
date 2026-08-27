@@ -1,5 +1,7 @@
 package com.iqbalwork.robithoh.core.designsystem
 
+import androidx.compose.runtime.Composable
+
 /**
  * Multiplatform haptic feedback engine for tactile user interactions (tasbih counter, buttons, milestones).
  */
@@ -15,3 +17,7 @@ interface KmpHapticFeedback {
 }
 
 expect fun getHapticFeedback(): KmpHapticFeedback
+
+@Composable
+expect fun InitHapticContext()
+

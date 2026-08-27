@@ -74,6 +74,7 @@ data class HijriyahAmaliyah(
 @Serializable
 data class PrayerSchedule(
     val dateFormatted: String,
+    val hijriDateFormatted: String = "",
     val imsak: String,
     val subuh: String,
     val isyroq: String,
@@ -85,7 +86,8 @@ data class PrayerSchedule(
     val tahajjud: String,
     val waktal: String,
     val timezone: String,
-    val locationName: String
+    val locationName: String,
+    val methodName: String = "Kementrian Agama Indonesia"
 )
 
 @Serializable

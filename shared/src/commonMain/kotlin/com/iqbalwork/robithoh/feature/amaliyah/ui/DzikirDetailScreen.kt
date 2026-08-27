@@ -25,6 +25,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiState
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 
 @Composable
 fun DzikirDetailScreen(
@@ -41,6 +42,12 @@ fun DzikirDetailScreen(
         state.dzikirKhofiList
     }
 
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val tasbihViewModel = remember(database) {
+        com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
+    }
+    val tasbihState by tasbihViewModel.uiState.collectAsState()
+
     Scaffold(
         topBar = {
             IslamicHeader(
@@ -53,14 +60,18 @@ fun DzikirDetailScreen(
         containerColor = if (isDark) DarkCanvas else PutihAbuBackground,
         modifier = modifier
     ) { padding ->
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
-            contentPadding = PaddingValues(vertical = 16.dp)
         ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                contentPadding = PaddingValues(vertical = 16.dp)
+            ) {
             // Type Switcher Tabs (Jahr vs Khofi)
             item {
                 Row(
@@ -135,7 +146,10 @@ fun DzikirDetailScreen(
                     item = item,
                     selectedLanguage = state.selectedLanguage,
                     isDark = isDark,
-                    onOpenTasbih = onOpenTasbih
+                    onOpenTasbih = { target, title ->
+                        tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
+                        tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                    }
                 )
             }
 
@@ -147,8 +161,22 @@ fun DzikirDetailScreen(
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
+
+            item {
+                Spacer(modifier = Modifier.height(72.dp))
+            }
         }
+
+        // Floating Tasbih Overlay (Expandable Floating Widget)
+        com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
+            state = tasbihState,
+            onIntent = tasbihViewModel::onIntent,
+            onOpenFullScreen = {
+                onOpenTasbih(tasbihState.targetCount, tasbihState.selectedDzikirTitle)
+            }
+        )
     }
+}
 }
 
 @Composable
