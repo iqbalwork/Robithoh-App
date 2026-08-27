@@ -36,18 +36,23 @@ enum class MainTab(val title: String, val icon: String) {
 
 @Composable
 fun MainAppContainer(
+    currentTab: MainTab,
+    onTabChange: (MainTab) -> Unit,
+    activeSheet: String?,
+    onSheetChange: (String?) -> Unit,
     onNavigateToDocument: (String) -> Unit,
-    onNavigateToSurah: (Int) -> Unit,
+    onNavigateToSurah: (Int, Int?) -> Unit,
     onNavigateToLanggam: () -> Unit,
     onNavigateToTasbih: () -> Unit,
     onNavigateToProfilePesantren: () -> Unit,
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() }
 ) {
-    var currentTab by remember { mutableStateOf(MainTab.HOME) }
-    var activeSheet by remember { mutableStateOf<String?>(null) }
-
+    // currentTab / activeSheet are hoisted to App() (the composable root that
+    // NavDisplay never disposes) so they survive being navigated away from and
+    // back to — MainAppContainer itself gets torn down and rebuilt by NavDisplay
+    // whenever the backstack top changes away from ScreenKey.Home.
     BackHandler(enabled = activeSheet != null) {
-        activeSheet = null
+        onSheetChange(null)
     }
 
     val currentTrack by audioPlayer.currentTrack.collectAsState()
@@ -60,11 +65,12 @@ fun MainAppContainer(
             .fillMaxSize()
             .background(PaperBackgroundLight)
     ) {
-        // Tab Content
+        // Tab Content — fills the whole screen; each tab's own list scrolls
+        // beneath the floating nav dock, which stays translucent so content
+        // remains visible through it (see nav Surface below).
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 76.dp)
         ) {
             when (currentTab) {
                 MainTab.HOME -> {
@@ -72,8 +78,7 @@ fun MainAppContainer(
                         onNavigateToDocument = onNavigateToDocument,
                         onNavigateToLanggam = onNavigateToLanggam,
                         onNavigateToTasbih = onNavigateToTasbih,
-                        onNavigateToProfile = { currentTab = MainTab.PROFIL },
-                        onOpenSheet = { activeSheet = it }
+                        onOpenSheet = { onSheetChange(it) }
                     )
                 }
                 MainTab.SALAT -> {
@@ -82,8 +87,16 @@ fun MainAppContainer(
                     )
                 }
                 MainTab.KITAB -> {
+                    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+                    val quranViewModel = remember(database) {
+                        com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
+                            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+                        )
+                    }
+                    val quranState by quranViewModel.uiState.collectAsState()
                     KitabTabContent(
-                        onNavigateToSurah = onNavigateToSurah
+                        onNavigateToSurah = onNavigateToSurah,
+                        lastReadBookmark = quranState.lastReadBookmark
                     )
                 }
                 MainTab.PROFIL -> {
@@ -118,7 +131,10 @@ fun MainAppContainer(
                 onCloseClick = { audioPlayer.stop() }
             )
 
-            // Modern Floating Pill Dock Navigation Bar
+            // Modern Floating Pill Dock Navigation Bar — the pill itself
+            // stays solid; only the area outside its rounded shape is
+            // transparent, so content scrolling behind the dock is visible
+            // around it without washing out the dock's own legibility.
             Surface(
                 modifier = Modifier
                     .padding(bottom = 16.dp)
@@ -148,7 +164,7 @@ fun MainAppContainer(
                             } else Color.Transparent,
                             modifier = Modifier
                                 .clip(RoundedCornerShape(24.dp))
-                                .clickable { currentTab = tab }
+                                .clickable { onTabChange(tab) }
                         ) {
                             Row(
                                 modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
@@ -173,50 +189,38 @@ fun MainAppContainer(
     }
 
     // Modal Bottom Sheets
+    // Note: onItemClick intentionally does NOT clear activeSheet — the sheet
+    // stays "open" in saved state while the destination screen is on top of
+    // the backstack, so it reappears automatically when the user navigates back.
     when (activeSheet) {
         "manaqib" -> {
             ManaqibModalBottomSheet(
-                onItemClick = { docId ->
-                    activeSheet = null
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { activeSheet = null }
+                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onDismiss = { onSheetChange(null) }
             )
         }
         "sholat" -> {
             SholatModalBottomSheet(
-                onItemClick = { docId ->
-                    activeSheet = null
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { activeSheet = null }
+                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onDismiss = { onSheetChange(null) }
             )
         }
         "sholawat" -> {
             SholawatModalBottomSheet(
-                onItemClick = { docId ->
-                    activeSheet = null
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { activeSheet = null }
+                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onDismiss = { onSheetChange(null) }
             )
         }
         "tahlil" -> {
             TahlilZiyarohModalBottomSheet(
-                onItemClick = { docId ->
-                    activeSheet = null
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { activeSheet = null }
+                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onDismiss = { onSheetChange(null) }
             )
         }
         "doa" -> {
             DoaModalBottomSheet(
-                onItemClick = { docId ->
-                    activeSheet = null
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { activeSheet = null }
+                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onDismiss = { onSheetChange(null) }
             )
         }
     }

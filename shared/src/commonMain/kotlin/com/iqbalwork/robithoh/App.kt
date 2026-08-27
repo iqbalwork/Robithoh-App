@@ -4,8 +4,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.navigation.*
@@ -14,6 +17,13 @@ import com.iqbalwork.robithoh.navigation.*
 fun App() {
     RabithohTheme {
         val backstack = remember { mutableStateListOf<ScreenKey>(ScreenKey.Home) }
+
+        // Hoisted here (App() is the true root — never disposed by NavDisplay)
+        // so the Home tab/sheet selection survives navigating away and back,
+        // instead of living inside MainAppContainer which NavDisplay tears
+        // down and rebuilds every time the backstack top changes.
+        var homeTab by remember { mutableStateOf(MainTab.HOME) }
+        var homeActiveSheet by remember { mutableStateOf<String?>(null) }
 
         BackHandler(enabled = backstack.size > 1) {
             if (backstack.size > 1) {
@@ -36,6 +46,10 @@ fun App() {
                     when (key) {
                         is ScreenKey.Home -> {
                             MainAppContainer(
+                                currentTab = homeTab,
+                                onTabChange = { homeTab = it },
+                                activeSheet = homeActiveSheet,
+                                onSheetChange = { homeActiveSheet = it },
                                 onNavigateToDocument = { docId ->
                                     if (docId == "quran_list") {
                                         backstack.add(ScreenKey.QuranList)
@@ -43,8 +57,8 @@ fun App() {
                                         backstack.add(ScreenKey.DocumentReader(docId))
                                     }
                                 },
-                                onNavigateToSurah = { surahNumber ->
-                                    backstack.add(ScreenKey.QuranSurah(surahNumber))
+                                onNavigateToSurah = { surahNumber, ayahNumber ->
+                                    backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                                 },
                                 onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
                                 onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
@@ -113,8 +127,8 @@ fun App() {
                         }
                         is ScreenKey.QuranList -> {
                             QuranListScreen(
-                                onSurahClick = { surahNumber ->
-                                    backstack.add(ScreenKey.QuranSurah(surahNumber))
+                                onSurahClick = { surahNumber, ayahNumber ->
+                                    backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                                 },
                                 onBack = {
                                     if (backstack.size > 1) {
@@ -126,6 +140,7 @@ fun App() {
                         is ScreenKey.QuranSurah -> {
                             QuranSurahScreen(
                                 surahNumber = key.surahNumber,
+                                initialAyahNumber = key.ayahNumber,
                                 onBack = {
                                     if (backstack.size > 1) {
                                         backstack.removeAt(backstack.lastIndex)

@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyDocument
@@ -50,8 +51,6 @@ fun GenericDocumentReaderScreen(
     var parsedDoc by remember { mutableStateOf<ParsedDocument?>(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
     var fontScale by remember { mutableStateOf(1.0f) }
-    var showLatin by remember { mutableStateOf(true) }
-    var showTranslation by remember { mutableStateOf(true) }
     var showSettingsDialog by remember { mutableStateOf(false) }
 
     val docInfo = remember(currentDocId) { repository.getDocumentById(currentDocId) }
@@ -121,10 +120,10 @@ fun GenericDocumentReaderScreen(
             } else {
                 val doc = parsedDoc
                 if (doc != null) {
-                    val sections = remember(doc.rawContent) {
-                        parseManqobahSections(doc.rawContent)
+                    val sections = remember(doc.info.id, doc.rawContent) {
+                        parseDocumentSections(doc.info.id, doc.rawContent)
                     }
-                    val hasMonthShortcuts = sections.size > 1
+                    val hasShortcuts = sections.size > 1
 
                     val currentVisibleSectionIndex by remember {
                         derivedStateOf {
@@ -134,7 +133,7 @@ fun GenericDocumentReaderScreen(
                     }
 
                     Column(modifier = Modifier.fillMaxSize()) {
-                        // Top Controls Header (Persistent Language Switch + Month Shortcuts)
+                        // Top Controls Header (Persistent Language Switch + Shortcuts)
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -156,9 +155,10 @@ fun GenericDocumentReaderScreen(
                                 )
                             }
 
-                            // 2. Month Shortcut Bar if Manqobah with multiple months
-                            if (hasMonthShortcuts) {
-                                IslamicMonthShortcutRow(
+                            // 2. Section Shortcut Bar if multiple sections exist
+                            if (hasShortcuts) {
+                                DocumentSectionShortcutRow(
+                                    docId = doc.info.id,
                                     sections = sections,
                                     selectedSectionIndex = currentVisibleSectionIndex,
                                     onSelectSection = { idx ->
@@ -178,7 +178,7 @@ fun GenericDocumentReaderScreen(
                             verticalArrangement = Arrangement.spacedBy(14.dp)
                         ) {
                             if (doc.info.isSingleDocumentView) {
-                                if (hasMonthShortcuts) {
+                                if (hasShortcuts) {
                                     itemsIndexed(sections, key = { _, sec -> sec.id }) { _, sec ->
                                         SingleContinuousDocumentCard(
                                             rawContent = sec.content,
@@ -198,9 +198,7 @@ fun GenericDocumentReaderScreen(
                                 items(doc.verses, key = { it.index }) { verse ->
                                     VerseReadingCard(
                                         verse = verse,
-                                        fontScale = fontScale,
-                                        showLatin = showLatin,
-                                        showTranslation = showTranslation
+                                        fontScale = fontScale
                                     )
                                 }
                             }
@@ -220,13 +218,9 @@ fun GenericDocumentReaderScreen(
     }
 
     if (showSettingsDialog) {
-        ReaderSettingsModalBottomSheet(
+        TextReaderSettingsSheet(
             fontScale = fontScale,
             onFontScaleChange = { fontScale = it },
-            showLatin = showLatin,
-            onShowLatinChange = { showLatin = it },
-            showTranslation = showTranslation,
-            onShowTranslationChange = { showTranslation = it },
             onDismiss = { showSettingsDialog = false }
         )
     }
@@ -434,10 +428,38 @@ private fun SingleContinuousDocumentCard(
                 }
 
                 val firstLine = lines.first()
-                val isHeader = firstLine.startsWith("### ")
+                val isH2Header = firstLine.startsWith("## ")
+                val isHeader = firstLine.startsWith("### ") || isH2Header
                 val remainingLines = if (isHeader) lines.drop(1) else lines
 
-                if (isHeader) {
+                if (isH2Header) {
+                    // ## WAKTU ... section header → styled badge
+                    val headerText = firstLine.removePrefix("## ").trim()
+                    val waktuIcon = when {
+                        headerText.contains("MALAM", ignoreCase = true) -> "🌙"
+                        headerText.contains("SHUBUH", ignoreCase = true) || headerText.contains("SUBUH", ignoreCase = true) -> "🌅"
+                        headerText.contains("ISYROQ", ignoreCase = true) || headerText.contains("ISYRAQ", ignoreCase = true) -> "☀️"
+                        headerText.contains("DHUHA", ignoreCase = true) || headerText.contains("DUHA", ignoreCase = true) -> "🌤️"
+                        headerText.contains("DZUHUR", ignoreCase = true) || headerText.contains("ZUHUR", ignoreCase = true) -> "☀️"
+                        headerText.contains("ASHAR", ignoreCase = true) || headerText.contains("ASAR", ignoreCase = true) -> "🌇"
+                        headerText.contains("MAGHRIB", ignoreCase = true) -> "🌆"
+                        headerText.contains("ISYA", ignoreCase = true) -> "🌌"
+                        else -> "🕌"
+                    }
+                    Surface(
+                        color = MerahMarunGelap,
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 6.dp)
+                    ) {
+                        Text(
+                            text = "$waktuIcon  $headerText",
+                            fontSize = (14 * fontScale).sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp)
+                        )
+                    }
+                } else if (isHeader) {
                     val headerText = firstLine.removePrefix("### ").trim()
                     if (isIslamicMonth(headerText)) {
                         val monthName = headerText.removePrefix("Ke-").removePrefix("Ka-").trim()
@@ -588,10 +610,34 @@ private fun SingleContinuousDocumentCard(
                                             modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
                                         )
                                     }
+                                } else if (trimmedLine.startsWith("- ")) {
+                                    // Bullet list item
+                                    val bulletText = trimmedLine.removePrefix("- ").trim()
+                                    val cleanBullet = bulletText.replace("**", "").replace("*", "").trim()
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        verticalAlignment = Alignment.Top
+                                    ) {
+                                        Text(
+                                            text = "•",
+                                            fontSize = (14 * fontScale).sp,
+                                            color = MerahMerdeka,
+                                            fontWeight = FontWeight.Bold,
+                                            modifier = Modifier.padding(top = 2.dp, end = 8.dp)
+                                        )
+                                        Text(
+                                            text = cleanBullet,
+                                            fontSize = (14 * fontScale).sp,
+                                            lineHeight = (22 * fontScale).sp,
+                                            color = TextCharcoal,
+                                            modifier = Modifier.weight(1f)
+                                        )
+                                    }
                                 } else {
-                                    val isBold = (trimmedLine.startsWith("**") && trimmedLine.endsWith("**")) || (trimmedLine.all { it.isUpperCase() || it.isWhitespace() || it == '-' || it == '(' || it == ')' || it == '.' || it == ':' || it == '\'' } && trimmedLine.length > 5 && !trimmedLine.contains("THORIIQOH"))
+                                    val isBoldLabel = trimmedLine.startsWith("**") && trimmedLine.endsWith(":**")
+                                    val isBold = isBoldLabel || (trimmedLine.startsWith("**") && trimmedLine.endsWith("**")) || (trimmedLine.all { it.isUpperCase() || it.isWhitespace() || it == '-' || it == '(' || it == ')' || it == '.' || it == ':' || it == '\'' } && trimmedLine.length > 5 && !trimmedLine.contains("THORIIQOH"))
                                     val isGreeting = trimmedLine.startsWith("Assalamualaikum", ignoreCase = true) || trimmedLine.startsWith("Wassalamu", ignoreCase = true)
-                                    val isItalic = (trimmedLine.startsWith("*") && trimmedLine.endsWith("*")) || (trimmedLine.startsWith("“") && trimmedLine.endsWith("”")) || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true)
+                                    val isItalic = (trimmedLine.startsWith("*") && trimmedLine.endsWith("*")) || (trimmedLine.startsWith("\u201C") && trimmedLine.endsWith("\u201D")) || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true)
 
                                     val cleanText = trimmedLine.replace("**", "").replace("*", "").replace("\\", "").trim()
 
@@ -664,9 +710,7 @@ private fun SingleContinuousDocumentCard(
 @Composable
 private fun VerseReadingCard(
     verse: LiturgyVerse,
-    fontScale: Float,
-    showLatin: Boolean,
-    showTranslation: Boolean
+    fontScale: Float
 ) {
     var countProgress by remember(verse.index) { mutableStateOf(0) }
 
@@ -681,26 +725,13 @@ private fun VerseReadingCard(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            // Verse Header: Index & Repetition counter
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Surface(
-                    color = GoldContainerLight,
-                    shape = RoundedCornerShape(8.dp)
+            // Repetition counter (index badge intentionally removed)
+            if (verse.repeatCount > 1) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "#${verse.index}",
-                        color = GoldOnContainerLight,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                    )
-                }
-
-                if (verse.repeatCount > 1) {
                     Surface(
                         color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh.copy(alpha = 0.15f) else MerahMerdeka.copy(alpha = 0.1f),
                         shape = RoundedCornerShape(16.dp),
@@ -748,7 +779,7 @@ private fun VerseReadingCard(
             }
 
             // Latin Transliteration
-            if (showLatin && verse.latin.isNotEmpty()) {
+            if (verse.latin.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = parseMarkdownFormatting(verse.latin),
@@ -760,7 +791,7 @@ private fun VerseReadingCard(
             }
 
             // Translation
-            if (showTranslation && verse.translation.isNotEmpty()) {
+            if (verse.translation.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = parseMarkdownFormatting(verse.translation),
@@ -837,150 +868,71 @@ private fun parseMarkdownFormatting(text: String): AnnotatedString {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun ReaderSettingsModalBottomSheet(
-    fontScale: Float,
-    onFontScaleChange: (Float) -> Unit,
-    showLatin: Boolean,
-    onShowLatinChange: (Boolean) -> Unit,
-    showTranslation: Boolean,
-    onShowTranslationChange: (Boolean) -> Unit,
-    onDismiss: () -> Unit
-) {
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Color.White,
-        shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 36.dp)
-        ) {
-            Text(
-                text = "Pengaturan Teks & Bacaan",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Font Scale Slider
-            Text(
-                text = "Ukuran Huruf Arab: ${(fontScale * 100).toInt()}%",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("A-", fontSize = 14.sp, color = TextMuted)
-                Slider(
-                    value = fontScale,
-                    onValueChange = onFontScaleChange,
-                    valueRange = 0.85f..1.65f,
-                    steps = 5,
-                    colors = SliderDefaults.colors(
-                        thumbColor = MerahMerdeka,
-                        activeTrackColor = MerahMerdeka
-                    ),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(horizontal = 12.dp)
-                )
-                Text("A+", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = TextCharcoal)
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-            HorizontalDivider(color = BorderSubtle)
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Toggles
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text("Teks Latin (Transliterasi)", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = TextCharcoal)
-                    Text("Panduan lafal bagi pemula", fontSize = 12.sp, color = TextMuted)
-                }
-                Switch(
-                    checked = showLatin,
-                    onCheckedChange = onShowLatinChange,
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color.White,
-                        checkedTrackColor = MerahMerdeka
-                    )
-                )
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text("Terjemahan (Indonesia / Sunda)", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = TextCharcoal)
-                    Text("Mengetahui makna & kandungan", fontSize = 12.sp, color = TextMuted)
-                }
-                Switch(
-                    checked = showTranslation,
-                    onCheckedChange = onShowTranslationChange,
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color.White,
-                        checkedTrackColor = MerahMerdeka
-                    )
-                )
-            }
-        }
-    }
-}
-
 data class ReaderDocumentSection(
     val id: String,
     val title: String?,
     val content: String
 )
 
-fun parseManqobahSections(rawContent: String): List<ReaderDocumentSection> {
-    val monthRegex = Regex("""(?m)^###\s+(MUHARROM|SHOOFAR|SHOFAR|ROBI'?UL\s+AWAL|ROBI'?UTS?\s+TSANI|JUMADIL\s+ULA|JUMADITS?\s+TSANIYAH|ROJAB|SYA'?BAN|ROMADHON|SYAWAL|DZULQO'?DAH|DZULHIJJAH|DOA\s+MANQOBAH)""", RegexOption.IGNORE_CASE)
-
-    val matches = monthRegex.findAll(rawContent).toList()
-    if (matches.isEmpty()) {
-        return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
-    }
-
-    val sections = mutableListOf<ReaderDocumentSection>()
-    val firstMatch = matches.first()
-    if (firstMatch.range.first > 0) {
-        val introText = rawContent.substring(0, firstMatch.range.first).trim()
-        if (introText.isNotEmpty()) {
-            sections.add(ReaderDocumentSection(id = "muqodimah", title = "Muqodimah", content = introText))
+fun parseDocumentSections(docId: String, rawContent: String): List<ReaderDocumentSection> {
+    if (docId.startsWith("manqobah")) {
+        val monthRegex = Regex("""(?m)^###\s+(MUHARROM|SHOOFAR|SHOFAR|ROBI'?UL\s+AWAL|ROBI'?UTS?\s+TSANI|JUMADIL\s+ULA|JUMADITS?\s+TSANIYAH|ROJAB|SYA'?BAN|ROMADHON|SYAWAL|DZULQO'?DAH|DZULHIJJAH|DOA\s+MANQOBAH)""", RegexOption.IGNORE_CASE)
+        val matches = monthRegex.findAll(rawContent).toList()
+        if (matches.isEmpty()) {
+            return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
         }
+
+        val sections = mutableListOf<ReaderDocumentSection>()
+        val firstMatch = matches.first()
+        if (firstMatch.range.first > 0) {
+            val introText = rawContent.substring(0, firstMatch.range.first).trim()
+            if (introText.isNotEmpty()) {
+                sections.add(ReaderDocumentSection(id = "muqodimah", title = "Muqodimah", content = introText))
+            }
+        }
+
+        for (i in matches.indices) {
+            val match = matches[i]
+            val header = match.groupValues[1].trim()
+            val start = match.range.first
+            val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
+            val sectionContent = rawContent.substring(start, end).trim()
+            sections.add(ReaderDocumentSection(id = "month_$i", title = header, content = sectionContent))
+        }
+        return sections
+    } else if (docId.startsWith("sholat_harian")) {
+        val waktuRegex = Regex("""(?m)^##\s+(WAKTU\s+[A-Z’']+|SEBELUM\s+TIDUR)""", RegexOption.IGNORE_CASE)
+        val matches = waktuRegex.findAll(rawContent).toList()
+        if (matches.isEmpty()) {
+            return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
+        }
+
+        val sections = mutableListOf<ReaderDocumentSection>()
+        val firstMatch = matches.first()
+        if (firstMatch.range.first > 0) {
+            val introText = rawContent.substring(0, firstMatch.range.first).trim()
+            if (introText.isNotEmpty()) {
+                sections.add(ReaderDocumentSection(id = "ringkasan", title = "Ringkasan", content = introText))
+            }
+        }
+
+        for (i in matches.indices) {
+            val match = matches[i]
+            val header = match.groupValues[1].trim()
+            val start = match.range.first
+            val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
+            val sectionContent = rawContent.substring(start, end).trim()
+            sections.add(ReaderDocumentSection(id = "waktu_$i", title = header, content = sectionContent))
+        }
+        return sections
     }
 
-    for (i in matches.indices) {
-        val match = matches[i]
-        val header = match.groupValues[1].trim()
-        val start = match.range.first
-        val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
-        val sectionContent = rawContent.substring(start, end).trim()
-        sections.add(ReaderDocumentSection(id = "month_$i", title = header, content = sectionContent))
-    }
-
-    return sections
+    return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
 }
 
 @Composable
-fun IslamicMonthShortcutRow(
+fun DocumentSectionShortcutRow(
+    docId: String,
     sections: List<ReaderDocumentSection>,
     selectedSectionIndex: Int,
     onSelectSection: (Int) -> Unit
@@ -993,9 +945,15 @@ fun IslamicMonthShortcutRow(
         }
     }
 
+    val shortcutHeader = when {
+        docId.startsWith("sholat_harian") -> "PILIH WAKTU SHOLAT :"
+        docId.startsWith("manqobah") -> "PILIH BULAN ISLAM :"
+        else -> "PILIH BAGIAN :"
+    }
+
     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp)) {
         Text(
-            text = "PILIH BULAN ISLAM :",
+            text = shortcutHeader,
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
             color = TextMuted,
@@ -1012,27 +970,37 @@ fun IslamicMonthShortcutRow(
                 val cleanTitle = sec.title?.uppercase()
                     ?.replace("’", "")
                     ?.replace("'", "")
-                    ?.replace(" ", "") ?: "MUQODIMAH"
+                    ?.replace(" ", "") ?: ""
 
-                val label = when {
-                    cleanTitle == "MUQODIMAH" -> "Muqodimah"
-                    cleanTitle == "MUHARROM" -> "Muharrom"
-                    cleanTitle in setOf("SHOOFAR", "SHOFAR") -> "Shoofar"
-                    cleanTitle in setOf("ROBIULAWAL", "ROBIULAWWAL") -> "Robi'ul Awal"
-                    cleanTitle.startsWith("ROBIUT") || cleanTitle.startsWith("ROBIUST") -> "Robi'uts Tsani"
-                    cleanTitle.startsWith("JUMADILU") -> "Jumadil Ula"
-                    cleanTitle.startsWith("JUMADIT") || cleanTitle.startsWith("JUMADIST") -> "Jumadits Tsaniyah"
-                    cleanTitle in setOf("ROJAB", "RAJAB") -> "Rojab"
-                    cleanTitle.startsWith("SYABAN") -> "Sya'ban"
-                    cleanTitle.startsWith("ROMADHON") || cleanTitle.startsWith("RAMADHAN") -> "Romadhon"
-                    cleanTitle.startsWith("SYAWAL") || cleanTitle.startsWith("SYAWWAL") -> "Syawal"
-                    cleanTitle.startsWith("DZULQO") -> "Dzulqo'dah"
-                    cleanTitle.startsWith("DZULHIJ") || cleanTitle.startsWith("ZULHIJ") -> "Dzulhijjah"
-                    cleanTitle.startsWith("DOAMAN") -> "Doa Manqobah"
-                    else -> sec.title ?: "Bab"
+                val (label, icon) = when {
+                    // Sholat Harian
+                    cleanTitle == "RINGKASAN" -> "Ringkasan" to "📋"
+                    cleanTitle.contains("MALAM") -> "Malam" to "🌙"
+                    cleanTitle.contains("SHUBUH") || cleanTitle.contains("SUBUH") -> "Shubuh" to "🌅"
+                    cleanTitle.contains("ISYROQ") || cleanTitle.contains("ISYRAQ") -> "Isyroq" to "☀️"
+                    cleanTitle.contains("DHUHA") || cleanTitle.contains("DUHA") -> "Dhuha" to "🌤️"
+                    cleanTitle.contains("DZUHUR") || cleanTitle.contains("ZUHUR") -> "Dzuhur" to "☀️"
+                    cleanTitle.contains("ASHAR") || cleanTitle.contains("ASAR") -> "Ashar" to "🌇"
+                    cleanTitle.contains("MAGHRIB") -> "Maghrib" to "🌆"
+                    cleanTitle.contains("ISYA") -> "Isya" to "🌌"
+
+                    // Manqobah
+                    cleanTitle == "MUQODIMAH" -> "Muqodimah" to "📜"
+                    cleanTitle == "MUHARROM" -> "Muharrom" to "📅"
+                    cleanTitle in setOf("SHOOFAR", "SHOFAR") -> "Shoofar" to "📅"
+                    cleanTitle in setOf("ROBIULAWAL", "ROBIULAWWAL") -> "Robi'ul Awal" to "📅"
+                    cleanTitle.startsWith("ROBIUT") || cleanTitle.startsWith("ROBIUST") -> "Robi'uts Tsani" to "📅"
+                    cleanTitle.startsWith("JUMADILU") -> "Jumadil Ula" to "📅"
+                    cleanTitle.startsWith("JUMADIT") || cleanTitle.startsWith("JUMADIST") -> "Jumadits Tsaniyah" to "📅"
+                    cleanTitle in setOf("ROJAB", "RAJAB") -> "Rojab" to "📅"
+                    cleanTitle.startsWith("SYABAN") -> "Sya'ban" to "📅"
+                    cleanTitle.startsWith("ROMADHON") || cleanTitle.startsWith("RAMADHAN") -> "Romadhon" to "📅"
+                    cleanTitle.startsWith("SYAWAL") || cleanTitle.startsWith("SYAWWAL") -> "Syawal" to "📅"
+                    cleanTitle.startsWith("DZULQO") -> "Dzulqo'dah" to "📅"
+                    cleanTitle.startsWith("DZULHIJ") || cleanTitle.startsWith("ZULHIJ") -> "Dzulhijjah" to "📅"
+                    cleanTitle.startsWith("DOAMAN") -> "Doa Manqobah" to "🤲"
+                    else -> (sec.title ?: "Bagian ${idx + 1}") to "📌"
                 }
-
-                val icon = if (cleanTitle == "MUQODIMAH") "📜" else if (cleanTitle.startsWith("DOAMAN")) "🤲" else "📅"
 
                 Surface(
                     color = if (isSelected) MerahMerdeka else Color.White,

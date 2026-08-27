@@ -14,8 +14,8 @@ enum class AmaliyahCategory(val label: String, val subtitle: String) {
 
 @Serializable
 enum class DzikirType(val label: String, val subtitle: String) {
-    JAHR("Dzikir Jahr", "Dzikir Nafi Itsbat bersuara nyaring (165x)"),
-    KHOFI("Dzikir Khofi", "Dzikir Ismu Dzat di dalam hati (Lathifah Qolbi)")
+    JAHR("Dzikir Jahr", "Dzikir bersuara nyaring (165x)"),
+    KHOFI("Dzikir Khofi", "Dzikir di dalam hati (Lathifah Qolbi)")
 }
 
 @Serializable

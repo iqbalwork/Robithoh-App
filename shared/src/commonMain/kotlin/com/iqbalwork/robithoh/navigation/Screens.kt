@@ -258,10 +258,18 @@ fun ManaqibDetailScreen(
 
 @Composable
 fun QuranListScreen(
-    onSurahClick: (Int) -> Unit,
+    onSurahClick: (Int, Int?) -> Unit,
     onBack: () -> Unit
 ) {
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val viewModel = androidx.compose.runtime.remember(database) {
+        com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+        )
+    }
+    val state by viewModel.uiState.collectAsState()
     com.iqbalwork.robithoh.feature.library.ui.KitabTabContent(
+        lastReadBookmark = state.lastReadBookmark,
         onNavigateToSurah = onSurahClick,
         onBack = onBack
     )
@@ -271,15 +279,18 @@ fun QuranListScreen(
 fun QuranSurahScreen(
     surahNumber: Int,
     onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = androidx.compose.runtime.remember {
+    initialAyahNumber: Int? = null
+) {
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val viewModel = androidx.compose.runtime.remember(database) {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
-            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl()
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
         )
     }
-) {
     com.iqbalwork.robithoh.feature.quran.presentation.QuranReaderScreen(
         viewModel = viewModel,
         surahNumber = surahNumber,
+        initialAyahNumber = initialAyahNumber,
         onBackClick = onBack
     )
 }

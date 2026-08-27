@@ -167,12 +167,13 @@ class MarkdownDocumentRepository {
         // Sholat Sunnah
         LiturgyDocument(
             id = "sholat_harian",
-            title = "Sholat Sunnah Harian",
-            subtitle = "Qobliyah, Badiyyah, Dhuha, Tahajjud, Tasbih, Awwabin, Taubat, Hajat",
+            title = "Sholat Harian",
+            subtitle = "Amaliyah sholat fardhu & sunnah Guru Mursyid",
             category = "Sholat",
             fileName = "SHOLAT_HARIAN.md",
-            arabicTitle = "صَلَاةُ التَّطَوُّعِ الْيَوْمِيَّةِ",
-            iconName = "harian"
+            arabicTitle = "",
+            iconName = "harian",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholat_tarowih",
@@ -237,7 +238,8 @@ class MarkdownDocumentRepository {
             category = "Sholawat",
             fileName = "SHOLAWAT_BANI_HASYIM.md",
             arabicTitle = "صَلَوَاتُ بَنِي هَاشِمٍ",
-            iconName = "bani"
+            iconName = "bani",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "amjad",
@@ -264,7 +266,8 @@ class MarkdownDocumentRepository {
             category = "Sholawat",
             fileName = "SHOLAWAT_BADRIYYAH.md",
             arabicTitle = "صَلَاةُ الْبَدْرِيَّةِ",
-            iconName = "badriyah"
+            iconName = "badriyah",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholawat_jiyaaroh",
@@ -410,6 +413,10 @@ class MarkdownDocumentRepository {
         val blocks = rawMarkdown.replace("\r\n", "\n").split(Regex("\n\n+"))
 
         var currentTitle = ""
+        // Whether currentTitle came from the document's own "# Title" H1
+        // (already shown in the header card) rather than an in-body section
+        // label — an H1-only title should never become its own card.
+        var titleFromDocHeading = false
         var currentArabic = StringBuilder()
         var currentLatin = StringBuilder()
         var currentTranslation = StringBuilder()
@@ -434,19 +441,22 @@ class MarkdownDocumentRepository {
             return 1
         }
 
-        fun flushVerse() {
+        fun flushVerse(allowTitleOnly: Boolean = false) {
             val ar = currentArabic.toString().trim()
             val lt = currentLatin.toString().trim()
             val tr = currentTranslation.toString().trim()
             val nt = currentNote.toString().trim()
 
-            if (ar.isNotEmpty() || lt.isNotEmpty() || tr.isNotEmpty() || nt.isNotEmpty()) {
-                val cleanTitle = if (currentTitle.equals("KHOTAMAN", ignoreCase = true) ||
-                    currentTitle.equals("DZIKIR", ignoreCase = true) ||
-                    currentTitle.equals("Dzikir Harian", ignoreCase = true) ||
-                    currentTitle.equals("Khotaman TQN", ignoreCase = true)
-                ) "" else currentTitle
+            val cleanTitle = if (currentTitle.equals("KHOTAMAN", ignoreCase = true) ||
+                currentTitle.equals("DZIKIR", ignoreCase = true) ||
+                currentTitle.equals("Dzikir Harian", ignoreCase = true) ||
+                currentTitle.equals("Khotaman TQN", ignoreCase = true)
+            ) "" else currentTitle
 
+            val hasContent = ar.isNotEmpty() || lt.isNotEmpty() || tr.isNotEmpty() || nt.isNotEmpty()
+            val hasTitleOnly = allowTitleOnly && !titleFromDocHeading && cleanTitle.isNotEmpty()
+
+            if (hasContent || hasTitleOnly) {
                 verses.add(
                     LiturgyVerse(
                         index = index++,
@@ -464,6 +474,7 @@ class MarkdownDocumentRepository {
                 currentNote.clear()
                 currentRepeatCount = 1
                 currentTitle = ""
+                titleFromDocHeading = false
             }
         }
 
@@ -500,6 +511,7 @@ class MarkdownDocumentRepository {
                     heading.equals("Khotaman", ignoreCase = true) ||
                     heading.equals("Khotaman TQN", ignoreCase = true)
                 ) "" else heading
+                titleFromDocHeading = true
                 inTawajuhSection = false
                 continue
             }
@@ -510,13 +522,18 @@ class MarkdownDocumentRepository {
 
             val isParentheticalTitle = trimmed.startsWith("(") && trimmed.endsWith(")") && trimmed.length < 150
             val isAllUpperSection = trimmed.all { it.isUpperCase() || it.isWhitespace() || it == '-' || it == '(' || it == ')' } && trimmed.length > 4 && !isTransliterationLike(trimmed)
+            // "Hadoroh kesatu/kedua/..." (Tahlil) — a short heading line that
+            // introduces the block that follows it, not a translation of the
+            // block before it.
+            val isHadorohTitle = Regex("""^Hadoroh\s+ke\S+$""", RegexOption.IGNORE_CASE).matches(trimmed)
 
-            if (isAllUpperSection || isParentheticalTitle) {
-                flushVerse()
+            if (isAllUpperSection || isParentheticalTitle || isHadorohTitle) {
+                flushVerse(allowTitleOnly = true)
                 val rawTitle = trimmed.removeSurrounding("(").removeSurrounding(")").trim()
                 currentTitle = if (rawTitle.equals("KHOTAMAN", ignoreCase = true) ||
                     rawTitle.equals("DZIKIR", ignoreCase = true)
                 ) "" else rawTitle
+                titleFromDocHeading = false
                 inTawajuhSection = false
                 val count = extractRepeatCount(trimmed)
                 if (count > 1) {

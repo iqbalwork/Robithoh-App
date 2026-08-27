@@ -1,5 +1,6 @@
 package com.iqbalwork.robithoh.feature.library.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,17 +13,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCard
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCardVariant
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.quran.data.QuranData
+import com.iqbalwork.robithoh.feature.quran.model.QuranBookmark
 import com.iqbalwork.robithoh.feature.quran.model.RevelationType
 
 @Composable
 fun KitabTabContent(
-    onNavigateToSurah: (Int) -> Unit,
+    onNavigateToSurah: (Int, Int?) -> Unit,
+    lastReadBookmark: QuranBookmark? = null,
     onBack: (() -> Unit)? = null
 ) {
     var searchQuery by remember { mutableStateOf("") }
@@ -82,7 +91,25 @@ fun KitabTabContent(
                                 .clickable { onBack() }
                         ) {
                             Box(contentAlignment = Alignment.Center) {
-                                Text("←", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                                // Drawn rather than a text glyph — the "←" character's
+                                // font metrics render it visibly off-center in a circle.
+                                Canvas(modifier = Modifier.size(16.dp)) {
+                                    val strokeWidthPx = 2.4.dp.toPx()
+                                    val path = Path().apply {
+                                        moveTo(size.width * 0.62f, size.height * 0.12f)
+                                        lineTo(size.width * 0.18f, size.height * 0.5f)
+                                        lineTo(size.width * 0.62f, size.height * 0.88f)
+                                    }
+                                    drawPath(
+                                        path = path,
+                                        color = Color.White,
+                                        style = Stroke(
+                                            width = strokeWidthPx,
+                                            cap = StrokeCap.Round,
+                                            join = StrokeJoin.Round
+                                        )
+                                    )
+                                }
                             }
                         }
                         Spacer(modifier = Modifier.width(12.dp))
@@ -118,7 +145,54 @@ fun KitabTabContent(
             }
         }
 
-        // 2. Search Bar
+        // 2. Terakhir Dibaca (last read)
+        if (lastReadBookmark != null) {
+            item {
+                GoldCrimsonCard(
+                    variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                    contentPadding = PaddingValues(16.dp),
+                    onClick = { onNavigateToSurah(lastReadBookmark.surahNumber, lastReadBookmark.ayahNumber) }
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "TERAKHIR DIBACA",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = EmasMuda,
+                                letterSpacing = 0.5.sp
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = lastReadBookmark.surahName,
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = PutihBersih
+                            )
+                            Text(
+                                text = "Ayat ${lastReadBookmark.ayahNumber}",
+                                fontSize = 13.sp,
+                                color = EmasMuda
+                            )
+                        }
+                        Surface(
+                            color = Color.White.copy(alpha = 0.18f),
+                            shape = CircleShape,
+                            modifier = Modifier.size(40.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("▶", color = PutihBersih, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 3. Search Bar
         item {
             OutlinedTextField(
                 value = searchQuery,
@@ -137,7 +211,7 @@ fun KitabTabContent(
             )
         }
 
-        // 3. Section Title
+        // 4. Section Title
         item {
             Text(
                 text = "DAFTAR SURAH (${filteredSurahs.size})",
@@ -148,7 +222,7 @@ fun KitabTabContent(
             )
         }
 
-        // 4. List 114 Surahs
+        // 5. List 114 Surahs
         items(filteredSurahs.size, key = { filteredSurahs[it].number }) { index ->
             val surah = filteredSurahs[index]
             val badgeColor = pastelColors[(surah.number - 1) % pastelColors.size]
@@ -159,7 +233,7 @@ fun KitabTabContent(
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onNavigateToSurah(surah.number) }
+                    .clickable { onNavigateToSurah(surah.number, null) }
             ) {
                 Row(
                     modifier = Modifier

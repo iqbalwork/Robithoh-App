@@ -26,16 +26,23 @@ data class HomeGridMenuItem(
     val badge: String? = null
 )
 
+// "Untaian Mutiara" — pearls of wisdom from the Tanbih of Pangersa Guru Almarhum (Abah Sepuh)
+private val untaianMutiaraTanbih = listOf(
+    "Jangan benci kepada ulama yang sezaman.",
+    "Jangan menyalahkan ajaran orang lain.",
+    "Jangan meneliti murid orang lain.",
+    "Jangan berubah sikap meskipun disakiti orang lain.",
+    "Mesti menyayangi orang yang membencimu."
+)
+
 @Composable
 fun HomeTabContent(
     onNavigateToDocument: (String) -> Unit,
     onNavigateToLanggam: () -> Unit,
     onNavigateToTasbih: () -> Unit,
-    onNavigateToProfile: () -> Unit,
     onOpenSheet: (String) -> Unit
 ) {
     val menuGridItems = listOf(
-        HomeGridMenuItem("manaqib_dimana", "Manaqib\nDimana?", "📍"),
         HomeGridMenuItem("dzikir", "Dzikir", "📿"),
         HomeGridMenuItem("khotaman", "Khotaman", "📖"),
         HomeGridMenuItem("manaqib", "Manaqib", "📜"),
@@ -48,6 +55,8 @@ fun HomeTabContent(
         HomeGridMenuItem("silsilah", "Silsilah", "🔗"),
         HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")
     )
+
+    val kutipanHariIni = remember { untaianMutiaraTanbih.random() }
 
     LazyColumn(
         modifier = Modifier
@@ -179,7 +188,6 @@ fun HomeTabContent(
                                             "sholawat" -> onOpenSheet("sholawat")
                                             "tahlil" -> onOpenSheet("tahlil")
                                             "doa" -> onOpenSheet("doa")
-                                            "manaqib_dimana" -> onNavigateToProfile()
                                             "wakil_talqin" -> onNavigateToDocument("silsilah_tqn")
                                             else -> onNavigateToDocument("dzikir_tqn")
                                         }
@@ -203,39 +211,32 @@ fun HomeTabContent(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "KUTIPAN HARI INI",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF0284C7),
+                            letterSpacing = 0.5.sp
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Surface(
+                            color = Color(0xFFBAE6FD),
+                            shape = RoundedCornerShape(4.dp)
+                        ) {
                             Text(
-                                text = "KUTIPAN HARI INI",
-                                fontSize = 11.sp,
+                                text = "TANBIH",
+                                fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0284C7),
-                                letterSpacing = 0.5.sp
+                                color = Color(0xFF0369A1),
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                             )
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Surface(
-                                color = Color(0xFFBAE6FD),
-                                shape = RoundedCornerShape(4.dp)
-                            ) {
-                                Text(
-                                    text = "TANBIH",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF0369A1),
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                )
-                            }
                         }
-                        Text("🐱", fontSize = 20.sp)
                     }
 
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = "“Ulah ngewa ka batur sanajan batur ngewa ka urang, sabab urang can karuhan bener mungguh Gusti Alloh.”",
+                        text = "“$kutipanHariIni”",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
                         color = Color(0xFF0F172A),

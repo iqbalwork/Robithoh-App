@@ -23,7 +23,7 @@ sealed interface ScreenKey {
     data object QuranList : ScreenKey
 
     @Serializable
-    data class QuranSurah(val surahNumber: Int = 1) : ScreenKey
+    data class QuranSurah(val surahNumber: Int = 1, val ayahNumber: Int? = null) : ScreenKey
 
     @Serializable
     data object Settings : ScreenKey

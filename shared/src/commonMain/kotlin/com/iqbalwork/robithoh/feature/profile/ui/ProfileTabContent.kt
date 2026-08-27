@@ -236,7 +236,13 @@ fun ProfileTabContent(
                         Switch(
                             checked = darkModeEnabled,
                             onCheckedChange = { darkModeEnabled = it },
-                            colors = SwitchDefaults.colors(checkedTrackColor = MerahMerdeka)
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = Color.White,
+                                checkedTrackColor = MerahMerdeka,
+                                uncheckedThumbColor = Color(0xFF9CA3AF),
+                                uncheckedTrackColor = Color(0xFFE5E7EB),
+                                uncheckedBorderColor = Color(0xFFCBD5E1)
+                            )
                         )
                     }
 
