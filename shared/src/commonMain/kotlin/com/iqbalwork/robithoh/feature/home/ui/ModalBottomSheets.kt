@@ -257,11 +257,12 @@ fun TahlilZiyarohModalBottomSheet(
     onItemClick: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val items = listOf(
-        SheetGridItem("tahlil", "Tahlil TQN", "📿", false, "tahlil_tqn"),
-        SheetGridItem("waliyulloh", "Dziarah Wali", "🕌", false, "dziarah_waliyulloh"),
-        SheetGridItem("umum", "Dziarah Umum", "🤲", false, "dziarah_umum"),
-        SheetGridItem("kubur", "Dziarah Kubur", "🌿", false, "dziarah_kubur")
+    val tahlilItems = listOf(
+        SheetGridItem("tahlil", "Tahlil", "📿", false, "tahlil_tqn")
+    )
+    val dziarahItems = listOf(
+        SheetGridItem("umum", "Umum", "🌿", false, "dziarah_umum"),
+        SheetGridItem("waliyulloh", "Waliyulloh", "🕌", false, "dziarah_waliyulloh")
     )
 
     ModalBottomSheet(
@@ -276,22 +277,48 @@ fun TahlilZiyarohModalBottomSheet(
                 .padding(bottom = 36.dp)
         ) {
             Text(
-                text = "Tahlil & Ziyaroh",
-                fontSize = 18.sp,
+                text = "Tahlil",
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                items.forEach { item ->
+                tahlilItems.forEach { item ->
                     Box(modifier = Modifier.weight(1f)) {
                         SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
                     }
                 }
+                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Dziarah",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextCharcoal
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                dziarahItems.forEach { item ->
+                    Box(modifier = Modifier.weight(1f)) {
+                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
+                    }
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
     }
@@ -304,10 +331,10 @@ fun DoaModalBottomSheet(
     onDismiss: () -> Unit
 ) {
     val items = listOf(
-        SheetGridItem("istighotsah", "Istighotsah", "🤲", false, "doa_istighotsah"),
+        SheetGridItem("mursyid", "Salam Mursyid", "🌿", false, "salam_wali_mursyid"),
         SheetGridItem("rijalul", "Rijalul Ghoib", "✨", false, "doa_rijalul_ghoib"),
-        SheetGridItem("tidur", "Sebelum Tidur", "🌙", false, "sebelum_tidur"),
-        SheetGridItem("mursyid", "Salam Mursyid", "🌿", false, "salam_wali_mursyid")
+        SheetGridItem("jiyaaroh", "Jiyaaroh Rosul", "🕌", false, "sholawat_jiyaaroh"),
+        SheetGridItem("istighotsah", "Istighotsah", "🤲", false, "doa_istighotsah")
     )
 
     ModalBottomSheet(
@@ -322,7 +349,7 @@ fun DoaModalBottomSheet(
                 .padding(bottom = 36.dp)
         ) {
             Text(
-                text = "Doa & Wirid Khusus",
+                text = "Doa",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal

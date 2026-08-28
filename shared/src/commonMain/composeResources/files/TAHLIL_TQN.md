@@ -2,8 +2,6 @@
 
 ---
 
-TAHLIL
-
 Hadoroh kesatu
 
 اِلٰى حَضْرَةِ النَّبِيِّ الْمُصْطَفٰى مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ وَعَلٰى اٰلِهٖ وَاَصْحٰبِهٖ وَاَزْوَاجِهٖ وَذُرِّيَتِهٖ وَأَهْلِ بَيْتِهٖ وَلِمَنْ دَخَلَ فِي بَيْتِهٖ أَجْمَعِيْنَ كُلُّ شَيْءٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ
@@ -240,16 +238,12 @@ Artinya : Tuhanku Engkaulah yang menjadi maksudku dan keridhoan-Mu yang menjadi 
 
 Selanjutnya TAWAJJUH dengan cara :
 
-Kedua mata terpejam
+• Kedua mata terpejam
+• Bibir dirapatkan
+• Lidah dilipatkan ke langit-langit
+• Gigi dirapatkan tidak bergerak
+• Menahan nafas sekuatnya
+• Kepala ditundukkan ke sebelah kiri
+• Hati tanpa berhenti ber-Dzikir Khofi sekuatnya.
 
-Bibir dirapatkan
-
-Lidah dilipatkan ke langit-langit
-
-Gigi dirapatkan tidak bergerak
-
-Menahan nafas sekuatnya
-
-Kepala ditundukkan ke sebelah kiri
-
-Hati tanpa berhenti ber-Dzikir Khofi sekuatnya.
+۞ ۞ ۞

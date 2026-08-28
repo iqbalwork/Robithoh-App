@@ -4,46 +4,62 @@
 
 ## Bacaan Doa Rijalul Ghoib
 
-بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
 
-اَلسَّلاَمُ عَلَيْكُمْ يَا رِجَالَ الْغَيْبِ
-اَلسَّلاَمُ عَلَيْكُمْ يَا أَيُّهَا الْأَرْوَاحُ الْمُقَدَّسَةُ
-يَا نُقَبَاءُ، يَا نُجَبَاءُ، يَا رُقَبَاءُ، يَا بُدَلاَءُ
-يَا أَوْتَادُ، يَا أَخْيَارُ، يَا عُمُدُ، يَا غَوْثُ، يَا قُطْبُ
-أَغِيْثُوْنِيْ بِغَوْثَةٍ، وَانْظُرُوْنِيْ بِنَظْرَةٍ، وَارْحَمُوْنِيْ بِرَحْمَةٍ
-وَحَصِّلُوْا مُرَادِيْ وَمَقْصُوْدِيْ، وَقُوْمُوْا عَلَى خِدْمَتِيْ
-وَانْصُرُوْنِيْ عَلَى أَعْدَائِيْ بِحُرْمَةِ سَيِّدِنَا مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ
-وَبِحُرْمَةِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلاَنِيِّ قَدَّسَ اللّٰهُ سِرَّهُ الْعَزِيْزِ
-أَمِيْن يَا رَبَّ الْعَالَمِيْنَ
+اَلسَّلَامُ عَلَيْكُمْ يَارِجَالَ الْغَيْبِ  
+اَلسَّلَامُ عَلَيْكُمْ يَا أَيُّهَا الْأَرْوَاحُ الْمُقَدَّسَةُ  
+يَا نُقَبَا يَا نُجَبَا يَا رُقَبَا يَا بُدَلَا  
+يَا أَوْتَادَ الْأَرْضِ أَوْتَادٌ أَرْبَعَةٌ  
+يَا إِمَامَانِ يَا قُطْبُ يَا فَرْدُ يَا أُمَنَاءُ  
+اَغِيْثُوْنِيْ بِغَوْثَةٍ وَانْظُرُوْنِيْ بِنَظْرَةٍ وَارْحَمُوْنِيْ بِرَحْمَةٍ  
+وَحَصِّلُوْا مُرَادِيْ وَمَقَاصِدِيْ  
+وَقُوْمُوْا عَلَى قَضَاءِ حَوَائِجِيْ عِنْدَ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ  
+سَلَّمَكُمُ اللهُ تَعَالَى فِي الدُّنْيَا وَالْآخِرَةِ  
+اَللَّهُمَّ صَلِّ عَلَى نَبِيِّ الْخِضْرِ عَلَيْهِ السَّلَامُ  
+
+...اَلْفَاتِحَةُ
 
 ---
 
 ## Transliterasi Latin
 
-*Bismillaahirrohmaanirrohiim.*
+*Bismillaahirrohmaanirrohiim*  
 
-*Assalaamu 'alaikum yaa rijaalal ghoib.*  
-*Assalaamu 'alaikum yaa ayyuhal arwaahul muqoddasah.*  
-*Yaa nuqobaa-u, yaa nujabaa-u, yaa ruqobaa-u, yaa budalaa-u.*  
-*Yaa awtaadu, yaa akhyaaru, yaa 'umudu, yaa ghoutsu, yaa quthbu.*  
-*Aghiitsuunii bighoutsatin, wandzhuruunii binadzhrotin, warhamuunii birohmatin.*  
-*Wa hash-shiluu muroodii wa maqshuudii, wa quumuu 'alaa khidmatii.*  
-*Wanshuruunii 'alaa a'daa-ii bihurmati sayyidinaa Muhammadin shollalloohu 'alaihi wa sallam.*  
-*Wa bihurmatisy Syaikhi 'Abdul Qoodiril Jailaaniyyi qoddasalloohu sirrohul 'aziiz.*  
-*Aamiin yaa Robbal 'aalamiin.*
+*Assalaamu'alaikum yaa rijaalal ghoib.*  
+*Assalaamu'alaikum yaa ayyuhal arwaahul muqoddasah.*  
+*Yaa nuqobaa, yaa nujabaa, yaa ruqobaa, yaa budalaa,*  
+*Yaa autadal ardhi, autaadun arba'ah, yaa imaamaani,*  
+*Yaa quthbu yaa fardu yaa umanaa,*  
+*Aghiitsuunii bighoutsatin, wandhuruunii binadhrotin,*  
+*Warhamuunii birohmatin, wahasshiluu muroodii,*  
+*Wamaqooshidii waquumuu 'alaa qodhooi hawaaijii 'inda nabiyyinaa Muhammadin SAW,*  
+*Sallamakumulloohu ta'aalaa fiddunyaa wal aakhiroh,*  
+*Alloohumma sholli 'alannabiyyil Khidhir 'alaihissalaam,*  
+
+*Alfaatihah...*
 
 ---
 
 ## Terjemahan Bahasa Indonesia
 
-> "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."  
-> 
-> "Salam sejahtera atas kalian wahai Rijalul Ghoib (hamba-hamba Allah yang ghaib).  
-> Salam sejahtera atas kalian wahai arwah yang disucikan.  
-> Wahai para Nuqaba, wahai para Nujaba, wahai para Ruqaba, wahai para Budala.  
-> Wahai para Autad, wahai para Akhyar, wahai para Umud, wahai Ghauts, wahai Quthub.  
-> Tolonglah aku dengan pertolonganmu, pandanglah aku dengan pandangan kasihmu, dan rahmatilah aku dengan limpahan rahmat.  
-> Sampaikanlah dan wujudkanlah maksud serta hajat tujuanku, dan bantulah urusanku.  
-> Serta tolonglah aku menghadapi musuh-musuhku dengan kemuliaan Junjungan kami Nabi Muhammad ﷺ,  
-> Dan dengan karomah kemuliaan Syaikh Abdul Qadir Al-Jailani r.a.  
-> Aamiin Ya Rabbal 'Alamiin."
+> Keselamatan atasmu wahai Rijalul Ghoib  
+> Keselamatan atasmu wahai segenap arwah yang suci  
+> Wahai segenap Wali Nuqabaa  
+> Wahai segenap Wali Nujabaa  
+> Wahai segenap Wali Ruqabaa  
+> Wahai segenap Wali Abdal  
+> Wahai segenap Wali Paku Alam dari empat penjuru angin  
+> Wahai Wali Imam  
+> Wahai Wali Qutub  
+> Wahai Wali Tunggal  
+> Wahai Wali Pengaman Dunia  
+> Tolonglah aku dengan pertolonganmu  
+> Dan lihatlah aku dengan penglihatanmu  
+> Dan kasihilah aku dengan rahmatmu  
+> Dan kabulkanlah keinginan dan maksud kami  
+> Dan dukunglah aku dalam menunaikan hajatku  
+> *(Ucapkan niat dan hajatnya...)*  
+> Atas seidzin Nabi Muhammad SAW  
+> Selamatkanlah kami Yaa Alloh di dunia dan di akhirat  
+> Semoga Alloh menambah rahmat-Nya atas Nabi Khidr AS  
+> Al-Fatihah.

@@ -53,8 +53,8 @@ fun HomeTabContent(
     val schedule = state.prayerSchedule
 
     val menuGridItems = listOf(
+        HomeGridMenuItem("manaqib_dimana", "Manaqib Dimana?", "📍"),
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
-        HomeGridMenuItem("tasbih", "Tasbih", "📿"),
         HomeGridMenuItem("khotaman", "Khotaman", "📜"),
         HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),

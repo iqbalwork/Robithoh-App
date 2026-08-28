@@ -482,7 +482,7 @@ private fun SpecialPrayerCard(
             text = prayer.arabicText,
             style = RabithohTheme.typography.arabicMedium.copy(
                 fontSize = 18.sp,
-                textAlign = TextAlign.End,
+                textAlign = TextAlign.Center,
                 color = if (isDark) PutihBersih else Color(0xFF1E2022)
             ),
             modifier = Modifier.fillMaxWidth()
@@ -499,8 +499,10 @@ private fun SpecialPrayerCard(
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontStyle = FontStyle.Italic,
                         color = MerahMerdeka,
-                        fontSize = 12.sp
-                    )
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 val translation = when (selectedLanguage) {
@@ -512,8 +514,10 @@ private fun SpecialPrayerCard(
                     text = translation,
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = if (isDark) DarkMuted else SlateMuted,
-                        fontSize = 12.sp
-                    )
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    modifier = Modifier.fillMaxWidth()
                 )
 
                 if (prayer.kaifiyat.isNotBlank()) {

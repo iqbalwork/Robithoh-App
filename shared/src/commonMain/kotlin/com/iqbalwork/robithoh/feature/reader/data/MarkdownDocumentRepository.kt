@@ -316,13 +316,13 @@ class MarkdownDocumentRepository {
 
         // Doa & Ziarah
         LiturgyDocument(
-            id = "doa_istighotsah",
-            title = "Doa Istighotsah",
-            subtitle = "Memohon pertolongan agung kepada Allah SWT",
+            id = "salam_wali_mursyid",
+            title = "Salam Kepada Wali Mursyid",
+            subtitle = "Adab salam & rabithah ruhaniyah",
             category = "Doa & Ziarah",
-            fileName = "DOA_ISTIGHOTSAH.md",
-            arabicTitle = "دُعَاءُ الإِسْتِغَاثَةِ",
-            iconName = "doa"
+            fileName = "SALAM_KEPADA_WALI_MURSYID.md",
+            arabicTitle = "اَلسَّلَامُ عَلَيْكَ",
+            iconName = "salam_kepada_wali_mursyid"
         ),
         LiturgyDocument(
             id = "doa_rijalul_ghoib",
@@ -330,8 +330,26 @@ class MarkdownDocumentRepository {
             subtitle = "Salam & doa kepada para hamba pilihan Allah",
             category = "Doa & Ziarah",
             fileName = "DOA_RIJALUL_GHOIB.md",
-            arabicTitle = "دُعَاءُ رِجَالِ الْغَيْبِ",
-            iconName = "doa"
+            arabicTitle = "رِجَالُ الْغَيْبِ",
+            iconName = "doa_rijalul_ghoib"
+        ),
+        LiturgyDocument(
+            id = "sholawat_jiyaaroh",
+            title = "Sholawat Jiyaaroh ke Rosululloh",
+            subtitle = "Sholawat salam ziarah Madinah Al-Munawwarah",
+            category = "Doa & Ziarah",
+            fileName = "SHOLAWAT_JIYAAROH_KE_ROSULULLOH.md",
+            arabicTitle = "يَا رَسُوْلَ الله",
+            iconName = "sholawat_jiyaaroh_ke_rosululloh"
+        ),
+        LiturgyDocument(
+            id = "doa_istighotsah",
+            title = "Doa Istighotsah",
+            subtitle = "Memohon pertolongan agung kepada Allah SWT",
+            category = "Doa & Ziarah",
+            fileName = "DOA_ISTIGHOTSAH.md",
+            arabicTitle = "اِسْتِغَاثَةٌ",
+            iconName = "doa_istighotsah"
         ),
         LiturgyDocument(
             id = "sebelum_tidur",
@@ -340,16 +358,7 @@ class MarkdownDocumentRepository {
             category = "Doa & Ziarah",
             fileName = "SEBELUM_TIDUR.md",
             arabicTitle = "أَدْعِيَةُ النَّوْمِ",
-            iconName = "doa"
-        ),
-        LiturgyDocument(
-            id = "salam_wali_mursyid",
-            title = "Salam Kepada Wali Mursyid",
-            subtitle = "Adab salam & rabithah ruhaniyah",
-            category = "Doa & Ziarah",
-            fileName = "SALAM_KEPADA_WALI_MURSYID.md",
-            arabicTitle = "السَّلَامُ عَلَى الْمُرْشِدِ",
-            iconName = "doa"
+            iconName = "sebelum_tidur"
         ),
         LiturgyDocument(
             id = "dziarah_waliyulloh",
@@ -485,7 +494,10 @@ class MarkdownDocumentRepository {
             val cleanTitle = if (currentTitle.equals("KHOTAMAN", ignoreCase = true) ||
                 currentTitle.equals("DZIKIR", ignoreCase = true) ||
                 currentTitle.equals("Dzikir Harian", ignoreCase = true) ||
-                currentTitle.equals("Khotaman TQN", ignoreCase = true)
+                currentTitle.equals("Khotaman TQN", ignoreCase = true) ||
+                currentTitle.equals("TAHLIL", ignoreCase = true) ||
+                currentTitle.equals("Tahlil", ignoreCase = true) ||
+                currentTitle.equals("Tahlil TQN", ignoreCase = true)
             ) "" else currentTitle
 
             val hasContent = ar.isNotEmpty() || lt.isNotEmpty() || tr.isNotEmpty() || nt.isNotEmpty()
@@ -523,12 +535,15 @@ class MarkdownDocumentRepository {
                 "khushuushon", "qoddasalloohu", "qaddasalloohu", "radiyalloohu", "rodlialloohu", "karromalloohu",
                 "robbanaa", "robbii", "shobran", "yassir", "angzilnaa", "afrigh", "a'udzu", "al-fatihah",
                 "al faatihah", "alfatihah", "laṭīfum", "yarzuqu", "bainakum", "shohhan", "saddaw", "kaf-hha",
-                "mungzalam", "bainana"
+                "mungzalam", "bainana", "assholatu", "wassalamualaika", "wassalaamu", "assalaamu", "asshaalaatu",
+                "sayyidal", "syakolaini", "kaunaini", "ahmadu", "tooha", "thaha", "yaasiin", "habiballoh", "karimalloh"
             )
             return translitKeywords.any { lower.contains(it) } || text.contains("‘") || text.contains("’") || (lower.contains("aa") && lower.contains("ii")) || (lower.contains("uu") && lower.contains("ii"))
         }
 
         var inTawajuhSection = false
+        var inLatinSection = false
+        var inTranslationSection = false
 
         for (rawBlock in blocks) {
             val trimmed = rawBlock.trim()
@@ -544,10 +559,15 @@ class MarkdownDocumentRepository {
                     heading.equals("Dzikir Harian", ignoreCase = true) ||
                     heading.equals("KHOTAMAN", ignoreCase = true) ||
                     heading.equals("Khotaman", ignoreCase = true) ||
-                    heading.equals("Khotaman TQN", ignoreCase = true)
+                    heading.equals("Khotaman TQN", ignoreCase = true) ||
+                    heading.equals("TAHLIL", ignoreCase = true) ||
+                    heading.equals("Tahlil", ignoreCase = true) ||
+                    heading.equals("Tahlil TQN", ignoreCase = true)
                 ) "" else heading
                 titleFromDocHeading = true
                 inTawajuhSection = false
+                inLatinSection = heading.contains("Transliterasi", ignoreCase = true) || heading.contains("Latin", ignoreCase = true)
+                inTranslationSection = heading.contains("Terjemahan", ignoreCase = true) || heading.contains("Artinya", ignoreCase = true)
                 continue
             }
 
@@ -566,7 +586,8 @@ class MarkdownDocumentRepository {
                 flushVerse(allowTitleOnly = true)
                 val rawTitle = trimmed.removeSurrounding("(").removeSurrounding(")").trim()
                 currentTitle = if (rawTitle.equals("KHOTAMAN", ignoreCase = true) ||
-                    rawTitle.equals("DZIKIR", ignoreCase = true)
+                    rawTitle.equals("DZIKIR", ignoreCase = true) ||
+                    rawTitle.equals("TAHLIL", ignoreCase = true)
                 ) "" else rawTitle
                 titleFromDocHeading = false
                 inTawajuhSection = false
@@ -597,7 +618,8 @@ class MarkdownDocumentRepository {
                 }
                 currentArabic.append(trimmed)
             } else {
-                val isExplicitTranslation = trimmed.startsWith("Artinya:", ignoreCase = true) ||
+                val isExplicitTranslation = inTranslationSection ||
+                                           trimmed.startsWith("Artinya:", ignoreCase = true) ||
                                            trimmed.startsWith("Aku memohon", ignoreCase = true) ||
                                            trimmed.startsWith("Yaa Alloh semoga", ignoreCase = true) ||
                                            trimmed.startsWith("Yaa Alloh limpahkanlah", ignoreCase = true) ||
@@ -625,7 +647,7 @@ class MarkdownDocumentRepository {
                                     trimmed.startsWith("sebanyak", ignoreCase = true) ||
                                     inTawajuhSection
 
-                if (isTransliterationLike(trimmed) && !isExplicitTranslation) {
+                if ((inLatinSection || isTransliterationLike(trimmed)) && !isExplicitTranslation) {
                     val count = extractRepeatCount(trimmed)
                     if (count > currentRepeatCount) {
                         currentRepeatCount = count

@@ -139,6 +139,14 @@ fun GenericDocumentReaderScreen(
                     }
                     val isTahunanPager = doc.info.id.startsWith("sholat_tahunan") && sections.size > 1
                     val hasShortcuts = sections.size > 1
+                    val isDoaDoc = doc.info.category.equals("Doa & Ziarah", ignoreCase = true) ||
+                        doc.info.category.equals("Doa", ignoreCase = true) ||
+                        doc.info.category.equals("Sholawat", ignoreCase = true) ||
+                        doc.info.id.contains("doa", ignoreCase = true) ||
+                        doc.info.id.contains("salam", ignoreCase = true) ||
+                        doc.info.id.contains("istighotsah", ignoreCase = true) ||
+                        doc.info.id.contains("sholawat", ignoreCase = true) ||
+                        doc.info.id.contains("tahlil", ignoreCase = true)
 
                     val tahunanPagerState = if (isTahunanPager) {
                         rememberPagerState(initialPage = 0) { sections.size }
@@ -215,7 +223,8 @@ fun GenericDocumentReaderScreen(
                                     item(key = sec.id) {
                                         SingleContinuousDocumentCard(
                                             rawContent = sec.content,
-                                            fontScale = fontScale
+                                            fontScale = fontScale,
+                                            isForceCentered = isDoaDoc
                                         )
                                     }
                                     item(key = "bottom_spacer_${sec.id}") {
@@ -236,14 +245,16 @@ fun GenericDocumentReaderScreen(
                                         itemsIndexed(sections, key = { _, sec -> sec.id }) { _, sec ->
                                             SingleContinuousDocumentCard(
                                                 rawContent = sec.content,
-                                                fontScale = fontScale
+                                                fontScale = fontScale,
+                                                isForceCentered = isDoaDoc
                                             )
                                         }
                                     } else {
                                         item(key = "single_doc") {
                                             SingleContinuousDocumentCard(
                                                 rawContent = doc.rawContent,
-                                                fontScale = fontScale
+                                                fontScale = fontScale,
+                                                isForceCentered = isDoaDoc
                                             )
                                         }
                                     }
@@ -252,7 +263,8 @@ fun GenericDocumentReaderScreen(
                                     items(doc.verses, key = { it.index }) { verse ->
                                         VerseReadingCard(
                                             verse = verse,
-                                            fontScale = fontScale
+                                            fontScale = fontScale,
+                                            isCentered = isDoaDoc
                                         )
                                     }
                                 }
@@ -423,7 +435,8 @@ private fun ReaderLanguageTabSwitch(
 @Composable
 private fun SingleContinuousDocumentCard(
     rawContent: String,
-    fontScale: Float
+    fontScale: Float,
+    isForceCentered: Boolean = false
 ) {
     Card(
         shape = RoundedCornerShape(20.dp),
@@ -820,7 +833,7 @@ private fun SingleContinuousDocumentCard(
                                             isItalic -> TextMuted
                                             else -> TextCharcoal
                                         },
-                                        textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                                        textAlign = if (isCentered || isForceCentered) TextAlign.Center else TextAlign.Start,
                                         modifier = Modifier.fillMaxWidth()
                                     )
                                 }
@@ -874,7 +887,8 @@ private fun SingleContinuousDocumentCard(
 @Composable
 private fun VerseReadingCard(
     verse: LiturgyVerse,
-    fontScale: Float
+    fontScale: Float,
+    isCentered: Boolean = false
 ) {
     var countProgress by remember(verse.index) { mutableStateOf(0) }
 
@@ -924,7 +938,9 @@ private fun VerseReadingCard(
                     text = verse.title,
                     fontSize = (15 * fontScale).sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = MerahMarunGelap
+                    color = MerahMarunGelap,
+                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -937,7 +953,7 @@ private fun VerseReadingCard(
                     lineHeight = (48 * fontScale).sp,
                     fontWeight = FontWeight.Normal,
                     color = TextCharcoal,
-                    textAlign = TextAlign.Right,
+                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Right,
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -950,7 +966,9 @@ private fun VerseReadingCard(
                     fontSize = (14 * fontScale).sp,
                     lineHeight = (22 * fontScale).sp,
                     color = Color(0xFF64748B),
-                    fontStyle = FontStyle.Italic
+                    fontStyle = FontStyle.Italic,
+                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -961,7 +979,9 @@ private fun VerseReadingCard(
                     text = parseMarkdownFormatting(verse.translation),
                     fontSize = (14 * fontScale).sp,
                     lineHeight = (22 * fontScale).sp,
-                    color = TextCharcoal
+                    color = TextCharcoal,
+                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -978,7 +998,8 @@ private fun VerseReadingCard(
                         fontSize = (12 * fontScale).sp,
                         lineHeight = (18 * fontScale).sp,
                         color = Color(0xFF475569),
-                        modifier = Modifier.padding(10.dp)
+                        textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth().padding(10.dp)
                     )
                 }
             }

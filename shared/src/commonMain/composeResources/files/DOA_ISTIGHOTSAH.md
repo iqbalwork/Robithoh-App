@@ -2,48 +2,26 @@
 
 ---
 
-## Bacaan Istighotsah
+## Bacaan Doa Istighotsah
 
-بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
 
-يَا حَيُّ يَا قَيُّوْمُ بِرَحْمَتِكَ أَسْتَغِيْثُ، وَمِنْ عَذَابِكَ أَسْتَجِيْرُ، أَصْلِحْ لِيْ شَأْنِيْ كُلَّهُ، وَلَا تَكِلْنِيْ إِلَى نَفْسِيْ طَرْفَةَ عَيْنٍ، وَلَا إِلَى أَحَدٍ مِنْ خَلْقِكَ.
+يَا شَيْخَ مُحْيِ الدِّيْنِ يَا سَيِّدَ مُحْيِ الدِّيْنِ . يَا مَوْلَانَا مُحْيِ الدِّيْنِ يَا مَخْدُوْمَ مُحْيِ الدِّيْنِ . يَا خَوَاجَه مُحْيِ الدِّيْنِ يَا شَاهْ مُحْيِ الدِّيْنِ
 
-يَا غِيَاثَ الْمُسْتَغِيْثِيْنَ أَغِثْنَا (٣×)
-يَا أَرْحَمَ الرَّاحِمِيْنَ ارْحَمْنَا (٣×)
+يَا دَرْوِيْشَ مُحْيِ الدِّيْنِ يَا قُطْبَ مُحْيِ الدِّيْنِ . يَا سُلْطَانَ مُحْيِ الدِّيْنِ يَا غَوْثَ مُحْيِ الدِّيْنِ . يَا سَيِّدَ السَّادَاتِ مُحْيِ الدِّيْنِ عَبْدَ الْقَادِرِ . يَا عُبَيْدَ اللهِ أَغِثْنَا بِإِذْنِ اللهِ ، وَيَا شَيْخَ الثَّقَلَيْنِ . أَغِثْنَا وَ امْدِدْنَا فِي قَضَاءِ حَوَائِجِنَا خَيْرِي الدُّنيَا وَالآ خِرَة . وارزقنا هما يافاعل كُلِّ خَيْرٍ ويا هاديا الى كلِّ خيرٍ . ويا دا لاً على كلِّ خيرٍ ويا اهل الخير . ويا خالق الخير ويااهل الخيرات . ويا خالق الخير ويااهل الخيرات . انت الله والله انت الله لا اله الا انت . اللّهم لك الكلّ وبك الكلّ ومنك الكلّ واليك الكلّ . وانت الكلّ وكلُّ الكلِّ برحمتك ياأرحم الراحمينَ . وصلى الله على سيدنا محمد وعلى آله واصحابه . وعلى سائر الانبياء والمرسلين وعلى آلهم واصحابهم . اجمعين والحمد لله رب العالمين
 
-حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيْلُ، نِعْمَ الْمَوْلَى وَنِعْمَ النَّصِيْرُ.
-وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ الْعَلِيِّ الْعَظِيْمِ.
-
-يَا شَيْخَ الثَّقَلَيْنِ، يَا غَوْثَ الْأَعْظَمِ، يَا سَيِّدِي الشَّيْخَ عَبْدَ الْقَادِرِ الْجَيْلاَنِيِّ أَغِثْنَا بِإِذْنِ اللّٰهِ تَعَالَى.
+... اَلْفَاتِحَة
 
 ---
 
 ## Transliterasi Latin
 
-*Bismillaahirrohmaanirrohiim.*
+Yaa man yablughu limuriidihi 'indal istighootsati walau kaana fil masyriqi farosuka masruujun wa saifuka masluulun wa romhuka man shuubun wa qowsuka mautuurun wa sahmuka shoo-ibun wa rikaabuka 'aalin Aghisnii fii qodhoo-i hawaa-iji khoiro yiddunyaa wal aakhiroti ........ (sebut hajatnya).
 
-*Yaa Hayyu Yaa Qoyyuumu birohmatika astaghiitsu, wa min 'adzaabika astajiiru, ashlih lii sya'nii kullahu, wa laa takilnii ilaa nafsii thorfata 'ainin, wa laa ilaa ahadin min kholqika.*
-
-*Yaa Ghiyaatsal mustaghiitsiina aghitsnaa (3x)*  
-*Yaa Arhamar roohimiinarhamnaa (3x)*  
-
-*Hasbunalloohu wa ni'mal wakiil, ni'mal maulaa wa ni'man nashiir.*  
-*Wa laa hawla wa laa quwwata illaa billaahil 'Aliyyil 'Azhiim.*  
-
-*Yaa Syaikhots-tsaqolaini, yaa Ghoutsal A'zhomi, yaa Sayyidisy-Syaikho 'Abdul Qoodiril Jailaaniyyi aghitsnaa bi-idznillaahi Ta'aala.*
+Al-Faatihah
 
 ---
 
 ## Terjemahan Bahasa Indonesia
 
-> "Dengan nama Allah Yang Maha Pengasih lagi Maha Penyayang."  
-> 
-> "Wahai Dzat Yang Maha Hidup lagi Maha Berdiri Sendiri, dengan rahmat-Mu aku memohon pertolongan, dan dari siksa-Mu aku memohon perlindungan. Perbaikilah seluruh urusanku, dan janganlah Engkau serahkan diriku kepada hawa nafsuku walau sekejap mata, serta jangan pula kepada seorang pun dari makhluk-Mu."  
-> 
-> "Wahai Penolong orang-orang yang memohon pertolongan, tolonglah kami! *(3x)*  
-> Wahai Dzat Yang Paling Pengasih di antara para pengasih, rahmatilah kami! *(3x)*"  
-> 
-> "Cukuplah Allah menjadi Penolong kami dan Allah adalah sebaik-baik Pelindung. Dia adalah sebaik-baik Pemimpin dan sebaik-baik Penolong.  
-> Dan tidak ada daya upaya serta kekuatan melainkan dengan pertolongan Allah Yang Maha Tinggi lagi Maha Agung."  
-> 
-> "Wahai Pemimpin Jin dan Manusia, wahai Wali Penolong yang Agung, wahai Junjungan kami Syaikh Abdul Qadir Al-Jailani, tolonglah kami dengan izin Allah Ta'ala."
+Wahai orang yang sampai kepada muridnya ketika permohonan bantuan disampaikan, meski ia berada jauh ditimur kudamu telah siap dengan pelananya, pedangmu telah terhunus, tombakmu siap dilemparkan, busurmu telah ditarik, anak panahmu siap membidik sasaran, dan tungganganmu amat tinggi. Tolonglah kami dalam memenuhi segala hajat yang baik urusan dunia dan akhirat.

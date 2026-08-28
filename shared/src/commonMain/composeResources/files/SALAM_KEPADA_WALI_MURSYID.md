@@ -2,46 +2,53 @@
 
 ---
 
-## Salam Kepada Pangersa Guru Mursyid
+## Bacaan Salam Kepada Wali Mursyid
 
-بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+اَلسَّلَامُ عَلَيْكَ  
+يَا مَالِكَ الزَّمَانِ  
+وَ يَا إِمَامَ الْمَكَانِ  
+وَ يَا قَائِمَ بِأَمْرِ الرَّحْمَانِ  
+وَ يَا وَارِثَ الْكِتَابِ  
+وَ يَا نَائِبَ رَسُوْلِ اللهِ صَلَّى اللهُ عَلَيْهِ وَ سَلَّمَ  
+يَا مَنْ مِنَ السَّمَاءِ وَ الْأَرْضِ عَائِدَتُهُ  
+يَا مَنْ أَهْلُ وَقْتِهِ كُلُّهُمْ عَائِلَتُهُ  
+يَا مَنْ يَنزِلُ الْغَيْثُ بِدَعْوَتِهِ  
+وَ يُدَرُّ الضَّرْعُ بِبَرَكَتِهِ  
+وَ رَحْمَةُ اللهِ وَ بَرَكَاتُهُ  
 
-اَلسَّلَامُ عَلَيْكَ يَا وَلِيَّ اللّٰهِ
-اَلسَّلَامُ عَلَيْكَ يَا صَفِيَّ اللّٰهِ
-اَلسَّلَامُ عَلَيْكَ يَا حَبِيْبَ اللّٰهِ
-اَلسَّلَامُ عَلَيْكَ يَا خَلِيْلَ اللّٰهِ
-اَلسَّلَامُ عَلَيْكَ يَا شَيْخَنَا وَمُرْشِدَنَا وَمُرَبِّيَ رُوْحِنَا
-
-**Transliterasi Latin:**
-*Assalaamu 'alaika yaa waliyyallooh*
-*Assalaamu 'alaika yaa shofiyyallooh*
-*Assalaamu 'alaika yaa habiiballooh*
-*Assalaamu 'alaika yaa kholiilallooh*
-*Assalaamu 'alaika yaa syaikhonaa wa mursyidanaa wa murobbiya ruuhinaa*
-
-**Artinya:**
-> "Keselamatan semoga tercurah kepadamu wahai Wali Allah. Keselamatan semoga tercurah kepadamu wahai kekasih pilihan Allah. Keselamatan semoga tercurah kepadamu wahai kekasih tercinta Allah. Keselamatan semoga tercurah kepadamu wahai sahabat dekat Allah. Keselamatan semoga tercurah kepadamu wahai Guru kami, Pemandu kami, dan Pendidik ruhani kami."
+اَلْفَاتِحَة...
 
 ---
 
-## Doa Tawassul & Rabithoh kepada Mursyid Silsilah 111
+## Transliterasi Latin
 
-سَيِّدِي الشَّيْخَ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلِ سَيِّدِي شَيْخِ أَحْمَدْ صَاحِبِ الْوَفَاءِ تَاجِ الْعَارِفِيْنَ رَضِيَ اللّٰهُ عَنْهُمَا وَأَرْضَاهُمَا وَنَفَعَنَا اللّٰهُ بِعُلُوْمِهِمَا وَبَرَكَاتِهِمَا فِي الدَّارَيْنِ، اَلْفَاتِحَة...
+*Assalaamu 'alaika*  
+*Yaa maalikaz zamaan,*  
+*Wa yaa imaamal makaan,*  
+*Wa yaa qoo-imu bi amrir rohmaan,*  
+*Wa yaa waaritsal kitaab,*  
+*Wa yaa naa-iba Rosuulillaahi SAW,*  
+*Yaa man minas samaa-i wal ardhi 'aa-idatuhu,*  
+*Yaa man ahlu waqtihii kulluhum 'aa-ilatuhu,*  
+*Yaa man yanzilul ghoitsu bi da'watihi,*  
+*Wa yadirrudh-dhor'u bi barokatihi,*  
+*Wa rohmatulloohi wa barokaatuh.*  
 
-**Transliterasi Latin:**
-*Sayyidisy Syaikh Muhammad 'Abdul Ghouts Saifullooh Masluul Sayyidii Syaikh Ahmad Shoohibul Wafaa Taajul 'Aarifiin rodhiyalloohu 'anhumaa wa ardhoohumaa wa nafa'analloohu bi'uluumihimaa wa barokaatihimaa fiddaaroin, Al-Faatihah...*
-
-**Artinya:**
-> "Junjungan kami Syaikh Muhammad Abdul Ghouts Saifulloh Maslul (Abah Aos Ra. Qs.) dan Junjungan kami Syaikh Ahmad Shohibulwafa Tajul Arifin (Abah Anom Ra. Qs.), semoga Allah meridhai keduanya dan memuliakan keduanya, serta memberikan manfaat kepada kami dengan ilmu dan keberkahan keduanya di dunia dan akhirat, Al-Faatihah..."
+*Al-Faatihah....*
 
 ---
 
-## Salam Kepada Rijalullah
+## Terjemahan Bahasa Indonesia
 
-اَلسَّلَامُ عَلَيْكُمْ يَا رِجَالَ اللّٰهِ، أَعِيْنُوْنَا بِعَوْنِ اللّٰهِ، وَكُوْنُوْا عَوْنَنَا لِلّٰهِ، عَسَى نَحْظَى بِفَضْلِ اللّٰهِ
-
-**Transliterasi Latin:**
-*Assalaamu 'alaikum yaa rijaalallooh, a'iinuunaa bi'aunillaah, wa kuunuu 'aunanallillaah, 'asaa nahzhoo bifadhlillaah.*
-
-**Artinya:**
-> "Keselamatan semoga tercurah kepada kalian wahai Rijalullah (hamba-hamba pilihan Allah). Tolonglah kami dengan pertolongan Allah, dan jadilah penolong kami karena Allah, semoga kami memperoleh anugerah dan karunia Allah."
+> Salam untukmu  
+> wahai penguasa zaman  
+> pemimpin wilayah  
+> penegak ketentuan Ar-Rahman  
+> pewaris kitab  
+> wakil Rasulullah SAW  
+> yang selalu pergi pulang antara bumi dan langit  
+> yang orang-orang sezamannya adalah keluarganya  
+> yang diturunkan pertolongan karena doanya  
+> yang dikucurkan limpah susu karena keberkahannya  
+> beserta rahmat Allah dan keberkahan-Nya,  
+> Al-Fatihah.
