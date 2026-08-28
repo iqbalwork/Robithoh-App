@@ -269,7 +269,7 @@ fun PrayerTimesScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Pengaturan Perhitungan & Koreksi",
+                        text = "Pengaturan Perhitungan & Notifikasi",
                         style = MaterialTheme.typography.titleSmall.copy(
                             fontWeight = FontWeight.Bold,
                             color = if (isDark) PutihBersih else SlateCharcoalText
@@ -355,28 +355,153 @@ fun PrayerTimesScreen(
                         )
                     }
                 }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                // 3. Adzan Voice & Notification Setting Tile
+                val selectedVoice = com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices.findById(state.notificationSettings.selectedVoiceId)
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = if (isDark) DarkSurfaceVariant else Color(0xFFF7F7F8),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true)) }
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Pilihan Suara Adzan & Notifikasi",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) PutihBersih else SlateCharcoalText
+                            )
+                            Text(
+                                text = "Muadzin: ${selectedVoice.title}",
+                                fontSize = 11.sp,
+                                color = if (isDark) Color(0xFF81C784) else Color(0xFF2E7D32),
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                        Text(
+                            text = "Pilih ›",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = EmasKhidmat
+                        )
+                    }
+                }
             }
 
             // Daily 5 Prayer Schedule Card
             if (schedule != null) {
+                val notif = state.notificationSettings
                 GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
-                    Text(
-                        text = "Jadwal Sholat Fardhu 5 Waktu",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = if (isDark) PutihBersih else SlateCharcoalText
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Jadwal Sholat Fardhu 5 Waktu",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) PutihBersih else SlateCharcoalText
+                            )
                         )
-                    )
+                        Text(
+                            text = "Ketuk 🔔 utk ubah mode",
+                            fontSize = 11.sp,
+                            color = if (isDark) DarkMuted else SlateMuted
+                        )
+                    }
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    PrayerTimeRowItem("Imsak", schedule.imsak, schedule.timezone, false, isDark)
-                    PrayerTimeRowItem("Subuh", schedule.subuh, schedule.timezone, countdown?.nextPrayerName == "Subuh", isDark)
-                    PrayerTimeRowItem("Syuruq (Terbit)", schedule.isyroq, schedule.timezone, false, isDark)
-                    PrayerTimeRowItem("Dhuha", schedule.dhuha, schedule.timezone, countdown?.nextPrayerName == "Dhuha", isDark)
-                    PrayerTimeRowItem("Dzuhur", schedule.dzuhur, schedule.timezone, countdown?.nextPrayerName == "Dzuhur", isDark)
-                    PrayerTimeRowItem("Ashar", schedule.ashar, schedule.timezone, countdown?.nextPrayerName == "Ashar", isDark)
-                    PrayerTimeRowItem("Maghrib", schedule.maghrib, schedule.timezone, countdown?.nextPrayerName == "Maghrib", isDark)
-                    PrayerTimeRowItem("Isya", schedule.isya, schedule.timezone, countdown?.nextPrayerName == "Isya", isDark)
+                    PrayerTimeRowItem(
+                        label = "Imsak",
+                        time = schedule.imsak,
+                        timezone = schedule.timezone,
+                        isActive = false,
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.IMSAK,
+                        notificationMode = notif.imsakMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.IMSAK)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.IMSAK)) }
+                    )
+                    PrayerTimeRowItem(
+                        label = "Subuh",
+                        time = schedule.subuh,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Subuh",
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.SUBUH,
+                        notificationMode = notif.subuhMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.SUBUH)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.SUBUH)) }
+                    )
+                    PrayerTimeRowItem(
+                        label = "Syuruq (Terbit)",
+                        time = schedule.isyroq,
+                        timezone = schedule.timezone,
+                        isActive = false,
+                        isDark = isDark
+                    )
+                    PrayerTimeRowItem(
+                        label = "Dhuha",
+                        time = schedule.dhuha,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Dhuha",
+                        isDark = isDark
+                    )
+                    PrayerTimeRowItem(
+                        label = "Dzuhur",
+                        time = schedule.dzuhur,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Dzuhur",
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.DZUHUR,
+                        notificationMode = notif.dzuhurMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.DZUHUR)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.DZUHUR)) }
+                    )
+                    PrayerTimeRowItem(
+                        label = "Ashar",
+                        time = schedule.ashar,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Ashar",
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ASHAR,
+                        notificationMode = notif.asharMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ASHAR)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ASHAR)) }
+                    )
+                    PrayerTimeRowItem(
+                        label = "Maghrib",
+                        time = schedule.maghrib,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Maghrib",
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.MAGHRIB,
+                        notificationMode = notif.maghribMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.MAGHRIB)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.MAGHRIB)) }
+                    )
+                    PrayerTimeRowItem(
+                        label = "Isya",
+                        time = schedule.isya,
+                        timezone = schedule.timezone,
+                        isActive = countdown?.nextPrayerName == "Isya",
+                        isDark = isDark,
+                        prayerType = com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ISYA,
+                        notificationMode = notif.isyaMode,
+                        onCycleNotificationMode = { onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ISYA)) },
+                        onOpenModePicker = { onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType.ISYA)) }
+                    )
                 }
 
                 // Tasawuf Schedule Card
@@ -451,6 +576,32 @@ fun PrayerTimesScreen(
                 }
             }
         }
+
+        if (state.isAdzanPickerSheetOpen) {
+            AdzanVoicePickerSheet(
+                selectedVoiceId = state.notificationSettings.selectedVoiceId,
+                onSelectVoice = { voiceId ->
+                    onIntent(AmaliyahUiIntent.SelectAdzanVoice(voiceId))
+                },
+                onDismiss = {
+                    onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(false))
+                }
+            )
+        }
+
+        state.activeNotificationModePickerPrayer?.let { activePrayer ->
+            val currentMode = state.notificationSettings.getPrayerMode(activePrayer)
+            PrayerNotificationModePickerSheet(
+                prayerType = activePrayer,
+                currentMode = currentMode,
+                onSelectMode = { mode ->
+                    onIntent(AmaliyahUiIntent.SetPrayerNotificationMode(activePrayer, mode))
+                },
+                onDismiss = {
+                    onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(null))
+                }
+            )
+        }
     }
 }
 
@@ -461,7 +612,11 @@ private fun PrayerTimeRowItem(
     timezone: String,
     isActive: Boolean,
     isDark: Boolean,
-    isHighlight: Boolean = false
+    isHighlight: Boolean = false,
+    prayerType: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType? = null,
+    notificationMode: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode? = null,
+    onCycleNotificationMode: (() -> Unit)? = null,
+    onOpenModePicker: (() -> Unit)? = null
 ) {
     Surface(
         color = when {
@@ -496,12 +651,52 @@ private fun PrayerTimeRowItem(
                     color = if (isActive) MerahMerdeka else (if (isDark) PutihBersih else SlateCharcoalText)
                 )
             }
-            Text(
-                text = "$time $timezone",
-                fontSize = 13.sp,
-                fontWeight = if (isActive || isHighlight) FontWeight.Bold else FontWeight.Medium,
-                color = if (isActive) MerahMerdeka else (if (isHighlight) EmasKhidmat else (if (isDark) Color.LightGray else Color.DarkGray))
-            )
+
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "$time $timezone",
+                    fontSize = 13.sp,
+                    fontWeight = if (isActive || isHighlight) FontWeight.Bold else FontWeight.Medium,
+                    color = if (isActive) MerahMerdeka else (if (isHighlight) EmasKhidmat else (if (isDark) Color.LightGray else Color.DarkGray))
+                )
+
+                if (notificationMode != null && onCycleNotificationMode != null) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    val bgModeColor = when (notificationMode) {
+                        com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.ADZAN -> {
+                            if (isDark) Color(0xFF1E382B) else Color(0xFFE8F5E9)
+                        }
+                        com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION -> {
+                            if (isDark) Color(0xFF263238) else Color(0xFFE1F5FE)
+                        }
+                        com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT -> {
+                            if (isDark) DarkSurfaceVariant else Color(0xFFF0F0F0)
+                        }
+                    }
+
+                    Surface(
+                        shape = CircleShape,
+                        color = bgModeColor,
+                        modifier = Modifier
+                            .size(28.dp)
+                            .clickable {
+                                if (onOpenModePicker != null) {
+                                    onOpenModePicker()
+                                } else {
+                                    onCycleNotificationMode()
+                                }
+                            }
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Text(
+                                text = notificationMode.icon,
+                                fontSize = 13.sp,
+                                modifier = Modifier.padding(2.dp)
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }

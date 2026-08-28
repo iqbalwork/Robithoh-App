@@ -20,6 +20,7 @@ class AmaliyahViewModel(
     private val repository: AmaliyahRepository = AmaliyahRepository(),
     private val calculator: PrayerTimesCalculator = PrayerTimesCalculator(),
     private val database: RobithohDatabase? = null,
+    private val alarmScheduler: com.iqbalwork.robithoh.core.notification.PrayerAlarmScheduler? = null,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : MviViewModel<AmaliyahUiState, AmaliyahUiIntent, AmaliyahUiEffect>(
     AmaliyahUiState()
@@ -176,8 +177,72 @@ class AmaliyahViewModel(
             is AmaliyahUiIntent.ResetDateOffset -> {
                 recalculatePrayerTimes(dateOffsetDays = 0)
             }
+            is AmaliyahUiIntent.TogglePrayerLogged -> {
+                val current = currentState.loggedPrayers
+                val updated = if (current.contains(intent.prayerName)) {
+                    current - intent.prayerName
+                } else {
+                    current + intent.prayerName
+                }
+                updateState { copy(loggedPrayers = updated) }
+            }
             is AmaliyahUiIntent.OpenTasbihWithTarget -> {
                 sendEffect(AmaliyahUiEffect.NavigateToTasbih(intent.targetCount, intent.dzikirTitle))
+            }
+            is AmaliyahUiIntent.SelectAdzanVoice -> {
+                val updatedNotif = currentState.notificationSettings.copy(selectedVoiceId = intent.voiceId)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistAdzanVoice(voiceId = intent.voiceId, customPath = updatedNotif.customAudioPath)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.SetCustomAdzanPath -> {
+                val updatedNotif = currentState.notificationSettings.copy(
+                    customAudioPath = intent.path,
+                    selectedVoiceId = "custom"
+                )
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistAdzanVoice(voiceId = "custom", customPath = intent.path)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.TogglePrayerNotification -> {
+                val updatedNotif = currentState.notificationSettings.withToggledPrayer(intent.prayerType, intent.enabled)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistPrayerNotificationToggles(updatedNotif)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.SetPrayerNotificationMode -> {
+                val updatedNotif = currentState.notificationSettings.withPrayerMode(intent.prayerType, intent.mode)
+                updateState {
+                    copy(
+                        notificationSettings = updatedNotif,
+                        activeNotificationModePickerPrayer = null
+                    )
+                }
+                persistPrayerNotificationToggles(updatedNotif)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.CyclePrayerNotificationMode -> {
+                val updatedNotif = currentState.notificationSettings.withCycledPrayerMode(intent.prayerType)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistPrayerNotificationToggles(updatedNotif)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.SetNotificationModePickerPrayer -> {
+                updateState { copy(activeNotificationModePickerPrayer = intent.prayerType) }
+            }
+            is AmaliyahUiIntent.SetAdzanPickerSheetOpen -> {
+                updateState { copy(isAdzanPickerSheetOpen = intent.isOpen) }
+            }
+            is AmaliyahUiIntent.SetPreviewingAdzanId -> {
+                updateState { copy(previewingAdzanId = intent.voiceId) }
+            }
+            is AmaliyahUiIntent.TestTriggerPrayerNotification -> {
+                alarmScheduler?.testTriggerNotification(
+                    prayerName = intent.prayerType.label,
+                    mode = intent.mode,
+                    voiceId = currentState.notificationSettings.selectedVoiceId,
+                    customPath = currentState.notificationSettings.customAudioPath
+                )
             }
         }
     }
@@ -237,13 +302,25 @@ class AmaliyahViewModel(
                     }
                     val isGps = settings.is_gps == 1L
 
+                    val notifSettings = PrayerNotificationSettings(
+                        subuhMode = PrayerNotificationMode.fromDbValue(settings.subuh_notif_enabled),
+                        dzuhurMode = PrayerNotificationMode.fromDbValue(settings.dzuhur_notif_enabled),
+                        asharMode = PrayerNotificationMode.fromDbValue(settings.ashar_notif_enabled),
+                        maghribMode = PrayerNotificationMode.fromDbValue(settings.maghrib_notif_enabled),
+                        isyaMode = PrayerNotificationMode.fromDbValue(settings.isya_notif_enabled),
+                        imsakMode = PrayerNotificationMode.fromDbValue(settings.imsak_notif_enabled),
+                        selectedVoiceId = settings.selected_adzan_voice_id,
+                        customAudioPath = settings.custom_adzan_audio_path
+                    )
+
                     withContext(Dispatchers.Main) {
                         updateState {
                             copy(
                                 selectedCalculationMethod = method,
                                 prayerAdjustments = adjustments,
                                 selectedLocation = location,
-                                isGpsActive = isGps
+                                isGpsActive = isGps,
+                                notificationSettings = notifSettings
                             )
                         }
                         recalculatePrayerTimes(
@@ -280,6 +357,7 @@ class AmaliyahViewModel(
         isGps: Boolean = currentState.isGpsActive
     ) {
         if (database == null) return
+        val notif = currentState.notificationSettings
         viewModelScope.launch(dispatcher) {
             try {
                 database.robithohDatabaseQueries.insertOrUpdatePrayerSettings(
@@ -296,11 +374,56 @@ class AmaliyahViewModel(
                     custom_lng = location.longitude,
                     custom_location_name = location.name,
                     custom_timezone_offset = location.timezoneOffset,
-                    is_gps = if (isGps) 1L else 0L
+                    is_gps = if (isGps) 1L else 0L,
+                    selected_adzan_voice_id = notif.selectedVoiceId,
+                    custom_adzan_audio_path = notif.customAudioPath,
+                    subuh_notif_enabled = PrayerNotificationMode.toDbValue(notif.subuhMode),
+                    dzuhur_notif_enabled = PrayerNotificationMode.toDbValue(notif.dzuhurMode),
+                    ashar_notif_enabled = PrayerNotificationMode.toDbValue(notif.asharMode),
+                    maghrib_notif_enabled = PrayerNotificationMode.toDbValue(notif.maghribMode),
+                    isya_notif_enabled = PrayerNotificationMode.toDbValue(notif.isyaMode),
+                    imsak_notif_enabled = PrayerNotificationMode.toDbValue(notif.imsakMode)
                 )
             } catch (_: Exception) {
                 // Silently ignore persist errors
             }
+        }
+    }
+
+    private fun persistAdzanVoice(voiceId: String, customPath: String?) {
+        if (database == null) return
+        viewModelScope.launch(dispatcher) {
+            try {
+                database.robithohDatabaseQueries.updateAdzanVoice(
+                    selectedAdzanVoiceId = voiceId,
+                    customAdzanAudioPath = customPath
+                )
+            } catch (_: Exception) {}
+        }
+    }
+
+    private fun persistPrayerNotificationToggles(notif: PrayerNotificationSettings) {
+        if (database == null) return
+        viewModelScope.launch(dispatcher) {
+            try {
+                database.robithohDatabaseQueries.updatePrayerNotificationToggles(
+                    subuh = PrayerNotificationMode.toDbValue(notif.subuhMode),
+                    dzuhur = PrayerNotificationMode.toDbValue(notif.dzuhurMode),
+                    ashar = PrayerNotificationMode.toDbValue(notif.asharMode),
+                    maghrib = PrayerNotificationMode.toDbValue(notif.maghribMode),
+                    isya = PrayerNotificationMode.toDbValue(notif.isyaMode),
+                    imsak = PrayerNotificationMode.toDbValue(notif.imsakMode)
+                )
+            } catch (_: Exception) {}
+        }
+    }
+
+    private fun syncAlarmSchedule(schedule: PrayerSchedule?, notifSettings: PrayerNotificationSettings) {
+        if (schedule == null || alarmScheduler == null) return
+        viewModelScope.launch(dispatcher) {
+            try {
+                alarmScheduler.scheduleAlarms(schedule, notifSettings)
+            } catch (_: Exception) {}
         }
     }
 
@@ -347,6 +470,10 @@ class AmaliyahViewModel(
                 nextPrayerCountdown = countdown,
                 selectedDateOffsetDays = dateOffsetDays
             )
+        }
+
+        if (schedule != null) {
+            syncAlarmSchedule(schedule, currentState.notificationSettings)
         }
     }
 

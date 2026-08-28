@@ -150,8 +150,16 @@ fun HomeTabContent(
                         )
                     }
                     Spacer(modifier = Modifier.height(4.dp))
+                    val prayerIcon = when (countdown?.nextPrayerName) {
+                        "Subuh" -> "🌅"
+                        "Dzuhur" -> "☀️"
+                        "Ashar" -> "🌤️"
+                        "Maghrib" -> "🌇"
+                        "Isya" -> "🌙"
+                        else -> "🕌"
+                    }
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("🌅 ", fontSize = 18.sp)
+                        Text("$prayerIcon ", fontSize = 18.sp)
                         Text(
                             text = countdown?.nextPrayerName ?: "Subuh",
                             fontSize = 18.sp,

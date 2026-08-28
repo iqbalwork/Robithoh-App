@@ -30,6 +30,11 @@ data class AmaliyahUiState(
     val locationErrorMessage: String? = null,
     val expandedItemId: String? = null,
     val selectedDateOffsetDays: Int = 0,
+    val loggedPrayers: Set<String> = emptySet(),
+    val notificationSettings: PrayerNotificationSettings = PrayerNotificationSettings(),
+    val isAdzanPickerSheetOpen: Boolean = false,
+    val activeNotificationModePickerPrayer: PrayerType? = null,
+    val previewingAdzanId: String? = null,
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 ) : UiState
@@ -51,7 +56,17 @@ sealed interface AmaliyahUiIntent : UiIntent {
     data object RefreshSchedule : AmaliyahUiIntent
     data class ChangeDateOffset(val deltaDays: Int) : AmaliyahUiIntent
     data object ResetDateOffset : AmaliyahUiIntent
+    data class TogglePrayerLogged(val prayerName: String) : AmaliyahUiIntent
     data class OpenTasbihWithTarget(val targetCount: Int, val dzikirTitle: String) : AmaliyahUiIntent
+    data class SelectAdzanVoice(val voiceId: String) : AmaliyahUiIntent
+    data class SetCustomAdzanPath(val path: String) : AmaliyahUiIntent
+    data class TogglePrayerNotification(val prayerType: PrayerType, val enabled: Boolean) : AmaliyahUiIntent
+    data class SetPrayerNotificationMode(val prayerType: PrayerType, val mode: PrayerNotificationMode) : AmaliyahUiIntent
+    data class CyclePrayerNotificationMode(val prayerType: PrayerType) : AmaliyahUiIntent
+    data class SetNotificationModePickerPrayer(val prayerType: PrayerType?) : AmaliyahUiIntent
+    data class SetAdzanPickerSheetOpen(val isOpen: Boolean) : AmaliyahUiIntent
+    data class SetPreviewingAdzanId(val voiceId: String?) : AmaliyahUiIntent
+    data class TestTriggerPrayerNotification(val prayerType: PrayerType, val mode: PrayerNotificationMode) : AmaliyahUiIntent
 }
 
 sealed interface AmaliyahUiEffect : UiEffect {

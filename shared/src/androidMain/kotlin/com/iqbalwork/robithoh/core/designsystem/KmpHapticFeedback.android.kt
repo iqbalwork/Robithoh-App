@@ -104,6 +104,8 @@ class AndroidHapticFeedback(private val contextProvider: () -> Context?) : KmpHa
 
 private var globalAppContext: Context? = null
 
+fun getGlobalAppContext(): Context? = globalAppContext
+
 fun setGlobalAppContext(context: Context) {
     globalAppContext = context.applicationContext
 }

@@ -15,6 +15,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,6 +38,9 @@ import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
 import com.iqbalwork.robithoh.feature.reader.model.ParsedDocument
 import kotlinx.coroutines.launch
 
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenericDocumentReaderScreen(
@@ -48,18 +53,18 @@ fun GenericDocumentReaderScreen(
     val listState = rememberLazyListState()
 
     val initialCachedDoc = remember(documentId) { repository.getCachedDocument(documentId) }
-    var currentDocId by remember(documentId) { mutableStateOf(documentId) }
+    var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
     var parsedDoc by remember { mutableStateOf<ParsedDocument?>(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
-    var fontScale by remember { mutableStateOf(1.0f) }
-    var showSettingsDialog by remember { mutableStateOf(false) }
+    var fontScale by rememberSaveable { mutableStateOf(1.0f) }
+    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 
     val docInfo = remember(currentDocId) { repository.getDocumentById(currentDocId) }
     val isDzikirDoc = currentDocId.contains("dzikir", ignoreCase = true) ||
         docInfo?.id?.contains("dzikir", ignoreCase = true) == true
 
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val tasbihViewModel = remember(database) {
+    val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel(key = "tasbih_reader_vm") {
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
     val tasbihState by tasbihViewModel.uiState.collectAsState()
@@ -132,12 +137,21 @@ fun GenericDocumentReaderScreen(
                     val sections = remember(doc.info.id, doc.rawContent) {
                         parseDocumentSections(doc.info.id, doc.rawContent)
                     }
+                    val isTahunanPager = doc.info.id.startsWith("sholat_tahunan") && sections.size > 1
                     val hasShortcuts = sections.size > 1
+
+                    val tahunanPagerState = if (isTahunanPager) {
+                        rememberPagerState(initialPage = 0) { sections.size }
+                    } else null
 
                     val currentVisibleSectionIndex by remember {
                         derivedStateOf {
-                            val firstVisible = listState.firstVisibleItemIndex
-                            if (firstVisible in sections.indices) firstVisible else 0
+                            if (tahunanPagerState != null) {
+                                tahunanPagerState.currentPage
+                            } else {
+                                val firstVisible = listState.firstVisibleItemIndex
+                                if (firstVisible in sections.indices) firstVisible else 0
+                            }
                         }
                     }
 
@@ -172,48 +186,80 @@ fun GenericDocumentReaderScreen(
                                     selectedSectionIndex = currentVisibleSectionIndex,
                                     onSelectSection = { idx ->
                                         coroutineScope.launch {
-                                            listState.animateScrollToItem(idx)
+                                            if (tahunanPagerState != null) {
+                                                tahunanPagerState.animateScrollToPage(idx)
+                                            } else {
+                                                listState.animateScrollToItem(idx)
+                                            }
                                         }
                                     }
                                 )
                             }
                         }
 
-                        // Reading List
-                        LazyColumn(
-                            state = listState,
-                            modifier = Modifier.fillMaxSize(),
-                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
-                            verticalArrangement = Arrangement.spacedBy(14.dp)
-                        ) {
-                            if (doc.info.isSingleDocumentView) {
-                                if (hasShortcuts) {
-                                    itemsIndexed(sections, key = { _, sec -> sec.id }) { _, sec ->
+                        // Content Area
+                        if (isTahunanPager && tahunanPagerState != null) {
+                            // Horizontal ViewPager for Sholat Tahunan
+                            HorizontalPager(
+                                state = tahunanPagerState,
+                                modifier = Modifier.fillMaxSize()
+                            ) { pageIdx ->
+                                val sec = sections[pageIdx]
+                                val pageScrollState = rememberLazyListState()
+                                LazyColumn(
+                                    state = pageScrollState,
+                                    modifier = Modifier.fillMaxSize(),
+                                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+                                    verticalArrangement = Arrangement.spacedBy(14.dp)
+                                ) {
+                                    item(key = sec.id) {
                                         SingleContinuousDocumentCard(
                                             rawContent = sec.content,
                                             fontScale = fontScale
                                         )
                                     }
+                                    item(key = "bottom_spacer_${sec.id}") {
+                                        Spacer(modifier = Modifier.height(80.dp))
+                                    }
+                                }
+                            }
+                        } else {
+                            // Standard Continuous Reading List
+                            LazyColumn(
+                                state = listState,
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+                                verticalArrangement = Arrangement.spacedBy(14.dp)
+                            ) {
+                                if (doc.info.isSingleDocumentView) {
+                                    if (hasShortcuts) {
+                                        itemsIndexed(sections, key = { _, sec -> sec.id }) { _, sec ->
+                                            SingleContinuousDocumentCard(
+                                                rawContent = sec.content,
+                                                fontScale = fontScale
+                                            )
+                                        }
+                                    } else {
+                                        item(key = "single_doc") {
+                                            SingleContinuousDocumentCard(
+                                                rawContent = doc.rawContent,
+                                                fontScale = fontScale
+                                            )
+                                        }
+                                    }
                                 } else {
-                                    item(key = "single_doc") {
-                                        SingleContinuousDocumentCard(
-                                            rawContent = doc.rawContent,
+                                    // Verses List
+                                    items(doc.verses, key = { it.index }) { verse ->
+                                        VerseReadingCard(
+                                            verse = verse,
                                             fontScale = fontScale
                                         )
                                     }
                                 }
-                            } else {
-                                // Verses List
-                                items(doc.verses, key = { it.index }) { verse ->
-                                    VerseReadingCard(
-                                        verse = verse,
-                                        fontScale = fontScale
-                                    )
-                                }
-                            }
 
-                            item(key = "bottom_spacer") {
-                                Spacer(modifier = Modifier.height(80.dp))
+                                item(key = "bottom_spacer") {
+                                    Spacer(modifier = Modifier.height(80.dp))
+                                }
                             }
                         }
                     }
@@ -445,8 +491,10 @@ private fun SingleContinuousDocumentCard(
                 }
 
                 val firstLine = lines.first()
+                val isH4Header = firstLine.startsWith("#### ")
+                val isH3Header = firstLine.startsWith("### ")
                 val isH2Header = firstLine.startsWith("## ")
-                val isHeader = firstLine.startsWith("### ") || isH2Header
+                val isHeader = isH4Header || isH3Header || isH2Header
                 val remainingLines = if (isHeader) lines.drop(1) else lines
 
                 if (isH2Header) {
@@ -476,9 +524,77 @@ private fun SingleContinuousDocumentCard(
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp)
                         )
                     }
-                } else if (isHeader) {
+                } else if (isH4Header) {
+                    val headerText = firstLine.removePrefix("#### ").trim()
+                    val icon = when {
+                        headerText.contains("Tanggal 1", ignoreCase = true) || headerText.contains("1.", ignoreCase = true) -> "1️⃣"
+                        headerText.contains("Jumat", ignoreCase = true) || headerText.contains("Jum’at", ignoreCase = true) -> "🕌"
+                        headerText.contains("15", ignoreCase = true) -> "🌕"
+                        headerText.contains("30", ignoreCase = true) || headerText.contains("Akhir", ignoreCase = true) -> "🔚"
+                        headerText.contains("Wirid", ignoreCase = true) -> "📿"
+                        headerText.contains("Doa", ignoreCase = true) || headerText.contains("Do’a", ignoreCase = true) -> "🤲"
+                        else -> "🗓️"
+                    }
+                    Surface(
+                        color = MerahMarunGelap.copy(alpha = 0.08f),
+                        shape = RoundedCornerShape(10.dp),
+                        border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                        modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 4.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(text = icon, fontSize = (18 * fontScale).sp)
+                            Spacer(modifier = Modifier.width(10.dp))
+                            Text(
+                                text = headerText,
+                                fontSize = (16 * fontScale).sp,
+                                fontWeight = FontWeight.ExtraBold,
+                                color = MerahMarunGelap
+                            )
+                        }
+                    }
+                } else if (isH3Header) {
                     val headerText = firstLine.removePrefix("### ").trim()
-                    if (isIslamicMonth(headerText)) {
+                    val isDateHeading = headerText.contains("Tanggal", ignoreCase = true) ||
+                        headerText.contains("Jum’at", ignoreCase = true) ||
+                        headerText.contains("Jumat", ignoreCase = true) ||
+                        headerText.contains("Wirid", ignoreCase = true) ||
+                        headerText.contains("Do’a", ignoreCase = true) ||
+                        headerText.contains("Doa", ignoreCase = true)
+
+                    if (isDateHeading) {
+                        val icon = when {
+                            headerText.contains("Tanggal 1", ignoreCase = true) || headerText.contains("1.", ignoreCase = true) -> "1️⃣"
+                            headerText.contains("Jumat", ignoreCase = true) || headerText.contains("Jum’at", ignoreCase = true) -> "🕌"
+                            headerText.contains("15", ignoreCase = true) -> "🌕"
+                            headerText.contains("30", ignoreCase = true) || headerText.contains("Akhir", ignoreCase = true) -> "🔚"
+                            headerText.contains("Wirid", ignoreCase = true) -> "📿"
+                            headerText.contains("Doa", ignoreCase = true) || headerText.contains("Do’a", ignoreCase = true) -> "🤲"
+                            else -> "🗓️"
+                        }
+                        Surface(
+                            color = MerahMarunGelap.copy(alpha = 0.08f),
+                            shape = RoundedCornerShape(10.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                            modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 4.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(text = icon, fontSize = (18 * fontScale).sp)
+                                Spacer(modifier = Modifier.width(10.dp))
+                                Text(
+                                    text = headerText,
+                                    fontSize = (16 * fontScale).sp,
+                                    fontWeight = FontWeight.ExtraBold,
+                                    color = MerahMarunGelap
+                                )
+                            }
+                        }
+                    } else if (isIslamicMonth(headerText)) {
                         val monthName = headerText.removePrefix("Ke-").removePrefix("Ka-").trim()
                         Surface(
                             color = MerahMarunGelap,
@@ -626,6 +742,37 @@ private fun SingleContinuousDocumentCard(
                                             color = MerahMarunGelap,
                                             modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
                                         )
+                                    }
+                                } else if (trimmedLine.startsWith("#### ") || (trimmedLine.startsWith("### ") && !isMonthHeader)) {
+                                    val headerText = trimmedLine.removePrefix("#### ").removePrefix("### ").trim()
+                                    val icon = when {
+                                        headerText.contains("Tanggal 1", ignoreCase = true) || headerText.contains("1.", ignoreCase = true) -> "1️⃣"
+                                        headerText.contains("Jumat", ignoreCase = true) || headerText.contains("Jum’at", ignoreCase = true) -> "🕌"
+                                        headerText.contains("15", ignoreCase = true) -> "🌕"
+                                        headerText.contains("30", ignoreCase = true) || headerText.contains("Akhir", ignoreCase = true) -> "🔚"
+                                        headerText.contains("Wirid", ignoreCase = true) -> "📿"
+                                        headerText.contains("Doa", ignoreCase = true) || headerText.contains("Do’a", ignoreCase = true) -> "🤲"
+                                        else -> "🗓️"
+                                    }
+                                    Surface(
+                                        color = MerahMarunGelap.copy(alpha = 0.08f),
+                                        shape = RoundedCornerShape(10.dp),
+                                        border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                                        modifier = Modifier.fillMaxWidth().padding(top = 10.dp, bottom = 4.dp)
+                                    ) {
+                                        Row(
+                                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(text = icon, fontSize = (18 * fontScale).sp)
+                                            Spacer(modifier = Modifier.width(10.dp))
+                                            Text(
+                                                text = headerText,
+                                                fontSize = (16 * fontScale).sp,
+                                                fontWeight = FontWeight.ExtraBold,
+                                                color = MerahMarunGelap
+                                            )
+                                        }
                                     }
                                 } else if (trimmedLine.startsWith("- ")) {
                                     // Bullet list item
@@ -942,6 +1089,67 @@ fun parseDocumentSections(docId: String, rawContent: String): List<ReaderDocumen
             sections.add(ReaderDocumentSection(id = "waktu_$i", title = header, content = sectionContent))
         }
         return sections
+    } else if (docId.startsWith("sholat_tahunan")) {
+        val annualRegex = Regex("""(?m)^##\s+(\d+\.\s+[^\n]+)""")
+        val matches = annualRegex.findAll(rawContent).toList()
+        if (matches.isEmpty()) {
+            return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
+        }
+
+        val sections = mutableListOf<ReaderDocumentSection>()
+        for (i in matches.indices) {
+            val match = matches[i]
+            val header = match.groupValues[1].trim()
+            val start = match.range.first
+            val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
+            val sectionContent = rawContent.substring(start, end).trim()
+            sections.add(ReaderDocumentSection(id = "tahunan_$i", title = header, content = sectionContent))
+        }
+        return sections
+    } else if (docId.startsWith("sholat_bulanan")) {
+        return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
+    } else if (docId.startsWith("sholat_rojab") || docId.startsWith("sholat_rajab")) {
+        val headerRegex = Regex("""(?m)^###\s+([^\n]+)""")
+        val matches = headerRegex.findAll(rawContent).toList()
+        if (matches.isEmpty()) {
+            return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
+        }
+
+        val sections = mutableListOf<ReaderDocumentSection>()
+        for (i in matches.indices) {
+            val match = matches[i]
+            val header = match.groupValues[1].trim()
+            val start = match.range.first
+            val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
+            val sectionContent = rawContent.substring(start, end).trim()
+            sections.add(ReaderDocumentSection(id = "rojab_$i", title = header, content = sectionContent))
+        }
+        return sections
+    } else if (docId.startsWith("sholat_safar")) {
+        val headerRegex = Regex("""(?m)^###\s+([^\n]+)""")
+        val matches = headerRegex.findAll(rawContent).toList()
+        if (matches.isEmpty()) {
+            return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
+        }
+
+        val sections = mutableListOf<ReaderDocumentSection>()
+        val firstMatch = matches.first()
+        if (firstMatch.range.first > 0) {
+            val introText = rawContent.substring(0, firstMatch.range.first).trim()
+            if (introText.isNotEmpty()) {
+                sections.add(ReaderDocumentSection(id = "intro", title = "Pengantar", content = introText))
+            }
+        }
+
+        for (i in matches.indices) {
+            val match = matches[i]
+            val header = match.groupValues[1].trim()
+            val start = match.range.first
+            val end = if (i + 1 < matches.size) matches[i + 1].range.first else rawContent.length
+            val sectionContent = rawContent.substring(start, end).trim()
+            sections.add(ReaderDocumentSection(id = "safar_$i", title = header, content = sectionContent))
+        }
+        return sections
     }
 
     return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
@@ -964,6 +1172,10 @@ fun DocumentSectionShortcutRow(
 
     val shortcutHeader = when {
         docId.startsWith("sholat_harian") -> "PILIH WAKTU SHOLAT :"
+        docId.startsWith("sholat_tahunan") -> "PILIH SHOLAT TAHUNAN :"
+        docId.startsWith("sholat_rojab") || docId.startsWith("sholat_rajab") -> "PILIH PANDUAN ROJAB :"
+        docId.startsWith("sholat_bulanan") -> "PILIH AMALIYAH BULANAN :"
+        docId.startsWith("sholat_safar") -> "PILIH PANDUAN SAFAR :"
         docId.startsWith("manqobah") -> "PILIH BULAN ISLAM :"
         else -> "PILIH BAGIAN :"
     }
@@ -990,32 +1202,75 @@ fun DocumentSectionShortcutRow(
                     ?.replace(" ", "") ?: ""
 
                 val (label, icon) = when {
+                    // Sholat Rojab
+                    docId.startsWith("sholat_rojab") || docId.startsWith("sholat_rajab") -> when {
+                        cleanTitle.contains("MAKLUMAT") -> "Maklumat" to "📜"
+                        cleanTitle.contains("SHOLATROJAB") -> "Ringkasan" to "🌙"
+                        cleanTitle.contains("15") -> "Tgl 15 Rojab" to "🌕"
+                        cleanTitle.contains("30") || cleanTitle.contains("AKHIR") -> "Akhir Rojab" to "🔚"
+                        cleanTitle.contains("JUMAT") -> "Malam Jum'at 1" to "🕌"
+                        cleanTitle.contains("TANGGAL1") || cleanTitle.contains("1.TANGGAL") -> "Tgl 1 Rojab" to "1️⃣"
+                        cleanTitle.contains("WIRID") -> "Wirid Maghrib" to "📿"
+                        cleanTitle.contains("DOA") -> "Doa Rojab" to "🤲"
+                        else -> (sec.title ?: "Bagian ${idx + 1}") to "🌙"
+                    }
+
+                    // Sholat Tahunan
+                    docId.startsWith("sholat_tahunan") -> when {
+                        cleanTitle.contains("ROJAB") -> "Sholat Rojab" to "🌙"
+                        cleanTitle.contains("NISFU") || cleanTitle.contains("SYABAN") || cleanTitle.contains("SABAN") -> "Sholat Nisfu Sa'ban" to "✨"
+                        cleanTitle.contains("TAROWIH") || cleanTitle.contains("TARAWIH") -> "Sholat Tarowih" to "🕌"
+                        cleanTitle.contains("LIDAF") -> "Sholat Lidaf'il bala" to "🛡️"
+                        cleanTitle.contains("LAILATUL") -> "Sholat Lailatul qodar" to "🌟"
+                        else -> (sec.title ?: "Sholat ${idx + 1}") to "🕌"
+                    }
+
                     // Sholat Harian
-                    cleanTitle == "RINGKASAN" -> "Ringkasan" to "📋"
-                    cleanTitle.contains("MALAM") -> "Malam" to "🌙"
-                    cleanTitle.contains("SHUBUH") || cleanTitle.contains("SUBUH") -> "Shubuh" to "🌅"
-                    cleanTitle.contains("ISYROQ") || cleanTitle.contains("ISYRAQ") -> "Isyroq" to "☀️"
-                    cleanTitle.contains("DHUHA") || cleanTitle.contains("DUHA") -> "Dhuha" to "🌤️"
-                    cleanTitle.contains("DZUHUR") || cleanTitle.contains("ZUHUR") -> "Dzuhur" to "☀️"
-                    cleanTitle.contains("ASHAR") || cleanTitle.contains("ASAR") -> "Ashar" to "🌇"
-                    cleanTitle.contains("MAGHRIB") -> "Maghrib" to "🌆"
-                    cleanTitle.contains("ISYA") -> "Isya" to "🌌"
+                    docId.startsWith("sholat_harian") -> when {
+                        cleanTitle == "RINGKASAN" -> "Ringkasan" to "📋"
+                        cleanTitle == "PENGANTAR" -> "Pengantar" to "📜"
+                        cleanTitle.contains("MALAM") -> "Malam" to "🌙"
+                        cleanTitle.contains("SHUBUH") || cleanTitle.contains("SUBUH") -> "Shubuh" to "🌅"
+                        cleanTitle.contains("ISYROQ") || cleanTitle.contains("ISYRAQ") -> "Isyroq" to "☀️"
+                        cleanTitle.contains("DHUHA") || cleanTitle.contains("DUHA") -> "Dhuha" to "🌤️"
+                        cleanTitle.contains("DZUHUR") || cleanTitle.contains("ZUHUR") -> "Dzuhur" to "☀️"
+                        cleanTitle.contains("ASHAR") || cleanTitle.contains("ASAR") -> "Ashar" to "🌇"
+                        cleanTitle.contains("MAGHRIB") -> "Maghrib" to "🌆"
+                        cleanTitle.contains("ISYA") -> "Isya" to "🌌"
+                        cleanTitle.contains("SEBELUM") || cleanTitle.contains("TIDUR") -> "Sebelum Tidur" to "🛌"
+                        else -> (sec.title ?: "Waktu ${idx + 1}") to "⏰"
+                    }
+
+                    // Sholat Safar
+                    docId.startsWith("sholat_safar") -> when {
+                        cleanTitle.contains("DZUHUR") -> "Dzuhur & Ashar" to "☀️"
+                        cleanTitle.contains("MAGHRIB") -> "Maghrib & Isya" to "🌆"
+                        cleanTitle.contains("CATATAN") -> "Catatan Safar" to "📝"
+                        else -> (sec.title ?: "Panduan ${idx + 1}") to "🚗"
+                    }
+
+                    // Sholat Bulanan
+                    docId.startsWith("sholat_bulanan") -> "Sholat Lailatul Qodar" to "🌟"
 
                     // Manqobah
-                    cleanTitle == "MUQODIMAH" -> "Muqodimah" to "📜"
-                    cleanTitle == "MUHARROM" -> "Muharrom" to "📅"
-                    cleanTitle in setOf("SHOOFAR", "SHOFAR") -> "Shoofar" to "📅"
-                    cleanTitle in setOf("ROBIULAWAL", "ROBIULAWWAL") -> "Robi'ul Awal" to "📅"
-                    cleanTitle.startsWith("ROBIUT") || cleanTitle.startsWith("ROBIUST") -> "Robi'uts Tsani" to "📅"
-                    cleanTitle.startsWith("JUMADILU") -> "Jumadil Ula" to "📅"
-                    cleanTitle.startsWith("JUMADIT") || cleanTitle.startsWith("JUMADIST") -> "Jumadits Tsaniyah" to "📅"
-                    cleanTitle in setOf("ROJAB", "RAJAB") -> "Rojab" to "📅"
-                    cleanTitle.startsWith("SYABAN") -> "Sya'ban" to "📅"
-                    cleanTitle.startsWith("ROMADHON") || cleanTitle.startsWith("RAMADHAN") -> "Romadhon" to "📅"
-                    cleanTitle.startsWith("SYAWAL") || cleanTitle.startsWith("SYAWWAL") -> "Syawal" to "📅"
-                    cleanTitle.startsWith("DZULQO") -> "Dzulqo'dah" to "📅"
-                    cleanTitle.startsWith("DZULHIJ") || cleanTitle.startsWith("ZULHIJ") -> "Dzulhijjah" to "📅"
-                    cleanTitle.startsWith("DOAMAN") -> "Doa Manqobah" to "🤲"
+                    docId.startsWith("manqobah") -> when {
+                        cleanTitle == "MUQODIMAH" -> "Muqodimah" to "📜"
+                        cleanTitle == "MUHARROM" -> "Muharrom" to "📅"
+                        cleanTitle in setOf("SHOOFAR", "SHOFAR") -> "Shoofar" to "📅"
+                        cleanTitle in setOf("ROBIULAWAL", "ROBIULAWWAL") -> "Robi'ul Awal" to "📅"
+                        cleanTitle.startsWith("ROBIUT") || cleanTitle.startsWith("ROBIUST") -> "Robi'uts Tsani" to "📅"
+                        cleanTitle.startsWith("JUMADILU") -> "Jumadil Ula" to "📅"
+                        cleanTitle.startsWith("JUMADIT") || cleanTitle.startsWith("JUMADIST") -> "Jumadits Tsaniyah" to "📅"
+                        cleanTitle in setOf("ROJAB", "RAJAB") -> "Rojab" to "📅"
+                        cleanTitle.startsWith("SYABAN") -> "Sya'ban" to "📅"
+                        cleanTitle.startsWith("ROMADHON") || cleanTitle.startsWith("RAMADHAN") -> "Romadhon" to "📅"
+                        cleanTitle.startsWith("SYAWAL") || cleanTitle.startsWith("SYAWWAL") -> "Syawal" to "📅"
+                        cleanTitle.startsWith("DZULQO") -> "Dzulqo'dah" to "📅"
+                        cleanTitle.startsWith("DZULHIJ") || cleanTitle.startsWith("ZULHIJ") -> "Dzulhijjah" to "📅"
+                        cleanTitle.startsWith("DOAMAN") -> "Doa Manqobah" to "🤲"
+                        else -> (sec.title ?: "Bulan ${idx + 1}") to "📅"
+                    }
+
                     else -> (sec.title ?: "Bagian ${idx + 1}") to "📌"
                 }
 

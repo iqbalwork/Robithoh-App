@@ -97,11 +97,18 @@ fun SholatModalBottomSheet(
     onItemClick: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val items = listOf(
+    val harianItems = listOf(
         SheetGridItem("harian", "Harian", "⏰", false, "sholat_harian"),
-        SheetGridItem("bulanan", "Bulanan", "📅", false, "amaliyah_muharrom"),
-        SheetGridItem("tahunan", "Tahunan", "🗓️", false, "sholat_rojab"),
-        SheetGridItem("safar", "Safar", "🕌", false, "sholat_tarowih")
+        SheetGridItem("bulanan", "Bulanan", "📅", false, "sholat_bulanan"),
+        SheetGridItem("safar", "Safar", "🚗", false, "sholat_safar")
+    )
+
+    val tahunanItems = listOf(
+        SheetGridItem("rojab", "Sholat Rojab", "🌙", false, "sholat_rojab"),
+        SheetGridItem("nisfu_syaban", "Nisfu Sya'ban", "✨", false, "sholat_nisfu_syaban"),
+        SheetGridItem("tarowih", "Tarowih", "🕌", false, "sholat_tarowih"),
+        SheetGridItem("lailatul_qodar", "Lailatul Qodar", "🌟", false, "sholat_lailatul_qodar"),
+        SheetGridItem("lidafil_bala", "Lidaf'il Bala", "🛡️", false, "sholat_lidafil_bala")
     )
 
     ModalBottomSheet(
@@ -116,22 +123,68 @@ fun SholatModalBottomSheet(
                 .padding(bottom = 36.dp)
         ) {
             Text(
-                text = "Sholat Sunnah & Waktu",
+                text = "Sholat",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(14.dp))
+
+            Text(
+                text = "WAKTU & SAFAR",
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextMuted,
+                letterSpacing = 0.5.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                items.forEach { item ->
+                harianItems.forEach { item ->
                     Box(modifier = Modifier.weight(1f)) {
                         SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
                     }
                 }
+                Spacer(modifier = Modifier.weight(1f))
+            }
+
+            Spacer(modifier = Modifier.height(18.dp))
+
+            Text(
+                text = "SHOLAT TAHUNAN",
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                color = TextMuted,
+                letterSpacing = 0.5.sp
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                tahunanItems.take(4).forEach { item ->
+                    Box(modifier = Modifier.weight(1f)) {
+                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                tahunanItems.drop(4).forEach { item ->
+                    Box(modifier = Modifier.weight(1f)) {
+                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
+                    }
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
     }

@@ -232,12 +232,7 @@ class PrayerTimesCalculator {
         val currentTotalSeconds = currentHour * 3600L + currentMinute * 60L + currentSecond
 
         val prayerEntries = listOf(
-            "Tahajjud" to parseTimeToSeconds(schedule.tahajjud),
-            "Waktal" to parseTimeToSeconds(schedule.waktal),
-            "Imsak" to parseTimeToSeconds(schedule.imsak),
             "Subuh" to parseTimeToSeconds(schedule.subuh),
-            "Isyroq" to parseTimeToSeconds(schedule.isyroq),
-            "Dhuha" to parseTimeToSeconds(schedule.dhuha),
             "Dzuhur" to parseTimeToSeconds(schedule.dzuhur),
             "Ashar" to parseTimeToSeconds(schedule.ashar),
             "Maghrib" to parseTimeToSeconds(schedule.maghrib),
@@ -283,12 +278,7 @@ class PrayerTimesCalculator {
         val remSeconds = remainingSec % 60L
 
         val formattedNextTime = when (nextName) {
-            "Tahajjud" -> schedule.tahajjud
-            "Waktal" -> schedule.waktal
-            "Imsak" -> schedule.imsak
             "Subuh" -> schedule.subuh
-            "Isyroq" -> schedule.isyroq
-            "Dhuha" -> schedule.dhuha
             "Dzuhur" -> schedule.dzuhur
             "Ashar" -> schedule.ashar
             "Maghrib" -> schedule.maghrib

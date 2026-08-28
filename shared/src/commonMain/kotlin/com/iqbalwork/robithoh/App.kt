@@ -8,8 +8,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.navigation.*
 
@@ -17,19 +19,24 @@ import com.iqbalwork.robithoh.navigation.*
 fun App() {
     RabithohTheme {
         com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
-        val backstack = remember { mutableStateListOf<ScreenKey>(ScreenKey.Home) }
-
-        val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-        val amaliyahViewModel = remember(database) {
-            com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
+        val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
+            mutableStateListOf<ScreenKey>(ScreenKey.Home)
         }
 
+        val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
+        val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
+            com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
+                database = database,
+                alarmScheduler = alarmScheduler
+            )
+        }
+        val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
+
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
-        // so the Home tab/sheet selection survives navigating away and back,
-        // instead of living inside MainAppContainer which NavDisplay tears
-        // down and rebuilds every time the backstack top changes.
-        var homeTab by remember { mutableStateOf(MainTab.HOME) }
-        var homeActiveSheet by remember { mutableStateOf<String?>(null) }
+        // so the Home tab/sheet selection survives navigating away and back and configuration changes
+        var homeTab by rememberSaveable { mutableStateOf(MainTab.HOME) }
+        var homeActiveSheet by rememberSaveable { mutableStateOf<String?>(null) }
 
         BackHandler(enabled = backstack.size > 1) {
             if (backstack.size > 1) {
@@ -71,7 +78,8 @@ fun App() {
                                 onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
                                 onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
                                 onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
-                                amaliyahViewModel = amaliyahViewModel
+                                amaliyahViewModel = amaliyahViewModel,
+                                audioPlayer = sharedAudioPlayer
                             )
                         }
                         is ScreenKey.DocumentReader -> {
@@ -87,6 +95,7 @@ fun App() {
                         }
                         is ScreenKey.Langgam -> {
                             com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
+                                audioPlayer = sharedAudioPlayer,
                                 onBack = {
                                     if (backstack.size > 1) {
                                         backstack.removeAt(backstack.lastIndex)

@@ -521,17 +521,17 @@ class AmaliyahRepository {
     fun getSholatSunnahList(): List<SpecialPrayer> = listOf(
         SpecialPrayer(
             id = "sholat_rajab",
-            title = "Sholat Sunnah Rajab Khusus",
-            arabicTitle = "صلاة رجب المخصوصة",
+            title = "Sholat Sunnah Bulan Rojab",
+            arabicTitle = "صَلَاةُ رَجَبٍ الْمَخْصُوْصَةُ",
             category = "Sholat Sunnah",
-            arabicText = "أُصَلِّي سُنَّةَ رَجَبَ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
-            latinText = "Ushallii sunnata Rajaba rak'ataini lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah Rajab dua rakaat karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah Rajab dua rakaat karana Allah Ta'ala.",
-            kaifiyat = "Dikerjakan pada malam pertama Rajab, malam Jumat pertama Rajab, malam 15 Rajab, dan malam terakhir Rajab. Setiap rakaat setelah Al-Fatihah membaca Surat Al-Ikhlas 3x dan Surat Al-Kafirun 3x.",
-            virtue = "Melebur dosa setahun, diberi pahala orang yang beribadah setahun, dan ditulis sebagai ahli surga.",
-            recommendedTime = "Malam hari di bulan Rajab ba'da Maghrib / Isya",
-            rakaatCount = 2
+            arabicText = "أُصَلِّي سُنَّةَ شَهْرِ رَجَبَ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ (مَأْمُوْمًا / إِمَامًا) لِلّٰهِ تَعَالَى",
+            latinText = "Ushallii sunnatan syahri Rajaba rak'ataini mustaqbilal qiblati (ma'muuman / imaaman) lillaahi Ta'aalaa.",
+            indonesianText = "Aku niat sholat sunnah bulan Rajab dua rakaat menghadap kiblat (sebagai makmum/imam) karena Allah Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah sasih Rajab dua rakaat mayun ka kiblat (ma'mum/imam) karana Allah Ta'ala.",
+            kaifiyat = "Jumlah keseluruhan 42 rakaat dilaksanakan ba'da ba'diyah Maghrib:\n1. Tgl 1 Rajab: 10 rakaat (5 salam), tiap rakaat ba'da Al-Fatihah baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa: Laa ilaaha illalloohu wahdahu laa syariikalah...\n2. Malam Jumat Pertama: 12 rakaat (6 salam, diawali puasa siang harinya), tiap rakaat ba'da Al-Fatihah baca Al-Qadr 3x & Al-Ikhlas 12x. Ba'da sholat baca Sholawat Nabi Ummi 70x, Sujud Tasbih 70x, Duduk Istighfar 70x, Sujud lagi Tasbih 70x.\n3. Tgl 15 Rajab: 10 rakaat (5 salam), baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa tauhid.\n4. Tgl 30 Rajab (Akhir Bulan): 10 rakaat (5 salam), baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa penutup.",
+            virtue = "Melebur dosa, memperoleh ampunan dan keselamatan dunia-akhirat, serta dicatat dalam golongan hamba yang dicintai Allah SWT.",
+            recommendedTime = "Antara Maghrib dan Isya (ba'da ba'diyah Maghrib) di bulan Rajab",
+            rakaatCount = 42
         ),
         SpecialPrayer(
             id = "sholat_nisfu_syaban",

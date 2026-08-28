@@ -133,7 +133,15 @@ CREATE TABLE PrayerSettingsEntity (
     custom_lng REAL,
     custom_location_name TEXT,
     custom_timezone_offset REAL,
-    is_gps INTEGER NOT NULL DEFAULT 0
+    is_gps INTEGER NOT NULL DEFAULT 0,
+    selected_adzan_voice_id TEXT NOT NULL DEFAULT 'misyari_rasyid',
+    custom_adzan_audio_path TEXT,
+    subuh_notif_enabled INTEGER NOT NULL DEFAULT 1,
+    dzuhur_notif_enabled INTEGER NOT NULL DEFAULT 1,
+    ashar_notif_enabled INTEGER NOT NULL DEFAULT 1,
+    maghrib_notif_enabled INTEGER NOT NULL DEFAULT 1,
+    isya_notif_enabled INTEGER NOT NULL DEFAULT 1,
+    imsak_notif_enabled INTEGER NOT NULL DEFAULT 0
 );
 
 getPrayerSettings:
@@ -142,8 +150,10 @@ SELECT * FROM PrayerSettingsEntity WHERE id = 1 LIMIT 1;
 insertOrUpdatePrayerSettings:
 INSERT OR REPLACE INTO PrayerSettingsEntity(
     id, method_id, imsak_offset, subuh_offset, terbit_offset, dzuhur_offset, ashar_offset, maghrib_offset, isya_offset, madhab,
-    custom_lat, custom_lng, custom_location_name, custom_timezone_offset, is_gps
-) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    custom_lat, custom_lng, custom_location_name, custom_timezone_offset, is_gps,
+    selected_adzan_voice_id, custom_adzan_audio_path,
+    subuh_notif_enabled, dzuhur_notif_enabled, ashar_notif_enabled, maghrib_notif_enabled, isya_notif_enabled, imsak_notif_enabled
+) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 updateCalculationMethod:
 UPDATE PrayerSettingsEntity
@@ -157,5 +167,21 @@ SET custom_lat = :customLat,
     custom_location_name = :customLocationName,
     custom_timezone_offset = :customTimezoneOffset,
     is_gps = :isGps
+WHERE id = 1;
+
+updateAdzanVoice:
+UPDATE PrayerSettingsEntity
+SET selected_adzan_voice_id = :selectedAdzanVoiceId,
+    custom_adzan_audio_path = :customAdzanAudioPath
+WHERE id = 1;
+
+updatePrayerNotificationToggles:
+UPDATE PrayerSettingsEntity
+SET subuh_notif_enabled = :subuh,
+    dzuhur_notif_enabled = :dzuhur,
+    ashar_notif_enabled = :ashar,
+    maghrib_notif_enabled = :maghrib,
+    isya_notif_enabled = :isya,
+    imsak_notif_enabled = :imsak
 WHERE id = 1;
 

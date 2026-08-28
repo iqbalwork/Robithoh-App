@@ -16,18 +16,159 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.feature.amaliyah.ui.AdzanVoicePickerSheet
+import com.iqbalwork.robithoh.feature.amaliyah.ui.PrayerNotificationModePickerSheet
 import kotlinx.coroutines.launch
 
-data class PrayerScheduleItem(
+data class PrayerTrackingItem(
     val name: String,
     val time: String,
     val isMandatory: Boolean,
-    val isCurrent: Boolean = false,
-    val isPast: Boolean = false,
-    val initialDone: Boolean = false
+    val isCurrent: Boolean,
+    val isPast: Boolean,
+    val statusSubtitle: String,
+    val progressFraction: Float? = null
 )
+
+private fun buildPrayerTrackingList(
+    schedule: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule?,
+    selectedDateOffsetDays: Int,
+    currentHour: Int,
+    currentMinute: Int,
+    currentSecond: Int
+): List<PrayerTrackingItem> {
+    if (schedule == null) {
+        return listOf(
+            PrayerTrackingItem("Imsak", "04:27", isMandatory = false, isCurrent = false, isPast = false, statusSubtitle = "Akan datang"),
+            PrayerTrackingItem("Subuh", "04:37", isMandatory = true, isCurrent = true, isPast = false, statusSubtitle = "Sedang berlangsung", progressFraction = 0.5f),
+            PrayerTrackingItem("Syuruq", "06:06", isMandatory = false, isCurrent = false, isPast = false, statusSubtitle = "Akan datang"),
+            PrayerTrackingItem("Dzuhur", "11:55", isMandatory = true, isCurrent = false, isPast = false, statusSubtitle = "Akan datang"),
+            PrayerTrackingItem("Ashar", "15:14", isMandatory = true, isCurrent = false, isPast = false, statusSubtitle = "Akan datang"),
+            PrayerTrackingItem("Maghrib", "17:57", isMandatory = true, isCurrent = false, isPast = false, statusSubtitle = "Akan datang"),
+            PrayerTrackingItem("Isya", "19:02", isMandatory = true, isCurrent = false, isPast = false, statusSubtitle = "Akan datang")
+        )
+    }
+
+    fun parseToSec(timeStr: String): Long {
+        val parts = timeStr.split(":")
+        if (parts.size < 2) return 0L
+        val h = parts[0].trim().toLongOrNull() ?: 0L
+        val m = parts[1].trim().toLongOrNull() ?: 0L
+        return h * 3600L + m * 60L
+    }
+
+    fun formatDuration(seconds: Long): String {
+        val hrs = seconds / 3600L
+        val mins = (seconds % 3600L) / 60L
+        return when {
+            hrs > 0 && mins > 0 -> "$hrs jam $mins m lagi"
+            hrs > 0 -> "$hrs jam lagi"
+            mins > 0 -> "$mins m lagi"
+            else -> "< 1 m lagi"
+        }
+    }
+
+    val currentSec = currentHour * 3600L + currentMinute * 60L + currentSecond
+
+    val rawEntries = listOf(
+        Triple("Imsak", schedule.imsak, false),
+        Triple("Subuh", schedule.subuh, true),
+        Triple("Syuruq", schedule.isyroq, false),
+        Triple("Dzuhur", schedule.dzuhur, true),
+        Triple("Ashar", schedule.ashar, true),
+        Triple("Maghrib", schedule.maghrib, true),
+        Triple("Isya", schedule.isya, true)
+    )
+
+    val timesSec = rawEntries.map { parseToSec(it.second) }
+
+    return rawEntries.mapIndexed { index, (name, timeStr, isMandatory) ->
+        val startSec = timesSec[index]
+        val endSec = if (index < timesSec.size - 1) {
+            timesSec[index + 1]
+        } else {
+            timesSec[0] + 86400L // Next day Imsak
+        }
+
+        if (selectedDateOffsetDays != 0) {
+            val status = if (selectedDateOffsetDays < 0) "Selesai" else "Akan datang"
+            PrayerTrackingItem(
+                name = name,
+                time = timeStr,
+                isMandatory = isMandatory,
+                isCurrent = false,
+                isPast = selectedDateOffsetDays < 0,
+                statusSubtitle = status,
+                progressFraction = null
+            )
+        } else {
+            val isActive = if (endSec > startSec) {
+                currentSec in startSec until endSec
+            } else {
+                currentSec >= startSec || currentSec < (endSec % 86400L)
+            }
+
+            val isPast = if (endSec > startSec) {
+                currentSec >= endSec
+            } else {
+                currentSec in (endSec % 86400L) until startSec
+            }
+
+            val isFuture = if (endSec > startSec) {
+                currentSec < startSec
+            } else {
+                false
+            }
+
+            if (isActive) {
+                val windowDuration = (endSec - startSec).coerceAtLeast(1L)
+                val elapsed = if (currentSec >= startSec) {
+                    currentSec - startSec
+                } else {
+                    currentSec + 86400L - startSec
+                }
+                val remainingSec = (windowDuration - elapsed).coerceAtLeast(0L)
+                val progress = (elapsed.toFloat() / windowDuration.toFloat()).coerceIn(0f, 1f)
+
+                PrayerTrackingItem(
+                    name = name,
+                    time = timeStr,
+                    isMandatory = isMandatory,
+                    isCurrent = true,
+                    isPast = false,
+                    statusSubtitle = "Sedang berlangsung · ${formatDuration(remainingSec)}",
+                    progressFraction = progress
+                )
+            } else if (isFuture) {
+                val remainingUntilStart = (startSec - currentSec).coerceAtLeast(0L)
+                PrayerTrackingItem(
+                    name = name,
+                    time = timeStr,
+                    isMandatory = isMandatory,
+                    isCurrent = false,
+                    isPast = false,
+                    statusSubtitle = formatDuration(remainingUntilStart),
+                    progressFraction = null
+                )
+            } else {
+                PrayerTrackingItem(
+                    name = name,
+                    time = timeStr,
+                    isMandatory = isMandatory,
+                    isCurrent = false,
+                    isPast = true,
+                    statusSubtitle = "Waktu telah masuk",
+                    progressFraction = null
+                )
+            }
+        }
+    }
+}
 
 @Composable
 fun SalatTabContent(
@@ -46,27 +187,14 @@ fun SalatTabContent(
 
     var pinnedScheduleSwitch by remember { mutableStateOf(true) }
 
-    val nextName = countdown?.nextPrayerName ?: "Subuh"
-
-    val prayerList = if (schedule != null) {
-        listOf(
-            PrayerScheduleItem("Imsak", schedule.imsak, isMandatory = false, isCurrent = nextName == "Imsak"),
-            PrayerScheduleItem("Subuh", schedule.subuh, isMandatory = true, isCurrent = nextName == "Subuh"),
-            PrayerScheduleItem("Syuruq", schedule.isyroq, isMandatory = false, isCurrent = nextName == "Syuruq" || nextName == "Isyroq"),
-            PrayerScheduleItem("Dzuhur", schedule.dzuhur, isMandatory = true, isCurrent = nextName == "Dzuhur"),
-            PrayerScheduleItem("Ashar", schedule.ashar, isMandatory = true, isCurrent = nextName == "Ashar"),
-            PrayerScheduleItem("Maghrib", schedule.maghrib, isMandatory = true, isCurrent = nextName == "Maghrib"),
-            PrayerScheduleItem("Isya", schedule.isya, isMandatory = true, isCurrent = nextName == "Isya")
-        )
-    } else {
-        listOf(
-            PrayerScheduleItem("Imsak", "04:28", isMandatory = false),
-            PrayerScheduleItem("Subuh", "04:38", isMandatory = true, isCurrent = true),
-            PrayerScheduleItem("Syuruq", "05:52", isMandatory = false),
-            PrayerScheduleItem("Dzuhur", "11:54", isMandatory = true),
-            PrayerScheduleItem("Ashar", "15:14", isMandatory = true),
-            PrayerScheduleItem("Maghrib", "17:52", isMandatory = true),
-            PrayerScheduleItem("Isya", "19:02", isMandatory = true)
+    val now = com.iqbalwork.robithoh.core.datetime.currentLocalDateTime()
+    val prayerList = remember(schedule, countdown, state.selectedDateOffsetDays, now.minute, now.second) {
+        buildPrayerTrackingList(
+            schedule = schedule,
+            selectedDateOffsetDays = state.selectedDateOffsetDays,
+            currentHour = now.hour,
+            currentMinute = now.minute,
+            currentSecond = now.second
         )
     }
 
@@ -209,119 +337,154 @@ fun SalatTabContent(
             )
         }
 
-        // 4. Prayer Items
+        // 4. Prayer Tracking Items
         items(prayerList.size) { i ->
             val p = prayerList[i]
+            val isLogged = state.loggedPrayers.contains(p.name)
 
-            if (p.isCurrent) {
-                // Highlighted Card for Current / Next Prayer
-                Card(
-                    shape = RoundedCornerShape(20.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFFDE8C4)),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(8.dp)
-                                        .clip(CircleShape)
-                                        .background(Color(0xFFEA580C))
-                                )
-                                Spacer(modifier = Modifier.width(10.dp))
-                                Text(
-                                    text = p.name,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp,
-                                    color = TextCharcoal
-                                )
-                            }
-
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text(
-                                    text = p.time,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
-                                    color = TextCharcoal
-                                )
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Surface(
-                                    color = Color(0xFFFCE1B6),
-                                    shape = CircleShape,
-                                    modifier = Modifier.size(34.dp)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Text("🔔", fontSize = 14.sp)
-                                    }
-                                }
-                            }
-                        }
-
-                        if (countdown != null) {
-                            Spacer(modifier = Modifier.height(10.dp))
-                            LinearProgressIndicator(
-                                progress = { countdown.progressFraction },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(4.dp)
-                                    .clip(RoundedCornerShape(2.dp)),
-                                color = MerahMerdeka,
-                                trackColor = Color(0xFFE2C99D)
-                            )
-                        }
+            Card(
+                shape = RoundedCornerShape(18.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = when {
+                        p.isCurrent -> Color(0xFFFDE8C4)
+                        p.isPast -> Color(0xFFF8F6F2)
+                        else -> Color.White
                     }
-                }
-            } else {
-                // Regular Card
-                Card(
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = if (p.isMandatory) Color.White else Color(0xFFF6F3EE)
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = if (p.isMandatory) 1.dp else 0.dp),
-                    modifier = Modifier.fillMaxWidth()
+                ),
+                elevation = CardDefaults.cardElevation(defaultElevation = if (p.isCurrent) 2.dp else (if (p.isMandatory) 1.dp else 0.dp)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 12.dp)
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 14.dp),
+                        modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text(
-                            text = p.name,
-                            fontWeight = if (p.isMandatory) FontWeight.SemiBold else FontWeight.Normal,
-                            fontSize = 15.sp,
-                            color = if (p.isMandatory) TextCharcoal else TextMuted
-                        )
+                        // Left: Checkbox + Name & Subtitle
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            // Checkbox (tap to log)
+                            Surface(
+                                shape = RoundedCornerShape(7.dp),
+                                color = if (isLogged) Color(0xFF1E824C) else Color.Transparent,
+                                border = if (!isLogged) androidx.compose.foundation.BorderStroke(1.5.dp, Color(0xFFC7BAA7)) else null,
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .clickable {
+                                        vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.TogglePrayerLogged(p.name))
+                                    }
+                            ) {
+                                if (isLogged) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text("✓", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                                    }
+                                }
+                            }
 
+                            Spacer(modifier = Modifier.width(12.dp))
+
+                            Column {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    if (p.isCurrent) {
+                                        Box(
+                                            modifier = Modifier
+                                                .size(7.dp)
+                                                .clip(CircleShape)
+                                                .background(Color(0xFFEA580C))
+                                        )
+                                        Spacer(modifier = Modifier.width(6.dp))
+                                    }
+                                    Text(
+                                        text = p.name,
+                                        fontWeight = if (p.isCurrent || p.isMandatory) FontWeight.Bold else FontWeight.SemiBold,
+                                        fontSize = 15.sp,
+                                        color = if (p.isPast) TextMuted else TextCharcoal
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = p.statusSubtitle,
+                                    fontSize = 11.sp,
+                                    fontWeight = if (p.isCurrent) FontWeight.Medium else FontWeight.Normal,
+                                    color = if (p.isCurrent) Color(0xFF8C5B00) else TextMuted
+                                )
+                            }
+                        }
+
+                        // Right: Time + Bell
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
                                 text = p.time,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                color = if (p.isMandatory) TextCharcoal else TextMuted
+                                fontSize = if (p.isCurrent) 17.sp else 16.sp,
+                                color = if (p.isPast) TextMuted else TextCharcoal
                             )
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Surface(
-                                color = if (p.isMandatory) Color(0xFFE2F3E7) else Color.Transparent,
-                                shape = CircleShape,
-                                modifier = Modifier.size(34.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text(if (p.name == "Subuh") "🔊" else "🔔", fontSize = 13.sp)
+                            val prayerType = when (p.name) {
+                                "Imsak" -> PrayerType.IMSAK
+                                "Subuh" -> PrayerType.SUBUH
+                                "Dzuhur" -> PrayerType.DZUHUR
+                                "Ashar" -> PrayerType.ASHAR
+                                "Maghrib" -> PrayerType.MAGHRIB
+                                "Isya" -> PrayerType.ISYA
+                                else -> null
+                            }
+                            val notifMode = prayerType?.let { state.notificationSettings.getPrayerMode(it) }
+
+                            if (notifMode != null && prayerType != null) {
+                                Spacer(modifier = Modifier.width(10.dp))
+                                val bgModeColor = when (notifMode) {
+                                    PrayerNotificationMode.ADZAN -> if (p.isCurrent) Color(0xFFFCE1B6) else Color(0xFFE2F3E7)
+                                    PrayerNotificationMode.PUSH_NOTIFICATION -> Color(0xFFE1F5FE)
+                                    PrayerNotificationMode.SILENT -> Color(0xFFF0F0F0)
+                                }
+
+                                Surface(
+                                    color = bgModeColor,
+                                    shape = CircleShape,
+                                    modifier = Modifier
+                                        .size(34.dp)
+                                        .clickable {
+                                            vm.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(prayerType))
+                                        }
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(notifMode.icon, fontSize = 14.sp)
+                                    }
                                 }
                             }
                         }
                     }
+
+                    // Progress Bar for Active Prayer Window
+                    if (p.isCurrent && p.progressFraction != null) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        LinearProgressIndicator(
+                            progress = { p.progressFraction },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(4.dp)
+                                .clip(RoundedCornerShape(2.dp)),
+                            color = Color(0xFF2C2A29),
+                            trackColor = Color(0xFFE2C99D)
+                        )
+                    }
                 }
             }
+        }
+
+        item {
+            Text(
+                text = "Tap a row to log its status · tap the icon to set notifications",
+                fontSize = 11.5.sp,
+                color = TextMuted,
+                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+            )
         }
 
         // 5. Pengaturan Sholat Section
@@ -337,6 +500,17 @@ fun SalatTabContent(
         }
 
         item {
+            val notif = state.notificationSettings
+            val selectedVoice = remember(notif.selectedVoiceId) {
+                AdzanVoices.findById(notif.selectedVoiceId)
+            }
+            val customPath = notif.customAudioPath
+            val voiceSubtitle = if (notif.selectedVoiceId == "custom" && !customPath.isNullOrBlank()) {
+                "Audio Kustom (${customPath.substringAfterLast("/")})"
+            } else {
+                "${selectedVoice.title} (${if (selectedVoice.isBuiltIn) "bawaan" else "custom"})"
+            }
+
             Card(
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -348,7 +522,10 @@ fun SalatTabContent(
                         icon = "🔔",
                         iconBg = Color(0xFFFFECEF),
                         title = "Suara adzan",
-                        subtitle = "Misyari Rasyid (bawaan)"
+                        subtitle = voiceSubtitle,
+                        onClick = {
+                            vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
+                        }
                     )
                     HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     Row(
@@ -401,6 +578,35 @@ fun SalatTabContent(
         item {
             Spacer(modifier = Modifier.height(64.dp))
         }
+    }
+
+    if (state.isAdzanPickerSheetOpen) {
+        AdzanVoicePickerSheet(
+            selectedVoiceId = state.notificationSettings.selectedVoiceId,
+            onSelectVoice = { voiceId ->
+                vm.onIntent(AmaliyahUiIntent.SelectAdzanVoice(voiceId))
+            },
+            onDismiss = {
+                vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(false))
+            }
+        )
+    }
+
+    state.activeNotificationModePickerPrayer?.let { activePrayer ->
+        val currentMode = state.notificationSettings.getPrayerMode(activePrayer)
+        PrayerNotificationModePickerSheet(
+            prayerType = activePrayer,
+            currentMode = currentMode,
+            onSelectMode = { mode ->
+                vm.onIntent(AmaliyahUiIntent.SetPrayerNotificationMode(activePrayer, mode))
+            },
+            onTestTrigger = { mode ->
+                vm.onIntent(AmaliyahUiIntent.TestTriggerPrayerNotification(activePrayer, mode))
+            },
+            onDismiss = {
+                vm.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(null))
+            }
+        )
     }
 }
 

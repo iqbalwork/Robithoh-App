@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 
 private val MerahMerdeka = Color(0xFFCE1126)
@@ -200,11 +202,11 @@ fun AmaliyahScreen(
     viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val vm = viewModel ?: androidx.compose.runtime.remember(database) {
+    val vm = viewModel ?: viewModel {
         com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
     }
     val state by vm.uiState.collectAsState()
-    var isShowingPrayerTimesDetail by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    var isShowingPrayerTimesDetail by rememberSaveable { mutableStateOf(false) }
 
     if (isShowingPrayerTimesDetail) {
         com.iqbalwork.robithoh.feature.amaliyah.ui.PrayerTimesScreen(
@@ -230,7 +232,7 @@ fun PrayerCalculationMethodScreen(
     viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val vm = viewModel ?: androidx.compose.runtime.remember(database) {
+    val vm = viewModel ?: viewModel {
         com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
     }
     val state by vm.uiState.collectAsState()
@@ -250,7 +252,7 @@ fun PrayerAdjustmentsScreen(
     viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val vm = viewModel ?: androidx.compose.runtime.remember(database) {
+    val vm = viewModel ?: viewModel {
         com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
     }
     val state by vm.uiState.collectAsState()
@@ -275,7 +277,7 @@ fun PrayerAdjustmentsScreen(
 @Composable
 fun TasbihScreen(
     onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = androidx.compose.runtime.remember {
+    viewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel {
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel()
     }
 ) {
@@ -291,7 +293,7 @@ fun TasbihScreen(
 fun ManaqibListScreen(
     onChapterClick: (Int) -> Unit,
     onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel = androidx.compose.runtime.remember {
+    viewModel: com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel = viewModel {
         com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel(
             com.iqbalwork.robithoh.feature.manaqib.data.ManaqibRepositoryImpl()
         )
@@ -308,7 +310,7 @@ fun ManaqibListScreen(
 fun ManaqibDetailScreen(
     chapterNumber: Int,
     onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel = androidx.compose.runtime.remember {
+    viewModel: com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel = viewModel(key = "manaqib_detail_$chapterNumber") {
         com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel(
             com.iqbalwork.robithoh.feature.manaqib.data.ManaqibRepositoryImpl()
         )
@@ -327,7 +329,7 @@ fun QuranListScreen(
     onBack: () -> Unit
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val viewModel = androidx.compose.runtime.remember(database) {
+    val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
             com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
         )
@@ -347,7 +349,7 @@ fun QuranSurahScreen(
     initialAyahNumber: Int? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val viewModel = androidx.compose.runtime.remember(database) {
+    val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_surah_$surahNumber") {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
             com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
         )

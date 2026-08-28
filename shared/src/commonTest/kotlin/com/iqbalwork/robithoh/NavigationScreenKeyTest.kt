@@ -33,4 +33,30 @@ class NavigationScreenKeyTest {
         val deserializedSurah = json.decodeFromString<ScreenKey>(serializedSurah)
         assertEquals(36, (deserializedSurah as ScreenKey.QuranSurah).surahNumber)
     }
+
+    @Test
+    fun testScreenKeyListSaverPreservesBackstack() {
+        val originalBackstack = androidx.compose.runtime.mutableStateListOf<ScreenKey>(
+            ScreenKey.Home,
+            ScreenKey.QuranList,
+            ScreenKey.QuranSurah(surahNumber = 18, ayahNumber = 40),
+            ScreenKey.DocumentReader(documentId = "dzikir_tqn")
+        )
+
+        // Save state (Simulate configuration change / activity save instance)
+        val saved = with(com.iqbalwork.robithoh.navigation.ScreenKeyListSaver) {
+            androidx.compose.runtime.saveable.SaverScope { true }.save(originalBackstack)
+        }
+
+        // Restore state (Simulate activity recreate)
+        @Suppress("UNCHECKED_CAST")
+        val restored = com.iqbalwork.robithoh.navigation.ScreenKeyListSaver.restore(saved as Any)
+
+        assertEquals(4, restored?.size)
+        assertEquals(ScreenKey.Home, restored?.get(0))
+        assertEquals(ScreenKey.QuranList, restored?.get(1))
+        assertEquals(ScreenKey.QuranSurah(surahNumber = 18, ayahNumber = 40), restored?.get(2))
+        assertEquals(ScreenKey.DocumentReader(documentId = "dzikir_tqn"), restored?.get(3))
+    }
 }
+

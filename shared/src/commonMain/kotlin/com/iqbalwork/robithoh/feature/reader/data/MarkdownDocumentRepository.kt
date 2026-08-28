@@ -176,13 +176,44 @@ class MarkdownDocumentRepository {
             isSingleDocumentView = true
         ),
         LiturgyDocument(
+            id = "sholat_bulanan",
+            title = "Sholat Bulanan",
+            subtitle = "Amaliyah & sholat sunnah bulanan TQN Sirnarasa",
+            category = "Sholat",
+            fileName = "SHOLAT_BULANAN.md",
+            arabicTitle = "صَلَوَاتُ الْأَشْهُرِ",
+            iconName = "bulanan",
+            isSingleDocumentView = true
+        ),
+        LiturgyDocument(
+            id = "sholat_tahunan",
+            title = "Sholat Tahunan",
+            subtitle = "Kumpulan sholat sunnah tahunan TQN Sirnarasa",
+            category = "Sholat",
+            fileName = "SHOLAT_TAHUNAN.md",
+            arabicTitle = "صَلَوَاتُ السَّنَوِيَّةِ",
+            iconName = "rojab",
+            isSingleDocumentView = true
+        ),
+        LiturgyDocument(
+            id = "sholat_safar",
+            title = "Sholat Safar",
+            subtitle = "Panduan sholat qoshor & jamak taqdim dalam perjalanan",
+            category = "Sholat",
+            fileName = "SHOLAT_SAFAR.md",
+            arabicTitle = "صَلَاةُ السَّفَرِ",
+            iconName = "safar",
+            isSingleDocumentView = true
+        ),
+        LiturgyDocument(
             id = "sholat_tarowih",
             title = "Sholat Tarowih & Witir",
             subtitle = "Kaifiyat sholat tarowih & witir TQN",
             category = "Sholat",
             fileName = "SHOLAT_TAROWIH.md",
             arabicTitle = "صَلَاةُ التَّرَاوِيحِ",
-            iconName = "tarowih"
+            iconName = "tarowih",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholat_rojab",
@@ -191,7 +222,8 @@ class MarkdownDocumentRepository {
             category = "Sholat",
             fileName = "SHOLAT_ROJAB.md",
             arabicTitle = "صَلَاةُ رَجَبٍ",
-            iconName = "rojab"
+            iconName = "rojab",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholat_nisfu_syaban",
@@ -200,7 +232,8 @@ class MarkdownDocumentRepository {
             category = "Sholat",
             fileName = "SHOLAT_NISFU_SYABAN.md",
             arabicTitle = "صَلَاةُ نِصْفِ شَعْبَانَ",
-            iconName = "syaban"
+            iconName = "syaban",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholat_lailatul_qodar",
@@ -209,7 +242,8 @@ class MarkdownDocumentRepository {
             category = "Sholat",
             fileName = "SHOLAT_LAILATUL_QODAR.md",
             arabicTitle = "صَلَاةُ لَيْلَةِ الْقَدْرِ",
-            iconName = "romadhon"
+            iconName = "romadhon",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "sholat_lidafil_bala",
@@ -218,7 +252,8 @@ class MarkdownDocumentRepository {
             category = "Sholat",
             fileName = "SHOLAT_LIDAFIL_BALA.md",
             arabicTitle = "صَلَاةُ لِدَفْعِ الْبَلَاءِ",
-            iconName = "shofar_icon"
+            iconName = "shofar_icon",
+            isSingleDocumentView = true
         ),
 
         // Sholawat

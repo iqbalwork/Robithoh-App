@@ -120,3 +120,182 @@ data class LocationPreset(
     val timezoneOffset: Double,
     val province: String
 )
+
+@Serializable
+data class AdzanVoiceOption(
+    val id: String,
+    val title: String,
+    val subtitle: String,
+    val audioFileName: String,
+    val fajrAudioFileName: String = audioFileName,
+    val isBuiltIn: Boolean = true,
+    val isCustom: Boolean = false
+) {
+    fun getAudioForPrayer(prayerName: String): String {
+        val cleanName = prayerName.trim().lowercase()
+        return if (cleanName == "subuh" || cleanName == "fajr") {
+            fajrAudioFileName
+        } else {
+            audioFileName
+        }
+    }
+}
+
+object AdzanVoices {
+    val MISYARI_RASYID = AdzanVoiceOption(
+        id = "misyari_rasyid",
+        title = "Misyari Rasyid Al-Afasi",
+        subtitle = "Lantunan adzan merdu & syahdu",
+        audioFileName = "adzan_misyari_rasyid.mp3",
+        fajrAudioFileName = "adzan_misyari_rasyid_fajr.mp3",
+        isBuiltIn = true
+    )
+
+    val AHMAD_AL_NAFEES = AdzanVoiceOption(
+        id = "ahmad_al_nafees",
+        title = "Ahmad al-Nafees",
+        subtitle = "Lantunan adzan khas Kuwait",
+        audioFileName = "adzan_ahmad_al_nafees.mp3",
+        fajrAudioFileName = "adzan_ahmad_al_nafees_fajr.mp3",
+        isBuiltIn = true
+    )
+
+    val MANSOUR_AL_ZAHRANI = AdzanVoiceOption(
+        id = "mansour_al_zahrani",
+        title = "Mansour Al-Zahrani",
+        subtitle = "Lantunan adzan khas jazirah Arab",
+        audioFileName = "adzan_mansour_al_zahrani.mp3",
+        fajrAudioFileName = "adzan_mansour_al_zahrani_fajr.mp3",
+        isBuiltIn = true
+    )
+
+    val HAFIZ_MUSTAFA_OZCAN = AdzanVoiceOption(
+        id = "hafiz_mustafa_ozcan",
+        title = "Hafiz Mustafa Özcan",
+        subtitle = "Lantunan adzan langgam Turki / Utsmani",
+        audioFileName = "adzan_hafiz_mustafa_ozcan.mp3",
+        fajrAudioFileName = "adzan_hafiz_mustafa_ozcan_fajr.mp3",
+        isBuiltIn = true
+    )
+
+    val ALL: List<AdzanVoiceOption> = listOf(
+        MISYARI_RASYID,
+        AHMAD_AL_NAFEES,
+        MANSOUR_AL_ZAHRANI,
+        HAFIZ_MUSTAFA_OZCAN
+    )
+
+    fun findById(id: String): AdzanVoiceOption {
+        return ALL.find { it.id == id } ?: MISYARI_RASYID
+    }
+}
+
+@Serializable
+enum class PrayerNotificationMode(
+    val id: String,
+    val title: String,
+    val description: String,
+    val icon: String
+) {
+    ADZAN(
+        id = "adzan",
+        title = "Adzan (Alarm)",
+        description = "Memutar lantunan suara adzan lengkap saat waktu sholat tiba",
+        icon = "🔔"
+    ),
+    PUSH_NOTIFICATION(
+        id = "push",
+        title = "Push Notifikasi",
+        description = "Notifikasi pop-up layar dengan getaran dan nada singkat",
+        icon = "💬"
+    ),
+    SILENT(
+        id = "silent",
+        title = "Senyap (Off)",
+        description = "Tidak ada notifikasi dan suara alarm",
+        icon = "🔕"
+    );
+
+    fun nextMode(): PrayerNotificationMode = when (this) {
+        ADZAN -> PUSH_NOTIFICATION
+        PUSH_NOTIFICATION -> SILENT
+        SILENT -> ADZAN
+    }
+
+    companion object {
+        fun fromId(id: String?): PrayerNotificationMode {
+            return entries.find { it.id.equals(id, ignoreCase = true) } ?: ADZAN
+        }
+
+        fun fromDbValue(value: Long): PrayerNotificationMode = when (value) {
+            2L -> ADZAN
+            1L -> PUSH_NOTIFICATION
+            else -> SILENT
+        }
+
+        fun toDbValue(mode: PrayerNotificationMode): Long = when (mode) {
+            ADZAN -> 2L
+            PUSH_NOTIFICATION -> 1L
+            SILENT -> 0L
+        }
+    }
+}
+
+@Serializable
+data class PrayerNotificationSettings(
+    val subuhMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
+    val dzuhurMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
+    val asharMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
+    val maghribMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
+    val isyaMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
+    val imsakMode: PrayerNotificationMode = PrayerNotificationMode.PUSH_NOTIFICATION,
+    val selectedVoiceId: String = "misyari_rasyid",
+    val customAudioPath: String? = null
+) {
+    val isSubuhEnabled: Boolean get() = subuhMode != PrayerNotificationMode.SILENT
+    val isDzuhurEnabled: Boolean get() = dzuhurMode != PrayerNotificationMode.SILENT
+    val isAsharEnabled: Boolean get() = asharMode != PrayerNotificationMode.SILENT
+    val isMaghribEnabled: Boolean get() = maghribMode != PrayerNotificationMode.SILENT
+    val isIsyaEnabled: Boolean get() = isyaMode != PrayerNotificationMode.SILENT
+    val isImsakEnabled: Boolean get() = imsakMode != PrayerNotificationMode.SILENT
+
+    fun isPrayerEnabled(type: PrayerType): Boolean = when (type) {
+        PrayerType.SUBUH -> isSubuhEnabled
+        PrayerType.DZUHUR -> isDzuhurEnabled
+        PrayerType.ASHAR -> isAsharEnabled
+        PrayerType.MAGHRIB -> isMaghribEnabled
+        PrayerType.ISYA -> isIsyaEnabled
+        PrayerType.IMSAK -> isImsakEnabled
+        PrayerType.TERBIT -> false
+    }
+
+    fun getPrayerMode(type: PrayerType): PrayerNotificationMode = when (type) {
+        PrayerType.SUBUH -> subuhMode
+        PrayerType.DZUHUR -> dzuhurMode
+        PrayerType.ASHAR -> asharMode
+        PrayerType.MAGHRIB -> maghribMode
+        PrayerType.ISYA -> isyaMode
+        PrayerType.IMSAK -> imsakMode
+        PrayerType.TERBIT -> PrayerNotificationMode.SILENT
+    }
+
+    fun withPrayerMode(type: PrayerType, mode: PrayerNotificationMode): PrayerNotificationSettings = when (type) {
+        PrayerType.SUBUH -> copy(subuhMode = mode)
+        PrayerType.DZUHUR -> copy(dzuhurMode = mode)
+        PrayerType.ASHAR -> copy(asharMode = mode)
+        PrayerType.MAGHRIB -> copy(maghribMode = mode)
+        PrayerType.ISYA -> copy(isyaMode = mode)
+        PrayerType.IMSAK -> copy(imsakMode = mode)
+        PrayerType.TERBIT -> this
+    }
+
+    fun withCycledPrayerMode(type: PrayerType): PrayerNotificationSettings {
+        val current = getPrayerMode(type)
+        return withPrayerMode(type, current.nextMode())
+    }
+
+    fun withToggledPrayer(type: PrayerType, enabled: Boolean): PrayerNotificationSettings {
+        val mode = if (enabled) PrayerNotificationMode.ADZAN else PrayerNotificationMode.SILENT
+        return withPrayerMode(type, mode)
+    }
+}

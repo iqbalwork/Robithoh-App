@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,12 +58,12 @@ fun QuranReaderScreen(
     val surah = state.currentSurah
     val currentSurahNumber = surah?.number ?: surahNumber
     val fontScale = state.fontScale
-    var showLatin by remember { mutableStateOf(true) }
-    var showTranslation by remember { mutableStateOf(true) }
-    var showSettingsDialog by remember { mutableStateOf(false) }
-    var showGoToSheet by remember { mutableStateOf(false) }
+    var showLatin by rememberSaveable { mutableStateOf(true) }
+    var showTranslation by rememberSaveable { mutableStateOf(true) }
+    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+    var showGoToSheet by rememberSaveable { mutableStateOf(false) }
     var selectedAyahForOptions by remember { mutableStateOf<Ayah?>(null) }
-    var pendingScrollAyah by remember { mutableStateOf(initialAyahNumber) }
+    var pendingScrollAyah by rememberSaveable { mutableStateOf(initialAyahNumber) }
 
     // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless At-Taubah.
     val ayahListOffset = if (currentSurahNumber != 9) 3 else 2

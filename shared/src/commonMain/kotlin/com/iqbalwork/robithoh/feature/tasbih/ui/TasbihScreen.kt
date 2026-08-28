@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,8 +32,8 @@ fun TasbihScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
-    var showDzikirSelectorSheet by remember { mutableStateOf(false) }
-    var customTargetInput by remember { mutableStateOf(state.targetCount.toString()) }
+    var showDzikirSelectorSheet by rememberSaveable { mutableStateOf(false) }
+    var customTargetInput by rememberSaveable { mutableStateOf(state.targetCount.toString()) }
 
     val isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0
     val progressPercent = if (state.targetCount > 0) {
