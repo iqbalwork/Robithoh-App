@@ -50,7 +50,7 @@ import com.iqbalwork.robithoh.feature.profile.ui.SettingsTabContent
 import kotlinx.coroutines.launch
 
 enum class MainTab(val title: String, val icon: String) {
-    HOME("Home", "🏠"),
+    HOME("Beranda", "🏠"),
     SALAT("Sholat", "🕌"),
     KITAB("Al Quran", "📖"),
     PENGATURAN("Pengaturan", "⚙️")

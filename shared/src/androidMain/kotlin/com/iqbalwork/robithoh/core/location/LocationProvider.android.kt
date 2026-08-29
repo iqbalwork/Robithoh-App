@@ -124,11 +124,16 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
         val tzOffset = TimeZone.getDefault().rawOffset.toDouble() / 3600000.0
 
         val cityName = try {
-            val geocoder = Geocoder(context, Locale.getDefault())
+            val geocoder = Geocoder(context, Locale("id", "ID"))
             val addresses = geocoder.getFromLocation(lat, lng, 1)
             if (!addresses.isNullOrEmpty()) {
                 val addr = addresses[0]
-                addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: "Lokasi GPS"
+                var rawName = addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: "Lokasi GPS"
+                if (rawName.endsWith(" City", ignoreCase = true)) {
+                    val base = rawName.substring(0, rawName.length - 5).trim()
+                    rawName = "Kota $base"
+                }
+                rawName
             } else {
                 "Lokasi GPS (${formatCoord(lat)}, ${formatCoord(lng)})"
             }

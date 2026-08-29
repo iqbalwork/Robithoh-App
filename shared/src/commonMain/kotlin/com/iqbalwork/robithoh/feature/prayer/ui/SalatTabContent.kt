@@ -2,12 +2,38 @@ package com.iqbalwork.robithoh.feature.prayer.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,7 +41,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
@@ -185,8 +215,6 @@ fun SalatTabContent(
     val schedule = state.prayerSchedule
     val countdown = state.nextPrayerCountdown
 
-    var pinnedScheduleSwitch by remember { mutableStateOf(true) }
-
     val now = com.iqbalwork.robithoh.core.datetime.currentLocalDateTime()
     val prayerList = remember(schedule, countdown, state.selectedDateOffsetDays, now.minute, now.second) {
         buildPrayerTrackingList(
@@ -242,7 +270,7 @@ fun SalatTabContent(
             ) {
                 Column {
                     Text(
-                        text = "Sholat & Waktu",
+                        text = "Jadwal Sholat",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextCharcoal
@@ -480,7 +508,7 @@ fun SalatTabContent(
 
         item {
             Text(
-                text = "Tap a row to log its status · tap the icon to set notifications",
+                text = "Ketuk baris untuk mencatat status · ketuk ikon untuk mengatur notifikasi",
                 fontSize = 11.5.sp,
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
@@ -508,7 +536,7 @@ fun SalatTabContent(
             val voiceSubtitle = if (notif.selectedVoiceId == "custom" && !customPath.isNullOrBlank()) {
                 "Audio Kustom (${customPath.substringAfterLast("/")})"
             } else {
-                "${selectedVoice.title} (${if (selectedVoice.isBuiltIn) "bawaan" else "custom"})"
+                "${selectedVoice.title} (${if (selectedVoice.isBuiltIn) "bawaan" else "kustom"})"
             }
 
             Card(
@@ -533,25 +561,25 @@ fun SalatTabContent(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
                             Surface(
-                                color = Color(0xFFE8F5E9),
+                                color = Color(0xFFFFF3E0),
                                 shape = CircleShape,
                                 modifier = Modifier.size(36.dp)
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
-                                    Text("📍", fontSize = 14.sp)
+                                    Text("⏱️", fontSize = 14.sp)
                                 }
                             }
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
-                                Text("Jadwal tersemat", fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
-                                Text("Sholat berikutnya di notifikasi", fontSize = 11.sp, color = TextMuted)
+                                Text("Pengingat 10 menit sebelum sholat", fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
+                                Text("Notifikasi persiapan 10 menit sebelum waktu sholat", fontSize = 11.sp, color = TextMuted)
                             }
                         }
                         Switch(
-                            checked = pinnedScheduleSwitch,
-                            onCheckedChange = { pinnedScheduleSwitch = it },
+                            checked = state.notificationSettings.isPrePrayerReminderEnabled,
+                            onCheckedChange = { vm.onIntent(AmaliyahUiIntent.TogglePrePrayerReminder(it)) },
                             colors = SwitchDefaults.colors(checkedTrackColor = MerahMerdeka)
                         )
                     }

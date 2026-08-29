@@ -3,12 +3,16 @@ package com.iqbalwork.robithoh.feature.amaliyah.presentation
 import androidx.lifecycle.viewModelScope
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.datetime.currentLocalDateTime
-import com.iqbalwork.robithoh.core.designsystem.component.LiturgyLanguage
-import com.iqbalwork.robithoh.core.location.UserLocation
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
 import com.iqbalwork.robithoh.feature.amaliyah.data.AmaliyahRepository
 import com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator
-import com.iqbalwork.robithoh.feature.amaliyah.model.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethods
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerTimeAdjustments
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -206,6 +210,12 @@ class AmaliyahViewModel(
             }
             is AmaliyahUiIntent.TogglePrayerNotification -> {
                 val updatedNotif = currentState.notificationSettings.withToggledPrayer(intent.prayerType, intent.enabled)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistPrayerNotificationToggles(updatedNotif)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
+            is AmaliyahUiIntent.TogglePrePrayerReminder -> {
+                val updatedNotif = currentState.notificationSettings.withPrePrayerReminder(intent.enabled)
                 updateState { copy(notificationSettings = updatedNotif) }
                 persistPrayerNotificationToggles(updatedNotif)
                 syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)

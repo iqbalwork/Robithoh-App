@@ -2,11 +2,24 @@ package com.iqbalwork.robithoh.feature.amaliyah.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,7 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
 
@@ -37,31 +54,31 @@ fun PrayerNotificationModePickerSheet(
         listOf(
             Triple(
                 PrayerNotificationMode.PUSH_NOTIFICATION,
-                "Push notification",
-                "A regular notification with your device tone"
+                "Push Notifikasi",
+                "Notifikasi layar standar dengan nada dering perangkat"
             ),
             Triple(
                 PrayerNotificationMode.SILENT,
-                "Silent",
-                "No notification"
+                "Senyap",
+                "Tidak ada notifikasi dan suara alarm"
             )
         )
     } else {
         listOf(
             Triple(
                 PrayerNotificationMode.ADZAN,
-                "Adzan alarm",
-                "Full adzan sound + full-screen alarm"
+                "Suara Adzan (Alarm)",
+                "Lantunan adzan lengkap & notifikasi waktu sholat"
             ),
             Triple(
                 PrayerNotificationMode.PUSH_NOTIFICATION,
-                "Push notification",
-                "A regular notification with your device tone"
+                "Push Notifikasi",
+                "Notifikasi layar standar dengan nada dering perangkat"
             ),
             Triple(
                 PrayerNotificationMode.SILENT,
-                "Silent",
-                "No notification"
+                "Senyap",
+                "Tidak ada notifikasi dan suara alarm"
             )
         )
     }
@@ -89,7 +106,7 @@ fun PrayerNotificationModePickerSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                text = "${prayerType.label} notification",
+                text = "Pengaturan Notifikasi ${prayerType.label}",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = if (isDark) PutihBersih else Color(0xFF2D2A26),

@@ -42,8 +42,11 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
             } else {
                 rawMode
             }
+            val preReqCode = reqCode + 100 // 201..206
+
             if (mode == com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT) {
                 cancelAlarm(reqCode)
+                cancelAlarm(preReqCode)
                 continue
             }
 
@@ -121,12 +124,44 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                         }
                     } catch (_: Exception) {}
                 }
+
+                // Schedule 10-minute Pre-Prayer Reminder
+                if (settings.isPrePrayerReminderEnabled) {
+                    val preTriggerMillis = triggerMillis - (10 * 60 * 1000L)
+                    if (preTriggerMillis > System.currentTimeMillis()) {
+                        val preIntent = Intent(context, PrayerAlarmReceiver::class.java).apply {
+                            putExtra(PrayerAdzanService.EXTRA_PRAYER_NAME, prayerType.label)
+                            putExtra(PrayerAdzanService.EXTRA_LOCATION_NAME, schedule.locationName)
+                            putExtra(PrayerAdzanService.EXTRA_IS_PRE_REMINDER, true)
+                        }
+                        val prePendingIntent = PendingIntent.getBroadcast(context, preReqCode, preIntent, flags)
+                        try {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                alarmManager?.setExactAndAllowWhileIdle(
+                                    AlarmManager.RTC_WAKEUP,
+                                    preTriggerMillis,
+                                    prePendingIntent
+                                )
+                            } else {
+                                alarmManager?.set(
+                                    AlarmManager.RTC_WAKEUP,
+                                    preTriggerMillis,
+                                    prePendingIntent
+                                )
+                            }
+                        } catch (_: Exception) {}
+                    } else {
+                        cancelAlarm(preReqCode)
+                    }
+                } else {
+                    cancelAlarm(preReqCode)
+                }
             }
         }
     }
 
     override fun cancelAllAlarms() {
-        val reqCodes = listOf(101, 102, 103, 104, 105, 106)
+        val reqCodes = listOf(101, 102, 103, 104, 105, 106, 201, 202, 203, 204, 205, 206)
         for (code in reqCodes) {
             cancelAlarm(code)
         }

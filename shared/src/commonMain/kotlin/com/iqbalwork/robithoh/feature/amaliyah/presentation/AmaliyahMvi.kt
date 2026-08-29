@@ -5,7 +5,21 @@ import com.iqbalwork.robithoh.core.presentation.UiEffect
 import com.iqbalwork.robithoh.core.presentation.UiIntent
 import com.iqbalwork.robithoh.core.presentation.UiState
 import com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator
-import com.iqbalwork.robithoh.feature.amaliyah.model.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.AmaliyahCategory
+import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirType
+import com.iqbalwork.robithoh.feature.amaliyah.model.HijriyahAmaliyah
+import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
+import com.iqbalwork.robithoh.feature.amaliyah.model.NextPrayerCountdown
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethods
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerTimeAdjustments
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
+import com.iqbalwork.robithoh.feature.amaliyah.model.QiblaInfo
+import com.iqbalwork.robithoh.feature.amaliyah.model.SpecialPrayer
 
 data class AmaliyahUiState(
     val selectedLanguage: LiturgyLanguage = LiturgyLanguage.ARABIC,
@@ -61,6 +75,7 @@ sealed interface AmaliyahUiIntent : UiIntent {
     data class SelectAdzanVoice(val voiceId: String) : AmaliyahUiIntent
     data class SetCustomAdzanPath(val path: String) : AmaliyahUiIntent
     data class TogglePrayerNotification(val prayerType: PrayerType, val enabled: Boolean) : AmaliyahUiIntent
+    data class TogglePrePrayerReminder(val enabled: Boolean) : AmaliyahUiIntent
     data class SetPrayerNotificationMode(val prayerType: PrayerType, val mode: PrayerNotificationMode) : AmaliyahUiIntent
     data class CyclePrayerNotificationMode(val prayerType: PrayerType) : AmaliyahUiIntent
     data class SetNotificationModePickerPrayer(val prayerType: PrayerType?) : AmaliyahUiIntent

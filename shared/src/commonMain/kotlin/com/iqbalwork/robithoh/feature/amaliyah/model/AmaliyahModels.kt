@@ -249,6 +249,7 @@ data class PrayerNotificationSettings(
     val maghribMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
     val isyaMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
     val imsakMode: PrayerNotificationMode = PrayerNotificationMode.PUSH_NOTIFICATION,
+    val isPrePrayerReminderEnabled: Boolean = true,
     val selectedVoiceId: String = "misyari_rasyid",
     val customAudioPath: String? = null
 ) {
@@ -306,5 +307,9 @@ data class PrayerNotificationSettings(
             PrayerNotificationMode.SILENT
         }
         return withPrayerMode(type, mode)
+    }
+
+    fun withPrePrayerReminder(enabled: Boolean): PrayerNotificationSettings {
+        return copy(isPrePrayerReminderEnabled = enabled)
     }
 }

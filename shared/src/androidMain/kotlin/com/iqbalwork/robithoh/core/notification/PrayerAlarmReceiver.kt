@@ -33,8 +33,15 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
             wakeLock?.acquire(15_000L) // 15 seconds timeout
         } catch (_: Exception) {}
 
+        val isPreReminder = intent.getBooleanExtra(PrayerAdzanService.EXTRA_IS_PRE_REMINDER, false)
         val prayerName = intent.getStringExtra(PrayerAdzanService.EXTRA_PRAYER_NAME) ?: "Sholat"
         val locationName = intent.getStringExtra(PrayerAdzanService.EXTRA_LOCATION_NAME) ?: "Wilayah Anda"
+
+        if (isPreReminder) {
+            showPrePrayerReminderNotification(context, prayerName, locationName)
+            return
+        }
+
         val audioFile = intent.getStringExtra(PrayerAdzanService.EXTRA_AUDIO_FILE) ?: "adzan_misyari_rasyid.mp3"
         val customPath = intent.getStringExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH)
         val voiceTitle = intent.getStringExtra(PrayerAdzanService.EXTRA_VOICE_TITLE) ?: "Adzan"
@@ -77,6 +84,69 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         try {
             AndroidPrayerAlarmScheduler.rescheduleFromDatabase(context)
         } catch (_: Throwable) {}
+    }
+
+    private fun showPrePrayerReminderNotification(context: Context, prayerName: String, locationName: String) {
+        val channelId = "pre_prayer_reminder_channel"
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Pengingat 10 Menit Sebelum Sholat",
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = "Notifikasi pengingat 10 menit sebelum waktu sholat tiba"
+                enableVibration(true)
+                vibrationPattern = longArrayOf(0, 250, 150, 250)
+                lockscreenVisibility = android.app.Notification.VISIBILITY_PUBLIC
+                setShowBadge(true)
+            }
+            notificationManager?.createNotificationChannel(channel)
+        }
+
+        val launchIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)
+        val pendingIntent = if (launchIntent != null) {
+            PendingIntent.getActivity(
+                context,
+                0,
+                launchIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0)
+            )
+        } else null
+
+        val customIconId = context.resources.getIdentifier("ic_stat_prayer", "drawable", context.packageName)
+        val iconRes = if (customIconId != 0) customIconId else android.R.drawable.ic_lock_idle_alarm
+        val launcherIconId = context.resources.getIdentifier("ic_launcher", "mipmap", context.packageName)
+        val largeIconBitmap = if (launcherIconId != 0) {
+            try {
+                android.graphics.BitmapFactory.decodeResource(context.resources, launcherIconId)
+            } catch (_: Exception) {
+                null
+            }
+        } else null
+
+        val notifTitle = "10 Menit Menuju Waktu $prayerName"
+        val notifText = "Waktu sholat $prayerName akan tiba dalam 10 menit untuk wilayah $locationName"
+
+        val notification = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(iconRes)
+            .apply {
+                if (largeIconBitmap != null) {
+                    setLargeIcon(largeIconBitmap)
+                }
+            }
+            .setContentTitle(notifTitle)
+            .setContentText(notifText)
+            .setStyle(NotificationCompat.BigTextStyle().bigText("Persiapan menunaikan ibadah sholat $prayerName. Waktu sholat akan tiba dalam 10 menit untuk wilayah $locationName."))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setDefaults(NotificationCompat.DEFAULT_SOUND or NotificationCompat.DEFAULT_VIBRATE or NotificationCompat.DEFAULT_LIGHTS)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+            .build()
+
+        notificationManager?.notify((prayerName.hashCode() + 5000), notification)
     }
 
     private fun showPushNotification(context: Context, prayerName: String, locationName: String) {

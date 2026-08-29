@@ -37,6 +37,7 @@ class PrayerAdzanService : Service() {
         const val EXTRA_CUSTOM_AUDIO_PATH = "extra_custom_audio_path"
         const val EXTRA_VOICE_TITLE = "extra_voice_title"
         const val EXTRA_NOTIFICATION_MODE = "extra_notification_mode"
+        const val EXTRA_IS_PRE_REMINDER = "extra_is_pre_reminder"
 
         private var isPlayingAdzan = false
         fun isAdzanPlaying(): Boolean = isPlayingAdzan

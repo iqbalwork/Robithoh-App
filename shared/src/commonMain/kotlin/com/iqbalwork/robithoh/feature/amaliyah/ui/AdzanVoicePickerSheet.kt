@@ -2,13 +2,32 @@ package com.iqbalwork.robithoh.feature.amaliyah.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,9 +36,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoiceOption
@@ -76,7 +97,7 @@ fun AdzanVoicePickerSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                text = "Choose the adzan voice",
+                text = "Pilih Suara Adzan",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = if (isDark) PutihBersih else Color(0xFF2D2A26),
@@ -302,13 +323,13 @@ private fun UploadCustomAudioRowItem(
             verticalArrangement = Arrangement.spacedBy(3.dp)
         ) {
             Text(
-                text = "Upload your own audio",
+                text = "Unggah Audio Kustom",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = if (isDark) PutihBersih else Color(0xFF2B2B2B)
             )
             Text(
-                text = "Pick an audio file from your device",
+                text = "Pilih berkas rekaman adzan dari perangkat Anda",
                 fontSize = 13.sp,
                 color = if (isDark) DarkMuted else Color(0xFF6B6864)
             )
