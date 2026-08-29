@@ -4,7 +4,6 @@ package com.iqbalwork.robithoh.core.audio
 
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
-import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.usePinned
 import kotlinx.coroutines.CoroutineScope
@@ -19,14 +18,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import platform.AVFAudio.AVAudioSession
+import platform.AVFAudio.AVAudioSessionCategoryOptionMixWithOthers
 import platform.AVFAudio.AVAudioSessionCategoryPlayback
 import platform.AVFAudio.AVAudioSessionModeDefault
 import platform.AVFAudio.setActive
 import platform.AVFoundation.AVPlayer
 import platform.AVFoundation.AVPlayerItem
 import platform.AVFoundation.AVPlayerItemDidPlayToEndTimeNotification
-import platform.AVFoundation.currentTime
 import platform.AVFoundation.currentItem
+import platform.AVFoundation.currentTime
 import platform.AVFoundation.duration
 import platform.AVFoundation.pause
 import platform.AVFoundation.play
@@ -46,7 +46,9 @@ import platform.Foundation.create
 import platform.darwin.NSObjectProtocol
 import robithohapp.shared.generated.resources.Res
 
-class IosAudioPlayer : KmpAudioPlayer {
+class IosAudioPlayer(
+    private val cacheManager: AudioCacheManager = createAudioCacheManager()
+) : KmpAudioPlayer {
     private val scope = CoroutineScope(Dispatchers.Main)
     private var avPlayer: AVPlayer? = null
     private var progressJob: Job? = null
@@ -154,7 +156,7 @@ class IosAudioPlayer : KmpAudioPlayer {
 
                 avPlayer = player
 
-                val duration = playerItem.asset.duration
+                val duration = playerItem.duration()
                 val durationSeconds = CMTimeGetSeconds(duration)
                 if (!durationSeconds.isNaN() && durationSeconds > 0) {
                     _durationMs.value = (durationSeconds * 1000).toLong()
@@ -229,7 +231,12 @@ class IosAudioPlayer : KmpAudioPlayer {
             return NSURL.fileURLWithPath(urlOrPath)
         }
 
-        // Cache directory for extracted audio resources
+        val cachedPath = cacheManager.getLocalFilePath(urlOrPath)
+        if (cachedPath != null && fileManager.fileExistsAtPath(cachedPath)) {
+            return NSURL.fileURLWithPath(cachedPath)
+        }
+
+        // Cache directory for extracted audio resources (e.g. embedded adzan)
         val cachesDir = NSSearchPathForDirectoriesInDomains(
             NSCachesDirectory,
             NSUserDomainMask,

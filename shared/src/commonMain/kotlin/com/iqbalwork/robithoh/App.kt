@@ -5,8 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -19,7 +19,21 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
-import com.iqbalwork.robithoh.navigation.*
+import com.iqbalwork.robithoh.navigation.AmaliyahScreen
+import com.iqbalwork.robithoh.navigation.BackHandler
+import com.iqbalwork.robithoh.navigation.MainAppContainer
+import com.iqbalwork.robithoh.navigation.MainTab
+import com.iqbalwork.robithoh.navigation.ManaqibDetailScreen
+import com.iqbalwork.robithoh.navigation.ManaqibListScreen
+import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
+import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
+import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
+import com.iqbalwork.robithoh.navigation.QuranListScreen
+import com.iqbalwork.robithoh.navigation.QuranSurahScreen
+import com.iqbalwork.robithoh.navigation.ScreenKey
+import com.iqbalwork.robithoh.navigation.ScreenKeyListSaver
+import com.iqbalwork.robithoh.navigation.SettingsScreen
+import com.iqbalwork.robithoh.navigation.TasbihScreen
 
 @Composable
 fun App() {
@@ -39,6 +53,8 @@ fun App() {
                 alarmScheduler = alarmScheduler
             )
         }
+        val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
+        val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
@@ -88,6 +104,7 @@ fun App() {
                     onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
                     amaliyahViewModel = amaliyahViewModel,
                     audioPlayer = sharedAudioPlayer,
+                    audioDownloader = sharedDownloader,
                     isDarkMode = isDarkMode,
                     onDarkModeChange = { isDarkMode = it }
                 )
@@ -102,6 +119,8 @@ fun App() {
             entry<ScreenKey.Langgam> { _ ->
                 com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
                     audioPlayer = sharedAudioPlayer,
+                    cacheManager = sharedCacheManager,
+                    audioDownloader = sharedDownloader,
                     onBack = onBackAction
                 )
             }

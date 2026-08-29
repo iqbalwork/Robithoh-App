@@ -1,18 +1,29 @@
 package com.iqbalwork.robithoh.navigation
 
-import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -20,13 +31,19 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
 import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
 import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
-import com.iqbalwork.robithoh.feature.home.ui.*
+import com.iqbalwork.robithoh.feature.home.ui.DoaModalBottomSheet
+import com.iqbalwork.robithoh.feature.home.ui.HomeTabContent
+import com.iqbalwork.robithoh.feature.home.ui.ManaqibModalBottomSheet
+import com.iqbalwork.robithoh.feature.home.ui.SholatModalBottomSheet
+import com.iqbalwork.robithoh.feature.home.ui.SholawatModalBottomSheet
+import com.iqbalwork.robithoh.feature.home.ui.TahlilZiyarohModalBottomSheet
 import com.iqbalwork.robithoh.feature.library.ui.KitabTabContent
 import com.iqbalwork.robithoh.feature.prayer.ui.SalatTabContent
 import com.iqbalwork.robithoh.feature.profile.ui.SettingsTabContent
@@ -54,6 +71,7 @@ fun MainAppContainer(
     onNavigateToPrayerAdjustments: () -> Unit = {},
     amaliyahViewModel: AmaliyahViewModel,
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() },
+    audioDownloader: com.iqbalwork.robithoh.core.audio.AudioDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader() },
     isDarkMode: Boolean = false,
     onDarkModeChange: (Boolean) -> Unit = {}
 ) {
@@ -61,6 +79,7 @@ fun MainAppContainer(
     val playbackState by audioPlayer.playbackState.collectAsState()
     val currentPositionMs by audioPlayer.currentPositionMs.collectAsState()
     val durationMs by audioPlayer.durationMs.collectAsState()
+    val downloadState by audioDownloader.downloadState.collectAsState()
 
     val scope = rememberCoroutineScope()
     val locationProvider = rememberLocationProvider()
@@ -152,6 +171,11 @@ fun MainAppContainer(
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            com.iqbalwork.robithoh.core.designsystem.component.FloatingDownloadBar(
+                downloadState = downloadState,
+                onCancelClick = { trackId -> audioDownloader.cancelDownload(trackId) }
+            )
+
             MiniFloatingAudioBar(
                 track = currentTrack,
                 playbackState = playbackState,
