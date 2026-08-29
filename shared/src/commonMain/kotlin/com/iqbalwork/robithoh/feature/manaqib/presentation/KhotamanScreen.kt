@@ -8,16 +8,19 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.manaqib.model.KhotamanStep
 
@@ -27,6 +30,9 @@ fun KhotamanScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    var selectedStepForOptions by remember { mutableStateOf<KhotamanStep?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
 
     LazyColumn(
         modifier = modifier
@@ -67,14 +73,52 @@ fun KhotamanScreen(
         }
 
         items(steps, key = { it.stepNumber }) { step ->
-            KhotamanStepCard(step = step)
+            KhotamanStepCard(
+                step = step,
+                onClick = { selectedStepForOptions = step }
+            )
         }
+    }
+
+    selectedStepForOptions?.let { step ->
+        val shareText = remember(step) {
+            buildString {
+                append("Langkah ${step.stepNumber}: ${step.title}")
+                if (step.repeatCount.isNotBlank()) append(" (${step.repeatCount})")
+                append("\n\n")
+                append(step.arabicText)
+                if (step.latinText.isNotBlank()) {
+                    append("\n\n")
+                    append(step.latinText)
+                }
+                if (step.translation.isNotBlank()) {
+                    append("\n\n[Terjemahan]\n")
+                    append(step.translation)
+                }
+                if (step.instructions.isNotBlank()) {
+                    append("\n\nKaifiyat: ")
+                    append(step.instructions)
+                }
+                append("\n\n(Panduan Khotaman TQN Pondok Pesantren Sirnarasa)")
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = "Langkah ${step.stepNumber}",
+            subtitle = step.title,
+            onDismiss = { selectedStepForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
+            copyLabel = "Salin Bacaan Khotaman",
+            onShare = { shareAction(shareText) },
+            shareLabel = "Bagikan Bacaan Khotaman"
+        )
     }
 }
 
 @Composable
 private fun KhotamanStepCard(
     step: KhotamanStep,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
@@ -82,7 +126,8 @@ private fun KhotamanStepCard(
     GoldCrimsonCard(
         modifier = modifier,
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
-        contentPadding = PaddingValues(16.dp)
+        contentPadding = PaddingValues(16.dp),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

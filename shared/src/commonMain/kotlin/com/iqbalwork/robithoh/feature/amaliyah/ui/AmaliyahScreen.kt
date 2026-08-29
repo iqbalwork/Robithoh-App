@@ -31,6 +31,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.amaliyah.model.*
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiState
+import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.ScreenKey
 
 @Composable
@@ -44,6 +45,16 @@ fun AmaliyahScreen(
     val isDark = RabithohTheme.colors.isDark
     var isShowingPrayerTimesDetail by remember { mutableStateOf(false) }
     var isShowingDzikirDetail by remember { mutableStateOf(false) }
+
+    BackHandler {
+        if (isShowingPrayerTimesDetail) {
+            isShowingPrayerTimesDetail = false
+        } else if (isShowingDzikirDetail) {
+            isShowingDzikirDetail = false
+        } else {
+            onBack()
+        }
+    }
 
     if (isShowingPrayerTimesDetail) {
         PrayerTimesScreen(

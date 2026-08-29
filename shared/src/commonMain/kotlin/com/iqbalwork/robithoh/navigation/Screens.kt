@@ -328,6 +328,9 @@ fun QuranListScreen(
     onSurahClick: (Int, Int?) -> Unit,
     onBack: () -> Unit
 ) {
+    BackHandler {
+        onBack()
+    }
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
@@ -348,6 +351,9 @@ fun QuranSurahScreen(
     onBack: () -> Unit,
     initialAyahNumber: Int? = null
 ) {
+    BackHandler {
+        onBack()
+    }
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_surah_$surahNumber") {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
@@ -369,6 +375,9 @@ fun SettingsScreen(
     onNavigateToPrayerAdjustments: () -> Unit = {},
     onBack: () -> Unit
 ) {
+    BackHandler {
+        onBack()
+    }
     Scaffold(
         topBar = {
             TopAppBar(

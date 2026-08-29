@@ -134,6 +134,7 @@ class PrayerAdzanService : Service() {
                 withContext(Dispatchers.Main) {
                     if (resolvedPath != null) {
                         val player = MediaPlayer().apply {
+                            setWakeMode(applicationContext, android.os.PowerManager.PARTIAL_WAKE_LOCK)
                             setAudioAttributes(
                                 AudioAttributes.Builder()
                                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)

@@ -69,6 +69,26 @@ class AdzanFeatureTest {
         // Test explicit mode change
         settings = settings.withPrayerMode(PrayerType.MAGHRIB, com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION)
         assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, settings.maghribMode)
+
+        // Test Imsak cycle (only PUSH_NOTIFICATION <-> SILENT, never ADZAN)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, settings.imsakMode)
+        settings = settings.withCycledPrayerMode(PrayerType.IMSAK)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT, settings.imsakMode)
+        assertFalse(settings.isImsakEnabled)
+
+        settings = settings.withCycledPrayerMode(PrayerType.IMSAK)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, settings.imsakMode)
+        assertTrue(settings.isImsakEnabled)
+
+        // Test Imsak cannot be set to ADZAN
+        settings = settings.withPrayerMode(PrayerType.IMSAK, com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.ADZAN)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, settings.imsakMode)
+
+        // Test Imsak toggle
+        settings = settings.withToggledPrayer(PrayerType.IMSAK, false)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT, settings.imsakMode)
+        settings = settings.withToggledPrayer(PrayerType.IMSAK, true)
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, settings.imsakMode)
     }
 
     @Test
@@ -88,6 +108,16 @@ class AdzanFeatureTest {
         viewModel.onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(PrayerType.MAGHRIB))
         assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.ADZAN, viewModel.currentState.notificationSettings.maghribMode)
         assertTrue(viewModel.currentState.notificationSettings.isMaghribEnabled)
+
+        // Imsak mode intent & cycle
+        viewModel.onIntent(AmaliyahUiIntent.SetPrayerNotificationMode(PrayerType.IMSAK, com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.ADZAN))
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, viewModel.currentState.notificationSettings.imsakMode)
+
+        viewModel.onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(PrayerType.IMSAK))
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT, viewModel.currentState.notificationSettings.imsakMode)
+
+        viewModel.onIntent(AmaliyahUiIntent.CyclePrayerNotificationMode(PrayerType.IMSAK))
+        assertEquals(com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.PUSH_NOTIFICATION, viewModel.currentState.notificationSettings.imsakMode)
 
         viewModel.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(PrayerType.SUBUH))
         assertEquals(PrayerType.SUBUH, viewModel.currentState.activeNotificationModePickerPrayer)

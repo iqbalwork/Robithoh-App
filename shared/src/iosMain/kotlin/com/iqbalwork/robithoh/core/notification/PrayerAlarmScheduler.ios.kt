@@ -1,31 +1,85 @@
+@file:OptIn(kotlinx.cinterop.ExperimentalForeignApi::class, kotlinx.cinterop.BetaInteropApi::class)
+
 package com.iqbalwork.robithoh.core.notification
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
+import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
+import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.usePinned
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import platform.Foundation.NSData
 import platform.Foundation.NSDateComponents
-import platform.UserNotifications.*
+import platform.Foundation.NSFileManager
+import platform.Foundation.NSLibraryDirectory
+import platform.Foundation.NSSearchPathForDirectoriesInDomains
+import platform.Foundation.NSUserDomainMask
+import platform.Foundation.create
+import platform.UserNotifications.UNAuthorizationOptionAlert
+import platform.UserNotifications.UNAuthorizationOptionBadge
+import platform.UserNotifications.UNAuthorizationOptionSound
+import platform.UserNotifications.UNCalendarNotificationTrigger
+import platform.UserNotifications.UNMutableNotificationContent
+import platform.UserNotifications.UNNotificationAction
+import platform.UserNotifications.UNNotificationActionOptionDestructive
+import platform.UserNotifications.UNNotificationActionOptionForeground
+import platform.UserNotifications.UNNotificationCategory
+import platform.UserNotifications.UNNotificationCategoryOptionCustomDismissAction
+import platform.UserNotifications.UNNotificationRequest
+import platform.UserNotifications.UNNotificationSound
+import platform.UserNotifications.UNUserNotificationCenter
 
 class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
 
     private val notificationCenter = UNUserNotificationCenter.currentNotificationCenter()
     private val audioPlayer = createAudioPlayer()
+    private val scope = CoroutineScope(Dispatchers.Default)
+
+    init {
+        registerNotificationCategories()
+    }
+
+    private fun registerNotificationCategories() {
+        val stopAction = UNNotificationAction.actionWithIdentifier(
+            identifier = "ACTION_STOP_ADZAN",
+            title = "Matikan Adzan",
+            options = UNNotificationActionOptionDestructive
+        )
+        val openAction = UNNotificationAction.actionWithIdentifier(
+            identifier = "ACTION_OPEN_APP",
+            title = "Buka Aplikasi",
+            options = UNNotificationActionOptionForeground
+        )
+        val category = UNNotificationCategory.categoryWithIdentifier(
+            identifier = "PRAYER_NOTIFICATION",
+            actions = listOf(stopAction, openAction),
+            intentIdentifiers = emptyList<Any?>(),
+            options = UNNotificationCategoryOptionCustomDismissAction
+        )
+        notificationCenter.setNotificationCategories(setOf(category))
+    }
 
     override fun scheduleAlarms(schedule: PrayerSchedule, settings: PrayerNotificationSettings) {
         val authOptions = UNAuthorizationOptionAlert or UNAuthorizationOptionSound or UNAuthorizationOptionBadge
         notificationCenter.requestAuthorizationWithOptions(authOptions) { granted, _ ->
             if (granted) {
-                doScheduleAlarms(schedule, settings)
+                scope.launch {
+                    doScheduleAlarms(schedule, settings)
+                }
             }
         }
     }
 
-    private fun doScheduleAlarms(schedule: PrayerSchedule, settings: PrayerNotificationSettings) {
+    private suspend fun doScheduleAlarms(schedule: PrayerSchedule, settings: PrayerNotificationSettings) {
         val voiceOption = AdzanVoices.findById(settings.selectedVoiceId)
         val voiceTitle = voiceOption.title
 
@@ -39,7 +93,13 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
         )
 
         for ((prayerType, timeStr, identifier) in prayerEntries) {
-            val mode = settings.getPrayerMode(prayerType)
+            val rawMode = settings.getPrayerMode(prayerType)
+            val isImsak = prayerType == PrayerType.IMSAK
+            val mode = if (isImsak && rawMode == PrayerNotificationMode.ADZAN) {
+                PrayerNotificationMode.PUSH_NOTIFICATION
+            } else {
+                rawMode
+            }
             if (mode == PrayerNotificationMode.SILENT) {
                 cancelAlarm(identifier)
                 continue
@@ -50,16 +110,39 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
             val hour = parts[0].toLongOrNull() ?: continue
             val minute = parts[1].toLongOrNull() ?: continue
 
+            val audioFileName = voiceOption.getAudioForPrayer(prayerType.label)
+            val soundToUse = when (mode) {
+                PrayerNotificationMode.ADZAN -> {
+                    if (!isImsak) {
+                        prepareNotificationSoundInLibrary(audioFileName)
+                        UNNotificationSound.soundNamed(audioFileName)
+                    } else {
+                        UNNotificationSound.defaultSound()
+                    }
+                }
+                PrayerNotificationMode.PUSH_NOTIFICATION -> {
+                    UNNotificationSound.defaultSound()
+                }
+                PrayerNotificationMode.SILENT -> null
+            }
+
+            val notifTitle = if (isImsak) "Waktu Imsak" else "Waktu Sholat ${prayerType.label} Telah Tiba"
+            val notifBody = if (isImsak) "Memasuki waktu Imsak untuk wilayah ${schedule.locationName}" else "Saatnya menunaikan sholat ${prayerType.label} untuk wilayah ${schedule.locationName}"
+
             val content = UNMutableNotificationContent().apply {
-                setTitle("Waktu Sholat ${prayerType.label} Telah Tiba")
-                setBody("Saatnya menunaikan sholat ${prayerType.label} untuk wilayah ${schedule.locationName}")
-                setSound(UNNotificationSound.defaultSound())
+                setTitle(notifTitle)
+                setBody(notifBody)
+                if (soundToUse != null) {
+                    setSound(soundToUse)
+                }
+                setCategoryIdentifier("PRAYER_NOTIFICATION")
                 setUserInfo(mapOf(
                     "prayerName" to prayerType.label,
                     "locationName" to schedule.locationName,
                     "mode" to mode.id,
                     "voiceId" to settings.selectedVoiceId,
-                    "voiceTitle" to voiceTitle
+                    "voiceTitle" to voiceTitle,
+                    "audioFile" to audioFileName
                 ))
             }
 
@@ -104,6 +187,7 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
     }
 
     override fun stopActiveAdzan() {
+        com.iqbalwork.robithoh.core.audio.IosAudioPlayer.stopGlobalPlayback()
         audioPlayer.stop()
     }
 
@@ -113,18 +197,107 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
         voiceId: String,
         customPath: String?
     ) {
-        if (mode == PrayerNotificationMode.SILENT) return
-        val content = UNMutableNotificationContent().apply {
-            setTitle("Waktu $prayerName (Uji Coba)")
-            setBody("Waktu sholat $prayerName telah masuk.")
-            setSound(UNNotificationSound.defaultSound())
+        val isImsak = prayerName.equals("Imsak", ignoreCase = true)
+        val effectiveMode = if (isImsak) {
+            if (mode == PrayerNotificationMode.SILENT) PrayerNotificationMode.SILENT else PrayerNotificationMode.PUSH_NOTIFICATION
+        } else {
+            mode
         }
-        val request = UNNotificationRequest.requestWithIdentifier(
-            identifier = "test_alarm_${prayerName.lowercase()}",
-            content = content,
-            trigger = null
-        )
-        notificationCenter.addNotificationRequest(request) { _ -> }
+        if (effectiveMode == PrayerNotificationMode.SILENT) return
+
+        scope.launch {
+            val voiceOption = AdzanVoices.findById(voiceId)
+            val audioFileName = voiceOption.getAudioForPrayer(prayerName)
+
+            val soundToUse = when (effectiveMode) {
+                PrayerNotificationMode.ADZAN -> {
+                    prepareNotificationSoundInLibrary(audioFileName)
+                    withContext(Dispatchers.Main) {
+                        audioPlayer.play(
+                            AudioTrack(
+                                id = "test_adzan_$prayerName",
+                                title = "Adzan $prayerName (Uji Coba)",
+                                subtitle = voiceOption.title,
+                                urlOrPath = audioFileName
+                            )
+                        )
+                    }
+                    UNNotificationSound.soundNamed(audioFileName)
+                }
+                PrayerNotificationMode.PUSH_NOTIFICATION -> {
+                    UNNotificationSound.defaultSound()
+                }
+                PrayerNotificationMode.SILENT -> null
+            }
+
+            val notifTitle = if (isImsak) "Waktu Imsak (Uji Coba)" else "Waktu $prayerName (Uji Coba)"
+            val notifBody = if (isImsak) "Memasuki waktu Imsak untuk wilayah Wilayah Anda" else "Waktu sholat $prayerName telah masuk."
+
+            val content = UNMutableNotificationContent().apply {
+                setTitle(notifTitle)
+                setBody(notifBody)
+                if (soundToUse != null) {
+                    setSound(soundToUse)
+                }
+                setCategoryIdentifier("PRAYER_NOTIFICATION")
+                setUserInfo(mapOf(
+                    "prayerName" to prayerName,
+                    "mode" to effectiveMode.id,
+                    "voiceId" to voiceId,
+                    "audioFile" to audioFileName
+                ))
+            }
+
+            val request = UNNotificationRequest.requestWithIdentifier(
+                identifier = "test_alarm_${prayerName.lowercase()}",
+                content = content,
+                trigger = null
+            )
+            notificationCenter.addNotificationRequest(request) { _ -> }
+        }
+    }
+
+    private suspend fun prepareNotificationSoundInLibrary(audioFileName: String) {
+        try {
+            val fileManager = NSFileManager.defaultManager
+            val libraryDir = NSSearchPathForDirectoriesInDomains(
+                NSLibraryDirectory,
+                NSUserDomainMask,
+                true
+            ).firstOrNull() as? String ?: return
+
+            val soundsDir = "$libraryDir/Sounds"
+            if (!fileManager.fileExistsAtPath(soundsDir)) {
+                fileManager.createDirectoryAtPath(
+                    path = soundsDir,
+                    withIntermediateDirectories = true,
+                    attributes = null,
+                    error = null
+                )
+            }
+
+            val targetPath = "$soundsDir/$audioFileName"
+            if (!fileManager.fileExistsAtPath(targetPath)) {
+                val resourcePath = if (audioFileName.startsWith("files/")) audioFileName else "files/$audioFileName"
+                val bytes = org.jetbrains.compose.resources.ExperimentalResourceApi::class.let {
+                    robithohapp.shared.generated.resources.Res.readBytes(resourcePath)
+                }
+                if (bytes.isNotEmpty()) {
+                    val nsData = bytes.toNSData()
+                    fileManager.createFileAtPath(targetPath, contents = nsData, attributes = null)
+                }
+            }
+        } catch (_: Throwable) {}
+    }
+
+    private fun ByteArray.toNSData(): NSData {
+        if (this.isEmpty()) return NSData()
+        return this.usePinned { pinned ->
+            NSData.create(
+                bytes = pinned.addressOf(0),
+                length = this.size.toULong()
+            )
+        }
     }
 }
 

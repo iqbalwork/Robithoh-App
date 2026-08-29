@@ -308,43 +308,52 @@ class AmaliyahViewModel(
                         asharMode = PrayerNotificationMode.fromDbValue(settings.ashar_notif_enabled),
                         maghribMode = PrayerNotificationMode.fromDbValue(settings.maghrib_notif_enabled),
                         isyaMode = PrayerNotificationMode.fromDbValue(settings.isya_notif_enabled),
-                        imsakMode = PrayerNotificationMode.fromDbValue(settings.imsak_notif_enabled),
+                        imsakMode = PrayerNotificationMode.fromDbValue(settings.imsak_notif_enabled).let {
+                            if (it == PrayerNotificationMode.ADZAN) PrayerNotificationMode.PUSH_NOTIFICATION else it
+                        },
                         selectedVoiceId = settings.selected_adzan_voice_id,
                         customAudioPath = settings.custom_adzan_audio_path
                     )
 
                     withContext(Dispatchers.Main) {
+                        val resolvedLocation = if (currentState.isGpsActive) currentState.selectedLocation else location
+                        val resolvedIsGps = currentState.isGpsActive || isGps
+
                         updateState {
                             copy(
                                 selectedCalculationMethod = method,
                                 prayerAdjustments = adjustments,
-                                selectedLocation = location,
-                                isGpsActive = isGps,
+                                selectedLocation = resolvedLocation,
+                                isGpsActive = resolvedIsGps,
                                 notificationSettings = notifSettings
                             )
                         }
                         recalculatePrayerTimes(
-                            location = location,
+                            location = resolvedLocation,
                             method = method,
                             adjustments = adjustments
                         )
                     }
                 } else {
                     withContext(Dispatchers.Main) {
+                        if (!currentState.isGpsActive) {
+                            recalculatePrayerTimes(
+                                location = currentState.selectedLocation,
+                                method = currentState.selectedCalculationMethod,
+                                adjustments = currentState.prayerAdjustments
+                            )
+                        }
+                    }
+                }
+            } catch (_: Exception) {
+                withContext(Dispatchers.Main) {
+                    if (!currentState.isGpsActive) {
                         recalculatePrayerTimes(
                             location = currentState.selectedLocation,
                             method = currentState.selectedCalculationMethod,
                             adjustments = currentState.prayerAdjustments
                         )
                     }
-                }
-            } catch (_: Exception) {
-                withContext(Dispatchers.Main) {
-                    recalculatePrayerTimes(
-                        location = currentState.selectedLocation,
-                        method = currentState.selectedCalculationMethod,
-                        adjustments = currentState.prayerAdjustments
-                    )
                 }
             }
         }

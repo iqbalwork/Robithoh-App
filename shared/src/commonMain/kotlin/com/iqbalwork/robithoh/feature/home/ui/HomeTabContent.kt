@@ -18,6 +18,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
+import com.iqbalwork.robithoh.core.location.rememberLocationProvider
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import kotlinx.coroutines.launch
 
 data class HomeGridMenuItem(
     val id: String,
@@ -42,26 +47,25 @@ fun HomeTabContent(
     onNavigateToTasbih: () -> Unit,
     onNavigateToPrayerTimes: () -> Unit = {},
     onOpenSheet: (String) -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
+    viewModel: AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val vm = viewModel ?: remember(database) {
-        com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
+        AmaliyahViewModel(database = database)
     }
     val state by vm.uiState.collectAsState()
     val countdown = state.nextPrayerCountdown
     val schedule = state.prayerSchedule
 
     val menuGridItems = listOf(
-        HomeGridMenuItem("manaqib_dimana", "Manaqib Dimana?", "📍"),
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
+        HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
         HomeGridMenuItem("khotaman", "Khotaman", "📜"),
         HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),
         HomeGridMenuItem("langgam", "Langgam", "🎵"),
         HomeGridMenuItem("tarhim", "Tarhim", "📢"),
         HomeGridMenuItem("sholawat", "Sholawat", "✨"),
-        HomeGridMenuItem("wakil_talqin", "Wakil Talqin", "👥"),
         HomeGridMenuItem("doa", "Doa", "🤲"),
         HomeGridMenuItem("silsilah", "Silsilah", "🔗"),
         HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")
@@ -90,7 +94,7 @@ fun HomeTabContent(
             ) {
                 Column {
                     Text(
-                        text = "Assalamu'alaikum, Sahabat",
+                        text = "Assalamu'alaikum",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextCharcoal
@@ -181,7 +185,7 @@ fun HomeTabContent(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${schedule?.locationName ?: "Panjalu, Ciamis"} (${schedule?.timezone ?: "WIB"})",
+                        text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${if (state.isFetchingLocation) "Mencari lokasi..." else (schedule?.locationName ?: "Panjalu, Ciamis")} (${schedule?.timezone ?: "WIB"})",
                         fontSize = 12.sp,
                         color = Color(0xFF785B28)
                     )
@@ -226,7 +230,6 @@ fun HomeTabContent(
                                             "sholawat" -> onOpenSheet("sholawat")
                                             "tahlil" -> onOpenSheet("tahlil")
                                             "doa" -> onOpenSheet("doa")
-                                            "wakil_talqin" -> onNavigateToDocument("silsilah_tqn")
                                             else -> onNavigateToDocument("dzikir_tqn")
                                         }
                                     }
@@ -291,26 +294,6 @@ fun HomeTabContent(
             }
         }
 
-        // 6. Khidmah Maliyah Section
-        item {
-            Text(
-                text = "Khidmah Maliyah Sirnarasa",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                KhidmahLogoCard("Pesantren\nSirnarasa", "🕌", Modifier.weight(1f))
-                KhidmahLogoCard("STID\nSirnarasa", "🎓", Modifier.weight(1f))
-                KhidmahLogoCard("Baitul Maal\nSirnarasa", "🏛️", Modifier.weight(1f))
-                KhidmahLogoCard("Baitul\nAsror", "✨", Modifier.weight(1f))
-            }
-        }
-
         item {
             Spacer(modifier = Modifier.height(64.dp))
         }
@@ -358,42 +341,3 @@ private fun MainGridButton(
     }
 }
 
-@Composable
-private fun KhidmahLogoCard(
-    title: String,
-    emoji: String,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        modifier = modifier
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp, horizontal = 4.dp)
-        ) {
-            Surface(
-                color = PaperBackgroundLight,
-                shape = CircleShape,
-                modifier = Modifier.size(38.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Text(emoji, fontSize = 20.sp)
-                }
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Text(
-                text = title,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Medium,
-                color = TextCharcoal,
-                textAlign = TextAlign.Center,
-                lineHeight = 12.sp
-            )
-        }
-    }
-}

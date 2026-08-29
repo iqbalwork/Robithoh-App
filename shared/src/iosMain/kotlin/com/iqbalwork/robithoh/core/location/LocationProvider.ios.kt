@@ -115,6 +115,55 @@ class IosLocationProvider : LocationProvider {
     }
 }
 
+private class IosLocationPermissionDelegate(
+    private val onPermissionResult: (granted: Boolean) -> Unit
+) : NSObject(), CLLocationManagerDelegateProtocol {
+    private var manager: CLLocationManager? = null
+    private var isRequesting = false
+
+    fun requestPermission() {
+        val mgr = manager ?: CLLocationManager().also {
+            manager = it
+            it.delegate = this
+        }
+        val status = mgr.authorizationStatus
+        if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+            status == kCLAuthorizationStatusAuthorizedAlways
+        ) {
+            onPermissionResult(true)
+            return
+        } else if (status == kCLAuthorizationStatusDenied ||
+            status == kCLAuthorizationStatusRestricted
+        ) {
+            onPermissionResult(false)
+            return
+        }
+        isRequesting = true
+        mgr.requestWhenInUseAuthorization()
+    }
+
+    override fun locationManagerDidChangeAuthorization(manager: CLLocationManager) {
+        if (!isRequesting) return
+        val status = manager.authorizationStatus
+        if (status != kCLAuthorizationStatusNotDetermined) {
+            isRequesting = false
+            val granted = status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+                    status == kCLAuthorizationStatusAuthorizedAlways
+            onPermissionResult(granted)
+        }
+    }
+
+    override fun locationManager(manager: CLLocationManager, didChangeAuthorizationStatus: CLAuthorizationStatus) {
+        if (!isRequesting) return
+        if (didChangeAuthorizationStatus != kCLAuthorizationStatusNotDetermined) {
+            isRequesting = false
+            val granted = didChangeAuthorizationStatus == kCLAuthorizationStatusAuthorizedWhenInUse ||
+                    didChangeAuthorizationStatus == kCLAuthorizationStatusAuthorizedAlways
+            onPermissionResult(granted)
+        }
+    }
+}
+
 @Composable
 actual fun rememberLocationProvider(): LocationProvider {
     return remember { IosLocationProvider() }
@@ -124,14 +173,10 @@ actual fun rememberLocationProvider(): LocationProvider {
 actual fun rememberLocationPermissionLauncher(
     onPermissionResult: (granted: Boolean) -> Unit
 ): () -> Unit {
-    return remember {
-        {
-            val manager = CLLocationManager()
-            manager.requestWhenInUseAuthorization()
-            val status = manager.authorizationStatus
-            val granted = status == kCLAuthorizationStatusAuthorizedWhenInUse ||
-                    status == kCLAuthorizationStatusAuthorizedAlways
-            onPermissionResult(granted)
-        }
+    val delegate = remember(onPermissionResult) {
+        IosLocationPermissionDelegate(onPermissionResult)
+    }
+    return remember(delegate) {
+        { delegate.requestPermission() }
     }
 }

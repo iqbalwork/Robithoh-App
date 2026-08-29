@@ -354,11 +354,12 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sebelum_tidur",
             title = "Amaliyah Sebelum Tidur",
-            subtitle = "Wirid, ayat pelindung & dzikir khofi tidur",
-            category = "Doa & Ziarah",
+            subtitle = "Wirid, doa & tuntunan sholat sunnah sebelum tidur",
+            category = "Sholat",
             fileName = "SEBELUM_TIDUR.md",
             arabicTitle = "أَدْعِيَةُ النَّوْمِ",
-            iconName = "sebelum_tidur"
+            iconName = "sebelum_tidur",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "dziarah_waliyulloh",

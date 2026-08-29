@@ -75,7 +75,7 @@ class AmaliyahRepository {
         DzikirItem(
             id = "dzikir_harian_6",
             number = 6,
-            title = "Dzikir Nafi Itsbat (165x)",
+            title = "Dzikir Jahr (165x)",
             arabicText = "لَا إِلٰهَ إِلَّا اللّٰهُ",
             latinText = "LAA ILAAHA ILLALLOOH",
             indonesianText = "Kemudian dilanjutkan dengan Zikir sekurang-kurangnya 165x. Lebih banyak lebih baik dan Zikir diakhiri pada hitungan bilangan ganjil.",
@@ -441,7 +441,7 @@ class AmaliyahRepository {
                 "Menghadiri atau menyelenggarakan Khidmat Amaliah Manaqib Syekh Abdul Qodir Al-Jailani.",
                 "Mengkhatamkan pembacaan Tanbih, Tawassul, Manqobah, dan Sholawat.",
                 "Memperbanyak sedekah manaqib dan menjamu tamu ikhwan.",
-                "Meningkatkan Dzikir Nafi Itsbat dan Dzikir Khofi."
+                "Meningkatkan Dzikir Jahr dan Dzikir Khofi."
             )
         ),
         HijriyahAmaliyah(

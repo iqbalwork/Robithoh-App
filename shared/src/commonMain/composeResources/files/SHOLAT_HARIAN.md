@@ -1294,6 +1294,8 @@ QOUL JADID MIN HADROTIS SYEIKH
 
 Terhitung tanggal 26 Mei 2019 / 21 Romadhon 1440 H hari Ahad melalui Maklumatnya Pangersa Guru Agung menetapkan bahwa Sholat Sunnat Syukri Lailatul Qodar mulai Romadhon 1 ini kemudian Romadhon 2 ( Syawal ) , Romadhon 3 ( Dzulqo’dah ) dan seterusnya dilaksanakan hanya setiap tanggal sepuluh akhir dibulan hijriah , pelaksanaannya setelah selesai khotaman sholat Lidaf’il bala* .
 
+## SEBELUM TIDUR
+
 HENDAK TIDUR
 
 Sholat Sunnah Syukril Wudhu ( 2 Rokaat )

@@ -29,14 +29,14 @@ import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
 import com.iqbalwork.robithoh.feature.home.ui.*
 import com.iqbalwork.robithoh.feature.library.ui.KitabTabContent
 import com.iqbalwork.robithoh.feature.prayer.ui.SalatTabContent
-import com.iqbalwork.robithoh.feature.profile.ui.ProfileTabContent
+import com.iqbalwork.robithoh.feature.profile.ui.SettingsTabContent
 import kotlinx.coroutines.launch
 
 enum class MainTab(val title: String, val icon: String) {
     HOME("Home", "🏠"),
     SALAT("Sholat", "🕌"),
     KITAB("Al Quran", "📖"),
-    PROFIL("Profil", "👤")
+    PENGATURAN("Pengaturan", "⚙️")
 }
 
 @Composable
@@ -53,12 +53,10 @@ fun MainAppContainer(
     onNavigateToCalculationMethods: () -> Unit = {},
     onNavigateToPrayerAdjustments: () -> Unit = {},
     amaliyahViewModel: AmaliyahViewModel,
-    audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() }
+    audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() },
+    isDarkMode: Boolean = false,
+    onDarkModeChange: (Boolean) -> Unit = {}
 ) {
-    BackHandler(enabled = activeSheet != null) {
-        onSheetChange(null)
-    }
-
     val currentTrack by audioPlayer.currentTrack.collectAsState()
     val playbackState by audioPlayer.playbackState.collectAsState()
     val currentPositionMs by audioPlayer.currentPositionMs.collectAsState()
@@ -67,27 +65,32 @@ fun MainAppContainer(
     val scope = rememberCoroutineScope()
     val locationProvider = rememberLocationProvider()
 
-    val requestPermissionAndFetch = rememberLocationPermissionLauncher { granted ->
-        if (granted) {
-            scope.launch {
-                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetFetchingLocation(true))
-                val loc = locationProvider.getCurrentLocation()
-                if (loc != null) {
-                    amaliyahViewModel.onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
-                }
+    val fetchGps = {
+        scope.launch {
+            amaliyahViewModel.onIntent(AmaliyahUiIntent.SetFetchingLocation(true))
+            val loc = locationProvider.getCurrentLocation()
+            if (loc != null) {
+                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
+            } else {
+                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetLocationError("Gagal mendeteksi lokasi GPS."))
             }
         }
     }
 
-    // Auto-fetch GPS or request location on first launch
-    LaunchedEffect(Unit) {
-        if (locationProvider.hasLocationPermission()) {
-            val loc = locationProvider.getCurrentLocation()
-            if (loc != null) {
-                amaliyahViewModel.onIntent(AmaliyahUiIntent.SetGpsLocation(loc))
+    val requestPermissionAndFetch = rememberLocationPermissionLauncher { granted ->
+        if (granted) {
+            fetchGps()
+        }
+    }
+
+    // Auto-fetch GPS or request location on first launch and whenever entering HOME tab
+    LaunchedEffect(currentTab) {
+        if (currentTab == MainTab.HOME) {
+            if (locationProvider.hasLocationPermission()) {
+                fetchGps()
+            } else {
+                requestPermissionAndFetch()
             }
-        } else {
-            requestPermissionAndFetch()
         }
     }
 
@@ -133,10 +136,10 @@ fun MainAppContainer(
                         lastReadBookmark = quranState.lastReadBookmark
                     )
                 }
-                MainTab.PROFIL -> {
-                    ProfileTabContent(
-                        onNavigateToLanggam = onNavigateToLanggam,
-                        onNavigateToProfilePesantren = onNavigateToProfilePesantren
+                MainTab.PENGATURAN -> {
+                    SettingsTabContent(
+                        isDarkMode = isDarkMode,
+                        onDarkModeChange = onDarkModeChange
                     )
                 }
             }
@@ -190,7 +193,7 @@ fun MainAppContainer(
                                     MainTab.HOME -> Color(0xFFFFE5D0)
                                     MainTab.SALAT -> Color(0xFFD0EDFF)
                                     MainTab.KITAB -> Color(0xFFD5F5E3)
-                                    MainTab.PROFIL -> Color(0xFFFFD6E8)
+                                    MainTab.PENGATURAN -> Color(0xFFEDE7F6)
                                 }
                             } else Color.Transparent,
                             modifier = Modifier
@@ -223,31 +226,41 @@ fun MainAppContainer(
     when (activeSheet) {
         "manaqib" -> {
             ManaqibModalBottomSheet(
-                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onItemClick = { docId ->
+                    onNavigateToDocument(docId)
+                },
                 onDismiss = { onSheetChange(null) }
             )
         }
         "sholat" -> {
             SholatModalBottomSheet(
-                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onItemClick = { docId ->
+                    onNavigateToDocument(docId)
+                },
                 onDismiss = { onSheetChange(null) }
             )
         }
         "sholawat" -> {
             SholawatModalBottomSheet(
-                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onItemClick = { docId ->
+                    onNavigateToDocument(docId)
+                },
                 onDismiss = { onSheetChange(null) }
             )
         }
         "tahlil" -> {
             TahlilZiyarohModalBottomSheet(
-                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onItemClick = { docId ->
+                    onNavigateToDocument(docId)
+                },
                 onDismiss = { onSheetChange(null) }
             )
         }
         "doa" -> {
             DoaModalBottomSheet(
-                onItemClick = { docId -> onNavigateToDocument(docId) },
+                onItemClick = { docId ->
+                    onNavigateToDocument(docId)
+                },
                 onDismiss = { onSheetChange(null) }
             )
         }

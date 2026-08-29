@@ -24,6 +24,7 @@ import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +34,9 @@ fun QuranListScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBackClick()
+    }
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
 

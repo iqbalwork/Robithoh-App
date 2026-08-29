@@ -19,6 +19,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
@@ -47,6 +50,9 @@ fun DzikirDetailScreen(
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
     val tasbihState by tasbihViewModel.uiState.collectAsState()
+    var selectedDzikirForOptions by remember { mutableStateOf<DzikirItem?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
 
     Scaffold(
         topBar = {
@@ -146,6 +152,7 @@ fun DzikirDetailScreen(
                     item = item,
                     selectedLanguage = state.selectedLanguage,
                     isDark = isDark,
+                    onClick = { selectedDzikirForOptions = item },
                     onOpenTasbih = { target, title ->
                         tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
                         tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
@@ -176,7 +183,63 @@ fun DzikirDetailScreen(
             }
         )
     }
-}
+    }
+
+    selectedDzikirForOptions?.let { item ->
+        val translationText = when (state.selectedLanguage) {
+            LiturgyLanguage.ARABIC -> item.indonesianText
+            LiturgyLanguage.INDONESIAN -> item.indonesianText
+            LiturgyLanguage.SUNDANESE -> item.sundaneseText
+        }
+        val shareText = remember(item, state.selectedLanguage) {
+            buildString {
+                append(item.title)
+                if (item.repetitionCount > 1) append(" (${item.repetitionCount}x)")
+                append("\n\n")
+                append(item.arabicText)
+                if (item.latinText.isNotBlank()) {
+                    append("\n\n")
+                    append(item.latinText)
+                }
+                if (translationText.isNotBlank()) {
+                    append("\n\n")
+                    val langBadge = if (state.selectedLanguage == LiturgyLanguage.SUNDANESE) "Basa Sunda" else "Terjemahan"
+                    append("[$langBadge] $translationText")
+                }
+                if (item.kaifiyatNote.isNotBlank()) {
+                    append("\n\nKaifiyat: ")
+                    append(item.kaifiyatNote)
+                }
+                append("\n\n(Dzikir TQN Pondok Pesantren Sirnarasa Silsilah 38)")
+            }
+        }
+
+        val customOptions = buildList {
+            if (item.repetitionCount > 1) {
+                add(
+                    ContentItemOption(
+                        icon = "📿",
+                        label = "Hitung dengan Tasbih (${item.repetitionCount}x)",
+                        onClick = {
+                            tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
+                            tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                        }
+                    )
+                )
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = "${item.number}. ${item.title}",
+            subtitle = if (item.repetitionCount > 1) "${item.repetitionCount}x Pengulangan" else null,
+            onDismiss = { selectedDzikirForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
+            copyLabel = "Salin Teks Dzikir",
+            onShare = { shareAction(shareText) },
+            shareLabel = "Bagikan Dzikir",
+            customOptions = customOptions
+        )
+    }
 }
 
 @Composable
@@ -184,9 +247,13 @@ private fun DzikirLiturgicalCard(
     item: DzikirItem,
     selectedLanguage: LiturgyLanguage,
     isDark: Boolean,
+    onClick: () -> Unit,
     onOpenTasbih: (Int, String) -> Unit
 ) {
-    GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
+    GoldCrimsonCard(
+        variant = GoldCrimsonCardVariant.GOLD_BORDER,
+        onClick = onClick
+    ) {
         // Card Top Header: Number, Title, Repetition Badge
         Row(
             modifier = Modifier.fillMaxWidth(),

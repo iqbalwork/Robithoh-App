@@ -29,6 +29,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.Ayah
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.navigation.BackHandler
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,6 +65,18 @@ fun QuranReaderScreen(
     var showGoToSheet by rememberSaveable { mutableStateOf(false) }
     var selectedAyahForOptions by remember { mutableStateOf<Ayah?>(null) }
     var pendingScrollAyah by rememberSaveable { mutableStateOf(initialAyahNumber) }
+
+    BackHandler {
+        if (showSettingsDialog) {
+            showSettingsDialog = false
+        } else if (showGoToSheet) {
+            showGoToSheet = false
+        } else if (selectedAyahForOptions != null) {
+            selectedAyahForOptions = null
+        } else {
+            onBackClick()
+        }
+    }
 
     // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless At-Taubah.
     val ayahListOffset = if (currentSurahNumber != 9) 3 else 2

@@ -4,12 +4,16 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-sealed interface ScreenKey {
+sealed interface ScreenKey : NavKey {
+    @Serializable
+    data object Splash : ScreenKey
+
     @Serializable
     data object Home : ScreenKey
 
@@ -54,12 +58,14 @@ sealed interface ScreenKey {
  * Saver for SnapshotStateList<ScreenKey> so Navigation backstack survives
  * Activity recreation (screen rotation, folding/unfolding foldable devices, etc.)
  */
-val ScreenKeyListSaver: Saver<SnapshotStateList<ScreenKey>, Any> = listSaver(
+val ScreenKeyListSaver: Saver<SnapshotStateList<NavKey>, Any> = listSaver(
     save = { stateList ->
-        stateList.map { Json.encodeToString<ScreenKey>(it) }
+        stateList.mapNotNull { key ->
+            (key as? ScreenKey)?.let { Json.encodeToString<ScreenKey>(it) }
+        }
     },
     restore = { savedList ->
-        val restored = mutableStateListOf<ScreenKey>()
+        val restored = mutableStateListOf<NavKey>()
         savedList.forEach { jsonStr ->
             try {
                 restored.add(Json.decodeFromString<ScreenKey>(jsonStr))

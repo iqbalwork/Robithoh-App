@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethods
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,6 +25,9 @@ fun PrayerCalculationMethodScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBack()
+    }
     val isDark = RabithohTheme.colors.isDark
     val methods = PrayerCalculationMethods.ALL_METHODS
 

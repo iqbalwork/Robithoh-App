@@ -7,16 +7,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.quran.model.ShalawatModel
 
@@ -27,6 +30,9 @@ fun ShalawatScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    var selectedShalawatForOptions by remember { mutableStateOf<ShalawatModel?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
 
     LazyColumn(
         modifier = modifier
@@ -67,14 +73,69 @@ fun ShalawatScreen(
         }
 
         items(shalawatList, key = { it.id }) { item ->
-            ShalawatCard(item = item, onPlayAudio = { onPlayAudio(item.audioPath, item.title) })
+            ShalawatCard(
+                item = item,
+                onClick = { selectedShalawatForOptions = item },
+                onPlayAudio = { onPlayAudio(item.audioPath, item.title) }
+            )
         }
+    }
+
+    selectedShalawatForOptions?.let { item ->
+        val shareText = remember(item) {
+            buildString {
+                append("${item.title} - ${item.subtitle}")
+                append("\n\n")
+                append(item.arabicText)
+                if (item.latinText.isNotBlank()) {
+                    append("\n\n")
+                    append(item.latinText)
+                }
+                if (item.indonesianTranslation.isNotBlank()) {
+                    append("\n\n[Terjemahan]\n")
+                    append(item.indonesianTranslation)
+                }
+                if (item.sundaneseTranslation.isNotBlank()) {
+                    append("\n\n[Basa Sunda]\n")
+                    append(item.sundaneseTranslation)
+                }
+                if (item.virtue.isNotBlank()) {
+                    append("\n\nFadhilah: ")
+                    append(item.virtue)
+                }
+                append("\n\n(Kumpulan Shalawat TQN Pondok Pesantren Sirnarasa)")
+            }
+        }
+
+        val customOptions = buildList {
+            if (item.audioPath != null) {
+                add(
+                    ContentItemOption(
+                        icon = "▶",
+                        label = "Putar Audio Shalawat",
+                        onClick = { onPlayAudio(item.audioPath, item.title) }
+                    )
+                )
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = item.title,
+            subtitle = item.subtitle,
+            onDismiss = { selectedShalawatForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
+            copyLabel = "Salin Shalawat",
+            onShare = { shareAction(shareText) },
+            shareLabel = "Bagikan Shalawat",
+            customOptions = customOptions
+        )
     }
 }
 
 @Composable
 private fun ShalawatCard(
     item: ShalawatModel,
+    onClick: () -> Unit,
     onPlayAudio: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -83,7 +144,8 @@ private fun ShalawatCard(
     GoldCrimsonCard(
         modifier = modifier,
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
-        contentPadding = PaddingValues(16.dp)
+        contentPadding = PaddingValues(16.dp),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

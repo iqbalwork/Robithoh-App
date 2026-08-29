@@ -13,13 +13,24 @@ import androidx.core.content.ContextCompat
 class PrayerAlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        val action = intent.action
+        if (action == Intent.ACTION_BOOT_COMPLETED ||
+            action == Intent.ACTION_LOCKED_BOOT_COMPLETED ||
+            action == Intent.ACTION_MY_PACKAGE_REPLACED ||
+            action == Intent.ACTION_TIME_CHANGED ||
+            action == Intent.ACTION_TIMEZONE_CHANGED
+        ) {
+            AndroidPrayerAlarmScheduler.rescheduleFromDatabase(context)
+            return
+        }
+
         val powerManager = context.getSystemService(Context.POWER_SERVICE) as? android.os.PowerManager
         val wakeLock = powerManager?.newWakeLock(
             android.os.PowerManager.PARTIAL_WAKE_LOCK,
             "robithoh:PrayerAlarmWakeLock"
         )
         try {
-            wakeLock?.acquire(10_000L) // 10 seconds timeout
+            wakeLock?.acquire(15_000L) // 15 seconds timeout
         } catch (_: Exception) {}
 
         val prayerName = intent.getStringExtra(PrayerAdzanService.EXTRA_PRAYER_NAME) ?: "Sholat"
@@ -29,11 +40,12 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         val voiceTitle = intent.getStringExtra(PrayerAdzanService.EXTRA_VOICE_TITLE) ?: "Adzan"
         val mode = intent.getStringExtra(PrayerAdzanService.EXTRA_NOTIFICATION_MODE) ?: "adzan"
 
-        if (mode.equals("push", ignoreCase = true)) {
+        val isImsak = prayerName.equals("Imsak", ignoreCase = true)
+        if (isImsak || mode.equals("push", ignoreCase = true)) {
             showPushNotification(context, prayerName, locationName)
         } else {
             val serviceIntent = Intent(context, PrayerAdzanService::class.java).apply {
-                action = PrayerAdzanService.ACTION_PLAY_ADZAN
+                this.action = PrayerAdzanService.ACTION_PLAY_ADZAN
                 putExtra(PrayerAdzanService.EXTRA_PRAYER_NAME, prayerName)
                 putExtra(PrayerAdzanService.EXTRA_LOCATION_NAME, locationName)
                 putExtra(PrayerAdzanService.EXTRA_AUDIO_FILE, audioFile)
@@ -41,14 +53,30 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
                 putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceTitle)
             }
 
+            var serviceStarted = false
             try {
                 ContextCompat.startForegroundService(context, serviceIntent)
-            } catch (_: Exception) {
+                serviceStarted = true
+            } catch (_: Throwable) {
                 try {
                     context.startService(serviceIntent)
-                } catch (_: Exception) {}
+                    serviceStarted = true
+                } catch (_: Throwable) {
+                    serviceStarted = false
+                }
+            }
+
+            // CRITICAL FALLBACK: If starting foreground service failed or was blocked by Android,
+            // immediately show push notification so the user never misses the prayer notification!
+            if (!serviceStarted) {
+                showPushNotification(context, prayerName, locationName)
             }
         }
+
+        // Reschedule future prayer alarms to keep the alarm schedule refreshed
+        try {
+            AndroidPrayerAlarmScheduler.rescheduleFromDatabase(context)
+        } catch (_: Throwable) {}
     }
 
     private fun showPushNotification(context: Context, prayerName: String, locationName: String) {
@@ -58,10 +86,10 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Notifikasi Waktu Sholat",
+                "Notifikasi Waktu Sholat & Imsak",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Push notifikasi saat masuk waktu sholat"
+                description = "Push notifikasi saat masuk waktu sholat & imsak"
                 enableVibration(true)
                 vibrationPattern = longArrayOf(0, 300, 200, 300)
                 lockscreenVisibility = android.app.Notification.VISIBILITY_PUBLIC
@@ -91,6 +119,10 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
             }
         } else null
 
+        val isImsak = prayerName.equals("Imsak", ignoreCase = true)
+        val notifTitle = if (isImsak) "Waktu Imsak" else "Waktu Sholat $prayerName Telah Tiba"
+        val notifText = if (isImsak) "Memasuki waktu Imsak untuk wilayah $locationName" else "Saatnya menunaikan sholat $prayerName untuk wilayah $locationName"
+
         val notification = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(iconRes)
             .apply {
@@ -98,8 +130,9 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
                     setLargeIcon(largeIconBitmap)
                 }
             }
-            .setContentTitle("Waktu Sholat $prayerName Telah Tiba")
-            .setContentText("Saatnya menunaikan sholat $prayerName untuk wilayah $locationName")
+            .setContentTitle(notifTitle)
+            .setContentText(notifText)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(notifText))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setDefaults(NotificationCompat.DEFAULT_SOUND or NotificationCompat.DEFAULT_VIBRATE or NotificationCompat.DEFAULT_LIGHTS)

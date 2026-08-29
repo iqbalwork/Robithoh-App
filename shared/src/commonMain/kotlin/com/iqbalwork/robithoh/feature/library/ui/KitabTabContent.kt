@@ -28,6 +28,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.quran.data.QuranData
 import com.iqbalwork.robithoh.feature.quran.model.QuranBookmark
 import com.iqbalwork.robithoh.feature.quran.model.RevelationType
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @Composable
 fun KitabTabContent(
@@ -35,6 +36,12 @@ fun KitabTabContent(
     lastReadBookmark: QuranBookmark? = null,
     onBack: (() -> Unit)? = null
 ) {
+    if (onBack != null) {
+        BackHandler {
+            onBack()
+        }
+    }
+
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     val allSurahs = remember { QuranData.surahs }

@@ -33,23 +33,38 @@ fun PrayerNotificationModePickerSheet(
     val isDark = RabithohTheme.colors.isDark
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    val options = listOf(
-        Triple(
-            PrayerNotificationMode.ADZAN,
-            "Adzan alarm",
-            "Full adzan sound + full-screen alarm"
-        ),
-        Triple(
-            PrayerNotificationMode.PUSH_NOTIFICATION,
-            "Push notification",
-            "A regular notification with your device tone"
-        ),
-        Triple(
-            PrayerNotificationMode.SILENT,
-            "Silent",
-            "No notification"
+    val options = if (prayerType == PrayerType.IMSAK) {
+        listOf(
+            Triple(
+                PrayerNotificationMode.PUSH_NOTIFICATION,
+                "Push notification",
+                "A regular notification with your device tone"
+            ),
+            Triple(
+                PrayerNotificationMode.SILENT,
+                "Silent",
+                "No notification"
+            )
         )
-    )
+    } else {
+        listOf(
+            Triple(
+                PrayerNotificationMode.ADZAN,
+                "Adzan alarm",
+                "Full adzan sound + full-screen alarm"
+            ),
+            Triple(
+                PrayerNotificationMode.PUSH_NOTIFICATION,
+                "Push notification",
+                "A regular notification with your device tone"
+            ),
+            Triple(
+                PrayerNotificationMode.SILENT,
+                "Silent",
+                "No notification"
+            )
+        )
+    }
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,

@@ -22,6 +22,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiState
 import com.iqbalwork.robithoh.feature.tasbih.ui.component.TasbihCounterDisk
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +34,14 @@ fun TasbihScreen(
 ) {
     val isDark = RabithohTheme.colors.isDark
     var showDzikirSelectorSheet by rememberSaveable { mutableStateOf(false) }
+
+    BackHandler {
+        if (showDzikirSelectorSheet) {
+            showDzikirSelectorSheet = false
+        } else {
+            onBack()
+        }
+    }
     var customTargetInput by rememberSaveable { mutableStateOf(state.targetCount.toString()) }
 
     val isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0

@@ -26,6 +26,7 @@ import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.langgam.data.LanggamItem
 import com.iqbalwork.robithoh.feature.langgam.data.LanggamRepository
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +34,9 @@ fun LanggamScreen(
     onBack: () -> Unit,
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() }
 ) {
+    BackHandler {
+        onBack()
+    }
     val currentTrack by audioPlayer.currentTrack.collectAsState()
     val playbackState by audioPlayer.playbackState.collectAsState()
     val currentPositionMs by audioPlayer.currentPositionMs.collectAsState()
@@ -134,7 +138,11 @@ fun LanggamScreen(
             }
 
             // Bottom Audio Player Bar
-            if (currentTrack != null) {
+            AnimatedVisibility(
+                visible = currentTrack != null,
+                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut()
+            ) {
                 Surface(
                     color = Color.White,
                     shadowElevation = 8.dp,

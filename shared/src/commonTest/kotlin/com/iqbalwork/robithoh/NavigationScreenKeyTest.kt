@@ -36,7 +36,7 @@ class NavigationScreenKeyTest {
 
     @Test
     fun testScreenKeyListSaverPreservesBackstack() {
-        val originalBackstack = androidx.compose.runtime.mutableStateListOf<ScreenKey>(
+        val originalBackstack = androidx.compose.runtime.mutableStateListOf<androidx.navigation3.runtime.NavKey>(
             ScreenKey.Home,
             ScreenKey.QuranList,
             ScreenKey.QuranSurah(surahNumber = 18, ayahNumber = 40),
