@@ -37,6 +37,8 @@ import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
 
+import com.iqbalwork.robithoh.navigation.BackHandler
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrayerNotificationModePickerSheet(
@@ -47,6 +49,9 @@ fun PrayerNotificationModePickerSheet(
     onTestTrigger: ((PrayerNotificationMode) -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onDismiss()
+    }
     val isDark = RabithohTheme.colors.isDark
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 

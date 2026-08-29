@@ -1,0 +1,23 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 07: Pemutar Audio Langgam TQN Sirnarasa & Mini Floating Bar
+# ==============================================================================
+
+# 1. Navigasi ke Layar Langgam dari Beranda
+- tapOn: "Langgam"
+- extendedWaitUntil:
+    visible: "Langgam & Irama Tilawah TQN"
+    timeout: 5000
+- takeScreenshot: screenshots/23_langgam_track_list
+
+# 2. Putar Track Langgam Pertama
+- tapOn:
+    point: "50%,25%"
+- takeScreenshot: screenshots/24_langgam_playing
+
+# 3. Kembali ke Beranda (Player Mini Floating Bar akan tetap aktif)
+- back
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+- takeScreenshot: screenshots/25_home_with_floating_player

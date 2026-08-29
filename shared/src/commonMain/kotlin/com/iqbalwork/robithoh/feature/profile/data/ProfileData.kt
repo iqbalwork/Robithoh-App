@@ -32,7 +32,7 @@ Pangersa Abah Aos Ra. Qs. adalah Mursyid Agung TQN penerus amanah kemursyidan da
                 id = "baitul_asror",
                 name = "Baitul Asror",
                 acronym = "Baitul Asror",
-                description = "Pusat pembinaan spiritual, suluk, dan markaz dzikir terpadu ikhwan TQN Sirnarasa.",
+                description = "Pusat pembinaan spiritual, suluk, dan markaz dzikir terpadu ikhwan TQN PP Suryalaya Sirnarasa.",
                 roleCategory = "Spiritual & Dzikir",
                 logoDrawable = "logo_baitul_asror.png"
             ),

@@ -23,7 +23,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "khotaman_tqn",
-            title = "Khotaman TQN Sirnarasa",
+            title = "Khotaman TQN PP Suryalaya Sirnarasa",
             subtitle = "Amaliyah Khotaman",
             category = "Dzikir & Khotaman",
             fileName = "KHOTAMAN_TQN.md",
@@ -85,7 +85,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "tawassul_tqn",
-            title = "Tawassul TQN Sirnarasa",
+            title = "Tawassul TQN PP Suryalaya Sirnarasa",
             subtitle = "Hadhloroh tawasul auliya & masyayikh",
             category = "Manaqib",
             fileName = "TAWASSUL_TQN.md",
@@ -178,7 +178,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sholat_bulanan",
             title = "Sholat Bulanan",
-            subtitle = "Amaliyah & sholat sunnah bulanan TQN Sirnarasa",
+            subtitle = "Amaliyah & sholat sunnah bulanan TQN PP Suryalaya Sirnarasa",
             category = "Sholat",
             fileName = "SHOLAT_BULANAN.md",
             arabicTitle = "صَلَوَاتُ الْأَشْهُرِ",
@@ -188,7 +188,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sholat_tahunan",
             title = "Sholat Tahunan",
-            subtitle = "Kumpulan sholat sunnah tahunan TQN Sirnarasa",
+            subtitle = "Kumpulan sholat sunnah tahunan TQN PP Suryalaya Sirnarasa",
             category = "Sholat",
             fileName = "SHOLAT_TAHUNAN.md",
             arabicTitle = "صَلَوَاتُ السَّنَوِيَّةِ",

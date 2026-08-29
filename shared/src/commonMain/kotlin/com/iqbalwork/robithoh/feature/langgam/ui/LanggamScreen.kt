@@ -107,7 +107,7 @@ fun LanggamScreen(
             TopAppBar(
                 title = {
                     Text(
-                        "Langgam TQN Sirnarasa",
+                        "Langgam TQN PP Suryalaya Sirnarasa",
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                         fontSize = 18.sp

@@ -1,0 +1,40 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 01: Splash Screen & Home Dashboard
+# ==============================================================================
+- launchApp:
+    clearState: false
+
+# 1. Pastikan Splash Screen atau Home sudah muncul
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+    timeout: 10000
+
+# 2. Ambil Screenshot Beranda (Home Tab) untuk Asset Play Store
+- takeScreenshot: screenshots/01_home_screen
+
+# 3. Verifikasi elemen-elemen penting di Beranda
+- assertVisible: "SHOLAT BERIKUTNYA"
+- assertVisible: "Menu Amaliyah"
+- assertVisible: "Dzikir"
+- assertVisible: "Tasbih Digital"
+- assertVisible: "Khotaman"
+- assertVisible: "Manaqib"
+- assertVisible: "Sholat"
+- assertVisible: "Arah Kiblat"
+- assertVisible: "Langgam"
+- assertVisible: "Tarhim"
+- assertVisible: "Sholawat"
+- assertVisible: "Doa"
+- assertVisible: "Silsilah"
+- assertVisible: "Tahlil & Ziyaroh"
+
+# 4. Scroll ke bawah untuk melihat Untaian Mutiara Tanbih
+- scroll
+- assertVisible: "KUTIPAN HARI INI"
+- takeScreenshot: screenshots/02_home_screen_scrolled
+
+# 5. Kembali ke posisi atas
+- swipe:
+    direction: DOWN

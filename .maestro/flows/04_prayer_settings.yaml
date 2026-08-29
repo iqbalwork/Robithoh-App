@@ -1,0 +1,51 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 04: Prayer Calculation Methods & Time Adjustments (Koreksi Waktu)
+# ==============================================================================
+
+# 1. Pastikan berada di Tab Sholat dan scroll ke bawah
+- tapOn:
+    point: "38%,97%"
+- scrollUntilVisible:
+    element: "Koreksi waktu sholat"
+
+# 2. Buka Layar Metode Perhitungan
+- tapOn: "Metode perhitungan"
+- extendedWaitUntil:
+    visible: "Perhitungan Waktu Salat"
+    timeout: 5000
+- assertVisible: "Kementrian Agama Indonesia"
+- takeScreenshot: screenshots/13_prayer_calculation_methods
+- back
+- extendedWaitUntil:
+    notVisible: "Perhitungan Waktu Salat"
+
+# 3. Buka Layar Koreksi Waktu Sholat (Prayer Time Adjustments)
+- tapOn: "Koreksi waktu sholat"
+- extendedWaitUntil:
+    visible: "Penyesuaian Waktu Salat"
+    timeout: 5000
+- assertVisible: "Subuh"
+- assertVisible: "Dzuhur"
+- assertVisible: "Ashar"
+- takeScreenshot: screenshots/14_prayer_adjustments
+
+# 4. Buka Picker Offset Menit (misal tap pada Subuh)
+- tapOn: "Subuh"
+- extendedWaitUntil:
+    visible: "Waktu Shalat Subuh"
+    timeout: 5000
+- assertVisible: "Standar"
+- takeScreenshot: screenshots/15_prayer_offset_picker_sheet
+- tapOn: "✕"
+- extendedWaitUntil:
+    notVisible: "Waktu Shalat Subuh"
+- back
+- extendedWaitUntil:
+    notVisible: "Penyesuaian Waktu Salat"
+
+# 5. Kembali ke Tab Beranda
+- tapOn: "Beranda"
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"

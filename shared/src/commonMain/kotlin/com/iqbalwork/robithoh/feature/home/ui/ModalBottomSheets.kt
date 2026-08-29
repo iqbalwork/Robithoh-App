@@ -3,13 +3,21 @@ package com.iqbalwork.robithoh.feature.home.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +28,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahSundaBadge
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 
 data class SheetGridItem(
     val id: String,
@@ -100,7 +112,6 @@ fun SholatModalBottomSheet(
 ) {
     val harianItems = listOf(
         SheetGridItem("harian", "Harian", "⏰", false, "sholat_harian"),
-        SheetGridItem("sebelum_tidur", "Sebelum Tidur", "🛌", false, "sebelum_tidur"),
         SheetGridItem("bulanan", "Bulanan", "📅", false, "sholat_bulanan"),
         SheetGridItem("safar", "Safar", "🚗", false, "sholat_safar")
     )
@@ -150,6 +161,7 @@ fun SholatModalBottomSheet(
                         SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
                     }
                 }
+                Spacer(modifier = Modifier.weight(1f))
             }
 
             Spacer(modifier = Modifier.height(18.dp))
@@ -217,7 +229,7 @@ fun SholawatModalBottomSheet(
                 .padding(bottom = 36.dp)
         ) {
             Text(
-                text = "Sholawat TQN Sirnarasa",
+                text = "Sholawat TQN PP Suryalaya Sirnarasa",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal

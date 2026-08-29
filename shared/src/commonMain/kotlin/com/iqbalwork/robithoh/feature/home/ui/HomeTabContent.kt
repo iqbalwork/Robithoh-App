@@ -309,7 +309,7 @@ fun HomeTabContent(
 
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Wasiat Pangersa Abah Sepuh · TQN Sirnarasa",
+                        text = "Wasiat Pangersa Abah Sepuh · TQN PP Suryalaya Sirnarasa",
                         fontSize = 11.sp,
                         color = Color(0xFF475569)
                     )
