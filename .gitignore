@@ -4,6 +4,14 @@ build/
 **/build/
 !src/**/build/
 
+# Android Build Outputs & Release
+*.apk
+*.aab
+*.ap_
+*.dex
+**/release/
+release/
+
 # Kotlin / KMP
 .kotlin/
 .konan/
