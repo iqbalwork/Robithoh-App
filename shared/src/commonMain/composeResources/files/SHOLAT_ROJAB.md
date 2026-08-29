@@ -73,7 +73,7 @@ Jumlah: **10 Roka’at (5x salam)**
 *Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Allohumma laa maani’a limaa a’thoita wa laa mu’thiya limaa mana’ta wa laa yangfa’u dzal dzaddi mingkal jaddu*
 
 **Artinya:**  
-“Tiada Tuhan selain Alloh, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, Semoga Alloh mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik Alloh.”
+“Tiada Tuhan selain اللّه, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.”
 
 ---
 
@@ -107,7 +107,7 @@ Dan setelah selesai sholat 12 roka’at (6x salam) kemudian membaca sholawat **7
 *Allohumma sholli ‘alaa sayyidinaa Muhammadinin Nabiyyil Ummiyyi wa ‘alaa aalihi wa shohbihi wa sallim (70x)*
 
 **Artinya:**  
-”Ya Alloh curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya.”
+”Ya اللّه curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya.”
 
 Setelah sholat kemudian bersujud sambil membaca Tasbih **70x** dengan bacaan Tasbih sebagai berikut:
 
@@ -116,7 +116,7 @@ Setelah sholat kemudian bersujud sambil membaca Tasbih **70x** dengan bacaan Tas
 *Subbuhun quudusun robbul malaaikati war ruuhi (70x)*
 
 **Artinya:**  
-”Maha Suci Alloh Tuhan para malaikat dan ruh.”
+”Maha Suci اللّه Tuhan para malaikat dan ruh.”
 
 Kemudian bangun dari sujud, duduk seperti semula dengan membaca Istighfar **70x**, dengan bacaan sebagai berikut:
 
@@ -127,7 +127,7 @@ Kemudian bangun dari sujud, duduk seperti semula dengan membaca Istighfar **70x*
 **Artinya:**  
 "Wahai Tuhan ku ampunilah, sayangilah, perkenankanlah kami dari apa yang Engkau ketahui, maka sesungguhnya Engkau Maha Perkasa lagi Maha Agung."
 
-Kemudian sujud kembali dan membaca Tasbih **70x** seperti di atas, ketika sujud mohonkan ampunan kepada Alloh dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat:
+Kemudian sujud kembali dan membaca Tasbih **70x** seperti di atas, ketika sujud mohonkan ampunan kepada اللّه dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat:
 
 سُبُّوْحٌ قُدُّوْسٌ رَبُّ الْمَلآئِكَةِ وَالرُّوْحِ
 
@@ -163,7 +163,7 @@ Jumlah: **10 Roka’at (5x salam)**
 *Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Illahan waahidan ahadan shomadan fardan witron lam yattakhidz shoohibatan wa laa waladan.*
 
 **Artinya:**  
-“Tiada Tuhan selain Alloh, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, Tuhan Yang Esa, Tunggal, tempat bergantung, Sendiri, Ganjil, yang tidak beristri dan tidak pula beranak.”
+“Tiada Tuhan selain اللّه, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, Tuhan Yang Esa, Tunggal, tempat bergantung, Sendiri, Ganjil, yang tidak beristri dan tidak pula beranak.”
 
 ---
 
@@ -195,7 +195,7 @@ Jumlah: **10 Roka’at (5x salam)**
 *Laa ilaaha illalloohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyi wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Wa sholallohu ‘alaa sayyidinaa Muhammadin wa’alaa aalihittoohiriina wa laa haula wa laa quwwata illa billahil ‘aliyyil ‘adzhim.*
 
 **Artinya:**  
-“Tiada Tuhan selain Alloh, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, dan semoga Alloh mencurahkan shalawat atas junjungan kita Nabi Muhammad dan atas keluarganya yang suci, dan tiada daya dan kekuatan melainkan dengan pertolongan Alloh Yang Maha Luhur lagi Maha Agung.”
+“Tiada Tuhan selain اللّه, tiada sekutu bagi-Nya, hanya milik-Nya lah kekuasaan-Nya, hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu, dan semoga اللّه mencurahkan shalawat atas junjungan kita Nabi Muhammad dan atas keluarganya yang suci, dan tiada daya dan kekuatan melainkan dengan pertolongan اللّه Yang Maha Luhur lagi Maha Agung.”
 
 ---
 
@@ -208,7 +208,7 @@ Jumlah: **10 Roka’at (5x salam)**
 *Subhanallohil hayyil qoyyumi (100x)*
 
 **Artinya:**  
-Maha Suci Alloh Yang Maha Hidup lagi Maha Memelihara.
+Maha Suci اللّه Yang Maha Hidup lagi Maha Memelihara.
 
 - **Dari tanggal 11 sampai 20 membaca (100x):**
 
@@ -217,7 +217,7 @@ Maha Suci Alloh Yang Maha Hidup lagi Maha Memelihara.
 *Subhanallohil ahadish shomad (100x)*
 
 **Artinya:**  
-Maha Suci Alloh Yang Tunggal dan tempat Meminta.
+Maha Suci اللّه Yang Tunggal dan tempat Meminta.
 
 - **Dari tanggal 21 sampai tanggal 30 membaca (100x):**
 
@@ -226,7 +226,7 @@ Maha Suci Alloh Yang Tunggal dan tempat Meminta.
 *Subhanallohir rouuf (100x)*
 
 **Artinya:**  
-Maha Suci Alloh Yang Maha Pengasih (Penyantun).
+Maha Suci اللّه Yang Maha Pengasih (Penyantun).
 
 ---
 
@@ -237,6 +237,6 @@ Maha Suci Alloh Yang Maha Pengasih (Penyantun).
 *Allohumma thohhir lisaanii, minal kidzbi, wa qolbii minan nifaaqi, wa ‘amalii minar riyaa’i, wa bashorii minal khiyaanati, Fa innaka ta’lamu khooinatal a’yun wa maa tukhfish shuduur.*
 
 **Artinya:**  
-"Ya Alloh, sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikanlah penglihatanku dari khiyanah, sesungguhnya Engkau mengetahui yang mengelabui mata dan apa yang tersimpan di dalam hati."
+"Ya اللّه, sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikanlah penglihatanku dari khiyanah, sesungguhnya Engkau mengetahui yang mengelabui mata dan apa yang tersimpan di dalam hati."
 
 ---

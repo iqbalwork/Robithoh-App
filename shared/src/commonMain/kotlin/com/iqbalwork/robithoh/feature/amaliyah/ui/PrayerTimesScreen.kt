@@ -3,15 +3,31 @@ package com.iqbalwork.robithoh.feature.amaliyah.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,8 +35,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.component.*
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCard
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCardVariant
+import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
 import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
@@ -33,6 +61,7 @@ fun PrayerTimesScreen(
     onIntent: (AmaliyahUiIntent) -> Unit,
     onNavigateToMethods: () -> Unit = {},
     onNavigateToAdjustments: () -> Unit = {},
+    onNavigateToQibla: () -> Unit = {},
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -533,20 +562,32 @@ fun PrayerTimesScreen(
 
             // Qibla Direction Card
             if (qibla != null) {
-                GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
+                GoldCrimsonCard(
+                    variant = GoldCrimsonCardVariant.GOLD_BORDER,
+                    modifier = Modifier.clickable(onClick = onNavigateToQibla)
+                ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Column {
-                            Text(
-                                text = "Arah Kiblat (Ka'bah Al-Mukarromah)",
-                                style = MaterialTheme.typography.titleSmall.copy(
-                                    fontWeight = FontWeight.Bold,
-                                    color = if (isDark) PutihBersih else SlateCharcoalText
+                        Column(modifier = Modifier.weight(1f)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "Arah Kiblat (Ka'bah Al-Mukarromah)",
+                                    style = MaterialTheme.typography.titleSmall.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        color = if (isDark) PutihBersih else SlateCharcoalText
+                                    )
                                 )
-                            )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(
+                                    text = "Kompas ›",
+                                    fontSize = 11.5.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = EmasKhidmat
+                                )
+                            }
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
                                 text = "Azimuth: ${qibla.directionDegrees}° (${qibla.compassHeading})",
@@ -555,7 +596,7 @@ fun PrayerTimesScreen(
                                 fontSize = 14.sp
                             )
                             Text(
-                                text = "Jarak ke Ka'bah: ${qibla.distanceKm} km",
+                                text = "Jarak ke Ka'bah: ${qibla.distanceKm} km · Ketuk untuk buka kompas",
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 12.sp
                             )
@@ -569,7 +610,7 @@ fun PrayerTimesScreen(
                             border = BorderStroke(1.5.dp, EmasKhidmat)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
-                                Text("🕋", fontSize = 24.sp)
+                                Text("🧭", fontSize = 24.sp)
                             }
                         }
                     }

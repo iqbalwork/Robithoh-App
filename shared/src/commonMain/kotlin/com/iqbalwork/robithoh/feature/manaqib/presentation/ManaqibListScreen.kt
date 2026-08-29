@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.manaqib.model.ManqobahChapter
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,6 +33,9 @@ fun ManaqibListScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBackClick()
+    }
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
 

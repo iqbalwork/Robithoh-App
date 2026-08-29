@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +32,9 @@ fun ManaqibDetailScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBackClick()
+    }
     val state by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
 
@@ -210,107 +215,111 @@ fun ManaqibDetailScreen(
             )
 
             if (chapter != null) {
-                // Header Banner Card
-                GoldCrimsonCard(
-                    variant = if (isHighContrast) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.CRIMSON_HERO,
-                    contentPadding = PaddingValues(16.dp)
-                ) {
-                    Text(
-                        text = "الْمَنْقَبَةُ ${chapter.chapterNumber}",
-                        style = RabithohTheme.typography.arabicLarge.copy(
-                            color = EmasMuda,
-                            fontSize = (22 * fontScale).sp,
-                            textAlign = TextAlign.Center
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Text(
-                        text = chapter.titleForLanguage(state.selectedLanguage),
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            color = PutihBersih,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = (16 * fontScale).sp,
-                            textAlign = TextAlign.Center
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Reading Content Body
-                GoldCrimsonCard(
-                    variant = GoldCrimsonCardVariant.SURFACE_CLEAN,
-                    contentPadding = PaddingValues(20.dp)
-                ) {
-                    when (state.selectedLanguage) {
-                        LiturgyLanguage.ARABIC -> {
+                SelectionContainer {
+                    Column {
+                        // Header Banner Card
+                        GoldCrimsonCard(
+                            variant = if (isHighContrast) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.CRIMSON_HERO,
+                            contentPadding = PaddingValues(16.dp)
+                        ) {
                             Text(
-                                text = chapter.contentArabic,
+                                text = "الْمَنْقَبَةُ ${chapter.chapterNumber}",
                                 style = RabithohTheme.typography.arabicLarge.copy(
-                                    fontSize = (24 * fontScale).sp,
-                                    lineHeight = (44 * fontScale).sp,
-                                    color = textColor,
-                                    textAlign = TextAlign.Right
+                                    color = EmasMuda,
+                                    fontSize = (22 * fontScale).sp,
+                                    textAlign = TextAlign.Center
                                 ),
                                 modifier = Modifier.fillMaxWidth()
                             )
-                        }
-                        LiturgyLanguage.INDONESIAN -> {
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
                             Text(
-                                text = chapter.contentIndonesian,
-                                style = MaterialTheme.typography.bodyLarge.copy(
+                                text = chapter.titleForLanguage(state.selectedLanguage),
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    color = PutihBersih,
+                                    fontWeight = FontWeight.Bold,
                                     fontSize = (16 * fontScale).sp,
-                                    lineHeight = (26 * fontScale).sp,
-                                    color = textColor
+                                    textAlign = TextAlign.Center
                                 ),
                                 modifier = Modifier.fillMaxWidth()
                             )
                         }
-                        LiturgyLanguage.SUNDANESE -> {
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Reading Content Body
+                        GoldCrimsonCard(
+                            variant = GoldCrimsonCardVariant.SURFACE_CLEAN,
+                            contentPadding = PaddingValues(20.dp)
+                        ) {
+                            when (state.selectedLanguage) {
+                                LiturgyLanguage.ARABIC -> {
+                                    Text(
+                                        text = chapter.contentArabic,
+                                        style = RabithohTheme.typography.arabicLarge.copy(
+                                            fontSize = (24 * fontScale).sp,
+                                            lineHeight = (44 * fontScale).sp,
+                                            color = textColor,
+                                            textAlign = TextAlign.Right
+                                        ),
+                                        modifier = Modifier.fillMaxWidth()
+                                    )
+                                }
+                                LiturgyLanguage.INDONESIAN -> {
+                                    Text(
+                                        text = chapter.contentIndonesian,
+                                        style = MaterialTheme.typography.bodyLarge.copy(
+                                            fontSize = (16 * fontScale).sp,
+                                            lineHeight = (26 * fontScale).sp,
+                                            color = textColor
+                                        ),
+                                        modifier = Modifier.fillMaxWidth()
+                                    )
+                                }
+                                LiturgyLanguage.SUNDANESE -> {
+                                    Text(
+                                        text = chapter.contentSundanese,
+                                        style = MaterialTheme.typography.bodyLarge.copy(
+                                            fontSize = (16 * fontScale).sp,
+                                            lineHeight = (26 * fontScale).sp,
+                                            color = textColor
+                                        ),
+                                        modifier = Modifier.fillMaxWidth()
+                                    )
+                                }
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        // Fadhilah Card
+                        GoldCrimsonCard(
+                            variant = GoldCrimsonCardVariant.GOLD_TINTED,
+                            contentPadding = PaddingValues(14.dp)
+                        ) {
                             Text(
-                                text = chapter.contentSundanese,
-                                style = MaterialTheme.typography.bodyLarge.copy(
-                                    fontSize = (16 * fontScale).sp,
-                                    lineHeight = (26 * fontScale).sp,
-                                    color = textColor
-                                ),
-                                modifier = Modifier.fillMaxWidth()
+                                text = "Fadhilah Pembacaan Manaqib",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = (14 * fontScale).sp,
+                                color = if (isDark) EmasMuda else MerahMarunGelap
+                            )
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(
+                                text = "Mendatangkan rahmat dan barokah, melapangkan rizki, menenteramkan kalbu, serta mempererat tali ikatan rohani (robithoh) dengan Guru Mursyid.",
+                                fontSize = (12 * fontScale).sp,
+                                lineHeight = (18 * fontScale).sp,
+                                color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText
                             )
                         }
+
+                        Spacer(modifier = Modifier.height(32.dp))
                     }
                 }
-
-                Spacer(modifier = Modifier.height(24.dp))
-
-                // Fadhilah Card
-                GoldCrimsonCard(
-                    variant = GoldCrimsonCardVariant.GOLD_TINTED,
-                    contentPadding = PaddingValues(14.dp)
-                ) {
-                    Text(
-                        text = "Fadhilah Pembacaan Manaqib",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = (14 * fontScale).sp,
-                        color = if (isDark) EmasMuda else MerahMarunGelap
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Text(
-                        text = "Mendatangkan rahmat dan barokah, melapangkan rizki, menenteramkan kalbu, serta mempererat tali ikatan rohani (robithoh) dengan Guru Mursyid.",
-                        fontSize = (12 * fontScale).sp,
-                        lineHeight = (18 * fontScale).sp,
-                        color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(32.dp))
             } else {
                 Box(
                     modifier = Modifier.fillMaxWidth().height(200.dp),

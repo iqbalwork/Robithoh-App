@@ -1,13 +1,40 @@
 package com.iqbalwork.robithoh.feature.prayer.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,7 +42,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
@@ -162,7 +194,7 @@ private fun buildPrayerTrackingList(
                     isMandatory = isMandatory,
                     isCurrent = false,
                     isPast = true,
-                    statusSubtitle = "Waktu telah masuk",
+                    statusSubtitle = "Waktu telah lewat",
                     progressFraction = null
                 )
             }
@@ -175,6 +207,7 @@ fun SalatTabContent(
     onNavigateToDocument: (String) -> Unit,
     onNavigateToCalculationMethods: () -> Unit = {},
     onNavigateToPrayerAdjustments: () -> Unit = {},
+    onNavigateToQibla: () -> Unit = {},
     viewModel: AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
@@ -184,8 +217,6 @@ fun SalatTabContent(
     val state by vm.uiState.collectAsState()
     val schedule = state.prayerSchedule
     val countdown = state.nextPrayerCountdown
-
-    var pinnedScheduleSwitch by remember { mutableStateOf(true) }
 
     val now = com.iqbalwork.robithoh.core.datetime.currentLocalDateTime()
     val prayerList = remember(schedule, countdown, state.selectedDateOffsetDays, now.minute, now.second) {
@@ -242,7 +273,7 @@ fun SalatTabContent(
             ) {
                 Column {
                     Text(
-                        text = "Sholat & Waktu",
+                        text = "Jadwal Sholat",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextCharcoal
@@ -321,6 +352,93 @@ fun SalatTabContent(
                     }
                     IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(1)) }) {
                         Text("›", fontSize = 24.sp, color = TextCharcoal)
+                    }
+                }
+            }
+        }
+
+        // 2.5 Quick Access Kompas Kiblat Card
+        item {
+            val qibla = state.qiblaInfo ?: com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator().calculateQibla(
+                state.selectedLocation.latitude,
+                state.selectedLocation.longitude,
+                state.selectedLocation.name
+            )
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onNavigateToQibla)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = Color(0xFFFFF0F2),
+                            border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.6f)),
+                            modifier = Modifier.size(40.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("🧭", fontSize = 18.sp)
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Arah Kiblat",
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = TextCharcoal
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "Azimuth: ${qibla.directionDegrees}° · ${qibla.compassHeading}",
+                                fontSize = 11.5.sp,
+                                color = MerahMerdeka,
+                                fontWeight = FontWeight.SemiBold,
+                                maxLines = 1,
+                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.width(8.dp))
+
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = MerahMerdeka.copy(alpha = 0.08f)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                        ) {
+                            Text(
+                                text = "Buka Kompas",
+                                fontSize = 11.5.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = MerahMerdeka,
+                                maxLines = 1,
+                                softWrap = false
+                            )
+                            Spacer(modifier = Modifier.width(2.dp))
+                            Text(
+                                text = "›",
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = MerahMerdeka
+                            )
+                        }
                     }
                 }
             }
@@ -480,7 +598,7 @@ fun SalatTabContent(
 
         item {
             Text(
-                text = "Tap a row to log its status · tap the icon to set notifications",
+                text = "Ketuk baris untuk mencatat status · ketuk ikon untuk mengatur notifikasi",
                 fontSize = 11.5.sp,
                 color = TextMuted,
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
@@ -508,7 +626,7 @@ fun SalatTabContent(
             val voiceSubtitle = if (notif.selectedVoiceId == "custom" && !customPath.isNullOrBlank()) {
                 "Audio Kustom (${customPath.substringAfterLast("/")})"
             } else {
-                "${selectedVoice.title} (${if (selectedVoice.isBuiltIn) "bawaan" else "custom"})"
+                "${selectedVoice.title} (${if (selectedVoice.isBuiltIn) "bawaan" else "kustom"})"
             }
 
             Card(
@@ -533,25 +651,39 @@ fun SalatTabContent(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f)
+                        ) {
                             Surface(
-                                color = Color(0xFFE8F5E9),
+                                color = Color(0xFFFFF3E0),
                                 shape = CircleShape,
                                 modifier = Modifier.size(36.dp)
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
-                                    Text("📍", fontSize = 14.sp)
+                                    Text("⏱️", fontSize = 14.sp)
                                 }
                             }
                             Spacer(modifier = Modifier.width(12.dp))
-                            Column {
-                                Text("Jadwal tersemat", fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
-                                Text("Sholat berikutnya di notifikasi", fontSize = 11.sp, color = TextMuted)
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Pengingat sebelum sholat",
+                                    fontSize = 14.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = TextCharcoal
+                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Text(
+                                    text = "Notifikasi 10 menit sebelum waktu tiba",
+                                    fontSize = 11.5.sp,
+                                    color = TextMuted
+                                )
                             }
                         }
+                        Spacer(modifier = Modifier.width(8.dp))
                         Switch(
-                            checked = pinnedScheduleSwitch,
-                            onCheckedChange = { pinnedScheduleSwitch = it },
+                            checked = state.notificationSettings.isPrePrayerReminderEnabled,
+                            onCheckedChange = { vm.onIntent(AmaliyahUiIntent.TogglePrePrayerReminder(it)) },
                             colors = SwitchDefaults.colors(checkedTrackColor = MerahMerdeka)
                         )
                     }
@@ -639,11 +771,13 @@ private fun SettingItemRow(
                 }
             }
             Spacer(modifier = Modifier.width(12.dp))
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(title, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
-                Text(subtitle, fontSize = 11.sp, color = TextMuted)
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(subtitle, fontSize = 11.5.sp, color = TextMuted)
             }
         }
+        Spacer(modifier = Modifier.width(8.dp))
         Text("›", fontSize = 18.sp, color = TextMuted)
     }
 }

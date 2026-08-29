@@ -5,15 +5,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.quran.model.ZiarahSection
 
@@ -23,6 +26,9 @@ fun ZiarahScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    var selectedSectionForOptions by remember { mutableStateOf<ZiarahSection?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
 
     LazyColumn(
         modifier = modifier
@@ -63,8 +69,53 @@ fun ZiarahScreen(
         }
 
         items(sections, key = { it.id }) { section ->
-            ZiarahCard(section = section, isDark = isDark)
+            ZiarahCard(
+                section = section,
+                isDark = isDark,
+                onClick = { selectedSectionForOptions = section }
+            )
         }
+    }
+
+    selectedSectionForOptions?.let { section ->
+        val shareText = remember(section) {
+            buildString {
+                append("${section.title} - ${section.subtitle}")
+                if (section.adabSteps.isNotEmpty()) {
+                    append("\n\nAdab & Tata Cara:\n")
+                    section.adabSteps.forEach { step ->
+                        append("• $step\n")
+                    }
+                }
+                if (section.arabicPrayer.isNotBlank()) {
+                    append("\n")
+                    append(section.arabicPrayer)
+                    if (section.latinPrayer.isNotBlank()) {
+                        append("\n\n")
+                        append(section.latinPrayer)
+                    }
+                    if (section.indonesianTranslation.isNotBlank()) {
+                        append("\n\n[Terjemahan]\n")
+                        append(section.indonesianTranslation)
+                    }
+                }
+                if (section.fadhilah.isNotBlank()) {
+                    append("\n\nKeutamaan: ")
+                    append(section.fadhilah)
+                }
+                append("\n\n(Panduan & Adab Ziarah TQN Pondok Pesantren Sirnarasa)")
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = section.title,
+            subtitle = section.subtitle,
+            onDismiss = { selectedSectionForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
+            copyLabel = "Salin Panduan Ziarah",
+            onShare = { shareAction(shareText) },
+            shareLabel = "Bagikan Panduan Ziarah"
+        )
     }
 }
 
@@ -72,12 +123,14 @@ fun ZiarahScreen(
 private fun ZiarahCard(
     section: ZiarahSection,
     isDark: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     GoldCrimsonCard(
         modifier = modifier,
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
-        contentPadding = PaddingValues(16.dp)
+        contentPadding = PaddingValues(16.dp),
+        onClick = onClick
     ) {
         Text(
             text = section.title,

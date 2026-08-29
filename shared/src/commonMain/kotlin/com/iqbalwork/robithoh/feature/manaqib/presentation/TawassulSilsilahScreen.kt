@@ -7,16 +7,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.manaqib.model.SilsilahNode
 
@@ -28,6 +31,12 @@ fun TawassulSilsilahScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    var isTawassulOptionsOpen by remember { mutableStateOf(false) }
+    var selectedNodeForOptions by remember { mutableStateOf<SilsilahNode?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
+
+    val tawassulArabic = "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّاتِهِ وَأَهْلِ بَيْتِهِ الْكِرَامِ، وَإِلَى أَرْوَاحِ جَمِيعِ سِلْسِلَةِ السَّادَاتِ الْقَادِرِيَّةِ وَالنَّقْشَبَنْدِيَّةِ خُصُوصًا سُلْطَانَ الْأَوْلِيَاءِ سَيِّدَنَا الشَّيْخَ عَبْدَ الْقَادِرِ الْجَيْلَانِيَّ وَسَيِّدَنَا الشَّيْخَ عَبْدَ اللَّهِ مُبَارَكْ وَسَيِّدَنَا الشَّيْخَ أَحْمَدَ صَاحِبَ الْوَفَاءِ تَاجَ الْعَارِفِينَ وَسَيِّدَنَا الشَّيْخَ مُحَمَّدَ عَبْدَ الْغَوْثِ سَيْفَ اللَّهِ مَسْلُولْ رَضِيَ اللَّهُ عَنْهُمْ أَجْمَعِينَ... الْفَاتِحَة"
 
     LazyColumn(
         modifier = modifier
@@ -40,7 +49,8 @@ fun TawassulSilsilahScreen(
         item {
             GoldCrimsonCard(
                 variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                contentPadding = PaddingValues(16.dp)
+                contentPadding = PaddingValues(16.dp),
+                onClick = { isTawassulOptionsOpen = true }
             ) {
                 Text(
                     text = "TAWASSUL TQN 38",
@@ -53,7 +63,7 @@ fun TawassulSilsilahScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّاتِهِ وَأَهْلِ بَيْتِهِ الْكِرَامِ، وَإِلَى أَرْوَاحِ جَمِيعِ سِلْسِلَةِ السَّادَاتِ الْقَادِرِيَّةِ وَالنَّقْشَبَنْدِيَّةِ خُصُوصًا سُلْطَانَ الْأَوْلِيَاءِ سَيِّدَنَا الشَّيْخَ عَبْدَ الْقَادِرِ الْجَيْلَانِيَّ وَسَيِّدَنَا الشَّيْخَ عَبْدَ اللَّهِ مُبَارَكْ وَسَيِّدَنَا الشَّيْخَ أَحْمَدَ صَاحِبَ الْوَفَاءِ تَاجَ الْعَارِفِينَ وَسَيِّدَنَا الشَّيْخَ مُحَمَّدَ عَبْدَ الْغَوْثِ سَيْفَ اللَّهِ مَسْلُولْ رَضِيَ اللَّهُ عَنْهُمْ أَجْمَعِينَ... الْفَاتِحَة",
+                    text = tawassulArabic,
                     style = RabithohTheme.typography.arabicMedium.copy(
                         color = PutihBersih,
                         fontSize = 15.sp,
@@ -102,14 +112,58 @@ fun TawassulSilsilahScreen(
 
         // Silsilah Items
         items(silsilahList, key = { it.orderNumber }) { node ->
-            SilsilahNodeCard(node = node)
+            SilsilahNodeCard(
+                node = node,
+                onClick = { selectedNodeForOptions = node }
+            )
         }
+    }
+
+    if (isTawassulOptionsOpen) {
+        val tawassulShareText = "TAWASSUL TQN 38\n\n$tawassulArabic\n\n(Tawassul Silsilah TQN 38 Pondok Pesantren Sirnarasa)"
+        ContentItemOptionsSheet(
+            title = "Tawassul TQN 38",
+            onDismiss = { isTawassulOptionsOpen = false },
+            onCopy = { clipboardManager.setText(AnnotatedString(tawassulShareText)) },
+            copyLabel = "Salin Teks Tawassul",
+            onShare = { shareAction(tawassulShareText) },
+            shareLabel = "Bagikan Tawassul"
+        )
+    }
+
+    selectedNodeForOptions?.let { node ->
+        val nodeShareText = remember(node) {
+            buildString {
+                append("Silsilah TQN #${node.orderNumber}: ${node.name}")
+                if (node.arabicName.isNotBlank()) {
+                    append("\n")
+                    append(node.arabicName)
+                }
+                append("\n${node.title} • ${node.locationOrEpithet}")
+                if (node.description.isNotBlank()) {
+                    append("\n\n")
+                    append(node.description)
+                }
+                append("\n\n(Rantai Emas Silsilah TQN Pondok Pesantren Sirnarasa)")
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = "Silsilah #${node.orderNumber}",
+            subtitle = node.name,
+            onDismiss = { selectedNodeForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(nodeShareText)) },
+            copyLabel = "Salin Info Silsilah",
+            onShare = { shareAction(nodeShareText) },
+            shareLabel = "Bagikan Info Silsilah"
+        )
     }
 }
 
 @Composable
 private fun SilsilahNodeCard(
     node: SilsilahNode,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
@@ -124,7 +178,8 @@ private fun SilsilahNodeCard(
     GoldCrimsonCard(
         modifier = modifier,
         variant = cardVariant,
-        contentPadding = PaddingValues(14.dp)
+        contentPadding = PaddingValues(14.dp),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -30,16 +32,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOption
+import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOptionsSheet
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
+import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyDocument
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
-import com.iqbalwork.robithoh.feature.reader.model.ParsedDocument
+import com.iqbalwork.robithoh.navigation.BackHandler
 import kotlinx.coroutines.launch
 
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import com.iqbalwork.robithoh.feature.reader.model.ParsedDocument
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,12 +55,16 @@ fun GenericDocumentReaderScreen(
     onNavigateToTasbih: (() -> Unit)? = null,
     repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() }
 ) {
+    BackHandler {
+        onBack()
+    }
+
     val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
 
     val initialCachedDoc = remember(documentId) { repository.getCachedDocument(documentId) }
     var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
-    var parsedDoc by remember { mutableStateOf<ParsedDocument?>(initialCachedDoc) }
+    var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
     var fontScale by rememberSaveable { mutableStateOf(1.0f) }
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
@@ -68,6 +78,9 @@ fun GenericDocumentReaderScreen(
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
     val tasbihState by tasbihViewModel.uiState.collectAsState()
+    var selectedVerseForOptions by remember { mutableStateOf<LiturgyVerse?>(null) }
+    val clipboardManager = LocalClipboardManager.current
+    val shareAction = rememberShareTextAction()
 
     LaunchedEffect(currentDocId) {
         val cached = repository.getCachedDocument(currentDocId)
@@ -264,7 +277,8 @@ fun GenericDocumentReaderScreen(
                                         VerseReadingCard(
                                             verse = verse,
                                             fontScale = fontScale,
-                                            isCentered = isDoaDoc
+                                            isCentered = isDoaDoc,
+                                            onClick = { selectedVerseForOptions = verse }
                                         )
                                     }
                                 }
@@ -297,6 +311,63 @@ fun GenericDocumentReaderScreen(
             fontScale = fontScale,
             onFontScaleChange = { fontScale = it },
             onDismiss = { showSettingsDialog = false }
+        )
+    }
+
+    selectedVerseForOptions?.let { verse ->
+        val shareText = remember(verse) {
+            buildString {
+                if (verse.title.isNotBlank()) {
+                    append(verse.title)
+                    if (verse.repeatCount > 1) append(" (${verse.repeatCount}x)")
+                    append("\n\n")
+                }
+                if (verse.arabic.isNotBlank()) {
+                    append(verse.arabic)
+                    append("\n\n")
+                }
+                if (verse.latin.isNotBlank()) {
+                    append(verse.latin.replace("**", "").replace("*", ""))
+                    append("\n\n")
+                }
+                if (verse.translation.isNotBlank()) {
+                    append("[Terjemahan]\n")
+                    append(verse.translation.replace("**", "").replace("*", ""))
+                    append("\n\n")
+                }
+                if (verse.note.isNotBlank()) {
+                    append("Catatan: ")
+                    append(verse.note.replace("**", "").replace("*", ""))
+                    append("\n\n")
+                }
+                append("(${docInfo?.title ?: "Amaliyah TQN Sirnarasa"})")
+            }
+        }
+
+        val customOptions = buildList {
+            if (verse.repeatCount > 1) {
+                add(
+                    ContentItemOption(
+                        icon = "📿",
+                        label = "Hitung dengan Tasbih (${verse.repeatCount}x)",
+                        onClick = {
+                            tasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetTarget(verse.repeatCount))
+                            tasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetFloatingExpanded(true))
+                        }
+                    )
+                )
+            }
+        }
+
+        ContentItemOptionsSheet(
+            title = if (verse.title.isNotBlank()) verse.title else "${docInfo?.title ?: "Bacaan"} #${verse.index}",
+            subtitle = if (verse.repeatCount > 1) "${verse.repeatCount}x Pengulangan" else null,
+            onDismiss = { selectedVerseForOptions = null },
+            onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
+            copyLabel = "Salin Teks Bacaan",
+            onShare = { shareAction(shareText) },
+            shareLabel = "Bagikan Bacaan",
+            customOptions = customOptions
         )
     }
 }
@@ -444,12 +515,13 @@ private fun SingleContinuousDocumentCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
+        SelectionContainer {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
             // Check if there is a Catatan / Catetan section
             val noteMarkerIndex = rawContent.indexOf("### Catat")
             val mainContent = if (noteMarkerIndex != -1) rawContent.substring(0, noteMarkerIndex).trim() else rawContent
@@ -883,12 +955,14 @@ private fun SingleContinuousDocumentCard(
         }
     }
 }
+}
 
 @Composable
 private fun VerseReadingCard(
     verse: LiturgyVerse,
     fontScale: Float,
-    isCentered: Boolean = false
+    isCentered: Boolean = false,
+    onClick: (() -> Unit)? = null
 ) {
     var countProgress by remember(verse.index) { mutableStateOf(0) }
 
@@ -896,111 +970,115 @@ private fun VerseReadingCard(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
-            // Repetition counter (index badge intentionally removed)
-            if (verse.repeatCount > 1) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Surface(
-                        color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh.copy(alpha = 0.15f) else MerahMerdeka.copy(alpha = 0.1f),
-                        shape = RoundedCornerShape(16.dp),
-                        modifier = Modifier.clickable {
-                            countProgress = (countProgress + 1) % (verse.repeatCount + 1)
-                        }
+        SelectionContainer {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                // Repetition counter (index badge intentionally removed)
+                if (verse.repeatCount > 1) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                        Surface(
+                            color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh.copy(alpha = 0.15f) else MerahMerdeka.copy(alpha = 0.1f),
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier.clickable {
+                                countProgress = (countProgress + 1) % (verse.repeatCount + 1)
+                            }
                         ) {
-                            Text(
-                                text = if (countProgress >= verse.repeatCount) "✓ Selesai ${verse.repeatCount}x" else "Hitung: $countProgress / ${verse.repeatCount}x",
-                                color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh else MerahMerdeka,
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Bold
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                            ) {
+                                Text(
+                                    text = if (countProgress >= verse.repeatCount) "✓ Selesai ${verse.repeatCount}x" else "Hitung: $countProgress / ${verse.repeatCount}x",
+                                    color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh else MerahMerdeka,
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            if (verse.title.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = verse.title,
-                    fontSize = (15 * fontScale).sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MerahMarunGelap,
-                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            // Arabic Text
-            if (verse.arabic.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    text = verse.arabic,
-                    fontSize = (24 * fontScale).sp,
-                    lineHeight = (48 * fontScale).sp,
-                    fontWeight = FontWeight.Normal,
-                    color = TextCharcoal,
-                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Right,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            // Latin Transliteration
-            if (verse.latin.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = parseMarkdownFormatting(verse.latin),
-                    fontSize = (14 * fontScale).sp,
-                    lineHeight = (22 * fontScale).sp,
-                    color = Color(0xFF64748B),
-                    fontStyle = FontStyle.Italic,
-                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            // Translation
-            if (verse.translation.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = parseMarkdownFormatting(verse.translation),
-                    fontSize = (14 * fontScale).sp,
-                    lineHeight = (22 * fontScale).sp,
-                    color = TextCharcoal,
-                    textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-
-            // Notes / Fadhilah
-            if (verse.note.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(10.dp))
-                Surface(
-                    color = PaperBackgroundLight,
-                    shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
+                if (verse.title.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = parseMarkdownFormatting(verse.note),
-                        fontSize = (12 * fontScale).sp,
-                        lineHeight = (18 * fontScale).sp,
-                        color = Color(0xFF475569),
+                        text = verse.title,
+                        fontSize = (15 * fontScale).sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MerahMarunGelap,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
-                        modifier = Modifier.fillMaxWidth().padding(10.dp)
+                        modifier = Modifier.fillMaxWidth()
                     )
+                }
+
+                // Arabic Text
+                if (verse.arabic.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = verse.arabic,
+                        fontSize = (24 * fontScale).sp,
+                        lineHeight = (48 * fontScale).sp,
+                        fontWeight = FontWeight.Normal,
+                        color = TextCharcoal,
+                        textAlign = if (isCentered) TextAlign.Center else TextAlign.Right,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                // Latin Transliteration
+                if (verse.latin.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = parseMarkdownFormatting(verse.latin),
+                        fontSize = (14 * fontScale).sp,
+                        lineHeight = (22 * fontScale).sp,
+                        color = Color(0xFF64748B),
+                        fontStyle = FontStyle.Italic,
+                        textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                // Translation
+                if (verse.translation.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = parseMarkdownFormatting(verse.translation),
+                        fontSize = (14 * fontScale).sp,
+                        lineHeight = (22 * fontScale).sp,
+                        color = TextCharcoal,
+                        textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                // Notes / Fadhilah
+                if (verse.note.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Surface(
+                        color = PaperBackgroundLight,
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = parseMarkdownFormatting(verse.note),
+                            fontSize = (12 * fontScale).sp,
+                            lineHeight = (18 * fontScale).sp,
+                            color = Color(0xFF475569),
+                            textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
+                            modifier = Modifier.fillMaxWidth().padding(10.dp)
+                        )
+                    }
                 }
             }
         }
@@ -1086,7 +1164,7 @@ fun parseDocumentSections(docId: String, rawContent: String): List<ReaderDocumen
         }
         return sections
     } else if (docId.startsWith("sholat_harian")) {
-        val waktuRegex = Regex("""(?m)^##\s+(WAKTU\s+[A-Z’']+|SEBELUM\s+TIDUR)""", RegexOption.IGNORE_CASE)
+        val waktuRegex = Regex("""(?m)^##\s+(WAKTU\s+[A-Z’']+|SEBELUM\s+TIDUR|HENDAK\s+TIDUR|WAKTU\s+SEBELUM\s+TIDUR)""", RegexOption.IGNORE_CASE)
         val matches = waktuRegex.findAll(rawContent).toList()
         if (matches.isEmpty()) {
             return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))

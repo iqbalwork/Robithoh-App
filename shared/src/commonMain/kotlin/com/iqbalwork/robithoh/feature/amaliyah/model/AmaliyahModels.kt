@@ -249,6 +249,7 @@ data class PrayerNotificationSettings(
     val maghribMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
     val isyaMode: PrayerNotificationMode = PrayerNotificationMode.ADZAN,
     val imsakMode: PrayerNotificationMode = PrayerNotificationMode.PUSH_NOTIFICATION,
+    val isPrePrayerReminderEnabled: Boolean = true,
     val selectedVoiceId: String = "misyari_rasyid",
     val customAudioPath: String? = null
 ) {
@@ -285,17 +286,30 @@ data class PrayerNotificationSettings(
         PrayerType.ASHAR -> copy(asharMode = mode)
         PrayerType.MAGHRIB -> copy(maghribMode = mode)
         PrayerType.ISYA -> copy(isyaMode = mode)
-        PrayerType.IMSAK -> copy(imsakMode = mode)
+        PrayerType.IMSAK -> copy(imsakMode = if (mode == PrayerNotificationMode.ADZAN) PrayerNotificationMode.PUSH_NOTIFICATION else mode)
         PrayerType.TERBIT -> this
     }
 
     fun withCycledPrayerMode(type: PrayerType): PrayerNotificationSettings {
         val current = getPrayerMode(type)
-        return withPrayerMode(type, current.nextMode())
+        val next = if (type == PrayerType.IMSAK) {
+            if (current == PrayerNotificationMode.PUSH_NOTIFICATION) PrayerNotificationMode.SILENT else PrayerNotificationMode.PUSH_NOTIFICATION
+        } else {
+            current.nextMode()
+        }
+        return withPrayerMode(type, next)
     }
 
     fun withToggledPrayer(type: PrayerType, enabled: Boolean): PrayerNotificationSettings {
-        val mode = if (enabled) PrayerNotificationMode.ADZAN else PrayerNotificationMode.SILENT
+        val mode = if (enabled) {
+            if (type == PrayerType.IMSAK) PrayerNotificationMode.PUSH_NOTIFICATION else PrayerNotificationMode.ADZAN
+        } else {
+            PrayerNotificationMode.SILENT
+        }
         return withPrayerMode(type, mode)
+    }
+
+    fun withPrePrayerReminder(enabled: Boolean): PrayerNotificationSettings {
+        return copy(isPrePrayerReminderEnabled = enabled)
     }
 }

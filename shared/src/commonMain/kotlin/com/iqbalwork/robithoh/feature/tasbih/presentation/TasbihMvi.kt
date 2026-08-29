@@ -20,7 +20,7 @@ data class TasbihUiState(
     val lapCount: Int = 0,
     val totalCount: Int = 0,
     val selectedDzikirId: String = "dzikir_nafi_itsbat",
-    val selectedDzikirTitle: String = "Dzikir Nafi Itsbat (TQN)",
+    val selectedDzikirTitle: String = "Dzikir Jahr (TQN)",
     val selectedDzikirArabic: String = "لَا إِلَهَ إِلَّا اللَّهُ",
     val isHapticEnabled: Boolean = true,
     val isSoundEnabled: Boolean = true,
@@ -33,7 +33,7 @@ data class TasbihUiState(
     val availablePresets: List<TasbihDzikirPreset> = listOf(
         TasbihDzikirPreset(
             id = "dzikir_nafi_itsbat",
-            title = "Dzikir Nafi Itsbat (TQN)",
+            title = "Dzikir Jahr (TQN)",
             arabic = "لَا إِلَهَ إِلَّا اللَّهُ",
             defaultTarget = 165,
             virtue = "Dzikir Jahr standar TQN Sirnarasa 38 ba'da sholat maktubah."

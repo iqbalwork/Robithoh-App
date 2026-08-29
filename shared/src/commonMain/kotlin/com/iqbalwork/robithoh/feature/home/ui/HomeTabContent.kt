@@ -2,12 +2,32 @@ package com.iqbalwork.robithoh.feature.home.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,7 +37,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
 
 data class HomeGridMenuItem(
     val id: String,
@@ -41,27 +66,28 @@ fun HomeTabContent(
     onNavigateToLanggam: () -> Unit,
     onNavigateToTasbih: () -> Unit,
     onNavigateToPrayerTimes: () -> Unit = {},
+    onNavigateToQibla: () -> Unit = {},
     onOpenSheet: (String) -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
+    viewModel: AmaliyahViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val vm = viewModel ?: remember(database) {
-        com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(database = database)
+        AmaliyahViewModel(database = database)
     }
     val state by vm.uiState.collectAsState()
     val countdown = state.nextPrayerCountdown
     val schedule = state.prayerSchedule
 
     val menuGridItems = listOf(
-        HomeGridMenuItem("manaqib_dimana", "Manaqib Dimana?", "📍"),
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
+        HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
         HomeGridMenuItem("khotaman", "Khotaman", "📜"),
         HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),
+        HomeGridMenuItem("kiblat", "Arah Kiblat", "🧭"),
         HomeGridMenuItem("langgam", "Langgam", "🎵"),
         HomeGridMenuItem("tarhim", "Tarhim", "📢"),
         HomeGridMenuItem("sholawat", "Sholawat", "✨"),
-        HomeGridMenuItem("wakil_talqin", "Wakil Talqin", "👥"),
         HomeGridMenuItem("doa", "Doa", "🤲"),
         HomeGridMenuItem("silsilah", "Silsilah", "🔗"),
         HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")
@@ -90,7 +116,7 @@ fun HomeTabContent(
             ) {
                 Column {
                     Text(
-                        text = "Assalamu'alaikum, Sahabat",
+                        text = "Assalamu'alaikum",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = TextCharcoal
@@ -181,7 +207,7 @@ fun HomeTabContent(
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
-                        text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${schedule?.locationName ?: "Panjalu, Ciamis"} (${schedule?.timezone ?: "WIB"})",
+                        text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${if (state.isFetchingLocation) "Mencari lokasi..." else (schedule?.locationName ?: "Panjalu, Ciamis")} (${schedule?.timezone ?: "WIB"})",
                         fontSize = 12.sp,
                         color = Color(0xFF785B28)
                     )
@@ -220,13 +246,13 @@ fun HomeTabContent(
                                             "khotaman" -> onNavigateToDocument("khotaman_tqn")
                                             "tarhim" -> onNavigateToDocument("tarhim_tqn")
                                             "silsilah" -> onNavigateToDocument("silsilah_tqn")
+                                            "kiblat" -> onNavigateToQibla()
                                             "langgam" -> onNavigateToLanggam()
                                             "manaqib" -> onOpenSheet("manaqib")
                                             "sholat" -> onOpenSheet("sholat")
                                             "sholawat" -> onOpenSheet("sholawat")
                                             "tahlil" -> onOpenSheet("tahlil")
                                             "doa" -> onOpenSheet("doa")
-                                            "wakil_talqin" -> onNavigateToDocument("silsilah_tqn")
                                             else -> onNavigateToDocument("dzikir_tqn")
                                         }
                                     }
@@ -291,26 +317,6 @@ fun HomeTabContent(
             }
         }
 
-        // 6. Khidmah Maliyah Section
-        item {
-            Text(
-                text = "Khidmah Maliyah Sirnarasa",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                KhidmahLogoCard("Pesantren\nSirnarasa", "🕌", Modifier.weight(1f))
-                KhidmahLogoCard("STID\nSirnarasa", "🎓", Modifier.weight(1f))
-                KhidmahLogoCard("Baitul Maal\nSirnarasa", "🏛️", Modifier.weight(1f))
-                KhidmahLogoCard("Baitul\nAsror", "✨", Modifier.weight(1f))
-            }
-        }
-
         item {
             Spacer(modifier = Modifier.height(64.dp))
         }
@@ -358,42 +364,3 @@ private fun MainGridButton(
     }
 }
 
-@Composable
-private fun KhidmahLogoCard(
-    title: String,
-    emoji: String,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        modifier = modifier
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp, horizontal = 4.dp)
-        ) {
-            Surface(
-                color = PaperBackgroundLight,
-                shape = CircleShape,
-                modifier = Modifier.size(38.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Text(emoji, fontSize = 20.sp)
-                }
-            }
-            Spacer(modifier = Modifier.height(6.dp))
-            Text(
-                text = title,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Medium,
-                color = TextCharcoal,
-                textAlign = TextAlign.Center,
-                lineHeight = 12.sp
-            )
-        }
-    }
-}

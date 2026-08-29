@@ -14,9 +14,9 @@ Niat Sholat Nishfu Sya’ban                   :
 
 Bacaan : Setelah Al-Fatihah membaca Al-Ikhlas 10x setiap roka’at
 
-Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari Alloh Azza Wa Jalla.
+Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari اللّه Azza Wa Jalla.
 
-Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : “Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka Alloh Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, Alloh Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan Alloh Azza Wa Jalla”.
+Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : “Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka اللّه Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, اللّه Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan اللّه Azza Wa Jalla”.
 
 MAKLUMAT
 
@@ -80,6 +80,6 @@ Catatan :
 
 Adapun Sholat-sholat Sunnah harian antara Sholat Maghrib dan Sholat Isya, Sholat Lidaf’il Bala juga Khotaman tidak perlu dilaksanakan, Setelah Selesai Sholat Nishfu Sya’ban langsung SUJUD SYUKUR. Tanda berakhirnya Sholat Nishfu Sya’ban
 
-Semoga kita Dimampukan, Dimudahkan, dilancarkan dan disukseskan menunaikan Sholat Nishfu Sya’ban semata-mata hanya ingin meraih ridho Alloh Azza Wa Jalla.
+Semoga kita Dimampukan, Dimudahkan, dilancarkan dan disukseskan menunaikan Sholat Nishfu Sya’ban semata-mata hanya ingin meraih ridho اللّه Azza Wa Jalla.
 
 Mohon maaf lahir bathin dunia akhirat.

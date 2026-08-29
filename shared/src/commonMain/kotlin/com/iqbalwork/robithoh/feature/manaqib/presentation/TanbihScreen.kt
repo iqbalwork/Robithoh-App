@@ -2,6 +2,7 @@ package com.iqbalwork.robithoh.feature.manaqib.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,11 +43,13 @@ fun TanbihScreen(
         )
 
         if (tanbih != null) {
-            // Header Hero
-            GoldCrimsonCard(
-                variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                contentPadding = PaddingValues(16.dp)
-            ) {
+            SelectionContainer {
+                Column {
+                    // Header Hero
+                    GoldCrimsonCard(
+                        variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                        contentPadding = PaddingValues(16.dp)
+                    ) {
                 Text(
                     text = tanbih.title,
                     style = MaterialTheme.typography.titleLarge.copy(
@@ -127,6 +130,8 @@ fun TanbihScreen(
             }
 
             Spacer(modifier = Modifier.height(24.dp))
+                }
+            }
         }
     }
 }

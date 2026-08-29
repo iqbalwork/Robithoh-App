@@ -5,7 +5,11 @@ import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.core.presentation.UiEffect
 import com.iqbalwork.robithoh.core.presentation.UiIntent
 import com.iqbalwork.robithoh.core.presentation.UiState
-import com.iqbalwork.robithoh.feature.quran.model.*
+import com.iqbalwork.robithoh.feature.quran.model.Ayah
+import com.iqbalwork.robithoh.feature.quran.model.QuranBookmark
+import com.iqbalwork.robithoh.feature.quran.model.ShalawatModel
+import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.feature.quran.model.ZiarahSection
 
 enum class QuranTab(val label: String) {
     SURAHS("114 Surah"),
@@ -38,7 +42,12 @@ sealed interface QuranUiIntent : UiIntent {
     data class SelectTab(val tab: QuranTab) : QuranUiIntent
     data class SearchSurahs(val query: String) : QuranUiIntent
     data class SelectSurah(val surahNumber: Int) : QuranUiIntent
-    data class SaveBookmark(val surahNumber: Int, val ayahNumber: Int, val surahName: String) : QuranUiIntent
+    data class SaveBookmark(
+        val surahNumber: Int,
+        val ayahNumber: Int,
+        val surahName: String,
+        val showToast: Boolean = false
+    ) : QuranUiIntent
     data class UpdateFontScale(val scale: Float) : QuranUiIntent
     data class ToggleTajwidColors(val enabled: Boolean? = null) : QuranUiIntent
     data class PlayAudio(val track: AudioTrack) : QuranUiIntent

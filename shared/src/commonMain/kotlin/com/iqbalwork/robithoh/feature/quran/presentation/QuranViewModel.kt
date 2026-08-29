@@ -3,10 +3,10 @@ package com.iqbalwork.robithoh.feature.quran.presentation
 import androidx.lifecycle.viewModelScope
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
-import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
 import com.iqbalwork.robithoh.feature.quran.data.QuranData
 import com.iqbalwork.robithoh.feature.quran.data.QuranRepository
+import com.iqbalwork.robithoh.feature.quran.model.QuranBookmark
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -126,9 +126,22 @@ class QuranViewModel(
                 }
             }
             is QuranUiIntent.SaveBookmark -> {
+                updateState {
+                    copy(
+                        lastReadBookmark = QuranBookmark(
+                            id = lastReadBookmark?.id ?: 1L,
+                            surahNumber = intent.surahNumber,
+                            ayahNumber = intent.ayahNumber,
+                            surahName = intent.surahName,
+                            timestamp = 0L
+                        )
+                    )
+                }
                 viewModelScope.launch {
                     repository.saveLastRead(intent.surahNumber, intent.ayahNumber, intent.surahName)
-                    sendEffect(QuranUiEffect.ShowToast("Disimpan ke Terakhir Dibaca: ${intent.surahName} ayat ${intent.ayahNumber}"))
+                    if (intent.showToast) {
+                        sendEffect(QuranUiEffect.ShowToast("Disimpan ke Terakhir Dibaca: ${intent.surahName} ayat ${intent.ayahNumber}"))
+                    }
                 }
             }
             is QuranUiIntent.UpdateFontScale -> {

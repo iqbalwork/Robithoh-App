@@ -20,14 +20,14 @@ internal fun quranFullAyahs96(): List<Ayah> = listOf(
     Ayah(9, 96, "اَرَاَيْتَ الَّذِيْ يَنْهٰىۙ", "Ara'aital-lażī yanhā.", "Tahukah kamu tentang orang yang melarang"),
     Ayah(10, 96, "عَبْدًا اِذَا صَلّٰىۗ", "‘Abdan iżā ṣallā.", "seorang hamba ketika dia melaksanakan salat?"),
     Ayah(11, 96, "اَرَاَيْتَ اِنْ كَانَ عَلَى الْهُدٰىٓۙ", "Ara'aita in kāna ‘alal-hudā.", "Bagaimana pendapatmu kalau terbukti dia berada di dalam kebenaran"),
-    Ayah(12, 96, "اَوْ اَمَرَ بِالتَّقْوٰىۗ", "Au amara bit-taqwā.", "atau dia menyuruh bertakwa (kepada Allah)?"),
+    Ayah(12, 96, "اَوْ اَمَرَ بِالتَّقْوٰىۗ", "Au amara bit-taqwā.", "atau dia menyuruh bertakwa (kepada اللّه)?"),
     Ayah(13, 96, "اَرَاَيْتَ اِنْ كَذَّبَ وَتَوَلّٰىۗ", "Ara'aita in każżaba wa tawallā.", "Bagaimana pendapatmu kalau dia mendustakan (kebenaran) dan berpaling (dari keimanan)?"),
-    Ayah(14, 96, "اَلَمْ يَعْلَمْ بِاَنَّ اللّٰهَ يَرٰىۗ", "Alam ya‘lam bi'annallāha yarā.", "Tidakkah dia mengetahui bahwa sesungguhnya Allah melihat (segala perbuatannya)?"),
+    Ayah(14, 96, "اَلَمْ يَعْلَمْ بِاَنَّ اللّٰهَ يَرٰىۗ", "Alam ya‘lam bi'annallāha yarā.", "Tidakkah dia mengetahui bahwa sesungguhnya اللّه melihat (segala perbuatannya)?"),
     Ayah(15, 96, "كَلَّا لَىِٕنْ لَّمْ يَنْتَهِ ەۙ لَنَسْفَعًاۢ بِالنَّاصِيَةِۙ", "Kallā la'il lam yantah(i), lanasfa‘am bin-nāṣiyah(ti).", "Sekali-kali tidak! Sungguh, jika dia tidak berhenti (berbuat demikian), niscaya Kami tarik ubun-ubunnya (ke dalam neraka),"),
     Ayah(16, 96, "نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍۚ", "Nāṣiyatin kāżibatin khāṭi'ah(tin).", "(yaitu) ubun-ubun orang yang mendustakan (kebenaran) dan durhaka."),
     Ayah(17, 96, "فَلْيَدْعُ نَادِيَهٗۙ", "Falyad‘u nādiyah(ū).", "Biarlah dia memanggil golongannya (untuk menolongnya)."),
-    Ayah(18, 96, "سَنَدْعُ الزَّبَانِيَةَۙ", "Sanad‘uz-zabāniyah(ta).", "Kelak Kami akan memanggil (Malaikat) Zabaniah (penyiksa orang-orang yang berdosa).759)"),
-    Ayah(19, 96, "كَلَّاۗ لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ ۩ ࣖ", "Kallā, lā tuṭi‘hu wasjud waqtarib.", "Sekali-kali tidak! Janganlah patuh kepadanya, (tetapi) sujud dan mendekatlah (kepada Allah)."),
+    Ayah(18, 96, "سَنَدْعُ الزَّبَانِيَةَۙ", "Sanad‘uz-zabāniyah(ta).", "Kelak Kami akan memanggil (Malaikat) Zabaniah (penyiksa orang-orang yang berdosa)."),
+    Ayah(19, 96, "كَلَّاۗ لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ ۩ ࣖ", "Kallā, lā tuṭi‘hu wasjud waqtarib.", "Sekali-kali tidak! Janganlah patuh kepadanya, (tetapi) sujud dan mendekatlah (kepada اللّه)."),
 )
 
 internal fun quranFullAyahs97(): List<Ayah> = listOf(
@@ -40,13 +40,13 @@ internal fun quranFullAyahs97(): List<Ayah> = listOf(
 
 internal fun quranFullAyahs98(): List<Ayah> = listOf(
     Ayah(1, 98, "لَمْ يَكُنِ الَّذِيْنَ كَفَرُوْا مِنْ اَهْلِ الْكِتٰبِ وَالْمُشْرِكِيْنَ مُنْفَكِّيْنَ حَتّٰى تَأْتِيَهُمُ الْبَيِّنَةُۙ", "Lam yakunil-lażīna kafarū min ahlil-kitābi wal-musyrikīna munfakkīna ḥattā ta'tiyahumul-bayyinah(tu).", "Orang-orang yang kufur dari golongan Ahlulkitab dan orang-orang musyrik tidak akan meninggalkan (kekufuran mereka) sampai datang kepada mereka bukti yang nyata,"),
-    Ayah(2, 98, "رَسُوْلٌ مِّنَ اللّٰهِ يَتْلُوْا صُحُفًا مُّطَهَّرَةًۙ", "Rasūlum minallāhi yatlū ṣuḥufam muṭahharah(tan).", "(yaitu) seorang Rasul dari Allah (Nabi Muhammad) yang membacakan lembaran-lembaran suci (Al-Qur’an)"),
+    Ayah(2, 98, "رَسُوْلٌ مِّنَ اللّٰهِ يَتْلُوْا صُحُفًا مُّطَهَّرَةًۙ", "Rasūlum minallāhi yatlū ṣuḥufam muṭahharah(tan).", "(yaitu) seorang Rasul dari اللّه (Nabi Muhammad) yang membacakan lembaran-lembaran suci (Al-Qur’an)"),
     Ayah(3, 98, "فِيْهَا كُتُبٌ قَيِّمَةٌ ۗ", "Fīhā kutubun qayyimah(tun).", "yang di dalamnya terdapat (isi) kitab-kitab yang lurus (benar)."),
     Ayah(4, 98, "وَمَا تَفَرَّقَ الَّذِيْنَ اُوْتُوا الْكِتٰبَ اِلَّا مِنْۢ بَعْدِ مَا جَاۤءَتْهُمُ الْبَيِّنَةُ ۗ", "Wa mā tafarraqal-lażīna ūtul-kitāba illā mim ba‘di mā jā'athumul-bayyinah(tu).", "Tidaklah terpecah-belah orang-orang Ahlulkitab, melainkan setelah datang kepada mereka bukti yang nyata."),
-    Ayah(5, 98, "وَمَآ اُمِرُوْٓا اِلَّا لِيَعْبُدُوا اللّٰهَ مُخْلِصِيْنَ لَهُ الدِّيْنَ ەۙ حُنَفَاۤءَ وَيُقِيْمُوا الصَّلٰوةَ وَيُؤْتُوا الزَّكٰوةَ وَذٰلِكَ دِيْنُ الْقَيِّمَةِۗ", "Wa mā umirū illā liya‘budullāha mukhliṣīna lahud-dīn(a), ḥunafā'a wa yuqīmuṣ-ṣalāta wa yu'tuz-zakāta wa żālika dīnul-qayyimah(ti).", "Mereka tidak diperintah, kecuali untuk menyembah Allah dengan mengikhlaskan ketaatan kepada-Nya lagi hanif (istikamah), melaksanakan salat, dan menunaikan zakat. Itulah agama yang lurus (benar)."),
+    Ayah(5, 98, "وَمَآ اُمِرُوْٓا اِلَّا لِيَعْبُدُوا اللّٰهَ مُخْلِصِيْنَ لَهُ الدِّيْنَ ەۙ حُنَفَاۤءَ وَيُقِيْمُوا الصَّلٰوةَ وَيُؤْتُوا الزَّكٰوةَ وَذٰلِكَ دِيْنُ الْقَيِّمَةِۗ", "Wa mā umirū illā liya‘budullāha mukhliṣīna lahud-dīn(a), ḥunafā'a wa yuqīmuṣ-ṣalāta wa yu'tuz-zakāta wa żālika dīnul-qayyimah(ti).", "Mereka tidak diperintah, kecuali untuk menyembah اللّه dengan mengikhlaskan ketaatan kepada-Nya lagi hanif (istikamah), melaksanakan salat, dan menunaikan zakat. Itulah agama yang lurus (benar)."),
     Ayah(6, 98, "اِنَّ الَّذِيْنَ كَفَرُوْا مِنْ اَهْلِ الْكِتٰبِ وَالْمُشْرِكِيْنَ فِيْ نَارِ جَهَنَّمَ خٰلِدِيْنَ فِيْهَاۗ اُولٰۤىِٕكَ هُمْ شَرُّ الْبَرِيَّةِۗ", "Innal-lażīna kafarū min ahlil-kitābi wal-musyrikīna fī nāri jahannama khālidīna fīhā, ulā'ika hum syarrul-bariyyah(ti).", "Sesungguhnya orang-orang yang kufur dari golongan Ahlulkitab dan orang-orang musyrik (akan masuk) neraka Jahanam. Mereka kekal di dalamnya. Mereka itulah seburuk-buruk makhluk."),
     Ayah(7, 98, "اِنَّ الَّذِيْنَ اٰمَنُوْا وَعَمِلُوا الصّٰلِحٰتِ اُولٰۤىِٕكَ هُمْ خَيْرُ الْبَرِيَّةِۗ", "Innal-lażīna āmanū wa ‘amiluṣ-ṣāliḥāti ulā'ika hum khairul-bariyyah(ti).", "Sesungguhnya orang-orang yang beriman dan mengerjakan kebajikan, mereka itulah sebaik-baik makhluk."),
-    Ayah(8, 98, "جَزَاۤؤُهُمْ عِنْدَ رَبِّهِمْ جَنّٰتُ عَدْنٍ تَجْرِيْ مِنْ تَحْتِهَا الْاَنْهٰرُ خٰلِدِيْنَ فِيْهَآ اَبَدًا ۗرَضِيَ اللّٰهُ عَنْهُمْ وَرَضُوْا عَنْهُ ۗ ذٰلِكَ لِمَنْ خَشِيَ رَبَّهٗ ࣖ", "Jazā'uhum ‘inda rabbihim jannātu ‘adnin tajrī min taḥtihal-anhāru khālidīna fīhā abadā(n), raḍiyallāhu ‘anhum wa raḍū ‘anh(u), żālika liman khasyiya rabbah(ū).", "Balasan mereka di sisi Tuhannya adalah surga ‘Adn yang mengalir di bawahnya sungai-sungai. Mereka kekal di dalamnya selama-lamanya. Allah rida terhadap mereka dan mereka pun rida kepada-Nya. Itu adalah (balasan) bagi orang yang takut kepada Tuhannya."),
+    Ayah(8, 98, "جَزَاۤؤُهُمْ عِنْدَ رَبِّهِمْ جَنّٰتُ عَدْنٍ تَجْرِيْ مِنْ تَحْتِهَا الْاَنْهٰرُ خٰلِدِيْنَ فِيْهَآ اَبَدًا ۗرَضِيَ اللّٰهُ عَنْهُمْ وَرَضُوْا عَنْهُ ۗ ذٰلِكَ لِمَنْ خَشِيَ رَبَّهٗ ࣖ", "Jazā'uhum ‘inda rabbihim jannātu ‘adnin tajrī min taḥtihal-anhāru khālidīna fīhā abadā(n), raḍiyallāhu ‘anhum wa raḍū ‘anh(u), żālika liman khasyiya rabbah(ū).", "Balasan mereka di sisi Tuhannya adalah surga ‘Adn yang mengalir di bawahnya sungai-sungai. Mereka kekal di dalamnya selama-lamanya. اللّه rida terhadap mereka dan mereka pun rida kepada-Nya. Itu adalah (balasan) bagi orang yang takut kepada Tuhannya."),
 )
 
 internal fun quranFullAyahs99(): List<Ayah> = listOf(
@@ -89,7 +89,7 @@ internal fun quranFullAyahs101(): List<Ayah> = listOf(
 )
 
 internal fun quranFullAyahs102(): List<Ayah> = listOf(
-    Ayah(1, 102, "اَلْهٰىكُمُ التَّكَاثُرُۙ", "Alhākumut-takāṡur(u).", "Berbangga-bangga dalam memperbanyak (dunia) telah melalaikanmu760)"),
+    Ayah(1, 102, "اَلْهٰىكُمُ التَّكَاثُرُۙ", "Alhākumut-takāṡur(u).", "Berbangga-bangga dalam memperbanyak (dunia) telah melalaikanmu"),
     Ayah(2, 102, "حَتّٰى زُرْتُمُ الْمَقَابِرَۗ", "Ḥattā zurtumul-maqābir(a).", "sampai kamu masuk ke dalam kubur."),
     Ayah(3, 102, "كَلَّا سَوْفَ تَعْلَمُوْنَۙ", "Kallā saufa ta‘lamūn(a).", "Sekali-kali tidak! Kelak kamu akan mengetahui (akibat perbuatanmu itu)."),
     Ayah(4, 102, "ثُمَّ كَلَّا سَوْفَ تَعْلَمُوْنَ", "Ṡumma kallā saufa ta‘lamūn(a).", "Sekali-kali tidak (jangan melakukan itu)! Kelak kamu akan mengetahui (akibatnya)."),
@@ -111,7 +111,7 @@ internal fun quranFullAyahs104(): List<Ayah> = listOf(
     Ayah(3, 104, "يَحْسَبُ اَنَّ مَالَهٗٓ اَخْلَدَهٗۚ", "Yaḥsabu anna mālahū akhladah(ū).", "Dia (manusia) mengira bahwa hartanya dapat mengekalkannya."),
     Ayah(4, 104, "كَلَّا لَيُنْۢبَذَنَّ فِى الْحُطَمَةِۖ", "Kallā layumbażanna fil-ḥuṭamah(ti).", "Sekali-kali tidak! Pasti dia akan dilemparkan ke dalam (neraka) Hutamah."),
     Ayah(5, 104, "وَمَآ اَدْرٰىكَ مَا الْحُطَمَةُ ۗ", "Wa mā adrāka mal-ḥuṭamah(tu).", "Tahukah kamu apakah (neraka) Hutamah?"),
-    Ayah(6, 104, "نَارُ اللّٰهِ الْمُوْقَدَةُۙ", "Nārullāhil-mūqadah(tu).", "(Ia adalah) api (azab) Allah yang dinyalakan"),
+    Ayah(6, 104, "نَارُ اللّٰهِ الْمُوْقَدَةُۙ", "Nārullāhil-mūqadah(tu).", "(Ia adalah) api (azab) اللّه yang dinyalakan"),
     Ayah(7, 104, "الَّتِيْ تَطَّلِعُ عَلَى الْاَفْـِٕدَةِۗ", "Allatī taṭṭali‘u ‘alal-af'idah(ti).", "yang (membakar) naik sampai ke hati."),
     Ayah(8, 104, "اِنَّهَا عَلَيْهِمْ مُّؤْصَدَةٌۙ", "Innahā ‘alaihim mu'ṣadah(tun).", "Sesungguhnya dia (api itu) tertutup rapat (sebagai hukuman) atas mereka,"),
     Ayah(9, 104, "فِيْ عَمَدٍ مُّمَدَّدَةٍ ࣖ", "Fī ‘amadim mumaddadah(tin).", "(sedangkan mereka) diikat pada tiang-tiang yang panjang."),
@@ -137,15 +137,15 @@ internal fun quranFullAyahs107(): List<Ayah> = listOf(
     Ayah(2, 107, "فَذٰلِكَ الَّذِيْ يَدُعُّ الْيَتِيْمَۙ", "Fa żālikal-lażī yadu‘‘ul-yatīm(a).", "Itulah orang yang menghardik anak yatim"),
     Ayah(3, 107, "وَلَا يَحُضُّ عَلٰى طَعَامِ الْمِسْكِيْنِۗ", "Wa lā yaḥuḍḍu ‘alā ṭa‘āmil-miskīn(i).", "dan tidak menganjurkan untuk memberi makan orang miskin."),
     Ayah(4, 107, "فَوَيْلٌ لِّلْمُصَلِّيْنَۙ", "Fawailul lil-muṣallīn(a).", "Celakalah orang-orang yang melaksanakan salat,"),
-    Ayah(5, 107, "الَّذِيْنَ هُمْ عَنْ صَلَاتِهِمْ سَاهُوْنَۙ", "Allażīna hum ‘an ṣalātihim sāhūn(a).", "(yaitu) yang lalai terhadap salatnya,761)"),
-    Ayah(6, 107, "الَّذِيْنَ هُمْ يُرَاۤءُوْنَۙ", "Allażīna hum yurā'ūn(a).", "yang berbuat riya,762)"),
+    Ayah(5, 107, "الَّذِيْنَ هُمْ عَنْ صَلَاتِهِمْ سَاهُوْنَۙ", "Allażīna hum ‘an ṣalātihim sāhūn(a).", "(yaitu) yang lalai terhadap salatnya,"),
+    Ayah(6, 107, "الَّذِيْنَ هُمْ يُرَاۤءُوْنَۙ", "Allażīna hum yurā'ūn(a).", "yang berbuat riya,"),
     Ayah(7, 107, "وَيَمْنَعُوْنَ الْمَاعُوْنَ ࣖ", "Wa yamna‘ūnal-mā‘ūn(a).", "dan enggan (memberi) bantuan."),
 )
 
 internal fun quranFullAyahs108(): List<Ayah> = listOf(
     Ayah(1, 108, "اِنَّآ اَعْطَيْنٰكَ الْكَوْثَرَۗ", "Innā a‘ṭainākal-kauṡar(a).", "Sesungguhnya Kami telah memberimu (Nabi Muhammad) nikmat yang banyak."),
     Ayah(2, 108, "فَصَلِّ لِرَبِّكَ وَانْحَرْۗ", "Faṣalli lirabbika wanḥar.", "Maka, laksanakanlah salat karena Tuhanmu dan berkurbanlah!"),
-    Ayah(3, 108, "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ ࣖ", "Inna syāni'aka huwal-abtar(u).", "Sesungguhnya orang yang membencimu, dialah yang terputus (dari rahmat Allah)."),
+    Ayah(3, 108, "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ ࣖ", "Inna syāni'aka huwal-abtar(u).", "Sesungguhnya orang yang membencimu, dialah yang terputus (dari rahmat اللّه)."),
 )
 
 internal fun quranFullAyahs109(): List<Ayah> = listOf(
@@ -158,13 +158,13 @@ internal fun quranFullAyahs109(): List<Ayah> = listOf(
 )
 
 internal fun quranFullAyahs110(): List<Ayah> = listOf(
-    Ayah(1, 110, "اِذَا جَاۤءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ", "Iżā jā'a naṣrullāhi wal-fatḥ(u).", "Apabila telah datang pertolongan Allah dan kemenangan"),
-    Ayah(2, 110, "وَرَاَيْتَ النَّاسَ يَدْخُلُوْنَ فِيْ دِيْنِ اللّٰهِ اَفْوَاجًاۙ", "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).", "dan engkau melihat manusia berbondong-bondong masuk agama Allah,"),
+    Ayah(1, 110, "اِذَا جَاۤءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ", "Iżā jā'a naṣrullāhi wal-fatḥ(u).", "Apabila telah datang pertolongan اللّه dan kemenangan"),
+    Ayah(2, 110, "وَرَاَيْتَ النَّاسَ يَدْخُلُوْنَ فِيْ دِيْنِ اللّٰهِ اَفْوَاجًاۙ", "Wa ra'aitan-nāsa yadkhulūna fī dīnillāhi afwājā(n).", "dan engkau melihat manusia berbondong-bondong masuk agama اللّه,"),
     Ayah(3, 110, "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُۗ اِنَّهٗ كَانَ تَوَّابًا ࣖ", "Fasabbiḥ biḥamdi rabbika wastagfirh(u), innahū kāna tawwābā(n).", "bertasbihlah dengan memuji Tuhanmu dan mohonlah ampun kepada-Nya. Sesungguhnya Dia Maha Penerima tobat."),
 )
 
 internal fun quranFullAyahs111(): List<Ayah> = listOf(
-    Ayah(1, 111, "تَبَّتْ يَدَآ اَبِيْ لَهَبٍ وَّتَبَّۗ", "Tabbat yadā abī lahabiw wa tabb(a).", "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia.763)"),
+    Ayah(1, 111, "تَبَّتْ يَدَآ اَبِيْ لَهَبٍ وَّتَبَّۗ", "Tabbat yadā abī lahabiw wa tabb(a).", "Binasalah kedua tangan Abu Lahab dan benar-benar binasa dia."),
     Ayah(2, 111, "مَآ اَغْنٰى عَنْهُ مَالُهٗ وَمَا كَسَبَۗ", "Mā agnā ‘anhu māluhū wa mā kasab(a).", "Tidaklah berguna baginya hartanya dan apa yang dia usahakan."),
     Ayah(3, 111, "سَيَصْلٰى نَارًا ذَاتَ لَهَبٍۙ", "Sayaṣlā nāran żāta lahab(in).", "Kelak dia akan memasuki api yang bergejolak (neraka),"),
     Ayah(4, 111, "وَّامْرَاَتُهٗ ۗحَمَّالَةَ الْحَطَبِۚ", "Wamra'atuh(ū), ḥammālatal-ḥaṭab(i).", "(begitu pula) istrinya, pembawa kayu bakar (penyebar fitnah)."),
@@ -172,8 +172,8 @@ internal fun quranFullAyahs111(): List<Ayah> = listOf(
 )
 
 internal fun quranFullAyahs112(): List<Ayah> = listOf(
-    Ayah(1, 112, "قُلْ هُوَ اللّٰهُ اَحَدٌۚ", "Qul huwallāhu aḥad(un).", "Katakanlah (Nabi Muhammad), “Dialah Allah Yang Maha Esa."),
-    Ayah(2, 112, "اَللّٰهُ الصَّمَدُۚ", "Allāhuṣ-ṣamad(u).", "Allah tempat meminta segala sesuatu."),
+    Ayah(1, 112, "قُلْ هُوَ اللّٰهُ اَحَدٌۚ", "Qul huwallāhu aḥad(un).", "Katakanlah (Nabi Muhammad), “Dialah اللّه Yang Maha Esa."),
+    Ayah(2, 112, "اَللّٰهُ الصَّمَدُۚ", "Allāhuṣ-ṣamad(u).", "اللّه tempat meminta segala sesuatu."),
     Ayah(3, 112, "لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ", "Lam yalid wa lam yūlad.", "Dia tidak beranak dan tidak pula diperanakkan"),
     Ayah(4, 112, "وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ ࣖ", "Wa lam yakul lahū kufuwan aḥad(un).", "serta tidak ada sesuatu pun yang setara dengan-Nya.”"),
 )

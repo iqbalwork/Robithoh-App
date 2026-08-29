@@ -1,7 +1,6 @@
 package com.iqbalwork.robithoh
 
 import com.iqbalwork.robithoh.navigation.ScreenKey
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -21,6 +20,7 @@ class NavigationScreenKeyTest {
         val quranSurah: ScreenKey = ScreenKey.QuranSurah(surahNumber = 36)
         val settings: ScreenKey = ScreenKey.Settings
         val profile: ScreenKey = ScreenKey.ProfilePesantren
+        val qibla: ScreenKey = ScreenKey.Qibla
 
         val serializedManaqib = json.encodeToString(manaqibDetail)
         val deserializedManaqib = json.decodeFromString<ScreenKey>(serializedManaqib)
@@ -32,11 +32,15 @@ class NavigationScreenKeyTest {
         val serializedSurah = json.encodeToString(quranSurah)
         val deserializedSurah = json.decodeFromString<ScreenKey>(serializedSurah)
         assertEquals(36, (deserializedSurah as ScreenKey.QuranSurah).surahNumber)
+
+        val serializedQibla = json.encodeToString(qibla)
+        val deserializedQibla = json.decodeFromString<ScreenKey>(serializedQibla)
+        assertEquals(ScreenKey.Qibla, deserializedQibla)
     }
 
     @Test
     fun testScreenKeyListSaverPreservesBackstack() {
-        val originalBackstack = androidx.compose.runtime.mutableStateListOf<ScreenKey>(
+        val originalBackstack = androidx.compose.runtime.mutableStateListOf<androidx.navigation3.runtime.NavKey>(
             ScreenKey.Home,
             ScreenKey.QuranList,
             ScreenKey.QuranSurah(surahNumber = 18, ayahNumber = 40),

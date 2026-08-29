@@ -6,19 +6,19 @@
 
 Ilaa hadrotin nabiyyil musthofaa Muhammadin Shollalloohu ‘Alaihi Wa sallam wa ‘alaa Aalihii wa Ashhabihii wa Azwaajihii wa Dzurriyyaatihii wa Ahli Baitihii wa Liman dakhola fii Baitihii ajma ‘iin, kullu syai’in lillahi lahum, Al-Fatihah
 
-Yaa Alloh semoga disampaikan pahala bacaan fatihah ini kehadapan Nabi Besar Muhammad SAW dan kepada keluarga, sahabat, istri, anak cucu dan ahli baitnya. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Faatihah
+Yaa اللّه semoga disampaikan pahala bacaan fatihah ini kehadapan Nabi Besar Muhammad SAW dan kepada keluarga, sahabat, istri, anak cucu dan ahli baitnya. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Faatihah
 
 أَسْتَغْفِرُ اللّٰهَ الْغَفُوْرَ الرَّحِيْمَ  (x٣)
 
 Astaghfirulloohal Ghofuuror Rohiim (3x)
 
-Aku memohon ampunan kepada Alloh yang Maha Pengampun dan Maha Penyayang.
+Aku memohon ampunan kepada اللّه yang Maha Pengampun dan Maha Penyayang.
 
 اَللّٰهُمَّ صَلِّ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَصَحْبِهٖ وَسَلِّمْ (x٣)
 
 Alloohumma sholli ‘alaa Sayyidinaa Muhammadiw wa ‘alaa aalihii Wa shohbihii wa sallim (3x)
 
-Yaa Alloh limpahkanlah rahmat-Mu kepada sayyidina Muhammad SAW dan kepada keluarga, dan para sahabatnya, serta limpahkanlah keselamatan baginya.
+Yaa اللّه limpahkanlah rahmat-Mu kepada sayyidina Muhammad SAW dan kepada keluarga, dan para sahabatnya, serta limpahkanlah keselamatan baginya.
 
 اِلَهِي اَنْتَ مَقْصُودِيْ وَرِضاَكَ مَطْلُوبِي اَعْطِنِيْ مَحَبَتَكَ وَمَعْرِفَتَكَ وَاَعْطِنِيْ مَعَكَ اَبَدَا
 
@@ -30,7 +30,7 @@ Tuhanku Engkaulah yang menjadi maksudku dan keridhoan-Mu yang menjadi pintaku. B
 
 Laa Ilaaha Illallooh (3x)
 
-Tiada Tuhan selain Alloh
+Tiada Tuhan selain اللّه
 
 **Kemudian dilanjutkan dengan Zikir sekurang-kurangnya 165x.**
 
@@ -42,7 +42,7 @@ Adapun penutup Zikir adalah dengan membaca :
 
 Sayyidunaa Muhammadur Rosuululloohi Shollalloohu ‘Alaihi wa Sallam
 
-Sayyidina Muhammad Rosulnya Alloh, semoga Alloh melimpahkan Rahmat dan keselamatan atas beliau.
+Sayyidina Muhammad Rosulnya اللّه, semoga اللّه melimpahkan Rahmat dan keselamatan atas beliau.
 
 Kemudian berdoa dengan doa berikut ini :
 
@@ -56,13 +56,13 @@ Bismillaahirrohmaanirrohiim. Allohumma sholli ‘alaa Sayyidinaa Muhammad wa ‘
 
 Allohumma ahyinii miskiinan, wa amitnii miskiinan, wahsyurnii fii jumrotil masaakiin
 
-Dengan menyebut nama Alloh yang Maha Pengasih lagi Maha Penyayang. Yaa Alloh limpahkan rahmat-Mu kepada Nabi Muhammad SAW dan keluarganya dengan rahmat yang akan menyelamatkan kami dari semua marabahaya dan mengabulkan bagi kami semua keperluan kami, dan membersihkan kami dari segala kesalahan, dan mengangkat kami ke derajat yang tinggi serta menyampaikan kami ke puncak sejak masih hidup sampai meninggal dunia. Sesungguhnya orang-orang yang berjanji setia kepada-Mu, itu sebenarnya mereka berjanji kepada Alloh. ‘Tangan Alloh’ di atas tangan-tangan (kekuasaan) mereka, maka barangsiapa melanggar janjinya, niscaya akibat dari melanggar janji itu akan menimpa dirinya sendiri, dan barangsiapa yang menepati janjinya kepada Alloh maka Alloh akan memberinya pahala yang besar.
+Dengan menyebut nama اللّه yang Maha Pengasih lagi Maha Penyayang. Yaa اللّه limpahkan rahmat-Mu kepada Nabi Muhammad SAW dan keluarganya dengan rahmat yang akan menyelamatkan kami dari semua marabahaya dan mengabulkan bagi kami semua keperluan kami, dan membersihkan kami dari segala kesalahan, dan mengangkat kami ke derajat yang tinggi serta menyampaikan kami ke puncak sejak masih hidup sampai meninggal dunia. Sesungguhnya orang-orang yang berjanji setia kepada-Mu, itu sebenarnya mereka berjanji kepada اللّه. ‘Tangan اللّه’ di atas tangan-tangan (kekuasaan) mereka, maka barangsiapa melanggar janjinya, niscaya akibat dari melanggar janji itu akan menimpa dirinya sendiri, dan barangsiapa yang menepati janjinya kepada اللّه maka اللّه akan memberinya pahala yang besar.
 
-Ya Alloh, hidupkanlah aku dalam keadaan miskin, matikanlah aku dalam keadaan miskin, dan kumpulkanlah aku (pada hari kiamat) bersama rombongan orang-orang miskin
+Ya اللّه, hidupkanlah aku dalam keadaan miskin, matikanlah aku dalam keadaan miskin, dan kumpulkanlah aku (pada hari kiamat) bersama rombongan orang-orang miskin
 
 adalah doa yang diajarkan oleh Rasululloh SAW (HR. Ibnu Majah).
 
-“Dalam ajaran Islam, makna “miskin” di sini bukanlah kekurangan harta atau meminta-minta, melainkan memohon sifat kerendahan hati, khusyuk, dan tawadhu. Rasululloh SAW berdoa agar dijauhkan dari sifat sombong, merasa cukup, dan takabur dengan kekayaan atau kedudukan, sehingga selalu merasa butuh kepada Alloh SWT.
+“Dalam ajaran Islam, makna “miskin” di sini bukanlah kekurangan harta atau meminta-minta, melainkan memohon sifat kerendahan hati, khusyuk, dan tawadhu. Rasululloh SAW berdoa agar dijauhkan dari sifat sombong, merasa cukup, dan takabur dengan kekayaan atau kedudukan, sehingga selalu merasa butuh kepada اللّه SWT.
 
 Do’a ini dapat ditambah dengan do’a-do’a lainnya yang dikehendaki.
 
@@ -70,31 +70,31 @@ Do’a ini dapat ditambah dengan do’a-do’a lainnya yang dikehendaki.
 
 Ilaa hadrotin nabiyyil musthofaa Muhammadin Shollalloohu ‘Alaihi Wa sallam wa ‘alaa Aalihii wa Ashhabihii wa Azwaajihii wa Dzurriyyaatihii wa Ahli Baitihii wa Liman dakhola fii Baitihii ajma ‘iin, kullu syai’in lillahi lahum, Al-Fatihah
 
-Semoga disampaikan kepada junjungan kami Nabi Muhammad SAW, semoga Alloh melimpahkan rahmat dan keselamatan kepanya, kepada keluarganya, para sahabatnya, istrinya, keturunannya serta ahli baitnya. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah
+Semoga disampaikan kepada junjungan kami Nabi Muhammad SAW, semoga اللّه melimpahkan rahmat dan keselamatan kepanya, kepada keluarganya, para sahabatnya, istrinya, keturunannya serta ahli baitnya. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah
 
 ثُمَّ اِلٰى أَهْلِ السِّلْسِلَةِ الْقَادِرِيَّةِ النَّقْشَبَنْدِيَّةِ مَعْهَدِ سُرْيَالَيَا سِرْناَ رَاسَا وَجَمِيْعِ أَهْلِ الطُّرُقِ خُصُوْصًا اِلٰى حَضْرَةِ سُلْطَانِ الْأَوْلِيَاءِ غَوْثِ الْأَعْظَمِ قُطْبِ الْعَالَمِيْنَ السَّيِّدِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلَانِي قَدَّسَ اللّٰهُ سِرَّهُ وَالسَّيِّدِ الشَّيْخِ أبِي الْقَاسِمِ جُنَيْدِ الْبَغْدَادِي وَالسَّيِّدِ الشَّيْخِ أَحْمَدَ خَاطِبِ ابْنِ عَبْدِ الْغَفَّارِ السَّمْبَاسِيِّ وَالسَّيِّدِ الشَّيْخِ طَلْحَةَ كَالِي سَافُو السِرْبَوْنِي وَالسَّيِّدِ الشَّيْخِ عَبْدِ اللّٰهِ مُبَارَكِ بْنِ نُوْرِ مُحَمَّدٍ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ أَحْمَدَ صَاحِبِ الْوَفٰى تَاجِ الْعَارِفِيْنَ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّهمُ وَأُصُوْلِهِمْ وَفُرُوْعِهِمْ وَاَهْلِ سِلْسِلَتِهِمْ وَالْأۤخِذِيْنَ عَنْهُمْ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ
 
 Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah Ma’had Suryalaya Sirnarasa PPKN wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy  Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah
 
-Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah Ma’had Suryalaya Sirnarasa dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama Alloh Syaikh Abdul Qodir al Jailani. Semoga Alloh melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga Alloh melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah
+Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah Ma’had Suryalaya Sirnarasa dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama اللّه Syaikh Abdul Qodir al Jailani. Semoga اللّه melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga اللّه melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah
 
 ثُمَّ اِلٰى أَرْوَاحِ أٰبَائِنَا وَأُمَّهَاتِنَا وَلِكَافَّةِ الْمُسْلِمِيْنَ وَالْمُسْلِمَاتِ وَالْمُؤْمِنِيْنَ وَالْمُؤْمِنَاتِ .والمحسنين والمحسنات.الْأَحْيَاءِ مِنْهُمْ وَالْأَمْوَاتِ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ
 
 Tsumma ilaa arwaahi Aaba’inaa wa Ummahaatinaa wa likaaffatil Muslimiina wal Muslimaat wal Mu’miniina wal Mu’minaat wal muhsiniina wal muhsinaati al Ahyaa’i minhum wal amwaat, kullu syai’in lillaahi lahum, Al-Fatihah
 
-Selanjutnya semoga Alloh menyampaikan kepada bapak-bapak kami dan ibu-ibu kami dan kepada semua muslimin dan muslimat, mukminin dan mukminat, yang masih hidup maupun yang telah meninggal dunia. Segala sesuatu hanya milik Alloh, untuk mereka (kami) hadiahkan, Al-Fatihah
+Selanjutnya semoga اللّه menyampaikan kepada bapak-bapak kami dan ibu-ibu kami dan kepada semua muslimin dan muslimat, mukminin dan mukminat, yang masih hidup maupun yang telah meninggal dunia. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah
 
 اَسْتَغْفِرُ اللّٰهَ رَبِّي مِنْ كُلِّ ذَنْبٍ وَاَتُوْبُ اِلَيْهِ (x٣)
 
 Astaghfirullooha Robbii min kulli dzanbin wa atuubu ilaihi (3x)
 
-Aku memohon ampunan kepada Alloh Tuhanku dari segala dosa dan aku bertaubat kepada-Nya.
+Aku memohon ampunan kepada اللّه Tuhanku dari segala dosa dan aku bertaubat kepada-Nya.
 
 اَللّٰهُمَّ صَلِّ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى أٰلِ سَيِّدِنَا مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلٰى أٰلِ اِبْرَاهِيْمَ وَبَارِكْ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى أٰلِ سَيِّدِنَا مُحَمَّدٍ كَمَا بَارَكْتَ عَلٰى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلٰى أٰلِ اِبْرَاهِيْمَ فِي الْعَالَمِيْنَ إِنَّكَ حَمِيْدٌ مَجِيْدٌ
 
 Alloohumma sholli ‘alaa sayyidinaa Muhammad wa ‘alaa Aali Sayyidinaa Muhammad,  kamaa shollaita ‘alaa sayyidinaa Ibroohim wa ‘alaa Aali sayyidinaa Ibroohim, wa baarik ‘alaa sayyidinaa Muhammad Wa ‘alaa Aali sayyidinaa Muhammad, kamaa baarokta ‘alaa sayyidinaa Ibroohim wa ‘alaa Aali sayyidinaa Ibroohim, fil ‘aalamiina innaka Hamiidum Majiid.
 
-Yaa Alloh Semoga Engkau melimpahkan rahmat kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan rahmat kepada Nabi Ibrahim dan keluarganya dan semoga Engkau melimpahkan barokah kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan barokah kepada Nabi Ibrahim dan keluarganya di seluruh alam. Engkau Maha Terpuji lagi Maha Agung.
+Yaa اللّه Semoga Engkau melimpahkan rahmat kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan rahmat kepada Nabi Ibrahim dan keluarganya dan semoga Engkau melimpahkan barokah kepada Nabi Muhammad dan keluarganya seperti halnya Engkau melimpahkan barokah kepada Nabi Ibrahim dan keluarganya di seluruh alam. Engkau Maha Terpuji lagi Maha Agung.
 
 Kemudian membaca :
 
@@ -120,7 +120,7 @@ Asy Syura: 19
 
 Allāhu laṭīfum bi’ibādihī yarzuqu may yasyā’, wa huwal-qawiyyul-‘azīz.
 
-Artinya: (19.) Alloh Mahalembut terhadap hamba-hamba-Nya. Dia memberi rezeki kepada siapa yang Dia kehendaki. Dia Mahakuat lagi Mahaperkasa”.
+Artinya: (19.) اللّه Mahalembut terhadap hamba-hamba-Nya. Dia memberi rezeki kepada siapa yang Dia kehendaki. Dia Mahakuat lagi Mahaperkasa”.
 
 DOA-DOA YANG DIBACA SETELAH SELESAI ZIKIR HARIAN KHUSUS DI WAKTU SUBUH DAN MAGRIB
 
@@ -130,15 +130,15 @@ DOA-DOA YANG DIBACA SETELAH SELESAI ZIKIR HARIAN KHUSUS DI WAKTU SUBUH DAN MAGRI
 
 ‘Asalloohu ayyaj’ala bainakum wa bainal ladziina ‘adaitum minhhum mawadataw walloohhu qodiiruw walloohhu ghofuurur rohiimu robbi innii zholamtu nafsii faghfirlii dzambii laa ilaahha illa angta subhaanaka innii kungtu minazh zhoolimiina (3x).
 
-Semoga Alloh menumbuhkan kasih sayang di antara kalian dan termasuk pada orang-orang yang memusuhi kalian. Alloh Maha Kuasa dan Maha Pengampun lagi Maha Penyayang. Tiada Tuhan selain Engkau. Maha Suci Engkau, sesungguhnya aku adalah orang yang menganiaya kepada diriku sendiri.
+Semoga اللّه menumbuhkan kasih sayang di antara kalian dan termasuk pada orang-orang yang memusuhi kalian. اللّه Maha Kuasa dan Maha Pengampun lagi Maha Penyayang. Tiada Tuhan selain Engkau. Maha Suci Engkau, sesungguhnya aku adalah orang yang menganiaya kepada diriku sendiri.
 
-( Do’a sebagai benteng dari gangguan musuh baik dari dalam dan luar , serta berserah diri total hanya pada Alloh )
+( Do’a sebagai benteng dari gangguan musuh baik dari dalam dan luar , serta berserah diri total hanya pada اللّه )
 
 اَللّٰهُمَّ صَحًّا صَحًّا صَحًّا وَحًّا بَحًّا حٰمۤ لَا يُنْصَرُوْنَ ، وَجَعَلْنَا مِنْ بَيْنِ أَيْدِيهِمْ سَدًّا وَّمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنَاهُمْ فَهُمْ لَا يُبْصِرُوْنَ ، كۤهٰيٰعۤصۤ حٰمۤ عۤسۤقۤ لَا يُصَدَّعُوْنَ عَنْهَا وَلَا يُنْزِفُوْنَ ، يَا رَبُّ يَا  رَبُّ يَا رَبُّ وَلَاحَوْلَ وَلَاقُوَّةَ إِلَّا بِاللّٰهِ الْعَلِيِّ الْعَظِيْم
 
 Alloohhumma shohhan-shohhan-shohhan wa han bahan haa-mim laa yungshoruuna wa ja’alnaa mim baini aydiihhim saddaw wa min kholfihhim saddang fa-aghsyainaahhum fahhum laa yubshiruuna kaf-hha-ya-‘ain-shod-ha-mim-‘ain-sin-qof laa yushodda’uuna ‘anhhaa wa laa yungzifuuna yaa robbu-yaa robbu-yaa robbu wa laa haula wa laa quwwata illa billaahhil ‘aliyyil ‘azhiimi (3x).
 
-Ya Alloh, sehatkanlah-sehatkanlah-sehatkanlah, tuluskanlah ha-mim orang yang zholim tidak akan mendapat pertolongan. Dan Kami adakan di hadapan mereka dinding, dan di belakang mereka dinding. Dan Kami tutup mata mereka, sehingga mereka tidak melihat, kaf-hha-ya-‘ain-shod-ha-mim-‘ain-sin-qof, tiadalah mereka mematahkan dari pada-Nya, dan tidaklah mereka bisa mengeluarkan. Ya Rob-Ya Rob-Ya Rob, tiada daya dan upaya kecuali dari Alloh Yang Maha Luhur dan Maha Agung.
+Ya اللّه, sehatkanlah-sehatkanlah-sehatkanlah, tuluskanlah ha-mim orang yang zholim tidak akan mendapat pertolongan. Dan Kami adakan di hadapan mereka dinding, dan di belakang mereka dinding. Dan Kami tutup mata mereka, sehingga mereka tidak melihat, kaf-hha-ya-‘ain-shod-ha-mim-‘ain-sin-qof, tiadalah mereka mematahkan dari pada-Nya, dan tidaklah mereka bisa mengeluarkan. Ya Rob-Ya Rob-Ya Rob, tiada daya dan upaya kecuali dari اللّه Yang Maha Luhur dan Maha Agung.
 
 ( Do’a untuk penangkal dari berbagai penyakit / bala lahir bathin )
 
@@ -146,9 +146,9 @@ Ya Alloh, sehatkanlah-sehatkanlah-sehatkanlah, tuluskanlah ha-mim orang yang zho
 
 Bismillaahisy syaafii bismillaahhil kaafii bismillaahhil ma’aafii bismillaahhil ladzii laa yadlurru ma’asmihhii syai-um fiil ardli wa laa fiis samaa-i wa hhuwas samii’ul ‘aliimu (3x).
 
-Dengan Nama Alloh Yang Maha Menyembuhkan, dengan Nama Alloh Yang Maha Mencukupi, dengan Nama Alloh Yang Maha Menyehatkan, dengan Nama Alloh yang melalui Nama-Nya segala sesuatu yang ada di bumi dan di langit tidak membahayakan. Dan Dia-lah Yang Maha Mengetahui.
+Dengan Nama اللّه Yang Maha Menyembuhkan, dengan Nama اللّه Yang Maha Mencukupi, dengan Nama اللّه Yang Maha Menyehatkan, dengan Nama اللّه yang melalui Nama-Nya segala sesuatu yang ada di bumi dan di langit tidak membahayakan. Dan Dia-lah Yang Maha Mengetahui.
 
-( Do’a untuk keberkahan dalam posisi dan profesi yang di ridhoi Alloh )
+( Do’a untuk keberkahan dalam posisi dan profesi yang di ridhoi اللّه )
 
 رَبَّنَا أَنْزِلْنَا مُنْزَلًا مُّبَارَكًا وَّأَنْتَ خَيْرُ الْمُنْزِلِيْنَ
 
@@ -187,14 +187,14 @@ Do’a dilaksanakan setelah Sholat Maghrib 1x dan setelah Sholat Shubuh 1x
 Bismillahirrahmanirrahim
 Alhamdulillahi rabbil ‘alamin. Arrahma nirrahim. Maliki yaumiddin.Iyyaka na’kbudu waiyyaka nasta’in. Ihdinassiratal mustaqim. Siratal lazina an’amta’alaihim ghairil maghdubi ‘alaihim waladdhalin. Aamiiin.
 
-Dengan nama Alloh yang maha pemurah lagi maha mengasihani. Segala puji-pujian bagi Alloh tuhan seru sekelian alam. Yang maha pemurah lagi maha pengasih. Yang berkuasa pada hari pembalasan. Hanya Engkau sahaja wahai tuhan yang kami sembah dan hanya Engkau sahajalah tempat kami meminta pertolongan. Tunjukanlah kami jalan yang lurus. Iaitu jalan orang-orang terdahulu yang telah Engkau berikan nikmat, bukan jalan orang-orang yang Engkau murkai dan bukan pula jalan orang-orang yang sesat. Aamiiin.
+Dengan nama اللّه yang maha pemurah lagi maha mengasihani. Segala puji-pujian bagi اللّه tuhan seru sekelian alam. Yang maha pemurah lagi maha pengasih. Yang berkuasa pada hari pembalasan. Hanya Engkau sahaja wahai tuhan yang kami sembah dan hanya Engkau sahajalah tempat kami meminta pertolongan. Tunjukanlah kami jalan yang lurus. Iaitu jalan orang-orang terdahulu yang telah Engkau berikan nikmat, bukan jalan orang-orang yang Engkau murkai dan bukan pula jalan orang-orang yang sesat. Aamiiin.
 
-( Doa agar dimudahkan dan disempurnakan Alloh Azza Wa Jalla)
+( Doa agar dimudahkan dan disempurnakan اللّه Azza Wa Jalla)
 
 رَبِّ يَسِّرْ لَنَا وَلَا تُعَسِّرْ عَلَيْنَا رَبِّي تَمِّمْ لَنَا بِالـْخَيْرِ أَعْمَالَنَا
 
 Robbii yassir lanaa, walaa tu’assir ‘alainaa, Robbii tammim lanaa bikhairi a’malana (3x)
 
-Ya Tuhanku, mudahkanlah segala sesuatu bagi kami, janganlah Kau persulit atas kami. Yaa Alloh Tuhanku, berikanlah kesempurnaan atas kami dengan segala kebaikan atas perbuatan kami.
+Ya Tuhanku, mudahkanlah segala sesuatu bagi kami, janganlah Kau persulit atas kami. Yaa اللّه Tuhanku, berikanlah kesempurnaan atas kami dengan segala kebaikan atas perbuatan kami.
 
 ۞۞۞

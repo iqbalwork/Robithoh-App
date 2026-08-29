@@ -3,12 +3,16 @@ package com.iqbalwork.robithoh.feature.amaliyah.presentation
 import androidx.lifecycle.viewModelScope
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.datetime.currentLocalDateTime
-import com.iqbalwork.robithoh.core.designsystem.component.LiturgyLanguage
-import com.iqbalwork.robithoh.core.location.UserLocation
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
 import com.iqbalwork.robithoh.feature.amaliyah.data.AmaliyahRepository
 import com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator
-import com.iqbalwork.robithoh.feature.amaliyah.model.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethods
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerTimeAdjustments
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -210,6 +214,12 @@ class AmaliyahViewModel(
                 persistPrayerNotificationToggles(updatedNotif)
                 syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
             }
+            is AmaliyahUiIntent.TogglePrePrayerReminder -> {
+                val updatedNotif = currentState.notificationSettings.withPrePrayerReminder(intent.enabled)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistPrayerNotificationToggles(updatedNotif)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
             is AmaliyahUiIntent.SetPrayerNotificationMode -> {
                 val updatedNotif = currentState.notificationSettings.withPrayerMode(intent.prayerType, intent.mode)
                 updateState {
@@ -308,43 +318,52 @@ class AmaliyahViewModel(
                         asharMode = PrayerNotificationMode.fromDbValue(settings.ashar_notif_enabled),
                         maghribMode = PrayerNotificationMode.fromDbValue(settings.maghrib_notif_enabled),
                         isyaMode = PrayerNotificationMode.fromDbValue(settings.isya_notif_enabled),
-                        imsakMode = PrayerNotificationMode.fromDbValue(settings.imsak_notif_enabled),
+                        imsakMode = PrayerNotificationMode.fromDbValue(settings.imsak_notif_enabled).let {
+                            if (it == PrayerNotificationMode.ADZAN) PrayerNotificationMode.PUSH_NOTIFICATION else it
+                        },
                         selectedVoiceId = settings.selected_adzan_voice_id,
                         customAudioPath = settings.custom_adzan_audio_path
                     )
 
                     withContext(Dispatchers.Main) {
+                        val resolvedLocation = if (currentState.isGpsActive) currentState.selectedLocation else location
+                        val resolvedIsGps = currentState.isGpsActive || isGps
+
                         updateState {
                             copy(
                                 selectedCalculationMethod = method,
                                 prayerAdjustments = adjustments,
-                                selectedLocation = location,
-                                isGpsActive = isGps,
+                                selectedLocation = resolvedLocation,
+                                isGpsActive = resolvedIsGps,
                                 notificationSettings = notifSettings
                             )
                         }
                         recalculatePrayerTimes(
-                            location = location,
+                            location = resolvedLocation,
                             method = method,
                             adjustments = adjustments
                         )
                     }
                 } else {
                     withContext(Dispatchers.Main) {
+                        if (!currentState.isGpsActive) {
+                            recalculatePrayerTimes(
+                                location = currentState.selectedLocation,
+                                method = currentState.selectedCalculationMethod,
+                                adjustments = currentState.prayerAdjustments
+                            )
+                        }
+                    }
+                }
+            } catch (_: Exception) {
+                withContext(Dispatchers.Main) {
+                    if (!currentState.isGpsActive) {
                         recalculatePrayerTimes(
                             location = currentState.selectedLocation,
                             method = currentState.selectedCalculationMethod,
                             adjustments = currentState.prayerAdjustments
                         )
                     }
-                }
-            } catch (_: Exception) {
-                withContext(Dispatchers.Main) {
-                    recalculatePrayerTimes(
-                        location = currentState.selectedLocation,
-                        method = currentState.selectedCalculationMethod,
-                        adjustments = currentState.prayerAdjustments
-                    )
                 }
             }
         }
@@ -473,7 +492,24 @@ class AmaliyahViewModel(
         }
 
         if (schedule != null) {
-            syncAlarmSchedule(schedule, currentState.notificationSettings)
+            val todaySchedule = if (dateOffsetDays == 0) {
+                schedule
+            } else {
+                calculator.calculateSchedule(
+                    year = now.year,
+                    month = now.month,
+                    day = now.day,
+                    latitude = location.latitude,
+                    longitude = location.longitude,
+                    timezoneOffset = location.timezoneOffset,
+                    locationName = location.name,
+                    method = method,
+                    adjustments = adjustments
+                )
+            }
+            if (todaySchedule != null) {
+                syncAlarmSchedule(todaySchedule, currentState.notificationSettings)
+            }
         }
     }
 

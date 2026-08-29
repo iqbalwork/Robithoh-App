@@ -84,7 +84,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Allohumma laa maani’a limaa a’thoita wa laa mu’thiya limaa mana’ta wa laa yangfa’u dzal dzaddi mingkal jaddu
 
-Artinya: “Tiada Tuhan selain Alloh , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga Alloh mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik Alloh.
+Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
 
 ---
 
@@ -118,7 +118,7 @@ Dan setelah selesai sholat 12 roka’at (6x salam) kemudian membaca sholawat 70x
 
 Allohumma sholli ‘alaa sayyidinaa Muhammadinin Nabiyyil Ummiyyi wa ‘alaa aalihi wa shohbihi wa sallim
 
-Artinya: ” Ya Alloh curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya. ”
+Artinya: ” Ya اللّه curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya. ”
 
 Setelah sholat kemudian bersujud sambil membaca Tasbih 70x dengan bacaan Tasbih sebagai berikut:
 
@@ -126,7 +126,7 @@ Setelah sholat kemudian bersujud sambil membaca Tasbih 70x dengan bacaan Tasbih 
 
 Subbuhun quudusun robbul malaaikati war ruuhi
 
-Artinya: ” Maha Suci Alloh Tuhan para malaikat dan ruh. ”
+Artinya: ” Maha Suci اللّه Tuhan para malaikat dan ruh. ”
 
 Kemudian bangun dari sujud, duduk seperti semula dengan membaca Istigfar 70x, dengan bacaan sebagai berikut:
 
@@ -136,7 +136,7 @@ Robbighfir warham wa tajawaz ‘amma ta’lamu fa innaka angtal ‘aziizul a’z
 
 Artinya: Wahai Tuhan ku ampunilah , sayangilah , perkenankanlah, kami dari yang Engkau ketahui maka sesungguhnya Engkau Maha Perkasa lagi Maha Agung.
 
-Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada Alloh dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
+Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada اللّه dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
 
 ---
 
@@ -166,7 +166,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Illahan waahidan ahadan shomadan fardan witron lam yattakhidz shoohibatan wa laa waladan.
 
-Artinya: “Tiada Tuhan selain Alloh , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga Alloh mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik Alloh.
+Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
 
 ---
 
@@ -196,7 +196,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illalloohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyi wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Wa sholallohu ‘alaa sayyidinaa Muhammadin wa’alaa aalihittoohiriina wa laa haula wa laa quwwata illa billahil ‘aliyyil ‘adzhim.
 
-Artinya: “Tiada Tuhan selain Alloh , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga Alloh mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik Alloh.
+Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
 
 ---
 
@@ -207,21 +207,21 @@ Dari tanggal 1 sampai 10 membaca :
 سُبْحَانَ اللهِ الْحَيُّ الْقَيُّوْمِ
 
 Subhanallohil hayyil qoyyumi 100x
-Artinya : Maha Suci Alloh Yang Maha Hidup lagi Maha Memelihara.
+Artinya : Maha Suci اللّه Yang Maha Hidup lagi Maha Memelihara.
 
 Dari tanggal 11 sampai 20 membaca :
 
 سُبْحَانَ اللهِ اْلأَحَدِالصَّمَدِ
 
 Subhanallohil ahadish shomad 100x
-Artinya : Maha Suci Alloh Yang Tunggal dan tempat Meminta.
+Artinya : Maha Suci اللّه Yang Tunggal dan tempat Meminta.
 
 Dari tanggal 21 sampai tanggal 30 membaca :
 
 سُبْحَانَ اللهِ الرَّؤُفِ
 
 Subhanallohir rouuf 100x
-Artinya : Maha Suci Alloh Yang Maha Pengasih (Penyantun).
+Artinya : Maha Suci اللّه Yang Maha Pengasih (Penyantun).
 
 ---
 
@@ -231,7 +231,7 @@ Artinya : Maha Suci Alloh Yang Maha Pengasih (Penyantun).
 
 Allohumma thohhir lisaanii, minal kidzbi, wa qolbii minan nifaaqi, wa ‘amalii minar riyaa’i, wa bashorii minal khiyaanati, Fa innaka ta’lamu khooinatal a’yun wa maa tukhfish shuduur.
 
-Artinya : Ya Alloh , sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikan lah penglihatanku dari khiyanah sesungguhnmya Engkau mengetahui yang mengelabui mata dan yang tersimpan didalam hati.
+Artinya : Ya اللّه , sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikan lah penglihatanku dari khiyanah sesungguhnmya Engkau mengetahui yang mengelabui mata dan yang tersimpan didalam hati.
 
 ۞۞۞
 
@@ -249,9 +249,9 @@ Niat Sholat Nishfu Sya’ban :
 
 Bacaan : Setelah Al-Fatihah membaca Al-Ikhlas 10x setiap roka’at
 
-Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari Alloh Azza Wa Jalla.
+Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari اللّه Azza Wa Jalla.
 
-Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : “Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka Alloh Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, Alloh Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan Alloh Azza Wa Jalla”.
+Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : “Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka اللّه Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, اللّه Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan اللّه Azza Wa Jalla”.
 
 ---
 
@@ -302,7 +302,7 @@ Melanjutkan kembali Sholat Sunnah Nishfu Sya’ban sampai selesai 50x salam, kem
 Catatan :
 Adapun Sholat-sholat Sunnah harian antara Sholat Maghrib dan Sholat Isya, Sholat Lidaf’il Bala juga Khotaman tidak perlu dilaksanakan, Setelah Selesai Sholat Nishfu Sya’ban langsung SUJUD SYUKUR. Tanda berakhirnya Sholat Nishfu Sya’ban
 
-Semoga kita Dimampukan, Dimudahkan, dilancarkan dan disukseskan menunaikan Sholat Nishfu Sya’ban semata-mata hanya ingin meraih ridho Alloh Azza Wa Jalla.
+Semoga kita Dimampukan, Dimudahkan, dilancarkan dan disukseskan menunaikan Sholat Nishfu Sya’ban semata-mata hanya ingin meraih ridho اللّه Azza Wa Jalla.
 
 Mohon maaf lahir bathin dunia akhirat.
 
@@ -571,7 +571,7 @@ Jumlah : 4 Roka’at 2x Salam.
 
 Niat Sholat :
 Ushollii sunnatan syukri lailatul qodar rok’ataini lillaahi ta’aala
-Artinya : Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena Alloh Ta’ala.
+Artinya : Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena اللّه Ta’ala.
 
 Setelah Al-Fatihah membaca : At-Takatsur (1x) & Al-Ikhlash (3x)
 
@@ -590,6 +590,6 @@ Dilanjutkan dengan Do’a :
 
 Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 26x
 
-Artinya : Yaa Alloh , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.
+Artinya : Yaa اللّه , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.
 
 ۞۞۞

@@ -1,17 +1,33 @@
 package com.iqbalwork.robithoh.navigation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -22,7 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.iqbalwork.robithoh.core.designsystem.theme.*
 
 private val MerahMerdeka = Color(0xFFCE1126)
 private val EmasKhidmat = Color(0xFFD4AF37)
@@ -135,7 +150,7 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
             MenuNavigationCard(
                 title = "Pengaturan Aplikasi",
                 subtitle = "Ukuran font Arab, tema warna & notifikasi",
-                badge = "Settings",
+                badge = "Pengaturan",
                 onClick = { onNavigate(ScreenKey.Settings) }
             )
         }
@@ -328,6 +343,9 @@ fun QuranListScreen(
     onSurahClick: (Int, Int?) -> Unit,
     onBack: () -> Unit
 ) {
+    BackHandler {
+        onBack()
+    }
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
@@ -348,6 +366,9 @@ fun QuranSurahScreen(
     onBack: () -> Unit,
     initialAyahNumber: Int? = null
 ) {
+    BackHandler {
+        onBack()
+    }
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_surah_$surahNumber") {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
@@ -369,6 +390,9 @@ fun SettingsScreen(
     onNavigateToPrayerAdjustments: () -> Unit = {},
     onBack: () -> Unit
 ) {
+    BackHandler {
+        onBack()
+    }
     Scaffold(
         topBar = {
             TopAppBar(

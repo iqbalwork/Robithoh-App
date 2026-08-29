@@ -3,16 +3,39 @@ package com.iqbalwork.robithoh.feature.quran.presentation
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,12 +46,36 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.component.AyahOptionsSheet
+import com.iqbalwork.robithoh.core.designsystem.component.GoToSurahAyahSheet
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCard
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCardVariant
+import com.iqbalwork.robithoh.core.designsystem.component.IslamicDivider
+import com.iqbalwork.robithoh.core.designsystem.component.IslamicDividerMotif
+import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
+import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
+import com.iqbalwork.robithoh.core.designsystem.component.ReaderToggleOption
+import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.Ayah
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.navigation.BackHandler
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,8 +112,21 @@ fun QuranReaderScreen(
     var selectedAyahForOptions by remember { mutableStateOf<Ayah?>(null) }
     var pendingScrollAyah by rememberSaveable { mutableStateOf(initialAyahNumber) }
 
-    // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless At-Taubah.
-    val ayahListOffset = if (currentSurahNumber != 9) 3 else 2
+    BackHandler {
+        if (showSettingsDialog) {
+            showSettingsDialog = false
+        } else if (showGoToSheet) {
+            showGoToSheet = false
+        } else if (selectedAyahForOptions != null) {
+            selectedAyahForOptions = null
+        } else {
+            onBackClick()
+        }
+    }
+
+    // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless Al-Fatihah or At-Taubah.
+    val hasBasmalahHeader = currentSurahNumber != 1 && currentSurahNumber != 9
+    val ayahListOffset = if (hasBasmalahHeader) 3 else 2
 
     // Fires on first load and every in-place surah switch (state.currentAyahs changes each
     // time), so a pending scroll target set by jumpTo() is applied once the new ayahs arrive.
@@ -77,6 +137,33 @@ fun QuranReaderScreen(
             listState.scrollToItem(if (index >= 0) index + ayahListOffset else 0)
             pendingScrollAyah = null
         }
+    }
+
+    // Automatically tracks and marks the topmost visible ayah on screen as "Terakhir Dibaca"
+    LaunchedEffect(state.currentAyahs, surah, pendingScrollAyah) {
+        if (state.currentAyahs.isEmpty() || surah == null) return@LaunchedEffect
+        if (pendingScrollAyah != null) return@LaunchedEffect
+
+        snapshotFlow {
+            val rawIndex = listState.firstVisibleItemIndex - ayahListOffset
+            val safeIndex = rawIndex.coerceIn(0, state.currentAyahs.lastIndex)
+            state.currentAyahs.getOrNull(safeIndex)
+        }
+            .filterNotNull()
+            .distinctUntilChanged()
+            .collect { visibleAyah ->
+                val current = state.lastReadBookmark
+                if (current == null || current.surahNumber != visibleAyah.surahNumber || current.ayahNumber != visibleAyah.numberInSurah) {
+                    viewModel.onIntent(
+                        QuranUiIntent.SaveBookmark(
+                            surahNumber = visibleAyah.surahNumber,
+                            ayahNumber = visibleAyah.numberInSurah,
+                            surahName = surah.nameLatin,
+                            showToast = false
+                        )
+                    )
+                }
+            }
     }
 
     // Switches to a surah/ayat without navigating: same surah just scrolls, a different
@@ -221,8 +308,8 @@ fun QuranReaderScreen(
                 }
             }
 
-            // Basmalah (kecuali At-Taubah)
-            if (currentSurahNumber != 9) {
+            // Basmalah (kecuali Al-Fatihah dan At-Taubah)
+            if (hasBasmalahHeader) {
                 item {
                     GoldCrimsonCard(
                         variant = GoldCrimsonCardVariant.GOLD_BORDER,
@@ -247,22 +334,18 @@ fun QuranReaderScreen(
 
             // Ayahs list
             items(state.currentAyahs, key = { "${it.surahNumber}_${it.numberInSurah}" }) { ayah ->
+                val isLastRead = state.lastReadBookmark?.let {
+                    it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
+                } ?: false
+
                 AyahItemCard(
                     ayah = ayah,
                     surahName = surah?.nameLatin ?: "Surah $currentSurahNumber",
                     fontScale = fontScale,
                     showLatin = showLatin,
                     showTranslation = showTranslation,
-                    onClick = { selectedAyahForOptions = ayah },
-                    onBookmark = {
-                        viewModel.onIntent(
-                            QuranUiIntent.SaveBookmark(
-                                surahNumber = ayah.surahNumber,
-                                ayahNumber = ayah.numberInSurah,
-                                surahName = surah?.nameLatin ?: "Surah $currentSurahNumber"
-                            )
-                        )
-                    }
+                    isLastRead = isLastRead,
+                    onClick = { selectedAyahForOptions = ayah }
                 )
             }
         }
@@ -321,6 +404,10 @@ fun QuranReaderScreen(
         val shareAction = rememberShareTextAction()
         val clipboardManager = LocalClipboardManager.current
 
+        val isAyahLastRead = state.lastReadBookmark?.let {
+            it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
+        } ?: false
+
         AyahOptionsSheet(
             surahName = currentSurahName,
             ayahNumber = ayah.numberInSurah,
@@ -345,13 +432,15 @@ fun QuranReaderScreen(
                     QuranUiIntent.SaveBookmark(
                         surahNumber = ayah.surahNumber,
                         ayahNumber = ayah.numberInSurah,
-                        surahName = currentSurahName
+                        surahName = currentSurahName,
+                        showToast = true
                     )
                 )
             },
             onShare = { shareAction(shareText) },
             onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
-            playMurotalEnabled = ayah.audioUrl != null || surah?.audioUrl != null
+            playMurotalEnabled = ayah.audioUrl != null || surah?.audioUrl != null,
+            isLastRead = isAyahLastRead
         )
     }
 }
@@ -418,19 +507,19 @@ private fun AyahItemCard(
     fontScale: Float,
     showLatin: Boolean,
     showTranslation: Boolean,
+    isLastRead: Boolean = false,
     onClick: () -> Unit,
-    onBookmark: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
 
     GoldCrimsonCard(
         modifier = modifier,
-        variant = GoldCrimsonCardVariant.SURFACE_CLEAN,
+        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_TINTED else GoldCrimsonCardVariant.SURFACE_CLEAN,
         contentPadding = PaddingValues(16.dp),
         onClick = onClick
     ) {
-        // Top Toolbar in Ayah Card (Ayah Number & Bookmark button)
+        // Top Header in Ayah Card (Ayah Number & Last Read Marker)
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -440,27 +529,40 @@ private fun AyahItemCard(
                 modifier = Modifier
                     .size(34.dp)
                     .clip(CircleShape)
-                    .background(if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6)),
+                    .background(
+                        if (isLastRead) MerahMerdeka
+                        else (if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6))
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "${ayah.numberInSurah}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 13.sp,
-                    color = MerahMerdeka
+                    color = if (isLastRead) PutihBersih else MerahMerdeka
                 )
             }
 
-            TextButton(
-                onClick = onBookmark,
-                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp)
-            ) {
-                Text(
-                    text = "🔖 Tandai Bacaan",
-                    fontSize = 11.sp,
-                    color = EmasKhidmat,
-                    fontWeight = FontWeight.SemiBold
-                )
+            if (isLastRead) {
+                Surface(
+                    color = if (isDark) MerahMarunGelap.copy(alpha = 0.5f) else Color(0xFFFFF1F2),
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, MerahMerdeka.copy(alpha = 0.6f))
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                    ) {
+                        Text("🔖", fontSize = 11.sp)
+                        Text(
+                            text = "Terakhir Dibaca",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MerahMerdeka
+                        )
+                    }
+                }
             }
         }
 

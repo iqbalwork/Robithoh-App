@@ -1,5 +1,6 @@
 package com.iqbalwork.robithoh.feature.home.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -99,6 +100,7 @@ fun SholatModalBottomSheet(
 ) {
     val harianItems = listOf(
         SheetGridItem("harian", "Harian", "⏰", false, "sholat_harian"),
+        SheetGridItem("sebelum_tidur", "Sebelum Tidur", "🛌", false, "sebelum_tidur"),
         SheetGridItem("bulanan", "Bulanan", "📅", false, "sholat_bulanan"),
         SheetGridItem("safar", "Safar", "🚗", false, "sholat_safar")
     )
@@ -148,7 +150,6 @@ fun SholatModalBottomSheet(
                         SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
                     }
                 }
-                Spacer(modifier = Modifier.weight(1f))
             }
 
             Spacer(modifier = Modifier.height(18.dp))
@@ -251,18 +252,21 @@ fun SholawatModalBottomSheet(
     }
 }
 
+data class SheetMenuItem(
+    val title: String,
+    val documentId: String
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TahlilZiyarohModalBottomSheet(
     onItemClick: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val tahlilItems = listOf(
-        SheetGridItem("tahlil", "Tahlil", "📿", false, "tahlil_tqn")
-    )
-    val dziarahItems = listOf(
-        SheetGridItem("umum", "Umum", "🌿", false, "dziarah_umum"),
-        SheetGridItem("waliyulloh", "Waliyulloh", "🕌", false, "dziarah_waliyulloh")
+    val items = listOf(
+        SheetMenuItem("Tahlil TQN", "tahlil_tqn"),
+        SheetMenuItem("Ziyaroh Umum", "dziarah_umum"),
+        SheetMenuItem("Ziyaroh Waliyulloh", "dziarah_waliyulloh")
     )
 
     ModalBottomSheet(
@@ -274,51 +278,22 @@ fun TahlilZiyarohModalBottomSheet(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
-                .padding(bottom = 36.dp)
+                .padding(bottom = 36.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
-                text = "Tahlil",
-                fontSize = 15.sp,
+                text = "Tahlil & Ziyaroh",
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                tahlilItems.forEach { item ->
-                    Box(modifier = Modifier.weight(1f)) {
-                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
-                    }
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                Spacer(modifier = Modifier.weight(1f))
-                Spacer(modifier = Modifier.weight(1f))
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Text(
-                text = "Dziarah",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                dziarahItems.forEach { item ->
-                    Box(modifier = Modifier.weight(1f)) {
-                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
-                    }
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                Spacer(modifier = Modifier.weight(1f))
+            items.forEach { item ->
+                SheetMenuButton(
+                    title = item.title,
+                    onClick = { onItemClick(item.documentId) }
+                )
             }
         }
     }
@@ -331,10 +306,11 @@ fun DoaModalBottomSheet(
     onDismiss: () -> Unit
 ) {
     val items = listOf(
-        SheetGridItem("mursyid", "Salam Mursyid", "🌿", false, "salam_wali_mursyid"),
-        SheetGridItem("rijalul", "Rijalul Ghoib", "✨", false, "doa_rijalul_ghoib"),
-        SheetGridItem("jiyaaroh", "Jiyaaroh Rosul", "🕌", false, "sholawat_jiyaaroh"),
-        SheetGridItem("istighotsah", "Istighotsah", "🤲", false, "doa_istighotsah")
+        SheetMenuItem("Salam Wali Mursyid", "salam_wali_mursyid"),
+        SheetMenuItem("Doa Rijalul Ghoib", "doa_rijalul_ghoib"),
+        SheetMenuItem("Ziyaroh Rosul", "sholawat_jiyaaroh"),
+        SheetMenuItem("Doa Istighotsah", "doa_istighotsah"),
+        SheetMenuItem("Amaliyah Sebelum Tidur", "sebelum_tidur")
     )
 
     ModalBottomSheet(
@@ -346,7 +322,8 @@ fun DoaModalBottomSheet(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp)
-                .padding(bottom = 36.dp)
+                .padding(bottom = 36.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
                 text = "Doa",
@@ -354,18 +331,48 @@ fun DoaModalBottomSheet(
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                items.forEach { item ->
-                    Box(modifier = Modifier.weight(1f)) {
-                        SheetIconCard(item = item, onClick = { onItemClick(item.documentId) })
-                    }
-                }
+            items.forEach { item ->
+                SheetMenuButton(
+                    title = item.title,
+                    onClick = { onItemClick(item.documentId) }
+                )
             }
+        }
+    }
+}
+
+@Composable
+fun SheetMenuButton(
+    title: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(52.dp),
+        shape = RoundedCornerShape(12.dp),
+        color = Color.White,
+        border = BorderStroke(1.5.dp, MerahMerdeka)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = title.uppercase(),
+                color = MerahMerdeka,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 0.8.sp,
+                textAlign = TextAlign.Center,
+                maxLines = 1
+            )
         }
     }
 }

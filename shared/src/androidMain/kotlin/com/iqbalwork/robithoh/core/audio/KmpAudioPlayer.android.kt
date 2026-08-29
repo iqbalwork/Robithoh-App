@@ -14,8 +14,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
-class AndroidAudioPlayer : KmpAudioPlayer {
+class AndroidAudioPlayer(
+    private val cacheManager: AudioCacheManager = createAudioCacheManager()
+) : KmpAudioPlayer {
     private val scope = CoroutineScope(Dispatchers.Main)
     private var mediaPlayer: MediaPlayer? = null
     private var progressJob: Job? = null
@@ -39,17 +42,27 @@ class AndroidAudioPlayer : KmpAudioPlayer {
 
         scope.launch(Dispatchers.IO) {
             try {
-                val resolvedPath = if (track.urlOrPath.startsWith("http://") || track.urlOrPath.startsWith("https://") || java.io.File(track.urlOrPath).exists()) {
+                val resolvedPath = if (track.urlOrPath.startsWith("http://") || track.urlOrPath.startsWith("https://") || File(track.urlOrPath).exists()) {
                     track.urlOrPath
+                } else if (cacheManager.isDownloaded(track.urlOrPath)) {
+                    cacheManager.getLocalFilePath(track.urlOrPath) ?: track.urlOrPath
                 } else {
-                    val bytes = org.jetbrains.compose.resources.ExperimentalResourceApi::class.let {
-                        robithohapp.shared.generated.resources.Res.readBytes("files/${track.urlOrPath}")
+                    val bytes = try {
+                        org.jetbrains.compose.resources.ExperimentalResourceApi::class.let {
+                            robithohapp.shared.generated.resources.Res.readBytes("files/${track.urlOrPath}")
+                        }
+                    } catch (_: Throwable) {
+                        null
                     }
-                    val temp = java.io.File.createTempFile("audio_kmp_", ".mp3").apply {
-                        deleteOnExit()
-                        writeBytes(bytes)
+                    if (bytes != null) {
+                        val temp = File.createTempFile("audio_kmp_", ".mp3").apply {
+                            deleteOnExit()
+                            writeBytes(bytes)
+                        }
+                        temp.absolutePath
+                    } else {
+                        track.urlOrPath
                     }
-                    temp.absolutePath
                 }
 
                 withContext(Dispatchers.Main) {
@@ -126,13 +139,14 @@ class AndroidAudioPlayer : KmpAudioPlayer {
             } catch (_: Exception) {}
         }
         mediaPlayer = null
+        _currentTrack.value = null
         _playbackState.value = AudioPlaybackState.IDLE
         _currentPositionMs.value = 0L
+        _durationMs.value = 0L
     }
 
     override fun release() {
         stop()
-        _currentTrack.value = null
     }
 
     private fun startProgressTracker() {

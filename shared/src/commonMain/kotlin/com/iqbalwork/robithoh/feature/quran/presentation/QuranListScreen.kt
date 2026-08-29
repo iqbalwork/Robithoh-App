@@ -1,17 +1,34 @@
 package com.iqbalwork.robithoh.feature.quran.presentation
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,10 +37,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.component.*
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCard
+import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCardVariant
+import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
+import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +68,9 @@ fun QuranListScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBackClick()
+    }
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
 
@@ -236,7 +274,12 @@ private fun SurahsTabContent(
                 onValueChange = onSearchChange,
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = {
-                    Text("Cari 114 Surah (cth. Yasin, Al-Mulk, Al-Kahf)...", fontSize = 13.sp)
+                    Text(
+                        text = "Cari 114 Surah (cth. Yasin, Al-Mulk)...",
+                        fontSize = 13.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 },
                 shape = RoundedCornerShape(12.dp),
                 singleLine = true,

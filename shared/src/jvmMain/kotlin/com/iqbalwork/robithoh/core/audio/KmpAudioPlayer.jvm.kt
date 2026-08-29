@@ -42,13 +42,14 @@ class JvmAudioPlayer : KmpAudioPlayer {
     }
 
     override fun stop() {
+        _currentTrack.value = null
         _playbackState.value = AudioPlaybackState.IDLE
         _currentPositionMs.value = 0L
+        _durationMs.value = 0L
     }
 
     override fun release() {
         stop()
-        _currentTrack.value = null
     }
 }
 

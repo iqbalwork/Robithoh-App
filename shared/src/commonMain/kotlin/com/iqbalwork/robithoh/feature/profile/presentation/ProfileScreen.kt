@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.profile.data.ProfileData
 import com.iqbalwork.robithoh.feature.profile.model.InstitutionItem
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +29,9 @@ fun ProfileScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onBackClick()
+    }
     val isDark = RabithohTheme.colors.isDark
     val profile = ProfileData.sirnarasaProfile
 
@@ -42,14 +47,15 @@ fun ProfileScreen(
         },
         containerColor = if (isDark) DarkCanvas else PutihAbuBackground
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
-            contentPadding = PaddingValues(top = 12.dp, bottom = 40.dp)
-        ) {
+        SelectionContainer {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                contentPadding = PaddingValues(top = 12.dp, bottom = 40.dp)
+            ) {
             // Hero Card
             item {
                 GoldCrimsonCard(
@@ -180,6 +186,7 @@ fun ProfileScreen(
             }
         }
     }
+}
 }
 
 @Composable

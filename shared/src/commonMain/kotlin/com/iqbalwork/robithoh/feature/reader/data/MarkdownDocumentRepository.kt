@@ -354,11 +354,12 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sebelum_tidur",
             title = "Amaliyah Sebelum Tidur",
-            subtitle = "Wirid, ayat pelindung & dzikir khofi tidur",
-            category = "Doa & Ziarah",
+            subtitle = "Wirid, doa & tuntunan sholat sunnah sebelum tidur",
+            category = "Sholat",
             fileName = "SEBELUM_TIDUR.md",
             arabicTitle = "أَدْعِيَةُ النَّوْمِ",
-            iconName = "sebelum_tidur"
+            iconName = "sebelum_tidur",
+            isSingleDocumentView = true
         ),
         LiturgyDocument(
             id = "dziarah_waliyulloh",
@@ -621,8 +622,8 @@ class MarkdownDocumentRepository {
                 val isExplicitTranslation = inTranslationSection ||
                                            trimmed.startsWith("Artinya:", ignoreCase = true) ||
                                            trimmed.startsWith("Aku memohon", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa Alloh semoga", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa Alloh limpahkanlah", ignoreCase = true) ||
+                                           trimmed.startsWith("Yaa اللّه semoga", ignoreCase = true) ||
+                                           trimmed.startsWith("Yaa اللّه limpahkanlah", ignoreCase = true) ||
                                            trimmed.startsWith("Tuhanku Engkaulah", ignoreCase = true) ||
                                            trimmed.startsWith("Tiada Tuhan", ignoreCase = true) ||
                                            trimmed.startsWith("Dengan menyebut", ignoreCase = true) ||
@@ -630,7 +631,7 @@ class MarkdownDocumentRepository {
                                            trimmed.startsWith("Semoga", ignoreCase = true) ||
                                            trimmed.startsWith("Ya Tuhanku", ignoreCase = true) ||
                                            trimmed.startsWith("Wahai", ignoreCase = true) ||
-                                           trimmed.startsWith("Ya Alloh", ignoreCase = true)
+                                           trimmed.startsWith("Ya اللّه", ignoreCase = true)
 
                 val isInstruction = trimmed.startsWith("Kemudian", ignoreCase = true) ||
                                     trimmed.startsWith("Adapun", ignoreCase = true) ||

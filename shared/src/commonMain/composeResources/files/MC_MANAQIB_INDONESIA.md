@@ -48,6 +48,6 @@ Wassalamu’alaikum warohmatulloh wabarokatuh.
 
 Jika shohibul hajat ingin disebut hajatnya yang banyak…. Disampaikan saja oleh MC sebelum dibuka acara manaqib.
 
-Kata Pangersa Abah : Menyebut secara lisan satu persatu hajat kita, berarti mendikte Alloh, menganggap Alloh tidak tahu hajat kita. Sudah…. Cukup di hati saja Alloh sudah MAHA TAHU. Bahkan tidak disebut pun Alloh Maha Tahu.
+Kata Pangersa Abah : Menyebut secara lisan satu persatu hajat kita, berarti mendikte اللّه, menganggap اللّه tidak tahu hajat kita. Sudah…. Cukup di hati saja اللّه sudah MAHA TAHU. Bahkan tidak disebut pun اللّه Maha Tahu.
 
 *\* Jika ada sambutan, sebelum dibuka acara atau setelah do’a manaqib sebelum khidmah ‘ilmiyyah… Dan maksimal 5 menit saja \**

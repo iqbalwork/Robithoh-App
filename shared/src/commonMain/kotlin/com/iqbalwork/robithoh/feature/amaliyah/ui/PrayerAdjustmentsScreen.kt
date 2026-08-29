@@ -15,6 +15,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerTimeAdjustments
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
+import com.iqbalwork.robithoh.navigation.BackHandler
 
 data class PrayerAdjustmentRowItem(
     val type: PrayerType,
@@ -37,6 +38,13 @@ fun PrayerAdjustmentsScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        if (activePrayerTypeForSheet != null) {
+            onClosePicker()
+        } else {
+            onBack()
+        }
+    }
     val isDark = RabithohTheme.colors.isDark
 
     val items = listOf(

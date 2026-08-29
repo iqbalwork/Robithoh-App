@@ -17,6 +17,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            linkerOpts("-lsqlite3")
         }
     }
     jvm("jvm")
@@ -61,6 +62,9 @@ kotlin {
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines)
             implementation(libs.adhan)
+            implementation(libs.jetbrains.navigation3.ui)
+            implementation(libs.jetbrains.material3.adaptiveNavigation3)
+            implementation(libs.jetbrains.lifecycle.viewmodelNavigation3)
         }
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)

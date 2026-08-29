@@ -12,15 +12,37 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.NavDisplay
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
-import com.iqbalwork.robithoh.navigation.*
+import com.iqbalwork.robithoh.feature.splash.SplashScreen
+import com.iqbalwork.robithoh.navigation.AmaliyahScreen
+import com.iqbalwork.robithoh.navigation.BackHandler
+import com.iqbalwork.robithoh.navigation.MainAppContainer
+import com.iqbalwork.robithoh.navigation.MainTab
+import com.iqbalwork.robithoh.navigation.ManaqibDetailScreen
+import com.iqbalwork.robithoh.navigation.ManaqibListScreen
+import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
+import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
+import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
+import com.iqbalwork.robithoh.navigation.QuranListScreen
+import com.iqbalwork.robithoh.navigation.QuranSurahScreen
+import com.iqbalwork.robithoh.navigation.ScreenKey
+import com.iqbalwork.robithoh.navigation.ScreenKeyListSaver
+import com.iqbalwork.robithoh.navigation.SettingsScreen
+import com.iqbalwork.robithoh.navigation.TasbihScreen
 
 @Composable
 fun App() {
-    RabithohTheme {
+    var isDarkMode by rememberSaveable { mutableStateOf(false) }
+
+    RabithohTheme(darkTheme = isDarkMode) {
         com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
-            mutableStateListOf<ScreenKey>(ScreenKey.Home)
+            mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
 
         val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
@@ -31,6 +53,8 @@ fun App() {
                 alarmScheduler = alarmScheduler
             )
         }
+        val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
+        val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
@@ -38,9 +62,143 @@ fun App() {
         var homeTab by rememberSaveable { mutableStateOf(MainTab.HOME) }
         var homeActiveSheet by rememberSaveable { mutableStateOf<String?>(null) }
 
-        BackHandler(enabled = backstack.size > 1) {
+        val onBackAction: () -> Unit = {
             if (backstack.size > 1) {
                 backstack.removeAt(backstack.lastIndex)
+            }
+        }
+
+        BackHandler(enabled = backstack.size > 1) {
+            onBackAction()
+        }
+
+        val entries = entryProvider<NavKey> {
+            entry<ScreenKey.Splash> { _ ->
+                SplashScreen(
+                    onSplashFinished = {
+                        backstack.clear()
+                        backstack.add(ScreenKey.Home)
+                    }
+                )
+            }
+            entry<ScreenKey.Home> { _ ->
+                MainAppContainer(
+                    currentTab = homeTab,
+                    onTabChange = { homeTab = it },
+                    activeSheet = homeActiveSheet,
+                    onSheetChange = { homeActiveSheet = it },
+                    onNavigateToDocument = { docId ->
+                        if (docId == "quran_list") {
+                            backstack.add(ScreenKey.QuranList)
+                        } else {
+                            backstack.add(ScreenKey.DocumentReader(docId))
+                        }
+                    },
+                    onNavigateToSurah = { surahNumber, ayahNumber ->
+                        backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                    },
+                    onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
+                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
+                    onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
+                    onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
+                    onNavigateToQibla = { backstack.add(ScreenKey.Qibla) },
+                    amaliyahViewModel = amaliyahViewModel,
+                    audioPlayer = sharedAudioPlayer,
+                    audioDownloader = sharedDownloader,
+                    isDarkMode = isDarkMode,
+                    onDarkModeChange = { isDarkMode = it }
+                )
+            }
+            entry<ScreenKey.DocumentReader> { key ->
+                com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
+                    documentId = key.documentId,
+                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.Langgam> { _ ->
+                com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
+                    audioPlayer = sharedAudioPlayer,
+                    cacheManager = sharedCacheManager,
+                    audioDownloader = sharedDownloader,
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.Amaliyah> { _ ->
+                AmaliyahScreen(
+                    onNavigate = { destination -> backstack.add(destination) },
+                    onBack = onBackAction,
+                    viewModel = amaliyahViewModel
+                )
+            }
+            entry<ScreenKey.Tasbih> { _ ->
+                TasbihScreen(
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.ManaqibList> { _ ->
+                ManaqibListScreen(
+                    onChapterClick = { chapterNumber ->
+                        backstack.add(ScreenKey.ManaqibDetail(chapterNumber))
+                    },
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.ManaqibDetail> { key ->
+                ManaqibDetailScreen(
+                    chapterNumber = key.chapterNumber,
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.QuranList> { _ ->
+                QuranListScreen(
+                    onSurahClick = { surahNumber, ayahNumber ->
+                        backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                    },
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.QuranSurah> { key ->
+                QuranSurahScreen(
+                    surahNumber = key.surahNumber,
+                    initialAyahNumber = key.ayahNumber,
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.Settings> { _ ->
+                SettingsScreen(
+                    onNavigateToCalculationMethods = {
+                        backstack.add(ScreenKey.PrayerCalculationMethods)
+                    },
+                    onNavigateToPrayerAdjustments = {
+                        backstack.add(ScreenKey.PrayerAdjustments)
+                    },
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.PrayerCalculationMethods> { _ ->
+                PrayerCalculationMethodScreen(
+                    onBack = onBackAction,
+                    viewModel = amaliyahViewModel
+                )
+            }
+            entry<ScreenKey.PrayerAdjustments> { _ ->
+                PrayerAdjustmentsScreen(
+                    onBack = onBackAction,
+                    viewModel = amaliyahViewModel
+                )
+            }
+            entry<ScreenKey.ProfilePesantren> { _ ->
+                ProfilePesantrenScreen(
+                    onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.Qibla> { _ ->
+                com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen(
+                    onBack = onBackAction,
+                    viewModel = amaliyahViewModel
+                )
             }
         }
 
@@ -49,171 +207,13 @@ fun App() {
             color = MaterialTheme.colorScheme.background
         ) {
             NavDisplay(
-                backstack = backstack,
-                onBack = {
-                    if (backstack.size > 1) {
-                        backstack.removeAt(backstack.lastIndex)
-                    }
-                },
-                entryProvider = { key ->
-                    when (key) {
-                        is ScreenKey.Home -> {
-                            MainAppContainer(
-                                currentTab = homeTab,
-                                onTabChange = { homeTab = it },
-                                activeSheet = homeActiveSheet,
-                                onSheetChange = { homeActiveSheet = it },
-                                onNavigateToDocument = { docId ->
-                                    if (docId == "quran_list") {
-                                        backstack.add(ScreenKey.QuranList)
-                                    } else {
-                                        backstack.add(ScreenKey.DocumentReader(docId))
-                                    }
-                                },
-                                onNavigateToSurah = { surahNumber, ayahNumber ->
-                                    backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
-                                },
-                                onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
-                                onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
-                                onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
-                                onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
-                                onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
-                                amaliyahViewModel = amaliyahViewModel,
-                                audioPlayer = sharedAudioPlayer
-                            )
-                        }
-                        is ScreenKey.DocumentReader -> {
-                            com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
-                                documentId = key.documentId,
-                                onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.Langgam -> {
-                            com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
-                                audioPlayer = sharedAudioPlayer,
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.Amaliyah -> {
-                            AmaliyahScreen(
-                                onNavigate = { destination -> backstack.add(destination) },
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                },
-                                viewModel = amaliyahViewModel
-                            )
-                        }
-                        is ScreenKey.Tasbih -> {
-                            TasbihScreen(
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.ManaqibList -> {
-                            ManaqibListScreen(
-                                onChapterClick = { chapterNumber ->
-                                    backstack.add(ScreenKey.ManaqibDetail(chapterNumber))
-                                },
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.ManaqibDetail -> {
-                            ManaqibDetailScreen(
-                                chapterNumber = key.chapterNumber,
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.QuranList -> {
-                            QuranListScreen(
-                                onSurahClick = { surahNumber, ayahNumber ->
-                                    backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
-                                },
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.QuranSurah -> {
-                            QuranSurahScreen(
-                                surahNumber = key.surahNumber,
-                                initialAyahNumber = key.ayahNumber,
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.Settings -> {
-                            SettingsScreen(
-                                onNavigateToCalculationMethods = {
-                                    backstack.add(ScreenKey.PrayerCalculationMethods)
-                                },
-                                onNavigateToPrayerAdjustments = {
-                                    backstack.add(ScreenKey.PrayerAdjustments)
-                                },
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                        is ScreenKey.PrayerCalculationMethods -> {
-                            PrayerCalculationMethodScreen(
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                },
-                                viewModel = amaliyahViewModel
-                            )
-                        }
-                        is ScreenKey.PrayerAdjustments -> {
-                            PrayerAdjustmentsScreen(
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                },
-                                viewModel = amaliyahViewModel
-                            )
-                        }
-                        is ScreenKey.ProfilePesantren -> {
-                            ProfilePesantrenScreen(
-                                onBack = {
-                                    if (backstack.size > 1) {
-                                        backstack.removeAt(backstack.lastIndex)
-                                    }
-                                }
-                            )
-                        }
-                    }
-                }
+                backStack = backstack,
+                onBack = onBackAction,
+                entryDecorators = listOf(
+                    rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+                    rememberViewModelStoreNavEntryDecorator<NavKey>()
+                ),
+                entryProvider = entries
             )
         }
     }
