@@ -1,0 +1,57 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 06: Tasbih Digital Haptik & Dialogs
+# ==============================================================================
+
+# 1. Navigasi ke Layar Tasbih Digital dari Beranda
+- tapOn: "Tasbih Digital"
+- extendedWaitUntil:
+    visible: "Tasbih Digital Haptik"
+    timeout: 5000
+- assertVisible: "BACAAN DZIKIR AKTIF"
+- takeScreenshot: screenshots/18_tasbih_digital_screen
+
+# 2. Buka Sheet Pemilih Dzikir ("Ganti ›")
+- tapOn: "Ganti ›"
+- extendedWaitUntil:
+    visible: "Pilih Lafadz Dzikir & Wirid"
+    timeout: 5000
+- takeScreenshot: screenshots/19_tasbih_dzikir_selector_sheet
+- tapOn: "Tasbih (Subhanallah)"
+- extendedWaitUntil:
+    notVisible: "Pilih Lafadz Dzikir & Wirid"
+
+# 3. Test Ketukan Penghitung (Tap Counter Disk)
+- tapOn:
+    point: "50%,45%"
+- tapOn:
+    point: "50%,45%"
+- tapOn:
+    point: "50%,45%"
+- takeScreenshot: screenshots/20_tasbih_counter_tapped
+
+# 4. Test Dialog Reset Hitungan
+- tapOn: "Ulangi (Reset)"
+- extendedWaitUntil:
+    visible: "Reset Hitungan Tasbih?"
+    timeout: 5000
+- takeScreenshot: screenshots/21_tasbih_reset_dialog
+- tapOn: "Batal"
+- extendedWaitUntil:
+    notVisible: "Reset Hitungan Tasbih?"
+
+# 5. Test Dialog Target Kustom
+- tapOn: "Kustom"
+- extendedWaitUntil:
+    visible: "Target Hitungan Kustom"
+    timeout: 5000
+- takeScreenshot: screenshots/22_tasbih_custom_target_dialog
+- tapOn: "Batal"
+- extendedWaitUntil:
+    notVisible: "Target Hitungan Kustom"
+
+# 6. Kembali ke Beranda
+- back
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"

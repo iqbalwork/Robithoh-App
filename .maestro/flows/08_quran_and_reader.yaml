@@ -1,0 +1,59 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 08: Al-Qur'an 114 Surah, Search & Quran Reader
+# ==============================================================================
+
+# 1. Navigasi ke Tab Al Quran via Dock Bar
+- tapOn:
+    point: "62%,97%"
+- extendedWaitUntil:
+    visible: "114 Surah · Mushaf Digital"
+    timeout: 5000
+- takeScreenshot: screenshots/26_quran_surah_list
+
+# 2. Test Pencarian Surah (Cari "Yasin")
+- tapOn:
+    text: ".*Cari 114 Surah.*"
+- inputText: "Yasin"
+- hideKeyboard
+- extendedWaitUntil:
+    visible: "Yasin • 83 Ayat"
+    timeout: 5000
+- takeScreenshot: screenshots/27_quran_search_yasin
+
+# 3. Buka Reader Surah Yasin
+- tapOn: "Yasin • 83 Ayat"
+- extendedWaitUntil:
+    visible: "Surah Yasin • Yasin"
+    timeout: 5000
+- takeScreenshot: screenshots/28_quran_surah_reader
+
+# 4. Buka Pengaturan Ukuran Teks & Font (Tombol A±)
+- tapOn: "A±"
+- extendedWaitUntil:
+    visible: "Pengaturan Teks & Bacaan"
+    timeout: 5000
+- takeScreenshot: screenshots/29_quran_reader_settings_sheet
+- back
+- extendedWaitUntil:
+    notVisible: "Pengaturan Teks & Bacaan"
+
+# 5. Buka Menu Navigasi Loncat Surah & Ayat (Tombol 🧭)
+- tapOn: "🧭"
+- extendedWaitUntil:
+    visible: "Menuju Surat / Ayat"
+    timeout: 5000
+- takeScreenshot: screenshots/30_quran_jump_to_ayah_sheet
+- back
+- extendedWaitUntil:
+    notVisible: "Menuju Surat / Ayat"
+
+# 6. Kembali ke Daftar Surah dan ke Beranda
+- back
+- extendedWaitUntil:
+    visible: "114 Surah · Mushaf Digital"
+    timeout: 5000
+- tapOn: "Beranda"
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"

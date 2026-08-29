@@ -1,0 +1,50 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# MASTER TEST SUITE: Robithoh Automation Test & Play Store Assets Capture
+# ==============================================================================
+# Flow ini mengeksekusi seluruh pengujian fitur aplikasi Robithoh secara end-to-end:
+# 1. Splash Screen & Beranda (Home Tab)
+# 2. 5 Modal Bottom Sheets (Manaqib, Sholat, Sholawat, Tahlil, Doa)
+# 3. Jadwal Sholat, Tracking Checklist & Notification Sheets
+# 4. Metode Perhitungan & Koreksi Waktu Sholat (Prayer Settings)
+# 5. Kompas Arah Kiblat & Panduan Kalibrasi
+# 6. Tasbih Digital Haptik & Dialog Reset/Kustom
+# 7. Pemutar Audio Langgam TQN PP Suryalaya Sirnarasa & Floating Bar
+# 8. Al-Qur'an 114 Surah, Pencarian & Surah Reader
+# 9. Pembaca Amaliyah (Dzikir, Tanbih Bilingual Indonesia & Sunda)
+# 10. Pengaturan Aplikasi & Mode Gelap (Dark Theme)
+# ==============================================================================
+
+- launchApp:
+    clearState: false
+
+# Eksekusi Flow 1: Splash & Beranda
+- runFlow: flows/01_splash_and_home.yaml
+
+# Eksekusi Flow 2: Modal Bottom Sheets
+- runFlow: flows/02_modal_bottom_sheets.yaml
+
+# Eksekusi Flow 3: Sholat & Notifikasi
+- runFlow: flows/03_salat_prayer_times.yaml
+
+# Eksekusi Flow 4: Pengaturan Sholat (Metode & Koreksi)
+- runFlow: flows/04_prayer_settings.yaml
+
+# Eksekusi Flow 5: Kompas Kiblat & Kalibrasi
+- runFlow: flows/05_qibla_compass.yaml
+
+# Eksekusi Flow 6: Tasbih Digital & Dialogs
+- runFlow: flows/06_tasbih_digital.yaml
+
+# Eksekusi Flow 7: Langgam Player & Floating Bar
+- runFlow: flows/07_langgam_player.yaml
+
+# Eksekusi Flow 8: Al-Qur'an 114 Surah & Reader
+- runFlow: flows/08_quran_and_reader.yaml
+
+# Eksekusi Flow 9: Pembaca Amaliyah & Tanbih Bilingual
+- runFlow: flows/09_document_reader.yaml
+
+# Eksekusi Flow 10: Pengaturan & Mode Gelap
+- runFlow: flows/10_settings_and_profile.yaml

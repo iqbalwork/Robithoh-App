@@ -36,7 +36,7 @@ data class TasbihUiState(
             title = "Dzikir Jahr (TQN)",
             arabic = "لَا إِلَهَ إِلَّا اللَّهُ",
             defaultTarget = 165,
-            virtue = "Dzikir Jahr standar TQN Sirnarasa 38 ba'da sholat maktubah."
+            virtue = "Dzikir Jahr standar TQN PP Suryalaya Sirnarasa 38 ba'da sholat maktubah."
         ),
         TasbihDzikirPreset(
             id = "tasbih_subhanallah",

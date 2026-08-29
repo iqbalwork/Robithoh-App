@@ -46,6 +46,8 @@ import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoiceOption
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
 
+import com.iqbalwork.robithoh.navigation.BackHandler
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdzanVoicePickerSheet(
@@ -55,6 +57,9 @@ fun AdzanVoicePickerSheet(
     onUploadCustomAudio: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
+    BackHandler {
+        onDismiss()
+    }
     val isDark = RabithohTheme.colors.isDark
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 

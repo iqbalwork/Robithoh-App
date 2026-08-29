@@ -1,0 +1,78 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 02: Modal Bottom Sheets (Manaqib, Sholat, Sholawat, Tahlil & Doa)
+# ==============================================================================
+
+# 1. Sheet Manaqib
+- tapOn: "Manaqib"
+- extendedWaitUntil:
+    visible: "Manqobah"
+    timeout: 5000
+- assertVisible: "MC"
+- assertVisible: "Tanbih"
+- assertVisible: "Tawassul"
+- assertVisible: "Manqobah"
+- takeScreenshot: screenshots/03_sheet_manaqib
+- back
+- extendedWaitUntil:
+    notVisible: "Manqobah"
+
+# 2. Sheet Sholat
+- tapOn: "Sholat"
+- extendedWaitUntil:
+    visible: "SHOLAT TAHUNAN"
+    timeout: 5000
+- assertVisible: "WAKTU & SAFAR"
+- assertVisible: "Harian"
+- assertVisible: "Bulanan"
+- assertVisible: "Safar"
+- assertVisible: "SHOLAT TAHUNAN"
+- takeScreenshot: screenshots/04_sheet_sholat
+- back
+- extendedWaitUntil:
+    notVisible: "SHOLAT TAHUNAN"
+
+# 3. Sheet Sholawat
+- tapOn: "Sholawat"
+- extendedWaitUntil:
+    visible: "Sholawat TQN PP Suryalaya Sirnarasa"
+    timeout: 5000
+- assertVisible: "Sholawat TQN PP Suryalaya Sirnarasa"
+- assertVisible: "Thoriqoh"
+- assertVisible: "Bani Hasyim"
+- assertVisible: "Amjad"
+- assertVisible: "Iqomah Subuh"
+- assertVisible: "Badriyyah"
+- takeScreenshot: screenshots/05_sheet_sholawat
+- back
+- extendedWaitUntil:
+    notVisible: "Sholawat TQN PP Suryalaya Sirnarasa"
+
+# 4. Sheet Tahlil & Ziyaroh
+- tapOn: "Tahlil & Ziyaroh"
+- extendedWaitUntil:
+    visible: "TAHLIL TQN"
+    timeout: 5000
+- assertVisible: "TAHLIL TQN"
+- assertVisible: "ZIYAROH UMUM"
+- assertVisible: "ZIYAROH WALIYULLOH"
+- takeScreenshot: screenshots/06_sheet_tahlil_ziyaroh
+- back
+- extendedWaitUntil:
+    notVisible: "TAHLIL TQN"
+
+# 5. Sheet Doa
+- tapOn: "Doa"
+- extendedWaitUntil:
+    visible: "SALAM WALI MURSYID"
+    timeout: 5000
+- assertVisible: "SALAM WALI MURSYID"
+- assertVisible: "DOA RIJALUL GHOIB"
+- assertVisible: "ZIYAROH ROSUL"
+- assertVisible: "DOA ISTIGHOTSAH"
+- assertVisible: "AMALIYAH SEBELUM TIDUR"
+- takeScreenshot: screenshots/07_sheet_doa
+- back
+- extendedWaitUntil:
+    notVisible: "SALAM WALI MURSYID"

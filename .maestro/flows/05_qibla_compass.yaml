@@ -1,0 +1,32 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 05: Qibla Compass (Kompas Arah Kiblat) & Calibration Guide
+# ==============================================================================
+
+# 1. Navigasi ke Tab Beranda dan buka Arah Kiblat
+- tapOn: "Beranda"
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+- tapOn: "Arah Kiblat"
+- extendedWaitUntil:
+    visible: "Qiblat"
+
+# 2. Verifikasi Tampilan Kompas Kiblat & Ambil Screenshot Play Store
+- assertVisible: "Arah Kiblat"
+- assertVisible: "Qiblat"
+- takeScreenshot: screenshots/16_qibla_compass
+
+# 3. Buka Panduan Kalibrasi Kompas (Ikon Info ⓘ)
+- tapOn: "ⓘ"
+- assertVisible: "Kalibrasi Kompas"
+- assertVisible: "Ok, Saya Mengerti"
+- takeScreenshot: screenshots/17_compass_calibration_guide
+
+# 4. Tutup Kalibrasi dan Kembali ke Beranda
+- tapOn: "Ok, Saya Mengerti"
+- extendedWaitUntil:
+    notVisible: "Kalibrasi Kompas"
+- back
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"

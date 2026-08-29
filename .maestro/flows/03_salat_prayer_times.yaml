@@ -1,0 +1,50 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 03: Salat Tab & Prayer Times Tracking & Notification Sheets
+# ==============================================================================
+
+# 1. Navigasi ke Tab Sholat dari Beranda via Hero Card "Jadwal Lengkap ›"
+- tapOn: "Jadwal Lengkap ›"
+- extendedWaitUntil:
+    visible: "Subuh"
+    timeout: 5000
+- assertVisible: "Subuh"
+- assertVisible: "Dzuhur"
+- assertVisible: "Ashar"
+- assertVisible: "Maghrib"
+- assertVisible: "Isya"
+- takeScreenshot: screenshots/08_salat_tab
+
+# 2. Test Navigasi Tanggal (Besok & Kemarin)
+- tapOn: "›"
+- takeScreenshot: screenshots/09_salat_next_day
+- tapOn: "‹"
+
+# 3. Buka Sheet Mode Notifikasi Sholat (Adzan / Notifikasi / Mute)
+- tapOn: "🔔"
+- extendedWaitUntil:
+    visible: "Suara Adzan (Alarm)"
+    timeout: 5000
+- takeScreenshot: screenshots/12_sheet_notification_mode_picker
+- back
+- extendedWaitUntil:
+    notVisible: "Suara Adzan (Alarm)"
+
+# 4. Scroll ke Pengaturan Sholat di bawah
+- scrollUntilVisible:
+    element: "Koreksi waktu sholat"
+- assertVisible: "Suara adzan"
+- assertVisible: "Metode perhitungan"
+- assertVisible: "Koreksi waktu sholat"
+- takeScreenshot: screenshots/10_salat_settings_section
+
+# 5. Buka Dialog/Sheet Pemilih Suara Adzan
+- tapOn: "Suara adzan"
+- extendedWaitUntil:
+    visible: "Pilih Suara Adzan"
+    timeout: 5000
+- takeScreenshot: screenshots/11_sheet_adzan_voice_picker
+- back
+- extendedWaitUntil:
+    notVisible: "Pilih Suara Adzan"

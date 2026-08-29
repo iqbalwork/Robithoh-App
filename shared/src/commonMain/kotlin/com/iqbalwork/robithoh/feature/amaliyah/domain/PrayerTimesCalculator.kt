@@ -4,15 +4,29 @@ import com.batoulapps.adhan2.Coordinates
 import com.batoulapps.adhan2.Madhab
 import com.batoulapps.adhan2.PrayerTimes
 import com.batoulapps.adhan2.data.DateComponents
-import com.iqbalwork.robithoh.feature.amaliyah.model.*
+import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
+import com.iqbalwork.robithoh.feature.amaliyah.model.NextPrayerCountdown
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethods
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerTimeAdjustments
+import com.iqbalwork.robithoh.feature.amaliyah.model.QiblaInfo
 import kotlinx.datetime.Instant
-import kotlin.math.*
+import kotlin.math.PI
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
+import kotlin.math.sin
+import kotlin.math.sqrt
+import kotlin.math.tan
 
 /**
  * Offline Astronomical Prayer Times & Tasawuf Schedule Calculator Engine.
  * Powered by adhan-kotlin (com.batoulapps.adhan:adhan2) for high-precision
  * international calculation methods and manual prayer adjustments, combined with
- * TQN Sirnarasa Tasawuf specific schedules (Tahajjud, Waktal, Isyroq, Dhuha).
+ * TQN PP Suryalaya Sirnarasa Tasawuf specific schedules (Tahajjud, Waktal, Isyroq, Dhuha).
  */
 class PrayerTimesCalculator {
 
@@ -145,7 +159,7 @@ class PrayerTimesCalculator {
         val tahajjudEpoch = prayerTimes.maghrib.epochSeconds + ((2.0 / 3.0) * nightSeconds).toLong()
         val tahajjudFormatted = formatEpochToLocalTime(tahajjudEpoch, timezoneOffset)
 
-        // Waktal (Wirid Khusus TQN Sirnarasa: 1.5 jam sebelum Subuh)
+        // Waktal (Wirid Khusus TQN PP Suryalaya Sirnarasa: 1.5 jam sebelum Subuh)
         val waktalEpoch = prayerTimes.fajr.epochSeconds - (90 * 60)
         val waktalFormatted = formatEpochToLocalTime(waktalEpoch, timezoneOffset)
 

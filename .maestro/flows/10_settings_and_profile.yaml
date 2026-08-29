@@ -1,0 +1,38 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 10: Pengaturan, Dark Mode Theme Toggle & Tentang Aplikasi
+# ==============================================================================
+
+# 1. Navigasi ke Tab Pengaturan via Dock Bar
+- tapOn: "Pengaturan"
+- extendedWaitUntil:
+    visible: "Preferensi tampilan & informasi aplikasi"
+    timeout: 5000
+- takeScreenshot: screenshots/35_settings_screen
+
+# 2. Toggle Mode Gelap (Dark Mode Switch)
+- tapOn: "Mode Gelap"
+- extendedWaitUntil:
+    visible: "Gelap (Dark theme aktif)"
+    timeout: 5000
+- takeScreenshot: screenshots/36_settings_dark_mode_active
+
+# 3. Kembalikan ke Mode Terang
+- tapOn: "Mode Gelap"
+- extendedWaitUntil:
+    visible: "Terang (Light theme aktif)"
+    timeout: 5000
+
+# 4. Scroll ke Section Tentang Aplikasi & Screenshot
+- scroll
+- extendedWaitUntil:
+    visible: "TENTANG APLIKASI"
+    timeout: 5000
+- takeScreenshot: screenshots/37_about_app_dialog
+
+# 5. Kembali ke Tab Beranda
+- tapOn: "Beranda"
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+    timeout: 5000

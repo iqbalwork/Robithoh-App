@@ -40,7 +40,7 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
 * **Navigasi & Pencarian Cepat**: Pilih surat, loncat ke nomor ayat tertentu, serta opsi salin dan bagikan ayat.
 * **Penanda Terakhir Dibaca (Bookmark)**: Tersimpan otomatis di basis data lokal SQLDelight.
 
-### 2. 📜 Manaqib & Silsilah TQN Sirnarasa
+### 2. 📜 Manaqib & Silsilah TQN PP Suryalaya Sirnarasa
 * **Bilingual Manaqib**: Teks Manqobah Syaikh Abdul Qodir Al-Jailani r.a. tersedia dalam **Bahasa Indonesia** dan **Basa Sunda**.
 * **Protokoler MC Manaqib**: Panduan susunan acara MC Manaqib (Indonesia & Sunda).
 * **Tanbih Guru Mursyid**: Wasiat luhur Syaikh Abdullah Mubarok bin Nur Muhammad (Abah Sepuh) & Syaikh Ahmad Shohibulwafa Tajul Arifin (Abah Anom) dalam dua bahasa.
@@ -69,7 +69,7 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
 * **100% Asset Lokal**: Berkas audio langsung dimuat dari resource bundle aplikasi (tanpa streaming/kuota internet).
 
 ### 6. 📑 Katalog 45+ Amaliyah & Sholat Sunnah
-* Dzikir Ba'da Sholat Maktubah & Khotaman TQN Sirnarasa.
+* Dzikir Ba'da Sholat Maktubah & Khotaman TQN PP Suryalaya Sirnarasa.
 * Panduan Sholat: Sholat Harian, Bulanan, Tahunan, Sholat Safar (Jamak & Qashar), Tarawih & Witir, Sholat Rajab, Nisfu Sya'ban, Lailatul Qadar, dan Sholat Lidaf'il Bala (Rebo Wekasan).
 * Sholawat Thoriqiyyah, Sholawat Bani Hasyim, Sholawat Amjad, Sholawat Badriyyah, Sholawat Jiyaaroh ke Rasulullah SAW, dan Iqomah Subuh.
 * Amaliyah 12 Bulan Hijriyah (Muharram hingga Dzulhijjah).
@@ -248,7 +248,7 @@ Aplikasi ini menyertakan lebih dari **45 dokumen panduan lengkap** yang diparsin
 <summary><b>1. Dzikir & Khotaman</b></summary>
 
 * Dzikir Ba'da Sholat Maktubah TQN (`DZIKIR_TQN.md`)
-* Amaliyah Khotaman TQN Sirnarasa (`KHOTAMAN_TQN.md`)
+* Amaliyah Khotaman TQN PP Suryalaya Sirnarasa (`KHOTAMAN_TQN.md`)
 * Tarhim TQN Menjelang Sholat (`TARHIM_TQN.md`)
 * Silsilah 38 Guru Mursyid TQN (`SILSILAH_TQN.md`)
 * Tahlil TQN & Hadhloroh Arwah (`TAHLIL_TQN.md`)
@@ -259,7 +259,7 @@ Aplikasi ini menyertakan lebih dari **45 dokumen panduan lengkap** yang diparsin
 
 * Susunan Acara MC Manaqib — Bahasa Indonesia & Basa Sunda
 * Tanbih Guru Mursyid — Bahasa Indonesia & Basa Sunda
-* Tawassul Lengkap TQN Sirnarasa
+* Tawassul Lengkap TQN PP Suryalaya Sirnarasa
 * 40+ Pasal Manqobah — Bahasa Indonesia & Basa Sunda
 * Doa Manqobah — Bahasa Indonesia & Basa Sunda
 </details>

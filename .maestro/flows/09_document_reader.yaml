@@ -1,0 +1,54 @@
+appId: com.iqbalwork.robithoh
+---
+# ==============================================================================
+# FLOW 09: Generic Document Reader (Dzikir, Tanbih, Bahasa Switcher)
+# ==============================================================================
+
+# 1. Navigasi ke Dokumen Dzikir dari Beranda
+- tapOn: "Dzikir"
+- extendedWaitUntil:
+    visible: "Dzikir Harian"
+    timeout: 5000
+- takeScreenshot: screenshots/31_reader_dzikir_tqn
+
+# 2. Buka Pengaturan Ukuran Teks (A±)
+- tapOn: "A±"
+- extendedWaitUntil:
+    visible: "Pengaturan Teks & Bacaan"
+    timeout: 5000
+- takeScreenshot: screenshots/32_reader_typography_settings_sheet
+- back
+- extendedWaitUntil:
+    notVisible: "Pengaturan Teks & Bacaan"
+
+# 3. Kembali ke Beranda
+- back
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+    timeout: 5000
+
+# 4. Buka Tanbih (Bilingual: Indonesia & Sunda)
+- tapOn: "Manaqib"
+- extendedWaitUntil:
+    visible: "Tanbih"
+    timeout: 5000
+- tapOn: "Tanbih"
+- extendedWaitUntil:
+    visible: "Tanbih Guru Mursyid"
+    timeout: 5000
+- takeScreenshot: screenshots/33_reader_tanbih_indonesia
+
+# 5. Ganti Bahasa ke Basa Sunda
+- tapOn:
+    text: ".*Basa Sunda.*"
+- extendedWaitUntil:
+    visible: "Tanbih (Basa Sunda)"
+    timeout: 5000
+- takeScreenshot: screenshots/34_reader_tanbih_sunda
+
+# 6. Kembali ke Beranda
+- back
+- back
+- extendedWaitUntil:
+    visible: "Assalamu'alaikum"
+    timeout: 5000

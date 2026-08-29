@@ -5,7 +5,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.HijriyahAmaliyah
 import com.iqbalwork.robithoh.feature.amaliyah.model.SpecialPrayer
 
 /**
- * Authentic Data Repository for TQN Sirnarasa 38 Amaliyah,
+ * Authentic Data Repository for TQN PP Suryalaya Sirnarasa 38 Amaliyah,
  * Dzikir Harian Ba'da Sholat (Jahr & Khofi), Daily Special Prayers,
  * 12 Bulan Hijriyah, and Sholat Sunnah with 3-language liturgical text.
  */
@@ -412,7 +412,7 @@ class AmaliyahRepository {
             monthNumber = 2,
             monthName = "Shafar",
             arabicName = "صَفَر",
-            virtues = "Bulan kedua Hijriyah. TQN Sirnarasa mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
+            virtues = "Bulan kedua Hijriyah. TQN PP Suryalaya Sirnarasa mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
             recommendedAmalan = listOf(
                 "Sholat Sunnah Li Daf'il Bala' 4 rakaat 2 salam pada Rebo Wekasan.",
                 "Membaca Surat Yasin dan doa permohonan keselamatan dari segala marabahaya.",
@@ -436,7 +436,7 @@ class AmaliyahRepository {
             monthNumber = 4,
             monthName = "Rabi'ul Akhir",
             arabicName = "رَبِيعُ الْآخِر",
-            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib TQN Sirnarasa.",
+            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib TQN PP Suryalaya Sirnarasa.",
             recommendedAmalan = listOf(
                 "Menghadiri atau menyelenggarakan Khidmat Amaliah Manaqib Syekh Abdul Qodir Al-Jailani.",
                 "Mengkhatamkan pembacaan Tanbih, Tawassul, Manqobah, dan Sholawat.",
