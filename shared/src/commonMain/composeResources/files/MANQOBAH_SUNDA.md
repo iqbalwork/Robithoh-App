@@ -40,9 +40,9 @@ WA YAA SYIFAAA ASQOOMIS SAQIIMI.
 
 Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim wa laahum yahzanuun. Alladziina aamanuu wakaanuu yattaquun. Lahumul busyroo fil hayaatid dunyaa wa fiil aakhiroh,  laa tabdiila likalimaatillaah, dzaalika huwal fauzul ‘azhiim.
 
-Sugrining puji anu sampurna, sareng pangalem sagemblengna, eta tetep kagungan Alloh anu mikawelas ka abdi-abdina, anu ngaluhurkeun darajat anu bakti ka Anjeuna.
+Sugrining puji anu sampurna, sareng pangalem sagemblengna, eta tetep kagungan اللّه anu mikawelas ka abdi-abdina, anu ngaluhurkeun darajat anu bakti ka Anjeuna.
 
-Rohmat sareng salam anu utami muga tetep ka pangafdol-afdolna Nabi nyaeta Kanjeng Nabi Muhammad SAW anu parantos dikiatan kalawan mu’jizat anu diutus jadi rohmat kasadayana alam, sareng kakulawargina, sareng kasadayana shohabat, sareng kasadayana Auliya Alloh anu parantos diluhurkeun kalawan dipaparin pirang-pirang karomat. Amma ba’du
+Rohmat sareng salam anu utami muga tetep ka pangafdol-afdolna Nabi nyaeta Kanjeng Nabi Muhammad SAW anu parantos dikiatan kalawan mu’jizat anu diutus jadi rohmat kasadayana alam, sareng kakulawargina, sareng kasadayana shohabat, sareng kasadayana Auliya اللّه anu parantos diluhurkeun kalawan dipaparin pirang-pirang karomat. Amma ba’du
 
 Maka ieu sapucuk kitab anu kalintang ringkesna, nyarioskeun manaqibna Sulthonul Auliya wa imamil Ulama Sayyid Abdul Qodir Al-Jailani Qs , kenging metik tina kitab ‘Uquudul La’aali Fii Manaqibil Jayli , sareng tina kitab Tafrìhul Khòtir Fì Manàqibis Sayyid ‘Abdul Qòdir.
 
@@ -58,7 +58,7 @@ Dicarioskeun dina Kitab Bahjatul Asror, Sayyid Abdul Qodir hiji waktos ngalayang
 
 “Henteu bijil mata poe anging mere salam ka kaula. Jeung unggal datang taun anyar, kudu bae mere salam ka kaula jeung nyaritakeun naon barang anu bakal kajadian dina eta taun. Jeung datang bulan, mere salam ka kaula jeung nyaritakeun naon barang nu bakal kajadian dina eta bulan. Jeung datang minggu jeung poena, mere salam ka kaula jeung nyaritakeun naon-naon barang anu bakal kajadian dina eta minggu jeung poe.
 
-Demi kamulyaan Pangeran kaula, jalma-jalma anu bagja anu cilaka, kabeh diasongkeun ka kaula. Jeung jejelmaan panon kaula aya dina Lauhilmahfuzh, jeung kaula teuleum dina lautan elmuna Alloh jeung lautan musyahadah, jeung kaula hujjahna Alloh ka maraneh. Jeung kaula nu jadi gagantì Rosululloh SAW. Jeung kaula ahli warisna di bumi. Manusa aya guruna, jin aya guruna, malaikat aya guruna, ari kaula guruna kabeh”.
+Demi kamulyaan Pangeran kaula, jalma-jalma anu bagja anu cilaka, kabeh diasongkeun ka kaula. Jeung jejelmaan panon kaula aya dina Lauhilmahfuzh, jeung kaula teuleum dina lautan elmuna اللّه jeung lautan musyahadah, jeung kaula hujjahna اللّه ka maraneh. Jeung kaula nu jadi gagantì Rosululloh SAW. Jeung kaula ahli warisna di bumi. Manusa aya guruna, jin aya guruna, malaikat aya guruna, ari kaula guruna kabeh”.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -72,7 +72,7 @@ Dicarioskeun dina Kitab Bahjatul Asror, Sayyid Abdul Qodir ngadawuhkeun kieu:
 
 “Kaula dipaparin buku, ari gedena satungtung paningali, nyaeta pikeun nuliskeun ngaran murid-murid kaula nepi ka poe kiamah, jeung eta murid dipasrahkeun ka kaula, geus jadi kaboga kaula. Lamun murid kaula henteu alus, kaula anu alus. Demi kamulyaan Pangeran kaula, leungeun kaula henteu lesot tina sirah murid kaula, sanajan kaula aya di masyrik, murid kaula aya di maghrib. Lamun murid kaula katembong oratna, tangtu ditutupan ku kaula.
 
-Demi kamulyaan Pangeran kaula, dina poe kiamah, kaula rek nangtung dina lawang jahanam, bisi aya murid kaula anu diasupkeun kana jahanam, karana Gusti Alloh maparin ka kaula, yen murid kaula moal diasupkeun kana jahanam. Saha-saha nu ngaku Guru jeung mahabbah ka kaula, tangtu ditarima ku kaula, jeung tangtu kaula nyanghareup ka eta jalma. Malaikat Mungkar wa Nakir geus jangji ka kaula, di kubur moal mere pikareuwaseun ka murid kaula.
+Demi kamulyaan Pangeran kaula, dina poe kiamah, kaula rek nangtung dina lawang jahanam, bisi aya murid kaula anu diasupkeun kana jahanam, karana Gusti اللّه maparin ka kaula, yen murid kaula moal diasupkeun kana jahanam. Saha-saha nu ngaku Guru jeung mahabbah ka kaula, tangtu ditarima ku kaula, jeung tangtu kaula nyanghareup ka eta jalma. Malaikat Mungkar wa Nakir geus jangji ka kaula, di kubur moal mere pikareuwaseun ka murid kaula.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -84,9 +84,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 MANQOBAH KA 24 NYARIOSKEUN CALAGEURNA JALMA2 KU NGADAHAR JUJUKUTAN SARENG NGALEUEUT CAI MADROSAHNA SAYYID ABDUL QODIR
 
-Dicarioskeun ku ulama-ulama, di jaman Sayyid Abdul Qodir aya tho’un, nepi ka aya ratus rebuna jalma-jalma anu maraot dina sapoe-sapoena teh, teras arunjukan ka Sayyid Abdul Qodir, dawuhanana:  “Saha-saha jalma anu ngahakan jujukutan madrosah kaula, dicageurkeun ku Alloh tina tho’un”.
+Dicarioskeun ku ulama-ulama, di jaman Sayyid Abdul Qodir aya tho’un, nepi ka aya ratus rebuna jalma-jalma anu maraot dina sapoe-sapoena teh, teras arunjukan ka Sayyid Abdul Qodir, dawuhanana:  “Saha-saha jalma anu ngahakan jujukutan madrosah kaula, dicageurkeun ku اللّه tina tho’un”.
 
-Tina margi seueurna jalmi, jadi henteu cekap jujukutan pikeun ubar anu ku tho’un. Dawuhan Sayyid Abdul Qodir:  “Saha-saha anu nginum cai madrosah kaula, dicageurkeun ku Gusti Alloh”.  Teras eta jalma-jalma ngaleueut tina cai madrosahna, sareng sadayana daramang, sareng leungit eta tho’un.
+Tina margi seueurna jalmi, jadi henteu cekap jujukutan pikeun ubar anu ku tho’un. Dawuhan Sayyid Abdul Qodir:  “Saha-saha anu nginum cai madrosah kaula, dicageurkeun ku Gusti اللّه”.  Teras eta jalma-jalma ngaleueut tina cai madrosahna, sareng sadayana daramang, sareng leungit eta tho’un.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -132,7 +132,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 MANQOBAH KA 4 NYARIOSKEUN BUDI PEKERTINA SAYYID ABDUL QODIR
 
-Ari akhlakna Sayyid Abdul Qodir, tegesna talajakna eta banget sieun ku Alloh, sahingga gampil pisan kaluar cisocana, sareng diijabah du’ana, pohara barahanana, tebih tina kaawonan, kalintang caketna kana kasaean, barani sareng kukuh dina haq, bengis dina perkara mungkarot, tara bendu karna hawa nafsuna, tara nulungan anu lain karna Alloh, tara nolak kanu jajaluk, sanajan anu nyuhunkeun anggoanana.
+Ari akhlakna Sayyid Abdul Qodir, tegesna talajakna eta banget sieun ku اللّه, sahingga gampil pisan kaluar cisocana, sareng diijabah du’ana, pohara barahanana, tebih tina kaawonan, kalintang caketna kana kasaean, barani sareng kukuh dina haq, bengis dina perkara mungkarot, tara bendu karna hawa nafsuna, tara nulungan anu lain karna اللّه, tara nolak kanu jajaluk, sanajan anu nyuhunkeun anggoanana.
 
 Anjeuna kawaris akhlakna akhlak Kangjeng Nabi Muhammad SAW.  Kasepna kawaris kakasepan Kangjeng Nabi Yusuf as.  Benerna bener Sayyidina Abu Bakar Shiddiq ra.  Adilna adil Sayyidina Umar ra.  Hilimna, tegesna kashobaranana shobar Sayyidina Utsman ra.  Kagagahanana sareng kabaranianana Sayyidina Ali Karromalloh Wajhah
 
@@ -150,9 +150,9 @@ Anjeuna parantos wasiat ka putrana anu jenengan Abdur Rozàq kalawan pirang-pira
 
 Sapalihna nyaeta:
 
-Heh anak mama,maneh kudu sieun ku Alloh.
+Heh anak mama,maneh kudu sieun ku اللّه.
 
-Jeung kudu tho’at ka Alloh.
+Jeung kudu tho’at ka اللّه.
 
 Jeung kudu nyekel kana syara’.
 
@@ -206,7 +206,7 @@ Jeung kudu nyaho maneh satemen-temena tashowwuf eta diadegkeunana kana 8 perkara
 
 Ari barahan eta dipaparinkeun ka Nabi Ibròhhìm as, ari ridlo ka Nabi Ishàq as, ari shobar ka Nabi Ayyùb as, ari isyarah ka Nabi Zakariyyà as, ari ngumbara ka Nabi Yùsuf as, ari make bangsa bulu ka Nabi Yahyà as, ari leuleuweungan ka Nabi ‘Isà as,  ari faqir ka Kangjeng Nabi Muhammad SAW.
 
-Jeung kudu tembongkeun kumaneh kagagahan kabaranian maneh upama reureujeungan jeung anu beunghar.  Jeung kudu rendah upama reureujeungan jeung faqir.  Jeung maneh kudu ikhlas.  Jeung kudu langgeng nenjo ka Alloh.  Jeung ulah salah sangka ka Alloh tina sakabeh sabab.  Jeung kudu pasrah ka Alloh dina sakabeh hal sakabeh tingkah.  Jeung ulah tatagenan ka hiji jalma lantaran baraya atawa sobat.  Jeung kudu ngakhodaman fuqoro kalawan 3 perkara.
+Jeung kudu tembongkeun kumaneh kagagahan kabaranian maneh upama reureujeungan jeung anu beunghar.  Jeung kudu rendah upama reureujeungan jeung faqir.  Jeung maneh kudu ikhlas.  Jeung kudu langgeng nenjo ka اللّه.  Jeung ulah salah sangka ka اللّه tina sakabeh sabab.  Jeung kudu pasrah ka اللّه dina sakabeh hal sakabeh tingkah.  Jeung ulah tatagenan ka hiji jalma lantaran baraya atawa sobat.  Jeung kudu ngakhodaman fuqoro kalawan 3 perkara.
 
 Ka 1:  Tawadlo.
 
@@ -214,7 +214,7 @@ Ka 2:  Alus budi pekerti.
 
 Ka 3:  Bersih hate.
 
-Jeung kudu nyaho maneh satemen-temena anu pangdeukeut-deukeutna ka Alloh eta nu pangalusna budi pekertina. Ari pangutamana amal nyaeta ngaraksa hate tina ngaleret kasalian Alloh.
+Jeung kudu nyaho maneh satemen-temena anu pangdeukeut-deukeutna ka اللّه eta nu pangalusna budi pekertina. Ari pangutamana amal nyaeta ngaraksa hate tina ngaleret kasalian اللّه.
 
 Jeung lamun kumpul jeung fuqoro kudu wasiat kalawan shobar jeung haq.  Jeung cukup kamaneh tina dunya 2 perkara.
 
@@ -222,13 +222,13 @@ Ka 1:  Reureujeungan jeung faqir
 
 Ka 2:  Ngahormat wali,
 
-Jeung ulah dipake sugih hiji perkara salian ti Alloh.
+Jeung ulah dipake sugih hiji perkara salian ti اللّه.
 
 Jeung kudu nyaho upama gagah kasasama eta dlo’if, tegesna henteu kasebut gagah. Upama gagah kasaluhureun eta kumuluhung.
 
 Jeung kudu nyaho satemen-temena tashowwuf jeung faqir eta duanana perkara sabener-benerna, lain heureuy, kusabab kitu ulah dicampuran heureuy.
 
-Tah sakitu wasiat mama teh. Muga-muga Gusti Alloh maparin taufiq kamaneh jeung kasakabeh murid-murid.
+Tah sakitu wasiat mama teh. Muga-muga Gusti اللّه maparin taufiq kamaneh jeung kasakabeh murid-murid.
 
 Jeung anu ngadenge wasiat mama ieu sing barisa ngamalkeunana kalawan ka-Agungan Gustina sakabeh utusan.
 
@@ -252,7 +252,7 @@ Sareng ngaos: “tùbù wad khulù fìsh-shoffil awwali idzan ajì-u ilaikum”.
 
 Sareng ngaos: “qifù atàhul haqqu wa sakarotul mauti”.
 
-Sareng dawuhanana: “Ulah aya nu nanyakeun ka kaula hiji perkara saba’da kaula bulak-balik dina elmuna Alloh”. Sareng ngaos: “ista’angtu bilà ilàhha illallòhu subhànahhu wa ta’àlà wal hayyil ladzì là yahsyàl ghoutsu subhàna mang ta’azzaza bilqudroti wa qohhharo ‘ibàdahhù bilmauti là ilàhha illallòhhu muhammadur rosùlullòh ta’azzaza ta’azzaza Allòhu Allòhu Allòhu”. Sowantena bedas, teras lalaunan pupus ridlwànullòh ‘alaihh.
+Sareng dawuhanana: “Ulah aya nu nanyakeun ka kaula hiji perkara saba’da kaula bulak-balik dina elmuna اللّه”. Sareng ngaos: “ista’angtu bilà ilàhha illallòhu subhànahhu wa ta’àlà wal hayyil ladzì là yahsyàl ghoutsu subhàna mang ta’azzaza bilqudroti wa qohhharo ‘ibàdahhù bilmauti là ilàhha illallòhhu muhammadur rosùlullòh ta’azzaza ta’azzaza Allòhu Allòhu Allòhu”. Sowantena bedas, teras lalaunan pupus ridlwànullòh ‘alaihh.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -288,7 +288,7 @@ Saur Sayyid Abdul Qodir: “Heh Ahmad Kanji, ayeuna maneh geus jadi anak murid k
 
 Les deui Sayyid Abdul Qodir teh henteu aya.
 
-Barang Syekh Ahmad Kanji gugah, makuta sareng sorban aya dina mastakana, teras Syekh Ahmad Kanji syukur ka Gusti Alloh, sareng teras mulih deui ka guruna, nyarioskeun lalakona sareng ningalikeun makutana.
+Barang Syekh Ahmad Kanji gugah, makuta sareng sorban aya dina mastakana, teras Syekh Ahmad Kanji syukur ka Gusti اللّه, sareng teras mulih deui ka guruna, nyarioskeun lalakona sareng ningalikeun makutana.
 
 Saur guruna: “Heh Ahmad Kanji, ieu makuta jeung sorban kaberkahan pikeun maneh. Pohara maneh dipikaasihna ku Sayyid Abdul Qodir, jeung ayeuna maneh jadi pangunjulna wali”.
 
@@ -352,13 +352,13 @@ Tidinya teras Sayyid Abdul Qodir munajat. Piunjukna:
 
 “Jisim abdi kalintang isinna ku eta awewe, dugi ka tilu kali nembe aya anakna. Kumaha margina, sareng naon hikmahna numawi dielatkeun, dugi ka abdi kawirangan dua kali?”.
 
-Dawuhan Gusti Alloh: “Omongan maneh ka eta awewe kabeh oge bener. Barang mimiti disebutkeun aya teh bener, tapi kakara dikumpulkeun ku malaikat jiwa ragana nu geus pabencar. Ka dua kali oge bener, tapi kakara jejeg anggahotana sarta dihirupan. Ka tilu kalina eta awewe datang ka imahna, geus dihanjatkeun ti laut, didatangkeun ka imahna”.
+Dawuhan Gusti اللّه: “Omongan maneh ka eta awewe kabeh oge bener. Barang mimiti disebutkeun aya teh bener, tapi kakara dikumpulkeun ku malaikat jiwa ragana nu geus pabencar. Ka dua kali oge bener, tapi kakara jejeg anggahotana sarta dihirupan. Ka tilu kalina eta awewe datang ka imahna, geus dihanjatkeun ti laut, didatangkeun ka imahna”.
 
 Tidinya teras Sayyid Abdul Qodir unjukan deui:
 
 “Gusti mah ngadamel makhluk anu sakieu poharana henteu kalawan kasusahan. Nya kitu deui dina ba’atsna ngumpulkeun sakabeh jiwa raga makhluk nu sakitu seueurna mung sakedet netra. Ari ieu mah hiji budak, naon hikmahna Gusti numawi sakitu lamina?”.
 
-Dawuhan Gusti Alloh:
+Dawuhan Gusti اللّه:
 
 “Abdul Qodir, maneh entong jadi raheut hate. Ayeuna pek geura menta, maneh hayang naon, tangtu dipaparin ku aing?”.
 
@@ -366,13 +366,13 @@ Tidinya teras Sayyid Abdul Qodir sujud sarta unjukan. Saurna:
 
 “Gusti kholik anu ngadamel, ari abdi makhluk anu didamel. Naon-naon oge paparin Gusti, abdi kalintang nuhunna”.
 
-Dawuhan Gusti Alloh:
+Dawuhan Gusti اللّه:
 
 “Saha anu nenjo kamaneh dina poe juma’ah, ku aing didamel wali. Jeung lamun maneh nenjo kana taneuh, tangtu jadi emas”.
 
 Dawuhan Sayyid Abdul Qodir: “Gusti, ieu duanana oge henteu pati aya mangfaatna ka abdi. Abdi nyuhunkeun anu agung ti eta, sareng tetep mangfaatna saparantos maot abdi”.
 
-Dawuhan Gusti Alloh:
+Dawuhan Gusti اللّه:
 
 “Ngaran maneh dijieun seperti ngaran kami dina ganjaranana jeung manjurna. Saha-saha anu maca kana ngaran maneh, ganjaranana sarua jeung maca jenengan kami”.
 
@@ -432,7 +432,7 @@ Ceuk nashroni:
 
 Hartosna:
 
-“Hudang maneh kalawan idzin Alloh” .
+“Hudang maneh kalawan idzin اللّه” .
 
 “Geura kami mah dengekeun kieu: Qum bi idznì”. Hartosna:
 
@@ -474,15 +474,15 @@ Keukeuh anu nyuhunkeun sareng keukeuh anu henteu maparinkeun.
 
 Tungtungna dawuhan Sayyid Abdul Qodir:
 
-“Kalawan kamahabbahan kaula ka Gusti Alloh, kadieukeun eta roh bujang kaula !”. Bari teras eta wadah arwah teh direbut ku Sayyid Abdul Qodir. Teras diucutkeun.
+“Kalawan kamahabbahan kaula ka Gusti اللّه, kadieukeun eta roh bujang kaula !”. Bari teras eta wadah arwah teh direbut ku Sayyid Abdul Qodir. Teras diucutkeun.
 
 Atuh budal sadayana roh anu kenging nyabutan ti isuk teh laleupasan, baralik deui kana jasadna.
 
-Tidinya teras Malakal Maut teh unjukan ka Gusti Alloh Anu Maha Suci. Piunjukna:
+Tidinya teras Malakal Maut teh unjukan ka Gusti اللّه Anu Maha Suci. Piunjukna:
 
 “Beu Gusti, Gusti langkung uninga kana kaayaan kakasih Gusti, wali Gusti Abdul Qodir”.
 
-Dawuhan Gusti Alloh:
+Dawuhan Gusti اللّه:
 
 “Enya eta Abdul Qodir teh kakasih aing. Bongan roh bujangna kumaneh henteu dibikeun, jadi bae roh anu sakitu lobana mawur. Ayeuna maneh hanjakal henteu dibikeun”.
 
@@ -596,11 +596,11 @@ Karomah nu ka 1:
 
 Ramana Sayyid Abdul Qodir nyaeta Abì Shòlih Mùsà Janakì ngimpen kasumpingan Kangjeng Nabi diiring ku sahabatna sareng ku imam-imam mujtahidin sareng kupara aulia. Teras Kangjeng Nabi nimbalan ka ramana Sayyid Abdul Qodir, dawuhanana:
 
-“Heh Abù Shòlih, maneh ku Gusti Alloh dipaparin anak lalaki, eta teh anak kaula jeung kakasih kaula jeung kakasihna Gusti Alloh, jeung bakal meunang pangkat anu luhur dina pangkat kawalian seperti kaluhuran kaula dina pangkat kanabian.
+“Heh Abù Shòlih, maneh ku Gusti اللّه dipaparin anak lalaki, eta teh anak kaula jeung kakasih kaula jeung kakasihna Gusti اللّه, jeung bakal meunang pangkat anu luhur dina pangkat kawalian seperti kaluhuran kaula dina pangkat kanabian.
 
 Karomah nu ka 2:
 
-Nabi-Nabi oge saba’dana Kangjeng Nabi pada ngabubungah ka ramana Sayyid Abdul Qodir, yen bakal kagungan putra anu bakal jadi Sulthònul Auliyà, sareng sadayana wali-wali salian ti imam anu ma’shum eta di bawah putrana, sareng dampal sampeanana bakal didampalkeun kana pundakna wali-wali, sareng sadayana wali-wali anu tunduk ka anjeuna bakal naek pangkatna, anu henteu tunduk ka anjeuna bakal dilepas ku Gusti Alloh tina kawalianana.
+Nabi-Nabi oge saba’dana Kangjeng Nabi pada ngabubungah ka ramana Sayyid Abdul Qodir, yen bakal kagungan putra anu bakal jadi Sulthònul Auliyà, sareng sadayana wali-wali salian ti imam anu ma’shum eta di bawah putrana, sareng dampal sampeanana bakal didampalkeun kana pundakna wali-wali, sareng sadayana wali-wali anu tunduk ka anjeuna bakal naek pangkatna, anu henteu tunduk ka anjeuna bakal dilepas ku Gusti اللّه tina kawalianana.
 
 Karomah nu ka 3:
 
@@ -640,7 +640,7 @@ MANQOBAH KA 22 NYARIOSKEUN NGAMERDEKAKEUN ABID SARENG ANGGOANANA
 
 Dicarioskeun dina sapalihna kitab, Sayyid Abdul Qodir dina saban-saban lebaran sok ngagaleuh pirang-pirang abid.
 
-Kenging ngagaleuh teh teras dimerdekakeun, sareng sadayana sina wushul ka Alloh.
+Kenging ngagaleuh teh teras dimerdekakeun, sareng sadayana sina wushul ka اللّه.
 
 Ari anggoanana kalintang saraena. Ana nganggo sok anu pangaosna 10 jene saelona.
 
@@ -740,7 +740,7 @@ Anjeuna kaget aya onta ngomong kitu. Teras eta onta dilesotkeun.
 
 Ari anjeuna teras angkat ka loteng, ka ibuna, teras unjukan. Saurna:
 
-“Ibu, tadi onta anu bade diangon ku abdi teh nyaram ngangon ka abdi, sanggemna: maneh mah Abdul Qodir, didamel ku Gusti Alloh teh lain calon kana ngangon onta. Kumargi eta, manawi ibu rempag mah, abdi bade masantren ka Baghdad”.
+“Ibu, tadi onta anu bade diangon ku abdi teh nyaram ngangon ka abdi, sanggemna: maneh mah Abdul Qodir, didamel ku Gusti اللّه teh lain calon kana ngangon onta. Kumargi eta, manawi ibu rempag mah, abdi bade masantren ka Baghdad”.
 
 Ibuna ngadangu unjukan putrana, kalintang bingahna. Saurna:
 
@@ -798,7 +798,7 @@ Dawuhan Sayyid Abdul Qodir:
 
 Tidinya segruk eta kapala rampog teh ceurik, bari ngomong kieu:
 
-“Eumh, salira mah, dina tempat nu sakieu weritna henteu wani ngarempak larangan indung. Naha ari kaula, geus sababaraha taun gawe teh ngan wungkul ngarempak larangan Pangeran bae. Mana teuing Pangeran benduna ka kaula. Tah, ayeuna saksian ku salira, yen kaula tobat ka Gusti Alloh ditangan sampean”.
+“Eumh, salira mah, dina tempat nu sakieu weritna henteu wani ngarempak larangan indung. Naha ari kaula, geus sababaraha taun gawe teh ngan wungkul ngarempak larangan Pangeran bae. Mana teuing Pangeran benduna ka kaula. Tah, ayeuna saksian ku salira, yen kaula tobat ka Gusti اللّه ditangan sampean”.
 
 Tidinya rampog anu 60 teh pada tobat.
 

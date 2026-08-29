@@ -102,6 +102,7 @@ fun App() {
                     onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
                     onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
                     onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
+                    onNavigateToQibla = { backstack.add(ScreenKey.Qibla) },
                     amaliyahViewModel = amaliyahViewModel,
                     audioPlayer = sharedAudioPlayer,
                     audioDownloader = sharedDownloader,
@@ -191,6 +192,12 @@ fun App() {
             entry<ScreenKey.ProfilePesantren> { _ ->
                 ProfilePesantrenScreen(
                     onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.Qibla> { _ ->
+                com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen(
+                    onBack = onBackAction,
+                    viewModel = amaliyahViewModel
                 )
             }
         }

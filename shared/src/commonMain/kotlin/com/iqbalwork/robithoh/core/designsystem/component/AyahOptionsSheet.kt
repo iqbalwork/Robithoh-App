@@ -26,7 +26,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 
 /**
  * Bottom sheet of quick actions for a single ayat, opened by tapping an ayah card
@@ -42,7 +51,8 @@ fun AyahOptionsSheet(
     onMarkLastRead: () -> Unit,
     onShare: () -> Unit,
     onCopy: () -> Unit,
-    playMurotalEnabled: Boolean = true
+    playMurotalEnabled: Boolean = true,
+    isLastRead: Boolean = false
 ) {
     val isDark = RabithohTheme.colors.isDark
     val textColor = if (isDark) PutihBersih else SlateCharcoalText
@@ -84,8 +94,8 @@ fun AyahOptionsSheet(
                 onClick = { onDismiss(); onPlayMurotal() }
             )
             AyahOptionRow(
-                icon = "🔖",
-                label = "Tandai Terakhir Baca",
+                icon = if (isLastRead) "✓" else "🔖",
+                label = if (isLastRead) "Terakhir Dibaca (Tersimpan)" else "Tandai Terakhir Baca",
                 onClick = { onDismiss(); onMarkLastRead() }
             )
             AyahOptionRow(

@@ -213,6 +213,7 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
             putExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH, customPath)
             putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceOption.title)
             putExtra(PrayerAdzanService.EXTRA_NOTIFICATION_MODE, effectiveMode.id)
+            putExtra(PrayerAdzanService.EXTRA_IS_TEST, true)
         }
         context.sendBroadcast(intent)
     }
@@ -231,12 +232,8 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
             set(Calendar.MILLISECOND, 0)
         }
 
-        val diffSec = (now.timeInMillis - target.timeInMillis) / 1000
-        if (diffSec in 0..59) {
-            // Target is in the current minute (e.g. user testing now) -> trigger in 2 seconds
-            return now.timeInMillis + 2000L
-        } else if (target.before(now)) {
-            // Schedule for next day if already passed today
+        // If target time is in the past or has already arrived (target <= now), schedule for next day
+        if (target.timeInMillis <= now.timeInMillis) {
             target.add(Calendar.DAY_OF_MONTH, 1)
         }
 

@@ -3,7 +3,11 @@ package com.iqbalwork.robithoh.feature
 import com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import kotlin.test.*
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class QuranRepositoryTest {
 
@@ -54,12 +58,12 @@ class QuranRepositoryTest {
     fun testGetAyahsForSurah() = runTest {
         val fatihahAyahs = repository.getAyahs(1).first()
         assertEquals(7, fatihahAyahs.size, "Al-Fatihah must have 7 ayahs")
-        assertTrue(fatihahAyahs[0].textArabic.contains("الرَّحِيمِ"))
+        assertTrue(fatihahAyahs[0].textArabic.contains("الرَّحِيْمِ"))
         assertTrue(fatihahAyahs[0].translationIndonesian.contains("Pengasih"))
 
         val ikhlasAyahs = repository.getAyahs(112).first()
         assertEquals(4, ikhlasAyahs.size, "Al-Ikhlas must have 4 ayahs")
-        assertTrue(ikhlasAyahs[0].textArabic.contains("قُلْ هُوَ اللَّهُ أَحَدٌ"))
+        assertTrue(ikhlasAyahs[0].textArabic.contains("قُلْ هُوَ اللّٰهُ اَحَدٌ"))
     }
 
     @Test

@@ -6,7 +6,7 @@ SILSILAH THORIQOT QOODIRIYYAH NAQSYABANDIYYAH PONDOK PESANTREN SURYALAYA
 
 رَبُّ الْأَرْبَابِ وَمُعْتِقُ الرِّقَابِ اَللّٰهُ سُبْحَانَهُ وَتَعَالٰى
 
-1. Robbul Arbaabi, wa Mu’tiqur riqoobi, Alloh Subhaanahu wa Ta’aala
+1. Robbul Arbaabi, wa Mu’tiqur riqoobi, اللّه Subhaanahu wa Ta’aala
 
 سَيِّدُنَا جِبْرِيْلُ عَلَيْهِ السَّلَامُ
 

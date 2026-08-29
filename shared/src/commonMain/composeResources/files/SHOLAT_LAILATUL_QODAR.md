@@ -33,7 +33,7 @@ Niat Sholat :
 
 Ushollii sunnatan syukri lailatul qodar rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena Alloh Ta’ala.
+Artinya : Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena اللّه Ta’ala.
 
 Setelah Al-Fatihah membaca : At-Takatsur (1x) & Al-Ikhlash (3x)
 
@@ -57,4 +57,4 @@ Dilanjutkan dengan Do’a :
 
 Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 26x
 
-Artinya : Yaa Alloh , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.
+Artinya : Yaa اللّه , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.

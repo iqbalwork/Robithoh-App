@@ -47,6 +47,8 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         val voiceTitle = intent.getStringExtra(PrayerAdzanService.EXTRA_VOICE_TITLE) ?: "Adzan"
         val mode = intent.getStringExtra(PrayerAdzanService.EXTRA_NOTIFICATION_MODE) ?: "adzan"
 
+        val isTest = intent.getBooleanExtra(PrayerAdzanService.EXTRA_IS_TEST, false)
+
         val isImsak = prayerName.equals("Imsak", ignoreCase = true)
         if (isImsak || mode.equals("push", ignoreCase = true)) {
             showPushNotification(context, prayerName, locationName)
@@ -80,10 +82,12 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
             }
         }
 
-        // Reschedule future prayer alarms to keep the alarm schedule refreshed
-        try {
-            AndroidPrayerAlarmScheduler.rescheduleFromDatabase(context)
-        } catch (_: Throwable) {}
+        // Reschedule future prayer alarms to keep the alarm schedule refreshed (only for real alarms)
+        if (!isTest) {
+            try {
+                AndroidPrayerAlarmScheduler.rescheduleFromDatabase(context)
+            } catch (_: Throwable) {}
+        }
     }
 
     private fun showPrePrayerReminderNotification(context: Context, prayerName: String, locationName: String) {

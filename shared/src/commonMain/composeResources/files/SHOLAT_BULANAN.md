@@ -11,7 +11,7 @@ Niatnya :
 
 **Usholii sunnatan sukri laelatul qodar rok’aataeni lillahi ta’aalaa Allohuakbar.**
 
-*Sengaja aku sholat sunah laelatul qodar dua rakaat krn Alloh ta’ala.*
+*Sengaja aku sholat sunah laelatul qodar dua rakaat krn اللّه ta’ala.*
 
 Surat yang dibaca pada setiap roka’at setelah Al-Fatihah, Attakatsur (1x), Al Ikhlas (3x)
 
@@ -22,6 +22,6 @@ Sesudah selesai kemudian membaca do’a sebagai berikut:
 
 **Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa (3x)**
 
-*Yaa Alloh sesungguhnya Engkau pemaaf, suka memaafkan maka maafkanlah kami.*
+*Yaa اللّه sesungguhnya Engkau pemaaf, suka memaafkan maka maafkanlah kami.*
 
 ۞۞۞

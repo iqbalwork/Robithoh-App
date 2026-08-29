@@ -42,23 +42,23 @@ Alloohumma sholli wasallim’ala  Muhamadiw wa aali washohbi ajma’iin
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriiqom minalloohi robbil’alamiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan dari Allah Tuhan semesta alam”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan dari Allah Tuhan semesta alam”
 
 Thoriiqom mirruuhi jibriil almatiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan dari Malaikat Jibril al-Matin”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan dari Malaikat Jibril al-Matin”
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriiqol ambiyaa i wal mursaliin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para nabi dan rasul”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para nabi dan rasul”
 
 Thoriiqosy syuhadaa i wal mujaahidiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para pahlawan dan pejuang”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para pahlawan dan pejuang”
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriqol khulafaa i war roosyidiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para Khulafaur Rasyidin”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para Khulafaur Rasyidin”
 
 Thoriqol ‘ulamaa i wal ‘a miliin
 
@@ -66,23 +66,23 @@ Thoriqol ‘ulamaa i wal ‘a miliin
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriiqol awliyaa i wal muhklishiinn
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para wali dan orang-orang yang ikhlas”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para wali dan orang-orang yang ikhlas”
 
 Thoriqos su’adaa i wal faa’iziin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan orang-orang yang menang dan bahagia”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan orang-orang yang menang dan bahagia”
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriiqol at qiyaa i wash shoolihiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan orang-orang yang bertaqwa dan shaleh”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan orang-orang yang bertaqwa dan shaleh”
 
 Thoriiqol budalaa i wal qoonitiin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para wali abdal dan ahli ibadah”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para wali abdal dan ahli ibadah”
 
 Allohummahdina thoriiqol mustaqiim ۞ Thoriiqol ashfiyaa i wadz dzaa kiriin
 
-“Ya Alloh tunjukkan kami jalan yang lurus, jalan para sufi dan ahli dzikir”
+“Ya اللّه tunjukkan kami jalan yang lurus, jalan para sufi dan ahli dzikir”
 
 Thoriiqol ashfiyaa i wadz dzaa kiriin
 

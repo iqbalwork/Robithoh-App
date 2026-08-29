@@ -8,4 +8,4 @@ SHOLAWAT BANI HASYIM
 
 Allohumma shalli ‘alaannabiyyil hasyimiyyi Muhammadiw wa’alaa aalihi wa sallim tasliima.
 
-Artinya : Ya Alloh, Berikanlah rahmat sertasalam kepada seorang nabi keturunan Bangsawan Hasyim, yakni Muhammad beserta keluarganya, semogalah tetap selamat dan sejahtera.
+Artinya : Ya اللّه, Berikanlah rahmat sertasalam kepada seorang nabi keturunan Bangsawan Hasyim, yakni Muhammad beserta keluarganya, semogalah tetap selamat dan sejahtera.

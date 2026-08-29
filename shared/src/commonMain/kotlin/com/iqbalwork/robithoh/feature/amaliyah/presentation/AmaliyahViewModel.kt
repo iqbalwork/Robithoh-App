@@ -492,7 +492,24 @@ class AmaliyahViewModel(
         }
 
         if (schedule != null) {
-            syncAlarmSchedule(schedule, currentState.notificationSettings)
+            val todaySchedule = if (dateOffsetDays == 0) {
+                schedule
+            } else {
+                calculator.calculateSchedule(
+                    year = now.year,
+                    month = now.month,
+                    day = now.day,
+                    latitude = location.latitude,
+                    longitude = location.longitude,
+                    timezoneOffset = location.timezoneOffset,
+                    locationName = location.name,
+                    method = method,
+                    adjustments = adjustments
+                )
+            }
+            if (todaySchedule != null) {
+                syncAlarmSchedule(todaySchedule, currentState.notificationSettings)
+            }
         }
     }
 

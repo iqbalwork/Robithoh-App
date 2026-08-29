@@ -44,9 +44,9 @@ Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim 
 
 Bismillaahirrohmaanirroohim. Alhamdulillaahi Robbil ‘aalamin, wal ‘aaqibatu lill Muttaqiin, walaa ‘udwaana illaa ‘alazh zhoolimiin, wash sholaatu was salaamu ‘alaa Sayidinaa Muhammadin wa ‘alaa aalihii wa shohbihii ajma’iin, Ammaa ba’du:
 
-“Dengan menyebut Nama Alloh Yang Maha Pengasih Maha Penyayang. Puji bagi Alloh pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya Alloh dan para pengikutnya sampai hari akhir.”
+“Dengan menyebut Nama اللّه Yang Maha Pengasih Maha Penyayang. Puji bagi اللّه pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya اللّه dan para pengikutnya sampai hari akhir.”
 
-Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab  “Uquudul La’aali Fii Manaqibil Jayli” dan kitab  “Tafrìhul Khòtir Fì Manàqibis Sayyid ‘Abdul Qòdir.”, semoga dengan dibacakan manaqib ini, Alloh SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin.
+Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab  “Uquudul La’aali Fii Manaqibil Jayli” dan kitab  “Tafrìhul Khòtir Fì Manàqibis Sayyid ‘Abdul Qòdir.”, semoga dengan dibacakan manaqib ini, اللّه SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin.
 
 ROJAB
 

@@ -45,7 +45,7 @@ Surahna ulah jadi papaséaan “kudu akur jeung batur-batur tapi ulah campur bau
 
 Geuning dawuhan sepuh baheula: “Sina logor dina liang jarum, ulah sereg di buana”. Lamun urangna henteu kitu tangtu hanjakal diakhirna. Karana anu matak tugeunah terhadep badan urang masing-masing éta téh tapak amal perbuatanana. Dina surat An-Nahli ayat 112 diunggelkeun anu kieu:
 
-“Gusti Alloh geus maparing conto pirang-pirang tempat, boh kampungna atawa désana atawa nagarana, anu dina éta tempat nuju aman sentosa, gemah ripah loh jinawi, kari-kari pendudukna (nu nyicinganana) teu narima kana ni’mat ti Pangéran, maka tuluy baé dina éta tempat kalaparan, loba kasusah, loba karisi jeung sajabana, kitu téh samata-mata pagawéan maranéhanana”.
+“Gusti اللّه geus maparing conto pirang-pirang tempat, boh kampungna atawa désana atawa nagarana, anu dina éta tempat nuju aman sentosa, gemah ripah loh jinawi, kari-kari pendudukna (nu nyicinganana) teu narima kana ni’mat ti Pangéran, maka tuluy baé dina éta tempat kalaparan, loba kasusah, loba karisi jeung sajabana, kitu téh samata-mata pagawéan maranéhanana”.
 
 Ku lantaran kitu, sakabéh murid-murid kudu arapik tilik jeung pamilih, dina nyiar jalan kahadéan lahir bathin dunya akhérat sangkan ngeunah nyawa betah jasad, ulah jadi kabengkahan anu disuprih “Cageur Bageur”.
 

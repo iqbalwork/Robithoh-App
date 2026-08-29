@@ -7,11 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,8 +29,13 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
 import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.core.location.rememberLocationPermissionLauncher
 import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
@@ -69,6 +72,7 @@ fun MainAppContainer(
     onNavigateToProfilePesantren: () -> Unit,
     onNavigateToCalculationMethods: () -> Unit = {},
     onNavigateToPrayerAdjustments: () -> Unit = {},
+    onNavigateToQibla: () -> Unit = {},
     amaliyahViewModel: AmaliyahViewModel,
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() },
     audioDownloader: com.iqbalwork.robithoh.core.audio.AudioDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader() },
@@ -116,7 +120,7 @@ fun MainAppContainer(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(PaperBackgroundLight)
+            .background(if (isDarkMode) DarkCanvas else PaperBackgroundLight)
     ) {
         // Tab Content
         Box(
@@ -130,6 +134,7 @@ fun MainAppContainer(
                         onNavigateToLanggam = onNavigateToLanggam,
                         onNavigateToTasbih = onNavigateToTasbih,
                         onNavigateToPrayerTimes = { onTabChange(MainTab.SALAT) },
+                        onNavigateToQibla = onNavigateToQibla,
                         onOpenSheet = { onSheetChange(it) },
                         viewModel = amaliyahViewModel
                     )
@@ -139,6 +144,7 @@ fun MainAppContainer(
                         onNavigateToDocument = onNavigateToDocument,
                         onNavigateToCalculationMethods = onNavigateToCalculationMethods,
                         onNavigateToPrayerAdjustments = onNavigateToPrayerAdjustments,
+                        onNavigateToQibla = onNavigateToQibla,
                         viewModel = amaliyahViewModel
                     )
                 }
@@ -192,53 +198,71 @@ fun MainAppContainer(
                 onCloseClick = { audioPlayer.stop() }
             )
 
-            // Modern Floating Pill Dock Navigation Bar
+            // Modern Floating Dock Navigation Bar with Icon on Top & Label on Bottom
             Surface(
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
-                    .clip(RoundedCornerShape(32.dp))
-                    .border(2.dp, Color(0xFF2C2523), RoundedCornerShape(32.dp)),
-                color = Color.White,
-                shape = RoundedCornerShape(32.dp),
+                    .padding(bottom = 8.dp, start = 16.dp, end = 16.dp)
+                    .clip(RoundedCornerShape(28.dp))
+                    .border(2.dp, if (isDarkMode) DarkBorder else Color(0xFF2C2523), RoundedCornerShape(28.dp)),
+                color = if (isDarkMode) DarkSurface else Color.White,
+                shape = RoundedCornerShape(28.dp),
                 shadowElevation = 8.dp
             ) {
                 Row(
-                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 6.dp),
+                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    horizontalArrangement = Arrangement.spacedBy(2.dp)
                 ) {
                     MainTab.entries.forEach { tab ->
                         val isSelected = currentTab == tab
 
-                        Surface(
-                            shape = RoundedCornerShape(24.dp),
-                            color = if (isSelected) {
-                                when (tab) {
-                                    MainTab.HOME -> Color(0xFFFFE5D0)
-                                    MainTab.SALAT -> Color(0xFFD0EDFF)
-                                    MainTab.KITAB -> Color(0xFFD5F5E3)
-                                    MainTab.PENGATURAN -> Color(0xFFEDE7F6)
-                                }
-                            } else Color.Transparent,
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
-                                .clip(RoundedCornerShape(24.dp))
+                                .clip(RoundedCornerShape(16.dp))
                                 .clickable { onTabChange(tab) }
+                                .padding(horizontal = 6.dp, vertical = 2.dp)
                         ) {
-                            Row(
-                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(tab.icon, fontSize = 18.sp)
-                                if (isSelected) {
-                                    Spacer(modifier = Modifier.width(6.dp))
-                                    Text(
-                                        text = tab.title,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 13.sp,
-                                        color = TextCharcoal
+                            Box(
+                                contentAlignment = Alignment.Center,
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(14.dp))
+                                    .background(
+                                        if (isSelected) {
+                                            if (isDarkMode) {
+                                                when (tab) {
+                                                    MainTab.HOME -> Color(0xFF5C2626)
+                                                    MainTab.SALAT -> Color(0xFF1E3A5F)
+                                                    MainTab.KITAB -> Color(0xFF1B4332)
+                                                    MainTab.PENGATURAN -> Color(0xFF3D2E56)
+                                                }
+                                            } else {
+                                                when (tab) {
+                                                    MainTab.HOME -> Color(0xFFFFE5D0)
+                                                    MainTab.SALAT -> Color(0xFFD0EDFF)
+                                                    MainTab.KITAB -> Color(0xFFD5F5E3)
+                                                    MainTab.PENGATURAN -> Color(0xFFEDE7F6)
+                                                }
+                                            }
+                                        } else Color.Transparent
                                     )
-                                }
+                                    .padding(horizontal = 12.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = tab.icon,
+                                    fontSize = 17.sp
+                                )
                             }
+                            Text(
+                                text = tab.title,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                                fontSize = 11.sp,
+                                color = if (isSelected) {
+                                    if (isDarkMode) Color.White else TextCharcoal
+                                } else {
+                                    if (isDarkMode) DarkMuted else TextMuted
+                                }
+                            )
                         }
                     }
                 }

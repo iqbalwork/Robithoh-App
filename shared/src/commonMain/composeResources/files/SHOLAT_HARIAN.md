@@ -270,13 +270,13 @@ Yaa Sayyidas Saadaati Muhyiddin Abdul Qadir
 
 Yaa ubaidillah agitsni bi idznillaah. Wayaa syaikha Tsaqolain aghitsni’ wamdudnii fii qodloo’i hawaa’iji …. (sebutkan hajatnya)
 
-Wahai ‘UbaidAlloh, tolonglah aku dengan Izin Alloh, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
+Wahai ‘UbaidAlloh, tolonglah aku dengan Izin اللّه, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
 
 اَللّٰهُمَّ لَكَ الْكُلُّ وَبِكَ الْكُلُّ وَمِنْكَ الْكُلُّ وَاِلَيْكَ الْكُلُّ وَأَنْتَ الْكُلُّ وَكُلُّ الْكُلِّ بِرَحْمَتِكَ يَا اَرْحَمَ الرَّاحِمِيْنَ
 
 Alloohumma lakal kullu, wabikal kullu, wa minkal kullu, wa ilaikal  kullu, wa Antal kullu, wa kullul kulli birohmatika. Yaa arhamar roohimiin.
 
-“Ya Alloh, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”
+“Ya اللّه, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”
 
 6. Shalat Tahajjud :
 
@@ -316,7 +316,7 @@ Do’a Shalat Tahajjud    :
 
 Alloohumma bihaqqi shalatit Tahajjudi, wa bihaqqi Bismillahirrahmanirrahim, wa bihaqqi sayyidina wa mawlaana Muhammadin shollallaahu ‘alaihi wa sallama, ij’alni wa zawjatii (wa zawjii) wa awlaadii min ‘ibaadikas shoolihiin. Alloohummaj’alnii iimaanan yubaasyiru qalbii, wa yaqiinan daa’iman hatta annahu layyushibanii illa maa kataballoohu lii birahmatika Yaa Arhamar Rohimiin.
 
-Ya Alloh dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad saw, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya Alloh jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah Alloh tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.
+Ya اللّه dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad saw, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya اللّه jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah اللّه tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.
 
 7. Shalat Tasbih
 
@@ -350,7 +350,7 @@ Lafadz Tasbih             :
 
 Subhaanallohi wal hamdu lillaahi wa  laa ilaaha illalloohi walloohu Akbar
 
-Maha Suci Alloh, Segala Puji bagi Alloh, Tidak ada tuhan kecuali Alloh, Alloh Maha Besar
+Maha Suci اللّه, Segala Puji bagi اللّه, Tidak ada tuhan kecuali اللّه, اللّه Maha Besar
 
 8. Shalat Witir ( dikerjakan dengan duduk )
 
@@ -450,9 +450,9 @@ Wa Naj-jinaa Minal Qoumizh Zhoolimiin,
 
 Wa Sholalloohu ‘Alaa Sayyidinaa Muhammadin wa ‘Alaa Aalihii wa Shohbihii wa Sallam.
 
-Ya Alloh berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).
+Ya اللّه berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).
 
-Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga Alloh curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.
+Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga اللّه curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.
 
 Setelah Selesai Zikir hingga menjelang subuh dan perbanyak membaca :
 
@@ -756,7 +756,7 @@ Alloohumma nawwir qolbii bi nuuri hidaayatika, ka maa nawwartal ardho bi nuuri s
 
 Hatiku adalah qutubku, acuanku adalah kehendakku, rahasiaku adalah kehadiranku, dimana penglihatannya adalah pengetahuanku, Nabi Harun menjadi akalku, yang berbicara kepadaku adalah ruhku, Fir’aun adalah nafsuku dan keinginan nafsuku menjadi seperti Haman bagiku.
 
-Ya Alloh cahayailah hatiku dengan Cahaya Hidayah-Mu, sebagaimana Engkau cahayai bumi selamanya dengan cahaya matahari-Mu.
+Ya اللّه cahayailah hatiku dengan Cahaya Hidayah-Mu, sebagaimana Engkau cahayai bumi selamanya dengan cahaya matahari-Mu.
 
 Setelah itu membaca doa di bawah ini 3x :
 
@@ -1098,7 +1098,7 @@ Bismillaahirrohmaanirrohiim
 
 Alloohummagh-firlii waliwaa-liday-ya war-ham-humaa kamaa robbayaa-nii shoghii-roo (15 X)
 
-Ya Alloh, ampunilah aku dan kedua orang tua ku, kasihilah mereka sebagaimana hal nya mereka mendidikku sewaktu kecil.
+Ya اللّه, ampunilah aku dan kedua orang tua ku, kasihilah mereka sebagaimana hal nya mereka mendidikku sewaktu kecil.
 
 SHOLAWAT BANI HASYIM:
 
@@ -1106,7 +1106,7 @@ SHOLAWAT BANI HASYIM:
 
 Alloohumma Sholli ‘alan-Nabiyyil Haa-syimiyyi Muhammadiw wa ’alaa Aa-lihii wa Sallim Taslii-maa (15 X)
 
-Kemudian Ucapkan do’a “Yaa Alloh jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta Sholawat hambamu ini disampaikan kepada orang tua Hamba”
+Kemudian Ucapkan do’a “Yaa اللّه jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta Sholawat hambamu ini disampaikan kepada orang tua Hamba”
 
 Shalat Sunnah Hifzhil Iman
 

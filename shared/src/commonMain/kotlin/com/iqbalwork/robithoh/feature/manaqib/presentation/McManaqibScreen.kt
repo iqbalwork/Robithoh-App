@@ -1,11 +1,25 @@
 package com.iqbalwork.robithoh.feature.manaqib.presentation
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,8 +28,19 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.component.*
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.component.LanguageTabSwitch
+import com.iqbalwork.robithoh.core.designsystem.component.LiturgyLanguage
+import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.GoldContainerLight
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.manaqib.model.McProgramItem
 
 @Composable
@@ -313,7 +338,7 @@ fun McManaqibScreen(
 
 Upami shohibul hajat hoyong disebat hajatna anu seueur…. Dugikeun wae ku MC sateuacan dibuka acara manaqib.
 
-Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna ngadikte Alloh, nganggep Alloh teu uninga kana hajat urang. Parantos…. Cekap dina manah wae Alloh parantos MAHA UNINGA. Sanaos teu disebat oge Alloh Maha Uninga.
+Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna ngadikte اللّه, nganggep اللّه teu uninga kana hajat urang. Parantos…. Cekap dina manah wae اللّه parantos MAHA UNINGA. Sanaos teu disebat oge اللّه Maha Uninga.
 
 * Upami aya sambutan, sateuacan dibuka acara atanapi saparantos do’a manaqib sateuacan khidmah ‘ilmiyyah… Sareng maksimal 5 menit wae *"""
                                 } else {
@@ -322,7 +347,7 @@ Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna 
 
 Jika shohibul hajat ingin disebut hajatnya yang banyak…. Disampaikan saja oleh MC sebelum dibuka acara manaqib.
 
-Kata Pangersa Abah : Menyebut secara lisan satu persatu hajat kita, berarti mendikte Alloh, menganggap Alloh tidak tahu hajat kita. Sudah…. Cukup di hati saja Alloh sudah MAHA TAHU. Bahkan tidak disebut pun Alloh Maha Tahu.
+Kata Pangersa Abah : Menyebut secara lisan satu persatu hajat kita, berarti mendikte اللّه, menganggap اللّه tidak tahu hajat kita. Sudah…. Cukup di hati saja اللّه sudah MAHA TAHU. Bahkan tidak disebut pun اللّه Maha Tahu.
 
 * Jika ada sambutan, sebelum dibuka acara atau setelah do’a manaqib sebelum khidmah ‘ilmiyyah… Dan maksimal 5 menit saja *"""
                                 },

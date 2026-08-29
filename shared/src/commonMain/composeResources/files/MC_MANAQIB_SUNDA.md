@@ -46,6 +46,6 @@ Wassalamu’alaikum warohmatulloh wabarokatuh.
 
 Upami shohibul hajat hoyong disebat hajatna anu seueur…. Dugikeun wae ku MC sateuacan dibuka acara manaqib.
 
-Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna ngadikte Alloh, nganggep Alloh teu uninga kana hajat urang. Parantos…. Cekap dina manah wae Alloh parantos MAHA UNINGA. Sanaos teu disebat oge Alloh Maha Uninga.
+Dawuhan Pangersa Abah : Nyebatkeun sacara lisan hiji-hiji hajat urang, hartosna ngadikte اللّه, nganggep اللّه teu uninga kana hajat urang. Parantos…. Cekap dina manah wae اللّه parantos MAHA UNINGA. Sanaos teu disebat oge اللّه Maha Uninga.
 
 *\* Upami aya sambutan, sateuacan dibuka acara atanapi saparantos do’a manaqib sateuacan khidmah ‘ilmiyyah… Sareng maksimal 5 menit wae \**

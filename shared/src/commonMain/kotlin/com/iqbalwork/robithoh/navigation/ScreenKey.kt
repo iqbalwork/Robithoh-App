@@ -6,7 +6,6 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
@@ -52,6 +51,9 @@ sealed interface ScreenKey : NavKey {
 
     @Serializable
     data object PrayerAdjustments : ScreenKey
+
+    @Serializable
+    data object Qibla : ScreenKey
 }
 
 /**
