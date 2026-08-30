@@ -450,7 +450,7 @@ class AmaliyahRepository {
             arabicName = "جُمَادَى الْأُولَى",
             virtues = "Bulan kelima Hijriyah. Momentum muhasabah diri, keteguhan menuntut ilmu agama, dan istiqomah di majlis dzikir.",
             recommendedAmalan = listOf(
-                "Istiqomah Dzikir Ba'da Sholat Maktubah (Jahr 165x & Khofi).",
+                "Istiqomah Dzikir Ba'da Sholat (Jahr 165x & Khofi).",
                 "Membaca Al-Qur'an dan memperbanyak sholat sunnah rawatib.",
                 "Menjaga kerukunan dan silaturahmi antar ikhwan thoriqoh.",
                 "Menghadiri pengajian kitab dan majlis ta'lim."

@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.AnnotatedString
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
@@ -39,6 +41,14 @@ fun DzikirDetailScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    var readerTheme by rememberSaveable { mutableStateOf(if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
+    var fontScale by rememberSaveable { mutableStateOf(1.0f) }
+    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(isDark) {
+        readerTheme = if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE
+    }
+
     val currentDzikirList = if (state.activeDzikirType == DzikirType.JAHR) {
         state.dzikirJahrList
     } else {
@@ -60,10 +70,23 @@ fun DzikirDetailScreen(
                 title = if (state.activeDzikirType == DzikirType.JAHR) "Dzikir Jahr (165x)" else "Dzikir Khofi (Ismu Dzat)",
                 subtitle = "TQN Pondok Pesantren Sirnarasa Silsilah 38",
                 arabicTitle = if (state.activeDzikirType == DzikirType.JAHR) "ذِكْرُ الْجَهْرِ" else "ذِكْرُ الْخَفِيِّ",
-                onBackClick = onBack
+                onBackClick = onBack,
+                actions = {
+                    IconButton(onClick = { showSettingsDialog = true }) {
+                        Surface(
+                            color = MerahMerdeka.copy(alpha = 0.12f),
+                            shape = CircleShape,
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("A±", color = MerahMerdeka, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
             )
         },
-        containerColor = if (isDark) DarkCanvas else PutihAbuBackground,
+        containerColor = readerTheme.backgroundColor,
         modifier = modifier
     ) { padding ->
         Box(
@@ -123,7 +146,7 @@ fun DzikirDetailScreen(
                 GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_TINTED) {
                     Text(
                         text = if (state.activeDzikirType == DzikirType.JAHR) {
-                            "Kaifiyat Dzikir Jahr Ba'da Sholat Maktubah"
+                            "Kaifiyat Dzikir Jahr Ba'da Sholat"
                         } else {
                             "Kaifiyat Dzikir Khofi & Rabithah Mursyid 38"
                         },
@@ -151,7 +174,8 @@ fun DzikirDetailScreen(
                 DzikirLiturgicalCard(
                     item = item,
                     selectedLanguage = state.selectedLanguage,
-                    isDark = isDark,
+                    readerTheme = readerTheme,
+                    fontScale = fontScale,
                     onClick = { selectedDzikirForOptions = item },
                     onOpenTasbih = { target, title ->
                         tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
@@ -183,6 +207,16 @@ fun DzikirDetailScreen(
             }
         )
     }
+    }
+
+    if (showSettingsDialog) {
+        TextReaderSettingsSheet(
+            fontScale = fontScale,
+            onFontScaleChange = { fontScale = it },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerTheme = it },
+            onDismiss = { showSettingsDialog = false }
+        )
     }
 
     selectedDzikirForOptions?.let { item ->
@@ -246,12 +280,16 @@ fun DzikirDetailScreen(
 private fun DzikirLiturgicalCard(
     item: DzikirItem,
     selectedLanguage: LiturgyLanguage,
-    isDark: Boolean,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
+    fontScale: Float = 1.0f,
     onClick: () -> Unit,
     onOpenTasbih: (Int, String) -> Unit
 ) {
+    val isDark = readerTheme.isDark
     GoldCrimsonCard(
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
+        customBackgroundColor = readerTheme.cardBackgroundColor,
+        customBorderColor = readerTheme.cardBorderColor,
         onClick = onClick
     ) {
         // Card Top Header: Number, Title, Repetition Badge
@@ -307,10 +345,10 @@ private fun DzikirLiturgicalCard(
         Text(
             text = item.arabicText,
             style = RabithohTheme.typography.arabicLarge.copy(
-                fontSize = 21.sp,
-                lineHeight = 36.sp,
+                fontSize = (21 * fontScale).sp,
+                lineHeight = (36 * fontScale).sp,
                 textAlign = TextAlign.End,
-                color = if (isDark) PutihBersih else Color(0xFF1E2022)
+                color = readerTheme.arabicTextColor
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -323,8 +361,8 @@ private fun DzikirLiturgicalCard(
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
-                color = if (isDark) PutihBersih else TextCharcoal,
-                fontSize = 14.5.sp,
+                color = readerTheme.primaryTextColor,
+                fontSize = (14.5 * fontScale).sp,
                 lineHeight = 22.sp
             ),
             modifier = Modifier.fillMaxWidth()
@@ -347,8 +385,8 @@ private fun DzikirLiturgicalCard(
         Text(
             text = "[$langBadge] $translationText",
             style = MaterialTheme.typography.bodySmall.copy(
-                color = if (isDark) Color(0xFFB0B0B8) else Color(0xFF4A4A52),
-                fontSize = 12.sp,
+                color = readerTheme.secondaryTextColor,
+                fontSize = (12 * fontScale).sp,
                 lineHeight = 17.sp
             )
         )

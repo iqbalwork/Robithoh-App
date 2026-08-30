@@ -57,6 +57,7 @@ import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
 import com.iqbalwork.robithoh.core.designsystem.component.ReaderToggleOption
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
@@ -67,6 +68,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
@@ -106,6 +108,11 @@ fun QuranReaderScreen(
     val surah = state.currentSurah
     val currentSurahNumber = surah?.number ?: surahNumber
     val fontScale = state.fontScale
+    var readerTheme by rememberSaveable { mutableStateOf(if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
+
+    LaunchedEffect(isDark) {
+        readerTheme = if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE
+    }
     var showLatin by rememberSaveable { mutableStateOf(true) }
     var showTranslation by rememberSaveable { mutableStateOf(true) }
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
@@ -237,6 +244,7 @@ fun QuranReaderScreen(
             SurahTabStrip(
                 surahs = state.surahs,
                 currentSurahNumber = currentSurahNumber,
+                readerTheme = readerTheme,
                 onSurahSelected = { targetSurahNumber -> jumpTo(targetSurahNumber, 1) }
             )
           }
@@ -253,7 +261,7 @@ fun QuranReaderScreen(
                 onCloseClick = { viewModel.onIntent(QuranUiIntent.StopAudio) }
             )
         },
-        containerColor = if (isDark) DarkCanvas else PutihAbuBackground
+        containerColor = readerTheme.backgroundColor
     ) { paddingValues ->
         LazyColumn(
             state = listState,
@@ -314,12 +322,14 @@ fun QuranReaderScreen(
                 item {
                     GoldCrimsonCard(
                         variant = GoldCrimsonCardVariant.GOLD_BORDER,
+                        customBackgroundColor = readerTheme.cardBackgroundColor,
+                        customBorderColor = readerTheme.cardBorderColor,
                         contentPadding = PaddingValues(12.dp)
                     ) {
                         Text(
                             text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
                             style = RabithohTheme.typography.arabicMedium.copy(
-                                color = if (isDark) PutihBersih else TextCharcoal,
+                                color = readerTheme.arabicTextColor,
                                 fontSize = (22 * fontScale).sp,
                                 textAlign = TextAlign.Center
                             ),
@@ -346,6 +356,7 @@ fun QuranReaderScreen(
                     showLatin = showLatin,
                     showTranslation = showTranslation,
                     isLastRead = isLastRead,
+                    readerTheme = readerTheme,
                     onClick = { selectedAyahForOptions = ayah }
                 )
             }
@@ -356,6 +367,8 @@ fun QuranReaderScreen(
         TextReaderSettingsSheet(
             fontScale = fontScale,
             onFontScaleChange = { viewModel.onIntent(QuranUiIntent.UpdateFontScale(it)) },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerTheme = it },
             onDismiss = { showSettingsDialog = false },
             toggles = listOf(
                 ReaderToggleOption(
@@ -451,6 +464,7 @@ fun QuranReaderScreen(
 private fun SurahTabStrip(
     surahs: List<SurahMeta>,
     currentSurahNumber: Int,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onSurahSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -470,7 +484,7 @@ private fun SurahTabStrip(
 
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = if (isDark) DarkSurface else PutihBersih
+        color = readerTheme.surfaceColor
     ) {
         LazyRow(
             state = listState,
@@ -481,15 +495,16 @@ private fun SurahTabStrip(
         ) {
             items(surahs, key = { it.number }) { tabSurah ->
                 val isSelected = tabSurah.number == currentSurahNumber
+                val isStripDark = readerTheme.isDark
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    color = if (isSelected) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFF1F3F5)),
-                    border = if (isSelected) BorderStroke(1.dp, EmasKhidmat) else null,
+                    color = if (isSelected) MerahMerdeka else (if (isStripDark) DarkSurfaceVariant else Color(0xFFF1F3F5)),
+                    border = if (isSelected) BorderStroke(1.dp, EmasKhidmat) else (if (isStripDark) BorderStroke(1.dp, DarkBorder) else null),
                     modifier = Modifier.clickable { onSurahSelected(tabSurah.number) }
                 ) {
                     Text(
                         text = "${tabSurah.number}. ${tabSurah.nameLatin}",
-                        color = if (isSelected) PutihBersih else (if (isDark) DarkMuted else SlateMuted),
+                        color = if (isSelected) PutihBersih else (if (isStripDark) DarkMuted else SlateMuted),
                         fontSize = 12.sp,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                         maxLines = 1,
@@ -509,14 +524,17 @@ private fun AyahItemCard(
     showLatin: Boolean,
     showTranslation: Boolean,
     isLastRead: Boolean = false,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDark = RabithohTheme.colors.isDark
+    val isDark = readerTheme.isDark
 
     GoldCrimsonCard(
         modifier = modifier,
         variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_TINTED else GoldCrimsonCardVariant.SURFACE_CLEAN,
+        customBackgroundColor = if (isLastRead) null else readerTheme.cardBackgroundColor,
+        customBorderColor = if (isLastRead) null else readerTheme.cardBorderColor,
         contentPadding = PaddingValues(16.dp),
         onClick = onClick
     ) {
@@ -575,7 +593,7 @@ private fun AyahItemCard(
             style = RabithohTheme.typography.arabicLarge.copy(
                 fontSize = (24 * fontScale).sp,
                 lineHeight = (44 * fontScale).sp,
-                color = if (isDark) PutihBersih else SlateCharcoalText,
+                color = readerTheme.arabicTextColor,
                 textAlign = TextAlign.Right
             ),
             modifier = Modifier.fillMaxWidth()
@@ -600,7 +618,7 @@ private fun AyahItemCard(
             Text(
                 text = ayah.translationIndonesian,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText,
+                    color = readerTheme.primaryTextColor,
                     fontSize = (13 * fontScale).sp,
                     lineHeight = (20 * fontScale).sp
                 )
@@ -611,7 +629,7 @@ private fun AyahItemCard(
                 Text(
                     text = "Basa Sunda: ${ayah.translationSundanese}",
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = if (isDark) DarkMuted else SlateMuted,
+                        color = readerTheme.secondaryTextColor,
                         fontSize = (12 * fontScale).sp,
                         lineHeight = (18 * fontScale).sp
                     )

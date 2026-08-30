@@ -60,6 +60,15 @@ import com.iqbalwork.robithoh.core.designsystem.component.FloatingDownloadBar
 import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import androidx.compose.foundation.BorderStroke
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
@@ -81,6 +90,7 @@ fun LanggamScreen(
         onBack()
     }
 
+    val isDark = RabithohTheme.colors.isDark
     val scope = rememberCoroutineScope()
     val currentTrack by audioPlayer.currentTrack.collectAsState()
     val playbackState by audioPlayer.playbackState.collectAsState()
@@ -123,7 +133,7 @@ fun LanggamScreen(
                 )
             )
         },
-        containerColor = PaperBackgroundLight
+        containerColor = if (isDark) DarkCanvas else PaperBackgroundLight
     ) { padding ->
         Column(
             modifier = Modifier
@@ -140,7 +150,8 @@ fun LanggamScreen(
                 item {
                     Card(
                         shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.White),
+                        colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                        border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -151,7 +162,7 @@ fun LanggamScreen(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Surface(
-                                color = MerahMerdeka.copy(alpha = 0.1f),
+                                color = if (isDark) DarkSurfaceVariant else MerahMerdeka.copy(alpha = 0.1f),
                                 shape = CircleShape,
                                 modifier = Modifier.size(44.dp)
                             ) {
@@ -165,12 +176,12 @@ fun LanggamScreen(
                                     "Langgam & Irama Tilawah TQN",
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 15.sp,
-                                    color = TextCharcoal
+                                    color = if (isDark) PutihBersih else TextCharcoal
                                 )
                                 Text(
                                     "Bimbingan langgam bacaan sholat & dzikir Pangersa Abah Aos Ra. Qs.",
                                     fontSize = 12.sp,
-                                    color = TextMuted,
+                                    color = if (isDark) DarkMuted else TextMuted,
                                     lineHeight = 16.sp
                                 )
                             }
@@ -194,6 +205,7 @@ fun LanggamScreen(
 
                     LanggamTrackCard(
                         item = item,
+                        isDark = isDark,
                         isCurrent = isCurrent,
                         isPlaying = isPlaying,
                         isDownloaded = isDownloaded,
@@ -248,7 +260,8 @@ fun LanggamScreen(
                 exit = slideOutVertically(targetOffsetY = { it }) + fadeOut()
             ) {
                 Surface(
-                    color = Color.White,
+                    color = if (isDark) DarkSurface else Color.White,
+                    border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                     shadowElevation = 8.dp,
                     shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
                     modifier = Modifier.fillMaxWidth()
@@ -268,13 +281,13 @@ fun LanggamScreen(
                                     text = currentTrack?.title ?: "",
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 14.sp,
-                                    color = TextCharcoal,
+                                    color = if (isDark) PutihBersih else TextCharcoal,
                                     maxLines = 1
                                 )
                                 Text(
                                     text = currentTrack?.subtitle ?: "",
                                     fontSize = 12.sp,
-                                    color = TextMuted,
+                                    color = if (isDark) DarkMuted else TextMuted,
                                     maxLines = 1
                                 )
                             }
@@ -346,15 +359,16 @@ private fun LanggamTrackCard(
     isDownloaded: Boolean,
     isDownloading: Boolean,
     downloadProgress: Float,
+    isDark: Boolean = false,
     onClick: () -> Unit,
     onDeleteClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (isCurrent) Color(0xFFFFF1F1) else Color.White
+            containerColor = if (isCurrent) (if (isDark) Color(0xFF2C1E1E) else Color(0xFFFFF1F1)) else (if (isDark) DarkSurface else Color.White)
         ),
-        border = if (isCurrent) androidx.compose.foundation.BorderStroke(1.dp, MerahMerdeka.copy(alpha = 0.4f)) else null,
+        border = if (isCurrent) androidx.compose.foundation.BorderStroke(1.dp, MerahMerdeka.copy(alpha = 0.6f)) else (if (isDark) BorderStroke(1.dp, DarkBorder) else null),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier
             .fillMaxWidth()
@@ -368,9 +382,9 @@ private fun LanggamTrackCard(
         ) {
             // Calligraphy / Artwork Box
             Surface(
-                color = if (isCurrent) MerahMerdeka.copy(alpha = 0.1f) else PaperBackgroundLight,
+                color = if (isCurrent) (if (isDark) MerahMerdeka.copy(alpha = 0.2f) else MerahMerdeka.copy(alpha = 0.1f)) else (if (isDark) DarkSurfaceVariant else PaperBackgroundLight),
                 shape = RoundedCornerShape(12.dp),
-                border = androidx.compose.foundation.BorderStroke(1.dp, BorderSubtle),
+                border = androidx.compose.foundation.BorderStroke(1.dp, if (isDark) DarkBorder else BorderSubtle),
                 modifier = Modifier
                     .width(76.dp)
                     .height(56.dp)

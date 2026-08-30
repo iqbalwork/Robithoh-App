@@ -42,6 +42,8 @@ fun GoldCrimsonCard(
     variant: GoldCrimsonCardVariant = GoldCrimsonCardVariant.GOLD_BORDER,
     shape: Shape = RoundedCornerShape(16.dp),
     elevation: Dp = 2.dp,
+    customBackgroundColor: Color? = null,
+    customBorderColor: Color? = null,
     onClick: (() -> Unit)? = null,
     contentPadding: PaddingValues = PaddingValues(16.dp),
     content: @Composable ColumnScope.() -> Unit
@@ -76,6 +78,9 @@ fun GoldCrimsonCard(
         }
     }
 
+    val finalCardBg = customBackgroundColor ?: cardBg
+    val finalBorder = if (customBorderColor != null) BorderStroke(1.dp, customBorderColor) else borderStroke
+
     if (variant == GoldCrimsonCardVariant.CRIMSON_HERO) {
         val heroGradient = Brush.linearGradient(
             colors = listOf(
@@ -91,7 +96,7 @@ fun GoldCrimsonCard(
                 .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
             shape = shape,
             shadowElevation = elevation,
-            border = borderStroke,
+            border = finalBorder,
             color = Color.Transparent
         ) {
             Box(
@@ -109,10 +114,10 @@ fun GoldCrimsonCard(
                 .fillMaxWidth()
                 .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
             shape = shape,
-            border = borderStroke,
+            border = finalBorder,
             elevation = CardDefaults.cardElevation(defaultElevation = elevation),
             colors = CardDefaults.cardColors(
-                containerColor = cardBg,
+                containerColor = finalCardBg,
                 contentColor = if (isDark) PutihBersih else SlateCharcoalText
             )
         ) {

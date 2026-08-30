@@ -64,12 +64,18 @@ import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOption
 import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOptionsSheet
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.GoldContainerLight
 import com.iqbalwork.robithoh.core.designsystem.theme.HijauKhasRobithoh
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
@@ -98,7 +104,13 @@ fun GenericDocumentReaderScreen(
     var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
     var fontScale by rememberSaveable { mutableStateOf(1.0f) }
+    val isSystemDark = RabithohTheme.colors.isDark
+    var readerTheme by rememberSaveable { mutableStateOf(if (isSystemDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(isSystemDark) {
+        readerTheme = if (isSystemDark) ReaderTheme.DARK else ReaderTheme.WHITE
+    }
 
     val docInfo = remember(currentDocId) { repository.getDocumentById(currentDocId) }
     val isDzikirDoc = currentDocId.contains("dzikir", ignoreCase = true) ||
@@ -164,7 +176,7 @@ fun GenericDocumentReaderScreen(
                 )
             )
         },
-        containerColor = PaperBackgroundLight
+        containerColor = readerTheme.backgroundColor
     ) { padding ->
         Box(
             modifier = Modifier
@@ -212,7 +224,7 @@ fun GenericDocumentReaderScreen(
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(PaperBackgroundLight)
+                                .background(readerTheme.backgroundColor)
                                 .padding(horizontal = 16.dp, vertical = 6.dp),
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
@@ -220,6 +232,7 @@ fun GenericDocumentReaderScreen(
                             if (doc.info.alternateLanguageDocId != null) {
                                 ReaderLanguageTabSwitch(
                                     currentDoc = doc.info,
+                                    readerTheme = readerTheme,
                                     onSwitchDoc = { newDocId ->
                                         val cached = repository.getCachedDocument(newDocId)
                                         if (cached != null) {
@@ -234,6 +247,7 @@ fun GenericDocumentReaderScreen(
                             if (hasShortcuts) {
                                 DocumentSectionShortcutRow(
                                     docId = doc.info.id,
+                                    readerTheme = readerTheme,
                                     sections = sections,
                                     selectedSectionIndex = currentVisibleSectionIndex,
                                     onSelectSection = { idx ->
@@ -268,7 +282,8 @@ fun GenericDocumentReaderScreen(
                                         SingleContinuousDocumentCard(
                                             rawContent = sec.content,
                                             fontScale = fontScale,
-                                            isForceCentered = isDoaDoc
+                                            isForceCentered = isDoaDoc,
+                                            readerTheme = readerTheme
                                         )
                                     }
                                     item(key = "bottom_spacer_${sec.id}") {
@@ -290,7 +305,8 @@ fun GenericDocumentReaderScreen(
                                             SingleContinuousDocumentCard(
                                                 rawContent = sec.content,
                                                 fontScale = fontScale,
-                                                isForceCentered = isDoaDoc
+                                                isForceCentered = isDoaDoc,
+                                                readerTheme = readerTheme
                                             )
                                         }
                                     } else {
@@ -298,7 +314,8 @@ fun GenericDocumentReaderScreen(
                                             SingleContinuousDocumentCard(
                                                 rawContent = doc.rawContent,
                                                 fontScale = fontScale,
-                                                isForceCentered = isDoaDoc
+                                                isForceCentered = isDoaDoc,
+                                                readerTheme = readerTheme
                                             )
                                         }
                                     }
@@ -309,6 +326,7 @@ fun GenericDocumentReaderScreen(
                                             verse = verse,
                                             fontScale = fontScale,
                                             isCentered = isDoaDoc,
+                                            readerTheme = readerTheme,
                                             onClick = { selectedVerseForOptions = verse }
                                         )
                                     }
@@ -341,6 +359,8 @@ fun GenericDocumentReaderScreen(
         TextReaderSettingsSheet(
             fontScale = fontScale,
             onFontScaleChange = { fontScale = it },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerTheme = it },
             onDismiss = { showSettingsDialog = false }
         )
     }
@@ -404,10 +424,11 @@ fun GenericDocumentReaderScreen(
 }
 
 @Composable
-private fun DocumentHeaderCard(info: LiturgyDocument) {
+private fun DocumentHeaderCard(info: LiturgyDocument, readerTheme: ReaderTheme = ReaderTheme.WHITE) {
     Card(
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = readerTheme.cardBackgroundColor),
+        border = BorderStroke(1.dp, readerTheme.cardBorderColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -422,7 +443,7 @@ private fun DocumentHeaderCard(info: LiturgyDocument) {
                     text = info.arabicTitle,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextCharcoal,
+                    color = readerTheme.arabicTextColor,
                     textAlign = TextAlign.Center,
                     lineHeight = 38.sp
                 )
@@ -432,7 +453,7 @@ private fun DocumentHeaderCard(info: LiturgyDocument) {
                 text = info.title,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextCharcoal,
+                color = readerTheme.primaryTextColor,
                 textAlign = TextAlign.Center
             )
             if (info.subtitle.isNotEmpty()) {
@@ -440,7 +461,7 @@ private fun DocumentHeaderCard(info: LiturgyDocument) {
                 Text(
                     text = info.subtitle,
                     fontSize = 13.sp,
-                    color = TextMuted,
+                    color = readerTheme.secondaryTextColor,
                     textAlign = TextAlign.Center
                 )
             }
@@ -466,13 +487,15 @@ private fun DocumentHeaderCard(info: LiturgyDocument) {
 @Composable
 private fun ReaderLanguageTabSwitch(
     currentDoc: LiturgyDocument,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onSwitchDoc: (String) -> Unit
 ) {
     val isSunda = currentDoc.languageBadge?.equals("SUNDA", ignoreCase = true) == true || currentDoc.id.endsWith("_su")
 
     Surface(
-        color = Color.White,
+        color = if (readerTheme.isDark) DarkSurfaceVariant else Color.White,
         shape = RoundedCornerShape(14.dp),
+        border = if (readerTheme.isDark) BorderStroke(1.dp, DarkBorder) else null,
         shadowElevation = 1.dp,
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -500,7 +523,7 @@ private fun ReaderLanguageTabSwitch(
                 ) {
                     Text(
                         text = "🇮🇩 Bahasa Indonesia",
-                        color = if (idSelected) Color.White else TextCharcoal,
+                        color = if (idSelected) Color.White else (if (readerTheme.isDark) PutihBersih else TextCharcoal),
                         fontWeight = if (idSelected) FontWeight.Bold else FontWeight.Medium,
                         fontSize = 13.sp
                     )
@@ -524,7 +547,7 @@ private fun ReaderLanguageTabSwitch(
                 ) {
                     Text(
                         text = "🏴 Basa Sunda",
-                        color = if (isSunda) Color.White else TextCharcoal,
+                        color = if (isSunda) Color.White else (if (readerTheme.isDark) PutihBersih else TextCharcoal),
                         fontWeight = if (isSunda) FontWeight.Bold else FontWeight.Medium,
                         fontSize = 13.sp
                     )
@@ -538,11 +561,13 @@ private fun ReaderLanguageTabSwitch(
 private fun SingleContinuousDocumentCard(
     rawContent: String,
     fontScale: Float,
-    isForceCentered: Boolean = false
+    isForceCentered: Boolean = false,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE
 ) {
     Card(
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = readerTheme.cardBackgroundColor),
+        border = BorderStroke(1.dp, readerTheme.cardBorderColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -628,7 +653,7 @@ private fun SingleContinuousDocumentCard(
                         else -> "🕌"
                     }
                     Surface(
-                        color = MerahMarunGelap,
+                        color = if (readerTheme.isDark) Color(0xFF8B1D2C) else MerahMarunGelap,
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 6.dp)
                     ) {
@@ -636,7 +661,7 @@ private fun SingleContinuousDocumentCard(
                             text = "$waktuIcon  $headerText",
                             fontSize = (14 * fontScale).sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White,
+                            color = PutihBersih,
                             modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp)
                         )
                     }
@@ -652,9 +677,9 @@ private fun SingleContinuousDocumentCard(
                         else -> "🗓️"
                     }
                     Surface(
-                        color = MerahMarunGelap.copy(alpha = 0.08f),
+                        color = if (readerTheme.isDark) DarkSurfaceVariant else MerahMarunGelap.copy(alpha = 0.08f),
                         shape = RoundedCornerShape(10.dp),
-                        border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                        border = androidx.compose.foundation.BorderStroke(1.5.dp, if (readerTheme.isDark) DarkBorder else MerahMerdeka.copy(alpha = 0.5f)),
                         modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 4.dp)
                     ) {
                         Row(
@@ -667,7 +692,7 @@ private fun SingleContinuousDocumentCard(
                                 text = headerText,
                                 fontSize = (16 * fontScale).sp,
                                 fontWeight = FontWeight.ExtraBold,
-                                color = MerahMarunGelap
+                                color = if (readerTheme.isDark) PutihBersih else MerahMarunGelap
                             )
                         }
                     }
@@ -691,9 +716,9 @@ private fun SingleContinuousDocumentCard(
                             else -> "🗓️"
                         }
                         Surface(
-                            color = MerahMarunGelap.copy(alpha = 0.08f),
+                            color = if (readerTheme.isDark) DarkSurfaceVariant else MerahMarunGelap.copy(alpha = 0.08f),
                             shape = RoundedCornerShape(10.dp),
-                            border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                            border = androidx.compose.foundation.BorderStroke(1.5.dp, if (readerTheme.isDark) DarkBorder else MerahMerdeka.copy(alpha = 0.5f)),
                             modifier = Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 4.dp)
                         ) {
                             Row(
@@ -706,7 +731,7 @@ private fun SingleContinuousDocumentCard(
                                     text = headerText,
                                     fontSize = (16 * fontScale).sp,
                                     fontWeight = FontWeight.ExtraBold,
-                                    color = MerahMarunGelap
+                                    color = if (readerTheme.isDark) PutihBersih else MerahMarunGelap
                                 )
                             }
                         }
@@ -731,7 +756,7 @@ private fun SingleContinuousDocumentCard(
                             text = headerText,
                             fontSize = (15 * fontScale).sp,
                             fontWeight = FontWeight.Bold,
-                            color = MerahMarunGelap
+                            color = if (readerTheme.isDark) EmasMuda else MerahMarunGelap
                         )
                     }
                 }
@@ -778,7 +803,7 @@ private fun SingleContinuousDocumentCard(
                                     fontSize = (22 * fontScale).sp,
                                     lineHeight = (38 * fontScale).sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = TextCharcoal,
+                                    color = readerTheme.arabicTextColor,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
                                 )
@@ -799,9 +824,9 @@ private fun SingleContinuousDocumentCard(
                                 }
                             } else if (isManqobahHeading) {
                                 Surface(
-                                    color = GoldContainerLight.copy(alpha = 0.5f),
+                                    color = if (readerTheme.isDark) DarkSurfaceVariant else GoldContainerLight.copy(alpha = 0.5f),
                                     shape = RoundedCornerShape(10.dp),
-                                    border = androidx.compose.foundation.BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.35f)),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, if (readerTheme.isDark) DarkBorder else EmasKhidmat.copy(alpha = 0.35f)),
                                     modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
                                 ) {
                                     Text(
@@ -809,7 +834,7 @@ private fun SingleContinuousDocumentCard(
                                         fontSize = (14 * fontScale).sp,
                                         lineHeight = (21 * fontScale).sp,
                                         fontWeight = FontWeight.Bold,
-                                        color = MerahMarunGelap,
+                                        color = if (readerTheme.isDark) EmasMuda else MerahMarunGelap,
                                         modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
                                     )
                                 }
@@ -825,9 +850,9 @@ private fun SingleContinuousDocumentCard(
                                     else -> "🗓️"
                                 }
                                 Surface(
-                                    color = MerahMarunGelap.copy(alpha = 0.08f),
+                                    color = if (readerTheme.isDark) DarkSurfaceVariant else MerahMarunGelap.copy(alpha = 0.08f),
                                     shape = RoundedCornerShape(10.dp),
-                                    border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                                    border = androidx.compose.foundation.BorderStroke(1.5.dp, if (readerTheme.isDark) DarkBorder else MerahMerdeka.copy(alpha = 0.5f)),
                                     modifier = Modifier.fillMaxWidth().padding(top = 10.dp, bottom = 4.dp)
                                 ) {
                                     Row(
@@ -840,7 +865,7 @@ private fun SingleContinuousDocumentCard(
                                             text = headerText,
                                             fontSize = (16 * fontScale).sp,
                                             fontWeight = FontWeight.ExtraBold,
-                                            color = MerahMarunGelap
+                                            color = if (readerTheme.isDark) PutihBersih else MerahMarunGelap
                                         )
                                     }
                                 }
@@ -862,7 +887,7 @@ private fun SingleContinuousDocumentCard(
                                     verticalAlignment = Alignment.Top
                                 ) {
                                     Surface(
-                                        color = MerahMerdeka.copy(alpha = 0.1f),
+                                        color = if (readerTheme.isDark) MerahMerdeka.copy(alpha = 0.25f) else MerahMerdeka.copy(alpha = 0.1f),
                                         shape = RoundedCornerShape(6.dp),
                                         modifier = Modifier.size(24.dp)
                                     ) {
@@ -871,7 +896,7 @@ private fun SingleContinuousDocumentCard(
                                                 text = num,
                                                 fontSize = 12.sp,
                                                 fontWeight = FontWeight.Bold,
-                                                color = MerahMerdeka
+                                                color = if (readerTheme.isDark) Color(0xFFFF8A94) else MerahMerdeka
                                             )
                                         }
                                     }
@@ -880,7 +905,7 @@ private fun SingleContinuousDocumentCard(
                                         text = text,
                                         fontSize = if (isNumberedLatinArabic) (14.5f * fontScale).sp else (14 * fontScale).sp,
                                         lineHeight = if (isNumberedLatinArabic) (23 * fontScale).sp else (22 * fontScale).sp,
-                                        color = TextCharcoal,
+                                        color = if (isNumberedLatinArabic) (if (readerTheme.isDark) EmasMuda else Color(0xFF8C5B00)) else readerTheme.primaryTextColor,
                                         fontWeight = if (isNumberedBold || isNumberedLatinArabic) FontWeight.Bold else FontWeight.Normal,
                                         fontStyle = if (isNumberedLatinArabic) FontStyle.Italic else FontStyle.Normal,
                                         modifier = Modifier.weight(1f)
@@ -906,7 +931,7 @@ private fun SingleContinuousDocumentCard(
                                         text = cleanBullet,
                                         fontSize = (14 * fontScale).sp,
                                         lineHeight = (22 * fontScale).sp,
-                                        color = TextCharcoal,
+                                        color = readerTheme.primaryTextColor,
                                         fontWeight = if (isBulletBold) FontWeight.Bold else FontWeight.Normal,
                                         modifier = Modifier.weight(1f)
                                     )
@@ -1001,8 +1026,9 @@ private fun SingleContinuousDocumentCard(
                                         else -> FontStyle.Normal
                                     },
                                     color = when {
-                                        isTranslation -> TextMuted
-                                        else -> TextCharcoal
+                                        isLatinArabic -> if (readerTheme.isDark) EmasMuda else Color(0xFF8C5B00)
+                                        isTranslation -> readerTheme.secondaryTextColor
+                                        else -> readerTheme.primaryTextColor
                                     },
                                     textAlign = if (isCentered || isForceCentered) TextAlign.Center else TextAlign.Start,
                                     modifier = Modifier.fillMaxWidth()
@@ -1060,13 +1086,15 @@ private fun VerseReadingCard(
     verse: LiturgyVerse,
     fontScale: Float,
     isCentered: Boolean = false,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: (() -> Unit)? = null
 ) {
     var countProgress by remember(verse.index) { mutableStateOf(0) }
 
     Card(
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = readerTheme.cardBackgroundColor),
+        border = BorderStroke(1.dp, readerTheme.cardBorderColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         modifier = Modifier
             .fillMaxWidth()
@@ -1113,7 +1141,7 @@ private fun VerseReadingCard(
                         text = verse.title,
                         fontSize = (15 * fontScale).sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = MerahMarunGelap,
+                        color = if (readerTheme.isDark) EmasMuda else MerahMarunGelap,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -1127,7 +1155,7 @@ private fun VerseReadingCard(
                         fontSize = (24 * fontScale).sp,
                         lineHeight = (48 * fontScale).sp,
                         fontWeight = FontWeight.Normal,
-                        color = TextCharcoal,
+                        color = readerTheme.arabicTextColor,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Right,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -1140,7 +1168,7 @@ private fun VerseReadingCard(
                         text = parseMarkdownFormatting(verse.latin),
                         fontSize = (14 * fontScale).sp,
                         lineHeight = (22 * fontScale).sp,
-                        color = Color(0xFF64748B),
+                        color = if (readerTheme.isDark) EmasMuda else Color(0xFF64748B),
                         fontStyle = FontStyle.Italic,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                         modifier = Modifier.fillMaxWidth()
@@ -1154,7 +1182,7 @@ private fun VerseReadingCard(
                         text = parseMarkdownFormatting(verse.translation),
                         fontSize = (14 * fontScale).sp,
                         lineHeight = (22 * fontScale).sp,
-                        color = TextCharcoal,
+                        color = readerTheme.primaryTextColor,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -1164,7 +1192,7 @@ private fun VerseReadingCard(
                 if (verse.note.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Surface(
-                        color = PaperBackgroundLight,
+                        color = if (readerTheme.isDark) DarkSurfaceVariant else PaperBackgroundLight,
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -1172,7 +1200,7 @@ private fun VerseReadingCard(
                             text = parseMarkdownFormatting(verse.note),
                             fontSize = (12 * fontScale).sp,
                             lineHeight = (18 * fontScale).sp,
-                            color = Color(0xFF475569),
+                            color = if (readerTheme.isDark) PutihBersih else Color(0xFF475569),
                             textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                             modifier = Modifier.fillMaxWidth().padding(10.dp)
                         )
@@ -1357,6 +1385,7 @@ fun DocumentSectionShortcutRow(
     docId: String,
     sections: List<ReaderDocumentSection>,
     selectedSectionIndex: Int,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onSelectSection: (Int) -> Unit
 ) {
     val shortcutRowState = rememberLazyListState()
@@ -1472,11 +1501,11 @@ fun DocumentSectionShortcutRow(
                 }
 
                 Surface(
-                    color = if (isSelected) MerahMerdeka else Color.White,
+                    color = if (isSelected) MerahMerdeka else readerTheme.surfaceColor,
                     shape = RoundedCornerShape(12.dp),
                     border = BorderStroke(
                         width = 1.dp,
-                        color = if (isSelected) MerahMerdeka else MerahMerdeka.copy(alpha = 0.25f)
+                        color = if (isSelected) MerahMerdeka else (if (readerTheme.isDark) Color(0xFF3E3636) else MerahMerdeka.copy(alpha = 0.25f))
                     ),
                     shadowElevation = if (isSelected) 2.dp else 0.5.dp,
                     modifier = Modifier
@@ -1496,7 +1525,7 @@ fun DocumentSectionShortcutRow(
                             text = label,
                             fontSize = 12.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.SemiBold,
-                            color = if (isSelected) Color.White else MerahMarunGelap
+                            color = if (isSelected) Color.White else (if (readerTheme.isDark) Color(0xFFFFB3B8) else MerahMarunGelap)
                         )
                     }
                 }

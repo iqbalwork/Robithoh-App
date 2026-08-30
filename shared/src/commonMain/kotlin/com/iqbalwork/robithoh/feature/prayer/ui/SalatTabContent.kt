@@ -45,6 +45,14 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
@@ -210,6 +218,7 @@ fun SalatTabContent(
     onNavigateToQibla: () -> Unit = {},
     viewModel: AmaliyahViewModel? = null
 ) {
+    val isDark = RabithohTheme.colors.isDark
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val vm = viewModel ?: remember(database) {
         AmaliyahViewModel(database = database)
@@ -255,7 +264,7 @@ fun SalatTabContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(PaperBackgroundLight),
+            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
         contentPadding = PaddingValues(
             start = 16.dp,
             end = 16.dp,
@@ -276,17 +285,17 @@ fun SalatTabContent(
                         text = "Jadwal Sholat",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = TextCharcoal
+                        color = if (isDark) PutihBersih else TextCharcoal
                     )
                     Text(
                         text = "Jadwal sholat wajib & sunnah TQN",
                         fontSize = 12.sp,
-                        color = TextMuted
+                        color = if (isDark) DarkMuted else TextMuted
                     )
                 }
 
                 Surface(
-                    color = if (state.isGpsActive) Color(0xFFDDF5E6) else Color(0xFFF0F0F0),
+                    color = if (isDark) DarkSurfaceVariant else (if (state.isGpsActive) Color(0xFFDDF5E6) else Color(0xFFF0F0F0)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier.clickable {
                         if (locationProvider.hasLocationPermission()) {
@@ -304,7 +313,7 @@ fun SalatTabContent(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = if (state.isFetchingLocation) "Mencari GPS..." else (schedule?.locationName ?: "Panjalu / Ciamis"),
-                            color = if (state.isGpsActive) Color(0xFF1E824C) else TextCharcoal,
+                            color = if (isDark) (if (state.isGpsActive) Color(0xFF86EFAC) else PutihBersih) else (if (state.isGpsActive) Color(0xFF1E824C) else TextCharcoal),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -317,7 +326,8 @@ fun SalatTabContent(
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -329,14 +339,14 @@ fun SalatTabContent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(-1)) }) {
-                        Text("‹", fontSize = 24.sp, color = TextCharcoal)
+                        Text("‹", fontSize = 24.sp, color = if (isDark) PutihBersih else TextCharcoal)
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = schedule?.dateFormatted ?: "Hari ini",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TextCharcoal
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
                         val relativeLabel = when (state.selectedDateOffsetDays) {
                             0 -> "Hari ini"
@@ -347,11 +357,11 @@ fun SalatTabContent(
                         Text(
                             text = "${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"} · $relativeLabel",
                             fontSize = 11.sp,
-                            color = TextMuted
+                            color = if (isDark) DarkMuted else TextMuted
                         )
                     }
                     IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(1)) }) {
-                        Text("›", fontSize = 24.sp, color = TextCharcoal)
+                        Text("›", fontSize = 24.sp, color = if (isDark) PutihBersih else TextCharcoal)
                     }
                 }
             }
@@ -366,7 +376,8 @@ fun SalatTabContent(
             )
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -385,7 +396,7 @@ fun SalatTabContent(
                     ) {
                         Surface(
                             shape = CircleShape,
-                            color = Color(0xFFFFF0F2),
+                            color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF0F2),
                             border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.6f)),
                             modifier = Modifier.size(40.dp)
                         ) {
@@ -399,7 +410,7 @@ fun SalatTabContent(
                                 text = "Arah Kiblat",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = TextCharcoal
+                                color = if (isDark) PutihBersih else TextCharcoal
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
@@ -417,7 +428,7 @@ fun SalatTabContent(
 
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = MerahMerdeka.copy(alpha = 0.08f)
+                        color = MerahMerdeka.copy(alpha = 0.15f)
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -450,7 +461,7 @@ fun SalatTabContent(
                 text = "JADWAL SHOLAT (${schedule?.methodName ?: state.selectedCalculationMethod.name})",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
         }
@@ -464,11 +475,12 @@ fun SalatTabContent(
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = when {
-                        p.isCurrent -> Color(0xFFFDE8C4)
-                        p.isPast -> Color(0xFFF8F6F2)
-                        else -> Color.White
+                        p.isCurrent -> if (isDark) Color(0xFF2C241B) else Color(0xFFFDE8C4)
+                        p.isPast -> if (isDark) DarkSurfaceVariant.copy(alpha = 0.6f) else Color(0xFFF8F6F2)
+                        else -> if (isDark) DarkSurface else Color.White
                     }
                 ),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = if (p.isCurrent) 2.dp else (if (p.isMandatory) 1.dp else 0.dp)),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -491,7 +503,7 @@ fun SalatTabContent(
                             Surface(
                                 shape = RoundedCornerShape(7.dp),
                                 color = if (isLogged) Color(0xFF1E824C) else Color.Transparent,
-                                border = if (!isLogged) androidx.compose.foundation.BorderStroke(1.5.dp, Color(0xFFC7BAA7)) else null,
+                                border = if (!isLogged) androidx.compose.foundation.BorderStroke(1.5.dp, if (isDark) DarkBorder else Color(0xFFC7BAA7)) else null,
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable {
@@ -522,7 +534,7 @@ fun SalatTabContent(
                                         text = p.name,
                                         fontWeight = if (p.isCurrent || p.isMandatory) FontWeight.Bold else FontWeight.SemiBold,
                                         fontSize = 15.sp,
-                                        color = if (p.isPast) TextMuted else TextCharcoal
+                                        color = if (p.isPast) (if (isDark) DarkMuted else TextMuted) else (if (isDark) PutihBersih else TextCharcoal)
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
@@ -530,7 +542,7 @@ fun SalatTabContent(
                                     text = p.statusSubtitle,
                                     fontSize = 11.sp,
                                     fontWeight = if (p.isCurrent) FontWeight.Medium else FontWeight.Normal,
-                                    color = if (p.isCurrent) Color(0xFF8C5B00) else TextMuted
+                                    color = if (p.isCurrent) (if (isDark) EmasMuda else Color(0xFF8C5B00)) else (if (isDark) DarkMuted else TextMuted)
                                 )
                             }
                         }
@@ -541,7 +553,7 @@ fun SalatTabContent(
                                 text = p.time,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = if (p.isCurrent) 17.sp else 16.sp,
-                                color = if (p.isPast) TextMuted else TextCharcoal
+                                color = if (p.isPast) (if (isDark) DarkMuted else TextMuted) else (if (isDark) PutihBersih else TextCharcoal)
                             )
                             val prayerType = when (p.name) {
                                 "Imsak" -> PrayerType.IMSAK
@@ -556,7 +568,7 @@ fun SalatTabContent(
 
                             if (notifMode != null && prayerType != null) {
                                 Spacer(modifier = Modifier.width(10.dp))
-                                val bgModeColor = when (notifMode) {
+                                val bgModeColor = if (isDark) DarkSurfaceVariant else when (notifMode) {
                                     PrayerNotificationMode.ADZAN -> if (p.isCurrent) Color(0xFFFCE1B6) else Color(0xFFE2F3E7)
                                     PrayerNotificationMode.PUSH_NOTIFICATION -> Color(0xFFE1F5FE)
                                     PrayerNotificationMode.SILENT -> Color(0xFFF0F0F0)
@@ -600,7 +612,7 @@ fun SalatTabContent(
             Text(
                 text = "Ketuk baris untuk mencatat status · ketuk ikon untuk mengatur notifikasi",
                 fontSize = 11.5.sp,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
             )
         }
@@ -612,7 +624,7 @@ fun SalatTabContent(
                 text = "PENGATURAN",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
         }
@@ -631,21 +643,23 @@ fun SalatTabContent(
 
             Card(
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     SettingItemRow(
                         icon = "🔔",
-                        iconBg = Color(0xFFFFECEF),
+                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFECEF),
                         title = "Suara adzan",
                         subtitle = voiceSubtitle,
+                        isDark = isDark,
                         onClick = {
                             vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
                         }
                     )
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -656,7 +670,7 @@ fun SalatTabContent(
                             modifier = Modifier.weight(1f)
                         ) {
                             Surface(
-                                color = Color(0xFFFFF3E0),
+                                color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
                                 shape = CircleShape,
                                 modifier = Modifier.size(36.dp)
                             ) {
@@ -670,13 +684,13 @@ fun SalatTabContent(
                                     text = "Pengingat sebelum sholat",
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.SemiBold,
-                                    color = TextCharcoal
+                                    color = if (isDark) PutihBersih else TextCharcoal
                                 )
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     text = "Notifikasi 10 menit sebelum waktu tiba",
                                     fontSize = 11.5.sp,
-                                    color = TextMuted
+                                    color = if (isDark) DarkMuted else TextMuted
                                 )
                             }
                         }
@@ -687,20 +701,22 @@ fun SalatTabContent(
                             colors = SwitchDefaults.colors(checkedTrackColor = MerahMerdeka)
                         )
                     }
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     SettingItemRow(
                         icon = "⏰",
-                        iconBg = Color(0xFFE3F2FD),
+                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE3F2FD),
                         title = "Metode perhitungan",
                         subtitle = state.selectedCalculationMethod.name,
+                        isDark = isDark,
                         onClick = onNavigateToCalculationMethods
                     )
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     SettingItemRow(
                         icon = "⏱️",
-                        iconBg = Color(0xFFE0F7FA),
+                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE0F7FA),
                         title = "Koreksi waktu sholat",
                         subtitle = "Subuh: ${state.prayerAdjustments.getOffsetLabel(PrayerType.SUBUH)}, Dzuhur: ${state.prayerAdjustments.getOffsetLabel(PrayerType.DZUHUR)}, Ashar: ${state.prayerAdjustments.getOffsetLabel(PrayerType.ASHAR)}",
+                        isDark = isDark,
                         onClick = onNavigateToPrayerAdjustments
                     )
                 }
@@ -748,6 +764,7 @@ private fun SettingItemRow(
     iconBg: Color,
     title: String,
     subtitle: String,
+    isDark: Boolean = false,
     onClick: () -> Unit = {}
 ) {
     Row(
@@ -772,12 +789,12 @@ private fun SettingItemRow(
             }
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(title, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
+                Text(title, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = if (isDark) PutihBersih else TextCharcoal)
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(subtitle, fontSize = 11.5.sp, color = TextMuted)
+                Text(subtitle, fontSize = 11.5.sp, color = if (isDark) DarkMuted else TextMuted)
             }
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Text("›", fontSize = 18.sp, color = TextMuted)
+        Text("›", fontSize = 18.sp, color = if (isDark) DarkMuted else TextMuted)
     }
 }

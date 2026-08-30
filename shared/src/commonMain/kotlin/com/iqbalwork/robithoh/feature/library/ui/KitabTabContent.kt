@@ -52,6 +52,13 @@ import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import androidx.compose.foundation.BorderStroke
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
@@ -76,6 +83,8 @@ fun KitabTabContent(
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     val allSurahs = remember { QuranData.surahs }
+
+    val isDark = RabithohTheme.colors.isDark
 
     val filteredSurahs = remember(searchQuery) {
         if (searchQuery.isBlank()) {
@@ -103,7 +112,7 @@ fun KitabTabContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(PaperBackgroundLight),
+            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
         contentPadding = PaddingValues(
             start = 16.dp,
             end = 16.dp,
@@ -159,23 +168,23 @@ fun KitabTabContent(
                             text = "Al-Qur'an",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TextCharcoal
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
                         Text(
                             text = "114 Surah · Mushaf Digital",
                             fontSize = 12.sp,
-                            color = TextMuted
+                            color = if (isDark) DarkMuted else TextMuted
                         )
                     }
                 }
 
                 Surface(
-                    color = Color(0xFFDDF5E6),
+                    color = if (isDark) DarkSurfaceVariant else Color(0xFFDDF5E6),
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Text(
                         text = "الْقُرْآنُ الْكَرِيمُ",
-                        color = Color(0xFF1E824C),
+                        color = if (isDark) EmasMuda else Color(0xFF1E824C),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
@@ -248,10 +257,12 @@ fun KitabTabContent(
                 leadingIcon = { Text("🔍", fontSize = 14.sp) },
                 shape = RoundedCornerShape(24.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = if (isDark) DarkSurface else Color.White,
+                    unfocusedContainerColor = if (isDark) DarkSurface else Color.White,
+                    focusedTextColor = if (isDark) PutihBersih else TextCharcoal,
+                    unfocusedTextColor = if (isDark) PutihBersih else TextCharcoal,
                     focusedBorderColor = MerahMerdeka,
-                    unfocusedBorderColor = BorderSubtle
+                    unfocusedBorderColor = if (isDark) DarkBorder else BorderSubtle
                 ),
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
@@ -264,7 +275,7 @@ fun KitabTabContent(
                 text = "DAFTAR SURAH (${filteredSurahs.size})",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
         }
@@ -276,7 +287,8 @@ fun KitabTabContent(
 
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -290,7 +302,7 @@ fun KitabTabContent(
                 ) {
                     // Number Badge
                     Surface(
-                        color = badgeColor,
+                        color = if (isDark) DarkSurfaceVariant else badgeColor,
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.size(38.dp)
                     ) {
@@ -299,7 +311,7 @@ fun KitabTabContent(
                                 text = "${surah.number}",
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = TextCharcoal
+                                color = if (isDark) PutihBersih else TextCharcoal
                             )
                         }
                     }
@@ -312,16 +324,16 @@ fun KitabTabContent(
                                 text = surah.nameLatin,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 15.sp,
-                                color = TextCharcoal
+                                color = if (isDark) PutihBersih else TextCharcoal
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Surface(
-                                color = if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFFFFF3E0) else Color(0xFFE8F5E9),
+                                color = if (isDark) (if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFF422006) else Color(0xFF052E16)) else (if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFFFFF3E0) else Color(0xFFE8F5E9)),
                                 shape = RoundedCornerShape(4.dp)
                             ) {
                                 Text(
                                     text = surah.revelationType.label,
-                                    color = if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFFE65100) else Color(0xFF2E7D32),
+                                    color = if (isDark) (if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFFFDBA74) else Color(0xFF86EFAC)) else (if (surah.revelationType == RevelationType.MAKKIYAH) Color(0xFFE65100) else Color(0xFF2E7D32)),
                                     fontSize = 9.sp,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
@@ -332,7 +344,7 @@ fun KitabTabContent(
                         Text(
                             text = "${surah.indonesianMeaning} • ${surah.numberOfAyahs} Ayat",
                             fontSize = 11.sp,
-                            color = TextMuted
+                            color = if (isDark) DarkMuted else TextMuted
                         )
                     }
 
@@ -342,7 +354,7 @@ fun KitabTabContent(
                         text = surah.nameArabic,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = MerahMarunGelap,
+                        color = if (isDark) EmasMuda else MerahMarunGelap,
                         textAlign = TextAlign.Right
                     )
                 }

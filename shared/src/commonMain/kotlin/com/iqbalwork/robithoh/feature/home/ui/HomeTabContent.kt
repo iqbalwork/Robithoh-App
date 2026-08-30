@@ -37,6 +37,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import androidx.compose.foundation.BorderStroke
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
@@ -78,6 +87,8 @@ fun HomeTabContent(
     val countdown = state.nextPrayerCountdown
     val schedule = state.prayerSchedule
 
+    val isDark = RabithohTheme.colors.isDark
+
     val menuGridItems = listOf(
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
         HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
@@ -98,7 +109,7 @@ fun HomeTabContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(PaperBackgroundLight),
+            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
         contentPadding = PaddingValues(
             start = 16.dp,
             end = 16.dp,
@@ -119,18 +130,18 @@ fun HomeTabContent(
                         text = "Assalamu'alaikum",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = TextCharcoal
+                        color = if (isDark) PutihBersih else TextCharcoal
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "${schedule?.dateFormatted ?: "Hari ini"} · ${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"}",
                         fontSize = 12.sp,
-                        color = TextMuted
+                        color = if (isDark) DarkMuted else TextMuted
                     )
                 }
 
                 Surface(
-                    color = Color(0xFFFDEED2),
+                    color = if (isDark) DarkSurfaceVariant else Color(0xFFFDEED2),
                     shape = CircleShape,
                     modifier = Modifier.size(40.dp)
                 ) {
@@ -145,7 +156,8 @@ fun HomeTabContent(
         item {
             Card(
                 shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFEE8C8)),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color(0xFFFEE8C8)),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -165,7 +177,7 @@ fun HomeTabContent(
                             text = "SHOLAT BERIKUTNYA",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF8C5B00),
+                            color = if (isDark) EmasMuda else Color(0xFF8C5B00),
                             letterSpacing = 0.5.sp
                         )
                         Text(
@@ -190,7 +202,7 @@ fun HomeTabContent(
                             text = countdown?.nextPrayerName ?: "Subuh",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TextCharcoal
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
                     }
                     Spacer(modifier = Modifier.height(4.dp))
@@ -202,14 +214,14 @@ fun HomeTabContent(
                         },
                         fontSize = 32.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = TextCharcoal,
+                        color = if (isDark) PutihBersih else TextCharcoal,
                         letterSpacing = 0.5.sp
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${if (state.isFetchingLocation) "Mencari lokasi..." else (schedule?.locationName ?: "Panjalu, Ciamis")} (${schedule?.timezone ?: "WIB"})",
                         fontSize = 12.sp,
-                        color = Color(0xFF785B28)
+                        color = if (isDark) DarkMuted else Color(0xFF785B28)
                     )
                 }
             }
@@ -221,7 +233,7 @@ fun HomeTabContent(
                 text = "Menu Amaliyah",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextCharcoal
+                color = if (isDark) PutihBersih else TextCharcoal
             )
         }
 
@@ -239,6 +251,7 @@ fun HomeTabContent(
                             Box(modifier = Modifier.weight(1f)) {
                                 MainGridButton(
                                     item = item,
+                                    isDark = isDark,
                                     onClick = {
                                         when (item.id) {
                                             "dzikir" -> onNavigateToDocument("dzikir_tqn")
@@ -271,7 +284,8 @@ fun HomeTabContent(
         item {
             Card(
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFE5F4FD)),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color(0xFFE5F4FD)),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -280,19 +294,19 @@ fun HomeTabContent(
                             text = "KUTIPAN HARI INI",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0284C7),
+                            color = if (isDark) EmasMuda else Color(0xFF0284C7),
                             letterSpacing = 0.5.sp
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Surface(
-                            color = Color(0xFFBAE6FD),
+                            color = if (isDark) DarkSurfaceVariant else Color(0xFFBAE6FD),
                             shape = RoundedCornerShape(4.dp)
                         ) {
                             Text(
                                 text = "TANBIH",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0369A1),
+                                color = if (isDark) EmasMuda else Color(0xFF0369A1),
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                             )
                         }
@@ -303,7 +317,7 @@ fun HomeTabContent(
                         text = "“$kutipanHariIni”",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium,
-                        color = Color(0xFF0F172A),
+                        color = if (isDark) PutihBersih else Color(0xFF0F172A),
                         lineHeight = 19.sp
                     )
 
@@ -311,7 +325,7 @@ fun HomeTabContent(
                     Text(
                         text = "Wasiat Pangersa Abah Sepuh · TQN PP Suryalaya Sirnarasa",
                         fontSize = 11.sp,
-                        color = Color(0xFF475569)
+                        color = if (isDark) DarkMuted else Color(0xFF475569)
                     )
                 }
             }
@@ -326,6 +340,7 @@ fun HomeTabContent(
 @Composable
 private fun MainGridButton(
     item: HomeGridMenuItem,
+    isDark: Boolean = false,
     onClick: () -> Unit
 ) {
     Column(
@@ -356,7 +371,7 @@ private fun MainGridButton(
             text = item.title,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
-            color = TextCharcoal,
+            color = if (isDark) PutihBersih else TextCharcoal,
             textAlign = TextAlign.Center,
             lineHeight = 14.sp,
             maxLines = 2

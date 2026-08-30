@@ -297,7 +297,7 @@ fun AmaliyahScreen(
                             ) {
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        text = "Dzikir Ba'da Sholat Maktubah",
+                                        text = "Dzikir Ba'da Sholat",
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 16.sp,
                                         color = MerahMerdeka

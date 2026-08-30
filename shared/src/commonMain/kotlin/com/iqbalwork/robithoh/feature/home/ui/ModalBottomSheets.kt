@@ -28,6 +28,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahSundaBadge
@@ -61,7 +68,7 @@ fun ManaqibModalBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White,
+        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
         Column(
@@ -74,7 +81,7 @@ fun ManaqibModalBottomSheet(
                 text = "Manaqib",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextCharcoal
+                color = if (RabithohTheme.colors.isDark) PutihBersih else TextCharcoal
             )
             Spacer(modifier = Modifier.height(14.dp))
 
@@ -126,7 +133,7 @@ fun SholatModalBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White,
+        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
         Column(
@@ -139,7 +146,7 @@ fun SholatModalBottomSheet(
                 text = "Sholat",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextCharcoal
+                color = if (RabithohTheme.colors.isDark) PutihBersih else TextCharcoal
             )
             Spacer(modifier = Modifier.height(14.dp))
 
@@ -147,7 +154,7 @@ fun SholatModalBottomSheet(
                 text = "WAKTU & SAFAR",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (RabithohTheme.colors.isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -170,7 +177,7 @@ fun SholatModalBottomSheet(
                 text = "SHOLAT TAHUNAN",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (RabithohTheme.colors.isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -219,7 +226,7 @@ fun SholawatModalBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White,
+        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
         Column(
@@ -283,7 +290,7 @@ fun TahlilZiyarohModalBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White,
+        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
         Column(
@@ -326,7 +333,7 @@ fun DoaModalBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White,
+        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
         Column(
@@ -439,7 +446,7 @@ private fun SheetIconCard(
             text = item.title,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
-            color = TextCharcoal,
+            color = if (RabithohTheme.colors.isDark) PutihBersih else TextCharcoal,
             textAlign = TextAlign.Center,
             maxLines = 1
         )

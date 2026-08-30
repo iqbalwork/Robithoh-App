@@ -69,7 +69,7 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
 * **100% Asset Lokal**: Berkas audio langsung dimuat dari resource bundle aplikasi (tanpa streaming/kuota internet).
 
 ### 6. 📑 Katalog 45+ Amaliyah & Sholat Sunnah
-* Dzikir Ba'da Sholat Maktubah & Khotaman TQN PP Suryalaya Sirnarasa.
+* Dzikir Ba'da Sholat & Khotaman TQN.
 * Panduan Sholat: Sholat Harian, Bulanan, Tahunan, Sholat Safar (Jamak & Qashar), Tarawih & Witir, Sholat Rajab, Nisfu Sya'ban, Lailatul Qadar, dan Sholat Lidaf'il Bala (Rebo Wekasan).
 * Sholawat Thoriqiyyah, Sholawat Bani Hasyim, Sholawat Amjad, Sholawat Badriyyah, Sholawat Jiyaaroh ke Rasulullah SAW, dan Iqomah Subuh.
 * Amaliyah 12 Bulan Hijriyah (Muharram hingga Dzulhijjah).
@@ -247,7 +247,7 @@ Aplikasi ini menyertakan lebih dari **45 dokumen panduan lengkap** yang diparsin
 <details>
 <summary><b>1. Dzikir & Khotaman</b></summary>
 
-* Dzikir Ba'da Sholat Maktubah TQN (`DZIKIR_TQN.md`)
+* Dzikir Ba'da Sholat TQN (`DZIKIR_TQN.md`)
 * Amaliyah Khotaman TQN PP Suryalaya Sirnarasa (`KHOTAMAN_TQN.md`)
 * Tarhim TQN Menjelang Sholat (`TARHIM_TQN.md`)
 * Silsilah 38 Guru Mursyid TQN (`SILSILAH_TQN.md`)
