@@ -50,3 +50,6 @@ keystore.properties
 *.keystore
 *.jks
 /keystore/
+
+# Maestro
+.maestro/
