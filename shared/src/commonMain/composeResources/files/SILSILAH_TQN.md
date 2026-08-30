@@ -1,4 +1,4 @@
-# Silsilah
+# SILSILAH THORIQOT QOODIRIYYAH NAQSYABANDIYYAH
 
 ---
 
@@ -6,7 +6,7 @@ SILSILAH THORIQOT QOODIRIYYAH NAQSYABANDIYYAH PONDOK PESANTREN SURYALAYA
 
 رَبُّ الْأَرْبَابِ وَمُعْتِقُ الرِّقَابِ اَللّٰهُ سُبْحَانَهُ وَتَعَالٰى
 
-1. Robbul Arbaabi, wa Mu’tiqur riqoobi, اللّه Subhaanahu wa Ta’aala
+1. Robbul Arbaabi, wa Mu’tiqur riqoobi, Alloh Subhaanahu wa Ta’aala
 
 سَيِّدُنَا جِبْرِيْلُ عَلَيْهِ السَّلَامُ
 
@@ -155,3 +155,5 @@ SILSILAH THORIQOT QOODIRIYYAH NAQSYABANDIYYAH PONDOK PESANTREN SURYALAYA
 الشَّيْخُ مُحَمَّدُ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ رَضِيَ اللّٰهُ عَنْهُ
 
 38. Syaikh Muhammad Abdul Ghaos Saifullah Maslul Radhiyalloohu ‘anhu
+
+۞۞۞

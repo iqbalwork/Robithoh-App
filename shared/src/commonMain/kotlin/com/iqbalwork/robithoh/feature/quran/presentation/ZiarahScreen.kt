@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,6 +43,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.feature.quran.model.ZiarahSection
 
 @Composable
@@ -211,9 +213,11 @@ private fun ZiarahCard(
             Text(
                 text = section.latinPrayer,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    color = EmasKhidmat,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    color = if (isDark) PutihBersih else TextCharcoal,
+                    fontSize = 13.5.sp,
+                    lineHeight = 20.sp
                 )
             )
             Spacer(modifier = Modifier.height(4.dp))

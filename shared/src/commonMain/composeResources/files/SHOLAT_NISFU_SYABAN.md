@@ -1,4 +1,4 @@
-# Sholat Nisfu Sa&#8217;ban
+# Sholat Nisfu Sya'ban
 
 ---
 
@@ -14,20 +14,18 @@ Niat Sholat Nishfu Sya’ban                   :
 
 Bacaan : Setelah Al-Fatihah membaca Al-Ikhlas 10x setiap roka’at
 
-Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari اللّه Azza Wa Jalla.
+Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syaikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 roka’at (50x salam) dan setiap roka’at setelah Al-Fatihah membaca surat Al-Ikhlas (Qulhu) sebanyak 10x. Sholat Nishfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari *اللّه Azza Wa Jalla*.
 
-Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : “Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka اللّه Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, اللّه Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan اللّه Azza Wa Jalla”.
+Sebagaimana diriwayatkan oleh Al-Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : *“Barang siapa yang mengerjakan Sholat pada malam Nishfu Sya’ban, maka Alloh Azza Wa Jalla akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, Alloh Azza Wa Jalla mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan Alloh Azza Wa Jalla”.*
+
+---
 
 MAKLUMAT
-
 Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
-
 Sabtu, 12 Maret 2022/09 Sya’ban/Romadlon 12 1443 H
 
 Kepada yang terhormat,
-
 Para Ikhwan di Seluruh Madrosah + Roudloh TQN Suryalaya Sirnarasa
-
 di Seluruh Dunia
 
 السّلام عليكم ورحمة الله وبركاته
@@ -37,32 +35,28 @@ Dengan ini menyampai MAKLUMAT Pangersa Abah kepada kepada para Ikhwan di seluruh
 Demikian MAKLUMAT Pangersa Abah disampaikan untuk kita amalkan bersama.
 
 Salam Khidmah,
-
 Pembantu Khusus ABAH AOS
 
 Tembusan:
 
-Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
+ 1. Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
+ 2. Sekpri Guru Agung
+ 3. Adc
+ 4. Arsip
 
-Sekpri Guru Agung
+Keterangan :*Merujuk pada maklumat diatas, maka dilakukan Puasa Sunnah sebelum pelaksanaan Sholat Sunnah Nishfu Sya’ban.*
 
-Adc
-
-Arsip
-
-Keterangan : Merujuk pada maklumat diatas, maka dilakukan Puasa Sunnah sebelum pelaksanaan Sholat Sunnah Nishfu Sya’ban.
+---
 
 Tata Cara Pelaksanaan
 
 Setelah Sholat Maghrib dilanjutkan dengan :
 
-Dzikir Harian s/d Selesai
+- Dzikir Harian s/d Selesai
+- Sholat Ba’diyah Maghrib
+- Sholat Sunnah Nishfu Sya’ban
 
-Sholat Ba’diyah Maghrib
-
-Sholat Sunnah Nishfu Sya’ban
-
-Catatan : 5 Menit menjelang Sholat Isya berhenti terlebih dahulu & dilanjutkan membaca Sholawat Bani Hasyim.
+Catatan :5 Menit menjelang Sholat Isya berhenti terlebih dahulu & dilanjutkan membaca Sholawat Bani Hasyim.
 
 – Adzan Sholat Isya
 
@@ -72,9 +66,11 @@ Catatan : 5 Menit menjelang Sholat Isya berhenti terlebih dahulu & dilanjutkan 
 
 – Sholat Sunnah Ba’diyah Isya
 
-– Dzikir Harian s/d Selesai.
+– Dzikir Harian s/dSelesai.
 
 Melanjutkan kembali Sholat Sunnah Nishfu Sya’ban sampai selesai 50x salam, kemudian langsung SUJUD SYUKUR. Selesai.
+
+---
 
 Catatan :
 

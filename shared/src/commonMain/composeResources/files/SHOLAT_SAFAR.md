@@ -2,68 +2,51 @@
 
 ---
 
-## SHOLAT QOSHOR DAN JAMAK TAQDIM KETIKA DALAM PERJALANAN (SAFAR)
+## SHOLAT QOSHOR DAN JAMAK TAQDIM KETIKA DALAM PERJALANAN
 
-Panduan tata cara pelaksanaan Sholat Jamak dan Qashar dalam perjalanan (Safar) sesuai bimbingan Guru Agung Pangersa Abah Aos Ra Qs.
-
----
-
-### A. Sholat Dzuhur dan Ashar (Jamak Taqdim & Qashar)
-
-Sholat Dzuhur dan Ashar dilaksanakan pada waktu Dzuhur dengan meringkas rakaat (Qashar menjadi masing-masing 2 rakaat) dan menggabungkannya (Jamak Taqdim).
-
-#### Niat Sholat Qashar dan Jamak Taqdim Dzuhur dan Ashar:
-
-<div align="center">
-
-### أُصَلِّي فَرْضَ الظُّهْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوْعًا إِلَيْهِ الْعَصْرُ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلّٰهِ تَعَالَى
-
-*Ushollii fardhodh-dhuhri rok’ataini qoshron majmuu’an ilaihil ‘ashru mustaqbilal qiblati adaa’an lillaahi ta’aalaa.*
-
-</div>
-
-**Artinya:**
-> *"Aku niat sholat fardhu Dzuhur dua raka'at diqashar serta dijamak padanya sholat Ashar, menghadap kiblat, tunai karena Allah Ta'ala."*
+Panduan tata cara pelaksanaan Sholat Jamak dan Qoshor dalam perjalanan (Safar) sesuai bimbingan Guru Agung Hadrotus Syeikh Abah Aos Ra Qs.
 
 ---
 
-### B. Sholat Maghrib dan Isya (Jamak Taqdim & Qashar)
+### A. Sholat Dzuhur dan Ashar di Jamak dan Qoshor
 
-Panduan pelaksanaan sholat Qashar dan Jamak Taqdim (Maghrib 3 rakaat dan Isya 2 rakaat di waktu Maghrib) ketika dalam perjalanan:
+Niat Sholat Qoshor dan Jamak Taqdim Dzuhur dan Ashar :
 
-#### Urutan Pelaksanaan:
-1. **Adzan Maghrib**
-2. **Iqomah**
-3. **Niat Sholat Jamak Qashar Maghrib dan Isya:**
+أُصَلِّي فَرْضَ الظُّهْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوْعًا إِلَيْهِ الْعَصْرُ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلّٰهِ تَعَالَى
 
-<div align="center">
+Ushollii fardhodh-dhuhri rok’ataini qoshron majmuu’an ilaihil ‘ashru mustakbilal ka’bah adaa’an lillaahi ta’aalaa
 
-### أُصَلِّي فَرْضَ الْمَغْرِبِ ثَلَاثَ رَكَعَاتٍ مَجْمُوْعًا مَعَ الْعِشَاءِ جَمْعَ قَصْرٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلّٰهِ تَعَالَى
+*Sengaja aku sholat fardhu Dzuhur dua rakaat diqoshor serta dijamak padanya sholat Ashar, menghadap kiblat, tunai karena اللّه Ta'ala.*
 
-*Ushollii fardlol maghribi tsalaatsa roka’aatim majmuu’an ma’al ‘isyaa’i jam’a qoshron mustaqbilal qiblati adaa’an lillaahi ta’aalaa.*
+---
 
-</div>
+### B. Sholat Maghrib dan Isya di Jamak dan di Qoshor
 
-*(Catatan: Jika tidak hafal lafazh Arabnya, niat dapat menggunakan bahasa Indonesia).*
+Panduan pelaksanaan sholat Qoshor dan Jamak Taqdim (Maghrib dan Isya) ketika dalam perjalanan:
 
-**Artinya:**
-> *"Aku niat sholat fardhu Maghrib tiga raka'at dijamak bersama sholat Isya dengan jamak qashar, menghadap kiblat, tunai karena Allah Ta'ala."*
+  1. Adzan Maghrib
+  2. Iqomah
+  3. Niat Sholat Jamak Qoshor Maghrib dan Isya :
 
-4. **Langkah 1:** Melaksanakan **Sholat Maghrib 3 raka'at** hingga salam.
-5. **Langkah 2:** Langsung berdiri melanjutkan **Sholat Isya 2 raka'at** (diqashar) tanpa perlu niat dan iqomah lagi.
-6. **Langkah 3:** Dilanjutkan dengan **Dzikir Harian TQN** ba'da sholat sampai selesai.
-7. **Khusus Sepuluh Akhir Bulan:** Memasuki sepuluh akhir bulan Hijriah (malam 21 s/d akhir bulan), setelah dzikir harian langsung melaksanakan **Sholat Syukur Lailatul Qodar 4 Roka’at (2 kali salam)**.
+أُصَلِّي فَرْضَ الْمَغْرِبِ ثَلَاثَ رَكَعَاتٍ مَجْمُوْعًا مَعَ الْعِشَاءِ جَمْعَ قَصْرٍ مُسْتَقْبِلَ الْقِبْلَةِ أَدَاءً لِلّٰهِ تَعَالَى
+
+Ushollii fardlo maghribi tsalaatsa raka’aatim majmuu’an ma’al ‘isyaa’i Jam’a qoshron mustakbilal ka’bah adaa-an lillaahi ta’aalaa
+
+*(Jika tidak hafal, niatnya pakai bahasa Indonesia saja).*
+
+*Sengaja aku sholat fardhu Maghrib tiga rakaat dijamak bersama sholat Isya dengan jamak qoshor, menghadap kiblat, tunai karena اللّه Ta'ala.*
+
+  4. Sholat Maghrib 3 rokaat.
+  5. Di lanjut sholat Isya 2 rokaat tanpa niat dan iqomah lagi.
+  6. Di lanjutkan dzikir harian sampai selesai.
+  7. Memasuki sepuluh akhir bulan Hijriah langsung melaksanakan sholat Syukur Lailatul Qodar 4 Roka’at 2 kali salam.
 
 ---
 
 ### Catatan Penting Amaliyah Safar
 
-1. **Ketika di Perjalanan / Kendaraan:**
-   - Sholat-sholat sunnah rawatib antara Maghrib ke Isya tidak dilaksanakan.
-2. **Ketika Sudah di Penginapan:**
-   - Amaliyah sholat fardhu dan sunnah berjalan normal seperti biasa.
-3. **Riwayat Sumber:**
-   - Panduan di atas merupakan hasil dari mengikuti dan menyaksikan langsung bimbingan Guru Agung Hadrotus Syeikh Sayyid Muhyiddin Abah Aos Ra Qs ketika Safari Manaqib di Provinsi Nanggroe Aceh Darussalam pada tanggal 16 s/d 18 Januari 2023.
+- Ketika masih dalam posisi di perjalanan / di kendaraan, sholat-sholat sunnah antara Maghrib ke Isya tidak di laksanakan.
+- Ketika sudah berada di penginapan, amaliyah normal seperti biasa.
+- Panduan di atas hasil dari ikut dan menyaksikan langsung Guru Agung Sayyid Muhyiddin Abah Aos ketika Safari Manaqib di Provinsi Nanggroe Aceh Darussalam pada tanggal 16 s/d 18 Januari 2023.
 
----
-*(Sumber: Amaliyah Safar Guru Mursyid TQN Suryalaya - Sirnarasa)*
+۞۞۞

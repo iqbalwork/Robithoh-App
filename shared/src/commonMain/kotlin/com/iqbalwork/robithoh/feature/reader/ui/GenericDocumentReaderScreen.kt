@@ -422,7 +422,7 @@ private fun DocumentHeaderCard(info: LiturgyDocument) {
                     text = info.arabicTitle,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MerahMarunGelap,
+                    color = TextCharcoal,
                     textAlign = TextAlign.Center,
                     lineHeight = 38.sp
                 )
@@ -737,209 +737,276 @@ private fun SingleContinuousDocumentCard(
                 }
 
                 if (remainingLines.isNotEmpty()) {
-                    if (remainingLines.any { it.matches(Regex("^\\d+\\..*")) }) {
-                        // Numbered List
-                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            for (line in remainingLines) {
-                                val match = Regex("^(\\d+)\\.\\s*(.*)").find(line)
-                                if (match != null) {
-                                    val num = match.groupValues[1]
-                                    val rawText = match.groupValues[2].trim()
-                                    val isSubBold = rawText.startsWith("**") && rawText.contains(":**")
-                                    val text = rawText.replace("**", "").replace("*", "").trim()
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        verticalAlignment = Alignment.Top
-                                    ) {
-                                        Surface(
-                                            color = MerahMerdeka.copy(alpha = 0.1f),
-                                            shape = RoundedCornerShape(6.dp),
-                                            modifier = Modifier.size(24.dp)
-                                        ) {
-                                            Box(contentAlignment = Alignment.Center) {
-                                                Text(
-                                                    text = num,
-                                                    fontSize = 12.sp,
-                                                    fontWeight = FontWeight.Bold,
-                                                    color = MerahMerdeka
-                                                )
-                                            }
-                                        }
-                                        Spacer(modifier = Modifier.width(10.dp))
-                                        Text(
-                                            text = text,
-                                            fontSize = (14 * fontScale).sp,
-                                            lineHeight = (22 * fontScale).sp,
-                                            color = TextCharcoal,
-                                            modifier = Modifier.weight(1f)
-                                        )
-                                    }
-                                } else {
+                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        for (line in remainingLines) {
+                            val trimmedLine = line.trim()
+                            if (trimmedLine.isEmpty()) continue
+
+                            if (trimmedLine == "---" || trimmedLine.contains("۞۞۞")) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 6.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
                                     Text(
-                                        text = line,
-                                        fontSize = (14 * fontScale).sp,
-                                        lineHeight = (22 * fontScale).sp,
-                                        color = TextCharcoal
+                                        text = "۞   ۞   ۞",
+                                        fontSize = 15.sp,
+                                        color = EmasKhidmat,
+                                        fontWeight = FontWeight.Bold
                                     )
                                 }
+                                continue
                             }
-                        }
-                    } else {
-                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            for (line in remainingLines) {
-                                val trimmedLine = line.trim()
-                                if (trimmedLine.isEmpty()) continue
 
-                                if (trimmedLine == "---" || trimmedLine.contains("۞۞۞")) {
-                                    Box(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(vertical = 6.dp),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text(
-                                            text = "۞   ۞   ۞",
-                                            fontSize = 15.sp,
-                                            color = EmasKhidmat,
-                                            fontWeight = FontWeight.Bold
-                                        )
-                                    }
-                                    continue
-                                }
+                            val arabicCharCount = trimmedLine.count { c -> c in '\u0600'..'\u06FF' || c in '\u0750'..'\u077F' || c in '\u08A0'..'\u08FF' }
+                            val isArabic = arabicCharCount >= 3 && (arabicCharCount.toFloat() / trimmedLine.length.toFloat()) > 0.20
+                            val isCentered = isArabic || trimmedLine.startsWith("*“Ilaa") || trimmedLine.startsWith("*Assalamu") || trimmedLine.startsWith("*Bismillaah") || trimmedLine.startsWith("*(Pangersa") || trimmedLine.startsWith("*Bikaromati") || trimmedLine.startsWith("PATAPAN") || trimmedLine.startsWith("Wasiat ini") || trimmedLine.startsWith("Ieu wasiat") || trimmedLine.startsWith("ttd") || trimmedLine.startsWith("ditawis") || trimmedLine.startsWith("**(") || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true) || trimmedLine.startsWith("YAA IMAMAL", ignoreCase = true) || trimmedLine.startsWith("WA YAA", ignoreCase = true)
 
-                                val arabicCharCount = trimmedLine.count { c -> c in '\u0600'..'\u06FF' || c in '\u0750'..'\u077F' || c in '\u08A0'..'\u08FF' }
-                                val isArabic = arabicCharCount >= 3 && (arabicCharCount.toFloat() / trimmedLine.length.toFloat()) > 0.20
-                                val isCentered = isArabic || trimmedLine.startsWith("*“Ilaa") || trimmedLine.startsWith("*Assalamu") || trimmedLine.startsWith("*Bismillaah") || trimmedLine.startsWith("*(Pangersa") || trimmedLine.startsWith("*Bikaromati") || trimmedLine.startsWith("PATAPAN") || trimmedLine.startsWith("Wasiat ini") || trimmedLine.startsWith("Ieu wasiat") || trimmedLine.startsWith("ttd") || trimmedLine.startsWith("ditawis") || trimmedLine.startsWith("**(") || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true) || trimmedLine.startsWith("YAA IMAMAL", ignoreCase = true) || trimmedLine.startsWith("WA YAA", ignoreCase = true)
+                            val isMonthHeader = isIslamicMonth(trimmedLine)
 
-                                val isMonthHeader = isIslamicMonth(trimmedLine)
+                            val isManqobahHeading = trimmedLine.startsWith("Manqobah Ke-", ignoreCase = true) ||
+                                trimmedLine.startsWith("Manqodah Ke-", ignoreCase = true) ||
+                                trimmedLine.startsWith("MANQOBAH KA", ignoreCase = true) ||
+                                trimmedLine.startsWith("MUQODIMAH", ignoreCase = true)
 
-                                val isManqobahHeading = trimmedLine.startsWith("Manqobah Ke-", ignoreCase = true) ||
-                                    trimmedLine.startsWith("Manqodah Ke-", ignoreCase = true) ||
-                                    trimmedLine.startsWith("MANQOBAH KA", ignoreCase = true) ||
-                                    trimmedLine.startsWith("MUQODIMAH", ignoreCase = true)
+                            val matchNumbered = Regex("^(\\d+)\\.\\s*(.*)").find(trimmedLine)
 
-                                if (isArabic) {
+                            if (isArabic) {
+                                Text(
+                                    text = trimmedLine.replace("**", "").replace("*", "").trim(),
+                                    fontSize = (22 * fontScale).sp,
+                                    lineHeight = (38 * fontScale).sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = TextCharcoal,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                                )
+                            } else if (isMonthHeader) {
+                                val monthName = trimmedLine.removePrefix("###").removePrefix("Ke-").removePrefix("Ka-").trim()
+                                Surface(
+                                    color = MerahMarunGelap,
+                                    shape = RoundedCornerShape(8.dp),
+                                    modifier = Modifier.padding(top = 10.dp, bottom = 4.dp)
+                                ) {
                                     Text(
-                                        text = trimmedLine,
-                                        fontSize = (22 * fontScale).sp,
-                                        lineHeight = (38 * fontScale).sp,
+                                        text = "📅  $monthName",
+                                        fontSize = (13 * fontScale).sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color.White,
+                                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp)
+                                    )
+                                }
+                            } else if (isManqobahHeading) {
+                                Surface(
+                                    color = GoldContainerLight.copy(alpha = 0.5f),
+                                    shape = RoundedCornerShape(10.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.35f)),
+                                    modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                                ) {
+                                    Text(
+                                        text = trimmedLine.replace("**", "").replace("*", "").trim(),
+                                        fontSize = (14 * fontScale).sp,
+                                        lineHeight = (21 * fontScale).sp,
                                         fontWeight = FontWeight.Bold,
                                         color = MerahMarunGelap,
-                                        textAlign = TextAlign.Center,
-                                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
                                     )
-                                } else if (isMonthHeader) {
-                                    val monthName = trimmedLine.removePrefix("###").removePrefix("Ke-").removePrefix("Ka-").trim()
-                                    Surface(
-                                        color = MerahMarunGelap,
-                                        shape = RoundedCornerShape(8.dp),
-                                        modifier = Modifier.padding(top = 10.dp, bottom = 4.dp)
+                                }
+                            } else if (trimmedLine.startsWith("#### ") || (trimmedLine.startsWith("### ") && !isMonthHeader)) {
+                                val headerText = trimmedLine.removePrefix("#### ").removePrefix("### ").trim()
+                                val icon = when {
+                                    headerText.contains("Tanggal 1", ignoreCase = true) || headerText.contains("1.", ignoreCase = true) -> "1️⃣"
+                                    headerText.contains("Jumat", ignoreCase = true) || headerText.contains("Jum’at", ignoreCase = true) -> "🕌"
+                                    headerText.contains("15", ignoreCase = true) -> "🌕"
+                                    headerText.contains("30", ignoreCase = true) || headerText.contains("Akhir", ignoreCase = true) -> "🔚"
+                                    headerText.contains("Wirid", ignoreCase = true) -> "📿"
+                                    headerText.contains("Doa", ignoreCase = true) || headerText.contains("Do’a", ignoreCase = true) -> "🤲"
+                                    else -> "🗓️"
+                                }
+                                Surface(
+                                    color = MerahMarunGelap.copy(alpha = 0.08f),
+                                    shape = RoundedCornerShape(10.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
+                                    modifier = Modifier.fillMaxWidth().padding(top = 10.dp, bottom = 4.dp)
+                                ) {
+                                    Row(
+                                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+                                        verticalAlignment = Alignment.CenterVertically
                                     ) {
+                                        Text(text = icon, fontSize = (18 * fontScale).sp)
+                                        Spacer(modifier = Modifier.width(10.dp))
                                         Text(
-                                            text = "📅  $monthName",
-                                            fontSize = (13 * fontScale).sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color.White,
-                                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp)
+                                            text = headerText,
+                                            fontSize = (16 * fontScale).sp,
+                                            fontWeight = FontWeight.ExtraBold,
+                                            color = MerahMarunGelap
                                         )
                                     }
-                                } else if (isManqobahHeading) {
+                                }
+                            } else if (matchNumbered != null) {
+                                val num = matchNumbered.groupValues[1]
+                                val rawText = matchNumbered.groupValues[2].trim()
+                                val isNumberedBold = rawText.startsWith("**") || rawText.contains(":**")
+                                val text = rawText.replace("**", "").replace("*", "").replace("\\", "").trim()
+                                val isNumberedLatinArabic = text.startsWith("Usholli", ignoreCase = true) ||
+                                    text.startsWith("Usholii", ignoreCase = true) ||
+                                    text.startsWith("Alloohumma", ignoreCase = true) ||
+                                    text.startsWith("Allohumma", ignoreCase = true) ||
+                                    text.startsWith("Astaghfir", ignoreCase = true) ||
+                                    text.startsWith("Azamtu", ignoreCase = true) ||
+                                    text.startsWith("Qolbi", ignoreCase = true) ||
+                                    text.startsWith("Qolbī", ignoreCase = true)
+                                Row(
+                                    modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+                                    verticalAlignment = Alignment.Top
+                                ) {
                                     Surface(
-                                        color = GoldContainerLight.copy(alpha = 0.5f),
-                                        shape = RoundedCornerShape(10.dp),
-                                        border = androidx.compose.foundation.BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.35f)),
-                                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                                        color = MerahMerdeka.copy(alpha = 0.1f),
+                                        shape = RoundedCornerShape(6.dp),
+                                        modifier = Modifier.size(24.dp)
                                     ) {
-                                        Text(
-                                            text = trimmedLine.replace("**", "").replace("*", "").trim(),
-                                            fontSize = (14 * fontScale).sp,
-                                            lineHeight = (21 * fontScale).sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MerahMarunGelap,
-                                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
-                                        )
-                                    }
-                                } else if (trimmedLine.startsWith("#### ") || (trimmedLine.startsWith("### ") && !isMonthHeader)) {
-                                    val headerText = trimmedLine.removePrefix("#### ").removePrefix("### ").trim()
-                                    val icon = when {
-                                        headerText.contains("Tanggal 1", ignoreCase = true) || headerText.contains("1.", ignoreCase = true) -> "1️⃣"
-                                        headerText.contains("Jumat", ignoreCase = true) || headerText.contains("Jum’at", ignoreCase = true) -> "🕌"
-                                        headerText.contains("15", ignoreCase = true) -> "🌕"
-                                        headerText.contains("30", ignoreCase = true) || headerText.contains("Akhir", ignoreCase = true) -> "🔚"
-                                        headerText.contains("Wirid", ignoreCase = true) -> "📿"
-                                        headerText.contains("Doa", ignoreCase = true) || headerText.contains("Do’a", ignoreCase = true) -> "🤲"
-                                        else -> "🗓️"
-                                    }
-                                    Surface(
-                                        color = MerahMarunGelap.copy(alpha = 0.08f),
-                                        shape = RoundedCornerShape(10.dp),
-                                        border = androidx.compose.foundation.BorderStroke(1.5.dp, MerahMerdeka.copy(alpha = 0.5f)),
-                                        modifier = Modifier.fillMaxWidth().padding(top = 10.dp, bottom = 4.dp)
-                                    ) {
-                                        Row(
-                                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-                                            Text(text = icon, fontSize = (18 * fontScale).sp)
-                                            Spacer(modifier = Modifier.width(10.dp))
+                                        Box(contentAlignment = Alignment.Center) {
                                             Text(
-                                                text = headerText,
-                                                fontSize = (16 * fontScale).sp,
-                                                fontWeight = FontWeight.ExtraBold,
-                                                color = MerahMarunGelap
+                                                text = num,
+                                                fontSize = 12.sp,
+                                                fontWeight = FontWeight.Bold,
+                                                color = MerahMerdeka
                                             )
                                         }
                                     }
-                                } else if (trimmedLine.startsWith("- ")) {
-                                    // Bullet list item
-                                    val bulletText = trimmedLine.removePrefix("- ").trim()
-                                    val cleanBullet = bulletText.replace("**", "").replace("*", "").trim()
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        verticalAlignment = Alignment.Top
-                                    ) {
-                                        Text(
-                                            text = "•",
-                                            fontSize = (14 * fontScale).sp,
-                                            color = MerahMerdeka,
-                                            fontWeight = FontWeight.Bold,
-                                            modifier = Modifier.padding(top = 2.dp, end = 8.dp)
-                                        )
-                                        Text(
-                                            text = cleanBullet,
-                                            fontSize = (14 * fontScale).sp,
-                                            lineHeight = (22 * fontScale).sp,
-                                            color = TextCharcoal,
-                                            modifier = Modifier.weight(1f)
-                                        )
-                                    }
-                                } else {
-                                    val isBoldLabel = trimmedLine.startsWith("**") && trimmedLine.endsWith(":**")
-                                    val isBold = isBoldLabel || (trimmedLine.startsWith("**") && trimmedLine.endsWith("**")) || (trimmedLine.all { it.isUpperCase() || it.isWhitespace() || it == '-' || it == '(' || it == ')' || it == '.' || it == ':' || it == '\'' } && trimmedLine.length > 5 && !trimmedLine.contains("THORIIQOH"))
-                                    val isGreeting = trimmedLine.startsWith("Assalamualaikum", ignoreCase = true) || trimmedLine.startsWith("Wassalamu", ignoreCase = true)
-                                    val isItalic = (trimmedLine.startsWith("*") && trimmedLine.endsWith("*")) || (trimmedLine.startsWith("\u201C") && trimmedLine.endsWith("\u201D")) || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true)
-
-                                    val cleanText = trimmedLine.replace("**", "").replace("*", "").replace("\\", "").trim()
-
+                                    Spacer(modifier = Modifier.width(10.dp))
                                     Text(
-                                        text = cleanText,
-                                        fontSize = (14 * fontScale).sp,
-                                        lineHeight = (22 * fontScale).sp,
-                                        fontWeight = when {
-                                            isBold -> FontWeight.Bold
-                                            isGreeting -> FontWeight.SemiBold
-                                            else -> FontWeight.Normal
-                                        },
-                                        fontStyle = if (isItalic) FontStyle.Italic else FontStyle.Normal,
-                                        color = when {
-                                            isGreeting || isBold -> MerahMarunGelap
-                                            isItalic -> TextMuted
-                                            else -> TextCharcoal
-                                        },
-                                        textAlign = if (isCentered || isForceCentered) TextAlign.Center else TextAlign.Start,
-                                        modifier = Modifier.fillMaxWidth()
+                                        text = text,
+                                        fontSize = if (isNumberedLatinArabic) (14.5f * fontScale).sp else (14 * fontScale).sp,
+                                        lineHeight = if (isNumberedLatinArabic) (23 * fontScale).sp else (22 * fontScale).sp,
+                                        color = TextCharcoal,
+                                        fontWeight = if (isNumberedBold || isNumberedLatinArabic) FontWeight.Bold else FontWeight.Normal,
+                                        fontStyle = if (isNumberedLatinArabic) FontStyle.Italic else FontStyle.Normal,
+                                        modifier = Modifier.weight(1f)
                                     )
                                 }
+                            } else if (trimmedLine.startsWith("- ")) {
+                                // Bullet list item
+                                val bulletText = trimmedLine.removePrefix("- ").trim()
+                                val isBulletBold = bulletText.startsWith("**") || bulletText.contains(":**")
+                                val cleanBullet = bulletText.replace("**", "").replace("*", "").replace("\\", "").trim()
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.Top
+                                ) {
+                                    Text(
+                                        text = "•",
+                                        fontSize = (14 * fontScale).sp,
+                                        color = MerahMerdeka,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(top = 2.dp, end = 8.dp)
+                                    )
+                                    Text(
+                                        text = cleanBullet,
+                                        fontSize = (14 * fontScale).sp,
+                                        lineHeight = (22 * fontScale).sp,
+                                        color = TextCharcoal,
+                                        fontWeight = if (isBulletBold) FontWeight.Bold else FontWeight.Normal,
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                }
+                            } else {
+                                val isBoldLabel = trimmedLine.startsWith("**") && trimmedLine.endsWith(":**")
+                                val isBold = isBoldLabel || (trimmedLine.startsWith("**") && trimmedLine.endsWith("**")) || (trimmedLine.all { it.isUpperCase() || it.isWhitespace() || it == '-' || it == '(' || it == ')' || it == '.' || it == ':' || it == '\'' } && trimmedLine.length > 5 && !trimmedLine.contains("THORIIQOH"))
+                                val isGreeting = trimmedLine.startsWith("Assalamualaikum", ignoreCase = true) || trimmedLine.startsWith("Wassalamu", ignoreCase = true)
+                                val isItalic = (trimmedLine.startsWith("*") && trimmedLine.endsWith("*")) || (trimmedLine.startsWith("\u201C") && trimmedLine.endsWith("\u201D")) || trimmedLine.startsWith("Alloohumman tsur", ignoreCase = true)
+
+                                val cleanText = trimmedLine.replace("**", "").replace("*", "").replace("\\", "").trim()
+
+                                val isTranslation = (isItalic || cleanText.startsWith("Artinya", ignoreCase = true) || cleanText.startsWith("Sengaja", ignoreCase = true)) && (
+                                    cleanText.startsWith("Sengaja", ignoreCase = true) ||
+                                    cleanText.startsWith("Aku memohon", ignoreCase = true) ||
+                                    cleanText.startsWith("Dengan menyebut", ignoreCase = true) ||
+                                    cleanText.startsWith("Yaa اللّه", ignoreCase = true) ||
+                                    cleanText.startsWith("Ya اللّه", ignoreCase = true) ||
+                                    cleanText.startsWith("Tuhanku", ignoreCase = true) ||
+                                    cleanText.startsWith("Artinya", ignoreCase = true) ||
+                                    cleanText.startsWith("Katakan", ignoreCase = true) ||
+                                    cleanText.startsWith("Semoga", ignoreCase = true) ||
+                                    cleanText.startsWith("Khatur", ignoreCase = true) ||
+                                    cleanText.startsWith("Abdi", ignoreCase = true) ||
+                                    cleanText.startsWith("Nun Gusti", ignoreCase = true) ||
+                                    cleanText.startsWith("Tiada daya", ignoreCase = true) ||
+                                    cleanText.startsWith("Tiada Tuhan", ignoreCase = true) ||
+                                    cleanText.startsWith("Segala puji", ignoreCase = true) ||
+                                    cleanText.startsWith("Dia-lah", ignoreCase = true) ||
+                                    cleanText.startsWith("Kalayan", ignoreCase = true) ||
+                                    cleanText.startsWith("Dan Kami", ignoreCase = true) ||
+                                    cleanText.startsWith("Maka apabila", ignoreCase = true) ||
+                                    cleanText.startsWith("Bukankah", ignoreCase = true) ||
+                                    cleanText.startsWith("Dan hanya", ignoreCase = true) ||
+                                    cleanText.startsWith("Wahai orang", ignoreCase = true)
+                                )
+
+                                val isLatinArabic = !isGreeting && !isTranslation && (
+                                    trimmedLine.startsWith("***") ||
+                                    (isItalic && !isBoldLabel) ||
+                                    cleanText.startsWith("Usholli", ignoreCase = true) ||
+                                    cleanText.startsWith("Usholii", ignoreCase = true) ||
+                                    cleanText.startsWith("Ilaa had", ignoreCase = true) ||
+                                    cleanText.startsWith("Astaghfir", ignoreCase = true) ||
+                                    cleanText.startsWith("Alloohumma", ignoreCase = true) ||
+                                    cleanText.startsWith("Allohumma", ignoreCase = true) ||
+                                    cleanText.startsWith("Laa ilaaha", ignoreCase = true) ||
+                                    cleanText.startsWith("Subhaanallooh", ignoreCase = true) ||
+                                    cleanText.startsWith("Subhanalloh", ignoreCase = true) ||
+                                    cleanText.startsWith("Hasbunallooh", ignoreCase = true) ||
+                                    cleanText.startsWith("Bismillaah", ignoreCase = true) ||
+                                    cleanText.startsWith("Qul huwal", ignoreCase = true) ||
+                                    cleanText.startsWith("Qul a'uudzu", ignoreCase = true) ||
+                                    cleanText.startsWith("Qul A-", ignoreCase = true) ||
+                                    cleanText.startsWith("Qul A‘", ignoreCase = true) ||
+                                    cleanText.startsWith("In-naa a'thoi", ignoreCase = true) ||
+                                    cleanText.startsWith("Innaa a'thoi", ignoreCase = true) ||
+                                    cleanText.startsWith("Robbighfir", ignoreCase = true) ||
+                                    cleanText.startsWith("Robbi", ignoreCase = true) ||
+                                    cleanText.startsWith("Robbanaa", ignoreCase = true) ||
+                                    cleanText.startsWith("Subbuhun", ignoreCase = true) ||
+                                    cleanText.startsWith("Washollalloohu", ignoreCase = true) ||
+                                    cleanText.startsWith("Walhamdulillaahi", ignoreCase = true) ||
+                                    cleanText.startsWith("Tawakkaltu", ignoreCase = true) ||
+                                    cleanText.startsWith("Wa'tashomtu", ignoreCase = true) ||
+                                    cleanText.startsWith("Wa'tasoamtu", ignoreCase = true) ||
+                                    cleanText.startsWith("Azamtu", ignoreCase = true) ||
+                                    cleanText.startsWith("Qolbii", ignoreCase = true) ||
+                                    cleanText.startsWith("Qolbi", ignoreCase = true) ||
+                                    cleanText.startsWith("Tsumma ilaa", ignoreCase = true) ||
+                                    cleanText.startsWith("Sayyidunaa", ignoreCase = true)
+                                )
+
+                                Text(
+                                    text = cleanText,
+                                    fontSize = when {
+                                        isLatinArabic -> (14.5f * fontScale).sp
+                                        isTranslation -> (13.5f * fontScale).sp
+                                        else -> (14 * fontScale).sp
+                                    },
+                                    lineHeight = when {
+                                        isLatinArabic -> (23 * fontScale).sp
+                                        else -> (22 * fontScale).sp
+                                    },
+                                    fontWeight = when {
+                                        isLatinArabic || isBold -> FontWeight.Bold
+                                        isGreeting -> FontWeight.SemiBold
+                                        else -> FontWeight.Normal
+                                    },
+                                    fontStyle = when {
+                                        isLatinArabic || isTranslation || isItalic -> FontStyle.Italic
+                                        else -> FontStyle.Normal
+                                    },
+                                    color = when {
+                                        isTranslation -> TextMuted
+                                        else -> TextCharcoal
+                                    },
+                                    textAlign = if (isCentered || isForceCentered) TextAlign.Center else TextAlign.Start,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
                             }
                         }
                     }
@@ -1220,7 +1287,7 @@ fun parseDocumentSections(docId: String, rawContent: String): List<ReaderDocumen
         }
         return sections
     } else if (docId.startsWith("sholat_tahunan")) {
-        val annualRegex = Regex("""(?m)^##\s+(\d+\.\s+[^\n]+)""")
+        val annualRegex = Regex("""(?m)^###?\s+(SHOLAT\s+[^\n]+|\d+\.\s+[^\n]+)""", RegexOption.IGNORE_CASE)
         val matches = annualRegex.findAll(rawContent).toList()
         if (matches.isEmpty()) {
             return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))

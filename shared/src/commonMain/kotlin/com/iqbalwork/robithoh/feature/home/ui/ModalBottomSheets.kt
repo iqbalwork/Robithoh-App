@@ -321,8 +321,7 @@ fun DoaModalBottomSheet(
         SheetMenuItem("Salam Wali Mursyid", "salam_wali_mursyid"),
         SheetMenuItem("Doa Rijalul Ghoib", "doa_rijalul_ghoib"),
         SheetMenuItem("Ziyaroh Rosul", "sholawat_jiyaaroh"),
-        SheetMenuItem("Doa Istighotsah", "doa_istighotsah"),
-        SheetMenuItem("Amaliyah Sebelum Tidur", "sebelum_tidur")
+        SheetMenuItem("Doa Istighotsah", "doa_istighotsah")
     )
 
     ModalBottomSheet(

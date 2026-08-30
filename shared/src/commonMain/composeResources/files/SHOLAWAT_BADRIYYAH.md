@@ -1,4 +1,4 @@
-# Badriyyah
+# SHOLAWAT BADRIYAH
 
 ---
 
@@ -48,48 +48,54 @@ SHOLAWAT BADRIYAH
 
 وَالْالِ وَالصَّحْبِ الْغُرِّ ۞ بِأَهْلِ الذِّكْرِ يَا اَللهِ
 
+۞۞۞
+
 Latin:
 
-Sholatullohi salamullohi ۞ ‘ala thoha rosulillahi
+*Sholatullohi salamullohi*۞*‘ala thoha rosulillahi*
 
-Sholatullohi salamullohi ۞ ‘ala yasin habibillahi
+*Sholatullohi salamullohi*۞*‘ala yasin habibillahi*
 
-Tawasalnaa bidzikrillahi ۞ wabil haadi rosulillahi
+*Tawasalnaa bidzikrillahi*۞*wabil haadi rosulillahi*
 
-Wakulli mulazimillillaahi ۞ biahli dzikriyaa allohi
+*Wakulli mulazimillillaahi*۞*biahli dzikriyaa allohi*
 
-Ilaahiisallimil ikhwaan ۞ minal jafwati wannisyaani
+*Ilaahiisallimil ikhwaan*۞*minal jafwati wannisyaani*
 
-Wamin hammiw wamin hirmaani ۞ biahli dzikriyaa allohi
+*Wamin hammiw wamin hirmaani*۞*biahli dzikriyaa allohi*
 
-Ilahii zai yinil jinaai ۞ binuuri dzikriyaa allohi
+*Ilahii zai yinil jinaai*۞*binuuri dzikriyaa allohi*
 
-Wabil iimaani wal ihsaani ۞ biahli dzikriyaa allohi
+*Wabil iimaani wal ihsaani*۞*biahli dzikriyaa allohi*
 
-Ilaahii anta dzu jaddin ۞ wadzu faslin bila haddin
+*Ilaahii anta dzu jaddin*۞*wadzu faslin bila haddin*
 
-Faan ‘imnaa bila ‘addin ۞ biahli dzikriyaa allohi
+*Faan ‘imnaa bila ‘addin*۞*biahli dzikriyaa allohi*
 
-Fakam min qoswatin sulibat ۞ wakam mir roqqotin julibat
+*Fakam min qoswatin sulibat*۞*wakam mir roqqotin julibat*
 
-Wakam min jadz watin judibat ۞ biahli dzikriyaa allohi
+*Wakam min jadz watin judibat*۞*biahli dzikriyaa allohi*
 
-Atainaa thoolibil qurbi ۞ wawaslir ruuhi bil hubbi
+*Atainaa thoolibil qurbi*۞*wawaslir ruuhi bil hubbi*
 
-Faasri’ jadz baatal qolbi ۞ biahli dzikriyaa allohi
+*Faasri’ jadz baatal qolbi*۞*biahli dzikriyaa allohi*
 
-Fala tardud ma’al khusrooni ۞ balij ‘alnaa minadhiifaani
+*Fala tardud ma’al khusrooni*۞*balij ‘alnaa minadhiifaani*
 
-Ayaadzal juudi wal ihsaani ۞ biahli dzikri yaa alloh
+*Ayaadzal juudi wal ihsaani*۞*biahli dzikri yaa alloh*
 
-Ilahigfir khotho yaa naa ۞ wakhotho i walidiinaa
+*Ilahigfir khotho yaa naa*۞*wakhotho i walidiinaa*
 
-Wadzakarnaa waahlanaa ۞  biahli dzikri yaa allohi
+*Wadzakarnaa waahlanaa*۞*biahli dzikri yaa allohi*
 
-Ilaahistur ‘uyuubanaa ۞ waasyriqnaa bidaayatanaa
+*Ilaahistur ‘uyuubanaa*۞*waasyriqnaa bidaayatanaa*
 
-Wabijannatika udzkhilnaa ۞ biahlidzikri yaa allohi
+*Wabijannatika udzkhilnaa*۞*biahlidzikri yaa allohi*
 
-Washolli ‘alannabiyyil barri ۞ waahlinnaqsyi lidzikri
+*Washolli ‘alannabiyyil barri*۞*waahlinnaqsyi lidzikri*
 
-Wal aali washohbil gufri ۞ biahlidzikri yaa alloh
+*Wal aali washohbil gufri*۞*biahlidzikri yaa alloh*
+
+۞۞۞
+
+۞۞۞

@@ -121,7 +121,7 @@ fun TanbihScreen(
                 Text(
                     text = tanbih.closingArabic,
                     style = RabithohTheme.typography.arabicMedium.copy(
-                        color = if (isDark) EmasMuda else MerahMarunGelap,
+                        color = if (isDark) PutihBersih else TextCharcoal,
                         lineHeight = 30.sp,
                         textAlign = TextAlign.Center
                     ),

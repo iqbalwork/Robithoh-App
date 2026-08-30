@@ -321,11 +321,13 @@ private fun DzikirLiturgicalCard(
         Text(
             text = item.latinText,
             style = MaterialTheme.typography.bodyMedium.copy(
+                fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
-                color = MerahMerdeka,
-                fontSize = 13.sp,
-                lineHeight = 18.sp
-            )
+                color = if (isDark) PutihBersih else TextCharcoal,
+                fontSize = 14.5.sp,
+                lineHeight = 22.sp
+            ),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(6.dp))

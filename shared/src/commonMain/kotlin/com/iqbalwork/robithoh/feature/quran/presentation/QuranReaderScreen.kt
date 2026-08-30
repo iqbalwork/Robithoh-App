@@ -70,6 +70,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.Ayah
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
@@ -318,7 +319,7 @@ fun QuranReaderScreen(
                         Text(
                             text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
                             style = RabithohTheme.typography.arabicMedium.copy(
-                                color = if (isDark) EmasMuda else MerahMarunGelap,
+                                color = if (isDark) PutihBersih else TextCharcoal,
                                 fontSize = (22 * fontScale).sp,
                                 textAlign = TextAlign.Center
                             ),
