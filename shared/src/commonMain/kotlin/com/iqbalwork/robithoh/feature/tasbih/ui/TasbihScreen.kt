@@ -180,7 +180,7 @@ fun TasbihScreen(
                     }
                 }
 
-                // Preset Targets Row: 165x (TQN) and Kustom
+                // Preset Targets Row: 165x and Kustom
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -205,7 +205,7 @@ fun TasbihScreen(
                                 fontSize = 14.sp
                             )
                             Text(
-                                text = "TQN PP Suryalaya Sirnarasa 38",
+                                text = "MTQN Suryalaya Sirnarasa PPKN III 38",
                                 color = if (is165) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
                                 fontSize = 10.sp
                             )

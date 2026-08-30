@@ -14,16 +14,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.iqbalwork.robithoh.core.designsystem.setGlobalAppContext
 import com.iqbalwork.robithoh.core.notification.AndroidPrayerAlarmScheduler
+import com.iqbalwork.robithoh.update.InAppUpdateManager
 
 class MainActivity : ComponentActivity() {
     private val requestNotificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { /* Result handled */ }
 
+    private lateinit var inAppUpdateManager: InAppUpdateManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setGlobalAppContext(this)
+
+        inAppUpdateManager = InAppUpdateManager(this)
+        inAppUpdateManager.checkForUpdates(preferImmediate = false)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
@@ -69,6 +75,20 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             App()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::inAppUpdateManager.isInitialized) {
+            inAppUpdateManager.onResume()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::inAppUpdateManager.isInitialized) {
+            inAppUpdateManager.onDestroy()
         }
     }
 }

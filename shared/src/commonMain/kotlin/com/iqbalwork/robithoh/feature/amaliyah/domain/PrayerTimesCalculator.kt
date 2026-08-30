@@ -26,7 +26,7 @@ import kotlin.math.tan
  * Offline Astronomical Prayer Times & Tasawuf Schedule Calculator Engine.
  * Powered by adhan-kotlin (com.batoulapps.adhan:adhan2) for high-precision
  * international calculation methods and manual prayer adjustments, combined with
- * TQN PP Suryalaya Sirnarasa Tasawuf specific schedules (Tahajjud, Waktal, Isyroq, Dhuha).
+ * MTQN Suryalaya Sirnarasa PPKN III Tasawuf specific schedules (Tahajjud, Waktal, Isyroq, Dhuha).
  */
 class PrayerTimesCalculator {
 
@@ -159,7 +159,7 @@ class PrayerTimesCalculator {
         val tahajjudEpoch = prayerTimes.maghrib.epochSeconds + ((2.0 / 3.0) * nightSeconds).toLong()
         val tahajjudFormatted = formatEpochToLocalTime(tahajjudEpoch, timezoneOffset)
 
-        // Waktal (Wirid Khusus TQN PP Suryalaya Sirnarasa: 1.5 jam sebelum Subuh)
+        // Waktal (Wirid Khusus MTQN Suryalaya Sirnarasa PPKN III: 1.5 jam sebelum Subuh)
         val waktalEpoch = prayerTimes.fajr.epochSeconds - (90 * 60)
         val waktalFormatted = formatEpochToLocalTime(waktalEpoch, timezoneOffset)
 

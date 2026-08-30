@@ -7,7 +7,7 @@ SHOLAT TAROWIH
 ---
 
 Urutan Amaliah Ibadah pada bulan Romadhon.
-Sunnah Mursyid Thoriiqoh Qoodiriyyah Naqsyabandiyyah Suryalaya Sirnarasa.
+Sunnah Mursyid MTQN Suryalaya Sirnarasa PPKN III.
 
 - WAKTU ASHAR.
 – Sunnah Ashar.

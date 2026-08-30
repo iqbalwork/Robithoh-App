@@ -139,7 +139,7 @@ object LanggamRepository {
         LanggamItem(
             id = "langgam_sholat_jumat",
             title = "Sholat Jumat",
-            subtitle = "Langgam TQN PP Suryalaya Sirnarasa",
+            subtitle = "Langgam MTQN Suryalaya Sirnarasa PPKN III",
             fileName = "sholat_jumat.mp3",
             remoteUrl = "$GITHUB_AUDIO_BASE_URL/sholat_jumat.mp3",
             sizeBytes = 4_581_805L,

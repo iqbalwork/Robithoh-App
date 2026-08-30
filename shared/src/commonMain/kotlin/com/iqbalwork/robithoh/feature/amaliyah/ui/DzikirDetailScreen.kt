@@ -68,7 +68,7 @@ fun DzikirDetailScreen(
         topBar = {
             IslamicHeader(
                 title = if (state.activeDzikirType == DzikirType.JAHR) "Dzikir Jahr (165x)" else "Dzikir Khofi (Ismu Dzat)",
-                subtitle = "TQN Pondok Pesantren Sirnarasa Silsilah 38",
+                subtitle = "MTQN Suryalaya Sirnarasa PPKN III Silsilah 38",
                 arabicTitle = if (state.activeDzikirType == DzikirType.JAHR) "ذِكْرُ الْجَهْرِ" else "ذِكْرُ الْخَفِيِّ",
                 onBackClick = onBack,
                 actions = {
@@ -158,7 +158,7 @@ fun DzikirDetailScreen(
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = if (state.activeDzikirType == DzikirType.JAHR) {
-                            "Dzikir Jahr TQN diamalkan bersuara nyaring dengan menggelengkan kepala dari lambung kanan ke kiri (lathifah qolbi) sebanyak 165 kali setelah sholat fardhu."
+                            "Dzikir Jahr diamalkan bersuara nyaring dengan menggelengkan kepala dari lambung kanan ke kiri (lathifah qolbi) sebanyak 165 kali setelah sholat fardhu."
                         } else {
                             "Dzikir Khofi menggetarkan Ismu Dzat (ALLAH) di lathifah qolbi (bawah dada kiri) tanpa suara dan tanpa nafas, dengan rabithah kepada Syekh Mursyid Abah Aos Ra. Qs."
                         },
@@ -244,7 +244,7 @@ fun DzikirDetailScreen(
                     append("\n\nKaifiyat: ")
                     append(item.kaifiyatNote)
                 }
-                append("\n\n(Dzikir TQN Pondok Pesantren Sirnarasa Silsilah 38)")
+                append("\n\n(Dzikir MTQN Suryalaya Sirnarasa PPKN III Silsilah 38)")
             }
         }
 

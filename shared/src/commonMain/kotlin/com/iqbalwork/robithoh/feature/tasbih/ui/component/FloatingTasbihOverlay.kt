@@ -179,7 +179,7 @@ fun FloatingTasbihOverlay(
                             }
                         }
 
-                        // Target Selector Row: Preset 165x (TQN) and Kustom
+                        // Target Selector Row: Preset 165x and Kustom
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -206,7 +206,7 @@ fun FloatingTasbihOverlay(
                                     )
                                     Spacer(modifier = Modifier.width(4.dp))
                                     Text(
-                                        text = "(TQN)",
+                                        text = "165x",
                                         color = if (is165) EmasMuda else DarkMuted,
                                         fontSize = 10.sp
                                     )

@@ -236,7 +236,7 @@ fun SholawatModalBottomSheet(
                 .padding(bottom = 36.dp)
         ) {
             Text(
-                text = "Sholawat TQN PP Suryalaya Sirnarasa",
+                text = "Sholawat MTQN Suryalaya Sirnarasa PPKN III",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = TextCharcoal
@@ -283,7 +283,7 @@ fun TahlilZiyarohModalBottomSheet(
     onDismiss: () -> Unit
 ) {
     val items = listOf(
-        SheetMenuItem("Tahlil TQN", "tahlil_tqn"),
+        SheetMenuItem("Tahlil", "tahlil_tqn"),
         SheetMenuItem("Ziyaroh Umum", "dziarah_umum"),
         SheetMenuItem("Ziyaroh Waliyulloh", "dziarah_waliyulloh")
     )

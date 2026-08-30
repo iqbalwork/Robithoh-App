@@ -7,12 +7,12 @@ Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
 Senin, 31 Januari 2022/28 Jumadil Akhir/Romadlon 10 1443 H
 
 Kepada yang terhormat,
-Para Ikhwan di Seluruh Madrosah + Roudloh TQN Suryalaya Sirnarasa
+Para Ikhwan di Seluruh Madrosah + Roudloh MTQN Suryalaya Sirnarasa PPKN III
 di Seluruh Dunia
 
 السّلام عليكم ورحمة الله وبركاته
 
-Dengan ini menyampai MAKLUMAT Pangersa Abah kepada kepada para Ikhwan di seluruh Madrosah + Roudloh TQN Suryalaya Sirnarasa untuk melaksanakan seluruh rangkaian Sholat-sholat Sunnah di bulan Rojab yang sholat Rojab pertama jatuh pada hari Selasa (1/2/2022) dan seterusnya (kedua, ketiga & keempat). Sholat Rojab dilaksanakan langsung setelah sholat ba’diyah Maghrib. Juga mengingatkan agar menunaikan ibadah Puasa Sunnah Rojab di hari Kamis pertama bulan Rojab. (Untuk detil pelaksanaannya lihat panduang Sholat Sunnah bulan Rojab).
+Dengan ini menyampai MAKLUMAT Pangersa Abah kepada kepada para Ikhwan di seluruh Madrosah + Roudloh MTQN Suryalaya Sirnarasa PPKN III untuk melaksanakan seluruh rangkaian Sholat-sholat Sunnah di bulan Rojab yang sholat Rojab pertama jatuh pada hari Selasa (1/2/2022) dan seterusnya (kedua, ketiga & keempat). Sholat Rojab dilaksanakan langsung setelah sholat ba’diyah Maghrib. Juga mengingatkan agar menunaikan ibadah Puasa Sunnah Rojab di hari Kamis pertama bulan Rojab. (Untuk detil pelaksanaannya lihat panduang Sholat Sunnah bulan Rojab).
 
 Demikian MAKLUMAT Pangersa Abah disampaikan untuk kita amalkan bersama.
 

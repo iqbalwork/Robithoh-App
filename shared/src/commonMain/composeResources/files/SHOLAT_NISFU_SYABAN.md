@@ -25,12 +25,12 @@ Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
 Sabtu, 12 Maret 2022/09 Sya’ban/Romadlon 12 1443 H
 
 Kepada yang terhormat,
-Para Ikhwan di Seluruh Madrosah + Roudloh TQN Suryalaya Sirnarasa
+Para Ikhwan di Seluruh Madrosah + Roudloh MTQN Suryalaya Sirnarasa PPKN III
 di Seluruh Dunia
 
 السّلام عليكم ورحمة الله وبركاته
 
-Dengan ini menyampai MAKLUMAT Pangersa Abah kepada kepada para Ikhwan di seluruh Madrosah + Roudloh TQN Suryalaya Sirnarasa, pada Kamis, 14 Romadloh 12 yang jatuh pada 17 Maret 2022 untuk menunaikan Puasa Sunnah (dengan persetujuan suami isteri), yang disambung malamnya pelaksanaan Sholat Sunnah NISHFU SYA’BAN. Pada sujud terakhir, diimbau kepada semua untuk memohon kepada ALLOH agar segera berakhir Thoun covid19.
+Dengan ini menyampai MAKLUMAT Pangersa Abah kepada kepada para Ikhwan di seluruh Madrosah + Roudloh MTQN Suryalaya Sirnarasa PPKN III, pada Kamis, 14 Romadloh 12 yang jatuh pada 17 Maret 2022 untuk menunaikan Puasa Sunnah (dengan persetujuan suami isteri), yang disambung malamnya pelaksanaan Sholat Sunnah NISHFU SYA’BAN. Pada sujud terakhir, diimbau kepada semua untuk memohon kepada ALLOH agar segera berakhir Thoun covid19.
 
 Demikian MAKLUMAT Pangersa Abah disampaikan untuk kita amalkan bersama.
 

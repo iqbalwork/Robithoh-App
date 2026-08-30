@@ -26,6 +26,7 @@ compose-multiplatform-lifecycle = "2.10.0"
 google-services = "4.4.2"
 firebase-bom = "33.10.0"
 firebase-crashlytics-plugin = "3.0.3"
+play-app-update = "2.1.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -86,6 +87,10 @@ adhan = { module = "com.batoulapps.adhan:adhan2", version = "0.0.7" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+
+# Google Play In-App Updates (Android)
+play-app-update = { module = "com.google.android.play:app-update", version.ref = "play-app-update" }
+play-app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "play-app-update" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

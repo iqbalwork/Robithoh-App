@@ -20,7 +20,7 @@ Ieu pangéling-ngéling ti Pangersa Guru Almarhum, *SYAIKH ABDULLOH MUBAROK BIN 
 
 Ogé nu jadi Papayung Nagara sina tambih kamulyaananan, kaagunganana tiasa nangtayungan ka sadaya ‘abdi-abdina, ngauban ka sadaya ra’yatna dipaparin karaharjaan, kajembaran, kani’matan ku Gusti Nu Maha Suci, dhohir-bathin.
 
-Jeungna sim kuring nu jadi pananyaan *THORIIQOH QOODIRIYYAH NAQSABANDIYYAH MA’HAD SURYALAYA SIRNARASA PPKN*, ngahaturkeun kagegelan wasiat ka sadaya murid-murid poma sing hadé-hadé dina sagala laku lampah, ulah aya carekeun AGAMA jeung NAGARA.
+Jeungna sim kuring nu jadi pananyaan MTQN SURYALAYA SIRNARASA PPKN III, ngahaturkeun kagegelan wasiat ka sadaya murid-murid poma sing hadé-hadé dina sagala laku lampah, ulah aya carekeun AGAMA jeung NAGARA.
 
 Éta dua-duanana kawulaan sapantesna, samistina kudu kitu manusa anu tetep cicing dina kaimanan, tegesna tiasa ngawujudkeun karumasaan terhadep AGAMA jeung NAGARA, ta’at ka HADLROT ILAAHI nu ngabuktikeun paréntah dina AGAMA jeung NAGARA.
 
@@ -54,7 +54,7 @@ Geuning dawuhan sepuh baheula: *“Sina logor dina liang jarum, ulah sereg di b
 
 Ku lantaran kitu, sakabéh murid-murid kudu arapik tilik jeung pamilih, dina nyiar jalan kahadéan lahir bathin dunya akhérat sangkan ngeunah nyawa betah jasad, ulah jadi kabengkahan anu disuprih*“Cageur Bageur”.*
 
-Teu aya lian pagawéan urang saréréa *THORIIQOH QOODIRIYYAH NAQSABANDIYYAH* *MA’HAD SURYALAYA SIRNARASA PPKN*amalkeun kalawan enya-enya keur ngahontal sagala kahadéan dhohir bathin, keur nyingkahan sagala kagoréngan dhohir bathin, anu ngeunaan ka jasad utama nyawa, anu dirungrung ku pangwujuk napsu, digoda ku dayana syétan.
+Teu aya lian pagawéan urang saréréa MTQN SURYALAYA SIRNARASA PPKN III amalkeun kalawan enya-enya keur ngahontal sagala kahadéan dhohir bathin, keur nyingkahan sagala kagoréngan dhohir bathin, anu ngeunaan ka jasad utama nyawa, anu dirungrung ku pangwujuk napsu, digoda ku dayana syétan.
 
 Ieu wasiat kudu dilaksanakaeun ku sadaya murid-murid, supaya jadi kasalametan dunya rawuh akhérat.
 

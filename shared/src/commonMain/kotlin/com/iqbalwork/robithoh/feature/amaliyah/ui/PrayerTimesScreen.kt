@@ -537,7 +537,7 @@ fun PrayerTimesScreen(
                 GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_TINTED) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "Jadwal Amaliyah Tasawuf TQN",
+                            text = "Jadwal Amaliyah Tasawuf",
                             style = MaterialTheme.typography.titleMedium.copy(
                                 fontWeight = FontWeight.Bold,
                                 color = MerahMerdeka
@@ -555,7 +555,7 @@ fun PrayerTimesScreen(
                     Spacer(modifier = Modifier.height(12.dp))
 
                     PrayerTimeRowItem("Waktu Malam (Tahajjud)", schedule.tahajjud, schedule.timezone, countdown?.nextPrayerName == "Tahajjud", isDark, isHighlight = true)
-                    PrayerTimeRowItem("Waktal (Wirid Khusus TQN)", schedule.waktal, schedule.timezone, countdown?.nextPrayerName == "Waktal", isDark, isHighlight = true)
+                    PrayerTimeRowItem("Waktal (Wirid Khusus)", schedule.waktal, schedule.timezone, countdown?.nextPrayerName == "Waktal", isDark, isHighlight = true)
                     PrayerTimeRowItem("Isyroq (Awal Dhuha)", schedule.isyroq, schedule.timezone, false, isDark)
                 }
             }

@@ -96,3 +96,10 @@
 -keep class com.iqbalwork.robithoh.core.notification.PrayerAdzanService { *; }
 -keep class com.iqbalwork.robithoh.core.notification.PrayerAlarmReceiver { *; }
 -keep class com.iqbalwork.robithoh.MainActivity { *; }
+
+# ------------------------------------------------------------------------------
+# 11. Google Play In-App Updates
+# ------------------------------------------------------------------------------
+-keep class com.google.android.play.core.appupdate.** { *; }
+-keep class com.google.android.play.core.install.** { *; }
+-dontwarn com.google.android.play.core.**

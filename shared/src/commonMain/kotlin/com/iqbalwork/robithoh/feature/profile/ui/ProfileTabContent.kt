@@ -220,7 +220,7 @@ fun SettingsTabContent(
                         icon = "📖",
                         iconBg = if (isDark) Color(0xFF4A151D) else Color(0xFFFFEBEE),
                         title = "Tentang Aplikasi",
-                        subtitle = "Robithoh v1.0.0 · Guru Mursyid & Pembimbing",
+                        subtitle = "Robithoh v1.0.0 · Roudloh Merah Putih MTQN Suryalaya Sirnarasa PPKN III",
                         isDark = isDark,
                         onClick = onNavigateToAboutApp
                     )

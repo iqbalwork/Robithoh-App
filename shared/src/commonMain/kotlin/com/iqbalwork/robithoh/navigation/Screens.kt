@@ -115,7 +115,7 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
             MenuNavigationCard(
                 title = "Buku Saku Amaliyah",
                 subtitle = "Tata Tertib Sholat, Kaifiyat Dzikir Khofi/Jahr, & Doa-Doa",
-                badge = "TQN",
+                badge = "MTQN",
                 onClick = { onNavigate(ScreenKey.Amaliyah) }
             )
 
@@ -505,7 +505,7 @@ fun SettingsScreen(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Aplikasi Ibadah & Amaliyah TQN Modern Multiplatform. 100% Offline-First dengan SQLDelight & adhan-kotlin.",
+                        text = "Aplikasi Ibadah & Amaliyah MTQN Suryalaya Sirnarasa PPKN III Modern Multiplatform. 100% Offline-First dengan SQLDelight & adhan-kotlin.",
                         fontSize = 13.sp,
                         color = Color.DarkGray
                     )

@@ -5,7 +5,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.HijriyahAmaliyah
 import com.iqbalwork.robithoh.feature.amaliyah.model.SpecialPrayer
 
 /**
- * Authentic Data Repository for TQN PP Suryalaya Sirnarasa 38 Amaliyah,
+ * Authentic Data Repository for MTQN Suryalaya Sirnarasa PPKN III 38 Amaliyah,
  * Dzikir Harian Ba'da Sholat (Jahr & Khofi), Daily Special Prayers,
  * 12 Bulan Hijriyah, and Sholat Sunnah with 3-language liturgical text.
  */
@@ -82,7 +82,7 @@ class AmaliyahRepository {
             sundaneseText = "Lajeng diteraskeun dzikir sakirang-kirangna 165x. Langkung seueur langkung sae tur dipungkas dina etangan ganjil.",
             repetitionCount = 165,
             category = "Dzikir Jahr Inti",
-            kaifiyatNote = "Dzikir Jahr diucapkan bersuara dengan irama TQN: memalingkan kepala dari lambung kanan kemudian dihunjamkan ke arah lathifah qolbi (dada kiri bawah). Standar hitungan 165x."
+            kaifiyatNote = "Dzikir Jahr diucapkan bersuara dengan irama: memalingkan kepala dari lambung kanan kemudian dihunjamkan ke arah lathifah qolbi (dada kiri bawah). Standar hitungan 165x."
         ),
         DzikirItem(
             id = "dzikir_harian_7",
@@ -123,14 +123,14 @@ class AmaliyahRepository {
         DzikirItem(
             id = "dzikir_harian_10",
             number = 10,
-            title = "Tawassul Silsilah TQN Suryalaya Sirnarasa PPKN",
+            title = "Tawassul Silsilah MTQN Suryalaya Sirnarasa PPKN III",
             arabicText = "ثُمَّ اِلٰى أَهْلِ السِّلْسِلَةِ الْقَادِرِيَّةِ النَّقْشَبَنْدِيَّةِ مَعْهَدِ سُرْيَالَيَا سِرْناَ رَاسَا وَجَمِيْعِ أَهْلِ الطُّرُقِ خُصُوْصًا اِلٰى حَضْرَةِ سُلْطَانِ الْأَوْلِيَاءِ غَوْثِ الْأَعْظَمِ قُطْبِ الْعَالَمِيْنَ السَّيِّدِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلَانِي قَدَّسَ اللّٰهُ سِرَّهُ وَالسَّيِّدِ الشَّيْخِ أبِي الْقَاسِمِ جُنَيْدِ الْبَغْدَادِي وَالسَّيِّدِ الشَّيْخِ أَحْمَدَ خَاطِبِ ابْنِ عَبْدِ الْغَفَّارِ السَّمْبَاسِيِّ وَالسَّيِّدِ الشَّيْخِ طَلْحَةَ كَالِي سَافُو السِرْبَوْنِي وَالسَّيِّدِ الشَّيْخِ عَبْدِ اللّٰهِ مُبَارَكِ بْنِ نُوْرِ مُحَمَّدٍ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ أَحْمَدَ صَاحِبِ الْوَفٰى تَاجِ الْعَارِفِيْنَ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّهمُ وَأُصُوْلِهِمْ وَفُرُوْعِهِمْ وَاَهْلِ سِلْسِلَتِهِمْ وَالْأۤخِذِيْنَ عَنْهُمْ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
-            latinText = "Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah Ma’had Suryalaya Sirnarasa PPKN wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah",
-            indonesianText = "Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah Ma’had Suryalaya Sirnarasa dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama اللّه Syaikh Abdul Qodir al Jailani. Semoga اللّه melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga اللّه melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah",
-            sundaneseText = "Lajeng khatur ka para ahli Silsilah TQN Ma'had Suryalaya Sirnarasa PPKN, Syekh Abdul Qodir Al-Jailani Qs., Syekh Junaid Al-Baghdadi, Syekh Ahmad Khatib Sambas, Syekh Tolhah Kalisapu, Syekh Abdullah Mubarok (Abah Sepuh), Syekh Ahmad Shohibulwafa Tajul Arifin (Abah Anom), miwah Guru Mursyid urang sadaya Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos Ra. Qs. 38), Al-Faatihah.",
+            latinText = "Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah MTQN Suryalaya Sirnarasa PPKN III wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah",
+            indonesianText = "Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah MTQN Suryalaya Sirnarasa PPKN III dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama اللّه Syaikh Abdul Qodir al Jailani. Semoga اللّه melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga اللّه melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah",
+            sundaneseText = "Lajeng khatur ka para ahli Silsilah MTQN Suryalaya Sirnarasa PPKN III, Syekh Abdul Qodir Al-Jailani Qs., Syekh Junaid Al-Baghdadi, Syekh Ahmad Khatib Sambas, Syekh Tolhah Kalisapu, Syekh Abdullah Mubarok (Abah Sepuh), Syekh Ahmad Shohibulwafa Tajul Arifin (Abah Anom), miwah Guru Mursyid urang sadaya Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos Ra. Qs. 38), Al-Faatihah.",
             repetitionCount = 1,
-            category = "Silsilah TQN",
-            kaifiyatNote = "Menyambungkan rabithah qolbiyyah kepada Silsilah Emas TQN 38."
+            category = "Silsilah",
+            kaifiyatNote = "Menyambungkan rabithah qolbiyyah kepada Silsilah Emas MTQN Suryalaya Sirnarasa PPKN III 38."
         ),
         DzikirItem(
             id = "dzikir_harian_11",
@@ -311,7 +311,7 @@ class AmaliyahRepository {
             latinText = "Bismika Allahumma ahyaa wa bismika amuut. A'uudzu bikalimaatillaahit taammaati min syarri maa khalaq.",
             indonesianText = "Dengan nama-Mu ya اللّه aku hidup dan dengan nama-Mu aku mati. Aku berlindung dengan kalimat-kalimat اللّه yang sempurna dari kejahatan apa yang Dia ciptakan.",
             sundaneseText = "Kalayan jenengan Gusti nun اللّه abdi hirup tur kalayan jenengan Gusti abdi maot. Abdi nyalindung kalayan kalimah-kalimah اللّه anu sampurna tina kajahatan saniskara makhluq.",
-            kaifiyat = "Amaliyah TQN sebelum tidur: Berwudhu, membaca Ayat Kursi, Surat Al-Ikhlas, Al-Falaq, An-Nas 3x ditiupkan ke telapak tangan lalu diusapkan ke seluruh tubuh, membaca doa tidur dan menyandarkan rabithah kepada Guru Mursyid sambil meneruskan Dzikir Khofi hingga tertidur.",
+            kaifiyat = "Amaliyah sebelum tidur: Berwudhu, membaca Ayat Kursi, Surat Al-Ikhlas, Al-Falaq, An-Nas 3x ditiupkan ke telapak tangan lalu diusapkan ke seluruh tubuh, membaca doa tidur dan menyandarkan rabithah kepada Guru Mursyid sambil meneruskan Dzikir Khofi hingga tertidur.",
             virtue = "Menjaga ruhani senantiasa tersambung dengan Allah SWT dan terpelihara dari gangguan syaitan saat terlelap.",
             recommendedTime = "Sebelum tidur malam"
         ),
@@ -412,7 +412,7 @@ class AmaliyahRepository {
             monthNumber = 2,
             monthName = "Shafar",
             arabicName = "صَفَر",
-            virtues = "Bulan kedua Hijriyah. TQN PP Suryalaya Sirnarasa mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
+            virtues = "Bulan kedua Hijriyah. MTQN Suryalaya Sirnarasa PPKN III mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
             recommendedAmalan = listOf(
                 "Sholat Sunnah Li Daf'il Bala' 4 rakaat 2 salam pada Rebo Wekasan.",
                 "Membaca Surat Yasin dan doa permohonan keselamatan dari segala marabahaya.",
@@ -436,7 +436,7 @@ class AmaliyahRepository {
             monthNumber = 4,
             monthName = "Rabi'ul Akhir",
             arabicName = "رَبِيعُ الْآخِر",
-            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib TQN PP Suryalaya Sirnarasa.",
+            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib MTQN Suryalaya Sirnarasa PPKN III.",
             recommendedAmalan = listOf(
                 "Menghadiri atau menyelenggarakan Khidmat Amaliah Manaqib Syekh Abdul Qodir Al-Jailani.",
                 "Mengkhatamkan pembacaan Tanbih, Tawassul, Manqobah, dan Sholawat.",
@@ -499,7 +499,7 @@ class AmaliyahRepository {
             virtues = "Sayyidus Syuhur (Penghulu segala bulan). Bulan diturunkannya Al-Qur'an, kewajiban puasa, Sholat Tarawih, Nuzulul Qur'an, dan Malam Lailatul Qadar.",
             recommendedAmalan = listOf(
                 "Menunaikan ibadah Puasa Ramadhan dengan menjaga lisan dan hati.",
-                "Sholat Tarawih 20 Rakaat dan Witir 3 Rakaat berjamaah dengan amaliyah TQN.",
+                "Sholat Tarawih 20 Rakaat dan Witir 3 Rakaat berjamaah dengan amaliyah MTQN Suryalaya Sirnarasa PPKN III.",
                 "Tadarus dan khataman Al-Qur'an.",
                 "I'tikaf dan Sholat Lailatul Qadar pada 10 malam terakhir.",
                 "Membayar Zakat Fitrah dan memperbanyak infaq sedekah."
@@ -575,14 +575,14 @@ class AmaliyahRepository {
         ),
         SpecialPrayer(
             id = "sholat_tarawih_tqn",
-            title = "Sholat Tarawih 20 Rakaat & Witir TQN",
+            title = "Sholat Tarawih 20 Rakaat & Witir",
             arabicTitle = "صلاة التراويح والوتر",
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةَ التَّرَاوِيحِ رَكْعَتَيْنِ (إِمَامًا / مَأْمُومًا) لِلَّهِ تَعَالَى",
             latinText = "Ushallii sunnatat taraawiihi rak'ataini (imaaman / ma'muuman) lillaahi Ta'aalaa.",
             indonesianText = "Aku niat sholat sunnah Tarawih dua rakaat (sebagai imam/makmum) karena اللّه Ta'ala.",
             sundaneseText = "Niat abdi sholat sunnah Tarawih dua rakaat (imam/makmum) karana اللّه Ta'ala.",
-            kaifiyat = "Dikerjakan 20 rakaat (10 salam) tiap 2 rakaat salam, diselingi shalawat dan doa tarawih tiap 4 rakaat. Dilanjutkan Sholat Witir 3 rakaat (2 rakaat salam + 1 rakaat salam) dan membaca doa witir serta Dzikir TQN.",
+            kaifiyat = "Dikerjakan 20 rakaat (10 salam) tiap 2 rakaat salam, diselingi shalawat dan doa tarawih tiap 4 rakaat. Dilanjutkan Sholat Witir 3 rakaat (2 rakaat salam + 1 rakaat salam) dan membaca doa witir serta Dzikir.",
             virtue = "Menghidupkan malam Ramadhan, melebur dosa-dosa yang telah lalu, dan meraih ridha Allah.",
             recommendedTime = "Malam hari di bulan Ramadhan ba'da Isya",
             rakaatCount = 20

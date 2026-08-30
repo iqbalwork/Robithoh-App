@@ -5,11 +5,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class AmaliyahCategory(val label: String, val subtitle: String) {
-    DZIKIR_BA_DA_SHOLAT("Dzikir Ba'da Sholat", "Lafadz Dzikir Jahr & Khofi TQN 38"),
+    DZIKIR_BA_DA_SHOLAT("Dzikir Ba'da Sholat", "Lafadz Dzikir Jahr & Khofi MTQN Suryalaya Sirnarasa PPKN III Silsilah 38"),
     PRAYER_TIMES("Jadwal Sholat & Tasawuf", "Waktu Sholat, Tahajjud, Waktal & Arah Kiblat"),
     DOA_HARIAN("Doa & Wirid Harian", "Sebelum Tidur, Tarhim, Salam Wali Mursyid, Istighotsah"),
     BULAN_HIJRIYAH("12 Bulan Hijriyah", "Panduan amalan bulanan & sholat sunnah istimewa"),
-    SHOLAT_SUNNAH("Sholat Sunnah Khusus", "Sholat Rajab, Nisfu Sya'ban, Tarawih TQN, Rebo Wekasan")
+    SHOLAT_SUNNAH("Sholat Sunnah Khusus", "Sholat Rajab, Nisfu Sya'ban, Tarawih & Witir, Rebo Wekasan")
 }
 
 @Serializable

@@ -73,14 +73,14 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
             titleId = "Pembacaan Wasiat Tanbih",
             titleSu = "Pamaosan Serat Wasiat Tanbih",
             arabicIntro = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ",
-            protocolId = "Acara ketiga yaitu Pembacaan Wasiat Tanbih Pangersa Guru Agung Sesepuh Suryalaya-Sirnarasa. Kepadanya dipersilakan.",
-            protocolSu = "Acara katilu nyaeta Pamaosan Serat Wasiat Tanbih Pangersa Guru Agung Sesepuh Suryalaya-Sirnarasa. Ka pangersana sumangga dihaturanan.",
+            protocolId = "Acara ketiga yaitu Pembacaan Wasiat Tanbih Pangersa Guru Agung Sesepuh MTQN Suryalaya Sirnarasa PPKN III. Kepadanya dipersilakan.",
+            protocolSu = "Acara katilu nyaeta Pamaosan Serat Wasiat Tanbih Pangersa Guru Agung Sesepuh MTQN Suryalaya Sirnarasa PPKN III. Ka pangersana sumangga dihaturanan.",
             officerRole = "Petugas Pembaca Tanbih"
         ),
         McProgramItem(
             stepNumber = 4,
-            titleId = "Pembacaan Tawassul & Silsilah TQN 38",
-            titleSu = "Pamaosan Tawassul & Silsilah TQN 38",
+            titleId = "Pembacaan Tawassul & Silsilah 38",
+            titleSu = "Pamaosan Tawassul & Silsilah 38",
             arabicIntro = "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ وَعَلَى آلِهِ وَأَصْحَابِهِ... ثُمَّ إِلَى حَضْرَةِ سَيِّدِنَا الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلَانِيِّ قَدَّسَ اللَّهُ سِرَّهُ",
             protocolId = "Acara keempat yaitu Pembacaan Tawassul dan Silsilah Thoriqoh Qodiriyyah Naqsyabandiyyah 1 s/d 38 yang dipimpin oleh Petugas Tawassul. Kepadanya dipersilakan.",
             protocolSu = "Acara kaopat nyaeta Pamaosan Tawassul sinareng Silsilah Thoriqoh Qodiriyyah Naqsyabandiyyah 1 dugika 38 anu baris dipingpin ku Petugas Tawassul. Ka pangersana sumangga dihaturanan.",
@@ -291,7 +291,7 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
                 title = "Khalifah TQN Jawa Barat",
                 locationOrEpithet = "Kalisapu, Cirebon",
                 arabicName = "سَيِّدُنَا الشَّيْخُ طَلْحَةُ كَالِيسَافُو شِيرْبُونْ رَضِيَ اللَّهُ عَنْهُ",
-                description = "Wakil talqin Syekh Ahmad Khotib Sambas yang menyebarkan TQN ke tanah Sunda dan Nusantara."
+                description = "Wakil talqin Syekh Ahmad Khotib Sambas yang menyebarkan thoriqoh ke tanah Sunda dan Nusantara."
             )
             34 -> SilsilahNode(
                 orderNumber = 34,
@@ -299,7 +299,7 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
                 title = "Khalifah TQN Jawa Barat",
                 locationOrEpithet = "Kalisapu, Cirebon",
                 arabicName = "سَيِّدُنَا الشَّيْخُ طَلْحَةُ كَالِيسَافُو شِيرْبُونْ رَضِيَ اللَّهُ عَنْهُ",
-                description = "Wakil talqin Syekh Ahmad Khotib Sambas yang menyebarkan TQN ke tanah Sunda dan Nusantara."
+                description = "Wakil talqin Syekh Ahmad Khotib Sambas yang menyebarkan thoriqoh ke tanah Sunda dan Nusantara."
             )
             35 -> SilsilahNode(
                 orderNumber = 35,
@@ -315,7 +315,7 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
                 title = "Pendiri Pontren Suryalaya, Mursyid ke-36",
                 locationOrEpithet = "Suryalaya, Ciawi, Tasikmalaya",
                 arabicName = "سَيِّدُنَا الشَّيْخُ عَبْدُ اللَّهِ مُبَارَكْ (أَبَاهْ سَفُوهْ) رَضِيَ اللَّهُ عَنْهُ",
-                description = "Mursyid agung pembina umat, pendiri Pondok Pesantren Suryalaya dan perumus Tanbih."
+                description = "Mursyid agung pembina ikhwan dan akhwat, pendiri Pondok Pesantren Suryalaya dan perumus Tanbih."
             )
             37 -> SilsilahNode(
                 orderNumber = 37,
@@ -323,15 +323,15 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
                 title = "Shohibul Wafa Tajul 'Arifin, Mursyid ke-37",
                 locationOrEpithet = "Suryalaya, Ciawi, Tasikmalaya",
                 arabicName = "سَيِّدُنَا الشَّيْخُ أَحْمَدُ صَاحِبُ الْوَفَاءِ تَاجُ الْعَارِفِينَ رَضِيَ اللَّهُ عَنْهُ",
-                description = "Mursyid TQN yang memasyhurkan dzikir TQN ke seluruh dunia dan pendiri Inabah."
+                description = "Mursyid yang memasyhurkan dzikir ke seluruh dunia dan pendiri Inabah."
             )
             38 -> SilsilahNode(
                 orderNumber = 38,
                 name = "Sayyidina Pangersa Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos) Ra. Qs.",
-                title = "Pangersa Guru Agung, Mursyid TQN Silsilah ke-38",
+                title = "Pangersa Guru Agung, Mursyid Silsilah ke-38",
                 locationOrEpithet = "Pondok Pesantren Sirnarasa Ciceuri Panjalu Ciamis",
                 arabicName = "سَيِّدُنَا وَمُرْشِدُنَا الشَّيْخُ مُحَمَّدٌ عَبْدُ الْغَوْثِ سَيْفُ اللَّهِ مَسْلُولْ قَدَّسَ اللَّهُ سِرَّهُ",
-                description = "Mursyid Penjaga Zaman penerus estafet Silsilah TQN ke-38, penegak peradaban dzikir TQN 38 di Pesantren Sirnarasa."
+                description = "Mursyid Penjaga Zaman penerus estafet Silsilah MTQN Suryalaya Sirnarasa PPKN III ke-38, penegak peradaban dzikir di Pesantren Sirnarasa."
             )
             else -> {
                 val baseName = when ((number % 6)) {
@@ -345,7 +345,7 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
                 SilsilahNode(
                     orderNumber = number,
                     name = "$baseName (Urutan ke-$number)",
-                    title = "Mursyid Rantai Emas Silsilah TQN",
+                    title = "Mursyid Rantai Emas Silsilah 38",
                     locationOrEpithet = "Baghdad / Haramain / Nusantara",
                     arabicName = "سَيِّدُنَا الشَّيْخُ الْعَارِفُ بِاللَّهِ رَضِيَ اللَّهُ عَنْهُ",
                     description = "Rantai emas kesinambungan talqin dzikir Thoriqoh Qodiriyyah Naqsyabandiyyah dari generasi ke generasi."
@@ -407,7 +407,7 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
             repeatCount = "7x Fatihah",
             arabicText = "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ ... ثُمَّ إِلَى أَرْوَاحِ آبَائِهِ وَأُمَّهَاتِهِ ... ثُمَّ إِلَى أَهْلِ السِّلْسِلَةِ الْقَادِرِيَّةِ النَّقْشَبَنْدِيَّةِ ...",
             latinText = "Ilaa hadrotin nabiyyil musthofaa Muhammadin SAW ... Tsumma ilaa arwaahi aabaaihii ... Tsumma ilaa Ahlis Silsilatil Qoodiriyyah Naqsyabandiyyah ...",
-            translation = "Menghadiahkan bacaan Surat Al-Fatihah kepada Baginda Nabi ﷺ, para Nabi, Malaikat, Sahabat Khulafaur Rasyidin, Imam Mujtahid, dan Silsilah Guru Mursyid TQN Suryalaya Sirnarasa.",
+            translation = "Menghadiahkan bacaan Surat Al-Fatihah kepada Baginda Nabi ﷺ, para Nabi, Malaikat, Sahabat Khulafaur Rasyidin, Imam Mujtahid, dan Silsilah Guru Mursyid MTQN Suryalaya Sirnarasa PPKN III.",
             instructions = "Duduk bertawajjuh menghadap kiblat, memejamkan mata dan mengarahkan segenap rasa ke lathifah qolbi."
         ),
         KhotamanStep(
@@ -538,12 +538,12 @@ Kukituna, mugia sakumna ikhwan tetep ngalampahkeun kasaean, nebihan sagala laran
         ),
         KhotamanStep(
             stepNumber = 16,
-            title = "Membaca Doa Khotaman TQN",
+            title = "Membaca Doa Khotaman",
             repeatCount = "1x",
             arabicText = "ياَ مَنْ وَسِعَ لُطْفُهُ أَهْلَ السَّمٰوَاتِ وَاْلأَرْضِ نَسْأَلُكَ بِخَفِيِّ خَفِيِّ لُطْفِكَ الـْخَفِيِّ أَنْ تُخْفِيْنَا فِي خَفِيِّ خَفِيِّ لُطْفِكَ الـْخَفِيِّ ...",
             latinText = "Yaa lathiif (3x). Yaa Man wasi’a lathfuhuu ahlas samaawaati wal ardh, nas’aluka bi khofiyyi khofiyyi luthfi-Kal khofiyyi...",
             translation = "Wahai Zat yang luas kelembutan-Nya bagi penghuni langit dan bumi, kami memohon perlindungan di dalam rahasia kelembutan-Mu...",
-            instructions = "Dibaca dengan penuh penghayatan dan ketundukan hati memohon barokah bagi seluruh umat."
+            instructions = "Dibaca dengan penuh penghayatan dan ketundukan hati memohon barokah bagi seluruh ikhwan dan akhwat."
         ),
         KhotamanStep(
             stepNumber = 17,

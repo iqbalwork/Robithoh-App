@@ -391,7 +391,7 @@ fun GenericDocumentReaderScreen(
                     append(verse.note.replace("**", "").replace("*", ""))
                     append("\n\n")
                 }
-                append("(${docInfo?.title ?: "Amaliyah TQN PP Suryalaya Sirnarasa"})")
+                append("(${docInfo?.title ?: "Amaliyah MTQN Suryalaya Sirnarasa PPKN III"})")
             }
         }
 

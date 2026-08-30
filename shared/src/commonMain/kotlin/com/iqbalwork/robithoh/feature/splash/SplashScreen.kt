@@ -182,11 +182,20 @@ fun SplashScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "TQN Pondok Pesantren Sirnarasa",
+                text = "Roudloh Merah Putih",
                 fontFamily = fontJakarta,
-                fontSize = 12.sp,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Bold,
+                color = MerahMerdeka,
+                letterSpacing = 0.5.sp
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = "MTQN Suryalaya Sirnarasa PPKN III",
+                fontFamily = fontJakarta,
+                fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = TextCharcoal.copy(alpha = 0.6f),
+                color = TextCharcoal.copy(alpha = 0.75f),
                 letterSpacing = 0.5.sp
             )
             Spacer(modifier = Modifier.height(2.dp))
@@ -195,7 +204,7 @@ fun SplashScreen(
                 fontFamily = fontJakarta,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Normal,
-                color = TextCharcoal.copy(alpha = 0.45f)
+                color = TextCharcoal.copy(alpha = 0.5f)
             )
         }
     }

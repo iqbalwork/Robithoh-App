@@ -288,7 +288,7 @@ fun SalatTabContent(
                         color = if (isDark) PutihBersih else TextCharcoal
                     )
                     Text(
-                        text = "Jadwal sholat wajib & sunnah TQN",
+                        text = "Jadwal sholat wajib & sunnah",
                         fontSize = 12.sp,
                         color = if (isDark) DarkMuted else TextMuted
                     )

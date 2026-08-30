@@ -20,7 +20,7 @@ data class TasbihUiState(
     val lapCount: Int = 0,
     val totalCount: Int = 0,
     val selectedDzikirId: String = "dzikir_nafi_itsbat",
-    val selectedDzikirTitle: String = "Dzikir Jahr (TQN)",
+    val selectedDzikirTitle: String = "Dzikir Jahr",
     val selectedDzikirArabic: String = "لَا إِلَهَ إِلَّا اللَّهُ",
     val isHapticEnabled: Boolean = true,
     val isSoundEnabled: Boolean = true,
@@ -33,10 +33,10 @@ data class TasbihUiState(
     val availablePresets: List<TasbihDzikirPreset> = listOf(
         TasbihDzikirPreset(
             id = "dzikir_nafi_itsbat",
-            title = "Dzikir Jahr (TQN)",
+            title = "Dzikir Jahr",
             arabic = "لَا إِلَهَ إِلَّا اللَّهُ",
             defaultTarget = 165,
-            virtue = "Dzikir Jahr standar TQN ba'da sholat (165x)."
+            virtue = "Dzikir Jahr ba'da sholat (165x)."
         ),
         TasbihDzikirPreset(
             id = "tasbih_subhanallah",
@@ -71,7 +71,7 @@ data class TasbihUiState(
             title = "Shalawat Bani Hasyim",
             arabic = "اللَّهُمَّ صَلِّ عَلَى النَّبِيِّ الْهَاشِمِيِّ مُحَمَّدٍ وَعَلَى آلِهِ وَسَلِّمْ تَسْلِيمًا",
             defaultTarget = 165,
-            virtue = "Shalawat kebanggaan ikhwan TQN pembuka futuh dan mahabbah Rasulullah."
+            virtue = "Shalawat kebanggaan ikhwan dan akhwat pembuka futuh dan mahabbah Rasulullah."
         )
     )
 ) : UiState

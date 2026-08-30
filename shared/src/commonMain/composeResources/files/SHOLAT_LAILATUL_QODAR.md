@@ -11,7 +11,7 @@ Guru Agung Hadrotus Syeikh ABAH AOS Ra Qs
 Rabu, 19 Mei 2021/7 Romadlon 2 1442 H
 
 Kepada yang terhormat,
-Para Ikhwan TQN Suryalaya Sirnarasa
+Para Ikhwan MTQN Suryalaya Sirnarasa PPKN III
 di Seluruh Dunia
 
 السّلام عليكم ورحمة الله وبركاته

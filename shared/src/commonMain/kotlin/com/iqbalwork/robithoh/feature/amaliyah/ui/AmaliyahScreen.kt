@@ -120,7 +120,7 @@ fun AmaliyahScreen(
         topBar = {
             IslamicHeader(
                 title = "Amaliyah & Dzikir",
-                subtitle = "Panduan Ibadah Harian & Bulanan TQN 38",
+                subtitle = "Panduan Ibadah Harian & Bulanan MTQN Suryalaya Sirnarasa PPKN III",
                 arabicTitle = "الْأَعْمَالُ وَالْأَوْرَادُ",
                 onBackClick = onBack
             )
@@ -226,7 +226,7 @@ fun AmaliyahScreen(
                                     color = if (isDark) PutihBersih else SlateCharcoalText
                                 )
                                 Text(
-                                    text = "Preset 165x (Dzikir Jahr TQN) & Kustom",
+                                    text = "Preset 165x (Dzikir Jahr) & Kustom",
                                     fontSize = 12.sp,
                                     color = if (isDark) DarkMuted else SlateMuted
                                 )

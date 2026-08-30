@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
@@ -39,7 +38,7 @@ fun ProfileScreen(
         topBar = {
             IslamicHeader(
                 title = "Tentang Aplikasi",
-                subtitle = "Robithoh v1.0.0 · 100% Offline-First",
+                subtitle = "Roudloh Merah Putih MTQN Suryalaya Sirnarasa PPKN III",
                 arabicTitle = "عَنْ التَّطْبِيقِ",
                 onBackClick = onBackClick
             )
@@ -72,11 +71,12 @@ fun ProfileScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Aplikasi Ibadah & Amaliyah TQN Modern Multiplatform",
+                            text = "Aplikasi Ibadah & Amaliyah Roudloh Merah Putih MTQN Suryalaya Sirnarasa PPKN III",
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 color = EmasMuda,
                                 textAlign = TextAlign.Center,
-                                fontSize = 13.sp
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.SemiBold
                             ),
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -195,7 +195,7 @@ fun ProfileScreen(
                                 )
                             }
                             Text(
-                                text = "Mursyid Ke-38 TQN",
+                                text = "Mursyid Ke-38",
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = if (isDark) EmasMuda else MerahMarunGelap
@@ -212,7 +212,7 @@ fun ProfileScreen(
                             )
                         )
                         Text(
-                            text = "Pangersa Abah Aos — Guru Mursyid Thoriqoh Qodiriyyah Naqsyabandiyyah Silsilah Ke-38",
+                            text = "Pangersa Abah Aos — Guru Mursyid Roudloh Merah Putih MTQN Suryalaya Sirnarasa PPKN III (Silsilah Ke-38)",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = EmasKhidmat,
                                 fontSize = 11.sp,
@@ -231,7 +231,7 @@ fun ProfileScreen(
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Text(
-                            text = "Aplikasi Robithoh ini didedikasikan secara tulus sebagai washilah kemudahan mengamalkan Dzikir, Kitab Manaqib, dan seluruh Amaliyah TQN bagi ikhwan, akhwat, serta umat Islam di seluruh penjuru dunia.",
+                            text = "Aplikasi Robithoh ini didedikasikan secara tulus sebagai washilah kemudahan mengamalkan Dzikir, Kitab Manaqib, dan seluruh Amaliyah Roudloh Merah Putih MTQN Suryalaya Sirnarasa PPKN III bagi ikhwan dan akhwat di seluruh penjuru dunia.",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 11.sp,
@@ -452,7 +452,7 @@ fun ProfileScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Software engineer independen yang merancang arsitektur, mengembangkan, dan memelihara aplikasi Robithoh secara multiplatform (Kotlin Multiplatform & Compose Multiplatform) sebagai dedikasi teknologi untuk kemaslahatan umat.",
+                            text = "Software engineer independen yang merancang arsitektur, mengembangkan, dan memelihara aplikasi Robithoh secara multiplatform (Kotlin Multiplatform & Compose Multiplatform) sebagai dedikasi teknologi untuk kemaslahatan ikhwan dan akhwat.",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 11.sp,
