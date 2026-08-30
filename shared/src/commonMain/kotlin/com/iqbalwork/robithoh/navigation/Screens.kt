@@ -505,7 +505,7 @@ fun SettingsScreen(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Aplikasi Spiritual & Amaliyah TQN 38 Sirnarasa Ciceuri Panjalu Ciamis. 100% Offline-First dengan SQLDelight & adhan-kotlin.",
+                        text = "Aplikasi Ibadah & Amaliyah TQN Modern Multiplatform. 100% Offline-First dengan SQLDelight & adhan-kotlin.",
                         fontSize = 13.sp,
                         color = Color.DarkGray
                     )

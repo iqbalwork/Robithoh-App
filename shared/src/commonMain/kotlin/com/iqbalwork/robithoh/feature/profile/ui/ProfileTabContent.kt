@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -37,7 +38,6 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
-import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
@@ -48,18 +48,21 @@ import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 @Composable
 fun ProfileTabContent(
     isDarkMode: Boolean = false,
-    onDarkModeChange: (Boolean) -> Unit = {}
+    onDarkModeChange: (Boolean) -> Unit = {},
+    onNavigateToAboutApp: () -> Unit = {}
 ) {
     SettingsTabContent(
         isDarkMode = isDarkMode,
-        onDarkModeChange = onDarkModeChange
+        onDarkModeChange = onDarkModeChange,
+        onNavigateToAboutApp = onNavigateToAboutApp
     )
 }
 
 @Composable
 fun SettingsTabContent(
     isDarkMode: Boolean = false,
-    onDarkModeChange: (Boolean) -> Unit = {}
+    onDarkModeChange: (Boolean) -> Unit = {},
+    onNavigateToAboutApp: () -> Unit = {}
 ) {
     val uriHandler = LocalUriHandler.current
     val isDark = RabithohTheme.colors.isDark || isDarkMode
@@ -72,7 +75,7 @@ fun SettingsTabContent(
             start = 16.dp,
             end = 16.dp,
             top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 100.dp
+            bottom = 120.dp
         ),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -160,7 +163,7 @@ fun SettingsTabContent(
             }
         }
 
-        // 3. Section BANTUAN & MASUKAN (Masukan dan Saran)
+        // 3. Section BANTUAN & MASUKAN
         item {
             Text(
                 text = "BANTUAN & MASUKAN",
@@ -182,7 +185,7 @@ fun SettingsTabContent(
                     icon = "💬",
                     iconBg = if (isDark) Color(0xFF1B382B) else Color(0xFFE8F5E9),
                     title = "Masukan & Saran",
-                    subtitle = "Hubungi via WhatsApp (0878-2288-2668)",
+                    subtitle = "Hubungi via WhatsApp (+62 878-2288-2668)",
                     isDark = isDark,
                     onClick = {
                         try {
@@ -194,10 +197,10 @@ fun SettingsTabContent(
             }
         }
 
-        // 4. Section TENTANG APLIKASI
+        // 4. Section INFORMASI & TENTANG APLIKASI
         item {
             Text(
-                text = "TENTANG APLIKASI",
+                text = "INFORMASI",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
                 color = if (isDark) DarkMuted else TextMuted,
@@ -212,76 +215,40 @@ fun SettingsTabContent(
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Surface(
-                            color = if (isDark) Color(0xFF4A151D) else Color(0xFFFFEBEE),
-                            shape = CircleShape,
-                            modifier = Modifier.size(44.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Text("📖", fontSize = 20.sp)
-                            }
-                        }
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
-                            Text(
-                                text = "Robithoh",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = if (isDark) PutihBersih else MerahMarunGelap
-                            )
-                            Text(
-                                text = "Versi 1.0.0 · 100% Offline-First",
-                                fontSize = 11.sp,
-                                color = if (isDark) DarkMuted else TextMuted
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(
-                        text = "Aplikasi Spiritual & Panduan Amaliyah Harian Ikhwan/Akhwat TQN (Thoriqoh Qodiriyyah Naqsyabandiyyah) Suryalaya - Sirnarasa Ciceuri Panjalu Ciamis.",
-                        fontSize = 12.sp,
-                        lineHeight = 18.sp,
-                        color = if (isDark) PutihBersih.copy(alpha = 0.85f) else TextCharcoal
+                Column {
+                    SettingsActionRow(
+                        icon = "📖",
+                        iconBg = if (isDark) Color(0xFF4A151D) else Color(0xFFFFEBEE),
+                        title = "Tentang Aplikasi",
+                        subtitle = "Robithoh v1.0.0 · Guru Mursyid & Pembimbing",
+                        isDark = isDark,
+                        onClick = onNavigateToAboutApp
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = if (isDark) Color(0xFF2A2424) else Color(0xFFF1F5F9)
-                        ) {
-                            Text(
-                                text = "✨ 100% Offline",
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = if (isDark) PutihBersih else TextCharcoal,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                            )
+                    HorizontalDivider(
+                        color = if (isDark) Color(0xFF2E2727) else Color(0xFFF1F5F9),
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+
+                    SettingsActionRow(
+                        icon = "🌐",
+                        iconBg = if (isDark) Color(0xFF382C1B) else Color(0xFFFFF8E1),
+                        title = "Website Resmi Robithoh",
+                        subtitle = "Portal web & informasi rilis multiplatform",
+                        isDark = isDark,
+                        onClick = {
+                            try {
+                                uriHandler.openUri("https://iqbalwork.github.io/Robithoh-Landing/")
+                            } catch (_: Exception) {
+                            }
                         }
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = if (isDark) Color(0xFF2A2424) else Color(0xFFF1F5F9)
-                        ) {
-                            Text(
-                                text = "🕌 Sirnarasa",
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Medium,
-                                color = if (isDark) PutihBersih else TextCharcoal,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                            )
-                        }
-                    }
+                    )
                 }
             }
         }
 
         item {
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
@@ -303,7 +270,10 @@ private fun SettingsActionRow(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.weight(1f)
+        ) {
             Surface(
                 color = iconBg,
                 shape = CircleShape,

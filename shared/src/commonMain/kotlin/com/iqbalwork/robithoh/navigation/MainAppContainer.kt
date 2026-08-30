@@ -7,9 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
@@ -164,17 +170,21 @@ fun MainAppContainer(
                 MainTab.PENGATURAN -> {
                     SettingsTabContent(
                         isDarkMode = isDarkMode,
-                        onDarkModeChange = onDarkModeChange
+                        onDarkModeChange = onDarkModeChange,
+                        onNavigateToAboutApp = onNavigateToProfilePesantren
                     )
                 }
             }
         }
 
+        val navBarBottomInset = WindowInsets.safeDrawing.asPaddingValues().calculateBottomPadding()
+
         // Floating Audio Bar (if playing) + Floating Navigation Dock Bar
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(bottom = if (navBarBottomInset > 20.dp) navBarBottomInset + 4.dp else 12.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             com.iqbalwork.robithoh.core.designsystem.component.FloatingDownloadBar(
@@ -201,7 +211,7 @@ fun MainAppContainer(
             // Modern Floating Dock Navigation Bar with Icon on Top & Label on Bottom
             Surface(
                 modifier = Modifier
-                    .padding(bottom = 8.dp, start = 16.dp, end = 16.dp)
+                    .padding(horizontal = 16.dp)
                     .clip(RoundedCornerShape(28.dp))
                     .border(2.dp, if (isDarkMode) DarkBorder else Color(0xFF2C2523), RoundedCornerShape(28.dp)),
                 color = if (isDarkMode) DarkSurface else Color.White,
@@ -221,7 +231,7 @@ fun MainAppContainer(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(16.dp))
                                 .clickable { onTabChange(tab) }
-                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                                .padding(horizontal = 5.dp, vertical = 2.dp)
                         ) {
                             Box(
                                 contentAlignment = Alignment.Center,
@@ -256,7 +266,10 @@ fun MainAppContainer(
                             Text(
                                 text = tab.title,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                                fontSize = 11.sp,
+                                fontSize = 10.5.sp,
+                                maxLines = 1,
+                                softWrap = false,
+                                overflow = TextOverflow.Ellipsis,
                                 color = if (isSelected) {
                                     if (isDarkMode) Color.White else TextCharcoal
                                 } else {

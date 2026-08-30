@@ -269,7 +269,7 @@ fun SalatTabContent(
             start = 16.dp,
             end = 16.dp,
             top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 16.dp
+            bottom = 120.dp
         ),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
