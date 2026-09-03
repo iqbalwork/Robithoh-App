@@ -76,6 +76,7 @@ fun AmaliyahScreen(
     onIntent: (AmaliyahUiIntent) -> Unit,
     onNavigate: (ScreenKey) -> Unit,
     onBack: () -> Unit,
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
@@ -111,7 +112,8 @@ fun AmaliyahScreen(
             onOpenTasbih = { target, title ->
                 onNavigate(ScreenKey.Tasbih)
             },
-            onBack = { isShowingDzikirDetail = false }
+            onBack = { isShowingDzikirDetail = false },
+            tasbihViewModel = tasbihViewModel
         )
         return
     }

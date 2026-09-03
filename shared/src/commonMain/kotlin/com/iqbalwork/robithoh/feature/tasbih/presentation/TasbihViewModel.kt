@@ -61,13 +61,11 @@ class TasbihViewModel(
     private fun handleIncrement() {
         val nextCount = currentState.currentCount + 1
         val target = currentState.targetCount
-        val reachedTarget = nextCount >= target
-        val nextLap = if (reachedTarget) currentState.lapCount + 1 else currentState.lapCount
-        val resetCount = if (reachedTarget) 0 else nextCount
-        val total = currentState.totalCount + 1
+        val reachedMilestone = target > 0 && nextCount % target == 0
+        val nextLap = if (reachedMilestone) currentState.lapCount + 1 else currentState.lapCount
 
         if (currentState.isHapticEnabled) {
-            if (reachedTarget || nextCount % 33 == 0) {
+            if (reachedMilestone || nextCount % 33 == 0) {
                 hapticFeedback.performMilestone()
                 sendEffect(TasbihUiEffect.TriggerHapticMilestone)
             } else {
@@ -77,23 +75,23 @@ class TasbihViewModel(
         }
 
         if (currentState.isSoundEnabled) {
-            if (reachedTarget) {
+            if (reachedMilestone) {
                 sendEffect(TasbihUiEffect.PlayMilestoneChime)
             } else {
                 sendEffect(TasbihUiEffect.PlayClickChime)
             }
         }
 
-        if (reachedTarget) {
+        if (reachedMilestone) {
             sendEffect(TasbihUiEffect.ShowMilestoneToast(target, target))
         }
 
         updateState {
             copy(
-                currentCount = resetCount,
+                currentCount = nextCount,
                 lapCount = nextLap,
-                totalCount = total,
-                isTargetReached = reachedTarget
+                totalCount = totalCount + 1,
+                isTargetReached = reachedMilestone
             )
         }
 

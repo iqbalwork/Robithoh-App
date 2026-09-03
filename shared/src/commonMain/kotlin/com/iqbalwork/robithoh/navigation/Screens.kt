@@ -214,7 +214,8 @@ private fun MenuNavigationCard(
 fun AmaliyahScreen(
     onNavigate: (ScreenKey) -> Unit,
     onBack: () -> Unit,
-    viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null
+    viewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel? = null,
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null
 ) {
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val vm = viewModel ?: viewModel {
@@ -236,7 +237,8 @@ fun AmaliyahScreen(
             state = state,
             onIntent = vm::onIntent,
             onNavigate = onNavigate,
-            onBack = onBack
+            onBack = onBack,
+            tasbihViewModel = tasbihViewModel
         )
     }
 }

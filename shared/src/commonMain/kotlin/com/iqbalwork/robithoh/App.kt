@@ -53,6 +53,9 @@ fun App() {
                 alarmScheduler = alarmScheduler
             )
         }
+        val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel {
+            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
+        }
         val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
         val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
@@ -129,12 +132,14 @@ fun App() {
                 AmaliyahScreen(
                     onNavigate = { destination -> backstack.add(destination) },
                     onBack = onBackAction,
-                    viewModel = amaliyahViewModel
+                    viewModel = amaliyahViewModel,
+                    tasbihViewModel = tasbihViewModel
                 )
             }
             entry<ScreenKey.Tasbih> { _ ->
                 TasbihScreen(
-                    onBack = onBackAction
+                    onBack = onBackAction,
+                    viewModel = tasbihViewModel
                 )
             }
             entry<ScreenKey.ManaqibList> { _ ->

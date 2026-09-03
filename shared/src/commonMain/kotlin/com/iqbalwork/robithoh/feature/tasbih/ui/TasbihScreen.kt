@@ -84,9 +84,12 @@ fun TasbihScreen(
     }
     var customTargetInput by rememberSaveable { mutableStateOf(state.targetCount.toString()) }
 
-    val isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0
+    val isMilestone = state.isTargetReached
     val progressPercent = if (state.targetCount > 0) {
-        ((state.currentCount.toFloat() / state.targetCount.toFloat()) * 100).toInt().coerceIn(0, 100)
+        val countInLap = state.currentCount % state.targetCount
+        val fraction = if (countInLap == 0 && state.currentCount > 0) 1f
+                       else countInLap.toFloat() / state.targetCount.toFloat()
+        (fraction * 100).toInt().coerceIn(0, 100)
     } else 0
 
     Scaffold(
@@ -304,21 +307,6 @@ fun TasbihScreen(
                                 color = EmasKhidmat
                             )
                         }
-
-                        VerticalDivider(
-                            modifier = Modifier.height(28.dp),
-                            color = if (isDark) DarkBorder else Color(0xFFE2E8F0)
-                        )
-
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("Total Sesi", fontSize = 11.sp, color = if (isDark) DarkMuted else SlateMuted)
-                            Text(
-                                text = "${state.totalCount}x",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp,
-                                color = MerahMerdeka
-                            )
-                        }
                     }
                 }
 
@@ -421,7 +409,7 @@ fun TasbihScreen(
             },
             text = {
                 Text(
-                    "Target ${state.targetCount}x dzikir '${state.selectedDzikirTitle}' telah selesai tercapai.\n\nLanjutkan putaran ke-${state.lapCount + 1}?"
+                    "Target ${state.targetCount}x dzikir '${state.selectedDzikirTitle}' telah selesai tercapai (putaran ke-${state.lapCount}).\n\nHitungan terus berlanjut dari angka berikutnya."
                 )
             },
             confirmButton = {

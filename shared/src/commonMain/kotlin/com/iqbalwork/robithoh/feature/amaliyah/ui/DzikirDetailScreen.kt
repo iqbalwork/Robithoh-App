@@ -38,6 +38,7 @@ fun DzikirDetailScreen(
     onIntent: (AmaliyahUiIntent) -> Unit,
     onOpenTasbih: (Int, String) -> Unit,
     onBack: () -> Unit,
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
@@ -56,10 +57,10 @@ fun DzikirDetailScreen(
     }
 
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val tasbihViewModel = remember(database) {
+    val resolvedTasbihViewModel = tasbihViewModel ?: remember(database) {
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
-    val tasbihState by tasbihViewModel.uiState.collectAsState()
+    val tasbihState by resolvedTasbihViewModel.uiState.collectAsState()
     var selectedDzikirForOptions by remember { mutableStateOf<DzikirItem?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
@@ -178,8 +179,8 @@ fun DzikirDetailScreen(
                     fontScale = fontScale,
                     onClick = { selectedDzikirForOptions = item },
                     onOpenTasbih = { target, title ->
-                        tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
-                        tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                        resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
+                        resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
                     }
                 )
             }
@@ -201,7 +202,7 @@ fun DzikirDetailScreen(
         // Floating Tasbih Overlay (Expandable Floating Widget)
         com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
             state = tasbihState,
-            onIntent = tasbihViewModel::onIntent,
+            onIntent = resolvedTasbihViewModel::onIntent,
             onOpenFullScreen = {
                 onOpenTasbih(tasbihState.targetCount, tasbihState.selectedDzikirTitle)
             }
@@ -255,8 +256,8 @@ fun DzikirDetailScreen(
                         icon = "📿",
                         label = "Hitung dengan Tasbih (${item.repetitionCount}x)",
                         onClick = {
-                            tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
-                            tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                            resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
+                            resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
                         }
                     )
                 )

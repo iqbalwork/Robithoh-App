@@ -49,7 +49,9 @@ fun TasbihCounterDisk(
     val glowScaleAnim = remember { Animatable(1f) }
 
     val progressFraction = if (targetCount > 0) {
-        (currentCount.toFloat() / targetCount.toFloat()).coerceIn(0f, 1f)
+        val countInLap = currentCount % targetCount
+        if (countInLap == 0 && currentCount > 0) 1f  // full circle on milestone
+        else (countInLap.toFloat() / targetCount.toFloat()).coerceIn(0f, 1f)
     } else 0f
 
     val diskBorderColor = if (isMilestone) EmasKhidmat else MerahMerdeka.copy(alpha = 0.85f)
