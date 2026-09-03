@@ -300,7 +300,7 @@ fun McManaqibScreen(
                         text = if (isSunda) "Kanggo para petugas disanggakeun sacara estafet." else "Kepada para petugas dipersilahkan secara estafet.",
                         fontSize = 14.sp,
                         fontStyle = FontStyle.Italic,
-                        color = if (isDark) PutihBersih.copy(alpha = 0.8f) else TextMuted
+                        color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal
                     )
 
                     Text(

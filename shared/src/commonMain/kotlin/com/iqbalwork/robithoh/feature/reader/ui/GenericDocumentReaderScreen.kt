@@ -950,6 +950,8 @@ private fun SingleContinuousDocumentCard(
                                     cleanText.startsWith("Dengan menyebut", ignoreCase = true) ||
                                     cleanText.startsWith("Yaa اللّه", ignoreCase = true) ||
                                     cleanText.startsWith("Ya اللّه", ignoreCase = true) ||
+                                    cleanText.startsWith("Yaa Alloh", ignoreCase = true) ||
+                                    cleanText.startsWith("Ya Alloh", ignoreCase = true) ||
                                     cleanText.startsWith("Tuhanku", ignoreCase = true) ||
                                     cleanText.startsWith("Artinya", ignoreCase = true) ||
                                     cleanText.startsWith("Katakan", ignoreCase = true) ||
@@ -1026,8 +1028,8 @@ private fun SingleContinuousDocumentCard(
                                         else -> FontStyle.Normal
                                     },
                                     color = when {
-                                        isLatinArabic -> if (readerTheme.isDark) EmasMuda else Color(0xFF8C5B00)
-                                        isTranslation -> readerTheme.secondaryTextColor
+                                        isLatinArabic -> readerTheme.latinTextColor
+                                        isTranslation -> readerTheme.translationTextColor
                                         else -> readerTheme.primaryTextColor
                                     },
                                     textAlign = if (isCentered || isForceCentered) TextAlign.Center else TextAlign.Start,
@@ -1168,7 +1170,7 @@ private fun VerseReadingCard(
                         text = parseMarkdownFormatting(verse.latin),
                         fontSize = (14 * fontScale).sp,
                         lineHeight = (22 * fontScale).sp,
-                        color = if (readerTheme.isDark) EmasMuda else Color(0xFF64748B),
+                        color = readerTheme.latinTextColor,
                         fontStyle = FontStyle.Italic,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                         modifier = Modifier.fillMaxWidth()
@@ -1182,7 +1184,7 @@ private fun VerseReadingCard(
                         text = parseMarkdownFormatting(verse.translation),
                         fontSize = (14 * fontScale).sp,
                         lineHeight = (22 * fontScale).sp,
-                        color = readerTheme.primaryTextColor,
+                        color = readerTheme.translationTextColor,
                         textAlign = if (isCentered) TextAlign.Center else TextAlign.Start,
                         modifier = Modifier.fillMaxWidth()
                     )

@@ -17,6 +17,8 @@ enum class ReaderTheme(
     val arabicTextColor: Color,
     val primaryTextColor: Color,
     val secondaryTextColor: Color,
+    val latinTextColor: Color,
+    val translationTextColor: Color,
     val isDark: Boolean
 ) {
     WHITE(
@@ -27,9 +29,11 @@ enum class ReaderTheme(
         surfaceColor = Color(0xFFFFFFFF),
         cardBackgroundColor = Color(0xFFFFFFFF),
         cardBorderColor = Color(0xFFE5E7EB),
-        arabicTextColor = Color(0xFF1A1D20),
-        primaryTextColor = Color(0xFF1E2124),
-        secondaryTextColor = Color(0xFF64748B),
+        arabicTextColor = Color(0xFF111827),
+        primaryTextColor = Color(0xFF111827),
+        secondaryTextColor = Color(0xFF374151),
+        latinTextColor = Color(0xFF1F2937),
+        translationTextColor = Color(0xFF1F2937),
         isDark = false
     ),
     SEPIA(
@@ -40,9 +44,11 @@ enum class ReaderTheme(
         surfaceColor = Color(0xFFF4ECD8),
         cardBackgroundColor = Color(0xFFF4ECD8),
         cardBorderColor = Color(0xFFE6D7BA),
-        arabicTextColor = Color(0xFF2C2523),
-        primaryTextColor = Color(0xFF3E342F),
-        secondaryTextColor = Color(0xFF7C6E65),
+        arabicTextColor = Color(0xFF1F1610),
+        primaryTextColor = Color(0xFF261D18),
+        secondaryTextColor = Color(0xFF4A3E39),
+        latinTextColor = Color(0xFF261D18),
+        translationTextColor = Color(0xFF261D18),
         isDark = false
     ),
     KHAKI(
@@ -53,9 +59,11 @@ enum class ReaderTheme(
         surfaceColor = Color(0xFFEDE8DB),
         cardBackgroundColor = Color(0xFFEDE8DB),
         cardBorderColor = Color(0xFFDFD7C4),
-        arabicTextColor = Color(0xFF1E2022),
-        primaryTextColor = Color(0xFF2C2523),
-        secondaryTextColor = Color(0xFF6B655B),
+        arabicTextColor = Color(0xFF17191B),
+        primaryTextColor = Color(0xFF1E2022),
+        secondaryTextColor = Color(0xFF3E3A33),
+        latinTextColor = Color(0xFF1E2022),
+        translationTextColor = Color(0xFF1E2022),
         isDark = false
     ),
     DARK(
@@ -67,8 +75,10 @@ enum class ReaderTheme(
         cardBackgroundColor = Color(0xFF1E1A1A),
         cardBorderColor = Color(0xFF3E3636),
         arabicTextColor = Color(0xFFF8FAFC),
-        primaryTextColor = Color(0xFFF1F5F9),
-        secondaryTextColor = Color(0xFFA1A1AA),
+        primaryTextColor = Color(0xFFF8FAFC),
+        secondaryTextColor = Color(0xFFCBD5E1),
+        latinTextColor = Color(0xFFF9E8B2),
+        translationTextColor = Color(0xFFE2E8F0),
         isDark = true
     );
 

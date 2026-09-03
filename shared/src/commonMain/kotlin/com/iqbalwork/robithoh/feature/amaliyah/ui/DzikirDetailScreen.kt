@@ -362,7 +362,7 @@ private fun DzikirLiturgicalCard(
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
-                color = readerTheme.primaryTextColor,
+                color = readerTheme.latinTextColor,
                 fontSize = (14.5 * fontScale).sp,
                 lineHeight = 22.sp
             ),
@@ -386,7 +386,7 @@ private fun DzikirLiturgicalCard(
         Text(
             text = "[$langBadge] $translationText",
             style = MaterialTheme.typography.bodySmall.copy(
-                color = readerTheme.secondaryTextColor,
+                color = readerTheme.translationTextColor,
                 fontSize = (12 * fontScale).sp,
                 lineHeight = 17.sp
             )

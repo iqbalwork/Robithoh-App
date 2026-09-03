@@ -92,17 +92,17 @@ fun HomeTabContent(
 
     val menuGridItems = listOf(
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
-        HomeGridMenuItem("tasbih", "Tasbih", "📿"),
+        HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
         HomeGridMenuItem("khotaman", "Khotaman", "📜"),
         HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),
-        HomeGridMenuItem("kiblat", "Kiblat", "🧭"),
+        HomeGridMenuItem("kiblat", "Arah Kiblat", "🧭"),
         HomeGridMenuItem("langgam", "Langgam", "🎵"),
         HomeGridMenuItem("tarhim", "Tarhim", "📢"),
         HomeGridMenuItem("sholawat", "Sholawat", "✨"),
         HomeGridMenuItem("doa", "Doa", "🤲"),
         HomeGridMenuItem("silsilah", "Silsilah", "🔗"),
-        HomeGridMenuItem("tahlil", "Tahlil", "🌿")
+        HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")
     )
 
     val kutipanHariIni = remember { untaianMutiaraTanbih.random() }
@@ -355,9 +355,8 @@ private fun MainGridButton(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.92f)
-                .aspectRatio(1f)
-                .clip(RoundedCornerShape(18.dp))
+                .size(68.dp)
+                .clip(RoundedCornerShape(20.dp))
                 .background(
                     Brush.verticalGradient(
                         listOf(MerahMerdeka, MerahMarunGelap)
@@ -367,14 +366,14 @@ private fun MainGridButton(
         ) {
             Text(
                 text = item.emoji,
-                fontSize = 26.sp
+                fontSize = 28.sp
             )
         }
 
         Spacer(modifier = Modifier.height(6.dp))
         Text(
             text = item.title,
-            fontSize = 11.5.sp,
+            fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
             color = if (isDark) PutihBersih else TextCharcoal,
             textAlign = TextAlign.Center,

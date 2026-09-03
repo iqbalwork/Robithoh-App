@@ -619,42 +619,46 @@ class MarkdownDocumentRepository {
                 }
                 currentArabic.append(trimmed)
             } else {
+                val cleanForDetection = trimmed.removeSurrounding("*").removeSurrounding("\"").trim()
                 val isExplicitTranslation = inTranslationSection ||
-                                           trimmed.startsWith("Artinya:", ignoreCase = true) ||
-                                           trimmed.startsWith("Aku memohon", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa اللّه semoga", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa اللّه limpahkanlah", ignoreCase = true) ||
-                                           trimmed.startsWith("Tuhanku Engkaulah", ignoreCase = true) ||
-                                           trimmed.startsWith("Tiada Tuhan", ignoreCase = true) ||
-                                           trimmed.startsWith("Dengan menyebut", ignoreCase = true) ||
-                                           trimmed.startsWith("Dengan nama", ignoreCase = true) ||
-                                           trimmed.startsWith("Semoga", ignoreCase = true) ||
-                                           trimmed.startsWith("Ya Tuhanku", ignoreCase = true) ||
-                                           trimmed.startsWith("Wahai", ignoreCase = true) ||
-                                           trimmed.startsWith("Ya اللّه", ignoreCase = true)
+                                           cleanForDetection.startsWith("Artinya", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Aku memohon", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa Alloh", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya Alloh", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Tuhanku", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Tiada Tuhan", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Dengan menyebut", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Dengan nama", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Semoga", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya Tuhanku", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Wahai", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Segala puji", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Sengaja", ignoreCase = true)
 
-                val isInstruction = trimmed.startsWith("Kemudian", ignoreCase = true) ||
-                                    trimmed.startsWith("Adapun", ignoreCase = true) ||
-                                    trimmed.startsWith("Selanjutnya", ignoreCase = true) ||
-                                    trimmed.startsWith("Catatan:", ignoreCase = true) ||
-                                    trimmed.startsWith("Faedah:", ignoreCase = true) ||
-                                    trimmed.startsWith("Keutamaan:", ignoreCase = true) ||
-                                    trimmed.startsWith("Do’a dilaksanakan", ignoreCase = true) ||
-                                    trimmed.startsWith("Doa dilaksanakan", ignoreCase = true) ||
-                                    trimmed.startsWith("–", ignoreCase = true) ||
-                                    trimmed.startsWith("- ", ignoreCase = true) ||
-                                    trimmed.startsWith("Dilanjutkan", ignoreCase = true) ||
-                                    trimmed.startsWith("Asy Syura", ignoreCase = true) ||
-                                    trimmed.startsWith("sebanyak", ignoreCase = true) ||
+                val isInstruction = cleanForDetection.startsWith("Kemudian", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Adapun", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Selanjutnya", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Catatan:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Faedah:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Keutamaan:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Do’a dilaksanakan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Doa dilaksanakan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("–", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("- ", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Dilanjutkan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Asy Syura", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("sebanyak", ignoreCase = true) ||
                                     inTawajuhSection
 
-                if ((inLatinSection || isTransliterationLike(trimmed)) && !isExplicitTranslation) {
+                if ((inLatinSection || isTransliterationLike(cleanForDetection)) && !isExplicitTranslation) {
                     val count = extractRepeatCount(trimmed)
                     if (count > currentRepeatCount) {
                         currentRepeatCount = count
                     }
                     if (currentLatin.isNotEmpty()) currentLatin.append("\n\n")
-                    currentLatin.append(trimmed.removeSurrounding("*").removeSurrounding("\""))
+                    currentLatin.append(cleanForDetection)
                 } else if (isInstruction) {
                     if (currentNote.isNotEmpty()) currentNote.append("\n\n")
                     currentNote.append(trimmed)

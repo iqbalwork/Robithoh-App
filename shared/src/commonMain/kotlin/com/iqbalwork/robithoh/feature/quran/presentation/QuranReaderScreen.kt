@@ -604,7 +604,7 @@ private fun AyahItemCard(
             Text(
                 text = ayah.transliterationLatin,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    color = EmasKhidmat,
+                    color = readerTheme.latinTextColor,
                     fontSize = (13 * fontScale).sp,
                     lineHeight = (18 * fontScale).sp
                 )
@@ -618,7 +618,7 @@ private fun AyahItemCard(
             Text(
                 text = ayah.translationIndonesian,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = readerTheme.primaryTextColor,
+                    color = readerTheme.translationTextColor,
                     fontSize = (13 * fontScale).sp,
                     lineHeight = (20 * fontScale).sp
                 )
@@ -629,7 +629,7 @@ private fun AyahItemCard(
                 Text(
                     text = "Basa Sunda: ${ayah.translationSundanese}",
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = readerTheme.secondaryTextColor,
+                        color = readerTheme.translationTextColor,
                         fontSize = (12 * fontScale).sp,
                         lineHeight = (18 * fontScale).sp
                     )

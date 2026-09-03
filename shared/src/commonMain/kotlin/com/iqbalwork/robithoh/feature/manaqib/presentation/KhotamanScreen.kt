@@ -49,6 +49,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.feature.manaqib.model.KhotamanStep
 
 @Composable
@@ -222,9 +223,11 @@ private fun KhotamanStepCard(
         Text(
             text = step.latinText,
             style = MaterialTheme.typography.bodySmall.copy(
-                color = EmasKhidmat,
-                fontSize = 12.sp,
-                lineHeight = 16.sp
+                color = if (isDark) PutihBersih else TextCharcoal,
+                fontWeight = FontWeight.Medium,
+                fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                fontSize = 13.sp,
+                lineHeight = 19.sp
             )
         )
 
@@ -233,8 +236,8 @@ private fun KhotamanStepCard(
         Text(
             text = step.translation,
             style = MaterialTheme.typography.bodySmall.copy(
-                color = if (isDark) PutihBersih.copy(alpha = 0.85f) else SlateCharcoalText,
-                fontSize = 12.sp,
+                color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal,
+                fontSize = 12.5.sp,
                 lineHeight = 18.sp
             )
         )

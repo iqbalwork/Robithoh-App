@@ -296,7 +296,7 @@ fun ManaqibDetailScreen(
                                         style = MaterialTheme.typography.bodyLarge.copy(
                                             fontSize = (16 * fontScale).sp,
                                             lineHeight = (26 * fontScale).sp,
-                                            color = if (isHighContrast) PutihBersih else readerTheme.primaryTextColor
+                                            color = if (isHighContrast) PutihBersih else readerTheme.translationTextColor
                                         ),
                                         modifier = Modifier.fillMaxWidth()
                                     )
@@ -307,7 +307,7 @@ fun ManaqibDetailScreen(
                                         style = MaterialTheme.typography.bodyLarge.copy(
                                             fontSize = (16 * fontScale).sp,
                                             lineHeight = (26 * fontScale).sp,
-                                            color = if (isHighContrast) PutihBersih else readerTheme.primaryTextColor
+                                            color = if (isHighContrast) PutihBersih else readerTheme.translationTextColor
                                         ),
                                         modifier = Modifier.fillMaxWidth()
                                     )

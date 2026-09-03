@@ -148,14 +148,15 @@ fun DoaManaqibScreen(
                             text = "Transliterasi Latin",
                             fontWeight = FontWeight.Bold,
                             fontSize = 13.sp,
-                            color = EmasKhidmat
+                            color = if (isDark) EmasMuda else MerahMarunGelap
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = selectedDoa.latinText,
-                            fontSize = 13.sp,
+                            fontSize = 13.5.sp,
                             lineHeight = 20.sp,
-                            color = if (isDark) PutihBersih else SlateCharcoalText
+                            fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
 
                         Spacer(modifier = Modifier.height(12.dp))
@@ -171,7 +172,7 @@ fun DoaManaqibScreen(
                             text = selectedDoa.indonesianTranslation,
                             fontSize = 13.sp,
                             lineHeight = 20.sp,
-                            color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText
+                            color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal
                         )
 
                         Spacer(modifier = Modifier.height(12.dp))
@@ -180,14 +181,14 @@ fun DoaManaqibScreen(
                             text = "Terjemahan Basa Sunda",
                             fontWeight = FontWeight.Bold,
                             fontSize = 13.sp,
-                            color = EmasKhidmat
+                            color = if (isDark) EmasMuda else MerahMarunGelap
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = selectedDoa.sundaneseTranslation,
                             fontSize = 13.sp,
                             lineHeight = 20.sp,
-                            color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText
+                            color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal
                         )
                     }
                 }

@@ -224,9 +224,9 @@ private fun ZiarahCard(
             Text(
                 text = section.indonesianTranslation,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText,
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp
+                    color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal,
+                    fontSize = 12.5.sp,
+                    lineHeight = 17.sp
                 )
             )
         }
