@@ -207,12 +207,6 @@ fun FloatingTasbihOverlay(
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 12.sp
                                     )
-                                    Spacer(modifier = Modifier.width(4.dp))
-                                    Text(
-                                        text = "165x",
-                                        color = if (is165) EmasMuda else DarkMuted,
-                                        fontSize = 10.sp
-                                    )
                                 }
                             }
 

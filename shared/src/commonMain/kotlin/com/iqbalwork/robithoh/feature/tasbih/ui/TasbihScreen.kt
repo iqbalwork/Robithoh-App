@@ -199,18 +199,13 @@ fun TasbihScreen(
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.padding(vertical = 10.dp)
+                            modifier = Modifier.padding(vertical = 12.dp)
                         ) {
                             Text(
                                 text = "165x",
                                 color = if (is165) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
-                            )
-                            Text(
-                                text = "MTQN Suryalaya Sirnarasa PPKN III 38",
-                                color = if (is165) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                fontSize = 10.sp
                             )
                         }
                     }
@@ -230,18 +225,13 @@ fun TasbihScreen(
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.padding(vertical = 10.dp)
+                            modifier = Modifier.padding(vertical = 12.dp)
                         ) {
                             Text(
-                                text = if (isCustom) "${state.targetCount}x" else "Kustom",
+                                text = if (isCustom) "${state.targetCount}x (Kustom)" else "Kustom ✏️",
                                 color = if (isCustom) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
-                            )
-                            Text(
-                                text = if (isCustom) "Aktif" else "Ubah Target Bebas",
-                                color = if (isCustom) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                fontSize = 10.sp
                             )
                         }
                     }
