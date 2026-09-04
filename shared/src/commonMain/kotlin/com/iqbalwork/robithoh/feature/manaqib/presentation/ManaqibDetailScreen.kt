@@ -48,14 +48,18 @@ fun ManaqibDetailScreen(
 
     val chapter = state.currentChapter
     val isPresentation = state.isPresentationMode
-    val fontScale = state.fontScale
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
     val isHighContrast = state.isHighContrast
     val isDark = RabithohTheme.colors.isDark || isHighContrast
-    var readerTheme by rememberSaveable { mutableStateOf(if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
 
-    LaunchedEffect(isDark) {
-        readerTheme = if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE
+    LaunchedEffect(readerSettings.fontScale) {
+        if (state.fontScale != readerSettings.fontScale) {
+            viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(readerSettings.fontScale))
+        }
     }
 
     val backgroundColor = if (isHighContrast) {
@@ -119,7 +123,11 @@ fun ManaqibDetailScreen(
                         ) {
                             Text("Font:", fontSize = 12.sp, color = if (isDark) DarkMuted else SlateMuted)
                             Button(
-                                onClick = { viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(fontScale - 0.15f)) },
+                                onClick = {
+                                    val newScale = fontScale - 0.15f
+                                    readerSettingsRepository.updateFontScale(newScale)
+                                    viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(newScale))
+                                },
                                 modifier = Modifier.size(32.dp),
                                 contentPadding = PaddingValues(0.dp),
                                 shape = RoundedCornerShape(8.dp),
@@ -136,7 +144,11 @@ fun ManaqibDetailScreen(
                                 color = EmasKhidmat
                             )
                             Button(
-                                onClick = { viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(fontScale + 0.15f)) },
+                                onClick = {
+                                    val newScale = fontScale + 0.15f
+                                    readerSettingsRepository.updateFontScale(newScale)
+                                    viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(newScale))
+                                },
                                 modifier = Modifier.size(32.dp),
                                 contentPadding = PaddingValues(0.dp),
                                 shape = RoundedCornerShape(8.dp),
@@ -354,9 +366,12 @@ fun ManaqibDetailScreen(
     if (showSettingsDialog) {
         TextReaderSettingsSheet(
             fontScale = fontScale,
-            onFontScaleChange = { viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(it)) },
+            onFontScaleChange = {
+                readerSettingsRepository.updateFontScale(it)
+                viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(it))
+            },
             selectedTheme = readerTheme,
-            onThemeSelected = { readerTheme = it },
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
             onDismiss = { showSettingsDialog = false }
         )
     }

@@ -185,3 +185,59 @@ SET subuh_notif_enabled = :subuh,
     imsak_notif_enabled = :imsak
 WHERE id = 1;
 
+-- Reader Settings Entity
+CREATE TABLE ReaderSettingsEntity (
+    id INTEGER NOT NULL PRIMARY KEY DEFAULT 1,
+    font_scale REAL NOT NULL DEFAULT 1.0,
+    theme_id TEXT NOT NULL DEFAULT 'system'
+);
+
+getReaderSettings:
+SELECT * FROM ReaderSettingsEntity WHERE id = 1 LIMIT 1;
+
+insertOrUpdateReaderSettings:
+INSERT OR REPLACE INTO ReaderSettingsEntity(
+    id, font_scale, theme_id
+) VALUES (1, :fontScale, :themeId);
+
+updateFontScale:
+UPDATE ReaderSettingsEntity
+SET font_scale = :fontScale
+WHERE id = 1;
+
+updateReaderTheme:
+UPDATE ReaderSettingsEntity
+SET theme_id = :themeId
+WHERE id = 1;
+
+-- Cached Document Entity (Cloud Sync for Markdown Liturgy Documents)
+CREATE TABLE CachedDocumentEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    file_name TEXT NOT NULL,
+    sha256 TEXT NOT NULL,
+    content TEXT NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX cached_doc_filename_idx ON CachedDocumentEntity(file_name);
+
+getCachedDocument:
+SELECT * FROM CachedDocumentEntity WHERE id = :id LIMIT 1;
+
+getCachedDocumentByFileName:
+SELECT * FROM CachedDocumentEntity WHERE file_name = :fileName LIMIT 1;
+
+getAllCachedDocumentHashes:
+SELECT file_name, sha256 FROM CachedDocumentEntity;
+
+insertOrUpdateCachedDocument:
+INSERT OR REPLACE INTO CachedDocumentEntity(
+    id, file_name, sha256, content, updated_at
+) VALUES (?, ?, ?, ?, ?);
+
+deleteCachedDocument:
+DELETE FROM CachedDocumentEntity WHERE id = :id;
+
+deleteAllCachedDocuments:
+DELETE FROM CachedDocumentEntity;
+

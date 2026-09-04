@@ -20,7 +20,11 @@ sealed interface ScreenKey : NavKey {
     data object Amaliyah : ScreenKey
 
     @Serializable
-    data object Tasbih : ScreenKey
+    data class Tasbih(
+        val initialCount: Int? = null,
+        val targetCount: Int? = null,
+        val dzikirTitle: String? = null
+    ) : ScreenKey
 
     @Serializable
     data object ManaqibList : ScreenKey

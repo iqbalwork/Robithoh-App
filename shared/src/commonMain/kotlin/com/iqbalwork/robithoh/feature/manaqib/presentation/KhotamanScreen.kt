@@ -85,7 +85,7 @@ fun KhotamanScreen(
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = "Amalan Khotaman mingguan/dua mingguan ikhwan TQN PP Suryalaya Sirnarasa untuk pensucian jiwa dan peningkatan derajat ma'rifat.",
+                    text = "Amalan Khotaman mingguan/dua mingguan ikhwan MTQN Suryalaya Sirnarasa PPKN untuk pensucian jiwa dan peningkatan derajat ma'rifat.",
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = PutihBersih,
                         fontSize = 12.sp,

@@ -79,7 +79,7 @@ fun ZiarahScreen(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Tata cara, adab batin, dan bacaan doa ziarah kubur umum serta ziarah maqam Waliyullah per kaifiyat TQN PP Suryalaya Sirnarasa.",
+                    text = "Tata cara, adab batin, dan bacaan doa ziarah kubur umum serta ziarah maqam Waliyullah per kaifiyat MTQN Suryalaya Sirnarasa PPKN.",
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = PutihBersih,
                         fontSize = 12.sp,

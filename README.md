@@ -40,7 +40,7 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
 * **Navigasi & Pencarian Cepat**: Pilih surat, loncat ke nomor ayat tertentu, serta opsi salin dan bagikan ayat.
 * **Penanda Terakhir Dibaca (Bookmark)**: Tersimpan otomatis di basis data lokal SQLDelight.
 
-### 2. 📜 Manaqib & Silsilah TQN PP Suryalaya Sirnarasa
+### 2. 📜 Manaqib & Silsilah MTQN Suryalaya Sirnarasa PPKN
 * **Bilingual Manaqib**: Teks Manqobah Syaikh Abdul Qodir Al-Jailani r.a. tersedia dalam **Bahasa Indonesia** dan **Basa Sunda**.
 * **Protokoler MC Manaqib**: Panduan susunan acara MC Manaqib (Indonesia & Sunda).
 * **Tanbih Guru Mursyid**: Wasiat luhur Syaikh Abdullah Mubarok bin Nur Muhammad (Abah Sepuh) & Syaikh Ahmad Shohibulwafa Tajul Arifin (Abah Anom) dalam dua bahasa.
@@ -248,7 +248,7 @@ Aplikasi ini menyertakan lebih dari **45 dokumen panduan lengkap** yang diparsin
 <summary><b>1. Dzikir & Khotaman</b></summary>
 
 * Dzikir Ba'da Sholat TQN (`DZIKIR_TQN.md`)
-* Amaliyah Khotaman TQN PP Suryalaya Sirnarasa (`KHOTAMAN_TQN.md`)
+* Amaliyah Khotaman MTQN Suryalaya Sirnarasa PPKN (`KHOTAMAN_TQN.md`)
 * Tarhim TQN Menjelang Sholat (`TARHIM_TQN.md`)
 * Silsilah 38 Guru Mursyid TQN (`SILSILAH_TQN.md`)
 * Tahlil TQN & Hadhloroh Arwah (`TAHLIL_TQN.md`)
@@ -259,7 +259,7 @@ Aplikasi ini menyertakan lebih dari **45 dokumen panduan lengkap** yang diparsin
 
 * Susunan Acara MC Manaqib — Bahasa Indonesia & Basa Sunda
 * Tanbih Guru Mursyid — Bahasa Indonesia & Basa Sunda
-* Tawassul Lengkap TQN PP Suryalaya Sirnarasa
+* Tawassul Lengkap MTQN Suryalaya Sirnarasa PPKN
 * 40+ Pasal Manqobah — Bahasa Indonesia & Basa Sunda
 * Doa Manqobah — Bahasa Indonesia & Basa Sunda
 </details>

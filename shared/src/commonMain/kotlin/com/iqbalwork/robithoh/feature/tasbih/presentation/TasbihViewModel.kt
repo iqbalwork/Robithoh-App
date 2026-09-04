@@ -55,7 +55,36 @@ class TasbihViewModel(
             is TasbihUiIntent.ToggleFloatingExpand -> updateState { copy(isFloatingExpanded = !isFloatingExpanded) }
             is TasbihUiIntent.SetFloatingExpanded -> updateState { copy(isFloatingExpanded = intent.expanded) }
             is TasbihUiIntent.SetFloatingVisible -> updateState { copy(isFloatingVisible = intent.visible) }
+            is TasbihUiIntent.SyncData -> handleSyncData(intent)
         }
+    }
+
+    private fun handleSyncData(intent: TasbihUiIntent.SyncData) {
+        val target = intent.target ?: currentState.targetCount
+        val lap = if (target > 0) intent.count / target else currentState.lapCount
+        val matchedPreset = currentState.availablePresets.find {
+            intent.dzikirTitle != null && (
+                it.title.equals(intent.dzikirTitle, ignoreCase = true) ||
+                intent.dzikirTitle.contains(it.title, ignoreCase = true) ||
+                it.title.contains(intent.dzikirTitle, ignoreCase = true)
+            )
+        }
+        val title = matchedPreset?.title ?: intent.dzikirTitle ?: currentState.selectedDzikirTitle
+        val arabic = matchedPreset?.arabic ?: currentState.selectedDzikirArabic
+        val dzikirId = matchedPreset?.id ?: currentState.selectedDzikirId
+
+        updateState {
+            copy(
+                currentCount = intent.count,
+                targetCount = target,
+                lapCount = lap,
+                selectedDzikirTitle = title,
+                selectedDzikirArabic = arabic,
+                selectedDzikirId = dzikirId,
+                isTargetReached = target > 0 && intent.count >= target && (intent.count % target == 0)
+            )
+        }
+        saveProgress()
     }
 
     private fun handleIncrement() {

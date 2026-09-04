@@ -64,6 +64,7 @@ import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOption
 import com.iqbalwork.robithoh.core.designsystem.component.ContentItemOptionsSheet
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
@@ -89,8 +90,9 @@ import kotlinx.coroutines.launch
 fun GenericDocumentReaderScreen(
     documentId: String,
     onBack: () -> Unit,
-    onNavigateToTasbih: (() -> Unit)? = null,
-    repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() }
+    onNavigateToTasbih: ((count: Int, target: Int, title: String) -> Unit)? = null,
+    repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() },
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null
 ) {
     BackHandler {
         onBack()
@@ -103,27 +105,26 @@ fun GenericDocumentReaderScreen(
     var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
     var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
-    var fontScale by rememberSaveable { mutableStateOf(1.0f) }
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
+    val fontScale = readerSettings.fontScale
     val isSystemDark = RabithohTheme.colors.isDark
-    var readerTheme by rememberSaveable { mutableStateOf(if (isSystemDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
+    val readerTheme = readerSettings.resolveTheme(isSystemDark)
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(isSystemDark) {
-        readerTheme = if (isSystemDark) ReaderTheme.DARK else ReaderTheme.WHITE
-    }
 
     val docInfo = remember(currentDocId) { repository.getDocumentById(currentDocId) }
     val isDzikirDoc = currentDocId.contains("dzikir", ignoreCase = true) ||
         docInfo?.id?.contains("dzikir", ignoreCase = true) == true
 
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel(key = "tasbih_reader_vm") {
+    val resolvedTasbihViewModel = tasbihViewModel ?: viewModel(key = "tasbih_reader_vm") {
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
-    val tasbihState by tasbihViewModel.uiState.collectAsState()
+    val tasbihState by resolvedTasbihViewModel.uiState.collectAsState()
     var selectedVerseForOptions by remember { mutableStateOf<LiturgyVerse?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val hapticFeedback = remember { getHapticFeedback() }
 
     LaunchedEffect(currentDocId) {
         val cached = repository.getCachedDocument(currentDocId)
@@ -348,8 +349,14 @@ fun GenericDocumentReaderScreen(
             if (isDzikirDoc) {
                 com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
                     state = tasbihState,
-                    onIntent = tasbihViewModel::onIntent,
-                    onOpenFullScreen = { onNavigateToTasbih?.invoke() }
+                    onIntent = resolvedTasbihViewModel::onIntent,
+                    onOpenFullScreen = {
+                        onNavigateToTasbih?.invoke(
+                            tasbihState.currentCount,
+                            tasbihState.targetCount,
+                            tasbihState.selectedDzikirTitle
+                        )
+                    }
                 )
             }
         }
@@ -358,9 +365,9 @@ fun GenericDocumentReaderScreen(
     if (showSettingsDialog) {
         TextReaderSettingsSheet(
             fontScale = fontScale,
-            onFontScaleChange = { fontScale = it },
+            onFontScaleChange = { readerSettingsRepository.updateFontScale(it) },
             selectedTheme = readerTheme,
-            onThemeSelected = { readerTheme = it },
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
             onDismiss = { showSettingsDialog = false }
         )
     }
@@ -402,8 +409,9 @@ fun GenericDocumentReaderScreen(
                         icon = "📿",
                         label = "Hitung dengan Tasbih (${verse.repeatCount}x)",
                         onClick = {
-                            tasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetTarget(verse.repeatCount))
-                            tasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetFloatingExpanded(true))
+                            hapticFeedback.performClick()
+                            resolvedTasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetTarget(verse.repeatCount))
+                            resolvedTasbihViewModel.onIntent(com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SetFloatingExpanded(true))
                         }
                     )
                 )
@@ -1092,6 +1100,7 @@ private fun VerseReadingCard(
     onClick: (() -> Unit)? = null
 ) {
     var countProgress by remember(verse.index) { mutableStateOf(0) }
+    val hapticFeedback = remember { getHapticFeedback() }
 
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -1119,7 +1128,13 @@ private fun VerseReadingCard(
                             color = if (countProgress >= verse.repeatCount) HijauKhasRobithoh.copy(alpha = 0.15f) else MerahMerdeka.copy(alpha = 0.1f),
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier.clickable {
-                                countProgress = (countProgress + 1) % (verse.repeatCount + 1)
+                                val nextProgress = (countProgress + 1) % (verse.repeatCount + 1)
+                                countProgress = nextProgress
+                                if (nextProgress >= verse.repeatCount) {
+                                    hapticFeedback.performMilestone()
+                                } else {
+                                    hapticFeedback.performClick()
+                                }
                             }
                         ) {
                             Row(

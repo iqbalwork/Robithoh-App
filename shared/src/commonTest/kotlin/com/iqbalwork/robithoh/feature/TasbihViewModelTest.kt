@@ -72,7 +72,7 @@ class TasbihViewModelTest {
         viewModel.onIntent(TasbihUiIntent.Increment) // 3 -> reaches target
         assertTrue(viewModel.currentState.isTargetReached)
         assertEquals(1, viewModel.currentState.lapCount)
-        assertEquals(0, viewModel.currentState.currentCount)
+        assertEquals(3, viewModel.currentState.currentCount)
         assertEquals(3, viewModel.currentState.totalCount)
         assertTrue(fakeHaptic.milestoneCount > 0)
     }
@@ -124,7 +124,7 @@ class TasbihViewModelTest {
 
         assertEquals("shalawat_bani_hasyim", viewModel.currentState.selectedDzikirId)
         assertEquals("Shalawat Bani Hasyim", viewModel.currentState.selectedDzikirTitle)
-        assertEquals(100, viewModel.currentState.targetCount)
+        assertEquals(165, viewModel.currentState.targetCount)
         assertEquals(0, viewModel.currentState.currentCount)
     }
 
@@ -140,5 +140,28 @@ class TasbihViewModelTest {
         assertTrue(viewModel.currentState.isSoundEnabled)
         viewModel.onIntent(TasbihUiIntent.ToggleSound)
         assertFalse(viewModel.currentState.isSoundEnabled)
+    }
+
+    @Test
+    fun testSyncData() {
+        val fakeHaptic = FakeHapticFeedback()
+        val viewModel = TasbihViewModel(hapticFeedback = fakeHaptic)
+
+        viewModel.onIntent(
+            TasbihUiIntent.SyncData(
+                count = 13,
+                target = 165,
+                dzikirTitle = "Dzikir Jahr"
+            )
+        )
+
+        val state = viewModel.currentState
+        assertEquals(13, state.currentCount)
+        assertEquals(165, state.targetCount)
+        assertEquals(0, state.lapCount)
+        assertEquals("Dzikir Jahr", state.selectedDzikirTitle)
+        assertEquals("لَا إِلَهَ إِلَّا اللَّهُ", state.selectedDzikirArabic)
+        assertEquals("dzikir_nafi_itsbat", state.selectedDzikirId)
+        assertFalse(state.isTargetReached)
     }
 }

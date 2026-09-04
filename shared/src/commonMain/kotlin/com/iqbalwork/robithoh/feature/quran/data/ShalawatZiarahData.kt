@@ -16,7 +16,7 @@ object ShalawatZiarahData {
             latinText = "Allahumma sholli 'alan-nabiyyil haasyimiyyi Muhammadin wa 'alaa aalihii wa sallim tasliimaa.",
             indonesianTranslation = "Ya Allah, limpahkanlah shalawat dan salam yang sempurna kepada Nabi keturunan Bani Hasyim, yakni Baginda Nabi Muhammad ﷺ, beserta keluarga beliau.",
             sundaneseTranslation = "Nun Gusti Allah, mugia maparin shalawat sinareng kasalametan anu sampurna ka Kangjeng Nabi teureuh Bani Hasyim, nyaeta Gusti Kanjeng Nabi Muhammad ﷺ miwah kulawargina.",
-            virtue = "Shalawat resmi amalan khas ikhwan TQN PP Suryalaya Sirnarasa yang senantiasa dilantunkan seusai sholat fardhu, manaqib, dan khotaman untuk menyambungkan frekuensi nurani kepada Rasulullah ﷺ dan Guru Mursyid.",
+            virtue = "Shalawat resmi amalan khas ikhwan MTQN Suryalaya Sirnarasa PPKN yang senantiasa dilantunkan seusai sholat fardhu, manaqib, dan khotaman untuk menyambungkan frekuensi nurani kepada Rasulullah ﷺ dan Guru Mursyid.",
             audioPath = "bani_hasyim.mp3"
         ),
         ShalawatModel(

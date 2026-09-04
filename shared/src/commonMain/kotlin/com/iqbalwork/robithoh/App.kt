@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -59,6 +60,20 @@ fun App() {
         val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
         val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
+        val documentRepository = remember(database) {
+            com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository(database = database)
+        }
+        val documentSyncManager = remember(database, documentRepository) {
+            com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager(
+                httpClient = com.iqbalwork.robithoh.core.network.createKtorHttpClient(),
+                database = database,
+                repository = documentRepository
+            )
+        }
+
+        LaunchedEffect(Unit) {
+            documentSyncManager.syncDocuments()
+        }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
         // so the Home tab/sheet selection survives navigating away and back and configuration changes
@@ -101,7 +116,7 @@ fun App() {
                         backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                     },
                     onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
-                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih()) },
                     onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
                     onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
                     onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
@@ -116,7 +131,17 @@ fun App() {
             entry<ScreenKey.DocumentReader> { key ->
                 com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
                     documentId = key.documentId,
-                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    tasbihViewModel = tasbihViewModel,
+                    repository = documentRepository,
+                    onNavigateToTasbih = { count, target, title ->
+                        backstack.add(
+                            ScreenKey.Tasbih(
+                                initialCount = count,
+                                targetCount = target,
+                                dzikirTitle = title
+                            )
+                        )
+                    },
                     onBack = onBackAction
                 )
             }
@@ -136,7 +161,18 @@ fun App() {
                     tasbihViewModel = tasbihViewModel
                 )
             }
-            entry<ScreenKey.Tasbih> { _ ->
+            entry<ScreenKey.Tasbih> { key ->
+                LaunchedEffect(key) {
+                    if (key.initialCount != null) {
+                        tasbihViewModel.onIntent(
+                            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SyncData(
+                                count = key.initialCount,
+                                target = key.targetCount,
+                                dzikirTitle = key.dzikirTitle
+                            )
+                        )
+                    }
+                }
                 TasbihScreen(
                     onBack = onBackAction,
                     viewModel = tasbihViewModel

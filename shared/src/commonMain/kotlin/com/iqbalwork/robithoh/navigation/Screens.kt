@@ -123,7 +123,7 @@ fun HomeScreen(onNavigate: (ScreenKey) -> Unit) {
                 title = "Tasbih Digital Haptik",
                 subtitle = "Penghitung wirid interaktif dengan getaran preset 165x & Kustom",
                 badge = "Haptic",
-                onClick = { onNavigate(ScreenKey.Tasbih) }
+                onClick = { onNavigate(ScreenKey.Tasbih()) }
             )
 
             MenuNavigationCard(

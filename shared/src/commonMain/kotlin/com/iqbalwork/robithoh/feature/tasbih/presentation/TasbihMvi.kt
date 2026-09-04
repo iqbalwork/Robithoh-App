@@ -93,6 +93,11 @@ sealed interface TasbihUiIntent : UiIntent {
     data object ToggleFloatingExpand : TasbihUiIntent
     data class SetFloatingExpanded(val expanded: Boolean) : TasbihUiIntent
     data class SetFloatingVisible(val visible: Boolean) : TasbihUiIntent
+    data class SyncData(
+        val count: Int,
+        val target: Int? = null,
+        val dzikirTitle: String? = null
+    ) : TasbihUiIntent
 }
 
 sealed interface TasbihUiEffect : UiEffect {

@@ -109,8 +109,14 @@ fun AmaliyahScreen(
         DzikirDetailScreen(
             state = state,
             onIntent = onIntent,
-            onOpenTasbih = { target, title ->
-                onNavigate(ScreenKey.Tasbih)
+            onOpenTasbih = { count, target, title ->
+                onNavigate(
+                    ScreenKey.Tasbih(
+                        initialCount = count,
+                        targetCount = target,
+                        dzikirTitle = title
+                    )
+                )
             },
             onBack = { isShowingDzikirDetail = false },
             tasbihViewModel = tasbihViewModel
@@ -202,7 +208,7 @@ fun AmaliyahScreen(
             item {
                 GoldCrimsonCard(
                     variant = GoldCrimsonCardVariant.GOLD_BORDER,
-                    onClick = { onNavigate(ScreenKey.Tasbih) }
+                    onClick = { onNavigate(ScreenKey.Tasbih()) }
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),

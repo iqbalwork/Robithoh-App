@@ -15,6 +15,7 @@ fun appModules(): List<Module> = listOf(
     appModule,
     databaseModule,
     audioModule,
+    networkModule,
     viewModelModule
 )
 

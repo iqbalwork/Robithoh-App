@@ -107,11 +107,15 @@ fun QuranReaderScreen(
 
     val surah = state.currentSurah
     val currentSurahNumber = surah?.number ?: surahNumber
-    val fontScale = state.fontScale
-    var readerTheme by rememberSaveable { mutableStateOf(if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
 
-    LaunchedEffect(isDark) {
-        readerTheme = if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE
+    LaunchedEffect(readerSettings.fontScale) {
+        if (state.fontScale != readerSettings.fontScale) {
+            viewModel.onIntent(QuranUiIntent.UpdateFontScale(readerSettings.fontScale))
+        }
     }
     var showLatin by rememberSaveable { mutableStateOf(true) }
     var showTranslation by rememberSaveable { mutableStateOf(true) }
@@ -366,9 +370,12 @@ fun QuranReaderScreen(
     if (showSettingsDialog) {
         TextReaderSettingsSheet(
             fontScale = fontScale,
-            onFontScaleChange = { viewModel.onIntent(QuranUiIntent.UpdateFontScale(it)) },
+            onFontScaleChange = {
+                readerSettingsRepository.updateFontScale(it)
+                viewModel.onIntent(QuranUiIntent.UpdateFontScale(it))
+            },
             selectedTheme = readerTheme,
-            onThemeSelected = { readerTheme = it },
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
             onDismiss = { showSettingsDialog = false },
             toggles = listOf(
                 ReaderToggleOption(

@@ -14,13 +14,22 @@ class NavigationScreenKeyTest {
     fun testScreenKeySerialization() {
         val home: ScreenKey = ScreenKey.Home
         val amaliyah: ScreenKey = ScreenKey.Amaliyah
-        val tasbih: ScreenKey = ScreenKey.Tasbih
+        val tasbih: ScreenKey = ScreenKey.Tasbih()
+        val tasbihWithData: ScreenKey = ScreenKey.Tasbih(initialCount = 13, targetCount = 165, dzikirTitle = "Dzikir Jahr")
         val manaqibDetail: ScreenKey = ScreenKey.ManaqibDetail(chapterNumber = 7)
         val quranList: ScreenKey = ScreenKey.QuranList
         val quranSurah: ScreenKey = ScreenKey.QuranSurah(surahNumber = 36)
         val settings: ScreenKey = ScreenKey.Settings
         val profile: ScreenKey = ScreenKey.ProfilePesantren
         val qibla: ScreenKey = ScreenKey.Qibla
+
+        val serializedTasbih = json.encodeToString(tasbihWithData)
+        val deserializedTasbih = json.decodeFromString<ScreenKey>(serializedTasbih)
+        assertEquals(tasbihWithData, deserializedTasbih)
+        assertTrue(deserializedTasbih is ScreenKey.Tasbih)
+        assertEquals(13, (deserializedTasbih as ScreenKey.Tasbih).initialCount)
+        assertEquals(165, (deserializedTasbih as ScreenKey.Tasbih).targetCount)
+        assertEquals("Dzikir Jahr", (deserializedTasbih as ScreenKey.Tasbih).dzikirTitle)
 
         val serializedManaqib = json.encodeToString(manaqibDetail)
         val deserializedManaqib = json.decodeFromString<ScreenKey>(serializedManaqib)

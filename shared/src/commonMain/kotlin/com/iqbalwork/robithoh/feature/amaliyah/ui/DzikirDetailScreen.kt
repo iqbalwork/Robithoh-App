@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
@@ -36,19 +37,17 @@ import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 fun DzikirDetailScreen(
     state: AmaliyahUiState,
     onIntent: (AmaliyahUiIntent) -> Unit,
-    onOpenTasbih: (Int, String) -> Unit,
+    onOpenTasbih: (count: Int, target: Int, title: String) -> Unit,
     onBack: () -> Unit,
     tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
-    var readerTheme by rememberSaveable { mutableStateOf(if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE) }
-    var fontScale by rememberSaveable { mutableStateOf(1.0f) }
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(isDark) {
-        readerTheme = if (isDark) ReaderTheme.DARK else ReaderTheme.WHITE
-    }
 
     val currentDzikirList = if (state.activeDzikirType == DzikirType.JAHR) {
         state.dzikirJahrList
@@ -64,6 +63,7 @@ fun DzikirDetailScreen(
     var selectedDzikirForOptions by remember { mutableStateOf<DzikirItem?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val hapticFeedback = remember { getHapticFeedback() }
 
     Scaffold(
         topBar = {
@@ -204,7 +204,11 @@ fun DzikirDetailScreen(
             state = tasbihState,
             onIntent = resolvedTasbihViewModel::onIntent,
             onOpenFullScreen = {
-                onOpenTasbih(tasbihState.targetCount, tasbihState.selectedDzikirTitle)
+                onOpenTasbih(
+                    tasbihState.currentCount,
+                    tasbihState.targetCount,
+                    tasbihState.selectedDzikirTitle
+                )
             }
         )
     }
@@ -213,9 +217,9 @@ fun DzikirDetailScreen(
     if (showSettingsDialog) {
         TextReaderSettingsSheet(
             fontScale = fontScale,
-            onFontScaleChange = { fontScale = it },
+            onFontScaleChange = { readerSettingsRepository.updateFontScale(it) },
             selectedTheme = readerTheme,
-            onThemeSelected = { readerTheme = it },
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
             onDismiss = { showSettingsDialog = false }
         )
     }
@@ -256,6 +260,7 @@ fun DzikirDetailScreen(
                         icon = "📿",
                         label = "Hitung dengan Tasbih (${item.repetitionCount}x)",
                         onClick = {
+                            hapticFeedback.performClick()
                             resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
                             resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
                         }
@@ -287,6 +292,7 @@ private fun DzikirLiturgicalCard(
     onOpenTasbih: (Int, String) -> Unit
 ) {
     val isDark = readerTheme.isDark
+    val hapticFeedback = remember { getHapticFeedback() }
     GoldCrimsonCard(
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
         customBackgroundColor = readerTheme.cardBackgroundColor,
@@ -414,7 +420,10 @@ private fun DzikirLiturgicalCard(
         if (item.repetitionCount > 1) {
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedButton(
-                onClick = { onOpenTasbih(item.repetitionCount, item.title) },
+                onClick = {
+                    hapticFeedback.performClick()
+                    onOpenTasbih(item.repetitionCount, item.title)
+                },
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(1.dp, EmasKhidmat),
                 colors = ButtonDefaults.outlinedButtonColors(
