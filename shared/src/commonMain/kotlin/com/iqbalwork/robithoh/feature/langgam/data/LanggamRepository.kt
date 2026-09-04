@@ -23,7 +23,7 @@ data class LanggamItem(
 }
 
 object LanggamRepository {
-    const val GITHUB_AUDIO_BASE_URL = "https://github.com/iqbalwork/Robithoh-App/releases/download/audio-v1"
+    const val GITHUB_AUDIO_BASE_URL = "https://github.com/iqbalwork/Robithoh-Docs/releases/download/audio-v1"
 
     val langgamList: List<LanggamItem> = listOf(
         LanggamItem(
