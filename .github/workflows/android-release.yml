@@ -64,12 +64,8 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          cat <<EOF > keystore.properties
-          signing_key_location=keystore.jks
-          signing_keystore_password=${KEYSTORE_PASSWORD}
-          signing_key_alias=${KEY_ALIAS}
-          signing_key_password=${KEY_PASSWORD}
-          EOF
+          printf "signing_key_location=keystore.jks\nsigning_keystore_password=%s\nsigning_key_alias=%s\nsigning_key_password=%s\n" \
+            "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" > keystore.properties
 
       - name: Build Release Bundle (AAB) & APK
         run: ./gradlew bundleProductionRelease assembleProductionRelease
