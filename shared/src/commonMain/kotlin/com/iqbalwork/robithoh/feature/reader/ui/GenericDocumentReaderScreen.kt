@@ -79,6 +79,12 @@ import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyDocument
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
@@ -142,127 +148,204 @@ fun GenericDocumentReaderScreen(
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = docInfo?.title ?: "Bacaan Amaliyah",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        maxLines = 1,
-                        color = Color.White
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Text("←", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { showSettingsDialog = true }) {
-                        Surface(
-                            color = Color.White.copy(alpha = 0.2f),
-                            shape = CircleShape,
-                            modifier = Modifier.size(36.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Text("A±", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                            }
-                        }
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MerahMerdeka
+    val appSettingsRepository = rememberAppSettingsRepository()
+    val appSettings by appSettingsRepository.settings.collectAsState()
+
+    val currentDoc = parsedDoc
+    val sections: List<ReaderDocumentSection> = remember(currentDoc?.info?.id, currentDoc?.rawContent) {
+        val doc = currentDoc
+        if (doc != null) parseDocumentSections(doc.info.id, doc.rawContent)
+        else emptyList<ReaderDocumentSection>()
+    }
+    val isTahunanPager = currentDoc?.info?.id?.startsWith("sholat_tahunan") == true && sections.size > 1
+    val hasShortcuts = sections.size > 1
+    val hasLanguageSwitch = docInfo?.alternateLanguageDocId != null
+
+    val spotlightSteps = remember(hasLanguageSwitch, hasShortcuts) {
+        buildList {
+            add(
+                SpotlightStep(
+                    id = "font_theme",
+                    title = "Pengaturan Huruf & Tema",
+                    description = "Atur ukuran huruf Arab dan terjemahan sesuai kenyamanan mata, serta pilih tema warna latar bacaan (Putih, Sepia, atau Gelap).",
+                    shapeType = SpotlightShapeType.CIRCLE,
+                    padding = 6.dp
                 )
             )
-        },
-        containerColor = readerTheme.backgroundColor
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-        ) {
-            if (isLoading) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = MerahMerdeka)
-                }
-            } else {
-                val doc = parsedDoc
-                if (doc != null) {
-                    val sections = remember(doc.info.id, doc.rawContent) {
-                        parseDocumentSections(doc.info.id, doc.rawContent)
-                    }
-                    val isTahunanPager = doc.info.id.startsWith("sholat_tahunan") && sections.size > 1
-                    val hasShortcuts = sections.size > 1
-                    val isDoaDoc = doc.info.category.equals("Doa & Ziarah", ignoreCase = true) ||
-                        doc.info.category.equals("Doa", ignoreCase = true) ||
-                        doc.info.category.equals("Sholawat", ignoreCase = true) ||
-                        doc.info.id.contains("doa", ignoreCase = true) ||
-                        doc.info.id.contains("salam", ignoreCase = true) ||
-                        doc.info.id.contains("istighotsah", ignoreCase = true) ||
-                        doc.info.id.contains("sholawat", ignoreCase = true) ||
-                        doc.info.id.contains("tahlil", ignoreCase = true)
+            if (hasLanguageSwitch) {
+                add(
+                    SpotlightStep(
+                        id = "language",
+                        title = "Pilihan Bahasa Liturgi",
+                        description = "Tersedia terjemahan Bahasa Indonesia dan Basa Sunda untuk naskah amaliyah. Ketuk untuk beralih bahasa seketika.",
+                        shapeType = SpotlightShapeType.ROUNDED_RECT,
+                        cornerRadius = 100.dp,
+                        padding = 4.dp
+                    )
+                )
+            }
+            if (hasShortcuts) {
+                add(
+                    SpotlightStep(
+                        id = "shortcuts",
+                        title = "Pintasan Bab & Bagian",
+                        description = "Gunakan bilah pintasan ini untuk berpindah langsung ke nomor pasal, manqobah, atau bagian bacaan tanpa perlu scroll panjang.",
+                        shapeType = SpotlightShapeType.ROUNDED_RECT,
+                        cornerRadius = 16.dp,
+                        padding = 6.dp
+                    )
+                )
+            }
+            add(
+                SpotlightStep(
+                    id = "verse",
+                    title = "Salin, Bagikan & Tasbih",
+                    description = "Ketuk bagian bacaan mana saja untuk menyalin teks Arab & terjemahan atau membagikannya ke kerabat. Untuk bacaan wirid berhitung, sentuh penghitung untuk tasbih haptik.",
+                    shapeType = SpotlightShapeType.ROUNDED_RECT,
+                    cornerRadius = 20.dp,
+                    padding = 6.dp
+                )
+            )
+        }
+    }
 
-                    val tahunanPagerState = if (isTahunanPager) {
-                        rememberPagerState(initialPage = 0) { sections.size }
-                    } else null
+    val spotlightState = rememberSpotlightState(
+        steps = spotlightSteps,
+        onComplete = {
+            appSettingsRepository.setReaderSpotlightSeen(true)
+        }
+    )
 
-                    val currentVisibleSectionIndex by remember {
-                        derivedStateOf {
-                            if (tahunanPagerState != null) {
-                                tahunanPagerState.currentPage
-                            } else {
-                                val firstVisible = listState.firstVisibleItemIndex
-                                if (firstVisible in sections.indices) firstVisible else 0
-                            }
+    LaunchedEffect(appSettings.hasSeenReaderSpotlight, isLoading, parsedDoc) {
+        if (!appSettings.hasSeenReaderSpotlight && !isLoading && parsedDoc != null && !spotlightState.isVisible) {
+            spotlightState.start()
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            text = docInfo?.title ?: "Bacaan Amaliyah",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            maxLines = 1,
+                            color = Color.White
+                        )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
+                            Text("←", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                         }
-                    }
-
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        // Top Controls Header (Persistent Language Switch + Shortcuts)
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(readerTheme.backgroundColor)
-                                .padding(horizontal = 16.dp, vertical = 6.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                    },
+                    actions = {
+                        IconButton(
+                            onClick = { showSettingsDialog = true },
+                            modifier = Modifier.spotlightAnchor(spotlightState, "font_theme")
                         ) {
-                            // 1. Language Switcher if alternate language is available
-                            if (doc.info.alternateLanguageDocId != null) {
-                                ReaderLanguageTabSwitch(
-                                    currentDoc = doc.info,
-                                    readerTheme = readerTheme,
-                                    onSwitchDoc = { newDocId ->
-                                        val cached = repository.getCachedDocument(newDocId)
-                                        if (cached != null) {
-                                            parsedDoc = cached
-                                        }
-                                        currentDocId = newDocId
-                                    }
-                                )
-                            }
-
-                            // 2. Section Shortcut Bar if multiple sections exist
-                            if (hasShortcuts) {
-                                DocumentSectionShortcutRow(
-                                    docId = doc.info.id,
-                                    readerTheme = readerTheme,
-                                    sections = sections,
-                                    selectedSectionIndex = currentVisibleSectionIndex,
-                                    onSelectSection = { idx ->
-                                        coroutineScope.launch {
-                                            if (tahunanPagerState != null) {
-                                                tahunanPagerState.animateScrollToPage(idx)
-                                            } else {
-                                                listState.animateScrollToItem(idx)
-                                            }
-                                        }
-                                    }
-                                )
+                            Surface(
+                                color = Color.White.copy(alpha = 0.2f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(36.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("A±", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                                }
                             }
                         }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MerahMerdeka
+                    )
+                )
+            },
+            containerColor = readerTheme.backgroundColor
+        ) { padding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            ) {
+                if (isLoading) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(color = MerahMerdeka)
+                    }
+                } else {
+                    val doc = parsedDoc
+                    if (doc != null) {
+                        val isDoaDoc = doc.info.category.equals("Doa & Ziarah", ignoreCase = true) ||
+                            doc.info.category.equals("Doa", ignoreCase = true) ||
+                            doc.info.category.equals("Sholawat", ignoreCase = true) ||
+                            doc.info.id.contains("doa", ignoreCase = true) ||
+                            doc.info.id.contains("salam", ignoreCase = true) ||
+                            doc.info.id.contains("istighotsah", ignoreCase = true) ||
+                            doc.info.id.contains("sholawat", ignoreCase = true) ||
+                            doc.info.id.contains("tahlil", ignoreCase = true)
+
+                        val tahunanPagerState = if (isTahunanPager) {
+                            rememberPagerState(initialPage = 0) { sections.size }
+                        } else null
+
+                        val currentVisibleSectionIndex by remember {
+                            derivedStateOf {
+                                if (tahunanPagerState != null) {
+                                    tahunanPagerState.currentPage
+                                } else {
+                                    val firstVisible = listState.firstVisibleItemIndex
+                                    if (firstVisible in sections.indices) firstVisible else 0
+                                }
+                            }
+                        }
+
+                        Column(modifier = Modifier.fillMaxSize()) {
+                            // Top Controls Header (Persistent Language Switch + Shortcuts)
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(readerTheme.backgroundColor)
+                                    .padding(horizontal = 16.dp, vertical = 6.dp),
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                // 1. Language Switcher if alternate language is available
+                                if (doc.info.alternateLanguageDocId != null) {
+                                    Box(modifier = Modifier.spotlightAnchor(spotlightState, "language")) {
+                                        ReaderLanguageTabSwitch(
+                                            currentDoc = doc.info,
+                                            readerTheme = readerTheme,
+                                            onSwitchDoc = { newDocId ->
+                                                val cached = repository.getCachedDocument(newDocId)
+                                                if (cached != null) {
+                                                    parsedDoc = cached
+                                                }
+                                                currentDocId = newDocId
+                                            }
+                                        )
+                                    }
+                                }
+
+                                // 2. Section Shortcut Bar if multiple sections exist
+                                if (hasShortcuts) {
+                                    Box(modifier = Modifier.spotlightAnchor(spotlightState, "shortcuts")) {
+                                        DocumentSectionShortcutRow(
+                                            docId = doc.info.id,
+                                            readerTheme = readerTheme,
+                                            sections = sections,
+                                            selectedSectionIndex = currentVisibleSectionIndex,
+                                            onSelectSection = { idx ->
+                                                coroutineScope.launch {
+                                                    if (tahunanPagerState != null) {
+                                                        tahunanPagerState.animateScrollToPage(idx)
+                                                    } else {
+                                                        listState.animateScrollToItem(idx)
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    }
+                                }
+                            }
 
                         // Content Area
                         if (isTahunanPager && tahunanPagerState != null) {
@@ -280,12 +363,16 @@ fun GenericDocumentReaderScreen(
                                     verticalArrangement = Arrangement.spacedBy(14.dp)
                                 ) {
                                     item(key = sec.id) {
-                                        SingleContinuousDocumentCard(
-                                            rawContent = sec.content,
-                                            fontScale = fontScale,
-                                            isForceCentered = isDoaDoc,
-                                            readerTheme = readerTheme
-                                        )
+                                        Box(
+                                            modifier = if (pageIdx == 0) Modifier.spotlightAnchor(spotlightState, "verse") else Modifier
+                                        ) {
+                                            SingleContinuousDocumentCard(
+                                                rawContent = sec.content,
+                                                fontScale = fontScale,
+                                                isForceCentered = isDoaDoc,
+                                                readerTheme = readerTheme
+                                            )
+                                        }
                                     }
                                     item(key = "bottom_spacer_${sec.id}") {
                                         Spacer(modifier = Modifier.height(80.dp))
@@ -302,34 +389,44 @@ fun GenericDocumentReaderScreen(
                             ) {
                                 if (doc.info.isSingleDocumentView) {
                                     if (hasShortcuts) {
-                                        itemsIndexed(sections, key = { _, sec -> sec.id }) { _, sec ->
-                                            SingleContinuousDocumentCard(
-                                                rawContent = sec.content,
-                                                fontScale = fontScale,
-                                                isForceCentered = isDoaDoc,
-                                                readerTheme = readerTheme
-                                            )
+                                        itemsIndexed(sections, key = { _, sec -> sec.id }) { index, sec ->
+                                            Box(
+                                                modifier = if (index == 0) Modifier.spotlightAnchor(spotlightState, "verse") else Modifier
+                                            ) {
+                                                SingleContinuousDocumentCard(
+                                                    rawContent = sec.content,
+                                                    fontScale = fontScale,
+                                                    isForceCentered = isDoaDoc,
+                                                    readerTheme = readerTheme
+                                                )
+                                            }
                                         }
                                     } else {
                                         item(key = "single_doc") {
-                                            SingleContinuousDocumentCard(
-                                                rawContent = doc.rawContent,
-                                                fontScale = fontScale,
-                                                isForceCentered = isDoaDoc,
-                                                readerTheme = readerTheme
-                                            )
+                                            Box(modifier = Modifier.spotlightAnchor(spotlightState, "verse")) {
+                                                SingleContinuousDocumentCard(
+                                                    rawContent = doc.rawContent,
+                                                    fontScale = fontScale,
+                                                    isForceCentered = isDoaDoc,
+                                                    readerTheme = readerTheme
+                                                )
+                                            }
                                         }
                                     }
                                 } else {
                                     // Verses List
-                                    items(doc.verses, key = { it.index }) { verse ->
-                                        VerseReadingCard(
-                                            verse = verse,
-                                            fontScale = fontScale,
-                                            isCentered = isDoaDoc,
-                                            readerTheme = readerTheme,
-                                            onClick = { selectedVerseForOptions = verse }
-                                        )
+                                    itemsIndexed(doc.verses, key = { _, it -> it.index }) { index, verse ->
+                                        Box(
+                                            modifier = if (index == 0) Modifier.spotlightAnchor(spotlightState, "verse") else Modifier
+                                        ) {
+                                            VerseReadingCard(
+                                                verse = verse,
+                                                fontScale = fontScale,
+                                                isCentered = isDoaDoc,
+                                                readerTheme = readerTheme,
+                                                onClick = { selectedVerseForOptions = verse }
+                                            )
+                                        }
                                     }
                                 }
 
@@ -428,6 +525,9 @@ fun GenericDocumentReaderScreen(
             shareLabel = "Bagikan Bacaan",
             customOptions = customOptions
         )
+    }
+
+    SpotlightOverlay(state = spotlightState)
     }
 }
 

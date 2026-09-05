@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -33,10 +34,17 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -264,18 +272,116 @@ fun SalatTabContent(
         }
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 120.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    val appSettingsRepository = rememberAppSettingsRepository()
+    val appSettings by appSettingsRepository.settings.collectAsState()
+
+    val prayerSpotlightSteps = remember {
+        listOf(
+            SpotlightStep(
+                id = "qibla",
+                title = "Arah Kiblat Akurat",
+                description = "Lihat derajat azimuth dan buka kompas interaktif untuk menentukan arah kiblat dari lokasi Anda saat ini.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "notification_mode",
+                title = "Pengaturan Notifikasi & Alarm",
+                description = "Ketuk ikon lonceng pada jadwal sholat untuk memilih mode: Kumandang Adzan penuh, Notifikasi senyap, atau Tanpa alarm.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "adzan_voice",
+                title = "Pilihan Suara Adzan",
+                description = "Pilih lantunan suara muadzin favorit Anda dari berbagai pilihan bawaan atau gunakan berkas audio rekaman pribadi.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "adzan_volume",
+                title = "Kenyaringan Suara Adzan",
+                description = "Atur tingkat volume kumandang adzan secara terpisah tanpa mengubah volume nada dering utama perangkat.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "calc_method",
+                title = "Metode Perhitungan Sholat",
+                description = "Pilih standar hisab perhitungan waktu sholat (Kemenag RI, Muslim World League, dll.) sesuai pedoman wilayah Anda.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            )
+        )
+    }
+
+    val prayerSpotlightState = rememberSpotlightState(
+        steps = prayerSpotlightSteps,
+        onComplete = {
+            appSettingsRepository.setPrayerSpotlightSeen(true)
+        }
+    )
+
+    val listState = rememberLazyListState()
+    val targetPrayerNameForSpotlight = remember(prayerList) {
+        prayerList.firstOrNull { it.isCurrent }?.name ?: "Subuh"
+    }
+
+    LaunchedEffect(appSettings.hasSeenPrayerSpotlight, schedule) {
+        if (!appSettings.hasSeenPrayerSpotlight && schedule != null && !prayerSpotlightState.isVisible) {
+            prayerSpotlightState.start()
+        }
+    }
+
+    LaunchedEffect(prayerSpotlightState.currentStepIndex, prayerSpotlightState.isVisible) {
+        if (prayerSpotlightState.isVisible) {
+            when (prayerSpotlightState.currentStep?.id) {
+                "qibla" -> {
+                    listState.animateScrollToItem(2)
+                }
+                "notification_mode" -> {
+                    val targetIdx = prayerList.indexOfFirst { it.name == targetPrayerNameForSpotlight }.coerceAtLeast(0)
+                    listState.animateScrollToItem(4 + targetIdx)
+                }
+                "adzan_voice" -> {
+                    val cardIndex = 4 + prayerList.size + 2
+                    listState.animateScrollToItem(cardIndex)
+                }
+                "adzan_volume" -> {
+                    val cardIndex = 4 + prayerList.size + 2
+                    listState.animateScrollToItem(cardIndex, scrollOffset = 250)
+                }
+                "calc_method" -> {
+                    val total = listState.layoutInfo.totalItemsCount
+                    if (total > 0) {
+                        listState.animateScrollToItem(total - 1)
+                    } else {
+                        val cardIndex = 4 + prayerList.size + 2
+                        listState.animateScrollToItem(cardIndex, scrollOffset = 500)
+                    }
+                }
+            }
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .background(if (isDark) DarkCanvas else PaperBackgroundLight),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
+                bottom = 120.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
         // 1. Header
         item {
             Row(
@@ -384,6 +490,7 @@ fun SalatTabContent(
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .spotlightAnchor(prayerSpotlightState, "qibla")
                     .clickable(onClick = onNavigateToQibla)
             ) {
                 Row(
@@ -582,6 +689,10 @@ fun SalatTabContent(
                                     shape = CircleShape,
                                     modifier = Modifier
                                         .size(34.dp)
+                                        .let { mod ->
+                                            if (p.name == targetPrayerNameForSpotlight) mod.spotlightAnchor(prayerSpotlightState, "notification_mode")
+                                            else mod
+                                        }
                                         .clickable {
                                             vm.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(prayerType))
                                         }
@@ -652,81 +763,87 @@ fun SalatTabContent(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    SettingItemRow(
-                        icon = "🔔",
-                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFECEF),
-                        title = "Suara adzan",
-                        subtitle = voiceSubtitle,
-                        isDark = isDark,
-                        onClick = {
-                            vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
-                        }
-                    )
-                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
-                    if (getPlatform().name.startsWith("Android")) {
-                        val volumePercent = (notif.adzanVolume * 100).toInt()
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.weight(1f)
-                            ) {
-                                Surface(
-                                    color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
-                                    shape = CircleShape,
-                                    modifier = Modifier.size(36.dp)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Text("🔊", fontSize = 14.sp)
-                                    }
-                                }
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Column(modifier = Modifier.weight(1f)) {
-                                    Text(
-                                        text = "Volume suara adzan",
-                                        fontSize = 14.sp,
-                                        fontWeight = FontWeight.SemiBold,
-                                        color = if (isDark) PutihBersih else TextCharcoal
-                                    )
-                                    Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = if (volumePercent == 0) "Senyap — notifikasi tetap muncul" else "Atur nyaring kumandang adzan",
-                                        fontSize = 11.5.sp,
-                                        color = if (isDark) DarkMuted else TextMuted
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "$volumePercent%",
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = if (volumePercent == 0) TextMuted else MerahMerdeka
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Slider(
-                            value = notif.adzanVolume,
-                            onValueChange = { vm.onIntent(AmaliyahUiIntent.SetAdzanVolume(it)) },
-                            valueRange = 0f..1f,
-                            steps = 18,
-                            colors = SliderDefaults.colors(
-                                thumbColor = MerahMerdeka,
-                                activeTrackColor = MerahMerdeka,
-                                inactiveTrackColor = if (isDark) DarkBorder else BorderSubtle
-                            )
-                        )
-                    } else {
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "adzan_voice")) {
                         SettingItemRow(
-                            icon = "🔊",
-                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
-                            title = "Volume suara adzan",
-                            subtitle = "Mengikuti volume perangkat (iOS)",
-                            isDark = isDark
+                            icon = "🔔",
+                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFECEF),
+                            title = "Suara adzan",
+                            subtitle = voiceSubtitle,
+                            isDark = isDark,
+                            onClick = {
+                                vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
+                            }
                         )
+                    }
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "adzan_volume")) {
+                        if (getPlatform().name.startsWith("Android")) {
+                            val volumePercent = (notif.adzanVolume * 100).toInt()
+                            Column(modifier = Modifier.fillMaxWidth()) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Surface(
+                                            color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                                            shape = CircleShape,
+                                            modifier = Modifier.size(36.dp)
+                                        ) {
+                                            Box(contentAlignment = Alignment.Center) {
+                                                Text("🔊", fontSize = 14.sp)
+                                            }
+                                        }
+                                        Spacer(modifier = Modifier.width(12.dp))
+                                        Column(modifier = Modifier.weight(1f)) {
+                                            Text(
+                                                text = "Volume suara adzan",
+                                                fontSize = 14.sp,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = if (isDark) PutihBersih else TextCharcoal
+                                            )
+                                            Spacer(modifier = Modifier.height(2.dp))
+                                            Text(
+                                                text = if (volumePercent == 0) "Senyap — notifikasi tetap muncul" else "Atur nyaring kumandang adzan",
+                                                fontSize = 11.5.sp,
+                                                color = if (isDark) DarkMuted else TextMuted
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = "$volumePercent%",
+                                        fontSize = 14.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = if (volumePercent == 0) TextMuted else MerahMerdeka
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Slider(
+                                    value = notif.adzanVolume,
+                                    onValueChange = { vm.onIntent(AmaliyahUiIntent.SetAdzanVolume(it)) },
+                                    valueRange = 0f..1f,
+                                    steps = 18,
+                                    colors = SliderDefaults.colors(
+                                        thumbColor = MerahMerdeka,
+                                        activeTrackColor = MerahMerdeka,
+                                        inactiveTrackColor = if (isDark) DarkBorder else BorderSubtle
+                                    )
+                                )
+                            }
+                        } else {
+                            SettingItemRow(
+                                icon = "🔊",
+                                iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                                title = "Volume suara adzan",
+                                subtitle = "Mengikuti volume perangkat (iOS)",
+                                isDark = isDark
+                            )
+                        }
                     }
                     HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     Row(
@@ -771,14 +888,16 @@ fun SalatTabContent(
                         )
                     }
                     HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
-                    SettingItemRow(
-                        icon = "⏰",
-                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE3F2FD),
-                        title = "Metode perhitungan",
-                        subtitle = state.selectedCalculationMethod.name,
-                        isDark = isDark,
-                        onClick = onNavigateToCalculationMethods
-                    )
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "calc_method")) {
+                        SettingItemRow(
+                            icon = "⏰",
+                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE3F2FD),
+                            title = "Metode perhitungan",
+                            subtitle = state.selectedCalculationMethod.name,
+                            isDark = isDark,
+                            onClick = onNavigateToCalculationMethods
+                        )
+                    }
                     HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     SettingItemRow(
                         icon = "⏱️",
@@ -824,6 +943,9 @@ fun SalatTabContent(
                 vm.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(null))
             }
         )
+    }
+
+        SpotlightOverlay(state = prayerSpotlightState)
     }
 }
 

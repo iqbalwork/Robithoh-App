@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +20,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
+import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
 import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.MainAppContainer
@@ -51,6 +54,8 @@ fun App(
         }
 
         val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val appSettingsRepository = rememberAppSettingsRepository()
+        val appSettings by appSettingsRepository.settings.collectAsState()
         val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
         val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
             com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
@@ -143,6 +148,24 @@ fun App(
             entry<ScreenKey.Splash> { _ ->
                 SplashScreen(
                     onSplashFinished = {
+                        backstack.clear()
+                        if (!appSettings.hasCompletedOnboarding) {
+                            backstack.add(ScreenKey.Onboarding)
+                        } else {
+                            backstack.add(ScreenKey.Home)
+                            if (widgetNavTarget != null) {
+                                routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+                            } else if (initialDestination != null) {
+                                routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+                            }
+                        }
+                    }
+                )
+            }
+            entry<ScreenKey.Onboarding> { _ ->
+                OnboardingScreen(
+                    onComplete = {
+                        appSettingsRepository.setOnboardingCompleted(true)
                         backstack.clear()
                         backstack.add(ScreenKey.Home)
                         if (widgetNavTarget != null) {

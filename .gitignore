@@ -1,5 +1,6 @@
 # Gradle & Build
 .gradle/
+.hermes/
 build/
 **/build/
 !src/**/build/

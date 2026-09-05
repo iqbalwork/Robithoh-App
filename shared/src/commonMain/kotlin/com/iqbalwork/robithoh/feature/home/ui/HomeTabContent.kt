@@ -119,14 +119,14 @@ fun HomeTabContent(
         ),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // 1. Top Header (Greeting & Notification)
+        // 1. Top Header (Greeting)
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+                Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = "Assalamu'alaikum",
                         fontSize = 20.sp,
@@ -141,16 +141,6 @@ fun HomeTabContent(
                         maxLines = 1,
                         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                     )
-                }
-
-                Surface(
-                    color = if (isDark) DarkSurfaceVariant else Color(0xFFFDEED2),
-                    shape = CircleShape,
-                    modifier = Modifier.size(38.dp)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("🔔", fontSize = 16.sp)
-                    }
                 }
             }
         }

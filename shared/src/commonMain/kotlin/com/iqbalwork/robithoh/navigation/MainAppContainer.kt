@@ -175,7 +175,10 @@ fun MainAppContainer(
                         onDarkModeChange = onDarkModeChange,
                         onNavigateToAboutApp = onNavigateToProfilePesantren,
                         onCheckForUpdates = onCheckForUpdates,
-                        onOpenPlayStore = onOpenPlayStore
+                        onOpenPlayStore = onOpenPlayStore,
+                        onOpenReaderTutorial = { onNavigateToDocument("dzikir_tqn") },
+                        onOpenPrayerTutorial = { onTabChange(MainTab.SALAT) },
+                        onOpenQuranTutorial = { onNavigateToSurah(1, 1) }
                     )
                 }
             }

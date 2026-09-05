@@ -24,10 +24,6 @@ import com.iqbalwork.robithoh.review.InAppReviewManager
 import com.iqbalwork.robithoh.update.InAppUpdateManager
 
 class MainActivity : ComponentActivity() {
-    private val requestNotificationPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { /* Result handled */ }
-
     private lateinit var inAppUpdateManager: InAppUpdateManager
     private lateinit var inAppReviewManager: InAppReviewManager
     private val widgetNavState = mutableStateOf<WidgetNavTarget?>(null)
@@ -86,16 +82,6 @@ class MainActivity : ComponentActivity() {
                 setShowBadge(true)
             }
             manager?.createNotificationChannels(listOf(adzanChannel, pushChannel))
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (androidx.core.content.ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
         }
 
         // Ensure alarm schedule is active from database

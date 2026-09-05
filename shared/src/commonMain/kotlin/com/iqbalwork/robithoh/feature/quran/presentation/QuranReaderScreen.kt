@@ -55,8 +55,14 @@ import com.iqbalwork.robithoh.core.designsystem.component.IslamicDividerMotif
 import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
 import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
 import com.iqbalwork.robithoh.core.designsystem.component.ReaderToggleOption
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
@@ -192,8 +198,52 @@ fun QuranReaderScreen(
         }
     }
 
-    Scaffold(
-        modifier = modifier.fillMaxSize(),
+    val appSettingsRepository = rememberAppSettingsRepository()
+    val appSettings by appSettingsRepository.settings.collectAsState()
+
+    val quranSpotlightSteps = remember {
+        listOf(
+            SpotlightStep(
+                id = "quran_goto",
+                title = "Pindah Surat & Ayat Cepat",
+                description = "Gunakan tombol kompas untuk melompat langsung ke surat atau nomor ayat tertentu tanpa perlu menggulir panjang.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "quran_settings",
+                title = "Pengaturan Tampilan Al-Qur'an",
+                description = "Ubah ukuran huruf Arab, sembunyikan atau tampilkan teks Latin dan terjemahan, serta pilih tema warna bacaan yang nyaman di mata.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "quran_verse_action",
+                title = "Salin, Bagikan & Murottal Ayat",
+                description = "Ketuk pada ayat mana pun untuk membuka menu cepat: dengarkan lantunan murottal, salin teks ayat, bagikan ke kerabat, atau tandai sebagai terakhir dibaca.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 4.dp
+            )
+        )
+    }
+
+    val quranSpotlightState = rememberSpotlightState(
+        steps = quranSpotlightSteps,
+        onComplete = {
+            appSettingsRepository.setQuranSpotlightSeen(true)
+        }
+    )
+
+    LaunchedEffect(appSettings.hasSeenQuranSpotlight, state.currentAyahs) {
+        if (!appSettings.hasSeenQuranSpotlight && state.currentAyahs.isNotEmpty() && !quranSpotlightState.isVisible) {
+            quranSpotlightState.start()
+        }
+    }
+
+    Box(modifier = modifier.fillMaxSize()) {
+      Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = {
           Column {
             IslamicHeader(
@@ -203,7 +253,10 @@ fun QuranReaderScreen(
                 onBackClick = onBackClick,
                 showBottomDivider = false,
                 actions = {
-                    IconButton(onClick = { showGoToSheet = true }) {
+                    IconButton(
+                        onClick = { showGoToSheet = true },
+                        modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_goto")
+                    ) {
                         Surface(
                             color = MerahMerdeka.copy(alpha = 0.12f),
                             shape = CircleShape,
@@ -214,7 +267,10 @@ fun QuranReaderScreen(
                             }
                         }
                     }
-                    IconButton(onClick = { showSettingsDialog = true }) {
+                    IconButton(
+                        onClick = { showSettingsDialog = true },
+                        modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_settings")
+                    ) {
                         Surface(
                             color = MerahMerdeka.copy(alpha = 0.12f),
                             shape = CircleShape,
@@ -352,6 +408,9 @@ fun QuranReaderScreen(
                 val isLastRead = state.lastReadBookmark?.let {
                     it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
                 } ?: false
+                val isFirstAyah = state.currentAyahs.firstOrNull()?.let {
+                    it.surahNumber == ayah.surahNumber && it.numberInSurah == ayah.numberInSurah
+                } ?: false
 
                 AyahItemCard(
                     ayah = ayah,
@@ -361,7 +420,11 @@ fun QuranReaderScreen(
                     showTranslation = showTranslation,
                     isLastRead = isLastRead,
                     readerTheme = readerTheme,
-                    onClick = { selectedAyahForOptions = ayah }
+                    onClick = { selectedAyahForOptions = ayah },
+                    modifier = Modifier.let { mod ->
+                        if (isFirstAyah) mod.spotlightAnchor(quranSpotlightState, "quran_verse_action")
+                        else mod
+                    }
                 )
             }
         }
@@ -464,6 +527,9 @@ fun QuranReaderScreen(
             isLastRead = isAyahLastRead
         )
     }
+
+    SpotlightOverlay(state = quranSpotlightState)
+  }
 }
 
 /** Horizontal scrollable strip of surah tabs, for quickly switching surah while reading. */
