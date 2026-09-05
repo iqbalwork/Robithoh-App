@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.appVersionName
 import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -491,6 +492,51 @@ fun ProfileScreen(
                                 fontWeight = FontWeight.Bold,
                                 color = if (isDark) EmasKhidmat else MerahMerdeka
                             )
+                        }
+                    }
+                }
+
+                // 5. Informasi Aplikasi
+                item {
+                    Text(
+                        text = "INFORMASI APLIKASI",
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isDark) DarkMuted else TextMuted,
+                        letterSpacing = 0.5.sp
+                    )
+                }
+
+                item {
+                    GoldCrimsonCard(
+                        variant = GoldCrimsonCardVariant.SURFACE_CLEAN,
+                        contentPadding = PaddingValues(16.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Versi Aplikasi",
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (isDark) PutihBersih else SlateCharcoalText,
+                                    fontSize = 14.sp
+                                )
+                            )
+                            Surface(
+                                shape = RoundedCornerShape(6.dp),
+                                color = if (isDark) Color(0xFF382C1B) else Color(0xFFFFF8E1)
+                            ) {
+                                Text(
+                                    text = appVersionName(),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = EmasKhidmat,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+                                )
+                            }
                         }
                     }
                 }
