@@ -11,6 +11,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.iqbalwork.robithoh.core.designsystem.setGlobalAppContext
 import com.iqbalwork.robithoh.core.notification.AndroidPrayerAlarmScheduler
 import com.iqbalwork.robithoh.navigation.WidgetNavTarget
+import com.iqbalwork.robithoh.review.InAppReviewManager
 import com.iqbalwork.robithoh.update.InAppUpdateManager
 
 class MainActivity : ComponentActivity() {
@@ -26,6 +29,7 @@ class MainActivity : ComponentActivity() {
     ) { /* Result handled */ }
 
     private lateinit var inAppUpdateManager: InAppUpdateManager
+    private lateinit var inAppReviewManager: InAppReviewManager
     private val widgetNavState = mutableStateOf<WidgetNavTarget?>(null)
 
     private fun handleWidgetNavigation(intent: Intent?) {
@@ -53,6 +57,9 @@ class MainActivity : ComponentActivity() {
 
         inAppUpdateManager = InAppUpdateManager(this)
         inAppUpdateManager.checkForUpdates(preferImmediate = false)
+
+        inAppReviewManager = InAppReviewManager(this)
+        inAppReviewManager.recordAppOpen()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val manager = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
@@ -113,7 +120,32 @@ class MainActivity : ComponentActivity() {
                 initialDestination = navDestination,
                 initialSurahNumber = surahNum,
                 initialAyahNumber = ayahNum,
-                widgetNavTarget = navTarget
+                widgetNavTarget = navTarget,
+                onCheckForUpdates = {
+                    inAppUpdateManager.checkForUpdates(
+                        preferImmediate = false,
+                        onNoUpdateAvailable = {
+                            runOnUiThread {
+                                Toast.makeText(this, "Aplikasi sudah versi terbaru", Toast.LENGTH_SHORT).show()
+                            }
+                        },
+                        onUnsupported = {
+                            runOnUiThread {
+                                Toast.makeText(this, "Periksa pembaruan hanya tersedia lewat Google Play", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    )
+                },
+                onOpenPlayStore = {
+                    try {
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://play.google.com/store/apps/details?id=com.iqbalwork.robithoh")
+                            )
+                        )
+                    } catch (_: Exception) {}
+                }
             )
         }
     }
@@ -129,6 +161,9 @@ class MainActivity : ComponentActivity() {
         } catch (_: Throwable) {}
         if (::inAppUpdateManager.isInitialized) {
             inAppUpdateManager.onResume()
+        }
+        if (::inAppReviewManager.isInitialized) {
+            inAppReviewManager.maybeRequestReview()
         }
     }
 
