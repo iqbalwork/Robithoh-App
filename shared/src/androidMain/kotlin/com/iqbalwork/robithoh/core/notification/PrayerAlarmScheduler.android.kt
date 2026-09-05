@@ -287,7 +287,8 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                     },
                     selectedVoiceId = settings.selected_adzan_voice_id,
                     customAudioPath = settings.custom_adzan_audio_path,
-                    adzanVolume = settings.adzan_volume.toFloat()
+                    adzanVolume = settings.adzan_volume.toFloat(),
+                    isPrePrayerReminderEnabled = settings.pre_reminder_enabled == 1L
                 )
 
                 val now = com.iqbalwork.robithoh.core.datetime.currentLocalDateTime()

@@ -330,7 +330,8 @@ class AmaliyahViewModel(
                         },
                         selectedVoiceId = settings.selected_adzan_voice_id,
                         customAudioPath = settings.custom_adzan_audio_path,
-                        adzanVolume = settings.adzan_volume.toFloat()
+                        adzanVolume = settings.adzan_volume.toFloat(),
+                        isPrePrayerReminderEnabled = settings.pre_reminder_enabled == 1L
                     )
 
                     withContext(Dispatchers.Main) {
@@ -405,6 +406,7 @@ class AmaliyahViewModel(
                     selected_adzan_voice_id = notif.selectedVoiceId,
                     custom_adzan_audio_path = notif.customAudioPath,
                     adzan_volume = notif.adzanVolume.toDouble(),
+                    pre_reminder_enabled = if (notif.isPrePrayerReminderEnabled) 1L else 0L,
                     subuh_notif_enabled = PrayerNotificationMode.toDbValue(notif.subuhMode),
                     dzuhur_notif_enabled = PrayerNotificationMode.toDbValue(notif.dzuhurMode),
                     ashar_notif_enabled = PrayerNotificationMode.toDbValue(notif.asharMode),
@@ -450,7 +452,8 @@ class AmaliyahViewModel(
                     ashar = PrayerNotificationMode.toDbValue(notif.asharMode),
                     maghrib = PrayerNotificationMode.toDbValue(notif.maghribMode),
                     isya = PrayerNotificationMode.toDbValue(notif.isyaMode),
-                    imsak = PrayerNotificationMode.toDbValue(notif.imsakMode)
+                    imsak = PrayerNotificationMode.toDbValue(notif.imsakMode),
+                    preReminderEnabled = if (notif.isPrePrayerReminderEnabled) 1L else 0L
                 )
             } catch (_: Exception) {}
         }

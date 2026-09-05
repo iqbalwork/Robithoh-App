@@ -44,7 +44,8 @@ actual class DatabaseDriverFactory(private val context: Context) {
                     ashar_notif_enabled INTEGER NOT NULL DEFAULT 1,
                     maghrib_notif_enabled INTEGER NOT NULL DEFAULT 1,
                     isya_notif_enabled INTEGER NOT NULL DEFAULT 1,
-                    imsak_notif_enabled INTEGER NOT NULL DEFAULT 0
+                    imsak_notif_enabled INTEGER NOT NULL DEFAULT 0,
+                    pre_reminder_enabled INTEGER NOT NULL DEFAULT 1
                 );
                 """.trimIndent(),
                 0
@@ -53,6 +54,13 @@ actual class DatabaseDriverFactory(private val context: Context) {
                 driver.execute(
                     null,
                     "ALTER TABLE PrayerSettingsEntity ADD COLUMN adzan_volume REAL NOT NULL DEFAULT 1.0;",
+                    0
+                )
+            } catch (_: Throwable) {} // kolom sudah ada di instalasi lama -> abaikan
+            try {
+                driver.execute(
+                    null,
+                    "ALTER TABLE PrayerSettingsEntity ADD COLUMN pre_reminder_enabled INTEGER NOT NULL DEFAULT 1;",
                     0
                 )
             } catch (_: Throwable) {} // kolom sudah ada di instalasi lama -> abaikan
