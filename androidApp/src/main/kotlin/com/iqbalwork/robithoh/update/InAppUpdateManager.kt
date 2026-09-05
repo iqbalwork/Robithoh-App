@@ -57,20 +57,31 @@ class InAppUpdateManager(
      *
      * @param preferImmediate If true, requests IMMEDIATE update flow if available; otherwise uses FLEXIBLE.
      */
-    fun checkForUpdates(preferImmediate: Boolean = false) {
+    fun checkForUpdates(
+        preferImmediate: Boolean = false,
+        onNoUpdateAvailable: (() -> Unit)? = null,
+        onUnsupported: (() -> Unit)? = null
+    ) {
         try {
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-                handleUpdateAvailability(appUpdateInfo, preferImmediate)
+                handleUpdateAvailability(appUpdateInfo, preferImmediate, onNoUpdateAvailable, onUnsupported)
             }.addOnFailureListener { e ->
                 // Expected in local debug builds or when installed outside Google Play Store
                 Log.d(TAG, "In-app update check failed or not supported: ${e.message}")
+                onUnsupported?.invoke()
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error during checkForUpdates", e)
+            onUnsupported?.invoke()
         }
     }
 
-    private fun handleUpdateAvailability(appUpdateInfo: AppUpdateInfo, preferImmediate: Boolean) {
+    private fun handleUpdateAvailability(
+        appUpdateInfo: AppUpdateInfo,
+        preferImmediate: Boolean,
+        onNoUpdateAvailable: (() -> Unit)? = null,
+        onUnsupported: (() -> Unit)? = null
+    ) {
         if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
             val targetUpdateType = if (preferImmediate && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
                 AppUpdateType.IMMEDIATE
@@ -82,9 +93,13 @@ class InAppUpdateManager(
                 null
             }
 
-            targetUpdateType?.let { updateType ->
-                startUpdateFlow(appUpdateInfo, updateType)
+            if (targetUpdateType != null) {
+                startUpdateFlow(appUpdateInfo, targetUpdateType)
+            } else {
+                onUnsupported?.invoke()
             }
+        } else {
+            onNoUpdateAvailable?.invoke()
         }
     }
 
