@@ -46,10 +46,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run Android Lint
-        run: ./gradlew lintDebug --continue
+        run: ./gradlew lint --continue
 
       - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest shared:jvmTest --continue
+        run: ./gradlew :androidApp:test :shared:jvmTest --continue
 
       - name: Upload Lint Reports
         if: failure()
