@@ -39,6 +39,7 @@ class PrayerAdzanService : Service() {
         const val EXTRA_NOTIFICATION_MODE = "extra_notification_mode"
         const val EXTRA_IS_PRE_REMINDER = "extra_is_pre_reminder"
         const val EXTRA_IS_TEST = "extra_is_test"
+        const val EXTRA_ADZAN_VOLUME = "extra_adzan_volume"
 
         private var isPlayingAdzan = false
         fun isAdzanPlaying(): Boolean = isPlayingAdzan
@@ -79,6 +80,7 @@ class PrayerAdzanService : Service() {
                 val audioFile = intent.getStringExtra(EXTRA_AUDIO_FILE) ?: "adzan_misyari_rasyid.mp3"
                 val customPath = intent.getStringExtra(EXTRA_CUSTOM_AUDIO_PATH)
                 val voiceTitle = intent.getStringExtra(EXTRA_VOICE_TITLE) ?: "Adzan"
+                val adzanVolume = intent.getFloatExtra(EXTRA_ADZAN_VOLUME, 1.0f).coerceIn(0f, 1f)
 
                 val notification = buildNotification(prayerName, locationName, voiceTitle)
                 try {
@@ -98,7 +100,7 @@ class PrayerAdzanService : Service() {
                     manager?.notify(NOTIFICATION_ID, notification)
                 }
 
-                playAdzanAudio(audioFile, customPath)
+                playAdzanAudio(audioFile, customPath, adzanVolume)
             }
             else -> {
                 stopSelf()
@@ -108,7 +110,7 @@ class PrayerAdzanService : Service() {
         return START_NOT_STICKY
     }
 
-    private fun playAdzanAudio(audioFileName: String, customPath: String?) {
+    private fun playAdzanAudio(audioFileName: String, customPath: String?, volume: Float = 1.0f) {
         stopAdzanAudio()
         isPlayingAdzan = true
 
@@ -167,7 +169,7 @@ class PrayerAdzanService : Service() {
                             }
                             prepareAsync()
                             setOnPreparedListener { mp ->
-                                mp.setVolume(1.0f, 1.0f)
+                                mp.setVolume(volume, volume)
                                 mp.start()
                             }
                         }

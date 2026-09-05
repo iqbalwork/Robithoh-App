@@ -25,6 +25,7 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
         val voiceOption = AdzanVoices.findById(settings.selectedVoiceId)
         val voiceTitle = voiceOption.title
         val customPath = settings.customAudioPath
+        val adzanVolume = settings.adzanVolume
 
         val prayerEntries = listOf(
             Triple(PrayerType.IMSAK, schedule.imsak, 101),
@@ -61,6 +62,7 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                     putExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH, customPath)
                     putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceTitle)
                     putExtra(PrayerAdzanService.EXTRA_NOTIFICATION_MODE, mode.id)
+                    putExtra(PrayerAdzanService.EXTRA_ADZAN_VOLUME, adzanVolume)
                 }
 
                 val flags = PendingIntent.FLAG_UPDATE_CURRENT or (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0)
@@ -190,7 +192,8 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
         prayerName: String,
         mode: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode,
         voiceId: String,
-        customPath: String?
+        customPath: String?,
+        volume: Float
     ) {
         val effectiveMode = if (prayerName.equals("Imsak", ignoreCase = true)) {
             if (mode == com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode.SILENT) {
@@ -213,6 +216,7 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
             putExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH, customPath)
             putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceOption.title)
             putExtra(PrayerAdzanService.EXTRA_NOTIFICATION_MODE, effectiveMode.id)
+            putExtra(PrayerAdzanService.EXTRA_ADZAN_VOLUME, volume)
             putExtra(PrayerAdzanService.EXTRA_IS_TEST, true)
         }
         context.sendBroadcast(intent)
@@ -282,7 +286,8 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                         } else it
                     },
                     selectedVoiceId = settings.selected_adzan_voice_id,
-                    customAudioPath = settings.custom_adzan_audio_path
+                    customAudioPath = settings.custom_adzan_audio_path,
+                    adzanVolume = settings.adzan_volume.toFloat()
                 )
 
                 val now = com.iqbalwork.robithoh.core.datetime.currentLocalDateTime()

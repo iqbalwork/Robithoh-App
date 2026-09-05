@@ -195,8 +195,10 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
         prayerName: String,
         mode: PrayerNotificationMode,
         voiceId: String,
-        customPath: String?
+        customPath: String?,
+        volume: Float
     ) {
+        // Catatan: volume tidak relevan di iOS - notifikasi memakai system volume
         val isImsak = prayerName.equals("Imsak", ignoreCase = true)
         val effectiveMode = if (isImsak) {
             if (mode == PrayerNotificationMode.SILENT) PrayerNotificationMode.SILENT else PrayerNotificationMode.PUSH_NOTIFICATION

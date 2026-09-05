@@ -36,6 +36,7 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
         val isPreReminder = intent.getBooleanExtra(PrayerAdzanService.EXTRA_IS_PRE_REMINDER, false)
         val prayerName = intent.getStringExtra(PrayerAdzanService.EXTRA_PRAYER_NAME) ?: "Sholat"
         val locationName = intent.getStringExtra(PrayerAdzanService.EXTRA_LOCATION_NAME) ?: "Wilayah Anda"
+        val adzanVolume = intent.getFloatExtra(PrayerAdzanService.EXTRA_ADZAN_VOLUME, 1.0f)
 
         if (isPreReminder) {
             showPrePrayerReminderNotification(context, prayerName, locationName)
@@ -60,6 +61,7 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
                 putExtra(PrayerAdzanService.EXTRA_AUDIO_FILE, audioFile)
                 putExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH, customPath)
                 putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceTitle)
+                putExtra(PrayerAdzanService.EXTRA_ADZAN_VOLUME, adzanVolume)
             }
 
             var serviceStarted = false
