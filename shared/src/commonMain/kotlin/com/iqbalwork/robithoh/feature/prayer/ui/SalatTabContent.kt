@@ -63,6 +63,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.getPlatform
 import com.iqbalwork.robithoh.feature.amaliyah.ui.AdzanVoicePickerSheet
 import com.iqbalwork.robithoh.feature.amaliyah.ui.PrayerNotificationModePickerSheet
 import kotlinx.coroutines.launch
@@ -662,61 +663,71 @@ fun SalatTabContent(
                         }
                     )
                     HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
-                    val volumePercent = (notif.adzanVolume * 100).toInt()
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
+                    if (getPlatform().name.startsWith("Android")) {
+                        val volumePercent = (notif.adzanVolume * 100).toInt()
                         Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Surface(
-                                color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
-                                shape = CircleShape,
-                                modifier = Modifier.size(36.dp)
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.weight(1f)
                             ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text("🔊", fontSize = 14.sp)
+                                Surface(
+                                    color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(36.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text("🔊", fontSize = 14.sp)
+                                    }
+                                }
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = "Volume suara adzan",
+                                        fontSize = 14.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = if (isDark) PutihBersih else TextCharcoal
+                                    )
+                                    Spacer(modifier = Modifier.height(2.dp))
+                                    Text(
+                                        text = if (volumePercent == 0) "Senyap — notifikasi tetap muncul" else "Atur nyaring kumandang adzan",
+                                        fontSize = 11.5.sp,
+                                        color = if (isDark) DarkMuted else TextMuted
+                                    )
                                 }
                             }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(
-                                    text = "Volume suara adzan",
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = if (isDark) PutihBersih else TextCharcoal
-                                )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = if (volumePercent == 0) "Senyap — notifikasi tetap muncul" else "Atur nyaring kumandang adzan",
-                                    fontSize = 11.5.sp,
-                                    color = if (isDark) DarkMuted else TextMuted
-                                )
-                            }
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "$volumePercent%",
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (volumePercent == 0) TextMuted else MerahMerdeka
+                            )
                         }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "$volumePercent%",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = if (volumePercent == 0) TextMuted else MerahMerdeka
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Slider(
+                            value = notif.adzanVolume,
+                            onValueChange = { vm.onIntent(AmaliyahUiIntent.SetAdzanVolume(it)) },
+                            valueRange = 0f..1f,
+                            steps = 18,
+                            colors = SliderDefaults.colors(
+                                thumbColor = MerahMerdeka,
+                                activeTrackColor = MerahMerdeka,
+                                inactiveTrackColor = if (isDark) DarkBorder else BorderSubtle
+                            )
+                        )
+                    } else {
+                        SettingItemRow(
+                            icon = "🔊",
+                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                            title = "Volume suara adzan",
+                            subtitle = "Mengikuti volume perangkat (iOS)",
+                            isDark = isDark
                         )
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Slider(
-                        value = notif.adzanVolume,
-                        onValueChange = { vm.onIntent(AmaliyahUiIntent.SetAdzanVolume(it)) },
-                        valueRange = 0f..1f,
-                        steps = 18,
-                        colors = SliderDefaults.colors(
-                            thumbColor = MerahMerdeka,
-                            activeTrackColor = MerahMerdeka,
-                            inactiveTrackColor = if (isDark) DarkBorder else BorderSubtle
-                        )
-                    )
                     HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
