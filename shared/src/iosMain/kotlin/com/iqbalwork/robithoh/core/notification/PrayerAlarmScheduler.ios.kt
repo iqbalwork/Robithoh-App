@@ -93,6 +93,7 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
         )
 
         for ((prayerType, timeStr, identifier) in prayerEntries) {
+            val preIdentifier = "prayer_pre_" + identifier.removePrefix("prayer_alarm_")
             val rawMode = settings.getPrayerMode(prayerType)
             val isImsak = prayerType == PrayerType.IMSAK
             val mode = if (isImsak && rawMode == PrayerNotificationMode.ADZAN) {
@@ -102,6 +103,7 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
             }
             if (mode == PrayerNotificationMode.SILENT) {
                 cancelAlarm(identifier)
+                cancelAlarm(preIdentifier)
                 continue
             }
 
@@ -166,6 +168,41 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
             notificationCenter.addNotificationRequest(request) { _ ->
                 // Registered
             }
+
+            val preReminderTime = if (settings.isPrePrayerReminderEnabled) {
+                PrayerReminderTime.compute(hour.toInt(), minute.toInt())
+            } else {
+                null
+            }
+            if (preReminderTime != null) {
+                val (preHour, preMinute) = preReminderTime
+                val preContent = UNMutableNotificationContent().apply {
+                    setTitle("10 Menit Menuju Waktu ${prayerType.label}")
+                    setBody("Waktu sholat ${prayerType.label} akan tiba dalam 10 menit untuk wilayah ${schedule.locationName}")
+                    setSound(UNNotificationSound.defaultSound())
+                    setUserInfo(mapOf(
+                        "prayerName" to prayerType.label,
+                        "type" to "pre_reminder"
+                    ))
+                }
+                val preTrigger = UNCalendarNotificationTrigger.triggerWithDateMatchingComponents(
+                    dateComponents = NSDateComponents().apply {
+                        setHour(preHour.toLong())
+                        setMinute(preMinute.toLong())
+                        setSecond(0)
+                    },
+                    repeats = true
+                )
+                notificationCenter.addNotificationRequest(
+                    UNNotificationRequest.requestWithIdentifier(
+                        identifier = preIdentifier,
+                        content = preContent,
+                        trigger = preTrigger
+                    )
+                ) { _ -> }
+            } else {
+                cancelAlarm(preIdentifier)
+            }
         }
     }
 
@@ -176,7 +213,13 @@ class IosPrayerAlarmScheduler : PrayerAlarmScheduler {
             "prayer_alarm_dzuhur",
             "prayer_alarm_ashar",
             "prayer_alarm_maghrib",
-            "prayer_alarm_isya"
+            "prayer_alarm_isya",
+            "prayer_pre_imsak",
+            "prayer_pre_subuh",
+            "prayer_pre_dzuhur",
+            "prayer_pre_ashar",
+            "prayer_pre_maghrib",
+            "prayer_pre_isya"
         )
         notificationCenter.removePendingNotificationRequestsWithIdentifiers(identifiers)
         stopActiveAdzan()
