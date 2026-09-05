@@ -199,6 +199,12 @@ class AmaliyahViewModel(
                 persistAdzanVoice(voiceId = intent.voiceId, customPath = updatedNotif.customAudioPath)
                 syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
             }
+            is AmaliyahUiIntent.SetAdzanVolume -> {
+                val updatedNotif = currentState.notificationSettings.withAdzanVolume(intent.volume)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistAdzanVolume(intent.volume)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
             is AmaliyahUiIntent.SetCustomAdzanPath -> {
                 val updatedNotif = currentState.notificationSettings.copy(
                     customAudioPath = intent.path,
@@ -251,7 +257,8 @@ class AmaliyahViewModel(
                     prayerName = intent.prayerType.label,
                     mode = intent.mode,
                     voiceId = currentState.notificationSettings.selectedVoiceId,
-                    customPath = currentState.notificationSettings.customAudioPath
+                    customPath = currentState.notificationSettings.customAudioPath,
+                    volume = currentState.notificationSettings.adzanVolume
                 )
             }
         }
@@ -322,7 +329,8 @@ class AmaliyahViewModel(
                             if (it == PrayerNotificationMode.ADZAN) PrayerNotificationMode.PUSH_NOTIFICATION else it
                         },
                         selectedVoiceId = settings.selected_adzan_voice_id,
-                        customAudioPath = settings.custom_adzan_audio_path
+                        customAudioPath = settings.custom_adzan_audio_path,
+                        adzanVolume = settings.adzan_volume.toFloat()
                     )
 
                     withContext(Dispatchers.Main) {
@@ -396,6 +404,7 @@ class AmaliyahViewModel(
                     is_gps = if (isGps) 1L else 0L,
                     selected_adzan_voice_id = notif.selectedVoiceId,
                     custom_adzan_audio_path = notif.customAudioPath,
+                    adzan_volume = notif.adzanVolume.toDouble(),
                     subuh_notif_enabled = PrayerNotificationMode.toDbValue(notif.subuhMode),
                     dzuhur_notif_enabled = PrayerNotificationMode.toDbValue(notif.dzuhurMode),
                     ashar_notif_enabled = PrayerNotificationMode.toDbValue(notif.asharMode),
@@ -418,6 +427,15 @@ class AmaliyahViewModel(
                     selectedAdzanVoiceId = voiceId,
                     customAdzanAudioPath = customPath
                 )
+            } catch (_: Exception) {}
+        }
+    }
+
+    private fun persistAdzanVolume(volume: Float) {
+        if (database == null) return
+        viewModelScope.launch(dispatcher) {
+            try {
+                database.robithohDatabaseQueries.updateAdzanVolume(adzanVolume = volume.toDouble())
             } catch (_: Exception) {}
         }
     }

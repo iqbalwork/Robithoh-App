@@ -251,7 +251,8 @@ data class PrayerNotificationSettings(
     val imsakMode: PrayerNotificationMode = PrayerNotificationMode.PUSH_NOTIFICATION,
     val isPrePrayerReminderEnabled: Boolean = true,
     val selectedVoiceId: String = "misyari_rasyid",
-    val customAudioPath: String? = null
+    val customAudioPath: String? = null,
+    val adzanVolume: Float = 1.0f
 ) {
     val isSubuhEnabled: Boolean get() = subuhMode != PrayerNotificationMode.SILENT
     val isDzuhurEnabled: Boolean get() = dzuhurMode != PrayerNotificationMode.SILENT
@@ -312,4 +313,7 @@ data class PrayerNotificationSettings(
     fun withPrePrayerReminder(enabled: Boolean): PrayerNotificationSettings {
         return copy(isPrePrayerReminderEnabled = enabled)
     }
+
+    fun withAdzanVolume(volume: Float): PrayerNotificationSettings =
+        copy(adzanVolume = volume.coerceIn(0f, 1f))
 }

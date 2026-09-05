@@ -136,6 +136,7 @@ CREATE TABLE PrayerSettingsEntity (
     is_gps INTEGER NOT NULL DEFAULT 0,
     selected_adzan_voice_id TEXT NOT NULL DEFAULT 'misyari_rasyid',
     custom_adzan_audio_path TEXT,
+    adzan_volume REAL NOT NULL DEFAULT 1.0,
     subuh_notif_enabled INTEGER NOT NULL DEFAULT 1,
     dzuhur_notif_enabled INTEGER NOT NULL DEFAULT 1,
     ashar_notif_enabled INTEGER NOT NULL DEFAULT 1,
@@ -151,9 +152,9 @@ insertOrUpdatePrayerSettings:
 INSERT OR REPLACE INTO PrayerSettingsEntity(
     id, method_id, imsak_offset, subuh_offset, terbit_offset, dzuhur_offset, ashar_offset, maghrib_offset, isya_offset, madhab,
     custom_lat, custom_lng, custom_location_name, custom_timezone_offset, is_gps,
-    selected_adzan_voice_id, custom_adzan_audio_path,
+    selected_adzan_voice_id, custom_adzan_audio_path, adzan_volume,
     subuh_notif_enabled, dzuhur_notif_enabled, ashar_notif_enabled, maghrib_notif_enabled, isya_notif_enabled, imsak_notif_enabled
-) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 updateCalculationMethod:
 UPDATE PrayerSettingsEntity
@@ -183,6 +184,11 @@ SET subuh_notif_enabled = :subuh,
     maghrib_notif_enabled = :maghrib,
     isya_notif_enabled = :isya,
     imsak_notif_enabled = :imsak
+WHERE id = 1;
+
+updateAdzanVolume:
+UPDATE PrayerSettingsEntity
+SET adzan_volume = :adzanVolume
 WHERE id = 1;
 
 -- Reader Settings Entity

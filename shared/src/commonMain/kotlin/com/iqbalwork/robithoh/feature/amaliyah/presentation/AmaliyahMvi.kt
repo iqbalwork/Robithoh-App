@@ -73,6 +73,7 @@ sealed interface AmaliyahUiIntent : UiIntent {
     data class TogglePrayerLogged(val prayerName: String) : AmaliyahUiIntent
     data class OpenTasbihWithTarget(val targetCount: Int, val dzikirTitle: String) : AmaliyahUiIntent
     data class SelectAdzanVoice(val voiceId: String) : AmaliyahUiIntent
+    data class SetAdzanVolume(val volume: Float) : AmaliyahUiIntent
     data class SetCustomAdzanPath(val path: String) : AmaliyahUiIntent
     data class TogglePrayerNotification(val prayerType: PrayerType, val enabled: Boolean) : AmaliyahUiIntent
     data class TogglePrePrayerReminder(val enabled: Boolean) : AmaliyahUiIntent

@@ -125,4 +125,18 @@ class AdzanFeatureTest {
         viewModel.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
         assertTrue(viewModel.currentState.isAdzanPickerSheetOpen)
     }
+
+    @Test
+    fun testAdzanVolumeDefaultsAndClamping() {
+        val settings = PrayerNotificationSettings()
+        assertEquals(1.0f, settings.adzanVolume)
+
+        val lowered = settings.withAdzanVolume(0.4f)
+        assertEquals(0.4f, lowered.adzanVolume)
+
+        assertEquals(1.0f, lowered.withAdzanVolume(2f).adzanVolume)
+        assertEquals(0.0f, lowered.withAdzanVolume(-1f).adzanVolume)
+        assertEquals(0.4f, lowered.withToggledPrayer(PrayerType.SUBUH, false).adzanVolume)
+        assertEquals(0.4f, lowered.withPrePrayerReminder(false).adzanVolume)
+    }
 }

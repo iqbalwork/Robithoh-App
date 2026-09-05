@@ -38,6 +38,7 @@ actual class DatabaseDriverFactory(private val context: Context) {
                     is_gps INTEGER NOT NULL DEFAULT 0,
                     selected_adzan_voice_id TEXT NOT NULL DEFAULT 'misyari_rasyid',
                     custom_adzan_audio_path TEXT,
+                    adzan_volume REAL NOT NULL DEFAULT 1.0,
                     subuh_notif_enabled INTEGER NOT NULL DEFAULT 1,
                     dzuhur_notif_enabled INTEGER NOT NULL DEFAULT 1,
                     ashar_notif_enabled INTEGER NOT NULL DEFAULT 1,
@@ -48,6 +49,13 @@ actual class DatabaseDriverFactory(private val context: Context) {
                 """.trimIndent(),
                 0
             )
+            try {
+                driver.execute(
+                    null,
+                    "ALTER TABLE PrayerSettingsEntity ADD COLUMN adzan_volume REAL NOT NULL DEFAULT 1.0;",
+                    0
+                )
+            } catch (_: Throwable) {} // kolom sudah ada di instalasi lama -> abaikan
             driver.execute(
                 null,
                 """
