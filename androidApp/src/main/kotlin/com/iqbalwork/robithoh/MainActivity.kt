@@ -32,6 +32,20 @@ class MainActivity : ComponentActivity() {
         val dest = intent?.getStringExtra("NAVIGATE_TO") ?: return
         val surah = intent.getIntExtra("SURAH_NUMBER", 1)
         val ayah = intent.getIntExtra("AYAH_NUMBER", 1)
+        val widgetType = when {
+            dest.startsWith("PRAYER") -> "prayer_widget"
+            dest.startsWith("TASBIH") -> "tasbih_widget"
+            dest.startsWith("QURAN") -> "quran_widget"
+            dest.startsWith("TANBIH") -> "tanbih_widget"
+            else -> "quick_access_widget"
+        }
+        com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker().logEvent(
+            com.iqbalwork.robithoh.core.analytics.AnalyticsEvents.WIDGET_SHORTCUT_CLICKED,
+            mapOf(
+                com.iqbalwork.robithoh.core.analytics.AnalyticsParams.WIDGET_TYPE to widgetType,
+                com.iqbalwork.robithoh.core.analytics.AnalyticsParams.TARGET_DESTINATION to dest
+            )
+        )
         widgetNavState.value = WidgetNavTarget(
             destination = dest,
             surahNumber = surah,

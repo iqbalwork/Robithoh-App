@@ -1,0 +1,144 @@
+name: Android Staging (Firebase App Distribution)
+
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: 'Custom Release Notes (kosongkan untuk generate otomatis dari commit)'
+        required: false
+        default: ''
+        type: string
+      testers_group:
+        description: 'Grup tester Firebase App Distribution'
+        required: false
+        default: 'internal-testers'
+        type: string
+
+concurrency:
+  group: staging-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-distribute:
+    name: Build & Distribute Staging APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ambil commit history untuk generate release notes otomatis
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Configure Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
+            echo "Menggunakan release keystore dari GitHub Secrets..."
+            echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
+            cat <<EOF > keystore.properties
+            signing_key_location=keystore.jks
+            signing_keystore_password=${KEYSTORE_PASSWORD}
+            signing_key_alias=${KEY_ALIAS}
+            signing_key_password=${KEY_PASSWORD}
+            EOF
+          else
+            echo "KEYSTORE_BASE64 tidak ditemukan, membuat keystore staging mandiri..."
+            keytool -genkeypair -v -keystore keystore.jks -alias staging -keyalg RSA -keysize 2048 -validity 10000 -storepass stagingpass -keypass stagingpass -dname "CN=Staging, OU=Robithoh, O=Robithoh, L=ID, S=ID, C=ID"
+            cat <<EOF > keystore.properties
+            signing_key_location=keystore.jks
+            signing_keystore_password=stagingpass
+            signing_key_alias=staging
+            signing_key_password=stagingpass
+            EOF
+          fi
+
+      - name: Generate Automatic Release Notes
+        run: |
+          mkdir -p androidApp/build
+          NOTES_FILE="androidApp/build/release-notes.txt"
+
+          if [ -n "${{ github.event.inputs.release_notes }}" ]; then
+            echo "${{ github.event.inputs.release_notes }}" > "$NOTES_FILE"
+          else
+            echo "🚀 Dev Robithoh (Staging) - Build #${{ github.run_number }}" > "$NOTES_FILE"
+            echo "📅 Tanggal: $(date -u '+%Y-%m-%d %H:%M UTC')" >> "$NOTES_FILE"
+            echo "🔖 Commit: ${{ github.sha }}" >> "$NOTES_FILE"
+            echo "" >> "$NOTES_FILE"
+            echo "📋 Catatan Perubahan:" >> "$NOTES_FILE"
+            # Mengambil 5 commit terakhir
+            git log -n 5 --pretty=format:"• %s (%an)" >> "$NOTES_FILE"
+          fi
+
+          echo "=== Release Notes Content ==="
+          cat "$NOTES_FILE"
+
+          # Tampilkan di summary run GitHub Actions
+          echo "### 📋 Release Notes" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat "$NOTES_FILE" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Build Staging Release APK
+        run: ./gradlew assembleStagingRelease
+
+      - name: Upload Staging APK to GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-robithoh-staging-apk
+          path: androidApp/build/outputs/apk/staging/release/*.apk
+          retention-days: 14
+
+      - name: Deploy to Firebase App Distribution
+        env:
+          FIREBASE_APP_DISTRIBUTION_CREDENTIALS: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIALS }}
+          FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_CREDENTIALS_JSON }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          CRED_FLAG=""
+          if [ -n "$FIREBASE_APP_DISTRIBUTION_CREDENTIALS" ]; then
+            echo "$FIREBASE_APP_DISTRIBUTION_CREDENTIALS" > firebase-service-account.json
+            CRED_FLAG="--serviceCredentialsFile=firebase-service-account.json"
+          elif [ -n "$FIREBASE_CREDENTIALS_JSON" ]; then
+            echo "$FIREBASE_CREDENTIALS_JSON" > firebase-service-account.json
+            CRED_FLAG="--serviceCredentialsFile=firebase-service-account.json"
+          elif [ -n "$FIREBASE_TOKEN" ]; then
+            export FIREBASE_TOKEN="$FIREBASE_TOKEN"
+          else
+            echo "::warning::Secret FIREBASE_APP_DISTRIBUTION_CREDENTIALS atau FIREBASE_TOKEN belum diatur di GitHub Secrets!"
+            echo "::warning::APK staging berhasil dibuild dan dapat diunduh di Artifacts run ini, namun upload ke App Distribution dilewati."
+            exit 0
+          fi
+
+          GROUP_FLAG=""
+          TARGET_GROUP="${{ github.event.inputs.testers_group || 'internal-testers' }}"
+          if [ -n "$TARGET_GROUP" ]; then
+            GROUP_FLAG="--groups=$TARGET_GROUP"
+          fi
+
+          ./gradlew appDistributionUploadStagingRelease \
+            --releaseNotesFile="androidApp/build/release-notes.txt" \
+            $CRED_FLAG \
+            $GROUP_FLAG
+
+      - name: Secure Cleanup
+        if: always()
+        run: |
+          rm -f keystore.jks
+          rm -f keystore.properties
+          rm -f firebase-service-account.json
+          rm -f androidApp/build/release-notes.txt

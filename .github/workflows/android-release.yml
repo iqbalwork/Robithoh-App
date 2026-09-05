@@ -72,20 +72,20 @@ jobs:
           EOF
 
       - name: Build Release Bundle (AAB) & APK
-        run: ./gradlew bundleRelease assembleRelease
+        run: ./gradlew bundleProductionRelease assembleProductionRelease
 
       - name: Upload Release AAB Artifact
         uses: actions/upload-artifact@v4
         with:
           name: robithoh-release-aab
-          path: androidApp/build/outputs/bundle/release/*.aab
+          path: androidApp/build/outputs/bundle/productionRelease/*.aab
           retention-days: 30
 
       - name: Upload Release APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: robithoh-release-apk
-          path: androidApp/build/outputs/apk/release/*.apk
+          path: androidApp/build/outputs/apk/production/release/*.apk
           retention-days: 30
 
       - name: Deploy to Google Play Store
@@ -94,7 +94,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON_KEY }}
           packageName: com.iqbalwork.robithoh
-          releaseFiles: androidApp/build/outputs/bundle/release/*.aab
+          releaseFiles: androidApp/build/outputs/bundle/productionRelease/*.aab
           track: ${{ github.event.inputs.track || 'internal' }}
           status: ${{ github.event.inputs.status || 'completed' }}
         env:
@@ -117,8 +117,8 @@ jobs:
           prerelease: false
           generate_release_notes: true
           files: |
-            androidApp/build/outputs/bundle/release/*.aab
-            androidApp/build/outputs/apk/release/*.apk
+            androidApp/build/outputs/bundle/productionRelease/*.aab
+            androidApp/build/outputs/apk/production/release/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

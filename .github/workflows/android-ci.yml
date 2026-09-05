@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - development
+      - staging
       - main
   pull_request:
     branches:
       - development
+      - staging
       - main
   workflow_dispatch:
 
@@ -91,5 +93,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: robithoh-debug-apk
-          path: androidApp/build/outputs/apk/debug/*.apk
+          path: androidApp/build/outputs/apk/**/debug/*.apk
           retention-days: 14

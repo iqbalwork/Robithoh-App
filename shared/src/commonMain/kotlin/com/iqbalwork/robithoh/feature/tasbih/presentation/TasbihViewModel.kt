@@ -1,6 +1,10 @@
 package com.iqbalwork.robithoh.feature.tasbih.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.iqbalwork.robithoh.core.analytics.AnalyticsEvents
+import com.iqbalwork.robithoh.core.analytics.AnalyticsParams
+import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
+import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.KmpHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
@@ -12,7 +16,8 @@ import kotlinx.coroutines.launch
 class TasbihViewModel(
     private val hapticFeedback: KmpHapticFeedback = getHapticFeedback(),
     private val database: RobithohDatabase? = null,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<TasbihUiState, TasbihUiIntent, TasbihUiEffect>(
     TasbihUiState()
 ) {
@@ -113,6 +118,14 @@ class TasbihViewModel(
 
         if (reachedMilestone) {
             sendEffect(TasbihUiEffect.ShowMilestoneToast(target, target))
+            analyticsTracker.logEvent(
+                AnalyticsEvents.TASBIH_TARGET_REACHED,
+                mapOf(
+                    AnalyticsParams.TARGET_COUNT to target,
+                    AnalyticsParams.TOTAL_TAPS to nextCount,
+                    AnalyticsParams.IS_VIBRATION_ENABLED to currentState.isHapticEnabled
+                )
+            )
         }
 
         updateState {
@@ -146,6 +159,12 @@ class TasbihViewModel(
     }
 
     private fun handleReset() {
+        analyticsTracker.logEvent(
+            AnalyticsEvents.TASBIH_RESET,
+            mapOf(
+                AnalyticsParams.TOTAL_TAPS to currentState.currentCount
+            )
+        )
         updateState {
             copy(
                 currentCount = 0,

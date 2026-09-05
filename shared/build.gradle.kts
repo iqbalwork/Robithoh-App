@@ -80,6 +80,8 @@ kotlin {
             implementation(libs.androidx.media3.session)
             implementation(libs.androidx.media3.common)
             implementation(libs.ktor.client.okhttp)
+            implementation(project.dependencies.platform(libs.firebase.bom))
+            implementation(libs.firebase.analytics)
         }
         iosMain.dependencies {
             implementation(libs.sqldelight.native.driver)

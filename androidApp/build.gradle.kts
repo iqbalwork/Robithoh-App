@@ -1,11 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
+import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.firebaseAppDistribution)
 }
 
 // Release signing credentials — gitignored, not committed.
@@ -53,6 +55,22 @@ android {
         versionCode = 7
         versionName = "1.1.0"
     }
+    flavorDimensions += "environment"
+    productFlavors {
+        create("staging") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            firebaseAppDistribution {
+                // releaseNotesFile = "release-notes.txt"
+                // testers = "tester@example.com"
+                // groups = "internal-testers"
+            }
+        }
+        create("production") {
+            dimension = "environment"
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -75,6 +93,11 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+            firebaseAppDistribution {
+                // releaseNotesFile = "release-notes.txt"
+                // testers = "tester@example.com"
+                // groups = "internal-testers"
+            }
         }
         getByName("debug") {
             isMinifyEnabled = false
