@@ -31,15 +31,18 @@ class AmaliyahRepositoryTest {
     @Test
     fun testDzikirKhofiAuthenticity() {
         val khofiList = repository.getDzikirKhofiList()
-        assertTrue(khofiList.isNotEmpty())
-        val ismuDzat = khofiList.first { it.id == "dzikir_khofi_1" }
-        assertTrue(ismuDzat.arabicText.contains("اللَّهُ"))
-        assertTrue(ismuDzat.kaifiyatNote.contains("Lathifah Qolbi"))
-        assertTrue(ismuDzat.kaifiyatNote.contains("Abah Aos"))
+        assertEquals(2, khofiList.size)
 
-        val munajat = khofiList.first { it.id == "dzikir_khofi_2" }
-        assertTrue(munajat.arabicText.contains("إِلَهِي أَنْتَ مَقْصُودِي"))
-        assertTrue(munajat.latinText.contains("Ilaahii Anta Maqshuudii"))
+        val tawajuh = khofiList.first { it.id == "dzikir_khofi_tawajuh" }
+        assertEquals(129, tawajuh.repetitionCount)
+        assertTrue(tawajuh.arabicText.contains("\u0627\u0644\u0644\u0651\u064e\u0647\u064f"))
+        assertTrue(tawajuh.latinText.contains("Lathifah Qolbi"))
+        assertTrue(tawajuh.kaifiyatNote.contains("Guru Mursyid 38"))
+
+        val asySyura = khofiList.first { it.id == "dzikir_khofi_asy_syura" }
+        assertEquals(38, asySyura.repetitionCount)
+        assertTrue(asySyura.arabicText.contains("\u0644\u064e\u0637\u0650\u064a\u0652\u0641\u064c\u06e2 \u0628\u0650\u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0647\u0656"))
+        assertTrue(asySyura.latinText.contains("yarzuqu"))
     }
 
     @Test
@@ -64,7 +67,7 @@ class AmaliyahRepositoryTest {
         assertEquals("Rajab", hijriyah[6].monthName)
         assertEquals("Sya'ban", hijriyah[7].monthName)
         assertEquals("Ramadhan", hijriyah[8].monthName)
-        assertEquals("Syawal", hijriyah[9].monthName)
+        assertEquals("Syawwal", hijriyah[9].monthName)
         assertEquals("Dzulhijjah", hijriyah[11].monthName)
     }
 

@@ -78,9 +78,9 @@ class ManaqibRepositoryTest {
     }
 
     @Test
-    fun testSilsilah111Completeness() {
+    fun testSilsilah38Completeness() {
         val silsilah = repository.getSilsilahNodes()
-        assertEquals(111, silsilah.size, "Silsilah must contain exactly 111 nodes")
+        assertEquals(38, silsilah.size, "Silsilah must contain exactly 38 nodes")
 
         assertEquals(1, silsilah[0].orderNumber)
         assertTrue(silsilah[0].name.contains("Muhammad Rosulullah"))
@@ -92,21 +92,17 @@ class ManaqibRepositoryTest {
         assertNotNull(syekhAbdulQodir)
         assertTrue(syekhAbdulQodir.name.contains("Abdul Qodir Al-Jailani"))
 
-        val abahSepuh = silsilah.find { it.orderNumber == 34 }
+        val abahSepuh = silsilah.find { it.orderNumber == 36 }
         assertNotNull(abahSepuh)
         assertTrue(abahSepuh.name.contains("Abdullah Mubarok") || abahSepuh.name.contains("Abah Sepuh"))
 
-        val abahAnom = silsilah.find { it.orderNumber == 35 }
+        val abahAnom = silsilah.find { it.orderNumber == 37 }
         assertNotNull(abahAnom)
         assertTrue(abahAnom.name.contains("Ahmad Shohibulwafa Tajul Arifin") || abahAnom.name.contains("Abah Anom"))
 
-        val abahAos36 = silsilah.find { it.orderNumber == 36 }
-        assertNotNull(abahAos36)
-        assertTrue(abahAos36.name.contains("Abdul Gaos") || abahAos36.name.contains("Abah Aos"))
-
-        val abahAos111 = silsilah.find { it.orderNumber == 111 }
-        assertNotNull(abahAos111)
-        assertTrue(abahAos111.name.contains("Abdul Gaos") || abahAos111.name.contains("Abah Aos"))
+        val abahAos38 = silsilah.find { it.orderNumber == 38 }
+        assertNotNull(abahAos38)
+        assertTrue(abahAos38.name.contains("Abdul Gaos") || abahAos38.name.contains("Abah Aos"))
     }
 
     @Test

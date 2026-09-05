@@ -16,13 +16,13 @@ class ThemeTest {
     @Test
     fun testMerahPutihColorPaletteValues() {
         assertEquals(Color(0xFFCE1126), MerahMerdeka)
-        assertEquals(Color(0xFF7A0914), MerahMarunGelap)
+        assertEquals(Color(0xFF8B0014), MerahMarunGelap)
         assertEquals(Color(0xFFFFFFFF), PutihBersih)
-        assertEquals(Color(0xFFF8F9FA), PutihAbuBackground)
+        assertEquals(Color(0xFFFBF8F3), PutihAbuBackground)
         assertEquals(Color(0xFFD4AF37), EmasKhidmat)
-        assertEquals(Color(0xFF1A1D20), SlateCharcoalText)
-        assertEquals(Color(0xFF111113), DarkCanvas)
-        assertEquals(Color(0xFF1A1A1E), DarkSurface)
+        assertEquals(Color(0xFF1E2124), SlateCharcoalText)
+        assertEquals(Color(0xFF141212), DarkCanvas)
+        assertEquals(Color(0xFF1E1A1A), DarkSurface)
     }
 
     @Test
@@ -32,8 +32,8 @@ class ThemeTest {
         assertEquals(PutihAbuBackground, LightColorScheme.background)
         assertEquals(SlateCharcoalText, LightColorScheme.onBackground)
 
-        assertEquals(MerahMerdeka, DarkColorScheme.primary)
-        assertEquals(PutihBersih, DarkColorScheme.onPrimary)
+        assertEquals(MerahPrimaryDark, DarkColorScheme.primary)
+        assertEquals(MerahOnPrimaryDark, DarkColorScheme.onPrimary)
         assertEquals(DarkCanvas, DarkColorScheme.background)
         assertEquals(PutihBersih, DarkColorScheme.onBackground)
     }
