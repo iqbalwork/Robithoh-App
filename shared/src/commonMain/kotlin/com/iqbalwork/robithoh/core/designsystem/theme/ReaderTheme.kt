@@ -19,7 +19,9 @@ enum class ReaderTheme(
     val secondaryTextColor: Color,
     val latinTextColor: Color,
     val translationTextColor: Color,
-    val isDark: Boolean
+    val isDark: Boolean,
+    val lastReadCardBackgroundColor: Color = cardBackgroundColor,
+    val lastReadCardBorderColor: Color = cardBorderColor
 ) {
     WHITE(
         id = "white",
@@ -34,7 +36,9 @@ enum class ReaderTheme(
         secondaryTextColor = Color(0xFF374151),
         latinTextColor = Color(0xFF1F2937),
         translationTextColor = Color(0xFF1F2937),
-        isDark = false
+        isDark = false,
+        lastReadCardBackgroundColor = Color(0xFFFFFDF5),
+        lastReadCardBorderColor = Color(0xFFD4AF37).copy(alpha = 0.7f)
     ),
     SEPIA(
         id = "sepia",
@@ -49,7 +53,9 @@ enum class ReaderTheme(
         secondaryTextColor = Color(0xFF4A3E39),
         latinTextColor = Color(0xFF261D18),
         translationTextColor = Color(0xFF261D18),
-        isDark = false
+        isDark = false,
+        lastReadCardBackgroundColor = Color(0xFFEFE4C8),
+        lastReadCardBorderColor = Color(0xFFD4AF37).copy(alpha = 0.7f)
     ),
     KHAKI(
         id = "khaki",
@@ -64,7 +70,9 @@ enum class ReaderTheme(
         secondaryTextColor = Color(0xFF3E3A33),
         latinTextColor = Color(0xFF1E2022),
         translationTextColor = Color(0xFF1E2022),
-        isDark = false
+        isDark = false,
+        lastReadCardBackgroundColor = Color(0xFFE4DDD0),
+        lastReadCardBorderColor = Color(0xFFD4AF37).copy(alpha = 0.7f)
     ),
     DARK(
         id = "dark",
@@ -79,7 +87,9 @@ enum class ReaderTheme(
         secondaryTextColor = Color(0xFFCBD5E1),
         latinTextColor = Color(0xFFF9E8B2),
         translationTextColor = Color(0xFFE2E8F0),
-        isDark = true
+        isDark = true,
+        lastReadCardBackgroundColor = Color(0xFF28221A),
+        lastReadCardBorderColor = Color(0xFFD4AF37).copy(alpha = 0.8f)
     );
 
     companion object {

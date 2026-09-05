@@ -44,6 +44,7 @@ fun GoldCrimsonCard(
     elevation: Dp = 2.dp,
     customBackgroundColor: Color? = null,
     customBorderColor: Color? = null,
+    customBorderWidth: Dp? = null,
     onClick: (() -> Unit)? = null,
     contentPadding: PaddingValues = PaddingValues(16.dp),
     content: @Composable ColumnScope.() -> Unit
@@ -79,7 +80,7 @@ fun GoldCrimsonCard(
     }
 
     val finalCardBg = customBackgroundColor ?: cardBg
-    val finalBorder = if (customBorderColor != null) BorderStroke(1.dp, customBorderColor) else borderStroke
+    val finalBorder = if (customBorderColor != null) BorderStroke(customBorderWidth ?: 1.dp, customBorderColor) else borderStroke
 
     if (variant == GoldCrimsonCardVariant.CRIMSON_HERO) {
         val heroGradient = Brush.linearGradient(

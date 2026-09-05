@@ -12,11 +12,10 @@ class NavigationScreenKeyTest {
 
     @Test
     fun testScreenKeySerialization() {
-        val home: ScreenKey = ScreenKey.Home
-        val amaliyah: ScreenKey = ScreenKey.Amaliyah
+        val docReader: ScreenKey = ScreenKey.DocumentReader("dzikir_tqn")
+        val langgam: ScreenKey = ScreenKey.Langgam
         val tasbih: ScreenKey = ScreenKey.Tasbih()
         val tasbihWithData: ScreenKey = ScreenKey.Tasbih(initialCount = 13, targetCount = 165, dzikirTitle = "Dzikir Jahr")
-        val manaqibDetail: ScreenKey = ScreenKey.ManaqibDetail(chapterNumber = 7)
         val quranList: ScreenKey = ScreenKey.QuranList
         val quranSurah: ScreenKey = ScreenKey.QuranSurah(surahNumber = 36)
         val settings: ScreenKey = ScreenKey.Settings
@@ -31,12 +30,11 @@ class NavigationScreenKeyTest {
         assertEquals(165, (deserializedTasbih as ScreenKey.Tasbih).targetCount)
         assertEquals("Dzikir Jahr", (deserializedTasbih as ScreenKey.Tasbih).dzikirTitle)
 
-        val serializedManaqib = json.encodeToString(manaqibDetail)
-        val deserializedManaqib = json.decodeFromString<ScreenKey>(serializedManaqib)
-
-        assertEquals(manaqibDetail, deserializedManaqib)
-        assertTrue(deserializedManaqib is ScreenKey.ManaqibDetail)
-        assertEquals(7, (deserializedManaqib as ScreenKey.ManaqibDetail).chapterNumber)
+        val serializedDoc = json.encodeToString(docReader)
+        val deserializedDoc = json.decodeFromString<ScreenKey>(serializedDoc)
+        assertEquals(docReader, deserializedDoc)
+        assertTrue(deserializedDoc is ScreenKey.DocumentReader)
+        assertEquals("dzikir_tqn", (deserializedDoc as ScreenKey.DocumentReader).documentId)
 
         val serializedSurah = json.encodeToString(quranSurah)
         val deserializedSurah = json.decodeFromString<ScreenKey>(serializedSurah)

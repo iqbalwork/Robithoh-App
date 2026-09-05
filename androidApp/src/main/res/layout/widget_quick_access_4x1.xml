@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_rounded"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="8dp"
+    android:paddingTop="6dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="6dp">
+
+    <!-- 1. Dzikir & Doa Button -->
+    <LinearLayout
+        android:id="@+id/btn_quick_amaliyah"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="3dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_widget_counter_btn_secondary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="Amaliyah"
+            android:src="@drawable/ic_widget_dzikir" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Amaliyah"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 2. Tasbih Button -->
+    <LinearLayout
+        android:id="@+id/btn_quick_tasbih"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_widget_counter_btn_secondary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="Tasbih"
+            android:src="@drawable/ic_widget_tasbih" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Tasbih"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 3. Manqobah Button -->
+    <LinearLayout
+        android:id="@+id/btn_quick_manaqib"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_widget_counter_btn_secondary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="Manqobah"
+            android:src="@drawable/ic_widget_scroll" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Manqobah"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 4. Al-Qur'an Button -->
+    <LinearLayout
+        android:id="@+id/btn_quick_quran"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="3dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_widget_counter_btn_secondary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:contentDescription="Al-Qur'an"
+            android:src="@drawable/ic_widget_quran" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Al-Qur'an"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -312,7 +312,7 @@ fun AmaliyahScreen(
                                     )
                                     Spacer(modifier = Modifier.height(4.dp))
                                     Text(
-                                        text = "Dzikir Jahr (Nafi Itsbat 165x) & Dzikir Khofi (Ismu Dzat) lengkap dengan Hadhloroh Silsilah 38.",
+                                        text = "Dzikir Jahr (165x) & Dzikir Khofi (Ismu Dzat) lengkap dengan Hadhloroh Silsilah 38.",
                                         fontSize = 12.sp,
                                         color = if (isDark) DarkMuted else SlateMuted
                                     )

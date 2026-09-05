@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_rounded"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Header: Dzikir Title & Arabic -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="Tasbih"
+            android:src="@drawable/ic_widget_tasbih" />
+
+        <TextView
+            android:id="@+id/tv_tasbih_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Dzikir Jahr"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_tasbih_lap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_widget_sub_pill"
+            android:paddingStart="6dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="Putaran 1"
+            android:textColor="#D4AF37"
+            android:textSize="9sp" />
+    </LinearLayout>
+
+    <!-- Arabic Text -->
+    <TextView
+        android:id="@+id/tv_tasbih_arabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="لَا إِلَهَ إِلَّا اللَّهُ"
+        android:textColor="#D4AF37"
+        android:textSize="13sp" />
+
+    <!-- Center Display: Big Count Number -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_tasbih_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_tasbih_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Target: 165"
+            android:textColor="#9E9E9E"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Action Buttons Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Reset Button -->
+        <LinearLayout
+            android:id="@+id/btn_tasbih_reset"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_widget_counter_btn_secondary"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="↺"
+                android:textColor="#B0BEC5"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Big Primary Increment Button -->
+        <LinearLayout
+            android:id="@+id/btn_tasbih_increment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_widget_counter_btn"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_btn_tap_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ TAP"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Open App Button -->
+        <LinearLayout
+            android:id="@+id/btn_tasbih_open"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_widget_counter_btn_secondary"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="↗"
+                android:textColor="#D4AF37"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

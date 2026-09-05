@@ -299,6 +299,11 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                 )
 
                 AndroidPrayerAlarmScheduler(context).scheduleAlarms(schedule, notifSettings)
+                try {
+                    context.sendBroadcast(Intent("com.iqbalwork.robithoh.ACTION_UPDATE_PRAYER_WIDGET").apply {
+                        `package` = context.packageName
+                    })
+                } catch (_: Throwable) {}
             } catch (_: Throwable) {}
         }
     }

@@ -20,12 +20,9 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
-import com.iqbalwork.robithoh.navigation.AmaliyahScreen
 import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.MainAppContainer
 import com.iqbalwork.robithoh.navigation.MainTab
-import com.iqbalwork.robithoh.navigation.ManaqibDetailScreen
-import com.iqbalwork.robithoh.navigation.ManaqibListScreen
 import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
 import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
 import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
@@ -37,7 +34,12 @@ import com.iqbalwork.robithoh.navigation.SettingsScreen
 import com.iqbalwork.robithoh.navigation.TasbihScreen
 
 @Composable
-fun App() {
+fun App(
+    initialDestination: String? = null,
+    initialSurahNumber: Int = 1,
+    initialAyahNumber: Int = 1,
+    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null
+) {
     var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
     RabithohTheme(darkTheme = isDarkMode) {
@@ -90,12 +92,62 @@ fun App() {
             onBackAction()
         }
 
+        fun routeDestination(dest: String, surahNum: Int = initialSurahNumber, ayahNum: Int = initialAyahNumber) {
+            when (dest) {
+                "AMALIYAH" -> {
+                    backstack.add(ScreenKey.DocumentReader("dzikir_tqn"))
+                }
+                "TASBIH" -> {
+                    if (backstack.lastOrNull() !is ScreenKey.Tasbih) {
+                        backstack.add(ScreenKey.Tasbih())
+                    }
+                }
+                "MANAQIB" -> {
+                    backstack.add(ScreenKey.DocumentReader("manqobah_id"))
+                }
+                "TANBIH" -> {
+                    backstack.add(ScreenKey.DocumentReader("tanbih_id"))
+                }
+                "QURAN" -> {
+                    if (backstack.lastOrNull() != ScreenKey.QuranList) {
+                        backstack.add(ScreenKey.QuranList)
+                    }
+                }
+                "QURAN_SURAH" -> {
+                    backstack.add(ScreenKey.QuranSurah(surahNum, ayahNum))
+                }
+                "PRAYER" -> {
+                    homeTab = MainTab.SALAT
+                    while (backstack.size > 1) {
+                        backstack.removeAt(backstack.lastIndex)
+                    }
+                }
+            }
+        }
+
+        LaunchedEffect(widgetNavTarget) {
+            if (widgetNavTarget != null && !backstack.contains(ScreenKey.Splash)) {
+                routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+            }
+        }
+
+        LaunchedEffect(initialDestination) {
+            if (initialDestination != null && widgetNavTarget == null && !backstack.contains(ScreenKey.Splash)) {
+                routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+            }
+        }
+
         val entries = entryProvider<NavKey> {
             entry<ScreenKey.Splash> { _ ->
                 SplashScreen(
                     onSplashFinished = {
                         backstack.clear()
                         backstack.add(ScreenKey.Home)
+                        if (widgetNavTarget != null) {
+                            routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+                        } else if (initialDestination != null) {
+                            routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+                        }
                     }
                 )
             }
@@ -153,14 +205,6 @@ fun App() {
                     onBack = onBackAction
                 )
             }
-            entry<ScreenKey.Amaliyah> { _ ->
-                AmaliyahScreen(
-                    onNavigate = { destination -> backstack.add(destination) },
-                    onBack = onBackAction,
-                    viewModel = amaliyahViewModel,
-                    tasbihViewModel = tasbihViewModel
-                )
-            }
             entry<ScreenKey.Tasbih> { key ->
                 LaunchedEffect(key) {
                     if (key.initialCount != null) {
@@ -176,20 +220,6 @@ fun App() {
                 TasbihScreen(
                     onBack = onBackAction,
                     viewModel = tasbihViewModel
-                )
-            }
-            entry<ScreenKey.ManaqibList> { _ ->
-                ManaqibListScreen(
-                    onChapterClick = { chapterNumber ->
-                        backstack.add(ScreenKey.ManaqibDetail(chapterNumber))
-                    },
-                    onBack = onBackAction
-                )
-            }
-            entry<ScreenKey.ManaqibDetail> { key ->
-                ManaqibDetailScreen(
-                    chapterNumber = key.chapterNumber,
-                    onBack = onBackAction
                 )
             }
             entry<ScreenKey.QuranList> { _ ->

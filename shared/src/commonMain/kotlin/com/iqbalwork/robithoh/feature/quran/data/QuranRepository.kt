@@ -96,6 +96,7 @@ class QuranRepositoryImpl(
                 created_at = now,
                 updated_at = now
             )
+            notifyQuranWidgetUpdate()
         } catch (_: Exception) {
             // ignore
         }

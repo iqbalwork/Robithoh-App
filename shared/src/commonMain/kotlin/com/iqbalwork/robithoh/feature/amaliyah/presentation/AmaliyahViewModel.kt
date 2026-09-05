@@ -403,6 +403,7 @@ class AmaliyahViewModel(
                     isya_notif_enabled = PrayerNotificationMode.toDbValue(notif.isyaMode),
                     imsak_notif_enabled = PrayerNotificationMode.toDbValue(notif.imsakMode)
                 )
+                notifyPrayerWidgetUpdate()
             } catch (_: Exception) {
                 // Silently ignore persist errors
             }

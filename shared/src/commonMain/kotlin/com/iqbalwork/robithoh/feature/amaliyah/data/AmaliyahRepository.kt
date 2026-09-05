@@ -70,7 +70,7 @@ class AmaliyahRepository {
             sundaneseText = "Teu aya deui Pangeran lian ti Gusti اللّه (3x)",
             repetitionCount = 3,
             category = "Tahlil",
-            kaifiyatNote = "Dibaca 3x dengan irama nafi itsbat."
+            kaifiyatNote = "Dibaca 3x dengan irama dzikir jahr."
         ),
         DzikirItem(
             id = "dzikir_harian_6",

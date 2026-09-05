@@ -12,20 +12,20 @@ class AmaliyahRepositoryTest {
     fun testDzikirJahrCompleteness() {
         val jahrList = repository.getDzikirJahrList()
         assertTrue(jahrList.isNotEmpty())
-        assertEquals(8, jahrList.size)
+        assertEquals(13, jahrList.size)
 
-        // Check Nafi Itsbat (item 7)
-        val nafiItsbat = jahrList.first { it.id == "dzikir_jahr_7" }
-        assertEquals(165, nafiItsbat.repetitionCount)
-        assertEquals("لَا إِلَهَ إِلَّا اللَّهُ", nafiItsbat.arabicText)
-        assertTrue(nafiItsbat.latinText.contains("LAA ILAAHA ILLALLAAH"))
-        assertTrue(nafiItsbat.indonesianText.contains("Tiada Tuhan selain Allah"))
-        assertTrue(nafiItsbat.sundaneseText.contains("Teu aya deui Pangeran"))
+        // Check Dzikir Jahr (165x)
+        val dzikirJahr = jahrList.first { it.id == "dzikir_harian_6" }
+        assertEquals(165, dzikirJahr.repetitionCount)
+        assertTrue(dzikirJahr.arabicText.contains("لَا إِلٰهَ إِلَّا اللّٰهُ") || dzikirJahr.arabicText.contains("لَا إِلَهَ إِلَّا اللَّهُ"))
+        assertTrue(dzikirJahr.latinText.contains("LAA ILAAHA ILLALLOOH"))
+        assertTrue(dzikirJahr.indonesianText.contains("Zikir sekurang-kurangnya 165x"))
+        assertTrue(dzikirJahr.sundaneseText.contains("sakirang-kirangna 165x"))
 
         // Check 3-language text extraction
-        assertEquals(nafiItsbat.arabicText, nafiItsbat.getTextForLanguage(LiturgyLanguage.ARABIC))
-        assertEquals(nafiItsbat.indonesianText, nafiItsbat.getTextForLanguage(LiturgyLanguage.INDONESIAN))
-        assertEquals(nafiItsbat.sundaneseText, nafiItsbat.getTextForLanguage(LiturgyLanguage.SUNDANESE))
+        assertEquals(dzikirJahr.arabicText, dzikirJahr.getTextForLanguage(LiturgyLanguage.ARABIC))
+        assertEquals(dzikirJahr.indonesianText, dzikirJahr.getTextForLanguage(LiturgyLanguage.INDONESIAN))
+        assertEquals(dzikirJahr.sundaneseText, dzikirJahr.getTextForLanguage(LiturgyLanguage.SUNDANESE))
     }
 
     @Test

@@ -19,7 +19,7 @@ data class TasbihUiState(
     val targetCount: Int = 165,
     val lapCount: Int = 0,
     val totalCount: Int = 0,
-    val selectedDzikirId: String = "dzikir_nafi_itsbat",
+    val selectedDzikirId: String = "dzikir_jahr",
     val selectedDzikirTitle: String = "Dzikir Jahr",
     val selectedDzikirArabic: String = "لَا إِلَهَ إِلَّا اللَّهُ",
     val isHapticEnabled: Boolean = true,
@@ -32,7 +32,7 @@ data class TasbihUiState(
     val scaleFactor: Float = 1.0f,
     val availablePresets: List<TasbihDzikirPreset> = listOf(
         TasbihDzikirPreset(
-            id = "dzikir_nafi_itsbat",
+            id = "dzikir_jahr",
             title = "Dzikir Jahr",
             arabic = "لَا إِلَهَ إِلَّا اللَّهُ",
             defaultTarget = 165,

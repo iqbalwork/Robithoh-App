@@ -163,6 +163,7 @@ class TasbihViewModel(
                     lastUpdated = 20260824L,
                     id = currentState.selectedDzikirId
                 )
+                notifyTasbihWidgetUpdate()
             } catch (_: Exception) {}
         }
     }
@@ -170,7 +171,10 @@ class TasbihViewModel(
     private fun loadInitialProgress(dzikirId: String) {
         viewModelScope.launch(dispatcher) {
             try {
-                val entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById(dzikirId)?.executeAsOneOrNull()
+                var entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById(dzikirId)?.executeAsOneOrNull()
+                if (entity == null && dzikirId == "dzikir_jahr") {
+                    entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById("dzikir_nafi_itsbat")?.executeAsOneOrNull()
+                }
                 if (entity != null) {
                     updateState {
                         copy(
@@ -195,6 +199,7 @@ class TasbihViewModel(
                     last_updated = 20260824L,
                     is_completed = if (state.currentCount >= state.targetCount) 1L else 0L
                 )
+                notifyTasbihWidgetUpdate()
             } catch (_: Exception) {}
         }
     }

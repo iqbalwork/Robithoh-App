@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Robithoh</string>
+    <string name="widget_prayer_4x1_desc">Jadwal Sholat &amp; Countdown Waktu Amaliyah Ringkas</string>
+    <string name="widget_prayer_4x2_desc">Jadwal Sholat Fardhu &amp; Waktu Amaliyah Lengkap</string>
+    <string name="widget_tasbih_2x2_desc">Tasbih Digital Interaktif &amp; Target Wirid</string>
+    <string name="widget_tasbih_4x1_desc">Tasbih Bar &amp; Progres Dzikir Cepat</string>
+    <string name="widget_tanbih_quote_4x2_desc">Mutiara Wasiat Tanbih &amp; Petuah Hikmah Harian</string>
+    <string name="widget_quran_last_read_2x2_desc">Terakhir Dibaca Al-Qur\'an &amp; Shalawat Card</string>
+    <string name="widget_quran_last_read_4x1_desc">Terakhir Dibaca Al-Qur\'an Bar Ringkas</string>
+    <string name="widget_quick_access_4x1_desc">Akses Cepat Amaliyah Harian</string>
 </resources>

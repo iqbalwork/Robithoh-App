@@ -310,7 +310,7 @@ fun ProfileScreen(
                                     )
                                 )
                                 Text(
-                                    text = "Wakil Talqin Pangersa Abah Aos",
+                                    text = "Pembimbing Padepokan Talangraga · Wakil Talqin Abah Aos",
                                     style = MaterialTheme.typography.bodySmall.copy(
                                         color = EmasKhidmat,
                                         fontSize = 11.sp,
@@ -333,7 +333,7 @@ fun ProfileScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Sesepuh serta pembimbing dan penasihat yang senantiasa memberikan arahan, restu, dan bimbingan amaliyah agar seluruh kaifiyat dzikir dalam aplikasi Robithoh senantiasa terjaga kemurniannya dan muttashil dengan tuntunan Guru Mursyid.",
+                            text = "Pembimbing Roudhoh Padepokan Talangraga Ponpes Suryalaya Sirnarasa yang bertempat di Indihiang (Tasikmalaya), sekaligus Wakil Talqin Pangersa Abah Aos. Beliau senantiasa memberikan arahan, restu, dan bimbingan amaliyah agar seluruh kaifiyat dzikir dalam aplikasi Robithoh senantiasa terjaga kemurniannya dan muttashil dengan tuntunan Guru Mursyid.",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 11.sp,
@@ -364,7 +364,7 @@ fun ProfileScreen(
                                     )
                                 )
                                 Text(
-                                    text = "Wakil Talqin Pangersa Abah Aos",
+                                    text = "Wakil Talqin Pangersa Abah Aos · Didikan Eyang Epi",
                                     style = MaterialTheme.typography.bodySmall.copy(
                                         color = EmasKhidmat,
                                         fontSize = 11.sp,
@@ -387,7 +387,7 @@ fun ProfileScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Pembimbing dan penasihat yang memverifikasi keaslian naskah Kitab Manaqib 1–56, teks sanad Tawassul Silsilah, susunan MC Manaqib, serta rujukan liturgi amaliyah dalam aplikasi Robithoh.",
+                            text = "Wakil Talqin Pangersa Abah Aos yang juga merupakan bagian dari didikan Eyang Epi Ruhiat Ganefi di Padepokan Talangraga Indihiang. Beliau bertindak sebagai pembimbing dan penasihat yang memverifikasi keaslian naskah Kitab Manaqib 1–56, teks sanad Tawassul Silsilah, susunan MC Manaqib, serta rujukan liturgi amaliyah dalam aplikasi Robithoh.",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 11.sp,
@@ -429,7 +429,7 @@ fun ProfileScreen(
                                     )
                                 )
                                 Text(
-                                    text = "Creator & Lead Software Engineer",
+                                    text = "Creator & Lead Software Engineer · Didikan Eyang Epi",
                                     style = MaterialTheme.typography.bodySmall.copy(
                                         color = if (isDark) Color(0xFFFF8A80) else MerahMerdeka,
                                         fontSize = 11.sp,
@@ -452,7 +452,7 @@ fun ProfileScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Software engineer independen yang merancang arsitektur, mengembangkan, dan memelihara aplikasi Robithoh secara multiplatform (Kotlin Multiplatform & Compose Multiplatform) sebagai dedikasi teknologi untuk kemaslahatan ikhwan dan akhwat.",
+                            text = "Software engineer yang juga merupakan bagian dari didikan Eyang Epi Ruhiat Ganefi di Padepokan Talangraga Indihiang. Merancang arsitektur, mengembangkan, dan memelihara aplikasi Robithoh secara multiplatform (Kotlin Multiplatform & Compose Multiplatform) sebagai dedikasi teknologi untuk kemaslahatan ikhwan dan akhwat.",
                             style = MaterialTheme.typography.bodySmall.copy(
                                 color = if (isDark) DarkMuted else SlateMuted,
                                 fontSize = 11.sp,

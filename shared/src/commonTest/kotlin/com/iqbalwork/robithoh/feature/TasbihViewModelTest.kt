@@ -161,7 +161,7 @@ class TasbihViewModelTest {
         assertEquals(0, state.lapCount)
         assertEquals("Dzikir Jahr", state.selectedDzikirTitle)
         assertEquals("لَا إِلَهَ إِلَّا اللَّهُ", state.selectedDzikirArabic)
-        assertEquals("dzikir_nafi_itsbat", state.selectedDzikirId)
+        assertEquals("dzikir_jahr", state.selectedDzikirId)
         assertFalse(state.isTargetReached)
     }
 }

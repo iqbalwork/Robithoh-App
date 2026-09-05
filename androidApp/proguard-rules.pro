@@ -96,6 +96,7 @@
 -keep class com.iqbalwork.robithoh.core.notification.PrayerAdzanService { *; }
 -keep class com.iqbalwork.robithoh.core.notification.PrayerAlarmReceiver { *; }
 -keep class com.iqbalwork.robithoh.MainActivity { *; }
+-keep class com.iqbalwork.robithoh.widget.** { *; }
 
 # ------------------------------------------------------------------------------
 # 11. Google Play In-App Updates

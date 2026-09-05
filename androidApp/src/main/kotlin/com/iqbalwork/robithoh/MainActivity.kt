@@ -10,10 +10,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import android.content.Intent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.Preview
 import com.iqbalwork.robithoh.core.designsystem.setGlobalAppContext
 import com.iqbalwork.robithoh.core.notification.AndroidPrayerAlarmScheduler
+import com.iqbalwork.robithoh.navigation.WidgetNavTarget
 import com.iqbalwork.robithoh.update.InAppUpdateManager
 
 class MainActivity : ComponentActivity() {
@@ -22,6 +26,25 @@ class MainActivity : ComponentActivity() {
     ) { /* Result handled */ }
 
     private lateinit var inAppUpdateManager: InAppUpdateManager
+    private val widgetNavState = mutableStateOf<WidgetNavTarget?>(null)
+
+    private fun handleWidgetNavigation(intent: Intent?) {
+        val dest = intent?.getStringExtra("NAVIGATE_TO") ?: return
+        val surah = intent.getIntExtra("SURAH_NUMBER", 1)
+        val ayah = intent.getIntExtra("AYAH_NUMBER", 1)
+        widgetNavState.value = WidgetNavTarget(
+            destination = dest,
+            surahNumber = surah,
+            ayahNumber = ayah,
+            timestamp = System.currentTimeMillis()
+        )
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleWidgetNavigation(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -71,15 +94,39 @@ class MainActivity : ComponentActivity() {
         // Ensure alarm schedule is active from database
         try {
             AndroidPrayerAlarmScheduler.rescheduleFromDatabase(this)
+            com.iqbalwork.robithoh.widget.PrayerWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.TasbihWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.TanbihWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.QuranWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.QuickAccessWidgetHelper.updateAllWidgets(this)
         } catch (_: Throwable) {}
 
+        handleWidgetNavigation(intent)
+
+        val navDestination = intent?.getStringExtra("NAVIGATE_TO")
+        val surahNum = intent?.getIntExtra("SURAH_NUMBER", 1) ?: 1
+        val ayahNum = intent?.getIntExtra("AYAH_NUMBER", 1) ?: 1
+
         setContent {
-            App()
+            val navTarget by widgetNavState
+            App(
+                initialDestination = navDestination,
+                initialSurahNumber = surahNum,
+                initialAyahNumber = ayahNum,
+                widgetNavTarget = navTarget
+            )
         }
     }
 
     override fun onResume() {
         super.onResume()
+        try {
+            com.iqbalwork.robithoh.widget.PrayerWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.TasbihWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.TanbihWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.QuranWidgetHelper.updateAllWidgets(this)
+            com.iqbalwork.robithoh.widget.QuickAccessWidgetHelper.updateAllWidgets(this)
+        } catch (_: Throwable) {}
         if (::inAppUpdateManager.isInitialized) {
             inAppUpdateManager.onResume()
         }

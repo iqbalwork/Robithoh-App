@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Open Book / Holy Quran Icon -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M21,5C19.89,4.65 17.67,4 15,4C12.5,4 9.91,4.74 8.5,6C7.09,4.74 4.5,4 2,4V19C2,19.28 2.22,19.5 2.5,19.5C2.6,19.5 2.69,19.46 2.77,19.39C4.19,18.32 6.55,17.77 8.5,18.77C9.91,19.5 11.5,20 13,20C15.65,20 17.86,19.35 19,18.72C19.64,18.36 20,17.67 20,16.94V5.5C20,5.22 19.78,5 19.5,5M18,16.5C17.11,16.95 15.34,17.5 13,17.5C11.5,17.5 10.09,17.12 8.88,16.48L8.5,16.27V7.8C9.69,7.18 11.23,6.85 13,6.85C15.34,6.85 17.11,7.4 18,7.85V16.5Z" />
+</vector>

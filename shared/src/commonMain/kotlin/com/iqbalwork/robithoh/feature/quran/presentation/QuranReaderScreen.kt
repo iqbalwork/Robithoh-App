@@ -536,12 +536,15 @@ private fun AyahItemCard(
     modifier: Modifier = Modifier
 ) {
     val isDark = readerTheme.isDark
+    val cardBg = if (isLastRead) readerTheme.lastReadCardBackgroundColor else readerTheme.cardBackgroundColor
+    val cardBorder = if (isLastRead) readerTheme.lastReadCardBorderColor else readerTheme.cardBorderColor
 
     GoldCrimsonCard(
         modifier = modifier,
-        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_TINTED else GoldCrimsonCardVariant.SURFACE_CLEAN,
-        customBackgroundColor = if (isLastRead) null else readerTheme.cardBackgroundColor,
-        customBorderColor = if (isLastRead) null else readerTheme.cardBorderColor,
+        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.SURFACE_CLEAN,
+        customBackgroundColor = cardBg,
+        customBorderColor = cardBorder,
+        customBorderWidth = if (isLastRead) 1.5.dp else 1.dp,
         contentPadding = PaddingValues(16.dp),
         onClick = onClick
     ) {
@@ -571,9 +574,9 @@ private fun AyahItemCard(
 
             if (isLastRead) {
                 Surface(
-                    color = if (isDark) MerahMarunGelap.copy(alpha = 0.5f) else Color(0xFFFFF1F2),
+                    color = if (isDark) MerahMerdeka.copy(alpha = 0.2f) else Color(0xFFFFF1F2),
                     shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, MerahMerdeka.copy(alpha = 0.6f))
+                    border = BorderStroke(1.dp, if (isDark) MerahMerdeka.copy(alpha = 0.5f) else MerahMerdeka.copy(alpha = 0.6f))
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -585,7 +588,7 @@ private fun AyahItemCard(
                             text = "Terakhir Dibaca",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = MerahMerdeka
+                            color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka
                         )
                     }
                 }

@@ -1,0 +1,129 @@
+name: Android Deploy to Google Play
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      track:
+        description: 'Google Play Track'
+        required: true
+        default: 'internal'
+        type: choice
+        options:
+          - 'internal'
+          - 'alpha'
+          - 'beta'
+          - 'production'
+      status:
+        description: 'Release Status'
+        required: true
+        default: 'completed'
+        type: choice
+        options:
+          - 'completed'
+          - 'draft'
+          - 'inProgress'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    name: Build Signed AAB & Deploy to Play Store
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Decode Release Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::Secret KEYSTORE_BASE64 is empty or not configured!"
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
+
+      - name: Generate keystore.properties
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          cat <<EOF > keystore.properties
+          signing_key_location=keystore.jks
+          signing_keystore_password=${KEYSTORE_PASSWORD}
+          signing_key_alias=${KEY_ALIAS}
+          signing_key_password=${KEY_PASSWORD}
+          EOF
+
+      - name: Build Release Bundle (AAB) & APK
+        run: ./gradlew bundleRelease assembleRelease
+
+      - name: Upload Release AAB Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: robithoh-release-aab
+          path: androidApp/build/outputs/bundle/release/*.aab
+          retention-days: 30
+
+      - name: Upload Release APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: robithoh-release-apk
+          path: androidApp/build/outputs/apk/release/*.apk
+          retention-days: 30
+
+      - name: Deploy to Google Play Store
+        if: env.PLAY_STORE_JSON_KEY != ''
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON_KEY }}
+          packageName: com.iqbalwork.robithoh
+          releaseFiles: androidApp/build/outputs/bundle/release/*.aab
+          track: ${{ github.event.inputs.track || 'internal' }}
+          status: ${{ github.event.inputs.status || 'completed' }}
+        env:
+          PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}
+
+      - name: Notify if Play Store Secret is Missing
+        if: env.PLAY_STORE_JSON_KEY == ''
+        run: |
+          echo "::warning::Secret PLAY_STORE_JSON_KEY belum di-setting di GitHub Secrets. File AAB berhasil di-build dan disimpan di Artifacts, namun belum di-upload ke Play Store."
+        env:
+          PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        with:
+          tag_name: "release-${{ github.run_number }}"
+          name: "Release Run #${{ github.run_number }}"
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            androidApp/build/outputs/bundle/release/*.aab
+            androidApp/build/outputs/apk/release/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Secure Cleanup
+        if: always()
+        run: |
+          rm -f keystore.jks
+          rm -f keystore.properties
