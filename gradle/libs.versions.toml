@@ -27,6 +27,7 @@ google-services = "4.4.2"
 firebase-bom = "33.10.0"
 firebase-crashlytics-plugin = "3.0.3"
 play-app-update = "2.1.0"
+play-review = "2.0.2"
 ktor = "3.1.1"
 
 [libraries]
@@ -89,9 +90,10 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 
-# Google Play In-App Updates (Android)
+# Google Play In-App Updates & Review (Android)
 play-app-update = { module = "com.google.android.play:app-update", version.ref = "play-app-update" }
 play-app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "play-app-update" }
+play-review = { module = "com.google.android.play:review", version.ref = "play-review" }
 
 # Ktor Client
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

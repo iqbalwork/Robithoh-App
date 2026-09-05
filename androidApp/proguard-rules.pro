@@ -104,3 +104,8 @@
 -keep class com.google.android.play.core.appupdate.** { *; }
 -keep class com.google.android.play.core.install.** { *; }
 -dontwarn com.google.android.play.core.**
+
+# ------------------------------------------------------------------------------
+# 12. Google Play In-App Review
+# ------------------------------------------------------------------------------
+-keep class com.google.android.play.core.review.** { *; }
