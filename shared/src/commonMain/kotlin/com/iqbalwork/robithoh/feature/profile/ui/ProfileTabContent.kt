@@ -35,9 +35,11 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.appVersionName
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
@@ -243,6 +245,50 @@ fun SettingsTabContent(
                             }
                         }
                     )
+
+                    HorizontalDivider(
+                        color = if (isDark) Color(0xFF2E2727) else Color(0xFFF1F5F9),
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Surface(
+                                color = if (isDark) Color(0xFF2A2424) else Color(0xFFF5EFE6),
+                                shape = CircleShape,
+                                modifier = Modifier.size(40.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("📱", fontSize = 18.sp)
+                                }
+                            }
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "Versi Aplikasi",
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = if (isDark) PutihBersih else TextCharcoal
+                            )
+                        }
+                        Surface(
+                            shape = RoundedCornerShape(6.dp),
+                            color = if (isDark) Color(0xFF382C1B) else Color(0xFFFFF8E1)
+                        ) {
+                            Text(
+                                text = appVersionName(),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = EmasKhidmat,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+                            )
+                        }
+                    }
                 }
             }
         }
