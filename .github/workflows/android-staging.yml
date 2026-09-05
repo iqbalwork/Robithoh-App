@@ -50,21 +50,12 @@ jobs:
           if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
             echo "Menggunakan release keystore dari GitHub Secrets..."
             echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
-            cat <<EOF > keystore.properties
-            signing_key_location=keystore.jks
-            signing_keystore_password=${KEYSTORE_PASSWORD}
-            signing_key_alias=${KEY_ALIAS}
-            signing_key_password=${KEY_PASSWORD}
-            EOF
+            printf "signing_key_location=keystore.jks\nsigning_keystore_password=%s\nsigning_key_alias=%s\nsigning_key_password=%s\n" \
+              "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" > keystore.properties
           else
             echo "KEYSTORE_BASE64 tidak ditemukan, membuat keystore staging mandiri..."
             keytool -genkeypair -v -keystore keystore.jks -alias staging -keyalg RSA -keysize 2048 -validity 10000 -storepass stagingpass -keypass stagingpass -dname "CN=Staging, OU=Robithoh, O=Robithoh, L=ID, S=ID, C=ID"
-            cat <<EOF > keystore.properties
-            signing_key_location=keystore.jks
-            signing_keystore_password=stagingpass
-            signing_key_alias=staging
-            signing_key_password=stagingpass
-            EOF
+            printf "signing_key_location=keystore.jks\nsigning_keystore_password=stagingpass\nsigning_key_alias=staging\nsigning_key_password=stagingpass\n" > keystore.properties
           fi
 
       - name: Generate Automatic Release Notes
