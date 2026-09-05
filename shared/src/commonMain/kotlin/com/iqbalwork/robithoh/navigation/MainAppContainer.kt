@@ -83,7 +83,9 @@ fun MainAppContainer(
     audioPlayer: KmpAudioPlayer = remember { createAudioPlayer() },
     audioDownloader: com.iqbalwork.robithoh.core.audio.AudioDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader() },
     isDarkMode: Boolean = false,
-    onDarkModeChange: (Boolean) -> Unit = {}
+    onDarkModeChange: (Boolean) -> Unit = {},
+    onCheckForUpdates: () -> Unit = {},
+    onOpenPlayStore: () -> Unit = {}
 ) {
     val currentTrack by audioPlayer.currentTrack.collectAsState()
     val playbackState by audioPlayer.playbackState.collectAsState()
@@ -171,7 +173,9 @@ fun MainAppContainer(
                     SettingsTabContent(
                         isDarkMode = isDarkMode,
                         onDarkModeChange = onDarkModeChange,
-                        onNavigateToAboutApp = onNavigateToProfilePesantren
+                        onNavigateToAboutApp = onNavigateToProfilePesantren,
+                        onCheckForUpdates = onCheckForUpdates,
+                        onOpenPlayStore = onOpenPlayStore
                     )
                 }
             }

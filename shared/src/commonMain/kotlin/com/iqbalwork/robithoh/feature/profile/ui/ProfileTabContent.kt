@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.appVersionName
+import com.iqbalwork.robithoh.getPlatform
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
@@ -51,12 +52,16 @@ import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 fun ProfileTabContent(
     isDarkMode: Boolean = false,
     onDarkModeChange: (Boolean) -> Unit = {},
-    onNavigateToAboutApp: () -> Unit = {}
+    onNavigateToAboutApp: () -> Unit = {},
+    onCheckForUpdates: () -> Unit = {},
+    onOpenPlayStore: () -> Unit = {}
 ) {
     SettingsTabContent(
         isDarkMode = isDarkMode,
         onDarkModeChange = onDarkModeChange,
-        onNavigateToAboutApp = onNavigateToAboutApp
+        onNavigateToAboutApp = onNavigateToAboutApp,
+        onCheckForUpdates = onCheckForUpdates,
+        onOpenPlayStore = onOpenPlayStore
     )
 }
 
@@ -64,10 +69,13 @@ fun ProfileTabContent(
 fun SettingsTabContent(
     isDarkMode: Boolean = false,
     onDarkModeChange: (Boolean) -> Unit = {},
-    onNavigateToAboutApp: () -> Unit = {}
+    onNavigateToAboutApp: () -> Unit = {},
+    onCheckForUpdates: () -> Unit = {},
+    onOpenPlayStore: () -> Unit = {}
 ) {
     val uriHandler = LocalUriHandler.current
     val isDark = RabithohTheme.colors.isDark || isDarkMode
+    val isAndroid = getPlatform().name.startsWith("Android")
 
     LazyColumn(
         modifier = Modifier
@@ -246,6 +254,21 @@ fun SettingsTabContent(
                         }
                     )
 
+                    if (isAndroid) {
+                        HorizontalDivider(
+                            color = if (isDark) Color(0xFF2E2727) else Color(0xFFF1F5F9),
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
+                        SettingsActionRow(
+                            icon = "🔄",
+                            iconBg = if (isDark) Color(0xFF1E3A5F) else Color(0xFFD0EDFF),
+                            title = "Periksa Pembaruan",
+                            subtitle = "Cek versi terbaru dari Google Play",
+                            isDark = isDark,
+                            onClick = onCheckForUpdates
+                        )
+                    }
+
                     HorizontalDivider(
                         color = if (isDark) Color(0xFF2E2727) else Color(0xFFF1F5F9),
                         modifier = Modifier.padding(horizontal = 16.dp)
@@ -288,6 +311,21 @@ fun SettingsTabContent(
                                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
                             )
                         }
+                    }
+
+                    if (isAndroid) {
+                        HorizontalDivider(
+                            color = if (isDark) Color(0xFF2E2727) else Color(0xFFF1F5F9),
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
+                        SettingsActionRow(
+                            icon = "⭐",
+                            iconBg = if (isDark) Color(0xFF5C4A1E) else Color(0xFFFFF3CD),
+                            title = "Beri Rating",
+                            subtitle = "Dukung Robithoh dengan ulasan di Play Store",
+                            isDark = isDark,
+                            onClick = onOpenPlayStore
+                        )
                     }
                 }
             }

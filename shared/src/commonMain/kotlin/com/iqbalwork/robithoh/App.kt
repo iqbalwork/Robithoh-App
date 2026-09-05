@@ -38,7 +38,9 @@ fun App(
     initialDestination: String? = null,
     initialSurahNumber: Int = 1,
     initialAyahNumber: Int = 1,
-    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null
+    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null,
+    onCheckForUpdates: () -> Unit = {},
+    onOpenPlayStore: () -> Unit = {}
 ) {
     var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
@@ -177,7 +179,9 @@ fun App(
                     audioPlayer = sharedAudioPlayer,
                     audioDownloader = sharedDownloader,
                     isDarkMode = isDarkMode,
-                    onDarkModeChange = { isDarkMode = it }
+                    onDarkModeChange = { isDarkMode = it },
+                    onCheckForUpdates = onCheckForUpdates,
+                    onOpenPlayStore = onOpenPlayStore
                 )
             }
             entry<ScreenKey.DocumentReader> { key ->
