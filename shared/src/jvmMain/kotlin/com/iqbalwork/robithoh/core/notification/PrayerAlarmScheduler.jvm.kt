@@ -22,9 +22,10 @@ class JvmPrayerAlarmScheduler : PrayerAlarmScheduler {
         prayerName: String,
         mode: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode,
         voiceId: String,
-        customPath: String?
+        customPath: String?,
+        volume: Float
     ) {
-        // Desktop / JVM stub
+        // Desktop / JVM stub (volume tidak relevan)
     }
 }
 

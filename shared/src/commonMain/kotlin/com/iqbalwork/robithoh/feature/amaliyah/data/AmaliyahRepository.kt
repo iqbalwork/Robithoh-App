@@ -5,7 +5,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.HijriyahAmaliyah
 import com.iqbalwork.robithoh.feature.amaliyah.model.SpecialPrayer
 
 /**
- * Authentic Data Repository for TQN PP Suryalaya Sirnarasa 38 Amaliyah,
+ * Authentic Data Repository for MTQN Suryalaya Sirnarasa PPKN III 38 Amaliyah,
  * Dzikir Harian Ba'da Sholat (Jahr & Khofi), Daily Special Prayers,
  * 12 Bulan Hijriyah, and Sholat Sunnah with 3-language liturgical text.
  */
@@ -55,10 +55,10 @@ class AmaliyahRepository {
             arabicText = "اِلَهِي اَنْتَ مَقْصُودِيْ وَرِضاَكَ مَطْلُوبِي اَعْطِنِيْ مَحَبَتَكَ وَمَعْرِفَتَكَ وَاَعْطِنِيْ مَعَكَ اَبَدَا",
             latinText = "Ilaahii Anta maqshuudii wa ridhoo-Ka mathluubii, a’thinii Mahabbata-Ka wa Ma’rifata-Ka wa ‘athinii ma’aka abada.",
             indonesianText = "Tuhanku Engkaulah yang menjadi maksudku dan keridhoan-Mu yang menjadi pintaku. Berikanlah kepadaku kecintaan dan ma’rifat kepada-Mu dan berikan aku selamanya bersamaMu.",
-            sundaneseText = "Nun Gusti Pangeran abdi, Gusti anu janten tujuan abdi sareng karidhoan Gusti anu dipilari ku abdi, mugi Gusti maparin katresnan Gusti sareng ma'rifat ka Gusti sarta lungsurkeun abdi salamina sareng Gusti.",
+            sundaneseText = "Nun Nun Gusti Pangeran abdi, Gusti anu janten tujuan abdi sareng karidhoan Gusti anu dipilari ku abdi, mugi Gusti maparin katresnan Gusti sareng ma'rifat ka Gusti sarta lungsurkeun abdi salamina sareng Gusti.",
             repetitionCount = 1,
             category = "Munajat",
-            kaifiyatNote = "Niat ikhlas memurnikan tujuan ibadah hanya kepada Allah SWT semata."
+            kaifiyatNote = "Niat ikhlas memurnikan tujuan ibadah hanya kepada اللّه SWT semata."
         ),
         DzikirItem(
             id = "dzikir_harian_5",
@@ -70,7 +70,7 @@ class AmaliyahRepository {
             sundaneseText = "Teu aya deui Pangeran lian ti Gusti اللّه (3x)",
             repetitionCount = 3,
             category = "Tahlil",
-            kaifiyatNote = "Dibaca 3x dengan irama nafi itsbat."
+            kaifiyatNote = "Dibaca 3x dengan irama dzikir jahr."
         ),
         DzikirItem(
             id = "dzikir_harian_6",
@@ -82,7 +82,7 @@ class AmaliyahRepository {
             sundaneseText = "Lajeng diteraskeun dzikir sakirang-kirangna 165x. Langkung seueur langkung sae tur dipungkas dina etangan ganjil.",
             repetitionCount = 165,
             category = "Dzikir Jahr Inti",
-            kaifiyatNote = "Dzikir Jahr diucapkan bersuara dengan irama TQN: memalingkan kepala dari lambung kanan kemudian dihunjamkan ke arah lathifah qolbi (dada kiri bawah). Standar hitungan 165x."
+            kaifiyatNote = "Dzikir Jahr diucapkan bersuara dengan irama: memalingkan kepala dari lambung kanan kemudian dihunjamkan ke arah lathifah qolbi (dada kiri bawah). Standar hitungan 165x."
         ),
         DzikirItem(
             id = "dzikir_harian_7",
@@ -123,14 +123,14 @@ class AmaliyahRepository {
         DzikirItem(
             id = "dzikir_harian_10",
             number = 10,
-            title = "Tawassul Silsilah TQN Suryalaya Sirnarasa PPKN",
+            title = "Tawassul Silsilah MTQN Suryalaya Sirnarasa PPKN III",
             arabicText = "ثُمَّ اِلٰى أَهْلِ السِّلْسِلَةِ الْقَادِرِيَّةِ النَّقْشَبَنْدِيَّةِ مَعْهَدِ سُرْيَالَيَا سِرْناَ رَاسَا وَجَمِيْعِ أَهْلِ الطُّرُقِ خُصُوْصًا اِلٰى حَضْرَةِ سُلْطَانِ الْأَوْلِيَاءِ غَوْثِ الْأَعْظَمِ قُطْبِ الْعَالَمِيْنَ السَّيِّدِ الشَّيْخِ عَبْدِ الْقَادِرِ الْجَيْلَانِي قَدَّسَ اللّٰهُ سِرَّهُ وَالسَّيِّدِ الشَّيْخِ أبِي الْقَاسِمِ جُنَيْدِ الْبَغْدَادِي وَالسَّيِّدِ الشَّيْخِ أَحْمَدَ خَاطِبِ ابْنِ عَبْدِ الْغَفَّارِ السَّمْبَاسِيِّ وَالسَّيِّدِ الشَّيْخِ طَلْحَةَ كَالِي سَافُو السِرْبَوْنِي وَالسَّيِّدِ الشَّيْخِ عَبْدِ اللّٰهِ مُبَارَكِ بْنِ نُوْرِ مُحَمَّدٍ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ أَحْمَدَ صَاحِبِ الْوَفٰى تَاجِ الْعَارِفِيْنَ وَشَيْخِنَا الْمُكَرَّمِ الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّهمُ وَأُصُوْلِهِمْ وَفُرُوْعِهِمْ وَاَهْلِ سِلْسِلَتِهِمْ وَالْأۤخِذِيْنَ عَنْهُمْ كُلُّ شَيْئ ٍ لِلّٰهِ لَهُمُ الْفَاتِحَةُ",
-            latinText = "Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah Ma’had Suryalaya Sirnarasa PPKN wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah",
-            indonesianText = "Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah Ma’had Suryalaya Sirnarasa dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama اللّه Syaikh Abdul Qodir al Jailani. Semoga اللّه melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga اللّه melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah",
-            sundaneseText = "Lajeng khatur ka para ahli Silsilah TQN Ma'had Suryalaya Sirnarasa PPKN, Syekh Abdul Qodir Al-Jailani Qs., Syekh Junaid Al-Baghdadi, Syekh Ahmad Khatib Sambas, Syekh Tolhah Kalisapu, Syekh Abdullah Mubarok (Abah Sepuh), Syekh Ahmad Shohibulwafa Tajul Arifin (Abah Anom), miwah Guru Mursyid urang sadaya Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos Ra. Qs. 38), Al-Faatihah.",
+            latinText = "Tsumma ilaa Ahli Silsilatil Qoodiriyyah Naqsyabandiyyah MTQN Suryalaya Sirnarasa PPKN III wa jamii’i ahlith thuruqi khushuushon ilaa Hadroti shulthoonil auliyaa’I ghoutsil a’zhom quthbil ‘aalamiin, As Sayyidisy Syaikh Muhyiddin ‘Abdul Qoodir Al Jailaani Qoddasalloohu Sirroh wa Sayyidisy Syaikh Abil Qoosim Junaidil Baghdaadiy Wa Sayyidisy Syaikh Ahmad Khootib Syambas ibni ‘Abdil Ghoffaar Wa Sayyidisy Syaikh Tholhah Kalisapu Cirebon wa hadhroti Syaikh ‘Abdulloh Mubarook bin Nur Muhammad wa Sayyidisy Syaikh Ahmad Shoohibul Wafaa Taajul ‘Aarifin wa syaikhinal mukarrom Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum wa ushuulihim Wa furuu‘ihim wa ahli silsilaatihim wal aakhidziina ‘anhum, kullu syai’in lillahi lahum, Al-Fatihah",
+            indonesianText = "Semoga Engkau sampaikan kepada para silsilah Thoriqot Qoodiriyyah Naqsabandiyyah MTQN Suryalaya Sirnarasa PPKN III dan kepada semua ahli thoriqot terutama kepada pimpinan para wali penolong agama اللّه Syaikh Abdul Qodir al Jailani. Semoga اللّه melimpahkan kesucian kepada maqomnya dan kepada Syaikh Abdul Qosim Junaidi al Baghdadi serta Syaikh Ahmad Khotib as Syambasyi Abdil Ghoffar dan Syaikh Tholhah bin Tholabuddin dan Syaikh Abdulloh Mubarok bin Nur Muhammad serta Syaikh Ahmad Shohibul Wafa Tajul’Arifin, dan Syaikh Muhammad Abdul Gaos Saefulloh Maslul Qaddasalloohu Sirrohum semoga اللّه melimpahkan keridhoan kepada mereka dan kepada leluhurnya, kepada anak turunnya dan ahli keluarga silsilah serta semua yang mengambil berkah dari mereka. Segala sesuatu hanya milik اللّه, untuk mereka (kami) hadiahkan, Al-Fatihah",
+            sundaneseText = "Lajeng khatur ka para ahli Silsilah MTQN Suryalaya Sirnarasa PPKN III, Syekh Abdul Qodir Al-Jailani Qs., Syekh Junaid Al-Baghdadi, Syekh Ahmad Khatib Sambas, Syekh Tolhah Kalisapu, Syekh Abdullah Mubarok (Abah Sepuh), Syekh Ahmad Shohibulwafa Tajul Arifin (Abah Anom), miwah Guru Mursyid urang sadaya Syekh Muhammad Abdul Gaos Saefulloh Maslul (Abah Aos Ra. Qs. 38), Al-Faatihah.",
             repetitionCount = 1,
-            category = "Silsilah TQN",
-            kaifiyatNote = "Menyambungkan rabithah qolbiyyah kepada Silsilah Emas TQN 38."
+            category = "Silsilah",
+            kaifiyatNote = "Menyambungkan rabithah qolbiyyah kepada Silsilah Emas MTQN Suryalaya Sirnarasa PPKN III 38."
         ),
         DzikirItem(
             id = "dzikir_harian_11",
@@ -309,9 +309,9 @@ class AmaliyahRepository {
             category = "Harian",
             arabicText = "بِاسْمِكَ اللَّهُمَّ أَحْيَا وَبِاسْمِكَ أَمُوتُ • أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
             latinText = "Bismika Allahumma ahyaa wa bismika amuut. A'uudzu bikalimaatillaahit taammaati min syarri maa khalaq.",
-            indonesianText = "Dengan nama-Mu ya Allah aku hidup dan dengan nama-Mu aku mati. Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan apa yang Dia ciptakan.",
-            sundaneseText = "Kalayan jenengan Gusti nun Allah abdi hirup tur kalayan jenengan Gusti abdi maot. Abdi nyalindung kalayan kalimah-kalimah Allah anu sampurna tina kajahatan saniskara makhluq.",
-            kaifiyat = "Amaliyah TQN sebelum tidur: Berwudhu, membaca Ayat Kursi, Surat Al-Ikhlas, Al-Falaq, An-Nas 3x ditiupkan ke telapak tangan lalu diusapkan ke seluruh tubuh, membaca doa tidur dan menyandarkan rabithah kepada Guru Mursyid sambil meneruskan Dzikir Khofi hingga tertidur.",
+            indonesianText = "Dengan nama-Mu ya اللّه aku hidup dan dengan nama-Mu aku mati. Aku berlindung dengan kalimat-kalimat اللّه yang sempurna dari kejahatan apa yang Dia ciptakan.",
+            sundaneseText = "Kalayan jenengan Gusti nun اللّه abdi hirup tur kalayan jenengan Gusti abdi maot. Abdi nyalindung kalayan kalimah-kalimah اللّه anu sampurna tina kajahatan saniskara makhluq.",
+            kaifiyat = "Amaliyah sebelum tidur: Berwudhu, membaca Ayat Kursi, Surat Al-Ikhlas, Al-Falaq, An-Nas 3x ditiupkan ke telapak tangan lalu diusapkan ke seluruh tubuh, membaca doa tidur dan menyandarkan rabithah kepada Guru Mursyid sambil meneruskan Dzikir Khofi hingga tertidur.",
             virtue = "Menjaga ruhani senantiasa tersambung dengan Allah SWT dan terpelihara dari gangguan syaitan saat terlelap.",
             recommendedTime = "Sebelum tidur malam"
         ),
@@ -322,7 +322,7 @@ class AmaliyahRepository {
             category = "Tarhim",
             arabicText = "الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا إِمَامَ الْمُجَاهِدِينَ، يَا رَسُولَ اللَّهِ. الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا نَاصِرَ الْهُدَى، يَا خَيْرَ خَلْقِ اللَّهِ. الصَّلَاةُ وَالسَّلَامُ عَلَيْكَ، يَا مَنْ أَسْرَى بِكَ الْمُهَيْمِنُ لَيْلًا، نِلْتَ مَا نِلْتَ وَالْأَنَامُ نِيَامٌ.",
             latinText = "Ash-shalaatu was salaamu 'alaik, yaa imaamal mujaahidiin, yaa Rasuulallaah. Ash-shalaatu was salaamu 'alaik, yaa naashiral hudaa, yaa khaira khalqillaah. Ash-shalaatu was salaamu 'alaik, yaa man asraa bikal muhaiminu lailan, nilta maa nilta wal anaamu niyaam.",
-            indonesianText = "Shalawat dan salam semoga tercurah kepadamu, wahai pemimpin para pejuang, wahai Rasulullah. Shalawat dan salam semoga tercurah kepadamu wahai penolong petunjuk, wahai sebaik-baik makhluk Allah. Shalawat dan salam semoga tercurah kepadamu wahai sosok yang diperjalankan oleh Allah di waktu malam, engkau meraih derajat agung tatkala seluruh manusia terlelap.",
+            indonesianText = "Shalawat dan salam semoga tercurah kepadamu, wahai pemimpin para pejuang, wahai Rasulullah. Shalawat dan salam semoga tercurah kepadamu wahai penolong petunjuk, wahai sebaik-baik makhluk اللّه. Shalawat dan salam semoga tercurah kepadamu wahai sosok yang diperjalankan oleh اللّه di waktu malam, engkau meraih derajat agung tatkala seluruh manusia terlelap.",
             sundaneseText = "Shalawat miwah salam mugi lungsur ka Gusti panutan, Nun pamingpin para pejuang, Nun Rasulullah...",
             kaifiyat = "Dilantunkan menjelang adzan Shubuh untuk membangunkan jiwa dan menyambut fajar shodiq.",
             virtue = "Menenangkan hati dan menggetarkan kecintaan kepada Baginda Rasulullah SAW.",
@@ -335,8 +335,8 @@ class AmaliyahRepository {
             category = "Tawassul Khusus",
             arabicText = "اَلسَّلَامُ عَلَيْكَ يَا مَالِكَ الزَّمَانِ، وَ يَا إِمَامَ الْمَكَانِ، وَ يَا قَائِمَ بِأَمْرِ الرَّحْمَانِ، وَ يَا وَارِثَ الْكِتَابِ، وَ يَا نَائِبَ رَسُوْلِ اللهِ صَلَّى اللهُ عَلَيْهِ وَ سَلَّمَ، يَا مَنْ مِنَ السَّمَاءِ وَ الْأَرْضِ عَائِدَتُهُ، يَا مَنْ أَهْلُ وَقْتِهِ كُلُّهُمْ عَائِلَتُهُ، يَا مَنْ يَنزِلُ الْغَيْثُ بِدَعْوَتِهِ، وَ يُدَرُّ الضَّرْعُ بِبَرَكَتِهِ، وَ رَحْمَةُ اللهِ وَ بَرَكَاتُهُ، الْفَاتِحَة.",
             latinText = "Assalaamu 'alaika yaa maalikaz zamaan, wa yaa imaamal makaan, wa yaa qooimu biamrir rohmaan, wa yaa waaritsal kitaab, wa yaa naaiba Rosuulillaahi SAW, yaa man minassamaa-i wal ardhi 'aa-idatuh, yaa man ahlu waqtihii kulluhum 'aa-ilatuh, yaa man yanzilul ghoitsu bida'watih, wa yadirrudh-dhor'u bibarokatih, wa rohmatulloohi wa barokaatuh, Al-Faatihah...",
-            indonesianText = "Salam untukmu wahai penguasa zaman, pemimpin wilayah, penegak ketentuan Ar-Rahman, pewaris kitab, wakil Rasulullah SAW, yang selalu pergi pulang antara bumi dan langit, yang orang-orang sezamannya adalah keluarganya, yang diturunkan pertolongan karena doanya, yang dikucurkan limpah susu karena keberkahannya, beserta rahmat Allah dan keberkahan-Nya, Al-Fatihah.",
-            sundaneseText = "Kasalametan mugi tetep ka salira nun pangersa pamingpin jaman, pamingpin wilayah, nu ngadegkeun parentah Gusti Nu Maha Welas, ahli waris Al-Kitab, wakil Kangjeng Rasulullah SAW, nu lungsur-unggah antara bumi sareng langit, nu sakur jalma di jaman ieu sadayana janten kulawargana, nu lungsur pitulung karana du'ana, nu ngocor limpas susuna karana kabarokahanana, miwah rahmat Allah sareng barokah-Na, Al-Fatihah.",
+            indonesianText = "Salam untukmu wahai penguasa zaman, pemimpin wilayah, penegak ketentuan Ar-Rahman, pewaris kitab, wakil Rasulullah SAW, yang selalu pergi pulang antara bumi dan langit, yang orang-orang sezamannya adalah keluarganya, yang diturunkan pertolongan karena doanya, yang dikucurkan limpah susu karena keberkahannya, beserta rahmat اللّه dan keberkahan-Nya, Al-Fatihah.",
+            sundaneseText = "Kasalametan mugi tetep ka salira nun pangersa pamingpin jaman, pamingpin wilayah, nu ngadegkeun parentah Gusti Nu Maha Welas, ahli waris Al-Kitab, wakil Kangjeng Rasulullah SAW, nu lungsur-unggah antara bumi sareng langit, nu sakur jalma di jaman ieu sadayana janten kulawargana, nu lungsur pitulung karana du'ana, nu ngocor limpas susuna karana kabarokahanana, miwah rahmat اللّه sareng barokah-Na, Al-Fatihah.",
             kaifiyat = "Dibaca ketika hendak memulai amalan penting, tawassul, atau saat memasuki majlis ziarah dan rabithah qalbi.",
             virtue = "Memperkuat ikatan batin (Rabithah) dengan Guru Mursyid penghubung sanad 38 kepada Rasulullah SAW.",
             recommendedTime = "Setiap saat / Ba'da Sholat & Manaqib"
@@ -348,7 +348,7 @@ class AmaliyahRepository {
             category = "Tawassul Khusus",
             arabicText = "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ، اَلسَّلَامُ عَلَيْكُمْ يَارِجَالَ الْغَيْبِ، اَلسَّلَامُ عَلَيْكُمْ يَا أَيُّهَا الْأَرْوَاحُ الْمُقَدَّسَةُ، يَا نُقَبَا يَا نُجَبَا يَا رُقَبَا يَا بُدَلَا، يَا أَوْتَادَ الْأَرْضِ أَوْتَادٌ أَرْبَعَةٌ، يَا إِمَامَانِ يَا قُطْبُ يَا فَرْدُ يَا أُمَنَاءُ، اَغِيْثُوْنِيْ بِغَوْثَةٍ وَانْظُرُوْنِيْ بِنَظْرَةٍ وَارْحَمُوْنِيْ بِرَحْمَةٍ، وَحَصِّلُوْا مُرَادِيْ وَمَقَاصِدِيْ، وَقُوْمُوْا عَلَى قَضَاءِ حَوَائِجِيْ عِنْدَ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، سَلَّمَكُمُ اللهُ تَعَالَى فِي الدُّنْيَا وَالْآخِرَةِ، اَللَّهُمَّ صَلِّ عَلَى نَبِيِّ الْخِضْرِ عَلَيْهِ السَّلَامُ، اَلْفَاتِحَةُ...",
             latinText = "Bismillaahirrohmaanirrohiim. Assalaamu'alaikum yaa rijaalal ghoib. Assalaamu'alaikum yaa ayyuhal arwaahul muqoddasah. Yaa nuqobaa, yaa nujabaa, yaa ruqobaa, yaa budalaa, yaa autadal ardhi, autaadun arba'ah, yaa imaamaani, yaa quthbu yaa fardu yaa umanaa, Aghiitsuunii bighoutsatin, wandhuruunii binadhrotin, warhamuunii birohmatin, wahasshiluu muroodii wamaqooshidii waquumuu 'alaa qodhooi hawaaijii 'inda nabiyyinaa Muhammadin SAW, Sallamakumulloohu ta'aalaa fiddunyaa wal aakhiroh, Alloohumma sholli 'alannabiyyil Khidhir 'alaihissalaam, Alfaatihah...",
-            indonesianText = "Keselamatan atasmu wahai Rijalul Ghoib, keselamatan atasmu wahai segenap arwah yang suci, wahai segenap Wali Nuqabaa, Wali Nujabaa, Wali Ruqabaa, Wali Abdal, wahai para Wali Paku Alam dari empat penjuru angin, wahai Wali Imam, Wali Qutub, Wali Tunggal, Wali Pengaman Dunia. Tolonglah aku dengan pertolonganmu, lihatlah aku dengan penglihatanmu, kasihilah aku dengan rahmatmu, kabulkanlah keinginan dan maksud kami, dan dukunglah aku dalam menunaikan hajatku atas seidzin Nabi Muhammad SAW. Selamatkanlah kami ya Allah di dunia dan di akhirat, semoga Allah menambah rahmat-Nya atas Nabi Khidr AS, Al-Fatihah.",
+            indonesianText = "Keselamatan atasmu wahai Rijalul Ghoib, keselamatan atasmu wahai segenap arwah yang suci, wahai segenap Wali Nuqabaa, Wali Nujabaa, Wali Ruqabaa, Wali Abdal, wahai para Wali Paku Alam dari empat penjuru angin, wahai Wali Imam, Wali Qutub, Wali Tunggal, Wali Pengaman Dunia. Tolonglah aku dengan pertolonganmu, lihatlah aku dengan penglihatanmu, kasihilah aku dengan rahmatmu, kabulkanlah keinginan dan maksud kami, dan dukunglah aku dalam menunaikan hajatku atas seidzin Nabi Muhammad SAW. Selamatkanlah kami ya اللّه di dunia dan di akhirat, semoga اللّه menambah rahmat-Nya atas Nabi Khidr AS, Al-Fatihah.",
             sundaneseText = "Kasalametan mugi tetep ka salira nun Rijalul Ghoib, kasalametan ka sakumna arwah anu saruci, nun Wali Nuqaba, Nujaba, Ruqaba, Abdal, paku bumi opat madhab, nun Wali Imam, Qutub, Tunggal, Pangreksa Dunya...",
             kaifiyat = "Dibaca saat bertawassul kepada para Rijalul Ghoib, saat mempunyai hajat penting, atau ketika berziarah ke maqam auliya.",
             virtue = "Memohon pertolongan barokah karomah Rijalullah dan para wali kekasih Allah SWT.",
@@ -361,8 +361,8 @@ class AmaliyahRepository {
             category = "Doa & Ziarah",
             arabicText = "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا رَسُوْلَ اللهِ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا حَبِيْبَ اللهِ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا كَرِيْمَ اللهِ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا سَيِّدَ الْكَوْنَيْنِ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا سَيِّدَ الثَّقَلَيْنِ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا أَحْمَدُ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا طٰهٰ ، اَلصَّلَاةُ وَالسَّلَامُ عَلَيْكَ يَا يس ، وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، ... اَلْفَاتِحَة",
             latinText = "Assholatu Wassalamualaika Yaa Rosuulalloh, Assholatu Wassalamualaika Yaa Habiballoh, Assholatu Wassalamualaika Yaa Karimalloh, Assholatu Wassalamualaika Yaa Sayyidal Kaunaini, Assholatu Wassalamualaika Yaa Sayyidas Syakolaini, Assholatu Wassalamualaika Yaa Ahmadu, Assholatu Wassalamualaika Yaa Tooha, Assholatu Wassalamualaika Yaa Yaasiin Warohmatullohi Wabarokatuh, Al-Faatihah",
-            indonesianText = "Shalawat dan salam semoga tercurah kepadamu wahai Rasulullah, wahai Kekasih Allah, wahai yang Mulia di sisi Allah, wahai Pemimpin dua alam, wahai Pemimpin bangsa manusia dan jin, wahai Ahmad, wahai Thaha, wahai Yasin, beserta rahmat Allah dan keberkahan-Nya, Al-Fatihah.",
-            sundaneseText = "Shalawat sinareng salam mugi tetep ka Gusti panutan Nun Rasulullah SAW, Nun kakasih Allah...",
+            indonesianText = "Shalawat dan salam semoga tercurah kepadamu wahai Rasulullah, wahai Kekasih اللّه, wahai yang Mulia di sisi اللّه, wahai Pemimpin dua alam, wahai Pemimpin bangsa manusia dan jin, wahai Ahmad, wahai Thaha, wahai Yasin, beserta rahmat اللّه dan keberkahan-Nya, Al-Fatihah.",
+            sundaneseText = "Shalawat sinareng salam mugi tetep ka Gusti panutan Nun Rasulullah SAW, Nun kakasih اللّه...",
             kaifiyat = "Dibaca saat berziarah ke Maqam Baginda Rasulullah SAW di Madinah Al-Munawwarah atau saat bersholawat dan rabithah rindu kepada Rasulullah SAW.",
             virtue = "Mendekatkan jiwa dan menyambungkan ruhaniyah kecintaan kepada Baginda Rasulullah SAW.",
             recommendedTime = "Setiap saat / Ba'da Sholat & Ziarah"
@@ -387,8 +387,8 @@ class AmaliyahRepository {
             category = "Bulanan",
             arabicText = "اللَّهُمَّ بَارِكْ لَنَا فِي رَجَبَ وَشَعْبَانَ وَبَلِّغْنَا رَمَضَانَ وَسَلِّمْنَا لِرَمَضَانَ وَسَلِّمْ رَمَضَانَ لَنَا وَتَسَلَّمْهُ مِنَّا مُتَقَبَّلًا",
             latinText = "Allaahumma baarik lanaa fii Rajaba wa Sya'baana wa ballighnaa Ramadhaana, wa sallimnaa li Ramadhaana wa sallim Ramadhaana lanaa wa tasallamhu minnaa mutaqabbalaa.",
-            indonesianText = "Ya Allah, berkahilah kami di bulan Rajab dan Sya'ban, dan sampaikanlah usia kami pada bulan Ramadhan, selamatkanlah kami untuk Ramadhan, selamatkanlah Ramadhan untuk kami, dan terimalah amalan Ramadhan dari kami.",
-            sundaneseText = "Nun Gusti Allah, mugi ngalimpahkeun kabarokahan ka abdi sadaya dina sasih Rajab sareng Sya'ban...",
+            indonesianText = "Ya اللّه, berkahilah kami di bulan Rajab dan Sya'ban, dan sampaikanlah usia kami pada bulan Ramadhan, selamatkanlah kami untuk Ramadhan, selamatkanlah Ramadhan untuk kami, dan terimalah amalan Ramadhan dari kami.",
+            sundaneseText = "Nun Gusti اللّه, mugi ngalimpahkeun kabarokahan ka abdi sadaya dina sasih Rajab sareng Sya'ban...",
             kaifiyat = "Dibaca setiap hari sejak awal masuk bulan Rajab hingga akhir Sya'ban.",
             virtue = "Meraih berkah kesucian Rajab, kemuliaan Sya'ban, dan kesiapan ruhani menyambut Ramadhan.",
             recommendedTime = "Sepanjang bulan Rajab & Sya'ban"
@@ -412,7 +412,7 @@ class AmaliyahRepository {
             monthNumber = 2,
             monthName = "Shafar",
             arabicName = "صَفَر",
-            virtues = "Bulan kedua Hijriyah. TQN PP Suryalaya Sirnarasa mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
+            virtues = "Bulan kedua Hijriyah. MTQN Suryalaya Sirnarasa PPKN III mengajarkan penguatan amaliyah tolak bala (Li Daf'il Bala') pada Rebo Wekasan (Rabu terakhir bulan Shafar).",
             recommendedAmalan = listOf(
                 "Sholat Sunnah Li Daf'il Bala' 4 rakaat 2 salam pada Rebo Wekasan.",
                 "Membaca Surat Yasin dan doa permohonan keselamatan dari segala marabahaya.",
@@ -436,7 +436,7 @@ class AmaliyahRepository {
             monthNumber = 4,
             monthName = "Rabi'ul Akhir",
             arabicName = "رَبِيعُ الْآخِر",
-            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib TQN PP Suryalaya Sirnarasa.",
+            virtues = "Bulan Haul Agung Sulthonul Auliya Syekh Abdul Qodir Al-Jailani r.a. (11 Rabi'ul Akhir). Bulan puncak khidmat Manaqib MTQN Suryalaya Sirnarasa PPKN III.",
             recommendedAmalan = listOf(
                 "Menghadiri atau menyelenggarakan Khidmat Amaliah Manaqib Syekh Abdul Qodir Al-Jailani.",
                 "Mengkhatamkan pembacaan Tanbih, Tawassul, Manqobah, dan Sholawat.",
@@ -450,7 +450,7 @@ class AmaliyahRepository {
             arabicName = "جُمَادَى الْأُولَى",
             virtues = "Bulan kelima Hijriyah. Momentum muhasabah diri, keteguhan menuntut ilmu agama, dan istiqomah di majlis dzikir.",
             recommendedAmalan = listOf(
-                "Istiqomah Dzikir Ba'da Sholat Maktubah (Jahr 165x & Khofi).",
+                "Istiqomah Dzikir Ba'da Sholat (Jahr 165x & Khofi).",
                 "Membaca Al-Qur'an dan memperbanyak sholat sunnah rawatib.",
                 "Menjaga kerukunan dan silaturahmi antar ikhwan thoriqoh.",
                 "Menghadiri pengajian kitab dan majlis ta'lim."
@@ -499,7 +499,7 @@ class AmaliyahRepository {
             virtues = "Sayyidus Syuhur (Penghulu segala bulan). Bulan diturunkannya Al-Qur'an, kewajiban puasa, Sholat Tarawih, Nuzulul Qur'an, dan Malam Lailatul Qadar.",
             recommendedAmalan = listOf(
                 "Menunaikan ibadah Puasa Ramadhan dengan menjaga lisan dan hati.",
-                "Sholat Tarawih 20 Rakaat dan Witir 3 Rakaat berjamaah dengan amaliyah TQN.",
+                "Sholat Tarawih 20 Rakaat dan Witir 3 Rakaat berjamaah dengan amaliyah MTQN Suryalaya Sirnarasa PPKN III.",
                 "Tadarus dan khataman Al-Qur'an.",
                 "I'tikaf dan Sholat Lailatul Qadar pada 10 malam terakhir.",
                 "Membayar Zakat Fitrah dan memperbanyak infaq sedekah."
@@ -552,8 +552,8 @@ class AmaliyahRepository {
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةَ شَهْرِ رَجَبَ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ (مَأْمُوْمًا / إِمَامًا) لِلّٰهِ تَعَالَى",
             latinText = "Ushallii sunnatan syahri Rajaba rak'ataini mustaqbilal qiblati (ma'muuman / imaaman) lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah bulan Rajab dua rakaat menghadap kiblat (sebagai makmum/imam) karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah sasih Rajab dua rakaat mayun ka kiblat (ma'mum/imam) karana Allah Ta'ala.",
+            indonesianText = "Aku niat sholat sunnah bulan Rajab dua rakaat menghadap kiblat (sebagai makmum/imam) karena اللّه Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah sasih Rajab dua rakaat mayun ka kiblat (ma'mum/imam) karana اللّه Ta'ala.",
             kaifiyat = "Jumlah keseluruhan 42 rakaat dilaksanakan ba'da ba'diyah Maghrib:\n1. Tgl 1 Rajab: 10 rakaat (5 salam), tiap rakaat ba'da Al-Fatihah baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa: Laa ilaaha illalloohu wahdahu laa syariikalah...\n2. Malam Jumat Pertama: 12 rakaat (6 salam, diawali puasa siang harinya), tiap rakaat ba'da Al-Fatihah baca Al-Qadr 3x & Al-Ikhlas 12x. Ba'da sholat baca Sholawat Nabi Ummi 70x, Sujud Tasbih 70x, Duduk Istighfar 70x, Sujud lagi Tasbih 70x.\n3. Tgl 15 Rajab: 10 rakaat (5 salam), baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa tauhid.\n4. Tgl 30 Rajab (Akhir Bulan): 10 rakaat (5 salam), baca Al-Ikhlas 3x & Al-Kafirun 3x. Ba'da salam baca doa penutup.",
             virtue = "Melebur dosa, memperoleh ampunan dan keselamatan dunia-akhirat, serta dicatat dalam golongan hamba yang dicintai Allah SWT.",
             recommendedTime = "Antara Maghrib dan Isya (ba'da ba'diyah Maghrib) di bulan Rajab",
@@ -566,8 +566,8 @@ class AmaliyahRepository {
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةَ نِصْفِ شَعْبَانَ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
             latinText = "Ushallii sunnata nisfi Sya'baana rak'ataini lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah Nisfu Sya'ban dua rakaat karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah Nisfu Sya'ban dua rakaat karana Allah Ta'ala.",
+            indonesianText = "Aku niat sholat sunnah Nisfu Sya'ban dua rakaat karena اللّه Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Nisfu Sya'ban dua rakaat karana اللّه Ta'ala.",
             kaifiyat = "Dikerjakan pada malam ke-15 Sya'ban. Setiap rakaat setelah Al-Fatihah membaca Surat Al-Ikhlas 10x atau membaca Surat Yasin 3x diselingi doa Nisfu Sya'ban setelah sholat.",
             virtue = "Mendapat ampunan Allah SWT, ditetapkan takdir yang baik, dan dijauhkan dari segala marabahaya.",
             recommendedTime = "Malam 15 Sya'ban (ba'da Maghrib)",
@@ -575,14 +575,14 @@ class AmaliyahRepository {
         ),
         SpecialPrayer(
             id = "sholat_tarawih_tqn",
-            title = "Sholat Tarawih 20 Rakaat & Witir TQN",
+            title = "Sholat Tarawih 20 Rakaat & Witir",
             arabicTitle = "صلاة التراويح والوتر",
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةَ التَّرَاوِيحِ رَكْعَتَيْنِ (إِمَامًا / مَأْمُومًا) لِلَّهِ تَعَالَى",
             latinText = "Ushallii sunnatat taraawiihi rak'ataini (imaaman / ma'muuman) lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah Tarawih dua rakaat (sebagai imam/makmum) karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah Tarawih dua rakaat (imam/makmum) karana Allah Ta'ala.",
-            kaifiyat = "Dikerjakan 20 rakaat (10 salam) tiap 2 rakaat salam, diselingi shalawat dan doa tarawih tiap 4 rakaat. Dilanjutkan Sholat Witir 3 rakaat (2 rakaat salam + 1 rakaat salam) dan membaca doa witir serta Dzikir TQN.",
+            indonesianText = "Aku niat sholat sunnah Tarawih dua rakaat (sebagai imam/makmum) karena اللّه Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Tarawih dua rakaat (imam/makmum) karana اللّه Ta'ala.",
+            kaifiyat = "Dikerjakan 20 rakaat (10 salam) tiap 2 rakaat salam, diselingi shalawat dan doa tarawih tiap 4 rakaat. Dilanjutkan Sholat Witir 3 rakaat (2 rakaat salam + 1 rakaat salam) dan membaca doa witir serta Dzikir.",
             virtue = "Menghidupkan malam Ramadhan, melebur dosa-dosa yang telah lalu, dan meraih ridha Allah.",
             recommendedTime = "Malam hari di bulan Ramadhan ba'da Isya",
             rakaatCount = 20
@@ -594,8 +594,8 @@ class AmaliyahRepository {
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةَ لَيْلَةِ الْقَدْرِ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
             latinText = "Ushallii sunnata lailatil qadri rak'ataini lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah Lailatul Qadar dua rakaat karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah Lailatul Qadar dua rakaat karana Allah Ta'ala.",
+            indonesianText = "Aku niat sholat sunnah Lailatul Qadar dua rakaat karena اللّه Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah Lailatul Qadar dua rakaat karana اللّه Ta'ala.",
             kaifiyat = "Dilaksanakan pada 10 malam terakhir Ramadhan (terutama malam-malam ganjil). Tiap rakaat ba'da Al-Fatihah membaca Surat At-Takatsur 1x dan Al-Ikhlas 3x (atau Al-Qadr 1x dan Al-Ikhlas 3x). Ba'da sholat memperbanyak doa: Allahumma innaka 'afuwwun tuhibbul 'afwa fa'fu 'annii.",
             virtue = "Meraih kemuliaan malam yang lebih utama daripada seribu bulan.",
             recommendedTime = "10 malam terakhir Ramadhan sepertiga malam",
@@ -608,8 +608,8 @@ class AmaliyahRepository {
             category = "Sholat Sunnah",
             arabicText = "أُصَلِّي سُنَّةً لِدَفْعِ الْبَلَاءِ رَكْعَتَيْنِ لِلَّهِ تَعَالَى",
             latinText = "Ushallii sunnatan li daf'il balaa-i rak'ataini lillaahi Ta'aalaa.",
-            indonesianText = "Aku niat sholat sunnah tolak bala dua rakaat karena Allah Ta'ala.",
-            sundaneseText = "Niat abdi sholat sunnah tolak bala dua rakaat karana Allah Ta'ala.",
+            indonesianText = "Aku niat sholat sunnah tolak bala dua rakaat karena اللّه Ta'ala.",
+            sundaneseText = "Niat abdi sholat sunnah tolak bala dua rakaat karana اللّه Ta'ala.",
             kaifiyat = "Dilaksanakan pada hari Rabu terakhir bulan Shafar pada waktu Dhuha sebanyak 4 rakaat (2 kali salam). Setiap rakaat setelah Al-Fatihah membaca:\n1. Surat Al-Kautsar 17x\n2. Surat Al-Ikhlas 5x\n3. Surat Al-Falaq 1x\n4. Surat An-Nas 1x\nSetelah salam membaca Doa Tolak Bala / Doa Rebo Wekasan.",
             virtue = "Memohon perlindungan Allah SWT dari 320.000 marabahaya dan bala yang diturunkan pada akhir bulan Shafar.",
             recommendedTime = "Rabu terakhir bulan Shafar waktu Dhuha",

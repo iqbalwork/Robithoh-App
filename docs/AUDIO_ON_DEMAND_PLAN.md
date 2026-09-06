@@ -95,9 +95,9 @@ Widget ini diletakkan di `MainAppContainer` (tepat di atas *Floating Pill Dock N
 
 ## 🚀 Panduan Setup GitHub Releases Storage
 
-Repository: `https://github.com/iqbalwork/Robithoh-App`  
+Repository: `https://github.com/iqbalwork/Robithoh-Docs`  
 Release Tag: **`audio-v1`**  
-Base Download URL: `https://github.com/iqbalwork/Robithoh-App/releases/download/audio-v1/`
+Base Download URL: `https://github.com/iqbalwork/Robithoh-Docs/releases/download/audio-v1/`
 
 ### 11 Berkas yang Diunggah:
 1. `bani_hasyim.mp3` (19.0 MB)

@@ -1,10 +1,12 @@
-# Manqobah
+# MANQOBAH
 
 ---
 
 MANQOBAH
 
-MUQODIMAH MANQOBAH
+---
+
+### MUQODIMAH MANQOBAH
 
 Assalamu’alaikum warohmatullohi wabarokatuh
 
@@ -14,11 +16,11 @@ Assalamu’alaikum warohmatullohi wabarokatuh
 
 YAA IMAMAL MUTTAQIINA
 
-“Wahai pemimpin orang-orang yang bertaqwa”
+*“Wahai pemimpin orang-orang yang bertaqwa”*
 
 WA YAA SHOFWATAL ‘AABIDIINA.
 
-“Wahai ahli ibadah yang terbaik”
+“*Wahai ahli ibadah yang terbaik”*
 
 وياقوي الاركان
 
@@ -26,11 +28,11 @@ WA YAA SHOFWATAL ‘AABIDIINA.
 
 WA YAA QOWIYAL ARKAAN
 
-“Wahai yang kokoh pilarnya”
+*“Wahai yang kokoh pilarnya”*
 
 WA YAA HABIBAR ROHMAAN
 
-“Wahai kekasih Ar Rohman”
+*“Wahai kekasih Ar Rohman”*
 
 ويامجلي الكلام القديم
 
@@ -38,11 +40,11 @@ WA YAA HABIBAR ROHMAAN
 
 WA YAA MUJLIYAL KALAAMIL QODIMI
 
-“Wahai yang menyingkap Kalam Al Qodim”
+*“Wahai yang menyingkap Kalam Al Qodim”*
 
 WA YAA SYIFAAA  ASQOOMIS SAQIIMI.
 
-“Wahai penyembuh penyakit orang yang sakit”
+*“Wahai penyembuh penyakit orang yang sakit”*
 
 (*sesuai dengan Maklumat Guru Agung Hadroti Syeikh Abah Aos Qs, Ahad 23 Romadhon 6 1442 H / 11 Oktober 2020 M)
 
@@ -58,21 +60,39 @@ Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim 
 
 Bismillaahirrohmaanirroohim. Alhamdulillaahi Robbil ‘aalamin, wal ‘aaqibatu lill Muttaqiin, walaa ‘udwaana illaa ‘alazh zhoolimiin, wash sholaatu was salaamu ‘alaa Sayidinaa Muhammadin wa ‘alaa aalihii wa shohbihii ajma’iin, Ammaa ba’du:
 
-“Dengan menyebut Nama اللّه Yang Maha Pengasih Maha Penyayang. Puji bagi اللّه pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya اللّه dan para pengikutnya sampai hari akhir.”
+*“Dengan menyebut Nama اللّه Yang Maha Pengasih Maha Penyayang. Puji bagi اللّه pencipta Semesta alam. Sholawat serta salam semoga dilimpahkan kepada junjungan kita Nabi Muhammad SAW berserta keluarganya, sahabatnya serta ‘awliya اللّه dan para pengikutnya sampai hari akhir.”*
 
-Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab “Uquudul LaAali Fii Manaaqibil Jayli” dan kitab “Tafriihul Khootir Fii Manaaqibisy Syaikhi Abdul Qodir”, semoga dengan dibacakan manaqib ini, اللّه SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, Aamiin Yaa Robbal ‘aalamiin. Adapun diantara manaqib Syaikh Abdul Qodir Al Jailani sebagai berikut:
+Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan dari kitab  “Uquudul LaAali Fii Manaaqibil Jayli” dan kitab  “Tafriihul Khootir Fii Manaaqibisy Syaikhi Abdul Qodir”, semoga dengan dibacakan manaqib ini, Alloh  SWT melimpahkan keberkahannya kepada kita sekalian, terutama kepada Shohibul Hajat (……) dimudahkan rizki yang halal, dijauhkan dari malapetaka dunia dan akhirat, diterima segala niat dan maksud kita, dimudahkan urusan kita yang berhubungan dengan dunia dan akhirat, *Aamiin Yaa Robbal ‘aalamiin.* Adapun diantara manaqib Syaikh Abdul Qodir Al Jailani sebagai berikut:
+
+*Ke-MUHARROM*
+*Ke-SHOOFAR*
+*Ke-ROBIULAWAL*
+*Ke-ROBIUTSTSANI*
+*Ke-JUMADILULA*
+*Ke-JUMADITSTSANIYAH*
+*Ke-ROJAB*
+*Ke-SYABAN*
+*Ke-ROMADHON*
+*Ke-SYAWAL*
+*Ke-DZULQODAH*
+*Ke-DZULHIJJAH*
+*Ke-DOAMANQOBAH*
+
+———۞۞۞———
 
 ---
 
 ### MUHARROM
 
-Manqobah Ke-39 : Setiap Datang Tahun Baru, Memberitahu Kepada Syaikh Abdul Qodir Peristiwa Yang Akan Terjadi Pada Tahun Itu
+---
+
+### Manqobah Ke-39 : Setiap Datang Tahun Baru, Memberitahu Kepada Syaikh Abdul Qodir Peristiwa Yang Akan Terjadi Pada Tahun Itu
 
 Diriwayatkan di dalam kitab “Bahjatul Asror” bahwa Syaikh ‘Abdul Qodir pada suatu saat terbang melayang-layang diatas ribuan manusia di majlis pengajian yang beliau pimpin, beliau Bersabda:
 
 “Tiada terbit matahari melainkan mengucapkan salam kepadaku, pada setiap datang tahun selalu memberi salam kepadaku, dan memberitahukan yang akan terjadi pada tahun itu. Pada setiap datang bulan, memberi salam kepadaku dan Menceritakan apa yang terjadi pada bulan itu. Demikian Pula setiap datang minggu dan hari, minggu dan hari itu memberi salam kepadaku dan memberitahukan yang akan terjadi pada minggu dan hari itu. Demi Dzat اللّه Yang Maha Mulia, orang-orang yang suka dan duka semuanya itu diberitahukan kepadaku.
 
-Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu اللّه dan lautan musyahadah, akulah yang menjadi Hujjah اللّه, akulah yang menjadi pengganti Rosululloh saw. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”.
+Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu Alloh dan lautan musyahadah, akulah yang menjadi Hujjah Alloh, akulah yang menjadi pengganti Rosululloh saw. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -80,9 +100,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah Ke-40 : Abdul Qodir Diberi Buku Untuk Mencatat Murid-Muridnya Sampai Hari Kiamat
+---
 
-Diriwayatkan di dalam kitab “Bahjatul Asror”, Syaikh Abdul Qodir pernah berkata: “Aku diberi sebuah buku yang luasnya sejauh mata memandang untuk menuliskan nama-nama muridku sampai hari kiamat. Semua murid itu telah اللّه berikan Kepadaku dan telah menjadi milikku. Aku pernah bertanya Kepada malaikat Malik, “Apakah ada dalam neraka, muridku dan sahabat-ku?” Malaikat Malik menjawab: “ tidak ada.”
+### Manqobah Ke-40 : Abdul Qodir Diberi Buku Untuk Mencatat Murid-Muridnya Sampai Hari Kiamat
+
+Diriwayatkan di dalam kitab “Bahjatul Asror”, Syaikh Abdul Qodir pernah berkata: “Aku diberi sebuah buku yang luasnya sejauh mata memandang untuk menuliskan nama-nama muridku sampai hari kiamat. Semua murid itu telah Alloh berikan Kepadaku dan telah menjadi milikku. Aku pernah bertanya Kepada malaikat Malik, “Apakah ada dalam neraka, muridku dan sahabat-ku?” Malaikat Malik menjawab: “ tidak ada.”
 
 Syaikh berkata: “Aku bersumpah, demi kemuliaan Tuhanku. Tanganku atas murid-muridku seperti langit menutup bumi. Andaikan murid-muridku itu buruk, maka akulah yang baik. Dan aku bersumpah, demi Keagungan dan Kemuliaan Tuhanku, dua telapak kakiku tidak akan bergeser dihadapan Tuhan kecuali sudah mendapat keputusan bahwa aku bersama-sama muridku yang masuk surga”
 
@@ -94,13 +116,17 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
+---
+
 ### SHOOFAR
 
-Manqobah Ke-24 : Masyarakat Yang Menderita Penyakit Tho’un, Sembuh Dengan Rumput Dan Air Madrasah Syaikh Abdul Qodir
+---
 
-Para Ulama meriwayatkan, pernah terjadi pada jaman Syaikh Abdul Qodir bangkit wabah penyakit tho’un sehingga berjuta orang meninggal dunia. Masyarakat berduyun-duyun datang meminta pertolongan kepada Syaikh, beliau mengumumkan kepada mereka: “Barangsiapa makan rerumputan Madrasahku, اللّه akan menyembuhkan penyakit yang dideritanya.”
+### Manqobah Ke-24 : Masyarakat Yang Menderita Penyakit Tho’un, Sembuh Dengan Rumput Dan Air Madrasah Syaikh Abdul Qodir
 
-Karena terlalu banyak yang sakit, rerumputan itu habis, Syaikh mengumumkan lagi : “Barangsiapa yang meminum air Madrasahku akan segera disembuhkan اللّه SWT.” Mendengar Pengumuman itu, para penderita penyakit beramai-ramai minum air madrasah Syaikh, seketika itu juga mereka menjadi sembuh kembali dan penyakit tho’un pun lenyap.
+Para Ulama meriwayatkan, pernah terjadi pada jaman Syaikh Abdul Qodir bangkit wabah penyakit tho’un sehingga berjuta orang meninggal dunia. Masyarakat berduyun-duyun datang meminta pertolongan kepada Syaikh, beliau mengumumkan kepada mereka: “Barangsiapa makan rerumputan Madrasahku, Alloh akan menyembuhkan penyakit yang dideritanya.”
+
+Karena terlalu banyak yang sakit, rerumputan itu habis, Syaikh mengumumkan lagi : “Barangsiapa yang meminum air Madrasahku akan segera disembuhkan Alloh SWT.” Mendengar Pengumuman itu, para penderita penyakit beramai-ramai minum air madrasah Syaikh, seketika itu juga mereka menjadi sembuh kembali dan penyakit tho’un pun lenyap.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -124,9 +150,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### ROBI'UL AWAL
+ROBI’UL AWAL
 
-Manqobah Ke-3 : Kecerdasan Syaikh Abdul Qodir Waktu Menuntut Ilmu
+---
+
+### Manqobah Ke-3 : Kecerdasan Syaikh Abdul Qodir Waktu Menuntut Ilmu
 
 Dalam menuntut ilmu, Syaikh Abdul Qodir berusaha memilih guru-guru yang ahli dalam bidangnya, beliau mempelajari dan memperdalam bermacam-macam disiplin ilmu.
 
@@ -140,9 +168,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah Ke-4 : Budi Pekerti Syaikh Abdul Qodir
+---
 
-Syaikh Abdul Qodir Al Jailani sangat takut kepada اللّه SWT, oleh karena itu beliau mudah terharu serta mudah mengeluarkan air mata. Doanya dikobul اللّه. Beliau seorang dermawan, jauh dari keburukan dan selalu dekat dengan kebaikan. Berani dan kokoh dalam mempertahankan hak, tegas dalam menghadapi kemungkaran. Pantang menolak orang yang meminta-minta walupun yang dimintanya pakaian yang sedang beliau pakai. Tidak marah karena hawa nafsu, tidak memberi pertolongan yang bukan karena اللّه.
+### Manqobah Ke-4 : Budi Pekerti Syaikh Abdul Qodir
+
+Syaikh Abdul Qodir Al Jailani sangat takut kepada Alloh SWT, oleh karena itu beliau mudah terharu serta mudah mengeluarkan air mata. Doanya dikobul Alloh. Beliau seorang dermawan, jauh dari keburukan dan selalu dekat dengan kebaikan. Berani dan kokoh dalam mempertahankan hak, tegas dalam menghadapi kemungkaran. Pantang menolak orang yang meminta-minta walupun yang dimintanya pakaian yang sedang beliau pakai. Tidak marah karena hawa nafsu, tidak memberi pertolongan yang bukan karena Alloh.
 
 Beliau diwarisi akhlak Nabi Muhammad saw, tampan Nabi Yusuf as, benar Sayyidina Abu Bakar Ash-Shiddiq ra, adil Umar bin Khothob ra; Hilim Sayyidina Utsman bin Affan ra, kegagahan serta keberanian sayidina Ali bin Abi Tholib karromallohu Wajhahu.
 
@@ -152,13 +182,15 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### ROBI'UTS TSANI
+ROBI’UST STANI
 
-Manqobah Ke-51 : Wasiat Syaikh Abdul Qodir Kepada Putranya Abdul Rozak
+---
+
+### Manqobah Ke-51 : Wasiat Syaikh Abdul Qodir Kepada Putranya Abdul Rozak
 
 Syaikh Abdul Qodir telah berwasiat kepada putranya yang bernama Abdul Rozak dengan beberapa wasiat, diantaranya :
 
-“Wahai anakku, semoga اللّه melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawakAlloh kepada اللّه, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh SAW. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
+“Wahai anakku, semoga Alloh melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawakAlloh kepada Alloh, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh SAW. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
 
 Perihara olehmu kehormatan guru-guru, dan berbuat baiklah kepada orang lain, beri nasihat yang baik kepada orang-orang besar tingkat kedudukanya, demikian pula bagi masyarakat kecil. Jangan suka berbantah-bantahan dengan orang lain kecuali dalam masalah agama.
 
@@ -166,13 +198,13 @@ Ketahuilah bahwa hakikat kemiskinan adalah perlu kepada orang lain, dan hakikat 
 
 Tasawwuf dibangun diatas delapan hal yakni; 1. Dermawan, 2. Ridlo, 3. Sabar, 4. ‘Isyaroh, 5. Mengembara, 6. Berbusana bulu, 7. Pecinta alam, dan faqir. Dermawan Nabi Ibrohim, ridho Nabi Ishaq, sabar Nabi Ayyub, Isyarohnya Nabi Zakaria, mengembara seperti Nabi Yusuf, berbusana wool seperti Nabi Yahya, pecinta alam Nabi Isa, dan kefakiran Nabi Muhammad saw.
 
-Bila kamu berkumpul bersama orang kaya, perlihatkan kegagahanmu, kerendahan hati bila berkumpul dengan orang miskin. Hendaknya kamu ikhlas dalam setiap perbuatan. Seharusnya selalu mengingat اللّه. Jangan berprasangka buruk Kepada اللّه. Harusnya berserah diri kepada اللّه dalam segala perbuatan. Jangan menggantungkan diri kepada orang lain, walaupun keluarga walaupun teman sejawat. Layani faqir miskin dengan 3 hal; pertama, tawadhu’; kedua, budi pekerti; dan ketiga, kebeningan hati.
+Bila kamu berkumpul bersama orang kaya, perlihatkan kegagahanmu, kerendahan hati bila berkumpul dengan orang miskin. Hendaknya kamu ikhlas dalam setiap perbuatan. Seharusnya selalu mengingat Alloh. Jangan berprasangka buruk Kepada Alloh. Harusnya berserah diri kepada Alloh dalam segala perbuatan. Jangan menggantungkan diri kepada orang lain, walaupun keluarga walaupun teman sejawat. Layani faqir miskin dengan 3 hal; pertama, tawadhu’; kedua, budi pekerti; dan ketiga, kebeningan hati.
 
-Perhatikan olehmu bahwa yang paling dekat kepada اللّه ialah orang yang paling budi pekertinya. Dan amal yang paling utama ialah memelihara hati dari melirik kepada selain اللّه.
+Perhatikan olehmu bahwa yang paling dekat kepada Alloh ialah orang yang paling budi pekertinya. Dan amal yang paling utama ialah memelihara hati dari melirik kepada selain Alloh.
 
-Bila bergaul dengan orang miskin, berwasiatlah dengan kebenaran dan kesabaran. Cukup bagimu dari dunia itu dua hal: pertama, bergaul dengan orang miskin, kedua menghormati wali. Selain dari pada اللّه, segala sesuatu itu jangan dipandang cukup, gagah kepada yang dibawahmu adalah pengecut, gagah terhadap sesuatu adalah lemah dan gagah kepada orang yang lebih tinggi kedudukanya adalah sombong. Ketahuilah bahwa Tasawwuf dan fakir merupakan Dwi Tunggal kebenaran yang hakiki, bukan main-main, oleh karena itu jangan dicampur dengan main-main”.
+Bila bergaul dengan orang miskin, berwasiatlah dengan kebenaran dan kesabaran. Cukup bagimu dari dunia itu dua hal: pertama, bergaul dengan orang miskin, kedua menghormati wali. Selain dari pada Alloh, segala sesuatu itu jangan dipandang cukup, gagah kepada yang dibawahmu adalah pengecut, gagah terhadap sesuatu adalah lemah dan gagah kepada orang yang lebih tinggi kedudukanya adalah sombong. Ketahuilah bahwa Tasawwuf dan fakir merupakan Dwi Tunggal kebenaran yang hakiki, bukan main-main, oleh karena itu jangan dicampur dengan main-main”.
 
-Demikian wasiat ayah, semoga اللّه melimpahkan taufiq dan hidayahnya kepadamu dan kepada murid-murid, atau kepada siapapun yang mendengar wasiat ini, semoga dapat mengamalkanya dengan syafa’at junjungan kita Nabi Muhammad SAW, amin ya Robbal ‘alamin.
+Demikian wasiat ayah, semoga Alloh melimpahkan taufiq dan hidayahnya kepadamu dan kepada murid-murid, atau kepada siapapun yang mendengar wasiat ini, semoga dapat mengamalkanya dengan syafa’at junjungan kita Nabi Muhammad SAW, amin ya Robbal ‘alamin.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -180,7 +212,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah Ke-53 : Syaikh Abdul Qodir Wafat
+---
+
+### Manqobah Ke-53 : Syaikh Abdul Qodir Wafat
 
 Menjelang akhir hayatnya, Malaikat Ajro’il datang mengunjungi Syaikh dikala matahari akan terbenam membawa surat dari اللّه SWT untuk Syaikh dengan alamat sebagai berikut: “Yashilu hadzal maktubi minal muhibbi ilal mahbubi” (Surat ini dari Dzat Yang Maha Pengasih disampaikan kepada Wali yang dikasihi). Kemudian surat tersebut diterima oleh putranya yang bernama Sayyid Abdul Wahhab. Setelah diterima, masuklah ia bersama Malaikat Ajro’il. Sebelum surat dihanturkan kepada Syaikh, beliau sudah mengerti bahwa beliau akan berpindah ke alam ‘uluwi, alam tinggi yakni meninggal Dunia.
 
@@ -190,7 +224,7 @@ Siang dan malam, tak henti-hentinya beliau mengucapkan :
 
 “Wa’alaikumus salaam wa rohmatullohi wa barokatuh. Ghofarolloohu lii walakum, taaballohu ‘alayya wa ‘alaikum, Bismillahi ghoyri muudiina. Wadkhulu fi shoffil awwali, idzan ajii’u ilaykum, rifqon rifqon wa ‘alaikumus salaamu ajii’u ilaykum, Qifuu ataahul haqqu wa sakarotul mawti.
 
-Beliau berpesan : “Jangan ada yang menanyakan apapun kepadaku setelah aku bolak-balik dalam lautan Ilmu اللّه”, lalu membaca :
+Beliau berpesan : “Jangan ada yang menanyakan apapun kepadaku setelah aku bolak-balik dalam lautan Ilmu Alloh”, lalu membaca :
 
 Ista’antu bilaa ilaaha illallohu, Subhaanahu wa ta’aala wal hayyil ladzi laa yakhsal fawtu, Subhana man ta’azzaza bil qudroti waqoharo ibaadahu bil mawti laa ilalaha illallohu Muhammadur Rosulullahi, ta’azzaza, ta ‘azzaza Allohu Allohu Allohu.
 
@@ -204,15 +238,17 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### JUMADIL ULA
+JUMADIL ULA
 
-Manqobah Ke-35 : Syaikh Ahmad Kanji Menjadi Murid Syaikh Abdul Qodir Atas Petunjuk Gurunya
+---
+
+### Manqobah Ke-35 : Syaikh Ahmad Kanji Menjadi Murid Syaikh Abdul Qodir Atas Petunjuk Gurunya
 
 Diriwayatkan, pada suatu hari Syaikh Ahmad kanji sedang mengambil wudhu, terlintas dalam hatinya bahwa thoriqot Syaikh Abdul Qodir itu lebih disukai dari pada thoriqot-thoriqot lainya. Gurunya yaitu Syaikh Abi Ishak Maghribi mengetahui pula apa yang terlintas dalam hati muridnya, lalu beliau bertanya : “ Apakah kamu mengetahui kedudukan Syaikh Abdul Qodir?” Dijawab oleh Syaikh Ahmad Kanji: “Saya tidak tahu”. Lalu gurunya menjelaskan: “Syaikh Abdul Qodir itu memiliki dua belas sifat. Kalau lautan dijadikan tintanya dan pepohonan dijadikan penanya, manusia, malaikat dan jin sebagai penulisnya, maka tidak akan mampu menulis satu sifat pun.”
 
 Mendengar penjelasan dari gurunya itu, ia makin bertambah mahabbah kepada Syaikh Abdul Qodir, hatinya berbisik: “Satu harapanku, tidak meninggal dunia sebelum aku menjadi muridnya.”
 
-Kemudian dengan kemauan yang keras berangkatlah ia menuju kota Baghdad. Setibanya disebuah gunung di wilayah Ajmir yang dibawahnya mengalir sungai, ia mengambil air wudlu untuk sholat. Didalam keadaan antara tidur dan tidak, ia dikunjungi Syaikh Abdul Qodir, beliau membawa mahkota merah dan sorban hijau. Syaikh Ahmad Kanji berdiri menghormati kedatangannya: “Mari kesini lebih dekat”, kata beliau sambil mengenakan mahkota merah dan sorban hijau diatas kepalaku, lalu bersabda: “Wahai Ahmad Kanji, sekarang kamu sudah menjadi muridku dan menjadi anakku dan menjadi Rijalulloh (laki-laki اللّه).” Lalu beliau menghilang, mahkota dan sorban sudah melekat terpakai diatas kepalaku, lalu ia sujud syukur atas nikmat اللّه yang telah diterimanya.
+Kemudian dengan kemauan yang keras berangkatlah ia menuju kota Baghdad. Setibanya disebuah gunung di wilayah Ajmir yang dibawahnya mengalir sungai, ia mengambil air wudlu untuk sholat. Didalam keadaan antara tidur dan tidak, ia dikunjungi Syaikh Abdul Qodir, beliau membawa mahkota merah dan sorban hijau. Syaikh Ahmad Kanji berdiri menghormati kedatangannya: “Mari kesini lebih dekat”, kata beliau sambil mengenakan mahkota merah dan sorban hijau diatas kepalaku, lalu bersabda: “Wahai Ahmad Kanji, sekarang kamu sudah menjadi muridku dan menjadi anakku dan menjadi Rijalulloh (laki-laki Alloh).” Lalu beliau menghilang, mahkota dan sorban sudah melekat terpakai diatas kepalaku, lalu ia sujud syukur atas nikmat Alloh yang telah diterimanya.
 
 Kemudian ia pulang kegurunya sambil memperlihatkan mahkota merah dan sorban hijau hadiah dari Syaikh Abdul Qodir dan menceritakan peristiwa yang dialaminya. Gurunya berkata: “Wahai Ahmad Kanji, mahkota dan sorban itu adalah khirqoh bagimu, kamu sangat dikasihi Syaikh Abdul Qodir, sekarang berdirilah dengan tegak, kamu telah menjadi wali yang utama”. Dengan mengharap keberkahannya, Syaikh Abi Ishak Maghribi memakai mahkota dan sorban itu dikepalanya, lalu diserahkan kembali kepada Syaikh Ahmad Kanji.
 
@@ -222,7 +258,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah ke-36 : Syaikh Ahmad Kanji Menjunjung Kayu Bakar Di Atas Kepalanya
+---
+
+### Manqobah ke-36 : Syaikh Ahmad Kanji Menjunjung Kayu Bakar Di Atas Kepalanya
 
 Pekerjaan Syaikh Ahmad kanji adalah mencari kayu bakar untuk memasak roti bagi para faqir. Setelah mengenakan mahkota dari Sayyid Abdul Qodir, gurunya bekata: “Sekarang engkau tidak layak mencari kayu bakar sebab kepalamu sudah dimahkotai dengan mahkota yang mulia”. Namun Syaikh Ahmad Kanji memohon izin dari gurunya untuk mencari kayu bakar. Ujar gurunya: “Ya kalau begitu, terserah kamu”. Iapun berangkat ke gunung mengumpulkan kayu bakar lalu diikat.
 
@@ -236,9 +274,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### JUMADITS TSANIYAH
+JUMADIST TSANIYAH
 
-Manqobah Ke-15 : Nama Syaikh Abdul Qodir Seperti Ismul A’zhom
+---
+
+### Manqobah Ke-15 : Nama Syaikh Abdul Qodir Seperti Ismul A’zhom
 
 Diriwayatkan di dalam kitab Haqo’iqul Haqo’iq, ada seorang perempuan datang menghadap Syaikh Abdul Qodir mengadukan hal anaknya, “Saya mempunyai seorang anak, kini ia hilang tenggelam ke dalam laut, saya yakin tuan Syaikh bisa mengembalikan anak saya hidup kembali, saya mohon pertolongan Tuan. “Mendengar perempun itu, Syaikh berkata “Sekarang kamu pulang, anakmu sudah ada di rumahmu”. Perempuan itu pulang dengan tergesa-gesa, setibanya dirumah, anaknya itu belum ada.
 
@@ -248,7 +288,7 @@ Dengan penuh keyakinan ia datang lagi menghadap Syaikh sambil menangis mohon ana
 
 Mengenai peristiwa ini Syaikh munajat kepada اللّه, “Ya اللّه, Engkau Maha Kuasa menciptakan mahluk dengan mudah, demikian pula halnya pada waktu mengumpulkan mahluk dipadang mahsyar hanya dalam tempo yang singkat sudah berkumpul, mengapa hanya menghidupkan seorang saja sampai 3 kali, hamba malu oleh perempuan itu. Dan apa hikmahnya?”. اللّه SWT menjawab, “Semua ucapanmu kepada perempuan itu tidak salah, pertama kali kamu mengatakan kepada perempuan itu anaknya sudah ada dirumah, malaikat baru mengumpulkan tulang belulangnya yang berserakan, dan yang kedua kalinya seluruh anggota tubuhnya baru utuh kembali dan dihidupkan, ketiga kalinya si anak di angkat dari dasar laut dikembalikan kerumahnya.”
 
-اللّه berfirman: “Wahai Abdul Qodir! Kamu jangan kecewa. Sekarang silahkan kamu minta, pasti kuberi.” Spontan Syaikh merebahkan kepalanya bersujud sambil berkata, “Engkau Kholiq, apa saja yang Engkau berikan akan kuterima”. Lalu اللّه memberi hadiah kepada Syaikh dan berfirman, “Barang siapa melihatmu pada hari Jum’at, ia akan kujadikan wali, dan kalau kamu melihat tanah tentu akan menjadi emas.” Syaikh berkata, “Ya اللّه, semua pemberian-Mu kurang begitu manfaat bagiku, aku mohon karuniamu yang lebih bermanfaat dan lebih mulia setelah aku tiada”. اللّه swt berfirman, “Namamu dibuat seperti nama-Ku, barang siapa menyebut namamu, pahalanya sama dengan yang menyebut nama-Ku.”
+Alloh berfirman: “Wahai Abdul Qodir! Kamu jangan kecewa. Sekarang silahkan kamu minta, pasti kuberi.” Spontan Syaikh merebahkan kepalanya bersujud sambil berkata, “Engkau Kholiq, apa saja yang Engkau berikan akan kuterima”. Lalu Alloh memberi hadiah kepada Syaikh dan berfirman, “Barang siapa melihatmu pada hari Jum’at, ia akan kujadikan wali, dan kalau kamu melihat tanah tentu akan menjadi emas.” Syaikh berkata, “Ya Alloh, semua pemberian-Mu kurang begitu manfaat bagiku, aku mohon karuniamu yang lebih bermanfaat dan lebih mulia setelah aku tiada”. Alloh swt berfirman, “Namamu dibuat seperti nama-Ku, barang siapa menyebut namamu, pahalanya sama dengan yang menyebut nama-Ku.”
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -256,13 +296,15 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihi
 
 ———۞۞۞———
 
-Manqobah Ke-16 : Syaikh Abdul Qodir Menghidupkan Orang Yang Sudah Mati.
+---
+
+### Manqobah Ke-16 : Syaikh Abdul Qodir Menghidupkan Orang Yang Sudah Mati.
 
 Diriwayatkan di dalam kitab Asrorut Tholibin, Syaikh Abdul Qodir pada waktu melewati suatu tempat, bertemu dengan seorang umat Islam sedang berdebat dengan seorang umat Nasrani. Beliau menyikapi dengan seksama dan menanyakan apa yang menjadi sebab perdebatan itu, kata orang Muslim: ” Kami sedang membangga-banggakan Nabi kami masing-masing, dan saya berkata padanya, Nabi Muhammad-lah yang paling utama”. Kata orang Nasrani: “Nabi Isa-lah yamg paling sempurna”. Lalu Syekh bertanya kepada orang Nasrani: “Apa yang menjadi dasar kamu mengatakan bahwa Nabi Isa-lah lebih sempurna daripada Nabi Muhammad?”.
 
 Orang Nasrani menjawab: “Nabi Isa bisa menghidupkan orang yang sudah mati”. Syekh berkata lagi: “Kamu tahu aku bukan Nabi, aku hanya pengikut Nabi Muhammad SAW ? Kalau aku bisa menghidupkan orang yang sudah mati, kamu bersedia untuk beriman kepada Nabi Muhammad saw ?”. “Baik, saya mau beriman dan masuk agama Islam”, jawab orang Nasrani itu. “Kalau begitu, mari kita mencari kuburan”. Lanjut Syaikh.
 
-Setelah mereka menemukan sebuah kuburan tua, sudah berusia lima ratus tahun, lalu Syaikh mengulangi lagi pertanyaannya: “Nabi Isa kalau menghidupkan orang yang sudah mati bagaimana caranya?”. Orang Nasrani menjawab: “Beliau cukup dengan mengucapkan QUM BIIDZNILLAH (Bangunlah dengan Izin اللّه)”. “Nah sekarang kamu perhatikan dan dengarkan baik-baik !”, kata Syekh, lalu beliau menghadap ke kuburan tadi sambil mengucapkan: “QUM BIIDZNII (Bangunlah dengan izinku)”. Kuburan terbelah dua, keluarlah mayat itu sambil bernyanyi. Konon pada waktu hidupnya ia seorang penyanyi. Melihat dan menyaksikan peristiwa tersebut, orang Nasrani itu berubah keyakinan menjadi beriman kepada Nabi Muhammad saw dan masuk agama Islam.
+Setelah mereka menemukan sebuah kuburan tua, sudah berusia lima ratus tahun, lalu Syaikh mengulangi lagi pertanyaannya: “Nabi Isa kalau menghidupkan orang yang sudah mati bagaimana caranya?”. Orang Nasrani menjawab: “Beliau cukup dengan mengucapkan QUM BIIDZNILLAH (Bangunlah dengan Izin Alloh)”. “Nah sekarang kamu perhatikan dan dengarkan baik-baik !”, kata Syekh, lalu beliau menghadap ke kuburan tadi sambil mengucapkan: “QUM BIIDZNII (Bangunlah dengan izinku)”. Kuburan terbelah dua, keluarlah mayat itu sambil bernyanyi. Konon pada waktu hidupnya ia seorang penyanyi. Melihat dan menyaksikan peristiwa tersebut, orang Nasrani itu berubah keyakinan menjadi beriman kepada Nabi Muhammad saw dan masuk agama Islam.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -270,9 +312,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah Ke-17 : Syekh Abdul Qodir Merebut Ruh Dari Malakul Maut
+---
 
-Abu Abbas Ahmad Rifa’i meriwayatkan : Ada seorang pelayan Syaikh Abdul Qodir yang meninggal dunia, kemudian isterinya datang menghadap beliau mengadukan halnya sambil menangis. Karena ratapnya itu, Syaikh menundukkan kepala bertawajjuh kepada اللّه, ketika itulah beliau melihat malaikat maut sedang kelangit membawa keranjang maknawi penuh dengan ruh-ruh manusia yang baru selesai dicabut pada hari itu. Kemudian beliau meminta kepada malaikat maut supaya menyerahkan nyawa muridnya. Permintaan itu ditolak oleh malaikat maut. Lalu beliau merebut keranjang maknawi itu, dan tumpahlah semua nyawa yang ada di dalamnya dan kembali ke jasadnya masing-masing.
+### Manqobah Ke-17 : Syekh Abdul Qodir Merebut Ruh Dari Malakul Maut
+
+Abu Abbas Ahmad Rifa’i meriwayatkan : Ada seorang pelayan Syaikh Abdul Qodir yang meninggal dunia, kemudian isterinya datang menghadap beliau mengadukan halnya sambil menangis. Karena ratapnya itu, Syaikh menundukkan kepala bertawajjuh kepada Alloh, ketika itulah beliau melihat malaikat maut sedang kelangit membawa keranjang maknawi penuh dengan ruh-ruh manusia yang baru selesai dicabut pada hari itu. Kemudian beliau meminta kepada malaikat maut supaya menyerahkan nyawa muridnya. Permintaan itu ditolak oleh malaikat maut. Lalu beliau merebut keranjang maknawi itu, dan tumpahlah semua nyawa yang ada di dalamnya dan kembali ke jasadnya masing-masing.
 
 Menghadapi kejadian ini malaikat unjuk pihatur kepada اللّه SWT : “Ya اللّه, Engkau Maha Mengetahui tentang kekasih-Mu dan wali-Mu Abdul Qodir”. اللّه berfirman : “Memang benar, Abdul Qodir itu kekasih-Ku, karena tadi nyawa pelayannya tidak kamu berikan, akibatnya seluruh ruh itu terlepas, dan sekarang kamu menyesal karena kamu tidak memberikannya”.
 
@@ -282,9 +326,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
+---
+
 ### ROJAB
 
-Manqobah Ke-11 : Telapak Kaki Nabi Muhammad SAW Memijak Pundak Syaikh Abdul Qodir Pada Malam Mi’roj
+---
+
+### Manqobah Ke-11 : Telapak Kaki Nabi Muhammad SAW Memijak Pundak Syaikh Abdul Qodir Pada Malam Mi’roj
 
 Syaikh Rosyid Al-Junaidi meriwayatkan, pada malam Mi’roj, malaikat datang menghadap Rosululloh saw membawa buroq. Kakinya bercahaya laksana bulan dan paku telapak kakinya bersinar seperti sinar bintang.
 
@@ -300,9 +348,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### SYA'BAN
+---
 
-Manqobah Ke-7 : Kebiasaan Syaikh Abdul Qodir Setiap Malam Digunakan Untuk Ibadah Sholat Dan Dzikir
+### SYABAN
+
+---
+
+### Manqobah Ke-7 : Kebiasaan Syaikh Abdul Qodir Setiap Malam Digunakan Untuk Ibadah Sholat Dan Dzikir
 
 Syaikh Abu Abdillah Muhammad al-Hirowi meriwayatkan:”Aku berkhidmat mendampingi Syaikh Abdul Qodir selama empat puluh tahun. Selama itu aku menyaksikan beliau sholat Shubuh dengan wudhu ‘Isya, Seusai sholat lalu Syaikh masuk kholwat sampai waktu sholat Shubuh. Para pejabat pemerintah banyak yang datang untuk bersilaturrahmi, tapi kalau datangnya malam hari tidak bisa bertemu dengan belia, terpaksa mereka menunggu sampai waktu Shubuh.
 
@@ -320,29 +372,33 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
+---
+
 ### ROMADHON
 
-Manqobah Ke-2: Beberapa Macam Tanda Kemuliaan Pada Waktu Syaikh Abdul Qodir Dilahirkan
+---
+
+### Manqobah Ke-2: Beberapa Macam Tanda Kemuliaan Pada Waktu Syaikh Abdul Qodir Dilahirkan
 
 Sayid Abu Muhammad Abdul Qodir Jaelani dilahirkan di Naif Jailan Irak pada tanggal 1 Romadhon 470 Hijriyah, bertepatan dengan 1077 Masehi. Beliau wafat pada tanggal 11 Rabiul Akhir 561 Hijriyah, bertepatan dengan 1166 Masehi, pada usia 91 tahun. Beliau dikebumikan di Baghdad, Irak.
 
 Pada malam Syaikh di lahirkan ada lima karomah :
 
-Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh saw diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh اللّه. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan اللّه”.
+ 1. Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh saw diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh Alloh. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan Alloh”.
+ 2. Setelah Rosululloh saw, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali Alloh selain Imam Ma’shum, di bawah pimpinannya”.
+ 3. Syaikh Abdul Qodir sejak dilahirkan pada siang hari bulan Romadhan menolak untuk menyusu. Menyusunya setelah waktu berbuka puasa.
+ 4. Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh SAW ketika beliau akan menunggangi buroq pada malam Mi’raj.
+ 5. Beliau diliputi cahaya sehingga tidak seorangpun yang mampu melihatnya. Sedang usia ibunya waktu itu 60 tahun, ini juga sesuatu hal yang luar biasa. 
 
-Setelah Rosululloh saw, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali اللّه selain Imam Ma’shum, di bawah pimpinannya”.
-
-Syaikh Abdul Qodir sejak dilahirkan pada siang hari bulan Romadhan menolak untuk menyusu. Menyusunya setelah waktu berbuka puasa.
-
-Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh SAW ketika beliau akan menunggangi buroq pada malam Mi’raj.
-
-Beliau diliputi cahaya sehingga tidak seorangpun yang mampu melihatnya. Sedang usia ibunya waktu itu 60 tahun, ini juga sesuatu hal yang luar biasa. 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
+
 Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
 
 ———۞۞۞———
 
-Manqobah Ke-32: Syaikh Abdul Qodir Berbuka Puasa Di Rumah Murid-Muridnya Pada Satu Waktu Yang Bersamaan
+---
+
+### Manqobah Ke-32: Syaikh Abdul Qodir Berbuka Puasa Di Rumah Murid-Muridnya Pada Satu Waktu Yang Bersamaan
 
 Diriwayatkan, pada suatu hari pada bulan Romadhon, Syaikh Abdul Qodir diundang berbuka puasa oleh murid-muridnya sebanyak tujuh puluh orang di rumahnya masing-masing. Mereka berkeinginan agar Syaikh berbuka puasa di rumahnya. Mereka tidak mengetahui bahwa masing-masing dari mereka mengundang Syaikh untuk berbuka puasa pada waktu yang bersamaan.
 
@@ -356,9 +412,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
+---
+
 ### SYAWAL
 
-Manqobah Ke-22 : Syaikh Abdul Qodir Setiap Tahun Membebaskan Hamba Sahaya Dari Perbudakan, Serta Nilai Busana Yang Beliau Pakai
+---
+
+### Manqobah Ke-22 : Syaikh Abdul Qodir Setiap Tahun Membebaskan Hamba Sahaya Dari Perbudakan, Serta Nilai Busana Yang Beliau Pakai
 
 Sebagian kitab manaqib meriwayatkan, sudah menjadi tradisi bahwa setiap Hari Raya Syaikh Abdul Qodir membeli beberapa hamba sahaya untu dimerdekakan dari belenggu perbudakan. Kemudian Syaikh mengantarkan mereka agar wushul kepada اللّه SWT.
 
@@ -372,7 +432,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-Manqobah Ke-33: Syaikh Abdul Qodir Menyelamatkan Muridnya, Seorang Wanita Dari Pengkhianatan Lelaki Jahat
+---
+
+### Manqobah Ke-33: Syaikh Abdul Qodir Menyelamatkan Muridnya, Seorang Wanita Dari Pengkhianatan Lelaki Jahat
 
 Diriwayatkan, di kota Baghdad ada seorang wanita cantik. Sebelum ia menjadi murid Syaikh Abdul Qodir, ada seorang lelaki fasik, hidung belang, dan tuna susila menaruh perhatian pada wanita itu, namun cintanya tidak dibalas. Lelaki itu pun tak henti-hentinya berusaha mencari jalan untuk melakukan niat jahatnya.
 
@@ -386,9 +448,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### DZULQO'DAH
+DZULQO’DAH
 
-Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Saw Dan Mencium Tangan Beliau
+---
+
+### Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Saw Dan Mencium Tangan Beliau
 
 Pada waktu Syaikh Abdul Qodir berziarah ke makam Rosululloh saw di Madinah Munawwaroh, setibanya di sana beliau langsung masuk ke makam Rosululloh saw yaitu Hujroh Syarifah. Selama empat puluh hari beliau bermukim di hadapan makam Rosululloh saw, kedua tangannya diletakkan pada dadanya sambil bermunajat mengharap rahmat اللّه, menumpahkan isi hati nuraninya dengan makna dari bait dibawah ini :
 
@@ -426,9 +490,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
+---
+
 ### DZULHIJJAH
 
-Manqobah Ke-8 : Berlaku Benar Adalah Dasar Hidup Syaikh Abdul Qodir
+---
+
+### Manqobah Ke-8 : Berlaku Benar Adalah Dasar Hidup Syaikh Abdul Qodir
 
 Suatu hari Syaikh Abdul Qodir ditanya oleh seorang muridnya, “Apakah pedoman hidup tuan?”.
 
@@ -458,66 +526,44 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-### DOA MANQOBAH
+DOA MANQOBAH
 
 ilaa hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbur robbanii wal ghoutsish shomadani sayyidis syeikh ‘Abdul Qodir al-Jailani qsn … alfatihah .
 
 Allohhumma sholli ‘ala Sayyidina Muhammadiw wa ‘ala ‘aali sayyidinaa Muhammad .
-
 -Aamiin yaa robbal ‘alamiiin –
 
-Allohhumma bi asma-ikal husna , 
-
+Allohhumma bi asma-ikal husna ,
 wa bi-asma-i nabiyyikal mushthofa ,
-
 wa bi-asma-i waliyyika ‘Abdul Qòdiril mujtaba ,
-
 thohhir quluubana ming kulli washfiy yuba’iduna ‘am musyahhadatika wa mahabbatika wa amitna ‘ala sunnati wal jama’ah .
-
 wa syarrih bihaa shuduuronaa ,
-
 wa yassir bihaa umuuronaa ,
-
 wa farij bihaa humuumanaa ,
-
 waksyif bihaa ghumuu manaa ,
-
 waghfir bihaa dzunuubanaa ,
-
 waqdli bihaa duyuunanaa ,
-
 wa ashlih bihaa ahwalana ,
-
 wa balligh bihaa aamaalanaa ,
-
 wa taqobbal bihaa taubatanaa ,
-
 waghsil bihaa haubatanaa ,
-
 wangshur bihaa hujjatanaa ,
-
 waj ‘alnaa bihaa minal muttabi’iina ,
-
 Lisyarii’ati nabiyyikal muttashifiina ,
-
 bi-mahabbatihil muhtadiin ,
-
 bihadyihi wa siirotihi wa tawaffanaa bihaa ‘ala sunnatihi ,
-
 wa laa tahrimnaa fadl-la syafaa’atihi ,
-
 wahsyurnaa fii zumrotihi ,
-
 wa atbaa’ihil ghurril muhajjiliina
-
 wa asy-yaa’ihis saabiqiina
-
 wa ash-haabil yamiin yaa arhamar roohimiina.
 
 وَصَلَّیﷲُ عَلَی سَيِّدِنَا مُحَمَّدٍ وَعَلَی اٰلِهِ وَاَصْحَابِهِ وَعَلَی سَاءِرِالْاَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَعَلَی اٰلِهِمْ وَاَصْحَابِهِمْ اَجْمَعِيْنَ . . . الفاتحه
 
 Wa Sholallohu ‘Ala Sayyidina Muhammadin Wa ala aalihi wa ash-haabihi wa ala saa-iril anbiya-i walmursalin wa ala aalihim wa ashhabihim ajmain Wal hamdulillahi robbil ‘aalamiin.
 
-Kembali ke atas
+*Kembali ke atas*
 
 ———۞۞۞———
+
+۞۞۞

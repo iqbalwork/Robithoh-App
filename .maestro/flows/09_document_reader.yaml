@@ -9,6 +9,12 @@ appId: com.iqbalwork.robithoh
 - extendedWaitUntil:
     visible: "Dzikir Harian"
     timeout: 5000
+- runFlow:
+    when:
+      visible: "Lewati"
+    commands:
+      - takeScreenshot: screenshots/31_reader_spotlight_tour
+      - tapOn: "Lewati"
 - takeScreenshot: screenshots/31_reader_dzikir_tqn
 
 # 2. Buka Pengaturan Ukuran Teks (A±)

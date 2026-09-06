@@ -24,7 +24,7 @@ class ManaqibViewModelTest {
         assertEquals(ManaqibTab.CHAPTERS, state.selectedTab)
         assertEquals(LiturgyLanguage.INDONESIAN, state.selectedLanguage)
         assertNotNull(state.tanbih)
-        assertEquals(111, state.silsilahList.size)
+        assertEquals(38, state.silsilahList.size)
         assertEquals(7, state.mcPrograms.size)
         assertEquals(3, state.doaList.size)
     }
@@ -82,6 +82,6 @@ class ManaqibViewModelTest {
         assertTrue(viewModel.uiState.value.silsilahList.any { it.orderNumber == 17 })
 
         viewModel.onIntent(ManaqibUiIntent.SearchSilsilah(""))
-        assertEquals(111, viewModel.uiState.value.silsilahList.size)
+        assertEquals(38, viewModel.uiState.value.silsilahList.size)
     }
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,8 +23,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
@@ -34,11 +37,18 @@ import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 fun DzikirDetailScreen(
     state: AmaliyahUiState,
     onIntent: (AmaliyahUiIntent) -> Unit,
-    onOpenTasbih: (Int, String) -> Unit,
+    onOpenTasbih: (count: Int, target: Int, title: String) -> Unit,
     onBack: () -> Unit,
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
+    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+
     val currentDzikirList = if (state.activeDzikirType == DzikirType.JAHR) {
         state.dzikirJahrList
     } else {
@@ -46,24 +56,38 @@ fun DzikirDetailScreen(
     }
 
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
-    val tasbihViewModel = remember(database) {
+    val resolvedTasbihViewModel = tasbihViewModel ?: remember(database) {
         com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
     }
-    val tasbihState by tasbihViewModel.uiState.collectAsState()
+    val tasbihState by resolvedTasbihViewModel.uiState.collectAsState()
     var selectedDzikirForOptions by remember { mutableStateOf<DzikirItem?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val hapticFeedback = remember { getHapticFeedback() }
 
     Scaffold(
         topBar = {
             IslamicHeader(
                 title = if (state.activeDzikirType == DzikirType.JAHR) "Dzikir Jahr (165x)" else "Dzikir Khofi (Ismu Dzat)",
-                subtitle = "TQN Pondok Pesantren Sirnarasa Silsilah 38",
+                subtitle = "MTQN Suryalaya Sirnarasa PPKN III Silsilah 38",
                 arabicTitle = if (state.activeDzikirType == DzikirType.JAHR) "ذِكْرُ الْجَهْرِ" else "ذِكْرُ الْخَفِيِّ",
-                onBackClick = onBack
+                onBackClick = onBack,
+                actions = {
+                    IconButton(onClick = { showSettingsDialog = true }) {
+                        Surface(
+                            color = MerahMerdeka.copy(alpha = 0.12f),
+                            shape = CircleShape,
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text("A±", color = MerahMerdeka, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                }
             )
         },
-        containerColor = if (isDark) DarkCanvas else PutihAbuBackground,
+        containerColor = readerTheme.backgroundColor,
         modifier = modifier
     ) { padding ->
         Box(
@@ -123,7 +147,7 @@ fun DzikirDetailScreen(
                 GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_TINTED) {
                     Text(
                         text = if (state.activeDzikirType == DzikirType.JAHR) {
-                            "Kaifiyat Dzikir Jahr Ba'da Sholat Maktubah"
+                            "Kaifiyat Dzikir Jahr Ba'da Sholat"
                         } else {
                             "Kaifiyat Dzikir Khofi & Rabithah Mursyid 38"
                         },
@@ -135,7 +159,7 @@ fun DzikirDetailScreen(
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = if (state.activeDzikirType == DzikirType.JAHR) {
-                            "Dzikir Jahr TQN diamalkan bersuara nyaring dengan menggelengkan kepala dari lambung kanan ke kiri (lathifah qolbi) sebanyak 165 kali setelah sholat fardhu."
+                            "Dzikir Jahr diamalkan bersuara nyaring dengan menggelengkan kepala dari lambung kanan ke kiri (lathifah qolbi) sebanyak 165 kali setelah sholat fardhu."
                         } else {
                             "Dzikir Khofi menggetarkan Ismu Dzat (ALLAH) di lathifah qolbi (bawah dada kiri) tanpa suara dan tanpa nafas, dengan rabithah kepada Syekh Mursyid Abah Aos Ra. Qs."
                         },
@@ -151,11 +175,12 @@ fun DzikirDetailScreen(
                 DzikirLiturgicalCard(
                     item = item,
                     selectedLanguage = state.selectedLanguage,
-                    isDark = isDark,
+                    readerTheme = readerTheme,
+                    fontScale = fontScale,
                     onClick = { selectedDzikirForOptions = item },
                     onOpenTasbih = { target, title ->
-                        tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
-                        tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                        resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetTarget(target))
+                        resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
                     }
                 )
             }
@@ -177,12 +202,26 @@ fun DzikirDetailScreen(
         // Floating Tasbih Overlay (Expandable Floating Widget)
         com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
             state = tasbihState,
-            onIntent = tasbihViewModel::onIntent,
+            onIntent = resolvedTasbihViewModel::onIntent,
             onOpenFullScreen = {
-                onOpenTasbih(tasbihState.targetCount, tasbihState.selectedDzikirTitle)
+                onOpenTasbih(
+                    tasbihState.currentCount,
+                    tasbihState.targetCount,
+                    tasbihState.selectedDzikirTitle
+                )
             }
         )
     }
+    }
+
+    if (showSettingsDialog) {
+        TextReaderSettingsSheet(
+            fontScale = fontScale,
+            onFontScaleChange = { readerSettingsRepository.updateFontScale(it) },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
+            onDismiss = { showSettingsDialog = false }
+        )
     }
 
     selectedDzikirForOptions?.let { item ->
@@ -210,7 +249,7 @@ fun DzikirDetailScreen(
                     append("\n\nKaifiyat: ")
                     append(item.kaifiyatNote)
                 }
-                append("\n\n(Dzikir TQN Pondok Pesantren Sirnarasa Silsilah 38)")
+                append("\n\n(Dzikir MTQN Suryalaya Sirnarasa PPKN III Silsilah 38)")
             }
         }
 
@@ -221,8 +260,9 @@ fun DzikirDetailScreen(
                         icon = "📿",
                         label = "Hitung dengan Tasbih (${item.repetitionCount}x)",
                         onClick = {
-                            tasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
-                            tasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
+                            hapticFeedback.performClick()
+                            resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetTarget(item.repetitionCount))
+                            resolvedTasbihViewModel.onIntent(TasbihUiIntent.SetFloatingExpanded(true))
                         }
                     )
                 )
@@ -246,12 +286,17 @@ fun DzikirDetailScreen(
 private fun DzikirLiturgicalCard(
     item: DzikirItem,
     selectedLanguage: LiturgyLanguage,
-    isDark: Boolean,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
+    fontScale: Float = 1.0f,
     onClick: () -> Unit,
     onOpenTasbih: (Int, String) -> Unit
 ) {
+    val isDark = readerTheme.isDark
+    val hapticFeedback = remember { getHapticFeedback() }
     GoldCrimsonCard(
         variant = GoldCrimsonCardVariant.GOLD_BORDER,
+        customBackgroundColor = readerTheme.cardBackgroundColor,
+        customBorderColor = readerTheme.cardBorderColor,
         onClick = onClick
     ) {
         // Card Top Header: Number, Title, Repetition Badge
@@ -307,10 +352,10 @@ private fun DzikirLiturgicalCard(
         Text(
             text = item.arabicText,
             style = RabithohTheme.typography.arabicLarge.copy(
-                fontSize = 21.sp,
-                lineHeight = 36.sp,
+                fontSize = (21 * fontScale).sp,
+                lineHeight = (36 * fontScale).sp,
                 textAlign = TextAlign.End,
-                color = if (isDark) PutihBersih else Color(0xFF1E2022)
+                color = readerTheme.arabicTextColor
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -321,11 +366,13 @@ private fun DzikirLiturgicalCard(
         Text(
             text = item.latinText,
             style = MaterialTheme.typography.bodyMedium.copy(
+                fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
-                color = MerahMerdeka,
-                fontSize = 13.sp,
-                lineHeight = 18.sp
-            )
+                color = readerTheme.latinTextColor,
+                fontSize = (14.5 * fontScale).sp,
+                lineHeight = 22.sp
+            ),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(6.dp))
@@ -345,8 +392,8 @@ private fun DzikirLiturgicalCard(
         Text(
             text = "[$langBadge] $translationText",
             style = MaterialTheme.typography.bodySmall.copy(
-                color = if (isDark) Color(0xFFB0B0B8) else Color(0xFF4A4A52),
-                fontSize = 12.sp,
+                color = readerTheme.translationTextColor,
+                fontSize = (12 * fontScale).sp,
                 lineHeight = 17.sp
             )
         )
@@ -373,7 +420,10 @@ private fun DzikirLiturgicalCard(
         if (item.repetitionCount > 1) {
             Spacer(modifier = Modifier.height(10.dp))
             OutlinedButton(
-                onClick = { onOpenTasbih(item.repetitionCount, item.title) },
+                onClick = {
+                    hapticFeedback.performClick()
+                    onOpenTasbih(item.repetitionCount, item.title)
+                },
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(1.dp, EmasKhidmat),
                 colors = ButtonDefaults.outlinedButtonColors(

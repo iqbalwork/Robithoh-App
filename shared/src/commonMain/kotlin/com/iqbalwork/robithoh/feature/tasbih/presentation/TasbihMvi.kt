@@ -19,8 +19,8 @@ data class TasbihUiState(
     val targetCount: Int = 165,
     val lapCount: Int = 0,
     val totalCount: Int = 0,
-    val selectedDzikirId: String = "dzikir_nafi_itsbat",
-    val selectedDzikirTitle: String = "Dzikir Jahr (TQN)",
+    val selectedDzikirId: String = "dzikir_jahr",
+    val selectedDzikirTitle: String = "Dzikir Jahr",
     val selectedDzikirArabic: String = "لَا إِلَهَ إِلَّا اللَّهُ",
     val isHapticEnabled: Boolean = true,
     val isSoundEnabled: Boolean = true,
@@ -32,11 +32,11 @@ data class TasbihUiState(
     val scaleFactor: Float = 1.0f,
     val availablePresets: List<TasbihDzikirPreset> = listOf(
         TasbihDzikirPreset(
-            id = "dzikir_nafi_itsbat",
-            title = "Dzikir Jahr (TQN)",
+            id = "dzikir_jahr",
+            title = "Dzikir Jahr",
             arabic = "لَا إِلَهَ إِلَّا اللَّهُ",
             defaultTarget = 165,
-            virtue = "Dzikir Jahr standar TQN PP Suryalaya Sirnarasa 38 ba'da sholat maktubah."
+            virtue = "Dzikir Jahr ba'da sholat (165x)."
         ),
         TasbihDzikirPreset(
             id = "tasbih_subhanallah",
@@ -71,7 +71,7 @@ data class TasbihUiState(
             title = "Shalawat Bani Hasyim",
             arabic = "اللَّهُمَّ صَلِّ عَلَى النَّبِيِّ الْهَاشِمِيِّ مُحَمَّدٍ وَعَلَى آلِهِ وَسَلِّمْ تَسْلِيمًا",
             defaultTarget = 165,
-            virtue = "Shalawat kebanggaan ikhwan TQN pembuka futuh dan mahabbah Rasulullah."
+            virtue = "Shalawat kebanggaan ikhwan dan akhwat pembuka futuh dan mahabbah Rasulullah."
         )
     )
 ) : UiState
@@ -93,6 +93,11 @@ sealed interface TasbihUiIntent : UiIntent {
     data object ToggleFloatingExpand : TasbihUiIntent
     data class SetFloatingExpanded(val expanded: Boolean) : TasbihUiIntent
     data class SetFloatingVisible(val visible: Boolean) : TasbihUiIntent
+    data class SyncData(
+        val count: Int,
+        val target: Int? = null,
+        val dzikirTitle: String? = null
+    ) : TasbihUiIntent
 }
 
 sealed interface TasbihUiEffect : UiEffect {

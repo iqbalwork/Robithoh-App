@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -18,13 +20,12 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
+import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
-import com.iqbalwork.robithoh.navigation.AmaliyahScreen
 import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.MainAppContainer
 import com.iqbalwork.robithoh.navigation.MainTab
-import com.iqbalwork.robithoh.navigation.ManaqibDetailScreen
-import com.iqbalwork.robithoh.navigation.ManaqibListScreen
 import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
 import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
 import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
@@ -36,7 +37,14 @@ import com.iqbalwork.robithoh.navigation.SettingsScreen
 import com.iqbalwork.robithoh.navigation.TasbihScreen
 
 @Composable
-fun App() {
+fun App(
+    initialDestination: String? = null,
+    initialSurahNumber: Int = 1,
+    initialAyahNumber: Int = 1,
+    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null,
+    onCheckForUpdates: () -> Unit = {},
+    onOpenPlayStore: () -> Unit = {}
+) {
     var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
     RabithohTheme(darkTheme = isDarkMode) {
@@ -46,6 +54,8 @@ fun App() {
         }
 
         val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val appSettingsRepository = rememberAppSettingsRepository()
+        val appSettings by appSettingsRepository.settings.collectAsState()
         val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
         val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
             com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
@@ -53,9 +63,26 @@ fun App() {
                 alarmScheduler = alarmScheduler
             )
         }
+        val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel {
+            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
+        }
         val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
         val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
+        val documentRepository = remember(database) {
+            com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository(database = database)
+        }
+        val documentSyncManager = remember(database, documentRepository) {
+            com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager(
+                httpClient = com.iqbalwork.robithoh.core.network.createKtorHttpClient(),
+                database = database,
+                repository = documentRepository
+            )
+        }
+
+        LaunchedEffect(Unit) {
+            documentSyncManager.syncDocuments()
+        }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
         // so the Home tab/sheet selection survives navigating away and back and configuration changes
@@ -72,12 +99,80 @@ fun App() {
             onBackAction()
         }
 
+        fun routeDestination(dest: String, surahNum: Int = initialSurahNumber, ayahNum: Int = initialAyahNumber) {
+            when (dest) {
+                "AMALIYAH" -> {
+                    backstack.add(ScreenKey.DocumentReader("dzikir_tqn"))
+                }
+                "TASBIH" -> {
+                    if (backstack.lastOrNull() !is ScreenKey.Tasbih) {
+                        backstack.add(ScreenKey.Tasbih())
+                    }
+                }
+                "MANAQIB" -> {
+                    backstack.add(ScreenKey.DocumentReader("manqobah_id"))
+                }
+                "TANBIH" -> {
+                    backstack.add(ScreenKey.DocumentReader("tanbih_id"))
+                }
+                "QURAN" -> {
+                    if (backstack.lastOrNull() != ScreenKey.QuranList) {
+                        backstack.add(ScreenKey.QuranList)
+                    }
+                }
+                "QURAN_SURAH" -> {
+                    backstack.add(ScreenKey.QuranSurah(surahNum, ayahNum))
+                }
+                "PRAYER" -> {
+                    homeTab = MainTab.SALAT
+                    while (backstack.size > 1) {
+                        backstack.removeAt(backstack.lastIndex)
+                    }
+                }
+            }
+        }
+
+        LaunchedEffect(widgetNavTarget) {
+            if (widgetNavTarget != null && !backstack.contains(ScreenKey.Splash)) {
+                routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+            }
+        }
+
+        LaunchedEffect(initialDestination) {
+            if (initialDestination != null && widgetNavTarget == null && !backstack.contains(ScreenKey.Splash)) {
+                routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+            }
+        }
+
         val entries = entryProvider<NavKey> {
             entry<ScreenKey.Splash> { _ ->
                 SplashScreen(
                     onSplashFinished = {
                         backstack.clear()
+                        if (!appSettings.hasCompletedOnboarding) {
+                            backstack.add(ScreenKey.Onboarding)
+                        } else {
+                            backstack.add(ScreenKey.Home)
+                            if (widgetNavTarget != null) {
+                                routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+                            } else if (initialDestination != null) {
+                                routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+                            }
+                        }
+                    }
+                )
+            }
+            entry<ScreenKey.Onboarding> { _ ->
+                OnboardingScreen(
+                    onComplete = {
+                        appSettingsRepository.setOnboardingCompleted(true)
+                        backstack.clear()
                         backstack.add(ScreenKey.Home)
+                        if (widgetNavTarget != null) {
+                            routeDestination(widgetNavTarget.destination, widgetNavTarget.surahNumber, widgetNavTarget.ayahNumber)
+                        } else if (initialDestination != null) {
+                            routeDestination(initialDestination, initialSurahNumber, initialAyahNumber)
+                        }
                     }
                 )
             }
@@ -98,7 +193,7 @@ fun App() {
                         backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                     },
                     onNavigateToLanggam = { backstack.add(ScreenKey.Langgam) },
-                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih()) },
                     onNavigateToProfilePesantren = { backstack.add(ScreenKey.ProfilePesantren) },
                     onNavigateToCalculationMethods = { backstack.add(ScreenKey.PrayerCalculationMethods) },
                     onNavigateToPrayerAdjustments = { backstack.add(ScreenKey.PrayerAdjustments) },
@@ -107,13 +202,25 @@ fun App() {
                     audioPlayer = sharedAudioPlayer,
                     audioDownloader = sharedDownloader,
                     isDarkMode = isDarkMode,
-                    onDarkModeChange = { isDarkMode = it }
+                    onDarkModeChange = { isDarkMode = it },
+                    onCheckForUpdates = onCheckForUpdates,
+                    onOpenPlayStore = onOpenPlayStore
                 )
             }
             entry<ScreenKey.DocumentReader> { key ->
                 com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
                     documentId = key.documentId,
-                    onNavigateToTasbih = { backstack.add(ScreenKey.Tasbih) },
+                    tasbihViewModel = tasbihViewModel,
+                    repository = documentRepository,
+                    onNavigateToTasbih = { count, target, title ->
+                        backstack.add(
+                            ScreenKey.Tasbih(
+                                initialCount = count,
+                                targetCount = target,
+                                dzikirTitle = title
+                            )
+                        )
+                    },
                     onBack = onBackAction
                 )
             }
@@ -125,30 +232,21 @@ fun App() {
                     onBack = onBackAction
                 )
             }
-            entry<ScreenKey.Amaliyah> { _ ->
-                AmaliyahScreen(
-                    onNavigate = { destination -> backstack.add(destination) },
-                    onBack = onBackAction,
-                    viewModel = amaliyahViewModel
-                )
-            }
-            entry<ScreenKey.Tasbih> { _ ->
+            entry<ScreenKey.Tasbih> { key ->
+                LaunchedEffect(key) {
+                    if (key.initialCount != null) {
+                        tasbihViewModel.onIntent(
+                            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SyncData(
+                                count = key.initialCount,
+                                target = key.targetCount,
+                                dzikirTitle = key.dzikirTitle
+                            )
+                        )
+                    }
+                }
                 TasbihScreen(
-                    onBack = onBackAction
-                )
-            }
-            entry<ScreenKey.ManaqibList> { _ ->
-                ManaqibListScreen(
-                    onChapterClick = { chapterNumber ->
-                        backstack.add(ScreenKey.ManaqibDetail(chapterNumber))
-                    },
-                    onBack = onBackAction
-                )
-            }
-            entry<ScreenKey.ManaqibDetail> { key ->
-                ManaqibDetailScreen(
-                    chapterNumber = key.chapterNumber,
-                    onBack = onBackAction
+                    onBack = onBackAction,
+                    viewModel = tasbihViewModel
                 )
             }
             entry<ScreenKey.QuranList> { _ ->

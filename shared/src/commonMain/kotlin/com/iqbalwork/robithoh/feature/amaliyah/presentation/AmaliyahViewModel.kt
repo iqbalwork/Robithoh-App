@@ -199,6 +199,12 @@ class AmaliyahViewModel(
                 persistAdzanVoice(voiceId = intent.voiceId, customPath = updatedNotif.customAudioPath)
                 syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
             }
+            is AmaliyahUiIntent.SetAdzanVolume -> {
+                val updatedNotif = currentState.notificationSettings.withAdzanVolume(intent.volume)
+                updateState { copy(notificationSettings = updatedNotif) }
+                persistAdzanVolume(intent.volume)
+                syncAlarmSchedule(currentState.prayerSchedule, updatedNotif)
+            }
             is AmaliyahUiIntent.SetCustomAdzanPath -> {
                 val updatedNotif = currentState.notificationSettings.copy(
                     customAudioPath = intent.path,
@@ -251,7 +257,8 @@ class AmaliyahViewModel(
                     prayerName = intent.prayerType.label,
                     mode = intent.mode,
                     voiceId = currentState.notificationSettings.selectedVoiceId,
-                    customPath = currentState.notificationSettings.customAudioPath
+                    customPath = currentState.notificationSettings.customAudioPath,
+                    volume = currentState.notificationSettings.adzanVolume
                 )
             }
         }
@@ -322,7 +329,9 @@ class AmaliyahViewModel(
                             if (it == PrayerNotificationMode.ADZAN) PrayerNotificationMode.PUSH_NOTIFICATION else it
                         },
                         selectedVoiceId = settings.selected_adzan_voice_id,
-                        customAudioPath = settings.custom_adzan_audio_path
+                        customAudioPath = settings.custom_adzan_audio_path,
+                        adzanVolume = settings.adzan_volume.toFloat(),
+                        isPrePrayerReminderEnabled = settings.pre_reminder_enabled == 1L
                     )
 
                     withContext(Dispatchers.Main) {
@@ -396,6 +405,8 @@ class AmaliyahViewModel(
                     is_gps = if (isGps) 1L else 0L,
                     selected_adzan_voice_id = notif.selectedVoiceId,
                     custom_adzan_audio_path = notif.customAudioPath,
+                    adzan_volume = notif.adzanVolume.toDouble(),
+                    pre_reminder_enabled = if (notif.isPrePrayerReminderEnabled) 1L else 0L,
                     subuh_notif_enabled = PrayerNotificationMode.toDbValue(notif.subuhMode),
                     dzuhur_notif_enabled = PrayerNotificationMode.toDbValue(notif.dzuhurMode),
                     ashar_notif_enabled = PrayerNotificationMode.toDbValue(notif.asharMode),
@@ -403,6 +414,7 @@ class AmaliyahViewModel(
                     isya_notif_enabled = PrayerNotificationMode.toDbValue(notif.isyaMode),
                     imsak_notif_enabled = PrayerNotificationMode.toDbValue(notif.imsakMode)
                 )
+                notifyPrayerWidgetUpdate()
             } catch (_: Exception) {
                 // Silently ignore persist errors
             }
@@ -421,6 +433,15 @@ class AmaliyahViewModel(
         }
     }
 
+    private fun persistAdzanVolume(volume: Float) {
+        if (database == null) return
+        viewModelScope.launch(dispatcher) {
+            try {
+                database.robithohDatabaseQueries.updateAdzanVolume(adzanVolume = volume.toDouble())
+            } catch (_: Exception) {}
+        }
+    }
+
     private fun persistPrayerNotificationToggles(notif: PrayerNotificationSettings) {
         if (database == null) return
         viewModelScope.launch(dispatcher) {
@@ -431,7 +452,8 @@ class AmaliyahViewModel(
                     ashar = PrayerNotificationMode.toDbValue(notif.asharMode),
                     maghrib = PrayerNotificationMode.toDbValue(notif.maghribMode),
                     isya = PrayerNotificationMode.toDbValue(notif.isyaMode),
-                    imsak = PrayerNotificationMode.toDbValue(notif.imsakMode)
+                    imsak = PrayerNotificationMode.toDbValue(notif.imsakMode),
+                    preReminderEnabled = if (notif.isPrePrayerReminderEnabled) 1L else 0L
                 )
             } catch (_: Exception) {}
         }

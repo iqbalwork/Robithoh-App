@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,6 +38,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import androidx.compose.foundation.BorderStroke
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
@@ -78,6 +88,8 @@ fun HomeTabContent(
     val countdown = state.nextPrayerCountdown
     val schedule = state.prayerSchedule
 
+    val isDark = RabithohTheme.colors.isDark
+
     val menuGridItems = listOf(
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
         HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
@@ -98,45 +110,37 @@ fun HomeTabContent(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(PaperBackgroundLight),
+            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
         contentPadding = PaddingValues(
             start = 16.dp,
             end = 16.dp,
-            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 16.dp
+            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 12.dp,
+            bottom = 120.dp
         ),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // 1. Top Header (Greeting & Notification)
+        // 1. Top Header (Greeting)
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
+                Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = "Assalamu'alaikum",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = TextCharcoal
+                        color = if (isDark) PutihBersih else TextCharcoal
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "${schedule?.dateFormatted ?: "Hari ini"} · ${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"}",
-                        fontSize = 12.sp,
-                        color = TextMuted
+                        fontSize = 11.5.sp,
+                        color = if (isDark) DarkMuted else TextMuted,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
                     )
-                }
-
-                Surface(
-                    color = Color(0xFFFDEED2),
-                    shape = CircleShape,
-                    modifier = Modifier.size(40.dp)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("🔔", fontSize = 18.sp)
-                    }
                 }
             }
         }
@@ -144,8 +148,9 @@ fun HomeTabContent(
         // 2. Next Prayer Hero Card (Live Calculated from adhan-kotlin)
         item {
             Card(
-                shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFFEE8C8)),
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color(0xFFFEE8C8)),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -154,7 +159,7 @@ fun HomeTabContent(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(18.dp)
+                        .padding(14.dp)
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -163,19 +168,19 @@ fun HomeTabContent(
                     ) {
                         Text(
                             text = "SHOLAT BERIKUTNYA",
-                            fontSize = 11.sp,
+                            fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF8C5B00),
+                            color = if (isDark) EmasMuda else Color(0xFF8C5B00),
                             letterSpacing = 0.5.sp
                         )
                         Text(
-                            text = "Jadwal Lengkap ›",
+                            text = "Jadwal ›",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = MerahMerdeka
                         )
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(3.dp))
                     val prayerIcon = when (countdown?.nextPrayerName) {
                         "Subuh" -> "🌅"
                         "Dzuhur" -> "☀️"
@@ -185,31 +190,33 @@ fun HomeTabContent(
                         else -> "🕌"
                     }
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("$prayerIcon ", fontSize = 18.sp)
+                        Text("$prayerIcon ", fontSize = 16.sp)
                         Text(
                             text = countdown?.nextPrayerName ?: "Subuh",
-                            fontSize = 18.sp,
+                            fontSize = 17.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TextCharcoal
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = if (countdown != null) {
                             "${countdown.remainingHours.toString().padStart(2, '0')}:${countdown.remainingMinutes.toString().padStart(2, '0')}:${countdown.remainingSeconds.toString().padStart(2, '0')}"
                         } else {
                             "00:00:00"
                         },
-                        fontSize = 32.sp,
+                        fontSize = 28.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = TextCharcoal,
+                        color = if (isDark) PutihBersih else TextCharcoal,
                         letterSpacing = 0.5.sp
                     )
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = "${countdown?.nextPrayerTime ?: schedule?.subuh ?: "04:37"} · ${if (state.isFetchingLocation) "Mencari lokasi..." else (schedule?.locationName ?: "Panjalu, Ciamis")} (${schedule?.timezone ?: "WIB"})",
-                        fontSize = 12.sp,
-                        color = Color(0xFF785B28)
+                        fontSize = 11.5.sp,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                        color = if (isDark) DarkMuted else Color(0xFF785B28)
                     )
                 }
             }
@@ -219,9 +226,9 @@ fun HomeTabContent(
         item {
             Text(
                 text = "Menu Amaliyah",
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextCharcoal
+                color = if (isDark) PutihBersih else TextCharcoal
             )
         }
 
@@ -236,9 +243,10 @@ fun HomeTabContent(
                         val index = i + j
                         if (index < menuGridItems.size) {
                             val item = menuGridItems[index]
-                            Box(modifier = Modifier.weight(1f)) {
+                            Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
                                 MainGridButton(
                                     item = item,
+                                    isDark = isDark,
                                     onClick = {
                                         when (item.id) {
                                             "dzikir" -> onNavigateToDocument("dzikir_tqn")
@@ -266,59 +274,59 @@ fun HomeTabContent(
             }
         }
 
-
         // 5. Kutipan Hari Ini / Tanbih
         item {
             Card(
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFE5F4FD)),
+                shape = RoundedCornerShape(18.dp),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color(0xFFE5F4FD)),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(modifier = Modifier.padding(14.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = "KUTIPAN HARI INI",
-                            fontSize = 11.sp,
+                            fontSize = 10.5.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0284C7),
+                            color = if (isDark) EmasMuda else Color(0xFF0284C7),
                             letterSpacing = 0.5.sp
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Surface(
-                            color = Color(0xFFBAE6FD),
+                            color = if (isDark) DarkSurfaceVariant else Color(0xFFBAE6FD),
                             shape = RoundedCornerShape(4.dp)
                         ) {
                             Text(
                                 text = "TANBIH",
-                                fontSize = 10.sp,
+                                fontSize = 9.5.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0369A1),
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                color = if (isDark) EmasMuda else Color(0xFF0369A1),
+                                modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                             )
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Text(
-                        text = "“$kutipanHariIni”",
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color(0xFF0F172A),
-                        lineHeight = 19.sp
-                    )
-
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Wasiat Pangersa Abah Sepuh · TQN PP Suryalaya Sirnarasa",
-                        fontSize = 11.sp,
-                        color = Color(0xFF475569)
+                        text = "“$kutipanHariIni”",
+                        fontSize = 12.5.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = if (isDark) PutihBersih else Color(0xFF0F172A),
+                        lineHeight = 18.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Wasiat Pangersa Abah Sepuh · MTQN Suryalaya Sirnarasa PPKN III",
+                        fontSize = 10.5.sp,
+                        color = if (isDark) DarkMuted else Color(0xFF475569)
                     )
                 }
             }
         }
 
         item {
-            Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }
@@ -326,6 +334,7 @@ fun HomeTabContent(
 @Composable
 private fun MainGridButton(
     item: HomeGridMenuItem,
+    isDark: Boolean = false,
     onClick: () -> Unit
 ) {
     Column(
@@ -356,10 +365,12 @@ private fun MainGridButton(
             text = item.title,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
-            color = TextCharcoal,
+            color = if (isDark) PutihBersih else TextCharcoal,
             textAlign = TextAlign.Center,
             lineHeight = 14.sp,
-            maxLines = 2
+            maxLines = 1,
+            softWrap = false,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
         )
     }
 }

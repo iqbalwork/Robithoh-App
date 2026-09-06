@@ -26,7 +26,7 @@ import kotlin.coroutines.resume
 
 class AndroidLocationProvider(private val context: Context) : LocationProvider {
 
-    override fun hasLocationPermission(): Boolean {
+    private fun hasRawLocationPermission(): Boolean {
         val fineLocation = ContextCompat.checkSelfPermission(
             context,
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -38,9 +38,23 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
         return fineLocation || coarseLocation
     }
 
+    override fun hasLocationPermission(): Boolean {
+        val locationGranted = hasRawLocationPermission()
+        val notificationGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true
+        }
+
+        return locationGranted && notificationGranted
+    }
+
     @SuppressLint("MissingPermission")
     override suspend fun getCurrentLocation(): UserLocation? {
-        if (!hasLocationPermission()) return null
+        if (!hasRawLocationPermission()) return null
 
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as? LocationManager
             ?: return null

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:translateX="13.5"
+        android:translateY="13.5">
+        <!-- Circular Red Badge Background -->
+        <path
+            android:fillColor="#CE1126"
+            android:pathData="M54,0C24.18,0 0,24.18 0,54C0,83.82 24.18,108 54,108C83.82,108 108,83.82 108,54C108,24.18 83.82,0 54,0Z" />
+        <!-- White Ring Accent -->
+        <path
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1.5"
+            android:pathData="M54,4C26.39,4 4,26.39 4,54C4,81.61 26.39,104 54,104C81.61,104 104,81.61 104,54C104,26.39 81.61,4 54,4Z" />
+    </group>
+    <!-- Foreground Logo Icon Scaled to Fit -->
+    <group
+        android:scaleX="0.52"
+        android:scaleY="0.52"
+        android:translateX="21.5"
+        android:translateY="21.5">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M61.993 124C27.7306 123.942 0.00680345 96.2973 1.40274e-06 62.0213C-0.00725412 27.3874 28.1328 -0.00408234 62.007 4.56357e-07C95.8894 0.00408325 124.015 27.411 124 62.0349C123.984 96.3105 96.2535 123.951 61.993 124Z" />
+        <path
+            android:fillColor="#CE1126"
+            android:pathData="M62.0423 2.43433C95.1833 2.50101 121.613 29.3862 121.562 62.0545C121.512 94.9405 94.8781 121.551 61.9897 121.544C29.0741 121.538 2.43731 94.8766 2.4364 61.9701C2.43595 29.3046 28.8932 2.45655 62.0423 2.43433Z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M62.0294 4.64075C93.6979 4.64755 119.395 30.3823 119.358 62.0408C119.322 93.9288 93.3601 119.383 61.9369 119.346C30.3853 119.31 4.60419 93.6434 4.63956 61.9156C4.67539 30.5361 30.1173 4.65526 62.0294 4.64075Z" />
+    </group>
+</vector>

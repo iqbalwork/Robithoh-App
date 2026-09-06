@@ -136,12 +136,14 @@ CREATE TABLE PrayerSettingsEntity (
     is_gps INTEGER NOT NULL DEFAULT 0,
     selected_adzan_voice_id TEXT NOT NULL DEFAULT 'misyari_rasyid',
     custom_adzan_audio_path TEXT,
+    adzan_volume REAL NOT NULL DEFAULT 1.0,
     subuh_notif_enabled INTEGER NOT NULL DEFAULT 1,
     dzuhur_notif_enabled INTEGER NOT NULL DEFAULT 1,
     ashar_notif_enabled INTEGER NOT NULL DEFAULT 1,
     maghrib_notif_enabled INTEGER NOT NULL DEFAULT 1,
     isya_notif_enabled INTEGER NOT NULL DEFAULT 1,
-    imsak_notif_enabled INTEGER NOT NULL DEFAULT 0
+    imsak_notif_enabled INTEGER NOT NULL DEFAULT 0,
+    pre_reminder_enabled INTEGER NOT NULL DEFAULT 1
 );
 
 getPrayerSettings:
@@ -151,9 +153,10 @@ insertOrUpdatePrayerSettings:
 INSERT OR REPLACE INTO PrayerSettingsEntity(
     id, method_id, imsak_offset, subuh_offset, terbit_offset, dzuhur_offset, ashar_offset, maghrib_offset, isya_offset, madhab,
     custom_lat, custom_lng, custom_location_name, custom_timezone_offset, is_gps,
-    selected_adzan_voice_id, custom_adzan_audio_path,
-    subuh_notif_enabled, dzuhur_notif_enabled, ashar_notif_enabled, maghrib_notif_enabled, isya_notif_enabled, imsak_notif_enabled
-) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    selected_adzan_voice_id, custom_adzan_audio_path, adzan_volume,
+    subuh_notif_enabled, dzuhur_notif_enabled, ashar_notif_enabled, maghrib_notif_enabled, isya_notif_enabled, imsak_notif_enabled,
+    pre_reminder_enabled
+) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 updateCalculationMethod:
 UPDATE PrayerSettingsEntity
@@ -182,6 +185,105 @@ SET subuh_notif_enabled = :subuh,
     ashar_notif_enabled = :ashar,
     maghrib_notif_enabled = :maghrib,
     isya_notif_enabled = :isya,
-    imsak_notif_enabled = :imsak
+    imsak_notif_enabled = :imsak,
+    pre_reminder_enabled = :preReminderEnabled
+WHERE id = 1;
+
+updateAdzanVolume:
+UPDATE PrayerSettingsEntity
+SET adzan_volume = :adzanVolume
+WHERE id = 1;
+
+-- Reader Settings Entity
+CREATE TABLE ReaderSettingsEntity (
+    id INTEGER NOT NULL PRIMARY KEY DEFAULT 1,
+    font_scale REAL NOT NULL DEFAULT 1.0,
+    theme_id TEXT NOT NULL DEFAULT 'system'
+);
+
+getReaderSettings:
+SELECT * FROM ReaderSettingsEntity WHERE id = 1 LIMIT 1;
+
+insertOrUpdateReaderSettings:
+INSERT OR REPLACE INTO ReaderSettingsEntity(
+    id, font_scale, theme_id
+) VALUES (1, :fontScale, :themeId);
+
+updateFontScale:
+UPDATE ReaderSettingsEntity
+SET font_scale = :fontScale
+WHERE id = 1;
+
+updateReaderTheme:
+UPDATE ReaderSettingsEntity
+SET theme_id = :themeId
+WHERE id = 1;
+
+-- Cached Document Entity (Cloud Sync for Markdown Liturgy Documents)
+CREATE TABLE CachedDocumentEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    file_name TEXT NOT NULL,
+    sha256 TEXT NOT NULL,
+    content TEXT NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX cached_doc_filename_idx ON CachedDocumentEntity(file_name);
+
+getCachedDocument:
+SELECT * FROM CachedDocumentEntity WHERE id = :id LIMIT 1;
+
+getCachedDocumentByFileName:
+SELECT * FROM CachedDocumentEntity WHERE file_name = :fileName LIMIT 1;
+
+getAllCachedDocumentHashes:
+SELECT file_name, sha256 FROM CachedDocumentEntity;
+
+insertOrUpdateCachedDocument:
+INSERT OR REPLACE INTO CachedDocumentEntity(
+    id, file_name, sha256, content, updated_at
+) VALUES (?, ?, ?, ?, ?);
+
+deleteCachedDocument:
+DELETE FROM CachedDocumentEntity WHERE id = :id;
+
+deleteAllCachedDocuments:
+DELETE FROM CachedDocumentEntity;
+
+-- App Settings Entity (Onboarding & Guidelines)
+CREATE TABLE AppSettingsEntity (
+    id INTEGER NOT NULL PRIMARY KEY DEFAULT 1,
+    has_completed_onboarding INTEGER NOT NULL DEFAULT 0,
+    has_seen_reader_spotlight INTEGER NOT NULL DEFAULT 0,
+    has_seen_prayer_spotlight INTEGER NOT NULL DEFAULT 0,
+    has_seen_quran_spotlight INTEGER NOT NULL DEFAULT 0
+);
+
+getAppSettings:
+SELECT * FROM AppSettingsEntity WHERE id = 1 LIMIT 1;
+
+insertOrUpdateAppSettings:
+INSERT OR REPLACE INTO AppSettingsEntity(
+    id, has_completed_onboarding, has_seen_reader_spotlight, has_seen_prayer_spotlight, has_seen_quran_spotlight
+) VALUES (1, :hasCompletedOnboarding, :hasSeenReaderSpotlight, :hasSeenPrayerSpotlight, :hasSeenQuranSpotlight);
+
+updateOnboardingCompleted:
+UPDATE AppSettingsEntity
+SET has_completed_onboarding = :completed
+WHERE id = 1;
+
+updateReaderSpotlightSeen:
+UPDATE AppSettingsEntity
+SET has_seen_reader_spotlight = :seen
+WHERE id = 1;
+
+updatePrayerSpotlightSeen:
+UPDATE AppSettingsEntity
+SET has_seen_prayer_spotlight = :seen
+WHERE id = 1;
+
+updateQuranSpotlightSeen:
+UPDATE AppSettingsEntity
+SET has_seen_quran_spotlight = :seen
 WHERE id = 1;
 

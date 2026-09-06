@@ -21,6 +21,7 @@
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity
             android:exported="true"
+            android:launchMode="singleTask"
             android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,6 +45,128 @@
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
+        </receiver>
+
+        <!-- Prayer Times Widget 4x1 -->
+        <receiver
+            android:name=".widget.PrayerWidget4x1Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_PRAYER_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/prayer_widget_4x1_info" />
+        </receiver>
+
+        <!-- Prayer Times Widget 4x2 -->
+        <receiver
+            android:name=".widget.PrayerWidget4x2Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_PRAYER_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/prayer_widget_4x2_info" />
+        </receiver>
+
+        <!-- Tasbih Digital Widget 2x2 -->
+        <receiver
+            android:name=".widget.TasbihWidget2x2Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_TASBIH_INCREMENT" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_TASBIH_RESET" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_TASBIH_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tasbih_widget_2x2_info" />
+        </receiver>
+
+        <!-- Tasbih Bar Widget 4x1 -->
+        <receiver
+            android:name=".widget.TasbihWidget4x1Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_TASBIH_INCREMENT" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_TASBIH_RESET" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_TASBIH_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tasbih_widget_4x1_info" />
+        </receiver>
+
+        <!-- Mutiara Tanbih & Hikmah Widget 4x2 -->
+        <receiver
+            android:name=".widget.TanbihWidget4x2Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_NEXT_TANBIH_QUOTE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_TANBIH_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tanbih_widget_4x2_info" />
+        </receiver>
+
+        <!-- Quran Last Read Widget 2x2 -->
+        <receiver
+            android:name=".widget.QuranWidget2x2Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_QURAN_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quran_widget_2x2_info" />
+        </receiver>
+
+        <!-- Quran Last Read Widget 4x1 -->
+        <receiver
+            android:name=".widget.QuranWidget4x1Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.iqbalwork.robithoh.ACTION_UPDATE_QURAN_WIDGET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quran_widget_4x1_info" />
+        </receiver>
+
+        <!-- Quick Access Amaliyah Bar Widget 4x1 -->
+        <receiver
+            android:name=".widget.QuickAccessWidget4x1Provider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quick_access_widget_4x1_info" />
         </receiver>
     </application>
 

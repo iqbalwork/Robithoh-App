@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_quran_last_read_4x1_desc"
+    android:initialKeyguardLayout="@layout/widget_quran_last_read_4x1"
+    android:initialLayout="@layout/widget_quran_last_read_4x1"
+    android:minWidth="280dp"
+    android:minHeight="60dp"
+    android:previewImage="@drawable/preview_widget_quran_4x1"
+    android:resizeMode="horizontal"
+    android:targetCellWidth="4"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen" />

@@ -1,11 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
+import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.googleServices)
     alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.firebaseAppDistribution)
 }
 
 // Release signing credentials — gitignored, not committed.
@@ -31,6 +33,13 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
 
+    // Google Play In-App Updates
+    implementation(libs.play.app.update)
+    implementation(libs.play.app.update.ktx)
+
+    // Google Play In-App Review
+    implementation(libs.play.review)
+
     implementation(libs.compose.uiToolingPreview)
     debugImplementation(libs.compose.uiTooling)
 }
@@ -43,9 +52,26 @@ android {
         applicationId = "com.iqbalwork.robithoh"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
-        versionName = "1.0.0"
+        versionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 7
+        versionName = (project.findProperty("versionName") as? String) ?: "1.1.0"
     }
+
+    flavorDimensions += "environment"
+    productFlavors {
+        create("staging") {
+            dimension = "environment"
+            applicationIdSuffix = ".dev"
+            firebaseAppDistribution {
+                // releaseNotesFile = "release-notes.txt"
+                // testers = "tester@example.com"
+                // groups = "internal-testers"
+            }
+        }
+        create("production") {
+            dimension = "environment"
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -68,6 +94,11 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+            firebaseAppDistribution {
+                // releaseNotesFile = "release-notes.txt"
+                // testers = "tester@example.com"
+                // groups = "internal-testers"
+            }
         }
         getByName("debug") {
             isMinifyEnabled = false
@@ -79,5 +110,6 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }

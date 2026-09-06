@@ -37,7 +37,10 @@ fun FloatingTasbihOverlay(
 
     var customTargetInput by remember(state.targetCount) { mutableStateOf(state.targetCount.toString()) }
     val progressPercent = if (state.targetCount > 0) {
-        ((state.currentCount.toFloat() / state.targetCount.toFloat()) * 100).toInt().coerceIn(0, 100)
+        val countInLap = state.currentCount % state.targetCount
+        val fraction = if (countInLap == 0 && state.currentCount > 0) 1f
+                       else countInLap.toFloat() / state.targetCount.toFloat()
+        (fraction * 100).toInt().coerceIn(0, 100)
     } else 0
 
     Box(
@@ -179,7 +182,7 @@ fun FloatingTasbihOverlay(
                             }
                         }
 
-                        // Target Selector Row: Preset 165x (TQN) and Kustom
+                        // Target Selector Row: Preset 165x and Kustom
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -203,12 +206,6 @@ fun FloatingTasbihOverlay(
                                         color = if (is165) PutihBersih else Color.LightGray,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 12.sp
-                                    )
-                                    Spacer(modifier = Modifier.width(4.dp))
-                                    Text(
-                                        text = "(TQN)",
-                                        color = if (is165) EmasMuda else DarkMuted,
-                                        fontSize = 10.sp
                                     )
                                 }
                             }
@@ -249,7 +246,7 @@ fun FloatingTasbihOverlay(
                         TasbihCounterDisk(
                             currentCount = state.currentCount,
                             targetCount = state.targetCount,
-                            isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0,
+                            isMilestone = state.isTargetReached,
                             onTap = { onIntent(TasbihUiIntent.Increment) },
                             diskSize = 185.dp,
                             isCompact = true
@@ -263,7 +260,7 @@ fun FloatingTasbihOverlay(
                         ) {
                             Column {
                                 Text(
-                                    text = "Putaran: ${state.lapCount}x • Sesi: ${state.totalCount}x",
+                                    text = "Putaran: ${state.lapCount}x",
                                     color = SlateMuted,
                                     fontSize = 11.sp
                                 )

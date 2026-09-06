@@ -76,6 +76,7 @@ fun AmaliyahScreen(
     onIntent: (AmaliyahUiIntent) -> Unit,
     onNavigate: (ScreenKey) -> Unit,
     onBack: () -> Unit,
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
@@ -108,10 +109,17 @@ fun AmaliyahScreen(
         DzikirDetailScreen(
             state = state,
             onIntent = onIntent,
-            onOpenTasbih = { target, title ->
-                onNavigate(ScreenKey.Tasbih)
+            onOpenTasbih = { count, target, title ->
+                onNavigate(
+                    ScreenKey.Tasbih(
+                        initialCount = count,
+                        targetCount = target,
+                        dzikirTitle = title
+                    )
+                )
             },
-            onBack = { isShowingDzikirDetail = false }
+            onBack = { isShowingDzikirDetail = false },
+            tasbihViewModel = tasbihViewModel
         )
         return
     }
@@ -120,7 +128,7 @@ fun AmaliyahScreen(
         topBar = {
             IslamicHeader(
                 title = "Amaliyah & Dzikir",
-                subtitle = "Panduan Ibadah Harian & Bulanan TQN 38",
+                subtitle = "Panduan Ibadah Harian & Bulanan MTQN Suryalaya Sirnarasa PPKN III",
                 arabicTitle = "الْأَعْمَالُ وَالْأَوْرَادُ",
                 onBackClick = onBack
             )
@@ -200,7 +208,7 @@ fun AmaliyahScreen(
             item {
                 GoldCrimsonCard(
                     variant = GoldCrimsonCardVariant.GOLD_BORDER,
-                    onClick = { onNavigate(ScreenKey.Tasbih) }
+                    onClick = { onNavigate(ScreenKey.Tasbih()) }
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -226,7 +234,7 @@ fun AmaliyahScreen(
                                     color = if (isDark) PutihBersih else SlateCharcoalText
                                 )
                                 Text(
-                                    text = "Preset 165x (Dzikir Jahr TQN) & Kustom",
+                                    text = "Preset 165x (Dzikir Jahr) & Kustom",
                                     fontSize = 12.sp,
                                     color = if (isDark) DarkMuted else SlateMuted
                                 )
@@ -297,14 +305,14 @@ fun AmaliyahScreen(
                             ) {
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        text = "Dzikir Ba'da Sholat Maktubah",
+                                        text = "Dzikir Ba'da Sholat",
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 16.sp,
                                         color = MerahMerdeka
                                     )
                                     Spacer(modifier = Modifier.height(4.dp))
                                     Text(
-                                        text = "Dzikir Jahr (Nafi Itsbat 165x) & Dzikir Khofi (Ismu Dzat) lengkap dengan Hadhloroh Silsilah 38.",
+                                        text = "Dzikir Jahr (165x) & Dzikir Khofi (Ismu Dzat) lengkap dengan Hadhloroh Silsilah 38.",
                                         fontSize = 12.sp,
                                         color = if (isDark) DarkMuted else SlateMuted
                                     )

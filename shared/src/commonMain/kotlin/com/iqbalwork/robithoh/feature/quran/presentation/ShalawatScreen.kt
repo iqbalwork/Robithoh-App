@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -202,9 +203,11 @@ private fun ShalawatCard(
         Text(
             text = item.latinText,
             style = MaterialTheme.typography.bodySmall.copy(
-                color = EmasKhidmat,
-                fontSize = 12.sp,
-                lineHeight = 18.sp
+                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                color = if (isDark) PutihBersih else TextCharcoal,
+                fontSize = 13.5.sp,
+                lineHeight = 20.sp
             )
         )
 
@@ -213,8 +216,8 @@ private fun ShalawatCard(
         Text(
             text = item.indonesianTranslation,
             style = MaterialTheme.typography.bodySmall.copy(
-                color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText,
-                fontSize = 12.sp,
+                color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal,
+                fontSize = 12.5.sp,
                 lineHeight = 18.sp
             )
         )
@@ -224,9 +227,9 @@ private fun ShalawatCard(
             Text(
                 text = "Basa Sunda: ${item.sundaneseTranslation}",
                 style = MaterialTheme.typography.bodySmall.copy(
-                    color = if (isDark) DarkMuted else SlateMuted,
-                    fontSize = 11.sp,
-                    lineHeight = 16.sp
+                    color = if (isDark) PutihBersih.copy(alpha = 0.95f) else TextCharcoal,
+                    fontSize = 12.sp,
+                    lineHeight = 18.sp
                 )
             )
         }

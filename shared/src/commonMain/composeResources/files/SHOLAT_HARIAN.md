@@ -1,208 +1,108 @@
-# Sholat Harian
+## WAKTU MALAM
+
+**Waktu Malam :**
+
+1. Mandi Taubat (Pukul: 00.01 WIB)
+2. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+3. Sholat Tahiyyat Masjid 2 Roka’at
+4. Sholat Sunnah Taubat 2 Roka’at
+5. Sholat Sunnah Hajat 2 Roka’at
+6. Sholat Sunnah Tahajud 6 Roka’at
+7. Sholat Sunnah Tasbih 4 Roka’at
+8. Sholat Sunnah Witir 3 Roka’at (Duduk)
 
 ---
 
-SHOLAT HARIAN
+SHOLAT MALAM
 
-AMALIYAH SHOLAT FARDHU DAN SUNNAH GURU MURSYID
+**Keterangan :** Pilihan Waktu dimulai Pukul **00.01** dini hari.
 
-Waktu Malam :
+1. **Mandi Taubat :**
 
-Mandi Taubah (Pkl. 00.01 WIB)
-
-Sholat Sunnah Syukril Wudhu 2 rokaat
-
-Shalat Tahiyyat Masjid
-
-Sholat Sunnah Taubah 2 rokaat
-
-Sholat Sunnah Hajat 2 rokaat
-
-Sholat Sunnah Tahajud 6 rokaat
-
-Sholat Sunnah Tasbih 4 rokaat
-
-Sholat Sunnah Witir 3 rokaat (duduk)
-
-Waktu Shubuh :
-
-Sholat Sunnah Syukril Wudhu  2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Qobliyah  2 rokaat
-
-Sholat Sunnah Lidaf’il Bala 2 rokaat (duduk)
-
-Sholat Shubuh  2 rokaat
-
-Waktu Isyroq :
-
-Sholat Sunnah Syukril Wudhu 2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Isyroq 2 rokaat
-
-Sholat Sunnah Isti’adzah 2 rokaat
-
-Sholat Sunnah Istikhoroh 2 rokaat (duduk)
-
-Sholat Sunnah Isti’anah  4 rokaat
-
-Waktu Dhuha :
-
-Sholat Sunnah Syukril Wudhu  2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Dhuha 8 rokaat (2X Salam)
-
-Sholat Sunnah Kifaratul Bauli 2 rokaat (duduk)
-
-Waktu Dzuhur :
-
-Sholat Sunnah Syukril Wudhu 2 rokaat2. Sholat Sunnah Sukri Ni’mat
-
-rokaat (duduk)
-
-Sholat Sunnah Qobliyah 2 rokaat
-
-Sholat Zhuhur 4 rokaat
-
-Sholat Sunnah Ba’diyah 4 rokaat (2 duduk)
-
-Waktu ‘Ashar :
-
-Sholat Sunnah Syukril Wudhu 2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Qobliyah 2 rokaat
-
-Sholat ‘Ashar 4 rokaat
-
-Waktu Maghrib :
-
-Sholat Sunnah Syukril Wudhu  2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Qobliyah  2 rokaat
-
-Sholat Maghrib  3 rokaat
-
-Sholat Sunnah Ba’diyah  2 rokaat
-
-Sholat Sunnah Awwabin  2 rokaat
-
-Sholat Sunnah Taubah 2 rokaat
-
-Sholat Sunnah Birrul Walidain 2 rokaat
-
-Sholat Sunnah Li Hifdzil Iman  2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Waktu ‘Isya :
-
-Sholat Sunnah Qobliyah 2 rokaat
-
-Sholat ‘Isya  4 rokaat
-
-Sholat Sunnah Ba’diyah 2 rokaat (duduk)
-
-Sholat Sunnah Lidaf’il Bala 2 rokaat
-
-Sholat Sunnah Syukri Lailatul Qodar 4 rokaat 2 x salam ( Dilaksanakan pada setiap malam sepuluh akhir bulan hijriah )
-
-Sebelum Tidur (Pkl. 21.00 WIB) :
-
-Sholat Sunnah Syukril Wudhu 2 rokaat
-
-Sholat Sunnah Sukri Ni’mat 2 rokaat (duduk)
-
-Sholat Sunnah Taubah 2 rokaat
-
-Sholat Sunnah Istikhoroh 2 rokaat
-
-Sholat Sunnah Hajat 2 rokaat
-
-SHOLAT SUNAT & FARDU
-
-## WAKTU MALAM
-
-Pilihan Waktu : Mulai Jam 00.01 Dini Hari
-
-1. Mandi Taubat :
-
-Cara Mandi Seperti mandi janabat (mandi wajib)
+*Cara Mandi Seperti mandi janabat (Mandi Wajib)*
 
 Do’a Mandi Taubat :
 
 رَبِّ اَنْزِلْنِي مُنْزَلًا مُبَارَكًا وَاَنْتَ خَيْرُ الْمُنْزِلِيْنَ
 
-Robbii anzilnii munzalan mubaarokan wa Anta khoirul munziilin (QS. Al Mu’minun : 29)
+Robbi angzilnii mungzalam mubaarokaw wa Anta khoirul mungziilin (QS. Al Mu’minun : 29)
 
-2. Shalat Syukrul Wudlu’ :
+---
 
-Niat Shalat  :
+2. **Sholat Syukrul Wudhu :**
+
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
+
+Niat Sholat  :
 
 اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi Ta’alaa
+Ushollii sunnata syukril wudluu’i rok’ataini lillaahi ta’aala
 
-Jumlah Raka’at 2 Raka’at
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Taala.*
 
-Bacaan Surat ( Bebas /apa saja )
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
-Waktu Pelaksanaan ( Setiap habis wudlu selagi masih  basah )
+---
 
-3. Shalat Tahiyyat Masjid :
+3. **Sholat Tahiyyat Masjid :**
 
-Niat Shalat :
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’ala
+Ushollii sunnata tahiyyatil masjidi rok’ataini lillaahi ta’aala
 
-Jumlah Raka’at 2 Raka’at
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
 
-Bacaan Surat ( Surat bebas /apa saja )
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
-Waktu Shalat ( Dilaksanakan setiap kita masuk masjid  selagi belum duduk )
+---
 
-4. Shalat Taubat :
+4. **Sholat Taubat :**
 
-Niat Shalat :
+ - Jumlah 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ التَّوْبَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnat taubati  rok’ataini lillahi ta’ala
+Ushollii sunnatat taubati rok’ataini lillahi ta’aala
 
-Jumlah Raka’at 2 Raka’at
+Artinya: Saya niat sholat sunnah Taubat dua roka’at karena Alloh ta’ala.*
 
-Raka’at Pertama  : Surat An Nisaa’ ayat 64
+ - Roka’at pertama setelah Al-Fatihah membaca surat : An-Nisaa’ ayat 64
 
 وَلَوۡ أَنَّهُمۡ إِذ ظَّلَمُوٓاْ أَنفُسَهُمۡ جَآءُوكَ فَٱسۡتَغۡفَرُواْ ٱللَّهَ وَٱسۡتَغۡفَرَ لَهُمُ ٱلرَّسُولُ لَوَجَدُواْ ٱللَّهَ تَوَّابٗا رَّحِيمٗا
 
-Wa lau annahum izh zhalamuu anfusahum jaa’uuka fas taghfarullaaha was taghfara  lahumur rasuulu lawajadullaaha tawwabbar rahiimaa
+Wa lau annahum izh zholamuu angfusahum jaa’uuka fas taghfarullooha was taghfaro lahumur rosuulu lawajadullooha tawwaabbar rohiimaa
 
-Raka’at kedua  : Surat “Ali Imron ayat 135”
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Ali-Imron ayat 135
 
 وَٱلَّذِينَ إِذَا فَعَلُواْ فَٰحِشَةً أَوۡ ظَلَمُوٓاْ أَنفُسَهُمۡ ذَكَرُواْ ٱللَّهَ فَٱسۡتَغۡفَرُواْ لِذُنُوبِهِمۡ وَمَن يَغۡفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمۡ يُصِرُّواْ عَلَىٰ مَا فَعَلُواْ وَهُمۡ يَعۡلَمُونَ
 
-Waalladziina idzaa fa’aluu faahisyatan aw zhalamuu anfusahum dzakaruu allaaha faistaghfaruu lidzunuubihim waman yaghfiru aldzdzunuuba illaa allaahu walam yushirruu ‘alaa maa fa’aluu wahum ya’lamuuna
+Waalladziina idzaa fa’aluu faahisyatan aw zholamuu angfusahum dzakarullooha fastaghfaruu lidzunuubihim wamay yaghfirudz dzunuuba illallooh. Walam yushirruu ‘alaa maa fa’aluu wahum ya’lamuun.
 
-5. Shalat Hajat :
+---
 
-Pada tiap rokaat setelah Al-Fatihah membaca Q.S. Al-Ikhlash (Qul Huwalloohu Ahad) 11x.
+5. **Sholat Hajat :**
 
-Niat Shalat  :
+ - Jumlah 2 Roka’at
+ - Pada setiap roka’at setelah Al-Fatihah membaca Q.S. Al-Ikhlas (Qul Huwalloohu Ahad) 11x.
+
+Niat Sholat  :
 
 اُصَلِّي سُنَّةَ الْـحَاجَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatal haajati rok’ataini lillaahi ta’ala
+Ushollii sunnatal haajati rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Hajat dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Al-Ikhlash (11x)
 
 ِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
 
@@ -210,93 +110,99 @@ Ushollii sunnatal haajati rok’ataini lillaahi ta’ala
 
 Bismillaahirrohmaanirrohiim
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (11X)
+Qul huwalloohu ahad. Alloohush shomad. Lamyalid walam yuulad. Walam yakullahuu kufuwan ahad. (11x)
 
-Setelah Salam (Sujud dan memohon ampunan dari dosa, mensyukuri, nikmat dan memohon  hajatnya )
+ - Setelah Salam *(Sujud lalu memohon ampunan dari dosa, mensyukuri nikmat dan memohon hajat)*
 
-Setelah Selesai                        :
+Setelah selesai                        :
 
-Duduk dan membaca sholawat 11x ( boleh sholawat Bani Hasyim )
-
-lalu berdiri menghadap arah Baghdad (barat daya )
-
-lalu melangkah, selangkah demi selangkah sebanyak 11x langkah dimulai dengan kaki kanan, dengan bacaan:
+ - Duduk dan membaca sholawat 11x ( boleh sholawat Bani Hasyim )
+ - Lalu berdiri menghadap arah Baghdad (Barat Daya) = *“Ke arah ujung sajadah sebelah kanan”*
+ - Dilanjutkan melangkah, selangkah demi selangkah sebanyak 11x langkah dimulai dengan kaki kanan, dengan bacaan :
 
 يَا شَيْخَ مُحْيِ الدِّيْنِ
 
-Yaa Syaikha Muhyiddin
+ 1. Yaa Syaikha Muhyiddin
 
 يَا سَيِّدَ مُحْيِ الدِّيْنِ
 
-Yaa Sayyida Muhyiddin
+ 1. Yaa Sayyida Muhyiddin
 
 يَا مَوْلَانَا مُحْيِ الدِّيْنِ
 
-Yaa Maulanaa Muhyiddin
+ 1. Yaa Maulanaa Muhyiddin
 
 يَا مَخْدُوْمَ مُحْيِ الدِّيْنِ
 
-Yaa Makhduuma Muhyiddin
+ 1. Yaa Makhduuma Muhyiddin
 
 يَا خَوَاجَةَ مُحْيِ الدِّيْنِ
 
-Yaa Khawaajah Muhyiddin
+ 1. Yaa Khawaajah Muhyiddin
 
 يَا شَاهَ مُحْيِ الدِّيْنِ
 
-Yaa Syaaha Muhyiddin
+ 1. Yaa Syaaha Muhyiddin
 
 يَا دَرْوِيْشَ مُحْيِ الدِّيْنِ
 
-Yaa Darwiisya Muhyiddin
+ 1. Yaa Darwiisya Muhyiddin
 
 يَا قُطْبَ مُحْيِ الدِّيْنِ
 
-Yaa Quthba Muhyiddin
+ 1. Yaa Quthba Muhyiddin
 
 يَا سُلْطَانَ مُحْيِ الدِّيْنِ
 
-Yaa Sulthaana Muhyiddin
+ 1. Yaa Sulthaana Muhyiddin
 
 يَا غَوْثَ مُحْيِ الدِّيْنِ
 
-Yaa Ghautsa Muhyiddin
+ 1. Yaa Ghautsa Muhyiddin
 
 يَا سَيِّدَ السَّادَاتِ مُحْيِ الدِّيْنِ عَبْدَ الْقَادِرِ
 
-Yaa Sayyidas Saadaati Muhyiddin Abdul Qadir
+ 1. Yaa Sayyidas Saadaati Muhyiddin Abdul Qodir
 
-يَا عُبَيْدَ اللّٰهِ أَغِثْنِي بِإِذْنِ اللّٰهِ ، وَيَا شَيْخَ الثَّقَلَيْنِ أَغِثْنِي وَ امْدُدْنِي فِي قَضَاءِ حَوَائِجِيه
+يَا عُبَيْدَ اللّٰهِ أَغِثْنِي بِإِذْنِ اللّٰهِ ، وَيَا شَيْخَ الثَّقَلَيْنِ أَغِثْنِي وَ امْدُدْنِي فِي قَضَاءِ حَوَائِجِي*ه*
 
-Yaa ubaidillah agitsni bi idznillaah. Wayaa syaikha Tsaqolain aghitsni’ wamdudnii fii qodloo’i hawaa’iji …. (sebutkan hajatnya)
+Yaa ubaidillah agitsni bi idznillaah. Wayaa syaikha Tsaqolain aghitsni’ wamdudnii fii qodloo’i hawaa’iji*…. (sebutkan hajatnya)
 
-Wahai ‘UbaidAlloh, tolonglah aku dengan Izin اللّه, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
+**Artinya :** Wahai ‘UbaidAlloh, tolonglah aku dengan Izin Alloh, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
+
+Setelah ziarah kepada Syaikh Abdul Qodir Al-Zaelani, q.s. lalu membaca Do’a sebagai berikut :
 
 اَللّٰهُمَّ لَكَ الْكُلُّ وَبِكَ الْكُلُّ وَمِنْكَ الْكُلُّ وَاِلَيْكَ الْكُلُّ وَأَنْتَ الْكُلُّ وَكُلُّ الْكُلِّ بِرَحْمَتِكَ يَا اَرْحَمَ الرَّاحِمِيْنَ
 
 Alloohumma lakal kullu, wabikal kullu, wa minkal kullu, wa ilaikal  kullu, wa Antal kullu, wa kullul kulli birohmatika. Yaa arhamar roohimiin.
 
-“Ya اللّه, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”
+Bikaroomati sayyidisy Syaikh Muhammad Abdul Gaos Saefullohil Masluul. qoddasalloohu sirroh. Alfaatihah.
 
-6. Shalat Tahajjud :
+*“Ya Alloh, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”*
 
-Niat Shalat :
+---
+
+6. **Sholat Tahajud :**
+
+- Jumlah 6 Roka’at (Dengan 3x salam)
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ التَّهَجُّدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatat tahajjudi rok’ataini lillaahi ta’ala
+Ushollii sunnatat tahajjudi rok’ataini lillaahi ta’aala
 
-Jumlah Raka’at 6 Raka’at ( dengan 3 kali salam)
+Artinya: Saya niat sholat sunnah Tahajjud dua roka’at karena Alloh Ta’ala.*
 
-Bacaan Shalat                                     :
+Bacaan Sholat                                     :
 
-Raka’at pertama “Surat Al Baqarah ayat 284-286”
+ - Roka’at pertama pertama setelah Al-Fatihah membaca surat : Al-Baqoroh ayat 284-286”
 
 لِلّٰهِ مَا فِی السَّمٰوٰتِ وَ مَا فِی الْاَرْضِؕ-وَ اِنْ تُبْدُوْا مَا فِیْۤ اَنْفُسِكُمْ اَوْ تُخْفُوْهُ یُحَاسِبْكُمْ بِهِ اللّٰهُؕ-فَیَغْفِرُ لِمَنْ یَّشَآءُ وَ یُعَذِّبُ مَنْ یَّشَآءُؕ-وَ اللّٰهُ عَلٰى كُلِّ شَیْءٍ قَدِیْرٌ(۲۸۴) اٰمَنَ الرَّسُوْلُ بِمَاۤ اُنْزِلَ اِلَیْهِ مِنْ رَّبِّهٖ وَ الْمُؤْمِنُوْنَؕ-كُلٌّ اٰمَنَ بِاللّٰهِ وَ مَلٰٓىٕكَتِهٖ وَ كُتُبِهٖ وَ رُسُلِهٖ۫-لَا نُفَرِّقُ بَیْنَ اَحَدٍ مِّنْ رُّسُلِهٖ۫-وَ قَالُوْا سَمِعْنَا وَ اَطَعْنَا ﱪ غُفْرَانَكَ رَبَّنَا وَ اِلَیْكَ الْمَصِیْرُ(۲۸۵) لَا یُكَلِّفُ اللّٰهُ نَفْسًا اِلَّا وُسْعَهَاؕ-لَهَا مَا كَسَبَتْ وَ عَلَیْهَا مَا اكْتَسَبَتْؕ-رَبَّنَا لَا تُؤَاخِذْنَاۤ اِنْ نَّسِیْنَاۤ اَوْ اَخْطَاْنَاۚ-رَبَّنَا وَ لَا تَحْمِلْ عَلَیْنَاۤ اِصْرًا كَمَا حَمَلْتَهٗ عَلَى الَّذِیْنَ مِنْ قَبْلِنَاۚ-رَبَّنَا وَ لَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهٖۚ-وَ اعْفُ عَنَّاٙ-وَ اغْفِرْ لَنَاٙ-وَ ارْحَمْنَاٙ-اَنْتَ مَوْلٰىنَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكٰفِرِیْنَ۠
 
 Lillaahi maa fis samaawaati wa maa fil ardhi,  wa in tubduu maa fii anfusikum autukhfuuhu yuhaasibkum bihillaahu, fa yaghfiru li mayyasyaa’u  wa  yu’adzdzibu mayyasyaa’u wallaahu ‘alaa kulli syai’in qadiir. Aamanar rasuulu bi maa unzila  ilaihi mir rabbihii wal mu’minuuna, kullun aamana billaahi wa malaaikatihii wa kutubihii wa rusulihii  laa nufarriqu baina ahadim mir rusulihii wa qaaluu sami’naa wa atha’naa ghufraanaka rabbanaa wa  ilaikal mashiir. Laa yukallifullaahu nafsan illaa wus’ahaa lahaa maa kasabat wa ‘alaihaa mak  tasabat, rabbanaa laa tu’aakhidznaa innasiinaa au akhta’naa, rabbana wa laa tahmil ‘alainaa ishran kamaa hamaltahuu ‘alal lladziina min qoblinaa, robbanaa wa laa tuhammilnaa maa laa thaaqata lanaa bihii wa’fu’annaa waghfir lanaa war  hamnaa anta maulaanaa fanshurnaa ‘alal qaumil kaafiriin.
 
-Raka’at kedua “Surat Ali imran ayat 18,19, 26-27”
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Ali-Imran ayat 18,19, 26-27
 
 شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ وَٱلۡمَلَٰٓئِكَةُ وَأُوْلُواْ ٱلۡعِلۡمِ قَآئِمَۢا بِٱلۡقِسۡطِۚ لَآ إِلَٰهَ إِلَّا هُوَ ٱلۡعَزِيزُ ٱلۡحَكِيمُ
 
@@ -310,81 +216,95 @@ Innad-diina ‘ingdallohil-islaam, wa makhtalafallaziina uutul-kitaaba illaa mim
 
 Qulillaahumma maalikal-mulki tu`til-mulka mang tasyaaa`u wa tangzi’ul-mulka mim mang tasyaaa`u wa tu’izzu mang tasyaaa`u wa tuzillu mang tasyaaa`, biyadikal-khoiir, innaka ‘alaa kulli syai`ing qodiir. Tuulijul Laila fin nahaari wa tuulijun nahaara fil laili wa tukhrijul hayya minal mayyiti wa tukhrijul mayyita minal hayyi wa tarzuqu man tasyaa’u bighoiri hisaab.
 
-Do’a Shalat Tahajjud    :
+Do’a Sholat Tahajjud :
 
 اَللّٰهُمَّ بِحَقِّ صَلَاةِ التَّهَجُّدِ، وَبِحَقِّ بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ، وَبِحَقِّ سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ، اِجْعَلْنِي وَزَوْجَتِي (وَزَوْجِي) وَاَوْلَادِي مِنْ عِبَادِكَ الصَّالِحِيْنَ. اَللّٰهُمَّ اجْعَلْنِي اِيْمَانًا يُبَاشِرُ قَلْبِي، وَيَقِيْنًا دَائِمًا حَتَّى أَنَّهُ لَنْ يُصِيْبَنِي اِلَّا مَا كَتَبَ اللّٰهُ لِي بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِيْنَ.
 
 Alloohumma bihaqqi shalatit Tahajjudi, wa bihaqqi Bismillahirrahmanirrahim, wa bihaqqi sayyidina wa mawlaana Muhammadin shollallaahu ‘alaihi wa sallama, ij’alni wa zawjatii (wa zawjii) wa awlaadii min ‘ibaadikas shoolihiin. Alloohummaj’alnii iimaanan yubaasyiru qalbii, wa yaqiinan daa’iman hatta annahu layyushibanii illa maa kataballoohu lii birahmatika Yaa Arhamar Rohimiin.
 
-Ya اللّه dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad saw, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya اللّه jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah اللّه tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.
+Washollalloohu ‘alaa sayyidinaa Muhammadin wa ‘alaa aalihii wa ash haabihii wa ‘alaa saairil anbiyaa i wal mursaliin, wa ‘alaa aalihim wa ash haabihim ajma’in. birohmatika yaa arharroohimiin.*”
 
-7. Shalat Tasbih
+*Ya Alloh dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad SAW, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya Alloh jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah Alloh tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.*
 
-Niat Shalat                              :
+---
 
-اُصَلِّي سُنَّةَ التَّسْبِيْحِ رَكْعَتَيْنِ / اَرْبَعَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
+7. Sholat Tasbih
 
-ushollii sunnatat tasbiihi rok’ataini / arba’a rak’aatin lillaahi ta’ala
+ - Jumlah 4 Roka’at dengan 2x Salam
 
-Jumlah Raka’at 4 Raka’at 2x Salam (Bila dikerjakan malam hari) atau 4 Raka’at 1x salam
+Niat Sholat :
 
-(Bila dikerjakan siang hari dan tanpa Tasyahud awal)
+Ushollii sunnatat tasbiihi rok’ataini lillaahi ta’aala
 
-Bacaan surat   :
+Artinya : Saya niat sholat sunnah Tasbih dua roka’at karena Alloh Ta’ala.*
 
-Raka’at 1 = surat Al Ikhlas sebanyak 4 kali
+ - Setelah Al-Fatihah membaca surat : Al-Ikhlash :
+ - Roka’at 1 = surat Al-Ikhlas sebanyak 4x
+ - Roka’at 2 = surat Al-Ikhlas sebanyak 3x
+ - Roka’at 3 = surat Al-Ikhlas sebanyak 2x
+ - Roka’at 4 = surat Al-Ikhlas sebanyak 1x
 
-Raka’at 2 = surat Al Ikhlas sebanyak 3 kali
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
-Raka’at 3 = surat Al Ikhlas sebanyak 2 kali
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
 
-Raka’at 4 = surat Al Ikhlas sebanyak 1 kali
+Tata Cara Bacaan Tasbih
 
-Tatacara Bacaan Tasbih
+ 1. Setelah membaca AL-Fatihah dan Surah 15x
+ 2. Ruku’ 10x
+ 3. I’tidal 10x
+ 4. Sujud Pertama 10x
+ 5. Duduk diantara sujud 10x
+ 6. Sujud kedua 10x
+ 7. Duduk sebelum berdiri 10x
 
-POSISI TASBIH Setelah membaca Al Fatihah dan Surah 15 Ruku’ 10I’tidal 10 Sujud Pertama 10 Duduk diantara Sujud 10 Sujud Kedua10 Duduk Sebelum Berdiri 10 Jumlah 75 Jumlah Tasbih dalam 4 Rakaat (75 x 4) 300
+Jumlah 75x
 
-Lafadz Tasbih             :
+Jumlah Tasbih dalam 4 Roka’at (75 x 4) = 300x
+
+Bacaan Lafadz Tasbih             :
 
 سُبْحَانَ اللّٰهِ وَالْحَمْدُ لِلّٰهِ وَلَا إِلٰهَ إِلَّا اللّٰهُ وَ اللّٰهُ أَكْبَرُ
 
 Subhaanallohi wal hamdu lillaahi wa  laa ilaaha illalloohi walloohu Akbar
 
-Maha Suci اللّه, Segala Puji bagi اللّه, Tidak ada tuhan kecuali اللّه, اللّه Maha Besar
+Artinya : Maha Suci Alloh, Segala Puji bagi Alloh, Tidak ada tuhan kecuali Alloh, Alloh Maha Besar.*
 
-8. Shalat Witir ( dikerjakan dengan duduk )
+---
 
-Niat Shalat                              :
+8. Sholat Witir (Dikerjakan dengan duduk)
 
-اُصَلِّي سُنَّةَ الْوِتْرِ ثَلَاثَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
+**Keterangan :** Dikerjakan dengan duduk.
 
-Ushollii sunnatal witri tsalasa roka’atin lillaahi ta’ala
+ - Jumlah 3 Roka’at (1x salam ditambah dengan do’a Qunut)
 
-Jumlah Raka’at  3 Raka’at (1 kali salam ditambah dengan doa Qunut )
+Niat Sholat                              :
 
-Bacaan Shalat                                    :
+Ushollii sunnatal witri tsalaasa roka’aatin lillaahi ta’aala
 
-Raka’at pertama Surat Al A’laa
+Artinya : Saya niat sholat sunnah Witir tiga roka’at karena Alloh Ta’ala.*                                :
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Al-A’laa
 
 سَبِّحِ ٱسۡمَ رَبِّكَ ٱلۡأَعۡلَى ١ ٱلَّذِي خَلَقَ فَسَوَّىٰ ٢ وَٱلَّذِي قَدَّرَ فَهَدَىٰ ٣ وَٱلَّذِيٓ أَخۡرَجَ ٱلۡمَرۡعَىٰ ٤ فَجَعَلَهُۥ غُثَآءً أَحۡوَىٰ ٥ سَنُقۡرِئُكَ فَلَا تَنسَىٰٓ ٦ إِلَّا مَا شَآءَ ٱللَّهُۚ إِنَّهُۥ يَعۡلَمُ ٱلۡجَهۡرَ وَمَا يَخۡفَىٰ ٧ وَنُيَسِّرُكَ لِلۡيُسۡرَىٰ ٨ فَذَكِّرۡ إِن نَّفَعَتِ ٱلذِّكۡرَىٰ ٩ سَيَذَّكَّرُ مَن يَخۡشَىٰ ١٠ وَيَتَجَنَّبُهَا ٱلۡأَشۡقَى ١١ ٱلَّذِي يَصۡلَى ٱلنَّارَ ٱلۡكُبۡرَىٰ ١٢ ثُمَّ لَا يَمُوتُ فِيهَا وَلَا يَحۡيَىٰ ١٣ قَدۡ أَفۡلَحَ مَن تَزَكَّىٰ ١٤ وَذَكَرَ ٱسۡمَ رَبِّهِۦ فَصَلَّىٰ ١٥ بَلۡ تُؤۡثِرُونَ ٱلۡحَيَوٰةَ ٱلدُّنۡيَا ١٦ وَٱلۡأٓخِرَةُ خَيۡرٞ وَأَبۡقَىٰٓ ١٧ إِنَّ هَٰذَا لَفِي ٱلصُّحُفِ ٱلۡأُولَىٰ ١٨ صُحُفِ إِبۡرَٰهِيمَ وَمُوسَىٰ ١
 
 Sabbihisma Robbikal A’la, Alladzii Kholaqo Fasaw-waa, Wal-Ladzii Qoddaro Fa-Hadaa, Wal-Ladzii Akhrojal Mar’aa, Faja’alahu Ghu-Tsaa-an Ahwaa, Sanuqri-uka Falaa Tansaa, Illaa Maa Syaa-Allooh, Innahu Ya’lamul Jahro Wamaa Yakh-faa, Wanuyas-siruka Lil-Yusroo, Fadzak-kir In-nafa’atidz Dzikroo, Sayadz-dzak-karu May-Yakhsyaa, Wa Yatajan-nabuhal Asy-qoo, Al-Ladzi Yashlan-naarol Kubroo, Tsumma Laa Yamuu-tu Fii-haa Walaa Yahyaa, Qod Aflaha Mang-Tazak-kaa, Wadzakarosma Robbihi Fa Shollaa, Bal Tu-tsiruunal Hayaatad-Dunyaa, Wal Aa-khirotu Khoiruw wa Abqoo, Inna Haadzaa Lafish-Shuhufil Uu-laa, Shuhufi Ibroohiima wa Muusaa.
 
-Raka’at Kedua Surat Al Kaafirun
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Al-Kafirun
 
 قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
 
 Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
 
-Raka’at Ketiga Surat Al Ikhlas
+ - Roka’at ketiga setelah Al-Fatihah membaca surat : Al-Ikhlash
 
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
 Bismillaahirrohmaanirrohiim
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (11X)
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
 
-Bacaan Doa Qunut  :
+**Bacaan Doa Qunut  :**
 
 اَللّٰهُمَّ اهْدِنَا فِيْمَنْ هَدَيْتَ
 
@@ -396,7 +316,7 @@ Wa ‘Aa-finaa Fiiman ‘Aa-faiit,
 
 وَتَوَلَّنَا فِيْمَنْ تَوَلَّيْتَ
 
-Wa Tawallanaa Fiiman Tawallaiit,
+Wa*Tawallanaa*Fiiman Tawallaiit,
 
 وَبَارِكْ لَنَا فِيْمَا أَعْطَيْتَ
 
@@ -410,11 +330,11 @@ Wa Qinaa Washrif ‘Annaa bi Rohmatika Syarro Maa Qodhoiit,
 
 Fa-Innaka Taqdhii Walaa Yuqdhoo ‘Alaiik,
 
-عَلَيْكَ وَ إِنَّهُ لَايَذِلُّ مَنْ وَالَيْتَ
+وَ إِنَّهُ لَايَذِلُّ مَنْ وَالَيْتَ
 
 Wa-Innahuu Laa Yadzillu Mawwaalaiit,
 
-وَالَيْتَ وَلَا يَعِزُّ مَنْ عَادَيْتَ
+وَلَا يَعِزُّ مَنْ عَادَيْتَ
 
 Walaa Ya’izzu Man ‘Aa-daiit,
 
@@ -446,91 +366,182 @@ Wa Tawakkalnaa ‘Alal Hayyil Ladzii Laa Yamuut,
 
 Wa Naj-jinaa Minal Qoumizh Zhoolimiin,
 
-وَصَلَّى اللهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى اٰلِهٖ وَصَحْبهٖ وَسَلَّمَ
+Washollalloohu ‘alaa sayyidinaa Muhammadin wa ‘alaa aalihii wa ash haabihii wa ‘alaa saairil anbiyaa i wal mursaliin, wa ‘alaa aalihim wa ashaabihim ajma’in.
 
-Wa Sholalloohu ‘Alaa Sayyidinaa Muhammadin wa ‘Alaa Aalihii wa Shohbihii wa Sallam.
+*Ya Alloh berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).*
 
-Ya اللّه berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).
+*Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga Alloh curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.*
 
-Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga اللّه curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.
-
-Setelah Selesai Zikir hingga menjelang subuh dan perbanyak membaca :
+Setelah selesai amaliyah malam lanjut dzikir harian, kemudian berdzikir hingga menjelang subuh perbanyak membaca do’a dibawah ini:
 
 اَلْمُحِيْطُ اَلرَّبُّ اَلشَّهِيْدُ اَلْحَسِيْبُ اَلْفَعَّالُ اَلْـخَلَّاقُ اَلْـخَالِقُ اَلْبَارِئُ اَلْمُصَوِّرُ
 
-Al Muhiithu Ar Robbu Asy Syahiidu Al Hasibu Al Fa’aalu Al Khollaaqu Al Khooliqu Al Baari’u Al Mushowwiru
+Al Muhiithu Ar Robbu Asy Syahiidu Al Hasibu Al Fa’aalu Al Khollaaqu Al Khooliqu Al Baari’u Al Mushowwir
 
-Maha Meliputi, Maha Mendidik, Maha Menyaksikan, Maha Menghitung, Maha Melakukan Segala Hal, Maha Menciptakan, Maha Menciptakan, Maha Melepaskan, Maha Membentuk
+**Artinnya :***Maha Meliputi, Maha Mendidik, Maha Menyaksikan, Maha Menghitung, Maha Melakukan Segala Hal, Maha Menciptakan, Maha Menciptakan, Maha Melepaskan, Maha Membentuk.*
 
 ## WAKTU SHUBUH
 
-Shalat Sunnah Subuh
+**Waktu Shubuh :**
 
-Niat Shalat                              :
+1. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+2. Sholat Sunnah Tahiyyat Masjid 2 Roka’at
+3. Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+4. Sholat Sunnah Shubuh 2 Roka’at
+5. Sholat Sunnah Lidaf’il Bala 2 Roka’at (Duduk)
+6. Sholat Fardhu Shubuh 2 Roka’at
+7. Dzikir Harian
+
+---
+
+Waktu Shubuh
+
+1. **Sholat Sunnah Syukrul Wudhu :**
+
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
+
+Niat Sholat  :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+2. **Sholat Tahiyyat Masjid :**
+
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+3. Sholat Sunnah Syukur Ni’mat
+
+**Keterangan :** Dengan posisi duduk
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat                           :
+
+اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+
+waaataakum min kulli maa sa-altumuuhu
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
+
+wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+
+Setelah Salam langsung sujud sambil berdo’a : :
+
+اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
+
+Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+---
+
+4. Sholat Sunnah Shubuh
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ الصُّبْحِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatas subhi rok’ataini lillaahi ta’alaa
+Artinya : Saya niat sholat sunnah Subuh dua roka’at karena Alloh Ta’ala.*
 
-Jumlah Raka’at  : 2 Raka’at
-
-Bacaan Shalat                         :
-
-Raka’at pertama : Surat Al Qadar
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Qodar
 
 إِنَّآ أَنزَلۡنَٰهُ فِي لَيۡلَةِ ٱلۡقَدۡرِ ١ وَمَآ أَدۡرَىٰكَ مَا لَيۡلَةُ ٱلۡقَدۡرِ ٢ لَيۡلَةُ ٱلۡقَدۡرِ لَيۡلَةُ ٱلۡقَدۡرِ خَيۡرٞ مِّنۡ ٣ أَلۡفِ شَهۡرٖ تَنَزَّلُ ٱلۡمَلَٰٓئِكَةُ بِإِذۡنِ رَبِّهِم مِّن كُلِّ أَمۡرٖ ٤ سَلَٰمٌ هِيَ حَتَّىٰ مَطۡلَعِ ٱلۡفَجۡرِ ٥
 
 Innaa Ang-zalnaahu Fii Lailatil-Qodr, Wamaa Adrooka Maa Lailatul-Qodr, Lailatul-Qodri Khoirum Min Alfi Syahr, Tanazzalul Malaa-ikatu War-Ruuhu Fii-haa Bi-izni Robbihim Ming-Kulli Amring Salaam, Salaamun Hiya Hatta Math-la’il Fajr.
 
-Raka’at kedua    : Surat Al Kautsar
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Al-Kautsar
 
 اِنَّآ اَعْطَيْنٰكَ الْكَوْثَرَۗ – ١ فَصَلِّ لِرَبِّكَ وَانْحَرْۗ – ٢ اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ – ٣
 
 innā a’ṭainākal-kauṡar, fa ṣalli lirabbika wan-ḥar, inna syāni`aka huwal-abtar
 
-Shalat Lidaf’il Bala
+---
 
-Niat Shalat:
+5. Sholat Sunnah Lidaf’il Bala
+
+**Keterangan :**Dengan posisi duduk
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةً لِدَفْعِ الْبَلَاءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnata lidaf’il balaa’i rok’ataini lillaahi ta’alaa
 
-Jumlah Raka’at 2 Raka’at (Dengan posisi duduk)
+Artinya : Saya niat sholat sunnah Lidaf’il Bala’ dua roka’at karena Alloh Ta’ala*
 
-Bacaan Shalat  ;
-
-Raka’at pertama Surat Al Insyirah
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Insyiroh
 
 أَلَمۡ نَشۡرَحۡ لَكَ صَدۡرَكَ ١ وَوَضَعۡنَا عَنكَ وِزۡرَكَ ٢ ٱلَّذِيٓ أَنقَضَ ظَهۡرَكَ ٣ وَرَفَعۡنَا لَكَ ذِكۡرَكَ ٤ فَإِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرًا ٥ إِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرٗا ٦ فَإِذَا فَرَغۡتَ فَٱنصَبۡ ٧ وَإِلَىٰ رَبِّكَ فَٱرۡغَب ٨
 
 Alam Nasyroh Laka Shodrok, Wawadho’naa ‘Ang-Ka Wizrok, Alladzii Ang-qodho Zhohrok, Warofa’naa Laka Dzikrok, Fa-Inna Ma’al-‘Usri Yusron, Inna Ma’al-‘Usri Yusroo, Fa-Idzaa Faroghta Fangshobb, Wa-Ilaa Robbika Far-Ghobb.
 
-Raka’at kedua Surat Al Fiil
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Al-Fiil
 
 أَلَمۡ تَرَ كَيۡفَ فَعَلَ رَبُّكَ بِأَصۡحَٰبِ ٱلۡفِيلِ ١ أَلَمۡ يَجۡعَلۡ كَيۡدَهُمۡ فِي تَضۡلِيلٖ ٢ وَأَرۡسَلَ عَلَيۡهِمۡ طَيۡرًا أَبَابِيلَ ٣ تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ ٤ فَجَعَلَهُمۡ كَعَصۡفٖ مَّأۡكُولِۢ ٥
 
 Alam Taro Kaifa Fa’ala Robbuka bi Ash-haabil Fiil, Alam Yaj-‘al Kaidahum Fii Tadh-liil, Wa Arsala ‘Alaihim Thoiron Abaabiil, Tarmii-him Bihijaa-rotim Ming SijJiil, Faja-‘alahum Ka-‘Ashfim Ma-kuul.
 
-Fardhu Subuh
+---
 
-Jumlah Raka’at 2 Raka’at
+6. Sholat Fardhu Subuh
 
-Bacaan Shalat ;
+ - Jumlah : 2 Roka’at
 
-Raka’at pertama Surat Ad Dhuha
+Niat Sholat :
+
+Ushollii fardhus shubhi rok’ataini adaa’an lillaahi ta’aala
+
+Artinya : Saya niat sholat fardhu subuh dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ad-Dhuha
 
 وَٱلضُّحَىٰ ١ وَٱلَّيۡلِ إِذَا سَجَىٰ ٢ مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ ٣ وَلَلۡأٓخِرَةُ خَيۡرٞ لَّكَ مِنَ ٱلۡأُولَىٰ ٤ وَلَسَوۡفَ يُعۡطِيكَ رَبُّكَ فَتَرۡضَىٰٓ ٥ أَلَمۡ يَجِدۡكَ يَتِيمٗا فََٔاوَىٰ ٦ وَوَجَدَكَ ضَآلّٗا فَهَدَىٰ ٧ وَوَجَدَكَ عَآئِلٗا فَأَغۡنَىٰ ٨ فَأَمَّا ٱلۡيَتِيمَ فَلَا تَقۡهَرۡ ٩ وَأَمَّا ٱلسَّآئِلَ فَلَا تَنۡهَرۡ ١٠ وَأَمَّا بِنِعۡمَةِ رَبِّكَ فَحَدِّثۡ ١١
 
 Wadh-Dhuhaa, Wallaili Idzaa Sajaa, Maa Wadda-‘aka Robbuka Wamaa Qolaa, Wa Lal-Aakhirotu Khoirul Laka Minal Uu-laa, Walasaufa Yu’thii-ka Robbuka Fatar-dhoo, Alam Yajid-ka Yatii-mang Fa-aa-waa, Wawajadaka Dhoo-lang Fa-Hadaa, Wawajadaka ‘Aa-ilang Fa-Aghnaa, Fa-Ammal Yatiima Falaa Taqhar, Wa-Ammas Saa-ila Falaa Tanhar, Wa Ammaa bi Ni’mati Robbika Fa-Haddits.
 
-Raka’at kedua Surat Al Insyirah
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Al-Insyiroh
 
 أَلَمۡ نَشۡرَحۡ لَكَ صَدۡرَكَ ١ وَوَضَعۡنَا عَنكَ وِزۡرَكَ ٢ ٱلَّذِيٓ أَنقَضَ ظَهۡرَكَ ٣ وَرَفَعۡنَا لَكَ ذِكۡرَكَ ٤ فَإِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرًا ٥ إِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرٗا ٦ فَإِذَا فَرَغۡتَ فَٱنصَبۡ ٧ وَإِلَىٰ رَبِّكَ فَٱرۡغَب ٨
 
 Alam Nasyroh Laka Shodrok, Wawadho’naa ‘Ang-Ka Wizrok, Alladzii Ang-qodho Zhohrok, Warofa’naa Laka Dzikrok, Fa-Inna Ma’al-‘Usri Yusron, Inna Ma’al-‘Usri Yusroo, Fa-Idzaa Faroghta Fangshobb, Wa-Ilaa Robbika Far-Ghobb.
 
-Catatan: Pada Rokaat ke-2, saat bangun dari ruku’ (i’tidal) membaca Do’a Qunut
+Catatan: Pada Roka’at ke-2, saat bangun dari ruku’ (i’tidal) membaca Do’a Qunut
 
 اَللّٰهُمَّ اهْدِنَا فِيْمَنْ هَدَيْتَ
 
@@ -556,11 +567,11 @@ Wa Qinaa Washrif ‘Annaa bi Rohmatika Syarro Maa Qodhoiit,
 
 Fa-Innaka Taqdhii Walaa Yuqdhoo ‘Alaiik,
 
-عَلَيْكَ وَ إِنَّهُ لَايَذِلُّ مَنْ وَالَيْتَ
+وَ إِنَّهُ لَايَذِلُّ مَنْ وَالَيْتَ
 
 Wa-Innahuu Laa Yadzillu Mawwaalaiit,
 
-وَالَيْتَ وَلَا يَعِزُّ مَنْ عَادَيْتَ
+وَلَا يَعِزُّ مَنْ عَادَيْتَ
 
 Walaa Ya’izzu Man ‘Aa-daiit,
 
@@ -596,24 +607,21 @@ Wa Naj-jinaa Minal Qoumizh Zhoolimiin,
 
 Wa Sholalloohu ‘Alaa Sayyidinaa Muhammadin wa ‘Alaa Aalihii wa Shohbihii wa Sallam.
 
-Setelah Shalat Fardhu : Zikir Harian
+Setelah Salam dilanjutkan Dzikir Harian sesuai dengan tuntunan Amaliyah Mursyid 111.
+Melaksanakan amalan baik dan bermanfaat, tidak boleh tidur lagi setelah subuh.
 
-Setelah salam dilanjutkan Dzikir Jahar dan setelah Tawajjuh, dilanjutkan dengan membaca:
+Setelah salam dilanjutkan Dzikir Jahar juga setelah Tawajjuh, dilanjutkan dengan membaca :
 
 ِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 عَسَى اللهُ أَنْ يَّجْعَلَ بَيْنَكُمْ وَ بَيْنَ الَّذِيْنَ عَادَيْتُمْ مِّنْهُمْ مَّوَدَّةً، وَاللهُ قَدِيْرٌ وَاللهُ غَفُوْرٌرَّحِيْمٌ، رَبِّيْ إِنِّي ظَلَمْتُ نَفْسِي فَاغْفِرْلِي ذَنْبِي لَاإِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِيْنَ
 
-Bismillaahirrohmaanirrohiim
-
-‘Asalloohu Ayyaj’ala Bainakum Wa Bainalladziina ‘Aadaitum Minhum Mawaddah, Walloohu Qodiirun Walloohu Ghofuurur Rohiim, Robbii Innii Zholamtu Nafsii, Faghfirlii Dzambii, Laa Ilaaha Illa Anta Subhaanaka Innii Kuntu Minazh-Zhoolimii (3x)
+Bismillaahirrohmaanirrohiim*‘Asalloohu Ayyaj’ala Bainakum Wa Bainalladziina ‘Aadaitum Minhum Mawaddah, Walloohu Qodiirun Walloohu Ghofuurur Rohiim, Robbii Innii Zholamtu Nafsii, Faghfirlii Dzambii, Laa Ilaaha Illa Anta Subhaanaka Innii Kuntu Minazh-Zhoolimii (3x)
 
 اَللّٰهُمَّ صَحًّا صَحًّا صَحًّا وَّحًا بَحَا حم لَايُنْصَرُوْنَ وَجَعَلْنَا مِنْ بَيْنِ أَيْدِيْهِمْ سَدًّا وَّمِنْ خَلْفِهِمْ سَدًّا فَأَغْشَيْنٰهُمْ فَهُمْ لَايُبْصِرُوْنَ كهيعص حم عسق لَايُصَدَّعُوْنَ عَنْهَا وَلَايُنْزِفُوْنَ يَارَبُّ يَارَبُّ يَارَبُّ وَلَاحَوْلَ وَلَاقُوَّةَ إِلَّابِاللهِ الْعَلِيِّ الْعَظِيْمِ
 
 Alloohumma Shohhang-Shohhang-Shohhaw Wahamm Bahaa Haa-Miim, Laa Yungshoruuna Wa Ja’alnaa Mim Baini Aidiihim Saddaw-Wamin Kholfihim Saddang Fa Aghsyainahum Fahum Laa Yubshiruun, Kaaf-Haa-Yaa-‘Aiin-Shood, Haa-Miim-‘Aiin-Siin-Qoof, Laa Yushod-Da-’Uuna ‘Anhaa Wa Laa Yung-Zifuuna Yaa Robbu, Yaa Robbu, Yaa Robbu, Wa Laa Haula Wa Laa Quwwata Illaa Billaahil’aliyyil ‘Azhiim(3x)
 
 بِسْمِ اللهِ الشَّافِي بِسْمِ اللهِ الْكَافِي بِسْمٍ اللهِ الْمَعَافِي بِسْمِ اللهِ الَّذِي لَايَضُرُّ مَعَ
-
 اسْمِهِ شَيْءٌ فِى اْلاَرْضِ وَلَافِى السَّمَاءِ وَهُوَ السَّمِيْعُ الْعَلِيْمُ
 
 Bismillaahisy Syaafii, Bismillaahil Kaafii, Bismillaahil Ma’aafii, Bis-Millaahilladzii Laa Yadhurru Ma’asmihii Syai-Ung Fil Ardhi Wa Laa Fis Samaa-I Wa Huwas Samii’ul ‘Aliim (3x)
@@ -630,225 +638,313 @@ Robbanaftah Bainanaa Wa Baina Qouminaa Bil Haqqi Wa Anta Khoirul Faatihiin (3x)
 
 Robbanaa Afrigh ‘Alainaa Shobrow Wa Tsabbit Aqdaamanaa Wangshurnaa ‘Alal Qoumil Kaafiriin… (3x)
 
-Bil karomah Pangersa Abah Aos, Al-Fatihah…
+Bil karomah Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohum, Al-Fatihah…
 
 ## WAKTU ISYROQ
 
-Pilihan Waktu : Jam 06.00
+**Waktu Isyroq / Terbit Matahari :**
 
-Shalat Isyraq
+- Sholat Sunnah Isyroq 2 Roka’at
+- Sholat Sunnah Isti’adzah 2 Roka’at
+- Sholat Sunnah Istikharoh 2 Roka’at (Duduk)
+- Sholat Sunnah Isti’anah 4 Roka’at
+- Sholat Sunnah Syukur Kabinet Merah Putih 2 Roka’at
 
-Niat Shalat                                :
+---
+
+Waktu Isyroq / Terbit Matahari
+
+Pilihan Waktu :Jam 06.00*
+
+4. Sholat Isyroq
+
+ - Jumlah : 2 Roka’at
+ - Niat Sholat
+ - Roka’at pertama setelah Al-Fatihah membaca surat : An-Nuur (Ayat 35)
+ - Roka’at kedua setelah Al-Fatihah membaca surat : An-Nuur (Ayat 36-38)
 
 اُصَلِّي سُنَّةَ الْإِشْرَاقِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatal Isyroqi rok‘ataini lillaahi ta’alaa
-
-Jumlah Raka’at 2 Raka’at
-
-Bacaan Shalat       :
-
-Raka’at pertama “Surat An-Nuur ayat 35”
-
 ٱللَّهُ نُورُ ٱلسَّمَٰوَٰتِ وَٱلۡأَرۡضِۚ مَثَلُ نُورِهِۦ كَمِشۡكَوٰةٖ فِيهَا مِصۡبَاحٌۖ ٱلۡمِصۡبَاحُ فِي زُجَاجَةٍۖ ٱلزُّجَاجَةُ كَأَنَّهَا كَوۡكَبٞ دُرِّيّٞ يُوقَدُ مِن شَجَرَةٖ مُّبَٰرَكَةٖ زَيۡتُونَةٖ لَّا شَرۡقِيَّةٖ وَلَا غَرۡبِيَّةٖ يَكَادُ زَيۡتُهَا يُضِيٓءُ وَلَوۡ لَمۡ تَمۡسَسۡهُ نَارٞۚ نُّورٌ عَلَىٰ نُورٖۚ يَهۡدِي ٱللَّهُ لِنُورِهِۦ مَن يَشَآءُۚ وَيَضۡرِبُ ٱللَّهُ ٱلۡأَمۡثَٰلَ لِلنَّاسِۗ وَٱللَّهُ بِكُلِّ شَيۡءٍ عَلِيمٞ
-
-Allaahu nuurus samaawaati wal ardhi matsalu  nuurihii kamisykaatin fiihaa mishbaah, Al Mishbaahu fii zujaajatin, azzujaajatu ka annahaa kaukabun durriyyuy  yuuqadu min syaajaratin mubaarakatin zaituunatil laa syarqiyyatiw wa laa gharbiyyatiy yakaadu  zaituhaa yudhii’u wa lau lam tamsashu naarun, nuurun ‘alaa nuuriy yahdillaahu li nuurihii may  yasyaa’u wa yadhribullaahul amtsaala lin naasi wallaahu bi kulli syai’in ‘aliim.
-
-Raka’at kedua “Surat  An-Nuur ayat 36-38”
 
 فِي بُيُوتٍ أَذِنَ ٱللَّهُ أَن تُرۡفَعَ وَيُذۡكَرَ فِيهَا ٱسۡمُهُۥ يُسَبِّحُ لَهُۥ فِيهَا بِٱلۡغُدُوِّ وَٱلۡأٓصَالِ ٣٦ رِجَالٞ لَّا تُلۡهِيهِمۡ تِجَٰرَةٞ وَلَا بَيۡعٌ عَن ذِكۡرِ ٱللَّهِ وَإِقَامِ ٱلصَّلَوٰةِ وَإِيتَآءِ ٱلزَّكَوٰةِ يَخَافُونَ يَوۡمٗا تَتَقَلَّبُ فِيهِ ٱلۡقُلُوبُ وَٱلۡأَبۡصَٰرُ ٣٧ لِيَجۡزِيَهُمُ ٱللَّهُ أَحۡسَنَ مَا عَمِلُواْ وَيَزِيدَهُم مِّن فَضۡلِهِۦۗ وَٱللَّهُ يَرۡزُقُ مَن يَشَآءُ بِغَيۡرِ حِسَابٖ ٣٨
 
-Fii buyuutin adzinallaahu an turfa’a wa yudzkara  fiihasmuhuu yusabbihu lahuu fiihaa bil ghuduwwi wal aashaal. Rijaalul laa tulhiihim tijaaratuw wa  laa bai’un ‘an dzikrillaahi wa iqaamish shalaati wa iitaa’iz zakaati yakhoofuuna yawman tataqollabu fiihil quluubu wal abshaar. Li  yajziyahumullaahu ahsana maa ‘amiluu wa yaziidahum min fadhlihi wallaahu yarzuqu mayyasyaa’u  bi ghairi hisaab.
+Ushollii sunnatal Isyroqi rok‘ataini lillaahi ta’aala
 
-Shalat Isti’adzah
+Allaahu nuurus samaawaati wal ardhi matsalu  nuurihii kamisykaatin fiihaa mishbaah, Al Mishbaahu fii zujaajatin, azzujaajatu ka annahaa kaukabun durriyyuy  yuuqadu min syaajaratin mubaarakatin zaituunatil laa syarqiyyatiw wa laa gharbiyyatiy yakaadu  zaituhaa yudhii’u wa lau lam tamsashu naarun, nuurun ‘alaa nuuriy yahdillaahu li nuurihii may  yasyaa’u wa yadhribullaahul amtsaala lin naasi wallaahu bi kulli syai’in ‘aliim.
 
-Niat Shalat                              :
+Fii buyuutin adzinallaahu an turfa’a wa yudzkara  fiihasmuhuu yusabbihu lahuu fiihaa bil ghuduwwi wal aashaal. Rijaalul laa tulhiihim tijaaratuw wa  laa bai’un ‘an dzikrillaahi wa iqaamish shalaati wa iitaa’iz zakaati yakhoofuuna yawman tataqollabu fiihil quluubu wal abshaar. Li  yajziyahumullaahu ahsana maa ‘amiluu wa yaziidahum min fadhlihi wallaahu yarzuqu mayyasyaa’u  bi ghairi hisaab*.
+
+---
+
+5. Shalat Isti’adzah
+
+ - Jumlah : 2 Roka’at
+ - Niat Sholat
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Falaq
+ - Roka’at kedua setelah Al-Fatihah membaca surat : An-Naas
 
 اُصَلِّي سُنَّةَ الْإِسْتِعَاذَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatal isti’adzati rok’ataini lilllaahi ta’alaa
-
-Jumlah Raka’at  2 Raka’at
-
-Bacaan Shalat            :
-
-Raka’at pertama Surat  Al Falaq
-
 قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
-
-Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad
-
-Raka’at kedua  Surat An Naas
 
 قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ
 
-Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas, Minal Jinnati Wannaas.
-
-Shalat Istikharah 2 Raka’at
-
-Niat Shalat                             :
-
-اُصَلِّي سُنَّةَ الْإِسْتِخَارَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
-
-Ushollii sunnatal istikhoroti rok’ataini  lillaahi ta’alaa
-
-Jumlah Raka’at 2 Raka’at (dengan posisi duduk)
-
-Bacaan Shalat  Setiap Raka’at  Ayat kursi 1 kali, Surah Al ikhlas 7 kali
-
-للَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ
-
-وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ
-
-وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ
-
-حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
-
-Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ
-
-Bismillaahirrohmaanirrohiim
-
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (7X)
-
-Sholat Isti’anah
-
-Shalat Isti’anah adalah shalat untuk memohon pertolongan mengenai masalah dan kebutuhan apapun. Dilakukan 4 rakaat dengan 2 kali salam. ًWaktu pelaksanaannya kapan saja, dan lebih baik dilakukan setelah shalat Isyroq.
-
-Niatnya sebagai berikut :
-
-اُصَلِّى سُنَّةً اِسْتِعَانَهْ رَكْعَتَيْنِ لِلهِ تَعَالَى اَللهُ اَكْبَرُ
-
-Usholi sunnatal Istiánah rokátaini lillahi taálaa. Allohu akbar
-
-Surat yang dibaca setelah Al Fatihah adalah : Al Kautsar (17x), Al Ikhlash (5x), Al Falaq (1x) dan An Nas (1x).
-
-إِنَّآ أَعۡطَيۡنَٰكَ ٱلۡكَوۡثَرَ ١ فَصَلِّ لِرَبِّكَ وَٱنۡحَرۡ ٢ إِنَّ شَانِئَكَ هُوَ ٱلۡأَبۡتَرُ ٣
-
-In-naa a’thoi-naa kal-kau-tsar, Fa-shol-li li-robbi-ka wan-har, in-na syaa-ni-aka hu-wal-abtar. (17X)
-
-قُلۡ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ
-
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (5X)
-
-قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
+Ushollii sunnatal isti’adzati rok’ataini lilllaahi ta’alaa
 
 Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad
 
-قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي
+Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas, Minal Jinnati Wannaas.
 
+---
+
+6. Shalat Istikharoh
+
+**Keterangan :**Dilakukan dengan posisi duduk
+
+ - Jumlah : 2 Roka’at
+ - Niat Sholat
+ - Setiap roka’at setelah Al-Fatihah membaca surat : Ayat kursi (1x) & Al-Ikhlas (7x).
+
+اُصَلِّي سُنَّةَ الْإِسْتِخَارَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+للَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ
+وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ
+وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ
+حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
+
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ
+
+Ushollii sunnatal istikhoroti rok’ataini  lillaahi ta’alaa
+
+Bismillaahirrohmaanirrohiim
+
+Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim
+
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (7x)
+
+---
+
+7. Sholat Isti’anah
+
+ - Jumlah : 4 Roka’at dengan 2x salam
+ - Niat Sholat
+ - Setiap roka’at setelah Al-Fatihah membaca surat : Al-Kautsar (17x), Al-Ikhlash (5x), Al-Falaq (1x) & An-Nas (1x).
+
+اُصَلِّى سُنَّةً اِسْتِعَانَهْ رَكْعَتَيْنِ لِلهِ تَعَالَى اَللهُ اَكْبَرُ
+
+إِنَّآ أَعۡطَيۡنَٰكَ ٱلۡكَوۡثَرَ ١ فَصَلِّ لِرَبِّكَ وَٱنۡحَرۡ ٢ إِنَّ شَانِئَكَ هُوَ ٱلۡأَبۡتَرُ ٣
+
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ
+
+قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
+
+قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي
 يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ
+
+Usholi sunnatal Istiánah rokátaini lillahi taálaa.
+
+In-naa a’thoi-naa kal-kau-tsar, Fa-shol-li li-robbi-ka wan-har, in-na syaa-ni-aka hu-wal-abtar. (17x)
+
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (5x)
+
+Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad
 
 Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas,Minal Jinnati Wannaas.
 
-Selesai Salam  (Sambil duduk terus membaca) :
+---
 
-قَلْبِي قُطْبِي ؛ وَقَالَبِي لُبْنَانِي ؛ سِرِّي حَضِرِي ؛ عَيْنُهُ عِرْفَانِي؛ هَارُوْنُ عَقْلِي ؛ وَكَلِيْمِي رُوْحِي؛ وَفِرْعَوْنُ نَفْسِي ؛ وَالْهَوَى هَامَانِي
+8. Sholat Sunnah Syukur Kabinet Merah Putih
 
-اَللّٰهُمَّ نَوِّرْ قَلْبِي بِنُوْرِ هِدَايَتِكَ ؛ كَمَا نَوَّرْتَ الْأَرْضَ بِنُوْرِ شَمْسِكَ اَبَدًا.
+ - Jumlah : 2 Roka’at
+ - Niat Sholat :
 
-Qolbii quthbii, waqoolabii lubnaani, sirrii hadhirii, ‘ainuhu ‘irfaanii, Haaruunu aqlii, wakalimii ruuhii, wa fir’aunii nafsii, wal hawaa haamaanii (7x)
+Usholli sunnatas syukri Kabinet Merah Putih rok’ataini mustaqbilal Ka’bah Lillaahi ta’aala
 
-Alloohumma nawwir qolbii bi nuuri hidaayatika, ka maa nawwartal ardho bi nuuri syamsika abadan.
-
-Hatiku adalah qutubku, acuanku adalah kehendakku, rahasiaku adalah kehadiranku, dimana penglihatannya adalah pengetahuanku, Nabi Harun menjadi akalku, yang berbicara kepadaku adalah ruhku, Fir’aun adalah nafsuku dan keinginan nafsuku menjadi seperti Haman bagiku.
-
-Ya اللّه cahayailah hatiku dengan Cahaya Hidayah-Mu, sebagaimana Engkau cahayai bumi selamanya dengan cahaya matahari-Mu.
-
-Setelah itu membaca doa di bawah ini 3x :
-
-اَللهُمَّ صَلِّ وَ سَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَ ادْفَعْ عَنَّا مِنَ الْبَلاءِ اْلمُبْرَمِ اِنَّكَ عَلَى كُلِّ شَيْئٍ قَدِيْرٌ . ااَللُمَّ اِنِّى اَعُوْذُبِكَ بِكَلِمَاتِكَ التَّامَّاتِ كُلِّهَا مِنَ الرِّيْحِ اْلاَحْمَرِ وَ مِنَ الدَّاءِ اْلاَكْبَرِ فِى النَّفْسِ وَ الدَّمِ وَ اللَّحْمِ وَ الْعَظْمِ وَ الْجُلُوْدِ وَ الْعُرُوْقِ . سُبْحَانَكَ اِذَا قَضَيْتَ اَمْرًا اَنْ تَقُوْلَ لَهُ كُنْ فَيَكُوْنُ . اَللهُ اَكْبَرُ اَللهُ اَكْبَرُ اَللهُ اَكْبَرُ بِرَحْمَتِكَ يَا اَرْحَمَ الرَّاحِمِيْنَ.
-
-Allohumma sholli wa sallim ‘ala sayyidina Muhammadin wadfa’ annaa minal balaa-ilmubrohmi innaka ‘alaa kulli syain qodiir. Allohumma inni a’uudzu bika bikalimaatikattaammaati kullihaa minarriihil ahmari wa minadda-il akbari finnafsi waddami wAllohmi wal’uzhmi waljuluudi wal’urrqi subhaanaka idzaa qodhoyta amron antaquula lahuu kun fayakuun.. Alloohu akbar 3x
-
-Birohmatika yaa arhamarrohimiin.
-
-Do’a tambahan Sesuai hajat
-
-## WAKTU DHUHA
-
-Sholat Sunnah Syukril Wudhu ( 2 Rokaat )
-
-Rokaat Pertama Setelah Al-Fatihah membaca Q.S. Al-Kafirun (Qul Yaa Ayyuhal Kaafiruun)
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
-
-Bismillaahirrohmaanirrohiim
-
-Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
-
-Rokaat Kedua : Q.S. Al-Ikhlas
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ - Setiap Roka’at satu kali Surat al-Fatihah + 13 kali Surat Al-Ikhlash.
 
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
-Bismillaahirrohmaanirrohiim
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (13x)
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
+---
 
-Sholat Sunnah Lisyukri Bin-Ni’mah (2 Rokaat Dengan Duduk)
+Selesai Salam  (Sambil duduk dilanjutkan dengan membaca) :
 
-Rokaat pertama setelah Alfatihah membaca Surat Ibrohim ayat 34:
+١. قَلْبِي قُطْبِيْ وَقَالَبِيْ لُبْنَانِيْ سِرِّيْ خَضِرِيْ ؛ وَعَيْنُ عِرْفَانِي هَارُونَ عَقْلِي ، وَكَلِيمِي رُوحِي ؛ فِرْعَوْنِي نَفْسِي وَالْهَوَى هَامَانِي
+٢. اَللّٰهُمَّ نَوِّرْ قُلُوبَنَا بِنُورِ هِدَايَتِكَ كَمَا نَوَّرْتَ الْأَرْضَ بِنُورِ شَمْسِكَ أَبَدًا يَا أَرْحَمَ الرَّاحِمِينَ
+٣. اَللّٰهُمَّ إِنِّي أَعُوذُبِكَ ، بِكَلِمَاتِكَ التَّامَّاتِ كُلِّهَا ، مِنْ الرِّيحِ الْأَحْمَرِ وَمِنْ الدَّاءِ الْأَكْبَرِ فِي النَّفْسِ وَالدَّمِ وَاللَّحْمِ وَالْعُظْمِ وَالْجُلُودِ وَالْعُرُوقِ ، سُبْحَانَكَ إِذَا قَضَيْتَ أَمْرًا أَنْ تَقُولَ لَهُ كُنْ فَيَكُونُ اللّٰهُ أَكْبَرُ اللّٰهُ أَكْبَرُ اللّٰهُ أَكْبَرُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ
+٤. أَسْتَغْفِرُ اللّٰهَ الْعَظِيمَ الَّذِي لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُومُ وَأَتُوبُ إِلَيْهِ تَوْبَةَ عَبْدٍ ظَالِمٍ لَا يَمْلِكُ لِنَفْسِهِ ضَرًّا وَلَا نَفْعًا وَلَا مَوْتًا وَلَا حَيَاتًا وَلَا نُشُورًا وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ الْعَلِيِّ الْعَظِيمِ؛
+إلٰى حَضْرَةِ سُلْطَانِ الْيَمَانِ وَيَسِيِّدِنَا عَلِي وَإلَى حَضْرَةٍ الْنِّبِيِّ الْمُصْطَفَى مُحَمَّدٍ صَلَّى اللّٰهُ عَلَيْهِ وَسَلَّمَ.
+٥. بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ : عَزَمْتُ عَلَيْكُمْ يَا أَصْحَابَ السِّحْرِ وَالْوَسْوَاسِ ، وَاعْتَصَمْتُ بِكَ يَا اللّٰهُ يَا اللّٰهُ دُنْيَا وَالْآخِرَةِ ، وَبِحَقِّ خِضْرِ خِضْرٍ وَإلْيَاسٍ ، وَبِحَقِّ كَهِيجٍ مَهِيْجٍ وَكَهْكَهِيجٍ جُوجٍ جُوجٍ ، وَبِحَقِّ كَهِيجٍ مَهِيْجٍ أَزْرِي أَنْجَاسٍ ، وَبِحَقِّ آدَمَ وَنُوحٍ وَاعْتَصَمْتُ بِكَ مِنْ شَرِّ الْجِنِّ وَالْإِنْسِ وَالْأَهْدَمَنِ وَالشَّيَاطِينِ وَجُنُودِهِ وَأَتْبَاعِهِ ، وَمَنْ كُلِّ الْآفَاتِ وَالْعَاهَاتِ وَاعْتَصَمْتُ بِكَ مِنْ كُلِّ بَلَاءٍ ، وَبِحَقِّ دَانِيَالٍ ، وَبِحَقِّ إِيْجٍ إِيْجٍ دَارِسٕ نُورِسٍ ، وَبِحَقِّ آهِيًا شَرَاهِيًا أَدُونَاءٍ أَصْبَئُوْةٍ ، وَبِحَقِّ عَظَمَتِكَ يَا اللّٰهُ ، إِحْفَظْنِي إِحْفَظْنِي إِحْفَظْنِي جَسَد رُوحْ رَاسَا مِنَ الْبَلَاءِ وَالْوَبَاءِ وَالْآفَاتِ وَالْعَاهَاتِ وَالْبَلِيَّاتِ وَبِحَقِّ مُوسَى وَعِيسَى ، وَبِحَقِّ دَاوُودَ وَزَكَرِيَّا ، وَبِحَقِّ إِسْمَاعِيلَ وَيَحْيَى ، وَبِحَقِّ إِدْرِيْسَ وَشِيْثَ ، وَبِحَقِّ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ ، وَعَلٰى جَمِيعِ الْأَنْبِيَاءِ وَالْمُرْسَلِينَ تَوَكَّلْتُ عَلَى الْحَيِّ الَّذِي لَا بِدَايَةَ لَهُ وَلَا نِهَايَةَلَهُ، واعْتَصَمْتُ بِكَ مِنْ شَرِّ الْجِنَّ وَالْإِنسِ بِقِرَائَةِ دُعَا السَّيْفِ، وَاسْتَجِبْ دُعَائَنَا يَاغِيَاثَ الْمُسْتَغِيثِينَ، أَغِثْنِي أغِثْنِي أَغِثْنِي هَاتِ سِرْ چَهْيَا يَا مَنْ لَيْسَ كَمِثْلِهِ شَيْءٌ وَهُوَ السَّمِيعُ الْبَصِيرُ حَسْبُنَا اللهُ وَنِعْمَ الْوَكِيلُ، وَنِعْمَ الْمَوْلَى وَنِعْمَ النَّصِيرُ، غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ المَصِيْرُ، غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ ، غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ ، وَصَلَّى اللهُ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى آلِهِ وَصَحْبِهِ أَجْمَعِينَ، وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ …
 
-وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+ 1. Qolbī quhṭbī waqolobī lubnānī sirrī khodirī wa’ainu ‘irfānī Hārūna ‘aqlī, wa kalīmī rūhī fir’aunī nafsī walhawā Hāmānī. (7x)
+ 2. Alloohumma nawwir qulūbanā binūri hidāyatika kamā nawwarta al-ardho binūri syamsika abadaa yā arhamarroohimīn.
+ 3. Alloohumma innī a’ūdzubika, bikalimātika tāmmāti kullihā, minarrīhil ahmari waminaddā’il akbari finnafsi waddami wallahmi wal’udzmi waljulūdi wal’urūqi, Subhānaka idzā qodoyta amron antaqūla lahu kun fayakūn. Alloohu akbar, Alloohu akbar, Alloohu akbar, birohmatika yā arhamarroohimīn.
+ 4. Astaghfirulloohal’azīm alladzī lā ilāha illā huwalhayyulqoyyūm wa atūbu ilaihi, taubata ‘abdin zoolimin lā yamliku linafsihi dorron walā naf’an walā mautan walā hayātan walā nusyūroo, walā haula walā quwwata illā billāhil ‘aliyyi’azīm.
+Ilā hadhroti Sulthoonil Yamāni wa sayyidinā ‘Alī, wa ilā hadroti Nabiyyi lmusthofā Muhammad sollalloohu ‘alayhi wasallam.
+Bismillāhirrohmānirrohīm
+ 5. Azamtu’alaykum yā ashābassihri wal-waswāsi, wa’tashomtu bika yā Alloohu yā Allohu dunyā wal-ākhiroh, wa bihaqqi Khidrin Khidrin wa Ilyāsin, wa bihaqqi Kahījin Mahījin wa Kahkahījin Jūjin Jūjin, wa bihaqqi Kahījin Mahījin Azrī Anjāsin, wa bihaqqi Ādama wa Nūh, wa’tashomtu bika min syarriljinni wa al-insi wal-ahdamani wal-shayāṭīni wa junūdihi wa atbā’ihi, wamin kulli āfāti wal-‘āhāti wa’tashomtu bika min kulli balā’in, wa bihaqqi Dāniyālin, wa biḥaqqi Ījin Ījin Dārisin Nūrisin, wa bihaqqi Āhiyān Sharoohiyān Adūnāin Asbautin, wa bihaqqi ‘adhomatika yā Allooh, ihfadhnī ihfadhnī ifadhnī jasad rūh rāsa minal-balā’i wal-wabā’i wal-āfāti wa al’āhāti wal-baliyāti, wa bihaqqi Mūsā wa ‘Īsā, wa bihaqqi Dāwūd wa Zakariyyā, wa bihaqqi Ismā’īl wa Yahyā, wa bihaqqi Idrīs wa Syīts, wabihaqqi Muhammad sollalloohu ‘alayhi wa sallam, wa’alā jamī’il anbiyā’i wa almursalīn.
+Tawakkaltu ‘alāl hayyil ladzī lā bidayata lahu walā nihāyata lahu.
+Wa’tasoamtu bika min sharriljinni wa al-insi biqirooati Du’ā Sayfi, wa istajib du’ā’anā yā Ghiyātsal mustaghītsīna, aghisnī aghisnī aghisnī, hāti sirr Cahyā yā man laisa kamitslihi shay’un wahuwassamī’ulbashīr.
+Hasbunalloohu wani’malwakīl, wani’malmaulā wani’mannasīr.
+Ghufroonaka robbanā wailaikalmashīr (3x)
+Wasollalloohu’alā sayyidinā Muhammad wa’alā ālihi wasohbihi ajma’īn.
+Walhamdulillāhi robbil’ālamīn.
 
-waaataakum min kulli maa sa-altumuuhu.
+اَ
 
-Rokaat kedua setelah Alfatihah membaca Surat Ibrohim ayat 34 ( lanjutannya ).
+*Do’a tambahan sesuai hajat.*
 
-وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
+Doa Istighotsah
 
-wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+بسم الله الرحمن الرحيم
 
-Setelah salam langsung sujud dan berdo’a :
+يَا شَيْخَ مُحْيِ الدِّيْنِ يَا سَيِّدَ مُحْيِ الدِّيْنِ
 
-Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+يَا مَوْلَانَا مُحْيِ الدِّيْنِ يَا مَخْدُوْمَ مُحْيِ الدِّيْنِ
 
-Kemudian duduk posisi Tasyahud akhir dan salam.
+يَا خَوَاجَه مُحْيِ الدِّيْنِ يَا شَاهَ مُحْيِ الدِّيْنِ
 
-Sholat Sunnah Dhuha (8 Rokaat 2x Salam) tanpa Tasyahud Awal
+يَا دَرْوِيْشَ مُحْيِ الدِّيْنِ يَا قُطْبَ مُحْيِ الدِّيْنِ
 
-Setelah Al-Fatihah membaca:
+يَا سُلْطَانَ مُحْيِ الدِّيْنِ يَا غَوْثَ مُحْيِ الدِّيْنِ
 
-Rokaat Pertama : Q.S. Asy-Syamsi
+يَا سَيِّدَ السَّادَاتِ مُحْيِ الدِّيْنِ عَبْدَ الْقَادِرِ
+
+يَا عُبَيْدَ اللّٰهِ أَغِثْنِا بِإِذْنِ اللّٰهِ ، وَيَا شَيْخَ الثَّقَلَيْنِ
+
+أَغِثْنا وَ امْددْنا فِي قَضَاءِ حَوَائِجِنا خيري الدنيا والآ خرة
+
+وارزقنا هما يافاعل كلِّ خيرٍ وياهاديا الى كلِّ خيرٍ
+
+ويا دا لاً على كلِّ خيرٍ ويا اهل الخير
+
+ويا خالق الخير ويااهل الخيراتِ
+
+انت الله والله انت الله لا اله الا انت
+
+اللهّم لك الكلّ وبك الكلّ ومنك الكلّ واليك الكلّ
+
+وانت الكلّ وكلُّ الكلِّ برحمتك يآارحم الراحمينَ.
+
+وصلى الله على سيدنا محمد وعلى آله واصحابه
+
+وعلى سائر الانبياء والمرسلين وعلى آلهم واصحابهم
+
+اجمعين والحمد لله رب العالمين
+
+الفاتحة…..
+
+۞۞۞
+
+**Latin:**
+
+Yaa man yablughu limuriidihi ‘indal istighootsati walau kaana fil masyriqi farosuka masruujun wa saifuka masluulun wa romhuka man shuubun wa qowsuka mautuurun wa sahmuka shoo-ibun wa rikaabuka ‘aalin
+Aghisnii fii qodhoo-i hawaa-iji khoiro yiddunyaa wal aakhiroti …….. (sebut hajatnya).
+Al faatihah
+
+۞۞۞
+
+Artinya:
+Wahai orang yang sampai kepada muridnya ketika permohonan bantuan disampaikan, meski ia berada jauh ditimur kudamu telah siap dengan pelananya, pedangmu telah terhunus, tombakmu siap dilemparkan, busurmu telah ditarik, anak panahmu siap membidik sasaran, dan tungganganmu amat tinggi. Tolonglah kami dalam memenuhi segala hajat yang baik urusan dunia dan akhirat.
+
+“ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
+**Artinya:**
+Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+
+۞۞۞
+
+## WAKTU DHUHA
+
+**Waktu Dhuha :**
+
+- Sholat Sunnah Syukrul Wudhu  2 Roka’at
+- Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+- Sholat Sunnah Dhuha 8 Roka’at (2x Salam)
+- Sholat Sunnah Kifaratul Bauli 2 Roka’at (Duduk)
+
+---
+
+Waktu Dhuha
+
+- S*holat Syukrul Wudhu :
+
+**Keterangan:** Waktu Pelaksanaan *(Setiap setelah wudhu selagi masih basah)*
+
+ - Jumlah 2 roka’at
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Taala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+4. Sholat Sunnah Dhuha
+
+**Keterangan :** 8 Roka’at dengan 2x salam *(Tanpa **tasyahud awal**)*
+
+4 Roka’at Pertama
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ الضُّحَى اَرْبَعَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatad dhuha arba’a rok’ataini lillaahi ta’aala
+Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena Alloh Ta’ala*
+
+Setelah Al-Fatihah membaca surat berikut :
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Asy-Syamsi
 
 وَٱلشَّمۡسِ وَضُحَىٰهَا ١ وَٱلۡقَمَرِ إِذَا تَلَىٰهَا ٢ وَٱلنَّهَارِ إِذَا جَلَّىٰهَا ٣ وَٱلَّيۡلِ إِذَا يَغۡشَىٰهَا ٤ وَٱلسَّمَآءِ وَمَا بَنَىٰهَا ٥ وَٱلۡأَرۡضِ وَمَا طَحَىٰهَا ٦ وَنَفۡسٖ وَمَا سَوَّىٰهَا ٧ فَأَلۡهَمَهَا فُجُورَهَا وَتَقۡوَىٰهَا ٨ قَدۡ أَفۡلَحَ مَن زَكَّىٰهَا ٩ وَقَدۡ خَابَ مَن دَسَّىٰهَا ١٠ كَذَّبَتۡ ثَمُودُ بِطَغۡوَىٰهَآ ١١ إِذِ ٱنۢبَعَثَ أَشۡقَىٰهَا ١٢ فَقَالَ لَهُمۡ رَسُولُ ٱللَّهِ نَاقَةَ ٱللَّهِ وَسُقۡيَٰهَا ١٣ فَكَذَّبُوهُ فَعَقَرُوهَا فَدَمۡدَمَ عَلَيۡهِمۡ رَبُّهُم بِذَنۢبِهِمۡ فَسَوَّىٰهَا ١٤ وَلَا يَخَافُ عُقۡبَٰهَا ١٥
 
-Wasy-Syamsi wa dhuhaa-haa. Wal-Qomari idzaa talaa-haa. Wan-Nahaari idzaa jal-laa-haa. Wal-laili idzaa yagh-syaa-haa. Was-Samaa-i wa maa banaa-haa. Wal-Ardhi wa maa Tho-haa-haa. Wa Nafsiw wa maa saw-waa-haa. Fa-alhamahaa fujuu-rohaa wa taqwaa-haa. Qod af’lahamang zak-kaa-haa. Wa qod khoo-ba mang das-saa-haa. Kadz-dzabat tsamuu-du bi thogh-waa-haa. Izim-ba’atsa asy-qoo-haa. Fa qoo-la lahum rosuu-lulloohi wa suq-yaa-haa. Fa kadz-dzabuu-hu fa’aqoruu-haa fa dam-dama ‘’alaihim rob-buhum bi dzam-bihim fa saw-waa-haa. Wa laa yakhoo-fu ‘uqbaa-haa.
+Wasy-Syamsi wa dhuhaa-haa. Wal-Qomari idzaa talaa-haa. Wan-Nahaari idzaa jal-laa-haa. Wal-laili idzaa yagh-syaa-haa. Was-Samaa-i wa maa banaa-haa. Wal-Ardhi wa maa Tho-haa-haa. Wa Nafsiw wa maa saw-waa-haa. Fa-alhamahaa fujuu-rohaa wa taqwaa-haa. Qod af’lahamang zak-kaa-haa. Wa qod khoo-ba mang das-saa-haa. Kadz-dzabat tsamuu-du bi thogh-waa-haa. Izim-ba’atsa asy-qoo-haa. Fa qoo-la lahum rosuu-lulloohi naqotallohi wa suq-yaa-haa. Fa kadz-dzabuu-hu fa’aqoruu-haa fa dam-dama ‘’alaihim rob-buhum bi dzam-bihim fa saw-waa-haa. Wa laa yakhoo-fu ‘uqbaa-haa.
 
-Rokaat Kedua : Q.S. Al-Lail
+ - Roka’at Kedua setelah Al-Fatihah membaca surat : Al-Lail
 
 وَٱلَّيۡلِ إِذَا يَغۡشَىٰ ١ وَٱلنَّهَارِ إِذَا تَجَلَّىٰ ٢ وَمَا خَلَقَ ٱلذَّكَرَ وَٱلۡأُنثَىٰٓ ٣ إِنَّ سَعۡيَكُمۡ لَشَتَّىٰ ٤ فَأَمَّا مَنۡ أَعۡطَىٰ وَٱتَّقَىٰ ٥ وَصَدَّقَ بِٱلۡحُسۡنَىٰ ٦ فَسَنُيَسِّرُهُۥ لِلۡيُسۡرَىٰ ٧ وَأَمَّا مَنۢ بَخِلَ وَٱسۡتَغۡنَىٰ ٨ وَكَذَّبَ بِٱلۡحُسۡنَىٰ ٩ فَسَنُيَسِّرُهُۥ لِلۡعُسۡرَىٰ ١٠ وَمَا يُغۡنِي عَنۡهُ مَالُهُۥٓ إِذَا تَرَدَّىٰٓ ١١ إِنَّ عَلَيۡنَا لَلۡهُدَىٰ ١٢ وَإِنَّ لَنَا لَلۡأٓخِرَةَ وَٱلۡأُولَىٰ ١٣ فَأَنذَرۡتُكُمۡ نَارٗا تَلَظَّىٰ ١٤ لَا يَصۡلَىٰهَآ إِلَّا ٱلۡأَشۡقَى ١٥ ٱلَّذِي كَذَّبَ وَتَوَلَّىٰ ١٦ وَسَيُجَنَّبُهَا ٱلۡأَتۡقَى ١٧ ٱلَّذِي يُؤۡتِي مَالَهُۥ يَتَزَكَّىٰ ١٨ وَمَا لِأَحَدٍ عِندَهُۥ مِن نِّعۡمَةٖ تُجۡزَىٰٓ ١٩ إِلَّا ٱبۡتِغَآءَ وَجۡهِ رَبِّهِ ٱلۡأَعۡلَىٰ ٢٠ وَلَسَوۡفَ يَرۡضَىٰ ٢١
 
 Wal-laili idzaa yagh-syaa. Wan-Nahaari idzaa tajal-laa. Wa maa kholaqodz-dzakaro wal-ung-tsaa. Inna sa’yakum lasyat-taa. Fa am-maa-man a’thoo wat-taqoo. Wa shod-daqo bil-husnaa. Fa sanuyas-siruhuu lil-yusroo. Wa am-maa-mam bakhila was-tagh-naa. Wa kadz-dzaba bil-husnaa. Fa sanuyas-siruhuu lil-‘usroo. Wa maa yughnii ‘anhu maa-lu-huu idzaa tarod-daa. Inna ‘alainaa lal-hudaa. Wa inna lanaa lal-aa-khirota wal-uu-laa. Fa-ang-dzar-tu-kum naa-rong talazh-zhoo. Laa yashlaa-haa il-lal-asy-qoo. Al-ladzii kadz-dzaba wa tawal-laa. Wa sayujan-nabuhal-at-qoo. Al-ladzii yu-tii maa-lahuu yatazak-kaa. Wa maa li-ahadin ‘indahuu min-ni’mating tuj-zaa. Il-lab-tighoo-a wajhi rob-bihil-a’laa. Wa lasau-fa yardhoo.
 
-Rokaat Ketiga : Q.S. Adh-Dhuha
+ - Roka’at Ketiga setelah Al-Fatihah membaca surat : Ad-Dhuha
 
 وَٱلضُّحَىٰ ١ وَٱلَّيۡلِ إِذَا سَجَىٰ ٢ مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ ٣ وَلَلۡأٓخِرَةُ خَيۡرٞ لَّكَ مِنَ ٱلۡأُولَىٰ ٤ وَلَسَوۡفَ يُعۡطِيكَ رَبُّكَ فَتَرۡضَىٰٓ ٥ أَلَمۡ يَجِدۡكَ يَتِيمٗا فََٔاوَىٰ ٦ وَوَجَدَكَ ضَآلّٗا فَهَدَىٰ ٧ وَوَجَدَكَ عَآئِلٗا فَأَغۡنَىٰ ٨ فَأَمَّا ٱلۡيَتِيمَ فَلَا تَقۡهَرۡ ٩ وَأَمَّا ٱلسَّآئِلَ فَلَا تَنۡهَرۡ ١٠ وَأَمَّا بِنِعۡمَةِ رَبِّكَ فَحَدِّثۡ ١١
 
 Wadh-Dhuhaa, Wallaili Idzaa Sajaa, Maa Wadda-‘aka Robbuka Wamaa Qolaa, Wa Lal-Aakhirotu Khoirul Laka Minal Uu-laa, Walasaufa Yu’thii-ka Robbuka Fatar-dhoo, Alam Yajid-ka Yatii-mang Fa-aa-waa, Wawajadaka Dhoo-lang Fa-Hadaa, Wawajadaka ‘Aa-ilang Fa-Aghnaa, Fa-Ammal Yatiima Falaa Taqhar, Wa-Ammas Saa-ila Falaa Tanhar, Wa Ammaa bi Ni’mati Robbika Fa-Haddits.
 
-Rokaat Keempat : Q.S. Al-Insyiroh
+ - Roka’at Keempat setelah Al-Fatihah membaca surat : Al-Insyiroh
 
 أَلَمۡ نَشۡرَحۡ لَكَ صَدۡرَكَ ١ وَوَضَعۡنَا عَنكَ وِزۡرَكَ ٢ ٱلَّذِيٓ أَنقَضَ ظَهۡرَكَ ٣ وَرَفَعۡنَا لَكَ ذِكۡرَكَ ٤ فَإِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرًا ٥ إِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرٗا ٦ فَإِذَا فَرَغۡتَ فَٱنصَبۡ ٧ وَإِلَىٰ رَبِّكَ فَٱرۡغَب ٨
 
 Alam Nasyroh Laka Shodrok, Wawadho’naa ‘Ang-Ka Wizrok, Alladzii Ang-qodho Zhohrok, Warofa’naa Laka Dzikrok, Fa-Inna Ma’al-‘Usri Yusron, Inna Ma’al-‘Usri Yusroo, Fa-Idzaa Faroghta Fangshobb, Wa-Ilaa Robbika Far-Ghobb.
 
-Kemudian Salam, dan
+---
 
-Rokaat Kelima : Q.S. Adh-Dhuha
+Selanjutnya 4 Roka’at Kedua
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ الضُّحَى اَرْبَعَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatad dhuha arba’a rok’ataini lillaahi ta’aala
+Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena Alloh Ta’ala*
+
+ - Roka’at kelima setelah Al-Fatihah membaca surat : Ad-Dhuha
 
 وَٱلضُّحَىٰ ١ وَٱلَّيۡلِ إِذَا سَجَىٰ ٢ مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ ٣ وَلَلۡأٓخِرَةُ خَيۡرٞ لَّكَ مِنَ ٱلۡأُولَىٰ ٤ وَلَسَوۡفَ يُعۡطِيكَ رَبُّكَ فَتَرۡضَىٰٓ ٥ أَلَمۡ يَجِدۡكَ يَتِيمٗا فََٔاوَىٰ ٦ وَوَجَدَكَ ضَآلّٗا فَهَدَىٰ ٧ وَوَجَدَكَ عَآئِلٗا فَأَغۡنَىٰ ٨ فَأَمَّا ٱلۡيَتِيمَ فَلَا تَقۡهَرۡ ٩ وَأَمَّا ٱلسَّآئِلَ فَلَا تَنۡهَرۡ ١٠ وَأَمَّا بِنِعۡمَةِ رَبِّكَ فَحَدِّثۡ ١١
 
 Wadh-Dhuhaa, Wallaili Idzaa Sajaa, Maa Wadda-‘aka Robbuka Wamaa Qolaa, Wa Lal-Aakhirotu Khoirul Laka Minal Uu-laa, Walasaufa Yu’thii-ka Robbuka Fatar-dhoo, Alam Yajid-ka Yatii-mang Fa-aa-waa, Wawajadaka Dhoo-lang Fa-Hadaa, Wawajadaka ‘Aa-ilang Fa-Aghnaa, Fa-Ammal Yatiima Falaa Taqhar, Wa-Ammas Saa-ila Falaa Tanhar, Wa Ammaa bi Ni’mati Robbika Fa-Haddits.
 
-Rokaat Keenam : Q.S. Al-Insyiroh
+ - Roka’at keenam setelah Al-Fatihah membaca surat : Al-Insyiroh
 
 أَلَمۡ نَشۡرَحۡ لَكَ صَدۡرَكَ ١ وَوَضَعۡنَا عَنكَ وِزۡرَكَ ٢ ٱلَّذِيٓ أَنقَضَ ظَهۡرَكَ ٣ وَرَفَعۡنَا لَكَ ذِكۡرَكَ ٤ فَإِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرًا ٥ إِنَّ مَعَ ٱلۡعُسۡرِ يُسۡرٗا ٦
 
@@ -856,259 +952,582 @@ Rokaat Keenam : Q.S. Al-Insyiroh
 
 Alam Nasyroh Laka Shodrok, Wawadho’naa ‘Ang-Ka Wizrok, Alladzii Ang-qodho Zhohrok, Warofa’naa Laka Dzikrok, Fa-Inna Ma’al-‘Usri Yusron, Inna Ma’al-‘Usri Yusroo, Fa-Idzaa Faroghta Fangshobb, Wa-Ilaa Robbika Far-Ghobb.
 
-Rokaat Ketujuh : Q.S. Al-Kafirun
+ - Roka’at ketujuh setelah Al-Fatihah membaca surat : Al-Kafirun
 
 قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
 
 Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
 
-Rokaat Kedelapan : Q.S. Al-Ikhlash
+ - Roka’at kedelapan setelah Al-Fatihah membaca surat : Al-Ikhlash
 
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
 Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
 
-Kemudian Salam.
+Kemudian diakhiri dengan salam.
 
-Sholat SunnahKifarotul Bauli (2 Rokaat Dengan duduk)
+---
 
-Setelah Al-Fatihah membaca: Q.S. Al -Kautsar (7X) pada setiap rokaat.
+5. Sholat Sunnah Kifarotil Baul
+
+**Keterangan :**2 roka’at *(Dilakukan dengan duduk)*
+
+Niat Sholat :
+
+Ushollii sunnatan likifaarotil bauli rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Kifarotil Baul dua roka’at karena Alloh Ta’ala*
+
+ - Pada setiap roka’at setelah Al-Fatihah membaca : Al -Kautsar (7x)
 
 إِنَّآ أَعۡطَيۡنَٰكَ ٱلۡكَوۡثَرَ ١ فَصَلِّ لِرَبِّكَ وَٱنۡحَرۡ ٢ إِنَّ شَانِئَكَ هُوَ ٱلۡأَبۡتَرُ ٣
 
-In-naa a’thoi-naa kal-kau-tsar, Fa-shol-li li-robbi-ka wan-har, in-na syaa-ni-aka hu-wal-abtar. (7X)
+In-naa a’thoi-naa kal-kau-tsar, Fa-shol-li li-robbi-ka wan-har, in-na syaa-ni-aka hu-wal-abtar. (7x)
 
 Dilanjutkan dengan Do’a:
 
-اَللّٰهُمَّ إِنَّ الضُّحَاءَ ضُحَاءُكَ، وَاْلبَهَاءَ بَهَاءُكَ، وَاْلجَمَالَ جَمَالُكَ، وَاْلقُوَّةَ قُوَّتُكَ، وَاْلقُدْرَةَ قُدْرَتُكَ، وَاْلِعصْمَتَ عِصْمَتُكَ، أَللّٰهُمَّ اِنْ كَانَ رِزْقِىْ فِى السَّمَاءِ فَاَنْزِلْهُ، وَاِنْ كَانَ فِى اْلاَرْضِ فَاَخْرِجْهُ، وَاِنْ كَانَ مُعَسِّرًا فَيَسِّرْهُ، وَاِنْ كَانَ حَرَامًا فَطَهّـِرْهُ، وَاِنْ كَانَ بَـعِيْدًا فَقَرِّبْهُ، وَاِنْ كَانَ قَلِيْلاً فَكَثِّرْهُ، وَاِنْ كَانَ كَثِيْرًا فَبَارِكْ لِى فِيْهِ وَاَوْصِلْهُ اِلَيَّ حَيْثُ كُنْتَ، وَلاَتَنْقُلْنِيْ اِلَيْهِ حَيْثُ كَانَ وَاجْعَلْ يَدَيَّ اْلعُلْيَ بِاْلاِعْطَاءِ وَلَاتَجْعَلْهاَ السُّفْلَى بِالْإِسْتِعْطَاءِ، اِنَّكَ عَلٰى كُلَّ شَيْءٍ قَدِيْرٌ، بِـحَقِّ ضُحَاءِكَ وَبَهَاءِكَ وَجَمَالِكَ وَقُوَّتِكَ وَعِصْمَتِكَ، وَلاَحَوْلَ وَلَاقُوَّةَ اِلاَّبِكَ اٰتِنِيْ مَااٰتَيْتَ عِبٰدِكَ الصّٰلِحِيْنَ، وَصَلّٰ اللهُ عَلَى سَيِّدِنَامحُّمَدٍ، وَعَلٰي اٰلِهٖ وَصَحْبِهٖ وَ سَلَّمْ، وَاْلَحمْدُ لِلّٰهِ رَبِّ اْلعَالَمِيْنَ
+اَللّٰهُمَّ إِنَّ الضُّحَاءَ ضُحَاءُكَ، وَاْلبَهَاءَ بَهَاءُكَ، وَاْلجَمَالَ جَمَالُكَ، وَاْلقُوَّةَ قُوَّتُكَ، وَاْلقُدْرَةَ قُدْرَتُكَ، وَاْلِعصْمَتَ عِصْمَتُكَ، أَللّٰهُمَّ اِنْ كَانَ رِزْقِىْ فِى السَّمَاءِ فَاَنْزِلْهُ، وَاِنْ كَانَ فِى اْلاَرْضِ فَاَخْرِجْهُ، وَاِنْ كَانَ مُعَسِّرًا فَيَسِّرْهُ، وَاِنْ كَانَ حَرَامًا فَطَهّـِرْهُ، وَاِنْ كَانَ بَـعِيْدًا فَقَرِّبْهُ ، بِـحَقِّ ضُحَاءِكَ وَبَهَاءِكَ وَجَمَالِكَ وَقُوَّتِكَ وَقُدْرَتِكَ،اٰتِنِيْ مَااٰتَيْتَ عِبٰدِكَ الصّٰلِحِيْنَ،
 
-Alloohumma innadh-dhuhaa-a dhuhaa-uka, wal bahaa-a bahaa-uka, wal jamaala jamaaluka, wal quwwata quwwaatuka, wal qudhrota qudhrotuka, wal ‘ishmata ‘ishmatuka, Alloohumma ing-kaana rizqii fis-samaa-i fa-angzil-hu, wa ing-kaana fil-ardhi fa-akhrij-hu, wa ing-kaana mu’as-siron fayas-sir-hu, wa ing-kaana harooman fathoh-hirhu, wa ing-kaana ba’ii-dan faqorribhu, wa ing-kaana qoliilan fakats-tsirhu, wa ing-kaana katsiiron fa-baa-riklii, fii-hi wa-au-shilhu ilay-ya haistu kunta, wa laa tang-qulnii haistu kaana waj-‘al yaday-yal-‘ulya bil-i’thoo-i walaa taj’al- has-suflaa bil isti’thoo-i, in-naka ‘alaa kulli syai-ing qodiir, bihaq-qi dhuhaa-ika wa bahaa-ika wa jamaa-lika, wa quw-watika wa’ishmatika, walaa hau-la walaa quw-wata illa bika, aa-ti-nii maa aa-tai-ta ‘ibaa-dikash-shoolihiin, wa shol-lalloohu ‘alaa say-yidinaa Muhammadin, wa’alaa aa-lihii wa shohbihii wa sallam, wal-hamdu lillaahi robbil ‘aa-lamiin.
+Allōhumma innaddhuhā a dhuhā uka, walbhā a bahā uka, walkamāla kamāluka waljamāla jamāluka
+Walqudrota qudrotuka, walquwwata quwwatuka wal ‘izzata ‘izzatuka.
+Allōhumma inkāna rizqunā fissamā i fa anzilhu wa inkāna fil ardhi fa akhrijhu wa inkāna ma’dūman fa aujidhu wainkaana harooman fathohhirhu, waikkāna àsīron fasahhilhu lanā walātanqulnā ilaihi wanqulhu ilainā
+Bihaqqi dhuhāika wabahāika wakamālika wajamālika waquwwatika waqudrorotika wa ìzzatika a’thinī mā ‘athoita ahlassilsilatil qōdiriyyah naqsyabandiyyah suryalaya sirnarasa PPKN birohmatika yā arhararōhimiin
+Walhamdu lillāhi robbil àlamīn.
+
+Dilanjutkan membaca do’a dibawah ini sebanyak (38x):
+Asy Syura : 19
+
+اَللّٰهُ لَطِيْفٌۢ بِعِبَادِهٖ يَرْزُقُ مَنْ يَّشَاۤءُ ۚوَهُوَ الْقَوِيُّ الْعَزِيْزُ ࣖ ١٩
+
+“Alloohu lathiifum bi ’ibaadihi yarzuku may yasyaa’u wa Huwal Qowiyyul ‘Aziizu”.
+
+**Artinya :** (19.) Alloh Mahalembut terhadap hamba-hamba-Nya; Dia memberi rezeki kepada siapa yang Dia kehendaki dan Dia Mahakuat, Mahaperkasa.
 
 ## WAKTU DZUHUR
 
-Shalat Sunnah Qobliyah Dzuhur
+**Waktu Dzuhur :**
 
-Jumlah Raka’at 2 Raka’at
+1. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+2. Sholat Sunnah Tahiyyat Masjid 2 Roka’at
+3. Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+4. Sholat Sunnah Qobliyah 2 Roka’at
+5. Sholat Fardhu Dzuhur 4 Roka’at
+6. Dzikir Harian
+7. Sholat Sunnah Ba’diyah 4 Roka’at (2 dengan duduk)
 
-Bacaan Shalat  Bebas
+---
 
-Shalat Fardhu Dzuhur
+Waktu Dzuhur
 
-Jumlah Raka’at 4 Raka’at
+1. **Sholat Syukrul Wudhu :**
 
-Bacaan Shalat  :
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
 
-Raka’at pertama  Surat Al Kaafirun
+Niat Sholat  :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’alaa
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+2. **Sholat Tahiyyat Masjid :**
+
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+3. Sholat Sunnah Syukur Ni’mat
+
+**Keterangan :** *Dikerjakan dengan duduk*
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat                           :
+
+اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+
+waaataakum min kulli maa sa-altumuuhu
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَإِن تَعُدُّواْ نِعْمَةَ اللّٰهِ لاَ تُحْصُوهَا إِنَّ الإِنسَانَ لَظَلُومٌ كَفَّارٌ
+
+wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+
+Setelah Salam langsung sujud sambil berdo’a : :
+
+اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
+
+Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+---
+
+4. Sholat Sunnah Qobliyah Dzuhur
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
+
+Ushollii sunnatad dzuhri rok’ataini qobliyatan lillaahi ta’aala
+
+Artinya:Saya niat sholat sunnah qobliyah dhuhur dua roka’at karena Alloh ta’ala*
+
+---
+
+5. Sholat Fardhu Dzuhur
+
+ - Jumlah : 4 Roka’at
+
+Niat Sholat :
+
+Ushollii fardho dzuhri arba’a raka’aatin adaa’an lillaahi ta’aala
+
+Artinya :Saya niat sholat fardhu dhuhur empat roka’at karena Alloh ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Kafirun
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
 
 Bismillaahirrohmaanirrohiim
 
 Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
 
-Raka’at kedua Surat Al Ikhlas
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Al-Ikhlas
 
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
-Bismillaahirrohmaanirrohiim
-
 Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
 
-Setelah Salam Zikir Harian
+Setelah Salam Zikir Harian  & Khotaman
 
-Shalat Sunnah Ba’diyah Dzuhur
+6. Sholat Sunnah Ba’diyah Dzuhur
 
-Jumlah Raka’at  4 Raka’at 2 kali salam. (Pada dua raka’at  terakhir dilakukan dengan posisi duduk)
+ - Jumlah : 4 Roka’at 2x salam. (Pada dua roka’at terakhir dilakukan dengan posisi duduk)
 
-Bacaan Shalat  Surat bebas
+Niat Sholat :
+
+Usholli sunnatad dzuhri rok’ataini ba’diyatan lillahi ta’aala
+
+Artinya :Saya niat sholat sunnah ba’da Dzuhur dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
 ## WAKTU ASHAR
 
-Shalat Sunnah Qabliyyah Ashar
+**Waktu Ashar :**
 
-Niat Shalat                  :
+1. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+2. Sholat Sunnah Tahiyyat Masjid 2 Roka’at
+3. Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+4. Sholat Sunnah Qobliyah 2 Roka’at
+5. Sholat Fardhu ‘Ashar 4 Roka’at
+6. Dzikir Harian
+
+---
+
+WAKTU ASHAR
+
+1. **Sholat Syukrul Wudhu :**
+
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
+
+Niat Sholat  :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi Ta’alaa
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+2. **Sholat Tahiyyat Masjid :**
+
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+3. Sholat Sunnah Syukur Ni’mat
+
+**Keterangan :** *Dikerjakan dengan duduk*
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+
+waaataakum min kulli maa sa-altumuuhu
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
+
+wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+
+Setelah Salam langsung sujud sambil berdo’a : :
+
+اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
+
+Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+“ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
+**Artinya:**
+Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+
+---
+
+- Sholat Sunnah Ashar
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ الْعَصْرِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnatal ashri rok’ataini lillaahi ta’ala
+Ushollii sunnatal ashri rok’ataini lillaahi ta’aala
 
-Jumlah Raka’at           : 2 Raka’at
+Artinya :Saya niat sholat sunnah Ashar dua roka’at karena Alloh Ta’ala*
 
-Bacaan Shalat             : Surat bebas
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
-Fardhu Ashar
+---
 
-Jumlah Raka’at 4 Raka’at
+- Sholat Fardhu Ashar
 
-Bacaan Shalat  :
+ - Jumlah : 4 Roka’at
 
-Raka’at pertama Surat Al Ashri
+Niat Sholat :
+
+Usholli fardhol ashri arba’aroka’atin lillahi ta’aala
+
+Artinya :Saya niat sholat fardhu Ashar empat roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Ashr
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 وَٱلۡعَصۡرِ ١ إِنَّ ٱلۡإِنسَٰنَ لَفِي خُسۡرٍ ٢ إِلَّا ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ وَتَوَاصَوۡاْ بِٱلۡحَقِّ وَتَوَاصَوۡاْ بِٱلصَّبۡرِ ٣
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Wal’asri in-nal inn-saana lafii khusrin illa, illal-ladziina aa-manuu wa ‘amilush-shoolihaa-ti wa-tawaa-show bil-haqqi, wa-tawaa-show bish-shobr.
 
-Wal’asri in-nal inn-saana lafii khusrin illa, illal-ladziina aa-manuu wa ‘amilush-shoolihaa-ti wa-tawaa-show bil-haqqi, wa-tawaa-show bish-shobr.
-
-Raka’at kedua “Surat Yasin ayat 58-59”
+ - Roka’at kedua setelah Al-Fatihah membaca surat : “Surat Yasin ayat 58-59”
 
 سَلَامٌ قَوْلًا مِنْ رَبٍّ رَحِيمٍ ، وَامْتَازُوا الْيَوْمَ أَيُّهَا الْمُجْرِمُونَ
 
 Salaamun qaulan mir  robbir rohiim, wamtaazul yauma ayyuhal mujrimuun
 
-Setelah Salam Zikir Harian
+Setelah Salam dilanjutkan Dzikir Harian & Khotaman
 
 ## WAKTU MAGHRIB
 
-Shalat Sunnah Qobliyah Maghrib
+**Waktu Maghrib :**
 
-Jumlah Rakaat  2 Raka’at
+1. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+2. Sholat Sunnah Tahiyyat Masjid 2 Roka’at
+3. Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+4. Sholat Sunnah Qobliyah 2 Roka’at
+5. Sholat Fardhu Maghrib 3 Roka’at
+6. Dzikir Harian
+7. Sholat Sunnah Ba’diyah 2 Roka’at
+8. Sholat Sunnah Awwabin 2 Roka’at
+9. Sholat Sunnah Taubat 2 Roka’at
+10. Sholat Sunnah Birrul Waalidain 2 Roka’at
+11. Sholat Sunnah Li Hifdhil Imaan 2 Roka’at
+12. Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
+- Sholat Sunnah Qobliyah Maghrib 2 Roka’at
+- Sholat Fardhu Maghrib 3 Roka’at
+- Dzikir Harian
+- Khotaman
+- Sholat Sunnah Ba’diyah Maghrib 2 Roka’at
+- Sholat Sunnah Awwaabin 2 Roka’at
+- Sholat Sunnah Taubat 2 Roka’at
+- Sholat Sunnah Birrul Waalidain 2 Roka’at
+- Sholat Sunnah Hifdhil Iman  2 Roka’at
+- Sholat Sunnah Syukur Ni’mat 2 Roka’at (Duduk)
 
-Bacaan Shalat  Surat bebas
+---
 
-Shalat Fardhu Maghrib
+Waktu Maghrib
 
-Jumlah Raka’at  3 Raka’at.
+1. **Sholat Syukrul Wudhu :**
 
-Bacaan Shalat             :
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
 
-Raka’at pertama Surat Al Kaafirun
+Niat Sholat  :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi Ta’alaa
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+2. **Sholat Tahiyyat Masjid :**
+
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+- Sholat Syukur Ni’mat
+
+**Keterangan :** *Dikerjakan dengan duduk*
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+
+waaataakum min kulli maa sa-altumuuhu
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
+
+wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+
+Setelah Salam langsung sujud sambil berdo’a : :
+
+اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
+
+Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+“ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
+**Artinya:**
+Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+
+---
+
+4. Sholat Sunnah Qobliyah Maghrib
+
+ - Jumlah 2 Roka’at
+
+Niat Sholat :
+
+Ushollii Sunnata Qobla magribi Rok’ataini Lillahi Ta’ala
+
+Artinya : Saya niat sholat sunnah qobla magrib Lillahi Ta’ala dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+5. Sholat Fardhu Maghrib
+
+ - Jumlah 3 Roka’at.
+
+Niat Sholat :
+
+Usholli fardlo magribi tsalasa rokaatin Lillahi Ta’ala
+
+Artinya : Saya niat sholat fardu magrib tiga rokaat karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Kafirun
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
 
-Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
-
-Raka’at kedua  Surat  An Nashr
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ - Roka’at kedua setelah Al-Fatihah membaca surat : An-Nashr
 
 إِذَا جَآءَ نَصۡرُ ٱللَّهِ وَٱلۡفَتۡحُ ١ وَرَأَيۡتَ ٱلنَّاسَ يَدۡخُلُونَ فِي دِينِ ٱللَّهِ أَفۡوَاجٗا ٢ فَسَبِّحۡ بِحَمۡدِ رَبِّكَ وَٱسۡتَغۡفِرۡهُۚ إِنَّهُۥ كَانَ تَوَّابَۢا ٣
 
-Bismillaahirrohmaanirrohiim
-
 Idzaa jaa-a nash-rulloohi wal-fath, Wa roai-tan-naasa yad-khuluuna fii dii-nil-laahi afwaa-jaa, Fasab-bih bihamdi rob-bika was-tagh-firh, in-nahuu kaa-na taw-waa-baa.
 
-Setelah Salam Zikir Harian dan Zikir Khataman
+---
 
-Shalat Sunnah Ba’diyah Maghrib
+Setelah Salam dilanjutkan Zikir Harian dan Khotaman
 
-Jumlah Raka’at –> 2 Raka’at
+6. Sholat Sunnah Ba’diyah Maghrib
 
-Bacaan Shalat –> Surat bebas
+ - Jumlah 2 Roka’at
 
-Shalat Sunnah Awwaabiin
+Niat Sholat :
 
-Niat Shalat                                          :
+Usholli Sunnatal maghribi rok’ataini ba’diyatan lillahi ta’aala
+
+Artinya : Saya niat sholat sunnah ba’da magrib dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+- Sholat Sunnah Awwaabiin
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ الْأَوَّابِيْنَ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatal awwaabiin rok’ataini lillaahi ta’alaa
 
-Jumlah Raka’at  2 Raka’at
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
-Bacaan Shalat Surat bebas
+---
 
-Shalat Sunnah Taubat
+8. Sholat Sunnah Taubat
 
-Niat Shalat                                          :
+ - Jumlah : 2 Roka’at
+
+Niat Sholat :
 
 اُصَلِّي سُنَّةَ التَّوْبَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatat taubati rok’ataini lillaahi ta’alaa
 
-Jumlah Raka’at 2 Raka’at
-
-Bacaan Shalat  Raka’at pertama “Surat An Nisaa’ ayat 64“
+ - Roka’at pertama setelah Al-Fatihah membaca surat :An-Nisaa ayat 64
 
 وَلَوْ أَنَّهُمْ إِذْ ظَلَمُوا أَنْفُسَهُمْ جَاۤءُوكَ فَاسْتَغْفَرُوا اللّٰهَ وَاسْتَغْفَرَ لَهُمُ الرَّسُولُ لَوَجَدُوا اللّٰهَ تَوَّابًا رَّحِيمًا
 
 Wa lau annahum izh zhalamuu anfusahum jaa’uuka fas taghfarullaaha was taghfara lahumur rasuulu lawajadullaaha Tawwabbar Rohiimaa
 
-Raka’at kedua “Surat Ali Imron ayat 135”
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ali-Imron ayat 135
 
 وَالَّذِينَ إِذَا فَعَلُوا فَاحِشَةً أَوْ ظَلَمُوا أَنْفُسَهُمْ ذَكَرُوا اللّٰهَ فَاسْتَغْفَرُوا لِذُنُوبِهِمْ وَمَنْ يَغْفِرُ الذُّنُوبَ إِلَّا اللّٰهُ وَلَمْ يُصِرُّوا عَلَىٰ مَا فَعَلُوا وَهُمْ يَعْلَمُونَ
 
 Wal ladziina idzaa fa’aluu faahisyatan auzhalamuu  anfusahum dzakarullaaha fas taghfaruu lidzunuubihim, wa may yaghfirudz dzuunuuba  illallaahu wa lam yushirruu ‘alaa maa fa’aluu   wa hum ya‘lamuun
 
-Shalat Sunnah Birrul Waalidain
+---
 
-Niat Shalat                                          :
+9. Sholat Sunnah Birrul Waalidain
 
-اُصَلِّي سُنَّةَ بِرِّ الْوَالِدَيْنِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+ - Jumlah : 2 Roka’at
 
-Ushollii sunnatal birril waalidaini rok’ataini lillaahi ta’alaa
+Niat Sholat                                          :
 
-Jumlah Raka’at  2 Raka’at
+Ushollii sunnata birril waalidaini rok’ataini lillaahi ta’aala
 
-Bacaan Shalat Setiap Raka’at : Ayat Kursi , Surat Al Falaq, Surat An Naas (Masing-masing di baca 5 kali)
+- Setelah Al-Fatihah membaca :Ayat Kursi , Surat Al-Falaq, Surat An-Naas (Masing-masing di baca 5x)
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 اللَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ
-
 وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ
-
 وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ
-
 حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
 
-Bismillaahirrohmaanirrohiim
-
-Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim (5X)
+Bismillaahirrohmaanirrohiim*Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim (5x)
 
 Al-Falaq
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
 
-Bismillaahirrohmaanirrohiim
-
-Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad (5X)
+Bismillaahirrohmaanirrohiim*Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad (5x)
 
 An-Naas .
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي
-
 يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ
 
-Bismillaahirrohmaanirrohiim
-
-Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas,Minal Jinnati Wannaas.(5X)
+Bismillaahirrohmaanirrohiim*Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas,Minal Jinnati Wannaas.(5x)
 
 Setelah salam dilanjutkan membaca Istighfar (15x), dan Do’a untuk Orang Tua (15x).Sholawat Bani Hasyim (15x)
 
-DO’A UNTUK ORANG TUA:
+---
+
+**Setelah Salam, duduk dengan membaca : Istighfar 15x & Sholawat 15x yang dihadiahkan untuk Ibu & Bapak :**
 
 أَللّٰهُمَّ اغْفِرْلِيْ وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِيْ صَغِيْرًا
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Alloohummaghfirlii waliwaalidayya warhamhumaa kamaa robayaanii shoghiiroo (15x)
 
-Alloohummagh-firlii waliwaa-liday-ya war-ham-humaa kamaa robbayaa-nii shoghii-roo (15 X)
+**Artinya :***Ya Alloh ampunilah dosaku dan dosa kedua orang tuaku serta kasihilah mereka berdua seperti mereka mengasihiku sewaktu kecil*
 
-Ya اللّه, ampunilah aku dan kedua orang tua ku, kasihilah mereka sebagaimana hal nya mereka mendidikku sewaktu kecil.
-
-SHOLAWAT BANI HASYIM:
+**Kemudian dilanjutkan dengan sholawat berikut 15x :**
 
 أَللّٰهُمَّ صَلِّ عَلَى النَّبِيِّ الهَاشِمِيِّ مُحَمَّدٍوَعَلَى أٰلِهٖ وَسَلِّمْ تَسْلِيْماً
 
-Alloohumma Sholli ‘alan-Nabiyyil Haa-syimiyyi Muhammadiw wa ’alaa Aa-lihii wa Sallim Taslii-maa (15 X)
+Alloohumma Sholli ‘alan-Nabiyyil Haa-syimiyyi Muhammadiw wa ’alaa Aa-lihii wa Sallim Taslii-maa (15x)
 
-Kemudian Ucapkan do’a “Yaa اللّه jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta Sholawat hambamu ini disampaikan kepada orang tua Hamba”
+**Artinya :***Ya Alloh, berikanlah rahmat serta salam kepada keturunan bangsawan Hasyim, yakni Muhammad beserta keluarganya, semoga tetap selamat dan sejahtera*
 
-Shalat Sunnah Hifzhil Iman
+Kemudian Ucapkan do’a *“Yaa Alloh jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta sholawat hambamu ini disampaikan kepada orang tua Hamba”*
+
+---
+
+10. Sholat Sunnah Hifdhil Iman
+
+ - Jumlah : 2 Roka’at
 
 Niat Shalat  :
 
@@ -1116,305 +1535,390 @@ Niat Shalat  :
 
 Ushollii sunnatan lihifzhil iimaan rok’ataini  lillaahi ta’alaa
 
-Jumlah Rakaat  2 Raka’at
-
-Bacaan Shalat :
-
-Rakaa’at pertama Surat Al Kaafirun
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Kafirun
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
 
-Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
-
-Raka’at kedua Surat Al Ikhlas
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Al-Ikhlas
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
+---
 
-Shalat Sunnah Syukrun Ni’mat
+11. Sholat Sunnah Syukur Ni’mat
 
-Niat Shalat                           :
+**Keterangan :** *Dikerjakan dengan duduk*
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat                           :
 
 اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’alaa
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Rokaat pertama           :
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
 وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
 
 waaataakum min kulli maa sa-altumuuhu
 
-Rokaat kedua              :
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
 وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
 
 wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
 
-Jumlah Raka’at 2 Raka’at (dengan posisi duduk)
-
-Do’a Sujud :
+Setelah Salam langsung sujud sambil berdo’a : :
 
 اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+“ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
+**Artinya:**
+Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+
+---
+
+Setelah selesai dilanjutkan Sholawat Bani Hasyim sampai menjelang adzan Isya
+
 ## WAKTU ISYA
 
-Shalat Sunnah Qobliyah
+**Waktu Isya :**
 
-Jumlah Raka’at  2 Raka’at
+1. Sholat Sunnah Qobliyah Isya 2 Roka’at
+2. Sholat Fardhu Isya 4 Roka’at
+3. Sholat Sunnah Ba’diyah Isya 2 Roka’at (Duduk)
+4. Dzikir Harian
+5. Sholat Sunnah Lidaf’il Bala 2 Roka’at / Sholat Sunnah Syukri Lailatul Qodar 4 Roka’at 2x Salam (Dilaksanakan pada setiap malam sepuluh akhir bulan hijriah)
+6. Khotaman
 
-Bacaan Shalat  Surat bebas
+---
 
-Shalat Fardhu  Isya
+Waktu Isya
 
-Jumlah Raka’at –> 4 Raka’at
+1. Sholat Sunnah Qobliyah Isya
 
-Bacaan Shalat  :
+ - Jumlah 2 Roka’at
 
-Raka’at pertama Surat Al Fiil
+Niat Sholat :
+
+Ushollii*s*unnata*l isya’i r*ok’ataini qobliyatan l*illahi*t*a’*a*ala
+
+Artinya :Saya niat sholat sunnah qobliyah isya dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek.
+
+---
+
+2. Sholat Fardhu Isya
+
+ - Jumlah 4 Roka’at
+
+Niat Sholat :
+
+Usholli fardhol isya’i arba’aroka’atin adaa’an lillahi ta’aala
+
+Artinya :Saya niat sholat fardhu isya empat roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Fiil
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 أَلَمۡ تَرَ كَيۡفَ فَعَلَ رَبُّكَ بِأَصۡحَٰبِ ٱلۡفِيلِ ١ أَلَمۡ يَجۡعَلۡ كَيۡدَهُمۡ فِي تَضۡلِيلٖ ٢ وَأَرۡسَلَ عَلَيۡهِمۡ طَيۡرًا أَبَابِيلَ ٣ تَرۡمِيهِم بِحِجَارَةٖ مِّن سِجِّيلٖ ٤ فَجَعَلَهُمۡ كَعَصۡفٖ مَّأۡكُولِۢ ٥
 
-Bismillaahirrohmaanirrohiim
+Bismillaahirrohmaanirrohiim*Alam Taro Kaifa Fa’ala Robbuka bi Ash-haabil Fiil, Alam Yaj-‘al Kaidahum Fii Tadh-liil, Wa Arsala ‘Alaihim Thoiron Abaabiil, Tarmii-him Bihijaa-rotim Ming SijJiil, Faja-‘alahum Ka-‘Ashfim Ma-kuul.
 
-Alam Taro Kaifa Fa’ala Robbuka bi Ash-haabil Fiil, Alam Yaj-‘al Kaidahum Fii Tadh-liil, Wa Arsala ‘Alaihim Thoiron Abaabiil, Tarmii-him Bihijaa-rotim Ming SijJiil, Faja-‘alahum Ka-‘Ashfim Ma-kuul.
-
-Raka’at kedua Surat Al Quraisy
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Al-Quraisy
 
 لِإِيلَٰفِ قُرَيۡشٍ ١ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ٢ فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ ٣ ٱلَّذِيٓ أَطۡعَمَهُم مِّن جُوعٖ وَءَامَنَهُم مِّنۡ خَوۡفِۢ ٤
 
-Bismillaahirrohmaanirrohiim
-
 Li-ii-laafi quroisyin ii-llaafihim rihlatasy-syitaa-i wash-shoiif, fal-ya’buduu robba haa-dzal baiit, al-ladzii ath-’amahum ming-juu-‘iw wa aa-manahum min khouuf.
 
-Shalat Sunnah Ba’diyah
+---
 
-Jumlah Raka’at 2 Raka’at (dengan posisi duduk)
+3. Sholat Sunnah Ba’diyah Isya
+
+ - Jumlah Roka’at 2 Roka’at (Dengan posisi duduk)
+
+Niat Sholat :
+
+Usholli sunnatal isya’i*r*ok’ataini ba’diyatan lillahi ta’aala
+
+Artinya :Saya niat sholat sunnah ba’da isya dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
 
 Selesai Salam Zikir Harian
 
-Shalat Sunnah Daf’il Bala’
+4. Sholat Sunnah Lidaf’il Bala
 
-Niat Shalat                              :
+ - Jumlah : 2 Roka’at
 
-اُصَلِّي سُنَّةً لِدَفْعِ الْبَلَاءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+Niat Sholat :
 
-Ushollii sunnatan lidaf’il balaa’ rok’ataini lilaahi ta’alaa
+Ushollii sunnata lidaf’il balaa’i rok’ataini lillaahi ta‘a*a*la
 
-Jumlah Raka’at     : 2 Raka’at
+**Artinya :***Saya niat sholat sunnah Daf’il Bala’ dua roka’at karena Alloh Ta’ala*
 
-Bacaan Shalat       : Setiap raka’at membaca Ayat Kursi, Surat Al Ikhlas,  Surat Al Falaq, Surat An Naas (masing-masing 1 kali)
+ - Setelah Al-Fatihah membaca : Ayat Kursi, Al-Ikhlas, Al-Falaq & An-Naas.
 
 Ayat Kursi,
 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 اللَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ
-
 وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ
-
 وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ
+حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
 
+Bismillaahirrohmaanirrohiim*Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim
+
+Al-Ikhlas
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
+
+Bismillaahirrohmaanirrohiim*Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
+
+Al-Falaq
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ
+ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
+
+Bismillaahirrohmaanirrohiim*Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad
+
+An-Nas
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي
+يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ
+
+Bismillaahirrohmaanirrohiim*Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas,Minal Jinnati Wannaas
+
+Setelah selesai dilanjutkan Khotaman
+
+5. Sholat Sunnah Syukri Lailatul Qodar
+
+**Catatan :**
+
+Setiap malam 21 Hijriah s/d Akhir bulan hijriah, Sholat Sunnah Syukri Lailatul Qodar 4 roka’at 2x salam. Dilaksanakan setelah sholat Isya tanpa sholat Lidaf’il bala dan khotaman. (Khotaman dipindahkan setelah DZIKIR ba’da ashar.)
+
+ - Jumlah : 4 Roka’at 2x Salam
+
+Niat Sholat :
+
+Ushollii sunnatan syukri lailatul qodar rok’ataini lillaahi ta’aala
+
+Artinya :Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena Alloh Ta’ala*
+
+ - Setelah Al-Fatihah membaca :At-Takatsur (1x) & Al-Ikhlash (3x)
+
+At-Takatsur
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+أَلْهَاكُمُ التَّكَاثُرُ . حَتَّى زُرْتُمُ الْمَقَابِرَ . كَلَّا سَوْفَ تَعْلَمُونَ . ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ . كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ . لَتَرَوُنَّ الْجَحِيمَ . ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ . ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ
+
+Alhaakumut takaatsur. Hattaa zurtumul maqoobir. Kallaa saufa ta’lamuun. Tsumma kallaa saufa ta’lamuun. Kallaa lau ta’lamuuna ‘ilmal yaqiin. Latarowunnal jahiim. Tsumma latarowunnahaa ‘ainal yaqiin. Tsumma latus-alunna yauma-idzin ‘anin na’iim
+
+Al-Ikhlash
+
+قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
+
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
+
+Dilanjutkan dengan Do’a :
+
+اَللَّهُمَّ اِنَّكَ عَفُوٌّ كَرِيْمٌ تُحِبُّ الْعَفْوَ، فَاعْفُ عَنَّا
+
+Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 26x
+
+Artinya : Yaa Alloh , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.*
+
+## SEBELUM TIDUR
+
+**Sebelum Tidur (Pkl. 21.00 WIB) :**
+
+1. Sholat Sunnah Syukrul Wudhu 2 Roka’at
+2. Sholat Sunnah Tahiyyat Masjid 2 Roka’at
+3. Sholat Sunnah Syukru Ni’mat 2 Roka’at (Dilakukan dengan duduk)
+4. Sholat Sunnah Taubat 2 Roka’at
+5. Sholat Sunnah Istikharoh 2 Roka’at (Duduk)
+6. Sholat Sunnah Hajat 2 Roka’at
+
+HENDAK TIDUR
+
+1. **Sholat Sunnah Syukrul Wudhu :**
+
+ - Jumlah 2 Roka’at
+ - Waktu Pelaksanaan ( Setiap setelah wudhu selagi masih basah )
+
+Niat Sholat  :
+
+اُصَلِّي سُنَّةً لِشُكْرِ الْوُضُوْءِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+2. **Sholat Tahiyyat Masjid :**
+
+ - Jumlah 2 Roka’at
+ - Dilaksanakan setelah masuk mesjid atau diatas sajadah dimanapun sebelum duduk.
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ تَحِيَّةِ الْمَسْجِدِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
+
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+
+ - Setelah Al-Fatihah membaca : Surat Pendek
+
+---
+
+3. Sholat Syukru Ni’mat
+
+**Keterangan :** Dengan posisi duduk
+
+ - Jumlah : 2 Roka’at
+
+Niat Sholat                           :
+
+اُصَلِّي سُنَّةَ شُكْرِ النِّعْمَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
+
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
+
+waaataakum min kulli maa sa-altumuuhu
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
+
+وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
+
+wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
+
+Setelah Salam langsung sujud sambil berdo’a : :
+
+اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
+
+Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
+
+Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+
+---
+
+4. **Sholat Taubat :**
+
+ - Jumlah 2 Roka’at
+
+Niat Sholat :
+
+اُصَلِّي سُنَّةَ التَّوْبَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatat taubati rok’ataini lillahi ta’aala
+
+Artinya: Saya niat sholat sunnah Taubat dua roka’at karena Alloh ta’ala.*
+
+ - Roka’at pertama setelah Al-Fatihah membaca surat : An-Nisaa’ ayat 64
+
+وَلَوۡ أَنَّهُمۡ إِذ ظَّلَمُوٓاْ أَنفُسَهُمۡ جَآءُوكَ فَٱسۡتَغۡفَرُواْ ٱللَّهَ وَٱسۡتَغۡفَرَ لَهُمُ ٱلرَّسُولُ لَوَجَدُواْ ٱللَّهَ تَوَّابٗا رَّحِيمٗا
+
+Wa lau annahum izh zholamuu angfusahum jaa’uuka fas taghfarullooha was taghfaro lahumur rosuulu lawajadullooha tawwaabbar rohiimaa
+
+ - Roka’at kedua setelah Al-Fatihah membaca surat : Ali-Imron ayat 135
+
+وَٱلَّذِينَ إِذَا فَعَلُواْ فَٰحِشَةً أَوۡ ظَلَمُوٓاْ أَنفُسَهُمۡ ذَكَرُواْ ٱللَّهَ فَٱسۡتَغۡفَرُواْ لِذُنُوبِهِمۡ وَمَن يَغۡفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمۡ يُصِرُّواْ عَلَىٰ مَا فَعَلُواْ وَهُمۡ يَعۡلَمُونَ
+
+Waalladziina idzaa fa’aluu faahisyatan aw zholamuu angfusahum dzakarullooha fastaghfaruu lidzunuubihim wamay yaghfirudz dzunuuba illallooh. Walam yushirruu ‘alaa maa fa’aluu wahum ya’lamuun.
+
+---
+
+5. Shalat Istikharoh
+
+**Keterangan :**Dilakukan dengan posisi duduk
+
+ - Jumlah : 2 Roka’at
+
+Niat :
+
+اُصَلِّي سُنَّةَ الْإِسْتِخَارَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
+
+Ushollii sunnatal istikhoroti rok’ataini  lillaahi ta’alaa
+
+Artinya : Saya niat sholat sunnah Istikharoh dua roka’at karena Alloh Ta’ala*
+
+ - Setiap roka’at setelah Al-Fatihah membaca surat : Ayat kursi (1x) & Al-Ikhlas (7x).
+
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+للَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ
+وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ
+وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ
 حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
 
 Bismillaahirrohmaanirrohiim
 
 Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim
 
-Al Ikhlash
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
-
-Bismillaahirrohmaanirrohiim
-
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
-
-Al Falaq
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ مِن شَرِّ مَا خَلَقَ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ وَمِن شَرِّ
-
-ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ
-
-Bismillaahirrohmaanirrohiim
-
-Qul A-‘Uudzu Bi Robbil Falaq, Ming Sarri Maa Kholaq, Waming Sarri Ghoosiqin Idzaa Waqob,Waming Sarrin-Naffaa-Tsaa-Ti Fil-‘Uqod, Waming Sarri Haasidin Idzaa Hasad
-
-An Nas
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ أَعُوذُ بِرَبِّ ٱلنَّاسِ مَلِكِ ٱلنَّاسِ إِلَٰهِ ٱلنَّاسِ مِن شَرِّ ٱلۡوَسۡوَاسِ ٱلۡخَنَّاسِ ٱلَّذِي
-
-يُوَسۡوِسُ فِي صُدُورِ ٱلنَّاسِ مِنَ ٱلۡجِنَّةِ وَٱلنَّاسِ
-
-Bismillaahirrohmaanirrohiim
-
-Qul A‘Uudzu Birobbinnaas, Malikinnaas, Ilaahinnaas, Ming Sarril Waswaasil Khonnaas, Alladzii Yuwaswisu Fii Shuduurinnaas,Minal Jinnati Wannaas
-
-Selesai Salam  :  Zikir Khataman
-
-Sholat sunnah Syukri Lailatul Qodar
-
-Dilaksanakan pada setiap malam sepuluh akhir bulan hijriah . Banyaknya 4 rokaat 2 kali salam .
-
-Niatnya : ” usholli sunnatan syukri Lailatul Qodar rok-ataini lillahita’ala .”
-
-Bacaan setiap rokaat ba’da Fatihah :
-
-– At Takatsur 1 x
-
-– Al Ikhlas 3 x
-
-Setelah selesai salam yang ke 2 masih dalam keadaan duduk tasyahud akhir membaca do’a berikut ini :
-
-اللَّـهُـمَّ إنَّكَ عَفُوٌّ تُـحِبُّ العَفْوَ فَاعْفُ عَنِّي
-
-“Allohumma innaka afuwun tuhibbul ‘afwa fa’ fu’anni” ( 26 kali )
-
-QOUL JADID MIN HADROTIS SYEIKH
-
-Terhitung tanggal 26 Mei 2019 / 21 Romadhon 1440 H hari Ahad melalui Maklumatnya Pangersa Guru Agung menetapkan bahwa Sholat Sunnat Syukri Lailatul Qodar mulai Romadhon 1 ini kemudian Romadhon 2 ( Syawal ) , Romadhon 3 ( Dzulqo’dah ) dan seterusnya dilaksanakan hanya setiap tanggal sepuluh akhir dibulan hijriah , pelaksanaannya setelah selesai khotaman sholat Lidaf’il bala* .
-
-## SEBELUM TIDUR
-
-HENDAK TIDUR
-
-Sholat Sunnah Syukril Wudhu ( 2 Rokaat )
-
-Rokaat Pertama Setelah Al-Fatihah membaca Q.S. Al-Kafirun (Qul Yaa Ayyuhal Kaafiruun)
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ يَٰٓأَيُّهَا ٱلۡكَٰفِرُونَ ١ لَآ أَعۡبُدُ مَا تَعۡبُدُونَ ٢ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٣ وَلَآ أَنَا۠ عَابِدٞ مَّا عَبَدتُّمۡ ٤ وَلَآ أَنتُمۡ عَٰبِدُونَ مَآ أَعۡبُدُ ٥ لَكُمۡ دِينُكُمۡ وَلِيَ دِينِ ٦
-
-Bismillaahirrohmaanirrohiim
-
-Qul Yaa Ayyuhal Kaafiruun, Laa A’budu Maa Ta’buduun, Walaa Anntum ‘AaBiduuna Maa A’bud, Walaa Ana ‘Aabidum maa ‘Abattum, Walaa Anntum ‘Aa-Biduuna Maa A’bud, Lakum Diinukum Waliya-Diin
-
-Rokaat Kedua : Q.S. Al-Ikhlas
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
-
-Bismillaahirrohmaanirrohiim
-
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad.
-
-Sholat Sunnah Lisyukri Bin-Ni’mah (2 Rokaat Dengan Duduk)
-
-Rokaat pertama setelah Alfatihah membaca Surat Ibrohim ayat 34:
-
-وَءَاتَىٰكُم مِّن كُلِّ مَا سَأَلۡتُمُوهُۚ
-
-waaataakum min kulli maa sa-altumuuhu.
-
-Rokaat kedua setelah Alfatihah membaca Surat Ibrohim ayat 34 ( lanjutannya ).
-
-وَإِن تَعُدُّواْ نِعۡمَتَ ٱللَّهِ لَا تُحۡصُوهَآۗ إِنَّ ٱلۡإِنسَٰنَ لَظَلُومٞ كَفَّارٞ
-
-wa-in ta’udduu ni’mata allaahi laa tuhsuuhaa inna al-insaana lazhaluumun kaffaarun
-
-Setelah salam langsung sujud dan berdo’a :
-
-اللَّهُمَّ لَكَ سَجَدْتُ وَبِكَ آمَنْتُ وَلَكَ أَسْلَمْتُ سَجَدَ وَجْهِى لِلَّذِى خَلَقَهُ وَصَوَّرَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ تَبَارَكَ اللَّهُ أَحْسَنُ الْخَالِقِينَ
-
-Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
-
-Kemudian duduk posisi Tasyahud akhir dan salam.
-
-Sholat Sholat Sunnah Taubat ( 2 Rokaat )
-
-Setelah Al-Fatihah membaca:
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-وَلَوۡ أَنَّهُمۡ إِذ ظَّلَمُوٓاْ أَنفُسَهُمۡ جَآءُوكَ فَٱسۡتَغۡفَرُواْ ٱللَّهَ وَٱسۡتَغۡفَرَ لَهُمُ ٱلرَّسُولُ لَوَجَدُواْ ٱللَّهَ تَوَّابٗا رَّحِيمٗا
-
-Bismillaahirrohmaanirrohiim
-
-Walau Annahum Izh-Zholamuu Angfusahum Jaa-uu-ka Fastaghfa-Rullooha Wastaghfaro Lahumur Rosuulu Lawajadullooha Taw-waa-bar Rohiima.
-
-Rokaat Kedua : Q.S. Ali Imron, ayat 135
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-وَٱلَّذِينَ إِذَا فَعَلُواْ فَٰحِشَةً أَوۡ ظَلَمُوٓاْ أَنفُسَهُمۡ ذَكَرُواْ ٱللَّهَ فَٱسۡتَغۡفَرُواْ لِذُنُوبِهِمۡ وَمَن يَغۡفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمۡ يُصِرُّواْ عَلَىٰ مَا فَعَلُواْ وَهُمۡ يَعۡلَمُونَ
-
-Bismillaahirrohmaanirrohiim
-
-Walladziina Idzaa Fa’aluu Faahisyatan Aw Zholamuu Ang-Fusahum Dzakarullooha Fastaghfaruu Li-Dzunuubihim Wa May-Yaghfirudz Dzunuuba Illallooh, Walam Yushirruu ‘Alaa Maa Fa’aluu Wahum Ya’lamuun.
-
-Sholat Sunnah Istikhoroh (2 Rokaat dengan duduk)
-
-Setelah Al-Fatihah membaca:
-
-Ayat Kursi (1x) dan Al-Ikhlash (7x) pada tiap rokaatnya.
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
-للَّهُ لا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لا تَأْخُذُهُ سِنَةٌ وَلا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأرْضَ وَلا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
-
-Bismillaahirrohmaanirrohiim
-
-Alloohu Laa Ilaaha Illa huwal-Hayyul-Qoyyuum, Laa Ta-khudzuhuu Sinatuw Walaa Nauum, Lahuu Maa Fis-Samaawaati Wamaa Fil-Ardh, Mang-Dzalladzii Yasyfa’u ‘Indahuu Ilaa bi-Idznih, Ya’lamu Maa Baina Aidiihim Wamaa Kholfahum, Walaa Yuhiithuuna bi-Syai-im-min ‘Ilmihii Ilaa Bimaa Syaa, Wasi’a Kursiyyuhus-Samaawaati wal-Ardho Walaa Ya-uu-duhuu Hifzhuhumaa, Wahuwal ‘Aliyyul ‘Azhiim
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ٱللَّهُ ٱلصَّمَدُ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ
 
-Bismillaahirrohmaanirrohiim
+Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (7x)
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (7X)
+---
 
-Setelah salam dilanjutkan dengan do’a:
+6. **Sholat Hajat :**
 
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ - Jumlah 2 Roka’at
+ - Pada setiap roka’at setelah Al-Fatihah membaca Q.S. Al-Ikhlas (Qul Huwalloohu Ahad) 11x.
 
-قَلْبِيْ قُطْبِيْ*وَقَالَبِيْ لُبْنَانِيْ*سِرِّيْ خَضِرِي*وَعَيْنُهُ عِرْفَانِيْ*هَارُوْنَ عَقْلِيْ وَكَلِيْمِيْ رُوْحِيْ*فِرْعَوْنِيْ نَفْسِيْ*وَاْلهَـوَي هَمَانِيْ
+Niat Sholat  :
 
-Bismillaahirrohmaanirrohiim
+اُصَلِّي سُنَّةَ الْـحَاجَةِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
-Qolbii Quth-bii, wa Qoolabii Lubnaa-nii, Sirrii Khodhirii, wa ‘Ainuhuu ‘irfaanii, Haa-ruuna-‘aqlii, wa Kalii-mii Ruu-hii, Fir’aunii Nafsii, wal Hawaa Hamaa-nii. (dibaca 7X)
+Ushollii sunnatal haajati rok’ataini lillaahi ta’aala
 
-اَللّٰهُمَّ نَوِّرْ قَلْبِيْ بِنُوْرِ هِدَايَتِكَ، كَمَا نَوَّرْتَ اْلأَرْضَ بِنُوْرِشمَـْــــــسِكَ اَبَدًا اَبَدًا، بِرَحْمَتِكَ ياَأَرْحَمَ الرَّاحِمِيْنَ
+Artinya: Saya niat sholat sunnah Hajat dua roka’at karena Alloh Ta’ala.*
 
-Alloohumma naw-wir qolbii bi-nuuri hidaayatika, kamaa naw-wartal ardho bi nuuri syamsika abadan-abadan, bi rohmatika yaa arhamar-roohimiin.
+ - Setelah Al-Fatihah membaca : Al-Ikhlash (11x)
 
-Sholat Sunnah Hajat (2 Rokaat )
-
-Pada tiap rokaat setelah Al-Fatihah membaca Q.S. Al-Ikhlash (Qul Huwalloohu Ahad) 11x.
-
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+ِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
 
 قُلۡ هُوَ ٱللَّهُ أَحَدٌ ١ ٱللَّهُ ٱلصَّمَدُ ٢ لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ ٣ وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ ٤
 
 Bismillaahirrohmaanirrohiim
 
-Qul Huwalloohu Ahad, Alloohus-Shomad, Lam Yalid Wa Lam Yuulad, Wa Lam Yakul-Lahuu Kufuwan Ahad. (11X)
+Qul huwalloohu ahad. Alloohush shomad. Lamyalid walam yuulad. Walam yakullahuu kufuwan ahad. (11x)
 
-Zikir
+ - Setelah Salam *(Sujud lalu memohon ampunan dari dosa, mensyukuri nikmat dan memohon hajat)*
+ - Setelah salam lalu sujud dan memohon : Ampunan dari dosa, mensyukuri nikmat dan memohon hajatnya.
 
-﴾ Do’a Setelah Salam Shalat ﴿
+---
+
+ 1. Zikir
+
+﴾ Do’a setelah salam ﴿
 
 اَلْحَمْدُ لِلّٰهِ الَّذِي أَذْهَبَ عَنَّا الْحَزَنَ اِنَّ رَبَّنَا لَغَفُوْرٌ شَكُوْرٌ
 

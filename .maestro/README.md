@@ -121,7 +121,7 @@ maestro test .maestro/flows/08_quran_and_reader.yaml
 | 28 | `28_quran_surah_reader.png` | **Pembaca Mushaf** | Teks Arab Scheherazade, Terjemahan & Penanda Ayat |
 | 29 | `29_quran_reader_settings_sheet.png` | **Bottom Sheet** | Pengaturan Ukuran Huruf Arab, Font & Tampilan Terjemah |
 | 30 | `30_quran_jump_to_ayah_sheet.png` | **Bottom Sheet** | Lompat Cepat ke Nomor Surah & Nomor Ayat Tertentu |
-| 31 | `31_reader_dzikir_tqn.png` | **Pembaca Liturgi** | Teks Amaliyah Dzikir Ba'da Sholat Maktubah |
+| 31 | `31_reader_dzikir_tqn.png` | **Pembaca Liturgi** | Teks Amaliyah Dzikir Ba'da Sholat |
 | 32 | `32_reader_typography_settings_sheet.png` | **Bottom Sheet** | Pengaturan Tipografi Pembaca Dokumen Amaliyah |
 | 33 | `33_reader_tanbih_indonesia.png` | **Pembaca Tanbih** | Wasiat Guru Mursyid (Bahasa Indonesia) |
 | 34 | `34_reader_tanbih_sunda.png` | **Pembaca Tanbih** | Wasiat Guru Mursyid (Basa Sunda) |

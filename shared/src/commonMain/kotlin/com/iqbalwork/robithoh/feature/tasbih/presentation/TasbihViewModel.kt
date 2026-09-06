@@ -1,6 +1,10 @@
 package com.iqbalwork.robithoh.feature.tasbih.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.iqbalwork.robithoh.core.analytics.AnalyticsEvents
+import com.iqbalwork.robithoh.core.analytics.AnalyticsParams
+import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
+import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.KmpHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
@@ -12,7 +16,8 @@ import kotlinx.coroutines.launch
 class TasbihViewModel(
     private val hapticFeedback: KmpHapticFeedback = getHapticFeedback(),
     private val database: RobithohDatabase? = null,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
+    private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<TasbihUiState, TasbihUiIntent, TasbihUiEffect>(
     TasbihUiState()
 ) {
@@ -55,19 +60,46 @@ class TasbihViewModel(
             is TasbihUiIntent.ToggleFloatingExpand -> updateState { copy(isFloatingExpanded = !isFloatingExpanded) }
             is TasbihUiIntent.SetFloatingExpanded -> updateState { copy(isFloatingExpanded = intent.expanded) }
             is TasbihUiIntent.SetFloatingVisible -> updateState { copy(isFloatingVisible = intent.visible) }
+            is TasbihUiIntent.SyncData -> handleSyncData(intent)
         }
+    }
+
+    private fun handleSyncData(intent: TasbihUiIntent.SyncData) {
+        val target = intent.target ?: currentState.targetCount
+        val lap = if (target > 0) intent.count / target else currentState.lapCount
+        val matchedPreset = currentState.availablePresets.find {
+            intent.dzikirTitle != null && (
+                it.title.equals(intent.dzikirTitle, ignoreCase = true) ||
+                intent.dzikirTitle.contains(it.title, ignoreCase = true) ||
+                it.title.contains(intent.dzikirTitle, ignoreCase = true)
+            )
+        }
+        val title = matchedPreset?.title ?: intent.dzikirTitle ?: currentState.selectedDzikirTitle
+        val arabic = matchedPreset?.arabic ?: currentState.selectedDzikirArabic
+        val dzikirId = matchedPreset?.id ?: currentState.selectedDzikirId
+
+        updateState {
+            copy(
+                currentCount = intent.count,
+                targetCount = target,
+                lapCount = lap,
+                selectedDzikirTitle = title,
+                selectedDzikirArabic = arabic,
+                selectedDzikirId = dzikirId,
+                isTargetReached = target > 0 && intent.count >= target && (intent.count % target == 0)
+            )
+        }
+        saveProgress()
     }
 
     private fun handleIncrement() {
         val nextCount = currentState.currentCount + 1
         val target = currentState.targetCount
-        val reachedTarget = nextCount >= target
-        val nextLap = if (reachedTarget) currentState.lapCount + 1 else currentState.lapCount
-        val resetCount = if (reachedTarget) 0 else nextCount
-        val total = currentState.totalCount + 1
+        val reachedMilestone = target > 0 && nextCount % target == 0
+        val nextLap = if (reachedMilestone) currentState.lapCount + 1 else currentState.lapCount
 
         if (currentState.isHapticEnabled) {
-            if (reachedTarget || nextCount % 33 == 0) {
+            if (reachedMilestone || nextCount % 33 == 0) {
                 hapticFeedback.performMilestone()
                 sendEffect(TasbihUiEffect.TriggerHapticMilestone)
             } else {
@@ -77,23 +109,31 @@ class TasbihViewModel(
         }
 
         if (currentState.isSoundEnabled) {
-            if (reachedTarget) {
+            if (reachedMilestone) {
                 sendEffect(TasbihUiEffect.PlayMilestoneChime)
             } else {
                 sendEffect(TasbihUiEffect.PlayClickChime)
             }
         }
 
-        if (reachedTarget) {
+        if (reachedMilestone) {
             sendEffect(TasbihUiEffect.ShowMilestoneToast(target, target))
+            analyticsTracker.logEvent(
+                AnalyticsEvents.TASBIH_TARGET_REACHED,
+                mapOf(
+                    AnalyticsParams.TARGET_COUNT to target,
+                    AnalyticsParams.TOTAL_TAPS to nextCount,
+                    AnalyticsParams.IS_VIBRATION_ENABLED to currentState.isHapticEnabled
+                )
+            )
         }
 
         updateState {
             copy(
-                currentCount = resetCount,
+                currentCount = nextCount,
                 lapCount = nextLap,
-                totalCount = total,
-                isTargetReached = reachedTarget
+                totalCount = totalCount + 1,
+                isTargetReached = reachedMilestone
             )
         }
 
@@ -119,6 +159,12 @@ class TasbihViewModel(
     }
 
     private fun handleReset() {
+        analyticsTracker.logEvent(
+            AnalyticsEvents.TASBIH_RESET,
+            mapOf(
+                AnalyticsParams.TOTAL_TAPS to currentState.currentCount
+            )
+        )
         updateState {
             copy(
                 currentCount = 0,
@@ -136,6 +182,7 @@ class TasbihViewModel(
                     lastUpdated = 20260824L,
                     id = currentState.selectedDzikirId
                 )
+                notifyTasbihWidgetUpdate()
             } catch (_: Exception) {}
         }
     }
@@ -143,7 +190,10 @@ class TasbihViewModel(
     private fun loadInitialProgress(dzikirId: String) {
         viewModelScope.launch(dispatcher) {
             try {
-                val entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById(dzikirId)?.executeAsOneOrNull()
+                var entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById(dzikirId)?.executeAsOneOrNull()
+                if (entity == null && dzikirId == "dzikir_jahr") {
+                    entity = database?.robithohDatabaseQueries?.getAmaliyahProgressById("dzikir_nafi_itsbat")?.executeAsOneOrNull()
+                }
                 if (entity != null) {
                     updateState {
                         copy(
@@ -168,6 +218,7 @@ class TasbihViewModel(
                     last_updated = 20260824L,
                     is_completed = if (state.currentCount >= state.targetCount) 1L else 0L
                 )
+                notifyTasbihWidgetUpdate()
             } catch (_: Exception) {}
         }
     }

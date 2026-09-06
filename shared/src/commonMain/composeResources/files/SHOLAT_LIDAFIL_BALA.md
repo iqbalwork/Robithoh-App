@@ -1,4 +1,4 @@
-# Sholat Lidaf&#8217;il bala
+# Sholat Lidaf'il Bala
 
 ---
 
@@ -42,4 +42,4 @@ dilanjutkan dengan membaca do’a 3x :
 
 Allohumma sholli wasallimu ‘ala sayyidinaa muhammadin wadfa’ ‘anna minal balail mubromi innaka ‘ala kulli syaiin qodiirin allohumma inni a’udzubika bikalimatika waddami wAllohmi wal ‘udmi waljuluidi wal ‘uruuqi subhanaka idzaa qodoita amron an taquula lahu kun fayaquunu (Allohu akbar 3x) birohmatika yaa arhamarroo himiina
 
-Sholat ini dilakukan jika ikhwan tidak melakukan sholat istianah (dafilbalai) yang setiap ba’da Isya, Shubuh dan ba’da Isroq.
+*Sholat ini dilakukan jika ikhwan tidak melakukan sholat istianah (dafilbalai) yang setiap ba’da Isya, Shubuh dan ba’da Isroq.*

@@ -14,19 +14,17 @@ sealed interface ScreenKey : NavKey {
     data object Splash : ScreenKey
 
     @Serializable
+    data object Onboarding : ScreenKey
+
+    @Serializable
     data object Home : ScreenKey
 
     @Serializable
-    data object Amaliyah : ScreenKey
-
-    @Serializable
-    data object Tasbih : ScreenKey
-
-    @Serializable
-    data object ManaqibList : ScreenKey
-
-    @Serializable
-    data class ManaqibDetail(val chapterNumber: Int = 1) : ScreenKey
+    data class Tasbih(
+        val initialCount: Int? = null,
+        val targetCount: Int? = null,
+        val dzikirTitle: String? = null
+    ) : ScreenKey
 
     @Serializable
     data object QuranList : ScreenKey

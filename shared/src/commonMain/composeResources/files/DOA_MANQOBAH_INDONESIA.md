@@ -1,4 +1,4 @@
-# DOAMANQOBAH
+# DOA MANQOBAH
 
 ---
 
@@ -6,11 +6,11 @@ DOA MANQOBAH
 
 اِلَى حَضْرَةِ سُلْطَانِ الْاَوْلِيَاءِ وَقُدْوَةِ الْاَصْفِيَاءِ قُطْبِ الرَّبَّانِيْ وَالْغَوْثِ الصَّمَدَنِي السَّيِّدِ الشَّيْخِ عَبْدُالْقَادِرِاَلْجَيْلَانِيْ (اَلْفَاتِحَةْ)
 
-Ila hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbir robani wal ghoutsush shomadani sayyidi syaikh ‘abdul qodir aljailani. Al-Fatihah
+Ila hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbir robani wal ghoutsush shomadani sayyidi syaikh ‘abdul qodir aljailani. *Al-Fatihah*
 
 اللّٰهُمَّ صَلِّ وَسَلِّمْ عَلٰى سَيِّدِنَا وَحَبِيْبِنَا وَشَفِيعِناَ وَمَوْلَانَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ اَجْمَعِيْنَ اٰمِينْ
 
-Allohhumma sholli wa sallim ‘ala sayyidina wa habibina wa syafi’ina wa maulana muhammadiw wa ‘ala alihhi wa ashhabihhi ajma’ina. Aamiin
+Allohhumma sholli wa sallim ‘ala sayyidina wa habibina wa syafi’ina wa maulana muhammadiw wa ‘ala alihhi wa ashhabihhi ajma’ina. *Aamiin*
 
 اَللّٰهُمَّ بِاَسْمَائِكَ الْحُسْنَى, وَبِاَسْمَاءِ نَبِيِّكَ الْمُصْطَفٰى, وَبِاَسْمَاءِ وَلِيِّكَ,
 
@@ -46,6 +46,8 @@ Bihadyihi wa siirotihi wa tawaffanaa bihaa ‘ala sunnatihi , wa laa tahrimnaa f
 
 Wa atbaa’ihil ghurril muhajjiliina, wa asy-yaa’ihis saabiqiina, wa ash-haabil yamiin yaa arhamar roohimiina.
 
-Washollalloohu alaa sayyidinaa Muhammadin wa alaa aalihii wa ash-haabihi, Wa’ala saa-iril anbiyaa-i wal mursaliin, wa ‘alaa aalihim wa ash-haabihim ajma’iin Wal hamdulillahi robbil ‘aalamiin.
+Washollalloohu alaa sayyidinaa Muhammadin wa alaa aalihii wa ash-haabihi, Wa’ala saa-iril anbiyaa-i wal mursaliin, wa ‘alaa aalihim wa ash-haabihim ajma’iinWal hamdulillahi robbil ‘aalamiin.
 
-Bilbarokah wallkaromah. Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohu.  Al-Fatihah.
+Bilbarokah wallkaromah.Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohu.Al-Fatihah.
+
+۞۞۞

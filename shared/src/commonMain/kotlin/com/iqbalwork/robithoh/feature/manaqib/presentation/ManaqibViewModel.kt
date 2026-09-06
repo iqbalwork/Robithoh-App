@@ -1,6 +1,10 @@
 package com.iqbalwork.robithoh.feature.manaqib.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.iqbalwork.robithoh.core.analytics.AnalyticsEvents
+import com.iqbalwork.robithoh.core.analytics.AnalyticsParams
+import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
+import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
 import com.iqbalwork.robithoh.feature.manaqib.data.ManaqibDataSeeder
 import com.iqbalwork.robithoh.feature.manaqib.data.ManaqibRepository
@@ -10,7 +14,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class ManaqibViewModel(
-    private val repository: ManaqibRepository
+    private val repository: ManaqibRepository,
+    private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<ManaqibUiState, ManaqibUiIntent, ManaqibUiEffect>(ManaqibUiState(isLoading = true)) {
 
     private val allSeedChapters = ManaqibDataSeeder.getManqobahChapters()
@@ -67,6 +72,15 @@ class ManaqibViewModel(
                 updateState { copy(selectedTab = intent.tab) }
             }
             is ManaqibUiIntent.SelectLanguage -> {
+                val prev = currentState.selectedLanguage.name.lowercase()
+                val next = intent.language.name.lowercase()
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.MANAQIB_LANGUAGE_CHANGED,
+                    mapOf(
+                        AnalyticsParams.SELECTED_LANGUAGE to next,
+                        AnalyticsParams.PREVIOUS_LANGUAGE to prev
+                    )
+                )
                 updateState { copy(selectedLanguage = intent.language) }
             }
             is ManaqibUiIntent.SearchChapters -> {
@@ -84,6 +98,13 @@ class ManaqibViewModel(
                 if (chapter != null) {
                     updateState { copy(currentChapter = chapter) }
                 }
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.MANAQIB_DETAIL_OPENED,
+                    mapOf(
+                        AnalyticsParams.MANQOBAH_NUMBER to target,
+                        AnalyticsParams.MANQOBAH_TITLE to (chapter?.titleIndonesian ?: "Manqobah $target")
+                    )
+                )
                 sendEffect(ManaqibUiEffect.NavigateToChapter(target))
             }
             is ManaqibUiIntent.SearchSilsilah -> {
@@ -99,8 +120,15 @@ class ManaqibViewModel(
                 updateState { copy(selectedDoa = doa) }
             }
             is ManaqibUiIntent.TogglePresentationMode -> {
+                val nextMode = intent.enabled ?: !currentState.isPresentationMode
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.PRESENTATION_MODE_TOGGLED,
+                    mapOf(
+                        AnalyticsParams.IS_ENABLED to nextMode
+                    )
+                )
                 updateState {
-                    copy(isPresentationMode = intent.enabled ?: !isPresentationMode)
+                    copy(isPresentationMode = nextMode)
                 }
             }
             is ManaqibUiIntent.UpdateFontScale -> {

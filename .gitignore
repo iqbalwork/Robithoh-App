@@ -1,5 +1,6 @@
 # Gradle & Build
 .gradle/
+.hermes/
 build/
 **/build/
 !src/**/build/
@@ -50,3 +51,6 @@ keystore.properties
 *.keystore
 *.jks
 /keystore/
+
+# Maestro
+.maestro/

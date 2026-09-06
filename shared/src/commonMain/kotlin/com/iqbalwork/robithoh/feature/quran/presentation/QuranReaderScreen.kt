@@ -55,8 +55,15 @@ import com.iqbalwork.robithoh.core.designsystem.component.IslamicDividerMotif
 import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
 import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
 import com.iqbalwork.robithoh.core.designsystem.component.ReaderToggleOption
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
 import com.iqbalwork.robithoh.core.designsystem.component.TextReaderSettingsSheet
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
@@ -67,9 +74,11 @@ import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.Ayah
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
@@ -104,7 +113,16 @@ fun QuranReaderScreen(
 
     val surah = state.currentSurah
     val currentSurahNumber = surah?.number ?: surahNumber
-    val fontScale = state.fontScale
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
+
+    LaunchedEffect(readerSettings.fontScale) {
+        if (state.fontScale != readerSettings.fontScale) {
+            viewModel.onIntent(QuranUiIntent.UpdateFontScale(readerSettings.fontScale))
+        }
+    }
     var showLatin by rememberSaveable { mutableStateOf(true) }
     var showTranslation by rememberSaveable { mutableStateOf(true) }
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
@@ -180,8 +198,52 @@ fun QuranReaderScreen(
         }
     }
 
-    Scaffold(
-        modifier = modifier.fillMaxSize(),
+    val appSettingsRepository = rememberAppSettingsRepository()
+    val appSettings by appSettingsRepository.settings.collectAsState()
+
+    val quranSpotlightSteps = remember {
+        listOf(
+            SpotlightStep(
+                id = "quran_goto",
+                title = "Pindah Surat & Ayat Cepat",
+                description = "Gunakan tombol kompas untuk melompat langsung ke surat atau nomor ayat tertentu tanpa perlu menggulir panjang.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "quran_settings",
+                title = "Pengaturan Tampilan Al-Qur'an",
+                description = "Ubah ukuran huruf Arab, sembunyikan atau tampilkan teks Latin dan terjemahan, serta pilih tema warna bacaan yang nyaman di mata.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "quran_verse_action",
+                title = "Salin, Bagikan & Murottal Ayat",
+                description = "Ketuk pada ayat mana pun untuk membuka menu cepat: dengarkan lantunan murottal, salin teks ayat, bagikan ke kerabat, atau tandai sebagai terakhir dibaca.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 4.dp
+            )
+        )
+    }
+
+    val quranSpotlightState = rememberSpotlightState(
+        steps = quranSpotlightSteps,
+        onComplete = {
+            appSettingsRepository.setQuranSpotlightSeen(true)
+        }
+    )
+
+    LaunchedEffect(appSettings.hasSeenQuranSpotlight, state.currentAyahs) {
+        if (!appSettings.hasSeenQuranSpotlight && state.currentAyahs.isNotEmpty() && !quranSpotlightState.isVisible) {
+            quranSpotlightState.start()
+        }
+    }
+
+    Box(modifier = modifier.fillMaxSize()) {
+      Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = {
           Column {
             IslamicHeader(
@@ -191,7 +253,10 @@ fun QuranReaderScreen(
                 onBackClick = onBackClick,
                 showBottomDivider = false,
                 actions = {
-                    IconButton(onClick = { showGoToSheet = true }) {
+                    IconButton(
+                        onClick = { showGoToSheet = true },
+                        modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_goto")
+                    ) {
                         Surface(
                             color = MerahMerdeka.copy(alpha = 0.12f),
                             shape = CircleShape,
@@ -202,7 +267,10 @@ fun QuranReaderScreen(
                             }
                         }
                     }
-                    IconButton(onClick = { showSettingsDialog = true }) {
+                    IconButton(
+                        onClick = { showSettingsDialog = true },
+                        modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_settings")
+                    ) {
                         Surface(
                             color = MerahMerdeka.copy(alpha = 0.12f),
                             shape = CircleShape,
@@ -236,6 +304,7 @@ fun QuranReaderScreen(
             SurahTabStrip(
                 surahs = state.surahs,
                 currentSurahNumber = currentSurahNumber,
+                readerTheme = readerTheme,
                 onSurahSelected = { targetSurahNumber -> jumpTo(targetSurahNumber, 1) }
             )
           }
@@ -252,7 +321,7 @@ fun QuranReaderScreen(
                 onCloseClick = { viewModel.onIntent(QuranUiIntent.StopAudio) }
             )
         },
-        containerColor = if (isDark) DarkCanvas else PutihAbuBackground
+        containerColor = readerTheme.backgroundColor
     ) { paddingValues ->
         LazyColumn(
             state = listState,
@@ -313,12 +382,14 @@ fun QuranReaderScreen(
                 item {
                     GoldCrimsonCard(
                         variant = GoldCrimsonCardVariant.GOLD_BORDER,
+                        customBackgroundColor = readerTheme.cardBackgroundColor,
+                        customBorderColor = readerTheme.cardBorderColor,
                         contentPadding = PaddingValues(12.dp)
                     ) {
                         Text(
                             text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
                             style = RabithohTheme.typography.arabicMedium.copy(
-                                color = if (isDark) EmasMuda else MerahMarunGelap,
+                                color = readerTheme.arabicTextColor,
                                 fontSize = (22 * fontScale).sp,
                                 textAlign = TextAlign.Center
                             ),
@@ -337,6 +408,9 @@ fun QuranReaderScreen(
                 val isLastRead = state.lastReadBookmark?.let {
                     it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
                 } ?: false
+                val isFirstAyah = state.currentAyahs.firstOrNull()?.let {
+                    it.surahNumber == ayah.surahNumber && it.numberInSurah == ayah.numberInSurah
+                } ?: false
 
                 AyahItemCard(
                     ayah = ayah,
@@ -345,7 +419,12 @@ fun QuranReaderScreen(
                     showLatin = showLatin,
                     showTranslation = showTranslation,
                     isLastRead = isLastRead,
-                    onClick = { selectedAyahForOptions = ayah }
+                    readerTheme = readerTheme,
+                    onClick = { selectedAyahForOptions = ayah },
+                    modifier = Modifier.let { mod ->
+                        if (isFirstAyah) mod.spotlightAnchor(quranSpotlightState, "quran_verse_action")
+                        else mod
+                    }
                 )
             }
         }
@@ -354,7 +433,12 @@ fun QuranReaderScreen(
     if (showSettingsDialog) {
         TextReaderSettingsSheet(
             fontScale = fontScale,
-            onFontScaleChange = { viewModel.onIntent(QuranUiIntent.UpdateFontScale(it)) },
+            onFontScaleChange = {
+                readerSettingsRepository.updateFontScale(it)
+                viewModel.onIntent(QuranUiIntent.UpdateFontScale(it))
+            },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
             onDismiss = { showSettingsDialog = false },
             toggles = listOf(
                 ReaderToggleOption(
@@ -443,6 +527,9 @@ fun QuranReaderScreen(
             isLastRead = isAyahLastRead
         )
     }
+
+    SpotlightOverlay(state = quranSpotlightState)
+  }
 }
 
 /** Horizontal scrollable strip of surah tabs, for quickly switching surah while reading. */
@@ -450,6 +537,7 @@ fun QuranReaderScreen(
 private fun SurahTabStrip(
     surahs: List<SurahMeta>,
     currentSurahNumber: Int,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onSurahSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -469,7 +557,7 @@ private fun SurahTabStrip(
 
     Surface(
         modifier = modifier.fillMaxWidth(),
-        color = if (isDark) DarkSurface else PutihBersih
+        color = readerTheme.surfaceColor
     ) {
         LazyRow(
             state = listState,
@@ -480,15 +568,16 @@ private fun SurahTabStrip(
         ) {
             items(surahs, key = { it.number }) { tabSurah ->
                 val isSelected = tabSurah.number == currentSurahNumber
+                val isStripDark = readerTheme.isDark
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    color = if (isSelected) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFF1F3F5)),
-                    border = if (isSelected) BorderStroke(1.dp, EmasKhidmat) else null,
+                    color = if (isSelected) MerahMerdeka else (if (isStripDark) DarkSurfaceVariant else Color(0xFFF1F3F5)),
+                    border = if (isSelected) BorderStroke(1.dp, EmasKhidmat) else (if (isStripDark) BorderStroke(1.dp, DarkBorder) else null),
                     modifier = Modifier.clickable { onSurahSelected(tabSurah.number) }
                 ) {
                     Text(
                         text = "${tabSurah.number}. ${tabSurah.nameLatin}",
-                        color = if (isSelected) PutihBersih else (if (isDark) DarkMuted else SlateMuted),
+                        color = if (isSelected) PutihBersih else (if (isStripDark) DarkMuted else SlateMuted),
                         fontSize = 12.sp,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                         maxLines = 1,
@@ -508,14 +597,20 @@ private fun AyahItemCard(
     showLatin: Boolean,
     showTranslation: Boolean,
     isLastRead: Boolean = false,
+    readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDark = RabithohTheme.colors.isDark
+    val isDark = readerTheme.isDark
+    val cardBg = if (isLastRead) readerTheme.lastReadCardBackgroundColor else readerTheme.cardBackgroundColor
+    val cardBorder = if (isLastRead) readerTheme.lastReadCardBorderColor else readerTheme.cardBorderColor
 
     GoldCrimsonCard(
         modifier = modifier,
-        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_TINTED else GoldCrimsonCardVariant.SURFACE_CLEAN,
+        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.SURFACE_CLEAN,
+        customBackgroundColor = cardBg,
+        customBorderColor = cardBorder,
+        customBorderWidth = if (isLastRead) 1.5.dp else 1.dp,
         contentPadding = PaddingValues(16.dp),
         onClick = onClick
     ) {
@@ -545,9 +640,9 @@ private fun AyahItemCard(
 
             if (isLastRead) {
                 Surface(
-                    color = if (isDark) MerahMarunGelap.copy(alpha = 0.5f) else Color(0xFFFFF1F2),
+                    color = if (isDark) MerahMerdeka.copy(alpha = 0.2f) else Color(0xFFFFF1F2),
                     shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, MerahMerdeka.copy(alpha = 0.6f))
+                    border = BorderStroke(1.dp, if (isDark) MerahMerdeka.copy(alpha = 0.5f) else MerahMerdeka.copy(alpha = 0.6f))
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -559,7 +654,7 @@ private fun AyahItemCard(
                             text = "Terakhir Dibaca",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = MerahMerdeka
+                            color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka
                         )
                     }
                 }
@@ -574,7 +669,7 @@ private fun AyahItemCard(
             style = RabithohTheme.typography.arabicLarge.copy(
                 fontSize = (24 * fontScale).sp,
                 lineHeight = (44 * fontScale).sp,
-                color = if (isDark) PutihBersih else SlateCharcoalText,
+                color = readerTheme.arabicTextColor,
                 textAlign = TextAlign.Right
             ),
             modifier = Modifier.fillMaxWidth()
@@ -585,7 +680,7 @@ private fun AyahItemCard(
             Text(
                 text = ayah.transliterationLatin,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    color = EmasKhidmat,
+                    color = readerTheme.latinTextColor,
                     fontSize = (13 * fontScale).sp,
                     lineHeight = (18 * fontScale).sp
                 )
@@ -599,7 +694,7 @@ private fun AyahItemCard(
             Text(
                 text = ayah.translationIndonesian,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isDark) PutihBersih.copy(alpha = 0.9f) else SlateCharcoalText,
+                    color = readerTheme.translationTextColor,
                     fontSize = (13 * fontScale).sp,
                     lineHeight = (20 * fontScale).sp
                 )
@@ -610,7 +705,7 @@ private fun AyahItemCard(
                 Text(
                     text = "Basa Sunda: ${ayah.translationSundanese}",
                     style = MaterialTheme.typography.bodySmall.copy(
-                        color = if (isDark) DarkMuted else SlateMuted,
+                        color = readerTheme.translationTextColor,
                         fontSize = (12 * fontScale).sp,
                         lineHeight = (18 * fontScale).sp
                     )

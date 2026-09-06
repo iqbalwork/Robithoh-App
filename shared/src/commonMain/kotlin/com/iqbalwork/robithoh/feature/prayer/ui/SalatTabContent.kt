@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -28,13 +29,22 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
+import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +55,14 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
@@ -53,6 +71,7 @@ import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.getPlatform
 import com.iqbalwork.robithoh.feature.amaliyah.ui.AdzanVoicePickerSheet
 import com.iqbalwork.robithoh.feature.amaliyah.ui.PrayerNotificationModePickerSheet
 import kotlinx.coroutines.launch
@@ -210,6 +229,7 @@ fun SalatTabContent(
     onNavigateToQibla: () -> Unit = {},
     viewModel: AmaliyahViewModel? = null
 ) {
+    val isDark = RabithohTheme.colors.isDark
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val vm = viewModel ?: remember(database) {
         AmaliyahViewModel(database = database)
@@ -252,18 +272,116 @@ fun SalatTabContent(
         }
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(PaperBackgroundLight),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 16.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    val appSettingsRepository = rememberAppSettingsRepository()
+    val appSettings by appSettingsRepository.settings.collectAsState()
+
+    val prayerSpotlightSteps = remember {
+        listOf(
+            SpotlightStep(
+                id = "qibla",
+                title = "Arah Kiblat Akurat",
+                description = "Lihat derajat azimuth dan buka kompas interaktif untuk menentukan arah kiblat dari lokasi Anda saat ini.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "notification_mode",
+                title = "Pengaturan Notifikasi & Alarm",
+                description = "Ketuk ikon lonceng pada jadwal sholat untuk memilih mode: Kumandang Adzan penuh, Notifikasi senyap, atau Tanpa alarm.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "adzan_voice",
+                title = "Pilihan Suara Adzan",
+                description = "Pilih lantunan suara muadzin favorit Anda dari berbagai pilihan bawaan atau gunakan berkas audio rekaman pribadi.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "adzan_volume",
+                title = "Kenyaringan Suara Adzan",
+                description = "Atur tingkat volume kumandang adzan secara terpisah tanpa mengubah volume nada dering utama perangkat.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "calc_method",
+                title = "Metode Perhitungan Sholat",
+                description = "Pilih standar hisab perhitungan waktu sholat (Kemenag RI, Muslim World League, dll.) sesuai pedoman wilayah Anda.",
+                shapeType = SpotlightShapeType.ROUNDED_RECT,
+                cornerRadius = 16.dp,
+                padding = 6.dp
+            )
+        )
+    }
+
+    val prayerSpotlightState = rememberSpotlightState(
+        steps = prayerSpotlightSteps,
+        onComplete = {
+            appSettingsRepository.setPrayerSpotlightSeen(true)
+        }
+    )
+
+    val listState = rememberLazyListState()
+    val targetPrayerNameForSpotlight = remember(prayerList) {
+        prayerList.firstOrNull { it.isCurrent }?.name ?: "Subuh"
+    }
+
+    LaunchedEffect(appSettings.hasSeenPrayerSpotlight, schedule) {
+        if (!appSettings.hasSeenPrayerSpotlight && schedule != null && !prayerSpotlightState.isVisible) {
+            prayerSpotlightState.start()
+        }
+    }
+
+    LaunchedEffect(prayerSpotlightState.currentStepIndex, prayerSpotlightState.isVisible) {
+        if (prayerSpotlightState.isVisible) {
+            when (prayerSpotlightState.currentStep?.id) {
+                "qibla" -> {
+                    listState.animateScrollToItem(2)
+                }
+                "notification_mode" -> {
+                    val targetIdx = prayerList.indexOfFirst { it.name == targetPrayerNameForSpotlight }.coerceAtLeast(0)
+                    listState.animateScrollToItem(4 + targetIdx)
+                }
+                "adzan_voice" -> {
+                    val cardIndex = 4 + prayerList.size + 2
+                    listState.animateScrollToItem(cardIndex)
+                }
+                "adzan_volume" -> {
+                    val cardIndex = 4 + prayerList.size + 2
+                    listState.animateScrollToItem(cardIndex, scrollOffset = 250)
+                }
+                "calc_method" -> {
+                    val total = listState.layoutInfo.totalItemsCount
+                    if (total > 0) {
+                        listState.animateScrollToItem(total - 1)
+                    } else {
+                        val cardIndex = 4 + prayerList.size + 2
+                        listState.animateScrollToItem(cardIndex, scrollOffset = 500)
+                    }
+                }
+            }
+        }
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .background(if (isDark) DarkCanvas else PaperBackgroundLight),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
+                bottom = 120.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
         // 1. Header
         item {
             Row(
@@ -276,17 +394,17 @@ fun SalatTabContent(
                         text = "Jadwal Sholat",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = TextCharcoal
+                        color = if (isDark) PutihBersih else TextCharcoal
                     )
                     Text(
-                        text = "Jadwal sholat wajib & sunnah TQN",
+                        text = "Jadwal sholat wajib & sunnah",
                         fontSize = 12.sp,
-                        color = TextMuted
+                        color = if (isDark) DarkMuted else TextMuted
                     )
                 }
 
                 Surface(
-                    color = if (state.isGpsActive) Color(0xFFDDF5E6) else Color(0xFFF0F0F0),
+                    color = if (isDark) DarkSurfaceVariant else (if (state.isGpsActive) Color(0xFFDDF5E6) else Color(0xFFF0F0F0)),
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier.clickable {
                         if (locationProvider.hasLocationPermission()) {
@@ -304,7 +422,7 @@ fun SalatTabContent(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = if (state.isFetchingLocation) "Mencari GPS..." else (schedule?.locationName ?: "Panjalu / Ciamis"),
-                            color = if (state.isGpsActive) Color(0xFF1E824C) else TextCharcoal,
+                            color = if (isDark) (if (state.isGpsActive) Color(0xFF86EFAC) else PutihBersih) else (if (state.isGpsActive) Color(0xFF1E824C) else TextCharcoal),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold
                         )
@@ -317,7 +435,8 @@ fun SalatTabContent(
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -329,14 +448,14 @@ fun SalatTabContent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(-1)) }) {
-                        Text("‹", fontSize = 24.sp, color = TextCharcoal)
+                        Text("‹", fontSize = 24.sp, color = if (isDark) PutihBersih else TextCharcoal)
                     }
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = schedule?.dateFormatted ?: "Hari ini",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
-                            color = TextCharcoal
+                            color = if (isDark) PutihBersih else TextCharcoal
                         )
                         val relativeLabel = when (state.selectedDateOffsetDays) {
                             0 -> "Hari ini"
@@ -347,11 +466,11 @@ fun SalatTabContent(
                         Text(
                             text = "${schedule?.hijriDateFormatted ?: "14 Rabiul Awal 1448 H"} · $relativeLabel",
                             fontSize = 11.sp,
-                            color = TextMuted
+                            color = if (isDark) DarkMuted else TextMuted
                         )
                     }
                     IconButton(onClick = { vm.onIntent(com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent.ChangeDateOffset(1)) }) {
-                        Text("›", fontSize = 24.sp, color = TextCharcoal)
+                        Text("›", fontSize = 24.sp, color = if (isDark) PutihBersih else TextCharcoal)
                     }
                 }
             }
@@ -366,10 +485,12 @@ fun SalatTabContent(
             )
             Card(
                 shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .spotlightAnchor(prayerSpotlightState, "qibla")
                     .clickable(onClick = onNavigateToQibla)
             ) {
                 Row(
@@ -385,7 +506,7 @@ fun SalatTabContent(
                     ) {
                         Surface(
                             shape = CircleShape,
-                            color = Color(0xFFFFF0F2),
+                            color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF0F2),
                             border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.6f)),
                             modifier = Modifier.size(40.dp)
                         ) {
@@ -399,7 +520,7 @@ fun SalatTabContent(
                                 text = "Arah Kiblat",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = TextCharcoal
+                                color = if (isDark) PutihBersih else TextCharcoal
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
@@ -417,7 +538,7 @@ fun SalatTabContent(
 
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = MerahMerdeka.copy(alpha = 0.08f)
+                        color = MerahMerdeka.copy(alpha = 0.15f)
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
@@ -450,7 +571,7 @@ fun SalatTabContent(
                 text = "JADWAL SHOLAT (${schedule?.methodName ?: state.selectedCalculationMethod.name})",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
         }
@@ -464,11 +585,12 @@ fun SalatTabContent(
                 shape = RoundedCornerShape(18.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = when {
-                        p.isCurrent -> Color(0xFFFDE8C4)
-                        p.isPast -> Color(0xFFF8F6F2)
-                        else -> Color.White
+                        p.isCurrent -> if (isDark) Color(0xFF2C241B) else Color(0xFFFDE8C4)
+                        p.isPast -> if (isDark) DarkSurfaceVariant.copy(alpha = 0.6f) else Color(0xFFF8F6F2)
+                        else -> if (isDark) DarkSurface else Color.White
                     }
                 ),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = if (p.isCurrent) 2.dp else (if (p.isMandatory) 1.dp else 0.dp)),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -491,7 +613,7 @@ fun SalatTabContent(
                             Surface(
                                 shape = RoundedCornerShape(7.dp),
                                 color = if (isLogged) Color(0xFF1E824C) else Color.Transparent,
-                                border = if (!isLogged) androidx.compose.foundation.BorderStroke(1.5.dp, Color(0xFFC7BAA7)) else null,
+                                border = if (!isLogged) androidx.compose.foundation.BorderStroke(1.5.dp, if (isDark) DarkBorder else Color(0xFFC7BAA7)) else null,
                                 modifier = Modifier
                                     .size(24.dp)
                                     .clickable {
@@ -522,7 +644,7 @@ fun SalatTabContent(
                                         text = p.name,
                                         fontWeight = if (p.isCurrent || p.isMandatory) FontWeight.Bold else FontWeight.SemiBold,
                                         fontSize = 15.sp,
-                                        color = if (p.isPast) TextMuted else TextCharcoal
+                                        color = if (p.isPast) (if (isDark) DarkMuted else TextMuted) else (if (isDark) PutihBersih else TextCharcoal)
                                     )
                                 }
                                 Spacer(modifier = Modifier.height(2.dp))
@@ -530,7 +652,7 @@ fun SalatTabContent(
                                     text = p.statusSubtitle,
                                     fontSize = 11.sp,
                                     fontWeight = if (p.isCurrent) FontWeight.Medium else FontWeight.Normal,
-                                    color = if (p.isCurrent) Color(0xFF8C5B00) else TextMuted
+                                    color = if (p.isCurrent) (if (isDark) EmasMuda else Color(0xFF8C5B00)) else (if (isDark) DarkMuted else TextMuted)
                                 )
                             }
                         }
@@ -541,7 +663,7 @@ fun SalatTabContent(
                                 text = p.time,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = if (p.isCurrent) 17.sp else 16.sp,
-                                color = if (p.isPast) TextMuted else TextCharcoal
+                                color = if (p.isPast) (if (isDark) DarkMuted else TextMuted) else (if (isDark) PutihBersih else TextCharcoal)
                             )
                             val prayerType = when (p.name) {
                                 "Imsak" -> PrayerType.IMSAK
@@ -556,7 +678,7 @@ fun SalatTabContent(
 
                             if (notifMode != null && prayerType != null) {
                                 Spacer(modifier = Modifier.width(10.dp))
-                                val bgModeColor = when (notifMode) {
+                                val bgModeColor = if (isDark) DarkSurfaceVariant else when (notifMode) {
                                     PrayerNotificationMode.ADZAN -> if (p.isCurrent) Color(0xFFFCE1B6) else Color(0xFFE2F3E7)
                                     PrayerNotificationMode.PUSH_NOTIFICATION -> Color(0xFFE1F5FE)
                                     PrayerNotificationMode.SILENT -> Color(0xFFF0F0F0)
@@ -567,6 +689,10 @@ fun SalatTabContent(
                                     shape = CircleShape,
                                     modifier = Modifier
                                         .size(34.dp)
+                                        .let { mod ->
+                                            if (p.name == targetPrayerNameForSpotlight) mod.spotlightAnchor(prayerSpotlightState, "notification_mode")
+                                            else mod
+                                        }
                                         .clickable {
                                             vm.onIntent(AmaliyahUiIntent.SetNotificationModePickerPrayer(prayerType))
                                         }
@@ -600,7 +726,7 @@ fun SalatTabContent(
             Text(
                 text = "Ketuk baris untuk mencatat status · ketuk ikon untuk mengatur notifikasi",
                 fontSize = 11.5.sp,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
             )
         }
@@ -612,7 +738,7 @@ fun SalatTabContent(
                 text = "PENGATURAN",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextMuted,
+                color = if (isDark) DarkMuted else TextMuted,
                 letterSpacing = 0.5.sp
             )
         }
@@ -631,21 +757,95 @@ fun SalatTabContent(
 
             Card(
                 shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White),
+                colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
                 elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-                    SettingItemRow(
-                        icon = "🔔",
-                        iconBg = Color(0xFFFFECEF),
-                        title = "Suara adzan",
-                        subtitle = voiceSubtitle,
-                        onClick = {
-                            vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "adzan_voice")) {
+                        SettingItemRow(
+                            icon = "🔔",
+                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFECEF),
+                            title = "Suara adzan",
+                            subtitle = voiceSubtitle,
+                            isDark = isDark,
+                            onClick = {
+                                vm.onIntent(AmaliyahUiIntent.SetAdzanPickerSheetOpen(true))
+                            }
+                        )
+                    }
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "adzan_volume")) {
+                        if (getPlatform().name.startsWith("Android")) {
+                            val volumePercent = (notif.adzanVolume * 100).toInt()
+                            Column(modifier = Modifier.fillMaxWidth()) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Surface(
+                                            color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                                            shape = CircleShape,
+                                            modifier = Modifier.size(36.dp)
+                                        ) {
+                                            Box(contentAlignment = Alignment.Center) {
+                                                Text("🔊", fontSize = 14.sp)
+                                            }
+                                        }
+                                        Spacer(modifier = Modifier.width(12.dp))
+                                        Column(modifier = Modifier.weight(1f)) {
+                                            Text(
+                                                text = "Volume suara adzan",
+                                                fontSize = 14.sp,
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = if (isDark) PutihBersih else TextCharcoal
+                                            )
+                                            Spacer(modifier = Modifier.height(2.dp))
+                                            Text(
+                                                text = if (volumePercent == 0) "Senyap — notifikasi tetap muncul" else "Atur nyaring kumandang adzan",
+                                                fontSize = 11.5.sp,
+                                                color = if (isDark) DarkMuted else TextMuted
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = "$volumePercent%",
+                                        fontSize = 14.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = if (volumePercent == 0) TextMuted else MerahMerdeka
+                                    )
+                                }
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Slider(
+                                    value = notif.adzanVolume,
+                                    onValueChange = { vm.onIntent(AmaliyahUiIntent.SetAdzanVolume(it)) },
+                                    valueRange = 0f..1f,
+                                    steps = 18,
+                                    colors = SliderDefaults.colors(
+                                        thumbColor = MerahMerdeka,
+                                        activeTrackColor = MerahMerdeka,
+                                        inactiveTrackColor = if (isDark) DarkBorder else BorderSubtle
+                                    )
+                                )
+                            }
+                        } else {
+                            SettingItemRow(
+                                icon = "🔊",
+                                iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
+                                title = "Volume suara adzan",
+                                subtitle = "Mengikuti volume perangkat (iOS)",
+                                isDark = isDark
+                            )
                         }
-                    )
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    }
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -656,7 +856,7 @@ fun SalatTabContent(
                             modifier = Modifier.weight(1f)
                         ) {
                             Surface(
-                                color = Color(0xFFFFF3E0),
+                                color = if (isDark) DarkSurfaceVariant else Color(0xFFFFF3E0),
                                 shape = CircleShape,
                                 modifier = Modifier.size(36.dp)
                             ) {
@@ -670,13 +870,13 @@ fun SalatTabContent(
                                     text = "Pengingat sebelum sholat",
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.SemiBold,
-                                    color = TextCharcoal
+                                    color = if (isDark) PutihBersih else TextCharcoal
                                 )
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
                                     text = "Notifikasi 10 menit sebelum waktu tiba",
                                     fontSize = 11.5.sp,
-                                    color = TextMuted
+                                    color = if (isDark) DarkMuted else TextMuted
                                 )
                             }
                         }
@@ -687,20 +887,24 @@ fun SalatTabContent(
                             colors = SwitchDefaults.colors(checkedTrackColor = MerahMerdeka)
                         )
                     }
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
-                    SettingItemRow(
-                        icon = "⏰",
-                        iconBg = Color(0xFFE3F2FD),
-                        title = "Metode perhitungan",
-                        subtitle = state.selectedCalculationMethod.name,
-                        onClick = onNavigateToCalculationMethods
-                    )
-                    HorizontalDivider(color = BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
+                    Box(modifier = Modifier.fillMaxWidth().spotlightAnchor(prayerSpotlightState, "calc_method")) {
+                        SettingItemRow(
+                            icon = "⏰",
+                            iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE3F2FD),
+                            title = "Metode perhitungan",
+                            subtitle = state.selectedCalculationMethod.name,
+                            isDark = isDark,
+                            onClick = onNavigateToCalculationMethods
+                        )
+                    }
+                    HorizontalDivider(color = if (isDark) DarkBorder else BorderSubtle, modifier = Modifier.padding(vertical = 12.dp))
                     SettingItemRow(
                         icon = "⏱️",
-                        iconBg = Color(0xFFE0F7FA),
+                        iconBg = if (isDark) DarkSurfaceVariant else Color(0xFFE0F7FA),
                         title = "Koreksi waktu sholat",
                         subtitle = "Subuh: ${state.prayerAdjustments.getOffsetLabel(PrayerType.SUBUH)}, Dzuhur: ${state.prayerAdjustments.getOffsetLabel(PrayerType.DZUHUR)}, Ashar: ${state.prayerAdjustments.getOffsetLabel(PrayerType.ASHAR)}",
+                        isDark = isDark,
                         onClick = onNavigateToPrayerAdjustments
                     )
                 }
@@ -740,6 +944,9 @@ fun SalatTabContent(
             }
         )
     }
+
+        SpotlightOverlay(state = prayerSpotlightState)
+    }
 }
 
 @Composable
@@ -748,6 +955,7 @@ private fun SettingItemRow(
     iconBg: Color,
     title: String,
     subtitle: String,
+    isDark: Boolean = false,
     onClick: () -> Unit = {}
 ) {
     Row(
@@ -772,12 +980,12 @@ private fun SettingItemRow(
             }
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(title, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = TextCharcoal)
+                Text(title, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = if (isDark) PutihBersih else TextCharcoal)
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(subtitle, fontSize = 11.5.sp, color = TextMuted)
+                Text(subtitle, fontSize = 11.5.sp, color = if (isDark) DarkMuted else TextMuted)
             }
         }
         Spacer(modifier = Modifier.width(8.dp))
-        Text("›", fontSize = 18.sp, color = TextMuted)
+        Text("›", fontSize = 18.sp, color = if (isDark) DarkMuted else TextMuted)
     }
 }

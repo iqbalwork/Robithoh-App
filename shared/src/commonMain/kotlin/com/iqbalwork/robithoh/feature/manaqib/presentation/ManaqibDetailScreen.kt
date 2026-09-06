@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.iqbalwork.robithoh.navigation.BackHandler
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,9 +48,19 @@ fun ManaqibDetailScreen(
 
     val chapter = state.currentChapter
     val isPresentation = state.isPresentationMode
-    val fontScale = state.fontScale
+    val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
+    val readerSettings by readerSettingsRepository.settings.collectAsState()
     val isHighContrast = state.isHighContrast
     val isDark = RabithohTheme.colors.isDark || isHighContrast
+    val fontScale = readerSettings.fontScale
+    val readerTheme = readerSettings.resolveTheme(isDark)
+    var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(readerSettings.fontScale) {
+        if (state.fontScale != readerSettings.fontScale) {
+            viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(readerSettings.fontScale))
+        }
+    }
 
     val backgroundColor = if (isHighContrast) {
         Color(0xFF0A0A0C)
@@ -70,7 +82,17 @@ fun ManaqibDetailScreen(
                     arabicTitle = "الْمَنْقَبَةُ $chapterNumber",
                     onBackClick = onBackClick,
                     actions = {
-                        // Presentation mode trigger icon
+                        IconButton(onClick = { showSettingsDialog = true }) {
+                            Surface(
+                                color = MerahMerdeka.copy(alpha = 0.12f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("A±", color = MerahMerdeka, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
                         IconButton(
                             onClick = { viewModel.onIntent(ManaqibUiIntent.TogglePresentationMode(true)) }
                         ) {
@@ -101,7 +123,11 @@ fun ManaqibDetailScreen(
                         ) {
                             Text("Font:", fontSize = 12.sp, color = if (isDark) DarkMuted else SlateMuted)
                             Button(
-                                onClick = { viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(fontScale - 0.15f)) },
+                                onClick = {
+                                    val newScale = fontScale - 0.15f
+                                    readerSettingsRepository.updateFontScale(newScale)
+                                    viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(newScale))
+                                },
                                 modifier = Modifier.size(32.dp),
                                 contentPadding = PaddingValues(0.dp),
                                 shape = RoundedCornerShape(8.dp),
@@ -118,7 +144,11 @@ fun ManaqibDetailScreen(
                                 color = EmasKhidmat
                             )
                             Button(
-                                onClick = { viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(fontScale + 0.15f)) },
+                                onClick = {
+                                    val newScale = fontScale + 0.15f
+                                    readerSettingsRepository.updateFontScale(newScale)
+                                    viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(newScale))
+                                },
                                 modifier = Modifier.size(32.dp),
                                 contentPadding = PaddingValues(0.dp),
                                 shape = RoundedCornerShape(8.dp),
@@ -198,7 +228,7 @@ fun ManaqibDetailScreen(
                 }
             }
         },
-        containerColor = backgroundColor
+        containerColor = if (isHighContrast) Color(0xFF0A0A0C) else readerTheme.backgroundColor
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -255,6 +285,8 @@ fun ManaqibDetailScreen(
                         // Reading Content Body
                         GoldCrimsonCard(
                             variant = GoldCrimsonCardVariant.SURFACE_CLEAN,
+                            customBackgroundColor = if (isHighContrast) null else readerTheme.cardBackgroundColor,
+                            customBorderColor = if (isHighContrast) null else readerTheme.cardBorderColor,
                             contentPadding = PaddingValues(20.dp)
                         ) {
                             when (state.selectedLanguage) {
@@ -264,7 +296,7 @@ fun ManaqibDetailScreen(
                                         style = RabithohTheme.typography.arabicLarge.copy(
                                             fontSize = (24 * fontScale).sp,
                                             lineHeight = (44 * fontScale).sp,
-                                            color = textColor,
+                                            color = if (isHighContrast) PutihBersih else readerTheme.arabicTextColor,
                                             textAlign = TextAlign.Right
                                         ),
                                         modifier = Modifier.fillMaxWidth()
@@ -276,7 +308,7 @@ fun ManaqibDetailScreen(
                                         style = MaterialTheme.typography.bodyLarge.copy(
                                             fontSize = (16 * fontScale).sp,
                                             lineHeight = (26 * fontScale).sp,
-                                            color = textColor
+                                            color = if (isHighContrast) PutihBersih else readerTheme.translationTextColor
                                         ),
                                         modifier = Modifier.fillMaxWidth()
                                     )
@@ -287,7 +319,7 @@ fun ManaqibDetailScreen(
                                         style = MaterialTheme.typography.bodyLarge.copy(
                                             fontSize = (16 * fontScale).sp,
                                             lineHeight = (26 * fontScale).sp,
-                                            color = textColor
+                                            color = if (isHighContrast) PutihBersih else readerTheme.translationTextColor
                                         ),
                                         modifier = Modifier.fillMaxWidth()
                                     )
@@ -329,5 +361,18 @@ fun ManaqibDetailScreen(
                 }
             }
         }
+    }
+
+    if (showSettingsDialog) {
+        TextReaderSettingsSheet(
+            fontScale = fontScale,
+            onFontScaleChange = {
+                readerSettingsRepository.updateFontScale(it)
+                viewModel.onIntent(ManaqibUiIntent.UpdateFontScale(it))
+            },
+            selectedTheme = readerTheme,
+            onThemeSelected = { readerSettingsRepository.updateTheme(it) },
+            onDismiss = { showSettingsDialog = false }
+        )
     }
 }

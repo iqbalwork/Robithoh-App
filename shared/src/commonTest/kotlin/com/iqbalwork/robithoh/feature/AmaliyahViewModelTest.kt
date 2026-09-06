@@ -69,11 +69,11 @@ class AmaliyahViewModelTest {
     @Test
     fun testOpenTasbihWithTargetEffect() = runTest {
         val viewModel = AmaliyahViewModel(repository, calculator)
-        viewModel.onIntent(AmaliyahUiIntent.OpenTasbihWithTarget(165, "Dzikir Jahr TQN"))
+        viewModel.onIntent(AmaliyahUiIntent.OpenTasbihWithTarget(165, "Dzikir Jahr"))
 
         val effect = viewModel.effect.first()
         assertTrue(effect is AmaliyahUiEffect.NavigateToTasbih)
         assertEquals(165, effect.targetCount)
-        assertEquals("Dzikir Jahr TQN", effect.dzikirTitle)
+        assertEquals("Dzikir Jahr", effect.dzikirTitle)
     }
 }

@@ -12,34 +12,37 @@ class AmaliyahRepositoryTest {
     fun testDzikirJahrCompleteness() {
         val jahrList = repository.getDzikirJahrList()
         assertTrue(jahrList.isNotEmpty())
-        assertEquals(8, jahrList.size)
+        assertEquals(13, jahrList.size)
 
-        // Check Nafi Itsbat (item 7)
-        val nafiItsbat = jahrList.first { it.id == "dzikir_jahr_7" }
-        assertEquals(165, nafiItsbat.repetitionCount)
-        assertEquals("لَا إِلَهَ إِلَّا اللَّهُ", nafiItsbat.arabicText)
-        assertTrue(nafiItsbat.latinText.contains("LAA ILAAHA ILLALLAAH"))
-        assertTrue(nafiItsbat.indonesianText.contains("Tiada Tuhan selain Allah"))
-        assertTrue(nafiItsbat.sundaneseText.contains("Teu aya deui Pangeran"))
+        // Check Dzikir Jahr (165x)
+        val dzikirJahr = jahrList.first { it.id == "dzikir_harian_6" }
+        assertEquals(165, dzikirJahr.repetitionCount)
+        assertTrue(dzikirJahr.arabicText.contains("لَا إِلٰهَ إِلَّا اللّٰهُ") || dzikirJahr.arabicText.contains("لَا إِلَهَ إِلَّا اللَّهُ"))
+        assertTrue(dzikirJahr.latinText.contains("LAA ILAAHA ILLALLOOH"))
+        assertTrue(dzikirJahr.indonesianText.contains("Zikir sekurang-kurangnya 165x"))
+        assertTrue(dzikirJahr.sundaneseText.contains("sakirang-kirangna 165x"))
 
         // Check 3-language text extraction
-        assertEquals(nafiItsbat.arabicText, nafiItsbat.getTextForLanguage(LiturgyLanguage.ARABIC))
-        assertEquals(nafiItsbat.indonesianText, nafiItsbat.getTextForLanguage(LiturgyLanguage.INDONESIAN))
-        assertEquals(nafiItsbat.sundaneseText, nafiItsbat.getTextForLanguage(LiturgyLanguage.SUNDANESE))
+        assertEquals(dzikirJahr.arabicText, dzikirJahr.getTextForLanguage(LiturgyLanguage.ARABIC))
+        assertEquals(dzikirJahr.indonesianText, dzikirJahr.getTextForLanguage(LiturgyLanguage.INDONESIAN))
+        assertEquals(dzikirJahr.sundaneseText, dzikirJahr.getTextForLanguage(LiturgyLanguage.SUNDANESE))
     }
 
     @Test
     fun testDzikirKhofiAuthenticity() {
         val khofiList = repository.getDzikirKhofiList()
-        assertTrue(khofiList.isNotEmpty())
-        val ismuDzat = khofiList.first { it.id == "dzikir_khofi_1" }
-        assertTrue(ismuDzat.arabicText.contains("اللَّهُ"))
-        assertTrue(ismuDzat.kaifiyatNote.contains("Lathifah Qolbi"))
-        assertTrue(ismuDzat.kaifiyatNote.contains("Abah Aos"))
+        assertEquals(2, khofiList.size)
 
-        val munajat = khofiList.first { it.id == "dzikir_khofi_2" }
-        assertTrue(munajat.arabicText.contains("إِلَهِي أَنْتَ مَقْصُودِي"))
-        assertTrue(munajat.latinText.contains("Ilaahii Anta Maqshuudii"))
+        val tawajuh = khofiList.first { it.id == "dzikir_khofi_tawajuh" }
+        assertEquals(129, tawajuh.repetitionCount)
+        assertTrue(tawajuh.arabicText.contains("\u0627\u0644\u0644\u0651\u064e\u0647\u064f"))
+        assertTrue(tawajuh.latinText.contains("Lathifah Qolbi"))
+        assertTrue(tawajuh.kaifiyatNote.contains("Guru Mursyid 38"))
+
+        val asySyura = khofiList.first { it.id == "dzikir_khofi_asy_syura" }
+        assertEquals(38, asySyura.repetitionCount)
+        assertTrue(asySyura.arabicText.contains("\u0644\u064e\u0637\u0650\u064a\u0652\u0641\u064c\u06e2 \u0628\u0650\u0639\u0650\u0628\u064e\u0627\u062f\u0650\u0647\u0656"))
+        assertTrue(asySyura.latinText.contains("yarzuqu"))
     }
 
     @Test
@@ -64,7 +67,7 @@ class AmaliyahRepositoryTest {
         assertEquals("Rajab", hijriyah[6].monthName)
         assertEquals("Sya'ban", hijriyah[7].monthName)
         assertEquals("Ramadhan", hijriyah[8].monthName)
-        assertEquals("Syawal", hijriyah[9].monthName)
+        assertEquals("Syawwal", hijriyah[9].monthName)
         assertEquals("Dzulhijjah", hijriyah[11].monthName)
     }
 

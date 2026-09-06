@@ -9,12 +9,14 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.Default }
+    single<com.iqbalwork.robithoh.core.analytics.AnalyticsTracker> { com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker() }
 }
 
 fun appModules(): List<Module> = listOf(
     appModule,
     databaseModule,
     audioModule,
+    networkModule,
     viewModelModule
 )
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Center Ring / Beads -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M12,2A6,6 0 0,0 6,8C6,10.65 7.73,12.9 10.13,13.71L9.5,17L11,17L11,22L13,22L13,17L14.5,17L13.87,13.71C16.27,12.9 18,10.65 18,8A6,6 0 0,0 12,2M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4Z" />
+</vector>

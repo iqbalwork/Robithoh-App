@@ -84,9 +84,12 @@ fun TasbihScreen(
     }
     var customTargetInput by rememberSaveable { mutableStateOf(state.targetCount.toString()) }
 
-    val isMilestone = state.currentCount > 0 && state.currentCount % state.targetCount == 0
+    val isMilestone = state.isTargetReached
     val progressPercent = if (state.targetCount > 0) {
-        ((state.currentCount.toFloat() / state.targetCount.toFloat()) * 100).toInt().coerceIn(0, 100)
+        val countInLap = state.currentCount % state.targetCount
+        val fraction = if (countInLap == 0 && state.currentCount > 0) 1f
+                       else countInLap.toFloat() / state.targetCount.toFloat()
+        (fraction * 100).toInt().coerceIn(0, 100)
     } else 0
 
     Scaffold(
@@ -180,7 +183,7 @@ fun TasbihScreen(
                     }
                 }
 
-                // Preset Targets Row: 165x (TQN) and Kustom
+                // Preset Targets Row: 165x and Kustom
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -196,18 +199,13 @@ fun TasbihScreen(
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.padding(vertical = 10.dp)
+                            modifier = Modifier.padding(vertical = 12.dp)
                         ) {
                             Text(
                                 text = "165x",
                                 color = if (is165) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
-                            )
-                            Text(
-                                text = "TQN PP Suryalaya Sirnarasa 38",
-                                color = if (is165) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                fontSize = 10.sp
                             )
                         }
                     }
@@ -227,18 +225,13 @@ fun TasbihScreen(
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.padding(vertical = 10.dp)
+                            modifier = Modifier.padding(vertical = 12.dp)
                         ) {
                             Text(
-                                text = if (isCustom) "${state.targetCount}x" else "Kustom",
+                                text = if (isCustom) "${state.targetCount}x (Kustom)" else "Kustom ✏️",
                                 color = if (isCustom) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
-                            )
-                            Text(
-                                text = if (isCustom) "Aktif" else "Ubah Target Bebas",
-                                color = if (isCustom) EmasMuda else (if (isDark) DarkMuted else SlateMuted),
-                                fontSize = 10.sp
                             )
                         }
                     }
@@ -302,21 +295,6 @@ fun TasbihScreen(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 15.sp,
                                 color = EmasKhidmat
-                            )
-                        }
-
-                        VerticalDivider(
-                            modifier = Modifier.height(28.dp),
-                            color = if (isDark) DarkBorder else Color(0xFFE2E8F0)
-                        )
-
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text("Total Sesi", fontSize = 11.sp, color = if (isDark) DarkMuted else SlateMuted)
-                            Text(
-                                text = "${state.totalCount}x",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp,
-                                color = MerahMerdeka
                             )
                         }
                     }
@@ -421,7 +399,7 @@ fun TasbihScreen(
             },
             text = {
                 Text(
-                    "Target ${state.targetCount}x dzikir '${state.selectedDzikirTitle}' telah selesai tercapai.\n\nLanjutkan putaran ke-${state.lapCount + 1}?"
+                    "Target ${state.targetCount}x dzikir '${state.selectedDzikirTitle}' telah selesai tercapai (putaran ke-${state.lapCount}).\n\nHitungan terus berlanjut dari angka berikutnya."
                 )
             },
             confirmButton = {

@@ -1,6 +1,10 @@
 package com.iqbalwork.robithoh.feature.quran.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.iqbalwork.robithoh.core.analytics.AnalyticsEvents
+import com.iqbalwork.robithoh.core.analytics.AnalyticsParams
+import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
+import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
@@ -14,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class QuranViewModel(
     private val repository: QuranRepository,
-    private val audioPlayer: KmpAudioPlayer? = null
+    private val audioPlayer: KmpAudioPlayer? = null,
+    private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<QuranUiState, QuranUiIntent, QuranUiEffect>(QuranUiState(isLoading = true)) {
 
     init {
@@ -115,6 +120,13 @@ class QuranViewModel(
             is QuranUiIntent.SelectSurah -> {
                 val surah = QuranData.surahs.find { it.number == intent.surahNumber }
                 val ayahs = QuranData.getAyahsForSurah(intent.surahNumber)
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.QURAN_SURAH_OPENED,
+                    mapOf(
+                        AnalyticsParams.SURAH_NUMBER to intent.surahNumber,
+                        AnalyticsParams.SURAH_NAME to (surah?.nameLatin ?: "Surah ${intent.surahNumber}")
+                    )
+                )
                 updateState {
                     copy(
                         currentSurah = surah ?: currentSurah,
@@ -126,6 +138,14 @@ class QuranViewModel(
                 }
             }
             is QuranUiIntent.SaveBookmark -> {
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.QURAN_BOOKMARK_SAVED,
+                    mapOf(
+                        AnalyticsParams.SURAH_NUMBER to intent.surahNumber,
+                        AnalyticsParams.SURAH_NAME to intent.surahName,
+                        AnalyticsParams.AYAH_NUMBER to intent.ayahNumber
+                    )
+                )
                 updateState {
                     copy(
                         lastReadBookmark = QuranBookmark(
@@ -154,6 +174,13 @@ class QuranViewModel(
                 }
             }
             is QuranUiIntent.PlayAudio -> {
+                analyticsTracker.logEvent(
+                    AnalyticsEvents.AUDIO_PLAYBACK_STARTED,
+                    mapOf(
+                        AnalyticsParams.AUDIO_ID to intent.track.id,
+                        AnalyticsParams.AUDIO_TITLE to intent.track.title
+                    )
+                )
                 audioPlayer?.play(intent.track)
             }
             is QuranUiIntent.TogglePlayPauseAudio -> {

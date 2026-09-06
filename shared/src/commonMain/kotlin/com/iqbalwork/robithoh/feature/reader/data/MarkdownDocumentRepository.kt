@@ -1,5 +1,6 @@
 package com.iqbalwork.robithoh.feature.reader.data
 
+import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyDocument
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
 import com.iqbalwork.robithoh.feature.reader.model.ParsedDocument
@@ -8,7 +9,9 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import robithohapp.shared.generated.resources.Res
 
-class MarkdownDocumentRepository {
+class MarkdownDocumentRepository(
+    private val database: RobithohDatabase? = null
+) {
 
     val allDocuments: List<LiturgyDocument> = listOf(
         // Dzikir & Khotaman
@@ -23,7 +26,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "khotaman_tqn",
-            title = "Khotaman TQN PP Suryalaya Sirnarasa",
+            title = "Khotaman",
             subtitle = "Amaliyah Khotaman",
             category = "Dzikir & Khotaman",
             fileName = "KHOTAMAN_TQN.md",
@@ -32,7 +35,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "tarhim_tqn",
-            title = "Tarhim TQN",
+            title = "Tarhim",
             subtitle = "Bacaan tarhim menjelang adzan shubuh & sholat",
             category = "Dzikir & Khotaman",
             fileName = "TARHIM_TQN.md",
@@ -50,7 +53,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "tahlil_tqn",
-            title = "Tahlil TQN",
+            title = "Tahlil",
             subtitle = "Panduan bacaan tahlil & hadhloroh arwah",
             category = "Dzikir & Khotaman",
             fileName = "TAHLIL_TQN.md",
@@ -62,7 +65,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "mc_manaqib_id",
             title = "MC Manaqib",
-            subtitle = "Susunan acara & protokol MC Manaqib TQN",
+            subtitle = "Susunan acara & protokol MC Manaqib",
             category = "Manaqib",
             fileName = "MC_MANAQIB_INDONESIA.md",
             arabicTitle = "",
@@ -73,7 +76,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "tanbih_id",
-            title = "Tanbih Guru Mursyid",
+            title = "Tanbih",
             subtitle = "Wasiat luhur Syaikh Abdullah Mubarok bin Nur Muhammad",
             category = "Manaqib",
             fileName = "TANBIH_INDONESIA.md",
@@ -85,7 +88,7 @@ class MarkdownDocumentRepository {
         ),
         LiturgyDocument(
             id = "tawassul_tqn",
-            title = "Tawassul TQN PP Suryalaya Sirnarasa",
+            title = "Tawassul",
             subtitle = "Hadhloroh tawasul auliya & masyayikh",
             category = "Manaqib",
             fileName = "TAWASSUL_TQN.md",
@@ -119,7 +122,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "mc_manaqib_su",
             title = "MC Manaqib (Basa Sunda)",
-            subtitle = "Runtuyan acara & protokol MC Manaqib TQN",
+            subtitle = "Runtuyan acara & protokol MC Manaqib",
             category = "Manaqib Sunda",
             fileName = "MC_MANAQIB_SUNDA.md",
             arabicTitle = "",
@@ -178,7 +181,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sholat_bulanan",
             title = "Sholat Bulanan",
-            subtitle = "Amaliyah & sholat sunnah bulanan TQN PP Suryalaya Sirnarasa",
+            subtitle = "Amaliyah & sholat sunnah bulanan MTQN Suryalaya Sirnarasa PPKN",
             category = "Sholat",
             fileName = "SHOLAT_BULANAN.md",
             arabicTitle = "صَلَوَاتُ الْأَشْهُرِ",
@@ -188,7 +191,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sholat_tahunan",
             title = "Sholat Tahunan",
-            subtitle = "Kumpulan sholat sunnah tahunan TQN PP Suryalaya Sirnarasa",
+            subtitle = "Kumpulan sholat sunnah tahunan MTQN Suryalaya Sirnarasa PPKN",
             category = "Sholat",
             fileName = "SHOLAT_TAHUNAN.md",
             arabicTitle = "صَلَوَاتُ السَّنَوِيَّةِ",
@@ -208,7 +211,7 @@ class MarkdownDocumentRepository {
         LiturgyDocument(
             id = "sholat_tarowih",
             title = "Sholat Tarowih & Witir",
-            subtitle = "Kaifiyat sholat tarowih & witir TQN",
+            subtitle = "Kaifiyat sholat tarowih & witir",
             category = "Sholat",
             fileName = "SHOLAT_TAROWIH.md",
             arabicTitle = "صَلَاةُ التَّرَاوِيحِ",
@@ -410,6 +413,21 @@ class MarkdownDocumentRepository {
         return documentCache[id]
     }
 
+    fun invalidateCache(fileName: String) {
+        val doc = allDocuments.find { it.fileName.equals(fileName, ignoreCase = true) }
+        if (doc != null) {
+            documentCache.remove(doc.id)
+        }
+    }
+
+    fun invalidateCacheById(id: String) {
+        documentCache.remove(id)
+    }
+
+    fun clearCache() {
+        documentCache.clear()
+    }
+
     fun getDocumentById(id: String): LiturgyDocument? {
         return allDocuments.find { it.id.equals(id, ignoreCase = true) }
     }
@@ -422,12 +440,27 @@ class MarkdownDocumentRepository {
     suspend fun loadDocumentContent(document: LiturgyDocument): ParsedDocument = withContext(Dispatchers.Default) {
         documentCache[document.id]?.let { return@withContext it }
 
-        val rawText = try {
-            val bytes = Res.readBytes("files/${document.fileName}")
-            bytes.decodeToString()
-        } catch (e: Exception) {
-            "# ${document.title}\n\n${document.subtitle}\n\n*Konten dokumen sedang dimuat dari arsip lokal.*"
+        // 1. Cek basis data lokal (SQLDelight) jika ada dokumen hasil sync cloud
+        val cachedInDb = try {
+            database?.robithohDatabaseQueries
+                ?.getCachedDocumentByFileName(document.fileName)
+                ?.executeAsOneOrNull()
+        } catch (_: Exception) {
+            null
         }
+
+        // 2. Gunakan isi teks dari DB jika tersedia & tidak kosong; jika tidak, fallback ke file bawaan APK
+        val rawText = if (cachedInDb != null && cachedInDb.content.isNotBlank()) {
+            cachedInDb.content
+        } else {
+            try {
+                val bytes = Res.readBytes("files/${document.fileName}")
+                bytes.decodeToString()
+            } catch (e: Exception) {
+                "# ${document.title}\n\n${document.subtitle}\n\n*Konten dokumen sedang dimuat dari arsip lokal.*"
+            }
+        }
+
         val verses = if (document.isSingleDocumentView) {
             emptyList()
         } else {
@@ -441,8 +474,21 @@ class MarkdownDocumentRepository {
             if (!documentCache.containsKey(altId)) {
                 getDocumentById(altId)?.let { altDoc ->
                     try {
-                        val altBytes = Res.readBytes("files/${altDoc.fileName}")
-                        val altText = altBytes.decodeToString()
+                        val altCachedInDb = try {
+                            database?.robithohDatabaseQueries
+                                ?.getCachedDocumentByFileName(altDoc.fileName)
+                                ?.executeAsOneOrNull()
+                        } catch (_: Exception) {
+                            null
+                        }
+
+                        val altText = if (altCachedInDb != null && altCachedInDb.content.isNotBlank()) {
+                            altCachedInDb.content
+                        } else {
+                            val altBytes = Res.readBytes("files/${altDoc.fileName}")
+                            altBytes.decodeToString()
+                        }
+
                         val altVerses = if (altDoc.isSingleDocumentView) emptyList() else parseMarkdownToVerses(altText)
                         documentCache[altId] = ParsedDocument(info = altDoc, rawContent = altText, verses = altVerses)
                     } catch (_: Exception) {}
@@ -619,42 +665,46 @@ class MarkdownDocumentRepository {
                 }
                 currentArabic.append(trimmed)
             } else {
+                val cleanForDetection = trimmed.removeSurrounding("*").removeSurrounding("\"").trim()
                 val isExplicitTranslation = inTranslationSection ||
-                                           trimmed.startsWith("Artinya:", ignoreCase = true) ||
-                                           trimmed.startsWith("Aku memohon", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa اللّه semoga", ignoreCase = true) ||
-                                           trimmed.startsWith("Yaa اللّه limpahkanlah", ignoreCase = true) ||
-                                           trimmed.startsWith("Tuhanku Engkaulah", ignoreCase = true) ||
-                                           trimmed.startsWith("Tiada Tuhan", ignoreCase = true) ||
-                                           trimmed.startsWith("Dengan menyebut", ignoreCase = true) ||
-                                           trimmed.startsWith("Dengan nama", ignoreCase = true) ||
-                                           trimmed.startsWith("Semoga", ignoreCase = true) ||
-                                           trimmed.startsWith("Ya Tuhanku", ignoreCase = true) ||
-                                           trimmed.startsWith("Wahai", ignoreCase = true) ||
-                                           trimmed.startsWith("Ya اللّه", ignoreCase = true)
+                                           cleanForDetection.startsWith("Artinya", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Aku memohon", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa Alloh", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya Alloh", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Tuhanku", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Tiada Tuhan", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Dengan menyebut", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Dengan nama", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Semoga", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya Tuhanku", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Wahai", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Segala puji", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Sengaja", ignoreCase = true)
 
-                val isInstruction = trimmed.startsWith("Kemudian", ignoreCase = true) ||
-                                    trimmed.startsWith("Adapun", ignoreCase = true) ||
-                                    trimmed.startsWith("Selanjutnya", ignoreCase = true) ||
-                                    trimmed.startsWith("Catatan:", ignoreCase = true) ||
-                                    trimmed.startsWith("Faedah:", ignoreCase = true) ||
-                                    trimmed.startsWith("Keutamaan:", ignoreCase = true) ||
-                                    trimmed.startsWith("Do’a dilaksanakan", ignoreCase = true) ||
-                                    trimmed.startsWith("Doa dilaksanakan", ignoreCase = true) ||
-                                    trimmed.startsWith("–", ignoreCase = true) ||
-                                    trimmed.startsWith("- ", ignoreCase = true) ||
-                                    trimmed.startsWith("Dilanjutkan", ignoreCase = true) ||
-                                    trimmed.startsWith("Asy Syura", ignoreCase = true) ||
-                                    trimmed.startsWith("sebanyak", ignoreCase = true) ||
+                val isInstruction = cleanForDetection.startsWith("Kemudian", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Adapun", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Selanjutnya", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Catatan:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Faedah:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Keutamaan:", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Do’a dilaksanakan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Doa dilaksanakan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("–", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("- ", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Dilanjutkan", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("Asy Syura", ignoreCase = true) ||
+                                    cleanForDetection.startsWith("sebanyak", ignoreCase = true) ||
                                     inTawajuhSection
 
-                if ((inLatinSection || isTransliterationLike(trimmed)) && !isExplicitTranslation) {
+                if ((inLatinSection || isTransliterationLike(cleanForDetection)) && !isExplicitTranslation) {
                     val count = extractRepeatCount(trimmed)
                     if (count > currentRepeatCount) {
                         currentRepeatCount = count
                     }
                     if (currentLatin.isNotEmpty()) currentLatin.append("\n\n")
-                    currentLatin.append(trimmed.removeSurrounding("*").removeSurrounding("\""))
+                    currentLatin.append(cleanForDetection)
                 } else if (isInstruction) {
                     if (currentNote.isNotEmpty()) currentNote.append("\n\n")
                     currentNote.append(trimmed)

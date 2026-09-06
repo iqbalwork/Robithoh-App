@@ -20,7 +20,7 @@ class PrayerTimesCalculatorTest {
         )
 
         assertNotNull(schedule)
-        assertEquals("2026-08-24", schedule.dateFormatted)
+        assertEquals("Senin, 24 Agustus 2026", schedule.dateFormatted)
         assertEquals("WIB", schedule.timezone)
         assertEquals("Pesantren Sirnarasa Panjalu", schedule.locationName)
 
