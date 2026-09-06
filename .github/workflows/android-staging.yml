@@ -124,7 +124,8 @@ jobs:
           ./gradlew appDistributionUploadStagingRelease \
             --releaseNotesFile="androidApp/build/release-notes.txt" \
             $CRED_FLAG \
-            $GROUP_FLAG
+            $GROUP_FLAG \
+            --info --stacktrace
 
       - name: Secure Cleanup
         if: always()

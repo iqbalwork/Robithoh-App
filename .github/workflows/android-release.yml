@@ -25,14 +25,46 @@ on:
           - 'completed'
           - 'draft'
           - 'inProgress'
+          - 'halted'
+      version_code:
+        description: 'Override versionCode (opsional, biarkan kosong untuk pakai default build.gradle.kts)'
+        required: false
+        default: ''
+        type: string
+      version_name:
+        description: 'Override versionName (opsional, contoh: 1.1.1)'
+        required: false
+        default: ''
+        type: string
+      release_notes:
+        description: 'Catatan Rilis (What'\''s New) - maks 500 karakter. Kosongkan untuk generate otomatis dari commit'
+        required: false
+        default: ''
+        type: string
+      changes_not_sent_for_review:
+        description: 'Upload tanpa langsung submit review (draft upload)'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false # Jangan batalkan proses rilis/upload ke Play Store yang sedang berjalan
 
 jobs:
   build-and-deploy:
     name: Build Signed AAB & Deploy to Play Store
     runs-on: ubuntu-latest
+    env:
+      KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,44 +80,101 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Decode Release Keystore
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+      - name: Verify Required Secrets
+        id: check_secrets
         run: |
+          MISSING_SECRETS=0
+          echo "=== Pengecekan Kredensial Keystore & Google Play ==="
+
           if [ -z "$KEYSTORE_BASE64" ]; then
-            echo "::error::Secret KEYSTORE_BASE64 is empty or not configured!"
+            echo "::error::Secret KEYSTORE_BASE64 belum di-setting!"
+            MISSING_SECRETS=1
+          fi
+          if [ -z "$KEYSTORE_PASSWORD" ]; then
+            echo "::error::Secret KEYSTORE_PASSWORD belum di-setting!"
+            MISSING_SECRETS=1
+          fi
+          if [ -z "$KEY_ALIAS" ]; then
+            echo "::error::Secret KEY_ALIAS belum di-setting!"
+            MISSING_SECRETS=1
+          fi
+          if [ -z "$KEY_PASSWORD" ]; then
+            echo "::error::Secret KEY_PASSWORD belum di-setting!"
+            MISSING_SECRETS=1
+          fi
+
+          if [ "$MISSING_SECRETS" -eq 1 ]; then
+            echo "::error::Kredensial signing keystore tidak lengkap. Silakan tambahkan di GitHub Secrets (Settings -> Secrets and variables -> Actions)."
             exit 1
           fi
-          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
 
-      - name: Generate keystore.properties
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          if [ -z "$PLAY_STORE_JSON_KEY" ]; then
+            echo "::warning::Secret PLAY_STORE_JSON_KEY belum diatur di GitHub Secrets!"
+            echo "::warning::AAB akan tetap di-build dan disimpan di GitHub Artifacts, namun upload ke Google Play dilewati."
+            echo "has_play_store_key=false" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Kredensial Keystore & Play Store Service Account terdeteksi."
+            echo "has_play_store_key=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Decode Release Keystore & Configure properties
         run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
           printf "signing_key_location=keystore.jks\nsigning_keystore_password=%s\nsigning_key_alias=%s\nsigning_key_password=%s\n" \
             "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" > keystore.properties
 
-      - name: Build Release Bundle (AAB) & APK
-        run: ./gradlew bundleProductionRelease assembleProductionRelease
+      - name: Prepare Release Notes for Google Play
+        run: |
+          mkdir -p distribution/whatsnew
+          RAW_NOTES_FILE="distribution/whatsnew/raw_notes.txt"
+          TARGET_FILE_ID="distribution/whatsnew/whatsnew-id-ID"
+          TARGET_FILE_EN="distribution/whatsnew/whatsnew-en-US"
 
-      - name: Upload Release AAB Artifact
+          if [ -n "${{ github.event.inputs.release_notes }}" ]; then
+            echo "${{ github.event.inputs.release_notes }}" > "$RAW_NOTES_FILE"
+          else
+            echo "Pembaruan Robithoh App:" > "$RAW_NOTES_FILE"
+            git log -n 5 --pretty=format:"• %s" >> "$RAW_NOTES_FILE"
+          fi
+
+          # Google Play membatasi WhatsNew maksimal 500 karakter.
+          # Memotong ke 495 karakter agar aman dari limit.
+          cut -c 1-495 "$RAW_NOTES_FILE" > "$TARGET_FILE_ID"
+          cp "$TARGET_FILE_ID" "$TARGET_FILE_EN"
+
+          echo "=== Google Play Release Notes (ID & EN) ==="
+          cat "$TARGET_FILE_ID"
+          echo ""
+
+      - name: Build Production Release Bundle (AAB) & APK
+        run: |
+          EXTRA_ARGS=""
+          if [ -n "${{ github.event.inputs.version_code }}" ]; then
+            EXTRA_ARGS="$EXTRA_ARGS -PversionCode=${{ github.event.inputs.version_code }}"
+          fi
+          if [ -n "${{ github.event.inputs.version_name }}" ]; then
+            EXTRA_ARGS="$EXTRA_ARGS -PversionName=${{ github.event.inputs.version_name }}"
+          fi
+
+          echo "Menjalankan build dengan argumen: $EXTRA_ARGS"
+          ./gradlew bundleProductionRelease assembleProductionRelease $EXTRA_ARGS
+
+      - name: Upload Release AAB to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: robithoh-release-aab
+          name: robithoh-production-release-aab
           path: androidApp/build/outputs/bundle/productionRelease/*.aab
           retention-days: 30
 
-      - name: Upload Release APK Artifact
+      - name: Upload Release APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: robithoh-release-apk
+          name: robithoh-production-release-apk
           path: androidApp/build/outputs/apk/production/release/*.apk
           retention-days: 30
 
-      - name: Deploy to Google Play Store
-        if: env.PLAY_STORE_JSON_KEY != ''
+      - name: Deploy to Google Play Internal Testing
+        if: steps.check_secrets.outputs.has_play_store_key == 'true'
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON_KEY }}
@@ -93,15 +182,9 @@ jobs:
           releaseFiles: androidApp/build/outputs/bundle/productionRelease/*.aab
           track: ${{ github.event.inputs.track || 'internal' }}
           status: ${{ github.event.inputs.status || 'completed' }}
-        env:
-          PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}
-
-      - name: Notify if Play Store Secret is Missing
-        if: env.PLAY_STORE_JSON_KEY == ''
-        run: |
-          echo "::warning::Secret PLAY_STORE_JSON_KEY belum di-setting di GitHub Secrets. File AAB berhasil di-build dan disimpan di Artifacts, namun belum di-upload ke Play Store."
-        env:
-          PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}
+          whatsNewDirectory: distribution/whatsnew
+          mappingFile: androidApp/build/outputs/mapping/productionRelease/mapping.txt
+          changesNotSentForReview: ${{ github.event.inputs.changes_not_sent_for_review == 'true' }}
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
@@ -111,15 +194,41 @@ jobs:
           name: "Release Run #${{ github.run_number }}"
           draft: false
           prerelease: false
-          generate_release_notes: true
+          body_path: distribution/whatsnew/whatsnew-id-ID
           files: |
             androidApp/build/outputs/bundle/productionRelease/*.aab
             androidApp/build/outputs/apk/production/release/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate Run Summary
+        if: always()
+        run: |
+          echo "## 🚀 Ringkasan Build & Deploy Play Store" >> $GITHUB_STEP_SUMMARY
+          echo "- **Track**: \`${{ github.event.inputs.track || 'internal' }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status Release**: \`${{ github.event.inputs.status || 'completed' }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch / Ref**: \`${{ github.ref }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check_secrets.outputs.has_play_store_key }}" = "true" ]; then
+            echo "✅ **Upload Google Play**: Berhasil dikirim ke track \`${{ github.event.inputs.track || 'internal' }}\`" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Upload Google Play**: Dilewati (Secret \`PLAY_STORE_JSON_KEY\` belum diset di GitHub Secrets)." >> $GITHUB_STEP_SUMMARY
+            echo "📦 Berkas AAB & APK tetap dapat diunduh langsung dari Artifacts di halaman run ini." >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -f "distribution/whatsnew/whatsnew-id-ID" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 📋 Catatan Rilis (What's New)" >> $GITHUB_STEP_SUMMARY
+            echo '```text' >> $GITHUB_STEP_SUMMARY
+            cat distribution/whatsnew/whatsnew-id-ID >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
       - name: Secure Cleanup
         if: always()
         run: |
           rm -f keystore.jks
           rm -f keystore.properties
+          rm -rf distribution
