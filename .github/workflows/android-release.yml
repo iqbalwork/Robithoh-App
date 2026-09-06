@@ -37,7 +37,7 @@ on:
         default: ''
         type: string
       release_notes:
-        description: 'Catatan Rilis (What'\''s New) - maks 500 karakter. Kosongkan untuk generate otomatis dari commit'
+        description: "Catatan Rilis (What's New) - maks 500 karakter. Kosongkan untuk generate otomatis dari commit"
         required: false
         default: ''
         type: string
