@@ -119,7 +119,11 @@ jobs:
 
       - name: Decode Release Keystore & Configure properties
         run: |
-          echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
+          echo "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 -di > keystore.jks
+          if [ ! -s keystore.jks ]; then
+            echo "::error::Gagal men-decode keystore.jks! Pastikan secret KEYSTORE_BASE64 diisi dengan teks Base64 yang valid."
+            exit 1
+          fi
           printf "signing_key_location=keystore.jks\nsigning_keystore_password=%s\nsigning_key_alias=%s\nsigning_key_password=%s\n" \
             "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" > keystore.properties
 

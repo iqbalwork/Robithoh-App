@@ -76,62 +76,79 @@ fun CompassCalibrationSheet(
             )
         }
     ) {
-        Column(
+        CompassCalibrationContent(onDismiss = onDismiss)
+    }
+}
+
+@Composable
+fun CompassCalibrationContent(
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val isDark = RabithohTheme.colors.isDark
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Animated Figure-8 Calibration Vector Illustration
+        Figure8CalibrationIllustration(
+            modifier = Modifier
+                .size(200.dp)
+                .padding(8.dp)
+        )
+
+        // Title
+        Text(
+            text = "Kalibrasi Kompas",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            color = if (isDark) PutihBersih else TextCharcoal,
+            textAlign = TextAlign.Center
+        )
+
+        // Description
+        Text(
+            text = "Silahkan lakukan gerakan seperti angka 8 seperti tertera pada gambar diatas untuk meningkatkan akurasi sensor kompas perangkat Anda.",
+            fontSize = 13.5.sp,
+            color = if (isDark) Color(0xFFA1A1AA) else SlateMuted,
+            textAlign = TextAlign.Center,
+            lineHeight = 20.sp,
+            modifier = Modifier.padding(horizontal = 8.dp)
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Action Button
+        Button(
+            onClick = onDismiss,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .height(48.dp),
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MerahMerdeka,
+                contentColor = PutihBersih
+            )
         ) {
-            // Animated Figure-8 Calibration Vector Illustration
-            Figure8CalibrationIllustration(
-                modifier = Modifier
-                    .size(200.dp)
-                    .padding(8.dp)
-            )
-
-            // Title
             Text(
-                text = "Kalibrasi Kompas",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = if (isDark) PutihBersih else TextCharcoal,
-                textAlign = TextAlign.Center
+                text = "Ok, Saya Mengerti",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
             )
-
-            // Description
-            Text(
-                text = "Silahkan lakukan gerakan seperti angka 8 seperti tertera pada gambar diatas untuk meningkatkan akurasi sensor kompas perangkat Anda.",
-                fontSize = 13.5.sp,
-                color = if (isDark) Color(0xFFA1A1AA) else SlateMuted,
-                textAlign = TextAlign.Center,
-                lineHeight = 20.sp,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Action Button
-            Button(
-                onClick = onDismiss,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MerahMerdeka,
-                    contentColor = PutihBersih
-                )
-            ) {
-                Text(
-                    text = "Ok, Saya Mengerti",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun CompassCalibrationContentPreview() {
+    RabithohTheme {
+        CompassCalibrationContent(onDismiss = {})
     }
 }
 

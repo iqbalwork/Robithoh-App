@@ -25,6 +25,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
@@ -69,12 +71,31 @@ fun TextReaderSettingsSheet(
         containerColor = if (selectedTheme.isDark) Color(0xFF1E1A1A) else Color.White,
         shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 36.dp)
-        ) {
+        TextReaderSettingsSheetContent(
+            fontScale = fontScale,
+            onFontScaleChange = onFontScaleChange,
+            selectedTheme = selectedTheme,
+            onThemeSelected = onThemeSelected,
+            toggles = toggles
+        )
+    }
+}
+
+@Composable
+fun TextReaderSettingsSheetContent(
+    fontScale: Float,
+    onFontScaleChange: (Float) -> Unit,
+    selectedTheme: ReaderTheme = ReaderTheme.WHITE,
+    onThemeSelected: ((ReaderTheme) -> Unit)? = null,
+    toggles: List<ReaderToggleOption> = emptyList(),
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 36.dp)
+    ) {
             Text(
                 text = "Pengaturan Teks & Bacaan",
                 fontSize = 18.sp,
@@ -218,5 +239,22 @@ fun TextReaderSettingsSheet(
                 }
             }
         }
+    }
+
+
+@Preview
+@Composable
+private fun TextReaderSettingsSheetPreview() {
+    RabithohTheme(darkTheme = false) {
+        TextReaderSettingsSheetContent(
+            fontScale = 1.0f,
+            onFontScaleChange = {},
+            selectedTheme = ReaderTheme.WHITE,
+            onThemeSelected = {},
+            toggles = listOf(
+                ReaderToggleOption("Transliterasi Latin", "Tampilkan cara baca", true, {}),
+                ReaderToggleOption("Terjemahan", "Tampilkan arti bahasa Indonesia", true, {})
+            )
+        )
     }
 }

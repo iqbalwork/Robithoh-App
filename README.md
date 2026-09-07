@@ -35,19 +35,38 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
 
 ## ✨ Fitur Utama
 
-### 1. 📖 Al-Qur'an 30 Juz & Pembaca Kitab
+### 1. 🚀 Onboarding Screen & Spotlight Guideline (Panduan Interaktif)
+* **Onboarding 5 Slide Terpandu**: Alur selamat datang edukatif memperkenalkan nilai spiritual, keunggulan 100% offline-first, kenyamanan baca, widget, dan panduan perizinan lokasi & notifikasi.
+* **Spotlight Guideline Interaktif**: Animasi sorotan cutout interaktif yang memandu pengguna di Generic Document Reader (zoom font, tema warna kertas, mode presentasi), Layar Salat (slider volume adzan & ihtiyat), dan Mushaf Al-Qur'an (navigasi & bookmark).
+* **Reset Panduan Kapan Saja**: Opsi jalankan ulang tur visual di menu Pengaturan/Profil.
+
+### 2. 📱 8 Varian Home Screen Widget Interaktif (Android)
+* **Jadwal Sholat & Waktu Amaliyah Ringkas (4x1)** & **Lengkap (4x2)**
+* **Tasbih Digital & Target Wirid Cepat (2x2)** & **Tasbih Bar (4x1)**
+* **Mutiara Wasiat Tanbih & Manqobah Berganti (4x2)**
+* **Penanda Terakhir Dibaca Al-Qur'an Card (2x2)** & **Bar (4x1)**
+* **Bilah Akses Cepat 4 Menu Amaliyah (4x1)**
+
+### 3. 👓 Aksesibilitas Ramah Lansia & Semua Usia
+* **Font Zoom Dinamis (85%–165%)**: Pengatur ukuran huruf langsung di lembar naskah tanpa perlu membuka menu pengaturan.
+* **Tipografi Mushaf Renggang**: Huruf Arab *Amiri Quran* dan *Scheherazade New* dengan spasi baris renggang, menjamin harakat dan tajwid tidak bertumpuk.
+* **3 Tema Warna Latar**: Krem Kertas Khidmat (teduh di mata), Putih Bersih, dan Gelap Kontras Tinggi.
+* **Pilihan Bahasa**: Arab berharakat, transliterasi Latin, terjemahan Bahasa Indonesia, dan Basa Sunda halus.
+
+### 4. 📖 Al-Qur'an 30 Juz & Pembaca Kitab
 * **Teks Lengkap 30 Juz Offline**: Pembaca mushaf lengkap tanpa perlu koneksi internet.
 * **Navigasi & Pencarian Cepat**: Pilih surat, loncat ke nomor ayat tertentu, serta opsi salin dan bagikan ayat.
 * **Penanda Terakhir Dibaca (Bookmark)**: Tersimpan otomatis di basis data lokal SQLDelight.
 
-### 2. 📜 Manaqib & Silsilah MTQN Suryalaya Sirnarasa PPKN
+### 5. 📜 Manaqib & Silsilah MTQN Suryalaya Sirnarasa PPKN
 * **Bilingual Manaqib**: Teks Manqobah Syaikh Abdul Qodir Al-Jailani r.a. tersedia dalam **Bahasa Indonesia** dan **Basa Sunda**.
 * **Protokoler MC Manaqib**: Panduan susunan acara MC Manaqib (Indonesia & Sunda).
 * **Tanbih Guru Mursyid**: Wasiat luhur Syaikh Abdullah Mubarok bin Nur Muhammad (Abah Sepuh) & Syaikh Ahmad Shohibulwafa Tajul Arifin (Abah Anom) dalam dua bahasa.
 * **Tawassul & Silsilah 38 Mursyid**: Mata rantai emas kemursyidan TQN bersambung dari Baginda Nabi Muhammad SAW hingga Guru Mursyid ke-38 Pangersa Abah Aos.
 * **Doa Manaqib**: Doa penutup amaliyah manaqib lengkap.
 
-### 3. 🕌 Jadwal Sholat & Notifikasi Adzan Presisi
+### 6. 🕌 Jadwal Sholat, Kendali Volume Adzan & Notifikasi Presisi
+* **Slider Volume Adzan Mandiri (0%–100%)**: Kendali volume suara adzan fleksibel dengan mode hening/senyap (0% mute) tanpa mematikan notifikasi visual.
 * **Kalkulasi Astronomis KMP (Adhan Engine)**: Perhitungan waktu sholat akurat berbasis koordinat GPS perangkat maupun pencarian lokasi manual.
 * **Metode Hisab Lengkap**: Mendukung standar **Kemenag RI**, Muslim World League (MWL), ISNA, Umm Al-Qura, Egyptian General Authority of Survey, University of Islamic Sciences Karachi, Shia Ithna-Ashari, dan Institute of Geophysics Tehran.
 * **Koreksi Menit Manual (Ihtiyat)**: Pengaturan offset menit per waktu sholat (Imsak, Subuh, Terbit, Dzuhur, Ashar, Maghrib, Isya).
@@ -58,7 +77,7 @@ Dibangun menggunakan **Kotlin Multiplatform (KMP)** & **Compose Multiplatform (C
   * Ahmad Al-Nafees (Standard & Subuh)
 * **Penjadwalan Alarm Mandiri**: Background alarm scheduler asli pada Android (`AlarmManager` + Foreground Service) dan iOS Local Notification.
 
-### 4. 📿 Tasbih Digital Interaktif
+### 7. 📿 Tasbih Digital Interaktif
 * **Respon Haptik & Audio**: Getaran taktil presisi (*Haptic Feedback*) pada setiap ketukan dan saat target tercapai.
 * **Pilihan Target Fleksibel**: Hitungan 33, 99, 165 (standar dzikir harian TQN), 1000, atau tanpa batas (*uncounted*).
 * **Floating Tasbih Overlay**: Widget tasbih melayang yang dapat digunakan bersamaan saat membaca dokumen atau amaliyah.

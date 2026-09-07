@@ -72,6 +72,7 @@ import com.iqbalwork.robithoh.navigation.BackHandler
 fun KitabTabContent(
     onNavigateToSurah: (Int, Int?) -> Unit,
     lastReadBookmark: QuranBookmark? = null,
+    onNavigateToMushaf: ((Int) -> Unit)? = null,
     onBack: (() -> Unit)? = null
 ) {
     if (onBack != null) {
@@ -178,17 +179,52 @@ fun KitabTabContent(
                     }
                 }
 
-                Surface(
-                    color = if (isDark) DarkSurfaceVariant else Color(0xFFDDF5E6),
-                    shape = RoundedCornerShape(20.dp)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = "الْقُرْآنُ الْكَرِيمُ",
-                        color = if (isDark) EmasMuda else Color(0xFF1E824C),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                    )
+                    if (onNavigateToMushaf != null) {
+                        Surface(
+                            color = MerahMerdeka.copy(alpha = 0.12f),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.clickable {
+                                val targetPage = if (lastReadBookmark != null) {
+                                    com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForAyah(
+                                        lastReadBookmark.surahNumber,
+                                        lastReadBookmark.ayahNumber
+                                    )
+                                } else 1
+                                onNavigateToMushaf(targetPage)
+                            }
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                            ) {
+                                Text("📖", fontSize = 12.sp)
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = "Mushaf",
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = MerahMerdeka
+                                )
+                            }
+                        }
+                    }
+
+                    Surface(
+                        color = if (isDark) DarkSurfaceVariant else Color(0xFFDDF5E6),
+                        shape = RoundedCornerShape(20.dp)
+                    ) {
+                        Text(
+                            text = "الْقُرْآنُ",
+                            color = if (isDark) EmasMuda else Color(0xFF1E824C),
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                        )
+                    }
                 }
             }
         }

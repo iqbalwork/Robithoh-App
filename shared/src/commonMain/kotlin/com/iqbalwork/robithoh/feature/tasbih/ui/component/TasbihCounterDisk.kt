@@ -7,7 +7,18 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -27,10 +38,16 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
+import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
+import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import kotlinx.coroutines.launch
 
 @Composable
@@ -120,10 +137,16 @@ fun TasbihCounterDisk(
                                     )
                                 }
                                 launch {
-                                    glowAlphaAnim.animateTo(0.85f, androidx.compose.animation.core.tween(70))
+                                    glowAlphaAnim.animateTo(
+                                        0.85f,
+                                        androidx.compose.animation.core.tween(70)
+                                    )
                                 }
                                 launch {
-                                    glowScaleAnim.animateTo(1.15f, androidx.compose.animation.core.tween(70))
+                                    glowScaleAnim.animateTo(
+                                        1.15f,
+                                        androidx.compose.animation.core.tween(70)
+                                    )
                                 }
                             }
                             tryAwaitRelease()
@@ -155,97 +178,109 @@ fun TasbihCounterDisk(
                     )
                 }
         ) {
-        // Outer decorative ring canvas
-        Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(if (isCompact) 8.dp else 12.dp)
-        ) {
-            // Background track
-            drawCircle(
-                color = Color(0xFF3B0B10),
-                style = Stroke(
-                    width = if (isCompact) 6.dp.toPx() else 9.dp.toPx(),
-                    cap = StrokeCap.Round
-                )
-            )
-            // Progress active arc
-            drawArc(
-                brush = Brush.sweepGradient(
-                    listOf(MerahMerdeka, EmasKhidmat, MerahMerdeka)
-                ),
-                startAngle = -90f,
-                sweepAngle = progressFraction * 360f,
-                useCenter = false,
-                style = Stroke(
-                    width = if (isCompact) 7.dp.toPx() else 10.dp.toPx(),
-                    cap = StrokeCap.Round
-                )
-            )
-        }
-
-        // Inner Counter Content
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(horizontal = 12.dp)
-        ) {
-            Text(
-                text = if (isMilestone) "🎉 TARGET TERCAPAI!" else "KETUK UNTUK MENGHITUNG",
-                color = if (isMilestone) EmasMuda else SlateMuted,
-                fontSize = if (isCompact) 8.sp else 10.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp
-            )
-
-            Spacer(modifier = Modifier.height(if (isCompact) 2.dp else 4.dp))
-
-            Text(
-                text = "$currentCount",
-                style = MaterialTheme.typography.displayMedium.copy(
-                    fontSize = if (isCompact) 42.sp else 64.sp,
-                    fontWeight = FontWeight.Black,
-                    color = PutihBersih
-                )
-            )
-
-            Spacer(modifier = Modifier.height(if (isCompact) 2.dp else 4.dp))
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            // Outer decorative ring canvas
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(if (isCompact) 8.dp else 12.dp)
             ) {
-                Text("🔥", fontSize = if (isCompact) 11.sp else 13.sp)
-                Text(
-                    text = "Target: ${targetCount}x",
-                    color = EmasKhidmat,
-                    fontSize = if (isCompact) 11.sp else 13.sp,
-                    fontWeight = FontWeight.Bold
+                // Background track
+                drawCircle(
+                    color = Color(0xFF3B0B10),
+                    style = Stroke(
+                        width = if (isCompact) 6.dp.toPx() else 9.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
+                )
+                // Progress active arc
+                drawArc(
+                    brush = Brush.sweepGradient(
+                        listOf(MerahMerdeka, EmasKhidmat, MerahMerdeka)
+                    ),
+                    startAngle = -90f,
+                    sweepAngle = progressFraction * 360f,
+                    useCenter = false,
+                    style = Stroke(
+                        width = if (isCompact) 7.dp.toPx() else 10.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
                 )
             }
 
-            // Mini horizontal progress line
-            Spacer(modifier = Modifier.height(if (isCompact) 4.dp else 8.dp))
-            Surface(
-                color = Color.Black.copy(alpha = 0.6f),
-                shape = RoundedCornerShape(4.dp),
-                modifier = Modifier
-                    .width(if (isCompact) 80.dp else 120.dp)
-                    .height(if (isCompact) 4.dp else 6.dp)
+            // Inner Counter Content
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.padding(horizontal = 12.dp)
             ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(fraction = progressFraction)
-                        .background(
-                            brush = Brush.horizontalGradient(
-                                listOf(MerahMerdeka, EmasKhidmat, EmasMuda)
-                            )
-                        )
+                Text(
+                    text = if (isMilestone) "🎉 TARGET TERCAPAI!" else "KETUK UNTUK MENGHITUNG",
+                    color = if (isMilestone) EmasMuda else SlateMuted,
+                    fontSize = if (isCompact) 8.sp else 10.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 1.sp
                 )
+
+                Spacer(modifier = Modifier.height(if (isCompact) 2.dp else 4.dp))
+
+                Text(
+                    text = "$currentCount",
+                    style = MaterialTheme.typography.displayMedium.copy(
+                        fontSize = if (isCompact) 42.sp else 64.sp,
+                        fontWeight = FontWeight.Black,
+                        color = PutihBersih
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(if (isCompact) 2.dp else 4.dp))
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text("🔥", fontSize = if (isCompact) 11.sp else 13.sp)
+                    Text(
+                        text = "Target: ${targetCount}x",
+                        color = EmasKhidmat,
+                        fontSize = if (isCompact) 11.sp else 13.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                // Mini horizontal progress line
+                Spacer(modifier = Modifier.height(if (isCompact) 4.dp else 8.dp))
+                Surface(
+                    color = Color.Black.copy(alpha = 0.6f),
+                    shape = RoundedCornerShape(4.dp),
+                    modifier = Modifier
+                        .width(if (isCompact) 80.dp else 120.dp)
+                        .height(if (isCompact) 4.dp else 6.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(fraction = progressFraction)
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    listOf(MerahMerdeka, EmasKhidmat, EmasMuda)
+                                )
+                            )
+                    )
+                }
             }
         }
     }
 }
-}
 
+@Preview
+@Composable
+private fun TasbihCounterDiskPreview() {
+    RabithohTheme {
+        TasbihCounterDisk(
+            currentCount = 33,
+            targetCount = 165,
+            isMilestone = false,
+            onTap = {}
+        )
+    }
+}

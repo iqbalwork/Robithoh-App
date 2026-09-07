@@ -7,7 +7,7 @@ import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
 object QuranData {
 
     val surahs: List<SurahMeta> = listOf(
-        SurahMeta(1, "Al-Fatihah", "الفاتحة", "The Opening", "Pembukaan", 7, RevelationType.MAKKIYAH, "al_fatihah_ad_dhuha.mpeg"),
+        SurahMeta(1, "Al-Fatihah", "الفاتحة", "The Opening", "Pembukaan", 7, RevelationType.MAKKIYAH),
         SurahMeta(2, "Al-Baqarah", "البقرة", "The Cow", "Sapi Betina", 286, RevelationType.MADANIYAH),
         SurahMeta(3, "Ali 'Imran", "آل عمران", "The Family of Imran", "Keluarga Imran", 200, RevelationType.MADANIYAH),
         SurahMeta(4, "An-Nisa'", "النساء", "The Women", "Wanita", 176, RevelationType.MADANIYAH),
