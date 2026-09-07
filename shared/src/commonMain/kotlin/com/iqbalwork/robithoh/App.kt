@@ -57,6 +57,13 @@ fun App(
         val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
         val appSettings by appSettingsRepository.settings.collectAsState()
+        // Tracks whether AppSettings has been loaded from DB at least once.
+        // Without this, the 2.2s splash may finish before the async DB read completes,
+        // causing hasCompletedOnboarding to read as false even for returning users.
+        var isSettingsLoaded by rememberSaveable { mutableStateOf(false) }
+        LaunchedEffect(appSettings) {
+            if (!isSettingsLoaded) isSettingsLoaded = true
+        }
         val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
         val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
             com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
@@ -147,8 +154,12 @@ fun App(
 
         val entries = entryProvider<NavKey> {
             entry<ScreenKey.Splash> { _ ->
-                SplashScreen(
-                    onSplashFinished = {
+                // splashDone is set to true when the 2.2s animation finishes.
+                // We delay routing until BOTH splash animation is done AND settings are loaded from DB.
+                var splashDone by rememberSaveable { mutableStateOf(false) }
+
+                LaunchedEffect(splashDone, isSettingsLoaded) {
+                    if (splashDone && isSettingsLoaded) {
                         backstack.clear()
                         if (!appSettings.hasCompletedOnboarding) {
                             backstack.add(ScreenKey.Onboarding)
@@ -161,6 +172,10 @@ fun App(
                             }
                         }
                     }
+                }
+
+                SplashScreen(
+                    onSplashFinished = { splashDone = true }
                 )
             }
             entry<ScreenKey.Onboarding> { _ ->
@@ -258,6 +273,7 @@ fun App(
                     onMushafClick = { pageNumber ->
                         backstack.add(ScreenKey.QuranPageReader(pageNumber))
                     },
+                    audioPlayer = sharedAudioPlayer,
                     onBack = onBackAction
                 )
             }
@@ -265,6 +281,7 @@ fun App(
                 QuranSurahScreen(
                     surahNumber = key.surahNumber,
                     initialAyahNumber = key.ayahNumber,
+                    audioPlayer = sharedAudioPlayer,
                     onBack = onBackAction,
                     onSwitchToMushafMode = { pageNumber ->
                         if (backstack.isNotEmpty()) {
@@ -279,6 +296,7 @@ fun App(
                 QuranPageReaderScreen(
                     pageNumber = key.pageNumber,
                     initialAyahNumber = key.targetAyahNumber,
+                    audioPlayer = sharedAudioPlayer,
                     onBack = onBackAction,
                     onSwitchToTextMode = { surahNumber, ayahNumber ->
                         if (backstack.isNotEmpty()) {

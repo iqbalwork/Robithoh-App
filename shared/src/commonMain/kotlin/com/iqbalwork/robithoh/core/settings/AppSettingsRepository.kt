@@ -21,7 +21,8 @@ data class AppSettings(
     val hasSeenReaderSpotlight: Boolean = false,
     val hasSeenPrayerSpotlight: Boolean = false,
     val hasSeenQuranSpotlight: Boolean = false,
-    val hideMushafDownloadPrompt: Boolean = false
+    val hideMushafDownloadPrompt: Boolean = false,
+    val hasSeenQuranPageSpotlight: Boolean = false
 )
 
 /**
@@ -55,7 +56,8 @@ class AppSettingsRepository(
                         hasSeenReaderSpotlight = entity.has_seen_reader_spotlight == 1L,
                         hasSeenPrayerSpotlight = entity.has_seen_prayer_spotlight == 1L,
                         hasSeenQuranSpotlight = entity.has_seen_quran_spotlight == 1L,
-                        hideMushafDownloadPrompt = hidePrompt
+                        hideMushafDownloadPrompt = hidePrompt,
+                        hasSeenQuranPageSpotlight = entity.has_seen_quran_page_spotlight == 1L
                     )
                 } else if (hidePrompt) {
                     _settings.value = _settings.value.copy(hideMushafDownloadPrompt = true)
@@ -83,6 +85,11 @@ class AppSettingsRepository(
 
     fun setQuranSpotlightSeen(seen: Boolean = true) {
         _settings.value = _settings.value.copy(hasSeenQuranSpotlight = seen)
+        persist()
+    }
+
+    fun setQuranPageSpotlightSeen(seen: Boolean = true) {
+        _settings.value = _settings.value.copy(hasSeenQuranPageSpotlight = seen)
         persist()
     }
 
@@ -115,7 +122,8 @@ class AppSettingsRepository(
                     hasCompletedOnboarding = if (current.hasCompletedOnboarding) 1L else 0L,
                     hasSeenReaderSpotlight = if (current.hasSeenReaderSpotlight) 1L else 0L,
                     hasSeenPrayerSpotlight = if (current.hasSeenPrayerSpotlight) 1L else 0L,
-                    hasSeenQuranSpotlight = if (current.hasSeenQuranSpotlight) 1L else 0L
+                    hasSeenQuranSpotlight = if (current.hasSeenQuranSpotlight) 1L else 0L,
+                    hasSeenQuranPageSpotlight = if (current.hasSeenQuranPageSpotlight) 1L else 0L
                 )
             } catch (_: Exception) {
                 // Ignore persistence failure

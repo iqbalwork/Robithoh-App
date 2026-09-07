@@ -68,9 +68,9 @@ fun OnboardingContent(
                 horizontalArrangement = Arrangement.End,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Skip Button (Visible on slides 0, 1, 2, 3)
+                // Skip Button (Visible on slides 0-4, hidden on last permission slide)
                 AnimatedVisibility(
-                    visible = currentPage < 4,
+                    visible = currentPage < 5,
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
@@ -98,9 +98,10 @@ fun OnboardingContent(
                 when (page) {
                     0 -> OnboardingSlideWelcome(isDark = isDark)
                     1 -> OnboardingSlideOfflineAmaliyah(isDark = isDark)
-                    2 -> OnboardingSlideReadingComfort(isDark = isDark)
-                    3 -> OnboardingSlideWidget(isDark = isDark)
-                    4 -> OnboardingSlidePermissions(
+                    2 -> OnboardingSlideQuranDigital(isDark = isDark)
+                    3 -> OnboardingSlideReadingComfort(isDark = isDark)
+                    4 -> OnboardingSlideWidget(isDark = isDark)
+                    5 -> OnboardingSlidePermissions(
                         isDark = isDark,
                         onGrantClicked = onGrantPermissionClick,
                         onSkipPermissionClicked = onSkipPermissionClick
@@ -121,7 +122,7 @@ fun OnboardingContent(
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    repeat(5) { index ->
+                    repeat(6) { index ->
                         val isSelected = currentPage == index
                         val width by animateDpAsState(targetValue = if (isSelected) 24.dp else 8.dp)
                         val color = if (isSelected) {
@@ -140,8 +141,8 @@ fun OnboardingContent(
                     }
                 }
 
-                // Next Button (Slide 0-3)
-                if (currentPage < 4) {
+                // Next Button (Slide 0-4)
+                if (currentPage < 5) {
                     Button(
                         onClick = onNextClick,
                         colors = ButtonDefaults.buttonColors(
@@ -168,7 +169,7 @@ fun OnboardingContent(
 @Preview
 @Composable
 private fun OnboardingContentPreview() {
-    val pagerState = androidx.compose.foundation.pager.rememberPagerState(pageCount = { 5 })
+    val pagerState = androidx.compose.foundation.pager.rememberPagerState(pageCount = { 6 })
     RabithohTheme {
         OnboardingContent(
             pagerState = pagerState,
@@ -182,8 +183,8 @@ private fun OnboardingContentPreview() {
 
 @Preview
 @Composable
-private fun OnboardingContentSlide4Preview() {
-    val pagerState = androidx.compose.foundation.pager.rememberPagerState(initialPage = 4, pageCount = { 5 })
+private fun OnboardingContentSlide5Preview() {
+    val pagerState = androidx.compose.foundation.pager.rememberPagerState(initialPage = 5, pageCount = { 6 })
     RabithohTheme {
         OnboardingContent(
             pagerState = pagerState,
@@ -335,6 +336,198 @@ private fun OnboardingSlideOfflineAmaliyah(isDark: Boolean) {
 
         Text(
             text = "Seluruh naskah amaliyah dan dzikir tersimpan aman di perangkat. Anda dapat mengamalkannya di mana pun tanpa bergantung pada jaringan internet.",
+            fontSize = 14.sp,
+            color = if (isDark) DarkMuted else TextMuted,
+            textAlign = TextAlign.Center,
+            lineHeight = 22.sp,
+            modifier = Modifier.padding(horizontal = 8.dp)
+        )
+    }
+}
+
+@Composable
+private fun OnboardingSlideQuranDigital(isDark: Boolean) {
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+            .padding(horizontal = 24.dp, vertical = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        // Quran Modes Preview Card
+        GoldCrimsonCard(
+            modifier = Modifier.fillMaxWidth(),
+            variant = GoldCrimsonCardVariant.GOLD_BORDER,
+            contentPadding = PaddingValues(18.dp)
+        ) {
+            // Mode Teks Row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = MerahMerdeka.copy(alpha = 0.12f),
+                    modifier = Modifier.size(44.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Text("📜", fontSize = 22.sp)
+                    }
+                }
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Mode Teks Ayat",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isDark) Color.White else TextCharcoal
+                    )
+                    Text(
+                        text = "Terjemahan, transliterasi & murottal per ayat",
+                        fontSize = 12.sp,
+                        color = if (isDark) DarkMuted else TextMuted
+                    )
+                }
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MerahMerdeka.copy(alpha = 0.12f)
+                ) {
+                    Text(
+                        text = "📿 Murottal",
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Separator line
+            androidx.compose.material3.HorizontalDivider(
+                color = if (isDark) Color(0xFF3A3030) else Color(0xFFE5E7EB),
+                thickness = 0.5.dp
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Mode Mushaf Row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = EmasKhidmat.copy(alpha = 0.15f),
+                    modifier = Modifier.size(44.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Text("📖", fontSize = 22.sp)
+                    }
+                }
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Mode Mushaf Digital",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isDark) Color.White else TextCharcoal
+                    )
+                    Text(
+                        text = "Tampilan halaman mushaf seperti kitab fisik",
+                        fontSize = 12.sp,
+                        color = if (isDark) DarkMuted else TextMuted
+                    )
+                }
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = EmasKhidmat.copy(alpha = 0.15f)
+                ) {
+                    Text(
+                        text = "✨ Baru",
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = if (isDark) EmasMuda else EmasTua,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 3.dp)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            // Bookmark last read row
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = if (isDark) Color(0xFF1A1515) else Color(0xFFFFF8F0)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("🔖", fontSize = 13.sp)
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Column {
+                            Text(
+                                text = "Terakhir Dibaca",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka
+                            )
+                            Text(
+                                text = "Al-Baqarah • Ayat 255",
+                                fontSize = 10.sp,
+                                color = if (isDark) DarkMuted else TextMuted
+                            )
+                        }
+                    }
+                    Text(
+                        text = "Lanjutkan ›",
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = EmasKhidmat
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(28.dp))
+
+        Surface(
+            shape = RoundedCornerShape(100.dp),
+            color = EmasKhidmat.copy(alpha = if (isDark) 0.25f else 0.15f),
+            border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.4f))
+        ) {
+            Text(
+                text = "📖 AL-QUR'AN 30 JUZ",
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                color = if (isDark) EmasMuda else EmasTua,
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 5.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = "Al-Qur'an Lengkap dalam Genggaman",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+            color = if (isDark) Color.White else TextCharcoal,
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text = "Baca 114 Surah lengkap dalam dua mode: Mode Teks dengan terjemahan & transliterasi Latin, atau Mode Mushaf tampilan halaman fisik. Dilengkapi murottal per ayat dan penanda terakhir dibaca.",
             fontSize = 14.sp,
             color = if (isDark) DarkMuted else TextMuted,
             textAlign = TextAlign.Center,

@@ -56,50 +56,74 @@ class QuranRepositoryImpl(
         emit(ayahs)
     }.flowOn(dispatcher)
 
+    companion object {
+        private val _lastReadBookmarkFlow = kotlinx.coroutines.flow.MutableSharedFlow<QuranBookmark>(
+            replay = 1,
+            onBufferOverflow = kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
+        )
+    }
+
     override fun getLastReadBookmark(): Flow<QuranBookmark?> = flow {
+        val initialBookmark = queryDbLastRead() ?: QuranBookmark(
+            id = 1L,
+            surahNumber = 1,
+            ayahNumber = 1,
+            surahName = "Al-Fatihah",
+            timestamp = 0L
+        )
+        emit(initialBookmark)
+        _lastReadBookmarkFlow.collect { bookmark ->
+            emit(bookmark)
+        }
+    }.flowOn(dispatcher)
+
+    private fun queryDbLastRead(): QuranBookmark? {
+        val db = database ?: return null
+        return try {
+            val entity = db.robithohDatabaseQueries.getLastReadBookmark("quran").executeAsOneOrNull()
+            entity?.let {
+                QuranBookmark(
+                    id = it.id,
+                    surahNumber = it.page_or_surah.toInt(),
+                    ayahNumber = it.verse_or_section.toInt(),
+                    surahName = it.title,
+                    timestamp = it.updated_at
+                )
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    override suspend fun saveLastRead(surahNumber: Int, ayahNumber: Int, surahName: String): Unit = withContext(dispatcher) {
+        val now = kotlin.time.Clock.System.now().toEpochMilliseconds()
+        val bookmark = QuranBookmark(
+            id = 1L,
+            surahNumber = surahNumber,
+            ayahNumber = ayahNumber,
+            surahName = surahName,
+            timestamp = now
+        )
         val db = database
         if (db != null) {
             try {
-                val entity = db.robithohDatabaseQueries.getLastReadBookmark("quran").executeAsOneOrNull()
-                if (entity != null) {
-                    emit(
-                        QuranBookmark(
-                            id = entity.id,
-                            surahNumber = entity.page_or_surah.toInt(),
-                            ayahNumber = entity.verse_or_section.toInt(),
-                            surahName = entity.title,
-                            timestamp = entity.updated_at
-                        )
-                    )
-                    return@flow
-                }
+                db.robithohDatabaseQueries.insertOrUpdateBookmark(
+                    id = 1L,
+                    item_type = "quran",
+                    item_id = "surah_$surahNumber",
+                    title = surahName,
+                    subtitle = "Ayat $ayahNumber",
+                    page_or_surah = surahNumber.toLong(),
+                    verse_or_section = ayahNumber.toLong(),
+                    created_at = now,
+                    updated_at = now
+                )
+                notifyQuranWidgetUpdate()
             } catch (_: Exception) {
-                // fallback
+                // ignore
             }
         }
-        // Default initial bookmark: Al-Fatihah ayat 1
-        emit(QuranBookmark(id = 1L, surahNumber = 1, ayahNumber = 1, surahName = "Al-Fatihah", timestamp = 0L))
-    }.flowOn(dispatcher)
-
-    override suspend fun saveLastRead(surahNumber: Int, ayahNumber: Int, surahName: String): Unit = withContext(dispatcher) {
-        val db = database ?: return@withContext
-        try {
-            val now = 1771800000000L // current epoch timestamp
-            db.robithohDatabaseQueries.insertOrUpdateBookmark(
-                id = 1L,
-                item_type = "quran",
-                item_id = "surah_$surahNumber",
-                title = surahName,
-                subtitle = "Ayat $ayahNumber",
-                page_or_surah = surahNumber.toLong(),
-                verse_or_section = ayahNumber.toLong(),
-                created_at = now,
-                updated_at = now
-            )
-            notifyQuranWidgetUpdate()
-        } catch (_: Exception) {
-            // ignore
-        }
+        _lastReadBookmarkFlow.emit(bookmark)
     }
 
     override fun getAllBookmarks(): Flow<List<QuranBookmark>> = flow {

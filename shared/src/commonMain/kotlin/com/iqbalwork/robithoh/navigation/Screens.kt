@@ -111,7 +111,8 @@ fun TasbihScreen(
 fun QuranListScreen(
     onSurahClick: (Int, Int?) -> Unit,
     onBack: () -> Unit,
-    onMushafClick: ((Int) -> Unit)? = null
+    onMushafClick: ((Int) -> Unit)? = null,
+    audioPlayer: com.iqbalwork.robithoh.core.audio.KmpAudioPlayer? = null
 ) {
     BackHandler {
         onBack()
@@ -119,7 +120,8 @@ fun QuranListScreen(
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
-            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database),
+            audioPlayer = audioPlayer ?: com.iqbalwork.robithoh.core.audio.createAudioPlayer()
         )
     }
     val state by viewModel.uiState.collectAsState()
@@ -136,7 +138,8 @@ fun QuranSurahScreen(
     surahNumber: Int,
     onBack: () -> Unit,
     initialAyahNumber: Int? = null,
-    onSwitchToMushafMode: ((pageNumber: Int) -> Unit)? = null
+    onSwitchToMushafMode: ((pageNumber: Int) -> Unit)? = null,
+    audioPlayer: com.iqbalwork.robithoh.core.audio.KmpAudioPlayer? = null
 ) {
     BackHandler {
         onBack()
@@ -144,7 +147,8 @@ fun QuranSurahScreen(
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_surah_$surahNumber") {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
-            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database),
+            audioPlayer = audioPlayer ?: com.iqbalwork.robithoh.core.audio.createAudioPlayer()
         )
     }
     com.iqbalwork.robithoh.feature.quran.presentation.QuranReaderScreen(
@@ -161,7 +165,8 @@ fun QuranPageReaderScreen(
     pageNumber: Int,
     initialAyahNumber: Int? = null,
     onBack: () -> Unit,
-    onSwitchToTextMode: (surahNumber: Int, ayahNumber: Int) -> Unit
+    onSwitchToTextMode: (surahNumber: Int, ayahNumber: Int) -> Unit,
+    audioPlayer: com.iqbalwork.robithoh.core.audio.KmpAudioPlayer? = null
 ) {
     BackHandler {
         onBack()
@@ -169,7 +174,8 @@ fun QuranPageReaderScreen(
     val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
     val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_mushaf_view") {
         com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
-            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database),
+            audioPlayer = audioPlayer ?: com.iqbalwork.robithoh.core.audio.createAudioPlayer()
         )
     }
     com.iqbalwork.robithoh.feature.quran.presentation.QuranPageReaderScreen(

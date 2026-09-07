@@ -9,14 +9,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
@@ -52,7 +57,13 @@ import com.iqbalwork.robithoh.core.designsystem.component.AyahOptionsSheet
 import com.iqbalwork.robithoh.core.designsystem.component.DownloadMushafSheet
 import com.iqbalwork.robithoh.core.designsystem.component.GoToSurahAyahSheet
 import com.iqbalwork.robithoh.core.designsystem.component.IslamicHeader
-import com.iqbalwork.robithoh.core.designsystem.component.MiniFloatingAudioBar
+import com.iqbalwork.robithoh.feature.quran.ui.QariPickerSheet
+import com.iqbalwork.robithoh.feature.quran.ui.QuranAudioBottomBar
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightOverlay
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightShapeType
+import com.iqbalwork.robithoh.core.designsystem.component.SpotlightStep
+import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
+import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
@@ -60,6 +71,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.feature.quran.data.MushafDownloadState
@@ -72,6 +84,10 @@ import com.iqbalwork.robithoh.feature.quran.data.QuranPageManager
 import com.iqbalwork.robithoh.feature.quran.model.QuranPageMapping
 import com.iqbalwork.robithoh.feature.quran.presentation.component.MushafPageView
 import kotlinx.coroutines.launch
+
+// Threshold (dp) di mana mode dual-page diaktifkan.
+// 600dp = Window size Medium: mencakup foldable terbuka (portrait) & tablet.
+private val DUAL_PAGE_WIDTH_THRESHOLD = 600.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -90,6 +106,50 @@ fun QuranPageReaderScreen(
     val appSettingsRepo = rememberAppSettingsRepository()
     val appSettings by appSettingsRepo.settings.collectAsState()
 
+    // Fullscreen state: starts in fullscreen as requested
+    var isFullscreen by rememberSaveable { mutableStateOf(true) }
+
+    // Spotlight: 3 langkah panduan mode Mushaf
+    val mushafSpotlightSteps = remember {
+        listOf(
+            SpotlightStep(
+                id = "mushaf_goto",
+                title = "Navigasi Cepat Antar Halaman",
+                description = "Lompat langsung ke halaman, surah, atau ayat tertentu dengan presisi—tanpa perlu menggeser satu per satu.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "mushaf_switch",
+                title = "Beralih ke Mode Teks",
+                description = "Pindah ke tampilan teks ayat per ayat dengan terjemahan Indonesia & transliterasi Latin, murottal, dan penanda bookmark.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            ),
+            SpotlightStep(
+                id = "mushaf_download",
+                title = "Download Mushaf Offline",
+                description = "Unduh seluruh halaman mushaf ke perangkat agar dapat dibaca lancar tanpa koneksi internet kapan pun dan di mana pun.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
+            )
+        )
+    }
+
+    val mushafSpotlightState = rememberSpotlightState(
+        steps = mushafSpotlightSteps,
+        onComplete = {
+            appSettingsRepo.setQuranPageSpotlightSeen(true)
+        }
+    )
+
+    // Trigger spotlight saat toolbar terlihat (tidak fullscreen) dan belum pernah ditampilkan
+    LaunchedEffect(appSettings.hasSeenQuranPageSpotlight, isFullscreen) {
+        if (!appSettings.hasSeenQuranPageSpotlight && !isFullscreen && !mushafSpotlightState.isVisible) {
+            mushafSpotlightState.start()
+        }
+    }
+
     val orientationController = rememberScreenOrientationController()
     val handleBack = {
         orientationController.resetToDefault()
@@ -106,15 +166,6 @@ fun QuranPageReaderScreen(
         }
     }
 
-    // Pager state (0-indexed: page 0 is Halaman 1, reversed layout for RTL Mushaf feel)
-    val startPage = (initialPageNumber - 1).coerceIn(0, QuranPageLookup.TOTAL_PAGES - 1)
-    val pagerState = rememberPagerState(initialPage = startPage) { QuranPageLookup.TOTAL_PAGES }
-    val currentPageNumber = pagerState.currentPage + 1
-    val pageMeta = remember(currentPageNumber) { QuranPageLookup.getPageMeta(currentPageNumber) }
-
-    // Fullscreen state: starts in fullscreen as requested
-    var isFullscreen by rememberSaveable { mutableStateOf(true) }
-
     // Dialog & sheet visibility
     var showGoToSheet by rememberSaveable { mutableStateOf(false) }
     var showDownloadSheet by rememberSaveable { mutableStateOf(false) }
@@ -122,13 +173,7 @@ fun QuranPageReaderScreen(
     val downloadState by pageManager.downloadState.collectAsState()
 
     // Selected Ayah for options sheet
-    var selectedAyah by remember {
-        mutableStateOf(
-            if (initialAyahNumber != null) {
-                Pair(pageMeta.surahNumber, initialAyahNumber)
-            } else null
-        )
-    }
+    var selectedAyah by remember { mutableStateOf<Pair<Int, Int>?>(null) }
 
     // Parse active audio ayah from track ID (e.g. "ayah_2_142")
     val activeAudioAyah = remember(state.activeAudioTrack) {
@@ -141,21 +186,6 @@ fun QuranPageReaderScreen(
         } else null
     }
 
-    // Auto-scroll pager if active audio crosses to another page
-    LaunchedEffect(activeAudioAyah) {
-        if (activeAudioAyah != null) {
-            val targetPage = QuranPageLookup.getPageForAyah(activeAudioAyah.first, activeAudioAyah.second)
-            if (targetPage != currentPageNumber) {
-                pagerState.animateScrollToPage(targetPage - 1)
-            }
-        }
-    }
-
-    // Prefetch neighbor pages whenever current page changes
-    LaunchedEffect(currentPageNumber) {
-        pageManager.prefetchPages(currentPageNumber)
-    }
-
     // Check whether to show first-time download suggestion (only once per session)
     LaunchedEffect(Unit) {
         if (!hasCheckedDownloadPrompt) {
@@ -166,319 +196,532 @@ fun QuranPageReaderScreen(
         }
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(if (isDark) DarkCanvas else Color(0xFFFBF9F4))
-    ) {
-        // Horizontal Pager for Mushaf Pages with 3D Book Turn animation
-        HorizontalPager(
-            state = pagerState,
-            reverseLayout = true,
-            modifier = Modifier.fillMaxSize()
-        ) { pageIndex ->
-            val pageNum = pageIndex + 1
-            var pageImage by remember(pageNum) { mutableStateOf<ImageBitmap?>(null) }
-            var pageMapping by remember(pageNum) { mutableStateOf<QuranPageMapping?>(null) }
+    // Lacak halaman terakhir yang dilihat agar folding / unfolding transisi mulus
+    var lastViewedPage by rememberSaveable { mutableStateOf(initialPageNumber) }
 
-            LaunchedEffect(pageNum) {
-                pageImage = pageManager.loadPageImage(pageNum)
-                pageMapping = pageManager.getPageMapping(pageNum)
+    BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        val isDualPage = maxWidth >= DUAL_PAGE_WIDTH_THRESHOLD
+        val totalPages = QuranPageLookup.TOTAL_PAGES
+
+        val initialIndex = remember(isDualPage) {
+            if (isDualPage) {
+                ((lastViewedPage - 1) / 2).coerceIn(0, (totalPages + 1) / 2 - 1)
+            } else {
+                (lastViewedPage - 1).coerceIn(0, totalPages - 1)
             }
+        }
+        val pagerPageCount = if (isDualPage) (totalPages + 1) / 2 else totalPages
+        val pagerState = rememberPagerState(initialPage = initialIndex) { pagerPageCount }
 
-            val isRightPage = (pageNum % 2 == 1)
+        // currentPageNumber = nomor halaman ganjil (kanan) yang sedang aktif
+        val currentPageNumber = if (isDualPage) {
+            pagerState.currentPage * 2 + 1
+        } else {
+            pagerState.currentPage + 1
+        }
+        val pageMeta = remember(currentPageNumber) { QuranPageLookup.getPageMeta(currentPageNumber) }
 
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                MushafPageView(
-                    pageNumber = pageNum,
-                    pageMapping = pageMapping,
-                    pageImage = pageImage,
-                    selectedAyah = if (currentPageNumber == pageNum) selectedAyah else null,
-                    activeAudioAyah = if (currentPageNumber == pageNum) activeAudioAyah else null,
-                    onAyahClick = { surah, ayah ->
-                        selectedAyah = Pair(surah, ayah)
-                    },
-                    onBackgroundClick = {
-                        isFullscreen = !isFullscreen
-                    },
-                    onDoubleTap = {
-                        orientationController.toggleOrientation()
-                    },
-                    onPinchOut = {
-                        orientationController.setLandscape()
-                    },
-                    onPinchIn = {
-                        orientationController.setPortrait()
-                    },
-                    modifier = Modifier.fillMaxSize()
-                )
-
-                // 1. Bayangan Tulang Jilid Mushaf Fisik (Spine Gutter Shadow & Crease)
-                // Halaman ganjil: jilid buku di kiri; Halaman genap: jilid buku di kanan
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(32.dp)
-                        .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
-                        .background(
-                            Brush.horizontalGradient(
-                                if (isRightPage) {
-                                    listOf(
-                                        Color.Black.copy(alpha = 0.22f),
-                                        Color.Black.copy(alpha = 0.08f),
-                                        Color.Black.copy(alpha = 0.02f),
-                                        Color.Transparent
-                                    )
-                                } else {
-                                    listOf(
-                                        Color.Transparent,
-                                        Color.Black.copy(alpha = 0.02f),
-                                        Color.Black.copy(alpha = 0.08f),
-                                        Color.Black.copy(alpha = 0.22f)
-                                    )
-                                }
-                            )
-                        )
-                )
-
-                // Garis lipatan jahitan jilid (Spine stitch groove) di sisi jilid
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(1.5.dp)
-                        .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
-                        .background(Color.Black.copy(alpha = 0.15f))
-                )
-
-                // Garis potong tepi luar kertas (Clean outer paper margin) di sisi berlawanan jilid
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(1.dp)
-                        .align(if (isRightPage) Alignment.CenterEnd else Alignment.CenterStart)
-                        .background(Color.Black.copy(alpha = 0.05f))
-                )
+        // Inisialisasi selectedAyah jika initialAyahNumber diberikan
+        LaunchedEffect(Unit) {
+            if (initialAyahNumber != null) {
+                selectedAyah = Pair(pageMeta.surahNumber, initialAyahNumber)
             }
         }
 
-        // Top Bar Overlay
-        AnimatedVisibility(
-            visible = !isFullscreen,
-            enter = slideInVertically { -it } + fadeIn(),
-            exit = slideOutVertically { -it } + fadeOut(),
-            modifier = Modifier.align(Alignment.TopCenter)
+        // Sinkronisasi lastViewedPage saat user swipe pager
+        LaunchedEffect(pagerState.currentPage, isDualPage) {
+            lastViewedPage = if (isDualPage) {
+                pagerState.currentPage * 2 + 1
+            } else {
+                pagerState.currentPage + 1
+            }
+        }
+
+        // Auto-scroll pager jika active audio berganti ke halaman lain
+        LaunchedEffect(activeAudioAyah) {
+            if (activeAudioAyah != null) {
+                val targetPage = QuranPageLookup.getPageForAyah(activeAudioAyah.first, activeAudioAyah.second)
+                val targetIndex = if (isDualPage) (targetPage - 1) / 2 else targetPage - 1
+                if (targetIndex != pagerState.currentPage) {
+                    pagerState.animateScrollToPage(targetIndex)
+                }
+            }
+        }
+
+        // Prefetch halaman tetangga
+        LaunchedEffect(currentPageNumber) {
+            pageManager.prefetchPages(currentPageNumber)
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(if (isDark) DarkCanvas else Color(0xFFFBF9F4))
         ) {
-            Surface(
-                color = if (isDark) com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface.copy(alpha = 0.95f) else PutihBersih.copy(alpha = 0.95f),
-                shadowElevation = 4.dp,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                val sideText = if (currentPageNumber % 2 == 1) "Kanan" else "Kiri"
-                IslamicHeader(
-                    title = "Hal. $currentPageNumber ($sideText) • ${pageMeta.surahName}",
-                    subtitle = "Juz ${pageMeta.juz} • ${pageMeta.ayahRangeText}",
-                    arabicTitle = pageMeta.arabicSurahName,
-                    onBackClick = handleBack,
-                    showBottomDivider = false,
-                    actions = {
-                        // Switch to Text Reader button (Smart Sync: specific ayah or page start ayah)
-                        IconButton(
-                            onClick = {
-                                val targetSurah = selectedAyah?.first ?: pageMeta.surahNumber
-                                val targetAyah = selectedAyah?.second ?: pageMeta.startAyah
-                                onSwitchToTextMode(targetSurah, targetAyah)
-                            }
-                        ) {
-                            Surface(
-                                color = MerahMerdeka.copy(alpha = 0.12f),
-                                shape = CircleShape,
-                                modifier = Modifier.size(32.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text("📜", fontSize = 14.sp)
-                                }
-                            }
-                        }
+            HorizontalPager(
+                state = pagerState,
+                reverseLayout = true,
+                modifier = Modifier.fillMaxSize()
+            ) { pagerIndex ->
+                if (isDualPage) {
+                    // DUAL-PAGE MODE (Foldable Unfolded / Tablet)
+                    val rightPageNum = pagerIndex * 2 + 1
+                    val leftPageNum = pagerIndex * 2 + 2
+                    val hasLeftPage = leftPageNum <= totalPages
 
-                        // Go To Navigation button
-                        IconButton(onClick = { showGoToSheet = true }) {
-                            Surface(
-                                color = MerahMerdeka.copy(alpha = 0.12f),
-                                shape = CircleShape,
-                                modifier = Modifier.size(32.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text("🧭", fontSize = 14.sp)
-                                }
-                            }
-                        }
+                    var rightImage by remember(rightPageNum) { mutableStateOf<ImageBitmap?>(null) }
+                    var leftImage by remember(leftPageNum) { mutableStateOf<ImageBitmap?>(null) }
+                    var rightMapping by remember(rightPageNum) { mutableStateOf<QuranPageMapping?>(null) }
+                    var leftMapping by remember(leftPageNum) { mutableStateOf<QuranPageMapping?>(null) }
 
-                        // Offline Download Mushaf button
-                        IconButton(onClick = { showDownloadSheet = true }) {
-                            Surface(
-                                color = if (pageManager.isAllDownloaded()) EmasKhidmat.copy(alpha = 0.18f) else MerahMerdeka.copy(alpha = 0.12f),
-                                shape = CircleShape,
-                                modifier = Modifier.size(32.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text(if (pageManager.isAllDownloaded()) "💾" else "📥", fontSize = 14.sp)
-                                }
-                            }
+                    LaunchedEffect(rightPageNum) {
+                        rightImage = pageManager.loadPageImage(rightPageNum)
+                        rightMapping = pageManager.getPageMapping(rightPageNum)
+                    }
+                    LaunchedEffect(leftPageNum) {
+                        if (hasLeftPage) {
+                            leftImage = pageManager.loadPageImage(leftPageNum)
+                            leftMapping = pageManager.getPageMapping(leftPageNum)
                         }
                     }
-                )
-            }
-        }
 
-        // Fullscreen indicator pill (shown when fullscreen to let reader know the current page & juz)
-        AnimatedVisibility(
-            visible = isFullscreen,
-            enter = fadeIn(),
-            exit = fadeOut(),
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 16.dp)
-        ) {
-            Surface(
-                color = Color.Black.copy(alpha = 0.45f),
-                shape = RoundedCornerShape(16.dp)
+                    val isCurrentSpread = (pagerIndex == pagerState.currentPage)
+
+                    Row(modifier = Modifier.fillMaxSize()) {
+                        // Halaman Kiri (Genap)
+                        Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
+                            if (hasLeftPage) {
+                                MushafPageView(
+                                    pageNumber = leftPageNum,
+                                    pageMapping = leftMapping,
+                                    pageImage = leftImage,
+                                    selectedAyah = if (isCurrentSpread) selectedAyah else null,
+                                    activeAudioAyah = if (isCurrentSpread) activeAudioAyah else null,
+                                    onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
+                                    onBackgroundClick = { isFullscreen = !isFullscreen },
+                                    onDoubleTap = { orientationController.toggleOrientation() },
+                                    onPinchOut = { orientationController.setLandscape() },
+                                    onPinchIn = { orientationController.setPortrait() },
+                                    modifier = Modifier.fillMaxSize()
+                                )
+
+                                SpineEdgeShadow(side = SpineSide.RIGHT)
+                            }
+                        }
+
+                        // Garis Jilid Tengah (Spine)
+                        SpineCenterDivider(isDark = isDark)
+
+                        // Halaman Kanan (Ganjil)
+                        Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
+                            MushafPageView(
+                                pageNumber = rightPageNum,
+                                pageMapping = rightMapping,
+                                pageImage = rightImage,
+                                selectedAyah = if (isCurrentSpread) selectedAyah else null,
+                                activeAudioAyah = if (isCurrentSpread) activeAudioAyah else null,
+                                onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
+                                onBackgroundClick = { isFullscreen = !isFullscreen },
+                                onDoubleTap = { orientationController.toggleOrientation() },
+                                onPinchOut = { orientationController.setLandscape() },
+                                onPinchIn = { orientationController.setPortrait() },
+                                modifier = Modifier.fillMaxSize()
+                            )
+
+                            SpineEdgeShadow(side = SpineSide.LEFT)
+                        }
+                    }
+                } else {
+                    // SINGLE-PAGE MODE (Phone)
+                    val pageNum = pagerIndex + 1
+                    var pageImage by remember(pageNum) { mutableStateOf<ImageBitmap?>(null) }
+                    var pageMapping by remember(pageNum) { mutableStateOf<QuranPageMapping?>(null) }
+
+                    LaunchedEffect(pageNum) {
+                        pageImage = pageManager.loadPageImage(pageNum)
+                        pageMapping = pageManager.getPageMapping(pageNum)
+                    }
+
+                    val isRightPage = (pageNum % 2 == 1)
+
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        MushafPageView(
+                            pageNumber = pageNum,
+                            pageMapping = pageMapping,
+                            pageImage = pageImage,
+                            selectedAyah = if (currentPageNumber == pageNum) selectedAyah else null,
+                            activeAudioAyah = if (currentPageNumber == pageNum) activeAudioAyah else null,
+                            onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
+                            onBackgroundClick = { isFullscreen = !isFullscreen },
+                            onDoubleTap = { orientationController.toggleOrientation() },
+                            onPinchOut = { orientationController.setLandscape() },
+                            onPinchIn = { orientationController.setPortrait() },
+                            modifier = Modifier.fillMaxSize()
+                        )
+
+                        // Bayangan Tulang Jilid Mushaf Fisik
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(32.dp)
+                                .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                                .background(
+                                    Brush.horizontalGradient(
+                                        if (isRightPage) {
+                                            listOf(
+                                                Color.Black.copy(alpha = 0.22f),
+                                                Color.Black.copy(alpha = 0.08f),
+                                                Color.Black.copy(alpha = 0.02f),
+                                                Color.Transparent
+                                            )
+                                        } else {
+                                            listOf(
+                                                Color.Transparent,
+                                                Color.Black.copy(alpha = 0.02f),
+                                                Color.Black.copy(alpha = 0.08f),
+                                                Color.Black.copy(alpha = 0.22f)
+                                            )
+                                        }
+                                    )
+                                )
+                        )
+
+                        // Garis lipatan jahitan jilid (Spine stitch groove)
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(1.5.dp)
+                                .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                                .background(Color.Black.copy(alpha = 0.15f))
+                        )
+
+                        // Garis potong tepi luar kertas
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(1.dp)
+                                .align(if (isRightPage) Alignment.CenterEnd else Alignment.CenterStart)
+                                .background(Color.Black.copy(alpha = 0.05f))
+                        )
+                    }
+                }
+            }
+
+            // Top Bar Overlay
+            AnimatedVisibility(
+                visible = !isFullscreen,
+                enter = slideInVertically { -it } + fadeIn(),
+                exit = slideOutVertically { -it } + fadeOut(),
+                modifier = Modifier.align(Alignment.TopCenter)
             ) {
-                val sideText = if (currentPageNumber % 2 == 1) "Kanan" else "Kiri"
-                Text(
-                    text = "Hal. $currentPageNumber ($sideText) • Juz ${pageMeta.juz}",
-                    color = PutihBersih,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Medium,
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp)
+                Surface(
+                    color = if (isDark) com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface.copy(alpha = 0.95f) else PutihBersih.copy(alpha = 0.95f),
+                    shadowElevation = 4.dp,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    IslamicHeader(
+                        title = pageMeta.surahName,
+                        arabicTitle = pageMeta.arabicSurahName,
+                        onBackClick = handleBack,
+                        showBottomDivider = false,
+                        actions = {
+                            IconButton(
+                                onClick = {
+                                    val targetSurah = selectedAyah?.first ?: pageMeta.surahNumber
+                                    val targetAyah = selectedAyah?.second ?: pageMeta.startAyah
+                                    onSwitchToTextMode(targetSurah, targetAyah)
+                                },
+                                modifier = Modifier.spotlightAnchor(mushafSpotlightState, "mushaf_switch")
+                            ) {
+                                Surface(
+                                    color = MerahMerdeka.copy(alpha = 0.12f),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(32.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text("📜", fontSize = 14.sp)
+                                    }
+                                }
+                            }
+
+                            IconButton(
+                                onClick = { showGoToSheet = true },
+                                modifier = Modifier.spotlightAnchor(mushafSpotlightState, "mushaf_goto")
+                            ) {
+                                Surface(
+                                    color = MerahMerdeka.copy(alpha = 0.12f),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(32.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text("🧭", fontSize = 14.sp)
+                                    }
+                                }
+                            }
+
+                            IconButton(
+                                onClick = { showDownloadSheet = true },
+                                modifier = Modifier.spotlightAnchor(mushafSpotlightState, "mushaf_download")
+                            ) {
+                                Surface(
+                                    color = if (pageManager.isAllDownloaded()) EmasKhidmat.copy(alpha = 0.18f) else MerahMerdeka.copy(alpha = 0.12f),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(32.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(if (pageManager.isAllDownloaded()) "💾" else "📥", fontSize = 14.sp)
+                                    }
+                                }
+                            }
+                        }
+                    )
+                }
+            }
+
+            // Fullscreen indicator pill
+            AnimatedVisibility(
+                visible = isFullscreen,
+                enter = fadeIn(),
+                exit = fadeOut(),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 16.dp)
+            ) {
+                Surface(
+                    color = Color.Black.copy(alpha = 0.45f),
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    val pillText = if (isDualPage) {
+                        val rightPage = pagerState.currentPage * 2 + 1
+                        val leftPage = (rightPage + 1).coerceAtMost(totalPages)
+                        "Hal. $rightPage–$leftPage • Juz ${pageMeta.juz}"
+                    } else {
+                        val sideText = if (currentPageNumber % 2 == 1) "Kanan" else "Kiri"
+                        "Hal. $currentPageNumber ($sideText) • Juz ${pageMeta.juz}"
+                    }
+                    Text(
+                        text = pillText,
+                        color = PutihBersih,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp)
+                    )
+                }
+            }
+
+            val navBarBottomInset = WindowInsets.safeDrawing.asPaddingValues().calculateBottomPadding()
+
+            // Bottom Bar Overlay (Floating Audio Bar)
+            AnimatedVisibility(
+                visible = !isFullscreen,
+                enter = slideInVertically { it } + fadeIn(),
+                exit = slideOutVertically { it } + fadeOut(),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = if (navBarBottomInset > 20.dp) navBarBottomInset + 4.dp else 12.dp
+                    )
+            ) {
+                QuranAudioBottomBar(
+                    selectedQari = state.selectedQari,
+                    playbackState = state.audioPlaybackState,
+                    isAudioLoading = state.isAudioLoading,
+                    repeatMode = state.audioRepeatMode,
+                    currentPositionMs = state.audioPositionMs,
+                    durationMs = state.audioDurationMs,
+                    activeAyahNumber = activeAudioAyah?.second ?: selectedAyah?.second,
+                    surahName = pageMeta.surahName,
+                    onPlayPauseClick = {
+                        if (state.audioPlaybackState == AudioPlaybackState.PLAYING ||
+                            state.audioPlaybackState == AudioPlaybackState.PAUSED
+                        ) {
+                            viewModel.onIntent(QuranUiIntent.TogglePlayPauseAudio)
+                        } else {
+                            val targetSurah = selectedAyah?.first ?: pageMeta.surahNumber
+                            val targetAyah = selectedAyah?.second ?: pageMeta.startAyah
+                            viewModel.onIntent(QuranUiIntent.PlayAyahAudio(targetSurah, targetAyah))
+                        }
+                    },
+                    onToggleRepeatMode = { viewModel.onIntent(QuranUiIntent.ToggleAudioRepeatMode) },
+                    onQariClick = { viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(true)) }
                 )
             }
         }
 
-        // Bottom Bar Overlay (Audio Player Bar if audio is active)
-        AnimatedVisibility(
-            visible = !isFullscreen && state.activeAudioTrack != null,
-            enter = slideInVertically { it } + fadeIn(),
-            exit = slideOutVertically { it } + fadeOut(),
-            modifier = Modifier.align(Alignment.BottomCenter)
-        ) {
-            MiniFloatingAudioBar(
-                track = state.activeAudioTrack,
-                playbackState = state.audioPlaybackState,
-                currentPositionMs = state.audioPositionMs,
-                durationMs = state.audioDurationMs,
-                onPlayPauseClick = { viewModel.onIntent(QuranUiIntent.TogglePlayPauseAudio) },
-                onBarClick = {},
-                onCloseClick = { viewModel.onIntent(QuranUiIntent.StopAudio) }
+        // Go To Navigation Sheet
+        if (showGoToSheet) {
+            GoToSurahAyahSheet(
+                surahs = state.surahs.ifEmpty { QuranData.surahs },
+                initialSurahNumber = pageMeta.surahNumber,
+                initialPageNumber = currentPageNumber,
+                onDismiss = { showGoToSheet = false },
+                onConfirm = { surahNumber, ayahNumber ->
+                    showGoToSheet = false
+                    val targetPage = QuranPageLookup.getPageForAyah(surahNumber, ayahNumber)
+                    val targetIndex = if (isDualPage) (targetPage - 1) / 2 else targetPage - 1
+                    selectedAyah = Pair(surahNumber, ayahNumber)
+                    lastViewedPage = targetPage
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(targetIndex)
+                    }
+                },
+                onConfirmPage = { targetPage ->
+                    showGoToSheet = false
+                    val targetIndex = if (isDualPage) (targetPage - 1) / 2 else targetPage - 1
+                    lastViewedPage = targetPage
+                    coroutineScope.launch {
+                        pagerState.animateScrollToPage(targetIndex)
+                    }
+                }
+            )
+        }
+
+        // Download Mushaf Offline Sheet
+        if (showDownloadSheet) {
+            DownloadMushafSheet(
+                downloadState = downloadState,
+                onDismiss = { showDownloadSheet = false },
+                onStartDownload = { pageManager.startFullDownload() },
+                onCancelDownload = { pageManager.cancelDownload() },
+                onDontShowAgainChecked = { dontShow ->
+                    appSettingsRepo.setHideMushafDownloadPrompt(dontShow)
+                }
+            )
+        }
+
+        // Ayah Options Sheet
+        selectedAyah?.let { (surahNum, ayahNum) ->
+            val surahMeta = remember(surahNum) { QuranData.surahs.find { it.number == surahNum } }
+            val surahName = surahMeta?.nameLatin ?: "Surat $surahNum"
+            val ayahModel = remember(surahNum, ayahNum) {
+                QuranData.getAyahsForSurah(surahNum).find { it.numberInSurah == ayahNum }
+            }
+
+            val shareAction = rememberShareTextAction()
+            val clipboardManager = LocalClipboardManager.current
+
+            val isAyahLastRead = state.lastReadBookmark?.let {
+                it.surahNumber == surahNum && it.ayahNumber == ayahNum
+            } ?: false
+
+            AyahOptionsSheet(
+                surahName = surahName,
+                ayahNumber = ayahNum,
+                onDismiss = { selectedAyah = null },
+                onPlayMurotal = {
+                    viewModel.onIntent(
+                        QuranUiIntent.PlayAyahAudio(
+                            surahNumber = surahNum,
+                            ayahNumber = ayahNum
+                        )
+                    )
+                },
+                onMarkLastRead = {
+                    viewModel.onIntent(
+                        QuranUiIntent.SaveBookmark(
+                            surahNumber = surahNum,
+                            ayahNumber = ayahNum,
+                            surahName = surahName,
+                            showToast = true
+                        )
+                    )
+                },
+                onShare = {
+                    if (ayahModel != null) {
+                        val shareText = buildString {
+                            append(ayahModel.textArabic)
+                            append("\n\n")
+                            if (ayahModel.transliterationLatin.isNotBlank()) {
+                                append(ayahModel.transliterationLatin)
+                                append("\n\n")
+                            }
+                            append(ayahModel.translationIndonesian)
+                            append("\n\n")
+                            append("(QS. $surahName: $ayahNum)")
+                        }
+                        shareAction(shareText)
+                    }
+                },
+                onCopy = {
+                    if (ayahModel != null) {
+                        val copyText = "${ayahModel.textArabic}\n\n${ayahModel.translationIndonesian}\n\n(QS. $surahName: $ayahNum)"
+                        clipboardManager.setText(AnnotatedString(copyText))
+                    }
+                },
+                isLastRead = isAyahLastRead
             )
         }
     }
 
-    // Go To Navigation Sheet
-    if (showGoToSheet) {
-        GoToSurahAyahSheet(
-            surahs = state.surahs.ifEmpty { QuranData.surahs },
-            initialSurahNumber = pageMeta.surahNumber,
-            initialPageNumber = currentPageNumber,
-            onDismiss = { showGoToSheet = false },
-            onConfirm = { surahNumber, ayahNumber ->
-                showGoToSheet = false
-                val targetPage = QuranPageLookup.getPageForAyah(surahNumber, ayahNumber)
-                selectedAyah = Pair(surahNumber, ayahNumber)
-                coroutineScope.launch {
-                    pagerState.animateScrollToPage(targetPage - 1)
-                }
+    // Spotlight overlay for Mushaf mode tutorial
+    SpotlightOverlay(state = mushafSpotlightState)
+
+    // Qari Picker Bottom Sheet
+    if (state.isQariPickerVisible) {
+        QariPickerSheet(
+            selectedQari = state.selectedQari,
+            availableQaris = state.availableQaris,
+            onSelectQari = { qari ->
+                viewModel.onIntent(QuranUiIntent.SelectQari(qari))
+                viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(false))
             },
-            onConfirmPage = { targetPage ->
-                showGoToSheet = false
-                coroutineScope.launch {
-                    pagerState.animateScrollToPage(targetPage - 1)
-                }
+            onDismiss = {
+                viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(false))
             }
         )
     }
+}
 
-    // Download Mushaf Offline Sheet
-    if (showDownloadSheet) {
-        DownloadMushafSheet(
-            downloadState = downloadState,
-            onDismiss = { showDownloadSheet = false },
-            onStartDownload = { pageManager.startFullDownload() },
-            onCancelDownload = { pageManager.cancelDownload() },
-            onDontShowAgainChecked = { dontShow ->
-                appSettingsRepo.setHideMushafDownloadPrompt(dontShow)
-            }
-        )
-    }
+// ── Helper: sisi bayangan jilid ──────────────────────────────────────────────
 
-    // Ayah Options Sheet (When user taps an ayah)
-    selectedAyah?.let { (surahNum, ayahNum) ->
-        val surahMeta = remember(surahNum) { QuranData.surahs.find { it.number == surahNum } }
-        val surahName = surahMeta?.nameLatin ?: "Surat $surahNum"
-        val ayahModel = remember(surahNum, ayahNum) {
-            QuranData.getAyahsForSurah(surahNum).find { it.numberInSurah == ayahNum }
-        }
+private enum class SpineSide { LEFT, RIGHT }
 
-        val shareAction = rememberShareTextAction()
-        val clipboardManager = LocalClipboardManager.current
-
-        val isAyahLastRead = state.lastReadBookmark?.let {
-            it.surahNumber == surahNum && it.ayahNumber == ayahNum
-        } ?: false
-
-        AyahOptionsSheet(
-            surahName = surahName,
-            ayahNumber = ayahNum,
-            onDismiss = { selectedAyah = null },
-            onPlayMurotal = {
-                val audioUrl = ayahModel?.audioUrl ?: surahMeta?.audioUrl
-                if (audioUrl != null) {
-                    viewModel.onIntent(
-                        QuranUiIntent.PlayAudio(
-                            AudioTrack(
-                                id = "ayah_${surahNum}_${ayahNum}",
-                                title = "Murottal $surahName Ayat $ayahNum",
-                                subtitle = "Al-Qur'an 30 Juz",
-                                urlOrPath = audioUrl
-                            )
+@Composable
+private fun BoxScope.SpineEdgeShadow(side: SpineSide, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxHeight()
+            .width(28.dp)
+            .align(if (side == SpineSide.LEFT) Alignment.CenterStart else Alignment.CenterEnd)
+            .background(
+                Brush.horizontalGradient(
+                    when (side) {
+                        SpineSide.LEFT -> listOf(
+                            Color.Black.copy(alpha = 0.20f),
+                            Color.Black.copy(alpha = 0.07f),
+                            Color.Black.copy(alpha = 0.01f),
+                            Color.Transparent
                         )
-                    )
-                }
-            },
-            onMarkLastRead = {
-                viewModel.onIntent(
-                    QuranUiIntent.SaveBookmark(
-                        surahNumber = surahNum,
-                        ayahNumber = ayahNum,
-                        surahName = surahName,
-                        showToast = true
+                        SpineSide.RIGHT -> listOf(
+                            Color.Transparent,
+                            Color.Black.copy(alpha = 0.01f),
+                            Color.Black.copy(alpha = 0.07f),
+                            Color.Black.copy(alpha = 0.20f)
+                        )
+                    }
+                )
+            )
+    )
+}
+
+/** Garis jilid tengah antara dua halaman dalam dual-page mode. */
+@Composable
+private fun SpineCenterDivider(isDark: Boolean, modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier
+            .fillMaxHeight()
+            .width(3.dp)
+            .background(
+                Brush.horizontalGradient(
+                    listOf(
+                        Color.Black.copy(alpha = if (isDark) 0.35f else 0.18f),
+                        Color.Black.copy(alpha = if (isDark) 0.50f else 0.28f),
+                        Color.Black.copy(alpha = if (isDark) 0.35f else 0.18f)
                     )
                 )
-            },
-            onShare = {
-                if (ayahModel != null) {
-                    val shareText = buildString {
-                        append(ayahModel.textArabic)
-                        append("\n\n")
-                        if (ayahModel.transliterationLatin.isNotBlank()) {
-                            append(ayahModel.transliterationLatin)
-                            append("\n\n")
-                        }
-                        append(ayahModel.translationIndonesian)
-                        append("\n\n")
-                        append("(QS. $surahName: $ayahNum)")
-                    }
-                    shareAction(shareText)
-                }
-            },
-            onCopy = {
-                if (ayahModel != null) {
-                    val copyText = "${ayahModel.textArabic}\n\n${ayahModel.translationIndonesian}\n\n(QS. $surahName: $ayahNum)"
-                    clipboardManager.setText(AnnotatedString(copyText))
-                }
-            },
-            isLastRead = isAyahLastRead
-        )
-    }
+            )
+    )
 }

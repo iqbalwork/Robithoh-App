@@ -17,7 +17,7 @@ fun OnboardingScreen(
     modifier: Modifier = Modifier
 ) {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { 5 })
+    val pagerState = rememberPagerState(pageCount = { 6 })
 
     // Permission launcher for Location & Post-Notifications (Android & iOS)
     val requestPermission = rememberLocationPermissionLauncher { _ ->
@@ -29,7 +29,7 @@ fun OnboardingScreen(
         pagerState = pagerState,
         onSkipClick = onComplete,
         onNextClick = {
-            if (pagerState.currentPage < 4) {
+            if (pagerState.currentPage < 5) {
                 scope.launch {
                     pagerState.animateScrollToPage(pagerState.currentPage + 1)
                 }

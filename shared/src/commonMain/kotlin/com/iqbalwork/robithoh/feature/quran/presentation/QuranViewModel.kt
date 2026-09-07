@@ -7,10 +7,16 @@ import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
 import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import com.iqbalwork.robithoh.core.audio.KmpAudioPlayer
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
+import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
+import com.iqbalwork.robithoh.feature.quran.data.QuranAudioRepository
+import com.iqbalwork.robithoh.feature.quran.data.QuranAudioRepositoryImpl
 import com.iqbalwork.robithoh.feature.quran.data.QuranData
 import com.iqbalwork.robithoh.feature.quran.data.QuranRepository
+import com.iqbalwork.robithoh.feature.quran.model.ChapterAudio
+import com.iqbalwork.robithoh.feature.quran.model.QariOption
 import com.iqbalwork.robithoh.feature.quran.model.QuranBookmark
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,6 +25,7 @@ import kotlinx.coroutines.launch
 class QuranViewModel(
     private val repository: QuranRepository,
     private val audioPlayer: KmpAudioPlayer? = null,
+    private val audioRepository: QuranAudioRepository = QuranAudioRepositoryImpl(),
     private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<QuranUiState, QuranUiIntent, QuranUiEffect>(QuranUiState(isLoading = true)) {
 
@@ -80,12 +87,44 @@ class QuranViewModel(
             .onEach { track -> updateState { copy(activeAudioTrack = track) } }
             .launchIn(viewModelScope)
 
+        var previousPlaybackState = AudioPlaybackState.IDLE
         player.playbackState
-            .onEach { state -> updateState { copy(audioPlaybackState = state) } }
+            .onEach { state ->
+                val prev = previousPlaybackState
+                previousPlaybackState = state
+                updateState {
+                    copy(
+                        audioPlaybackState = state,
+                        isAudioLoading = state == AudioPlaybackState.BUFFERING,
+                        activeAyahNumber = if (state == AudioPlaybackState.IDLE && player.currentTrack.value == null) null else activeAyahNumber
+                    )
+                }
+                if (state == AudioPlaybackState.COMPLETED && prev != AudioPlaybackState.COMPLETED) {
+                    handleTrackCompleted()
+                }
+            }
             .launchIn(viewModelScope)
 
         player.currentPositionMs
-            .onEach { pos -> updateState { copy(audioPositionMs = pos) } }
+            .onEach { pos ->
+                val track = player.currentTrack.value ?: currentState.activeAudioTrack
+                val isCurrentSurahPlaying = track?.id?.startsWith("surah_") == true
+                val activeAyah = if (isCurrentSurahPlaying) {
+                    currentState.activeChapterAudio?.verseTimings?.find {
+                        pos in it.timestampFromMs..it.timestampToMs
+                    }?.ayahNumber
+                } else if (track?.id?.startsWith("ayah_") == true) {
+                    val parts = track.id.split("_")
+                    parts.getOrNull(2)?.toIntOrNull()
+                } else null
+
+                updateState {
+                    copy(
+                        audioPositionMs = pos,
+                        activeAyahNumber = activeAyah ?: this.activeAyahNumber
+                    )
+                }
+            }
             .launchIn(viewModelScope)
 
         player.durationMs
@@ -158,7 +197,9 @@ class QuranViewModel(
                     )
                 }
                 viewModelScope.launch {
-                    repository.saveLastRead(intent.surahNumber, intent.ayahNumber, intent.surahName)
+                    kotlinx.coroutines.withContext(NonCancellable) {
+                        repository.saveLastRead(intent.surahNumber, intent.ayahNumber, intent.surahName)
+                    }
                     if (intent.showToast) {
                         sendEffect(QuranUiEffect.ShowToast("Disimpan ke Terakhir Dibaca: ${intent.surahName} ayat ${intent.ayahNumber}"))
                     }
@@ -173,7 +214,82 @@ class QuranViewModel(
                     copy(isTajwidColorEnabled = intent.enabled ?: !isTajwidColorEnabled)
                 }
             }
+            is QuranUiIntent.SelectQari -> {
+                audioRepository.setSelectedQari(intent.qari)
+                updateState { copy(selectedQari = intent.qari) }
+                val currentTrack = currentState.activeAudioTrack
+                if (currentTrack != null && currentTrack.id.startsWith("ayah_")) {
+                    val parts = currentTrack.id.split("_")
+                    val surahNumber = parts.getOrNull(1)?.toIntOrNull()
+                    val ayahNumber = parts.getOrNull(2)?.toIntOrNull()
+                    if (surahNumber != null && ayahNumber != null) {
+                        onIntent(QuranUiIntent.PlayAyahAudio(surahNumber, ayahNumber))
+                    }
+                } else if (currentTrack != null && currentTrack.id.startsWith("surah_")) {
+                    val surahNumber = currentTrack.id.removePrefix("surah_").toIntOrNull()
+                    if (surahNumber != null) {
+                        onIntent(QuranUiIntent.PlayAyahAudio(surahNumber, currentState.activeAyahNumber ?: 1))
+                    }
+                }
+            }
+            is QuranUiIntent.SetQariPickerVisible -> {
+                updateState { copy(isQariPickerVisible = intent.visible) }
+            }
+            is QuranUiIntent.ToggleAudioRepeatMode -> {
+                val nextMode = when (currentState.audioRepeatMode) {
+                    QuranAudioRepeatMode.REPEAT_SURAH -> QuranAudioRepeatMode.REPEAT_AYAH
+                    QuranAudioRepeatMode.REPEAT_AYAH -> QuranAudioRepeatMode.OFF
+                    QuranAudioRepeatMode.OFF -> QuranAudioRepeatMode.REPEAT_SURAH
+                }
+                updateState { copy(audioRepeatMode = nextMode) }
+            }
+            is QuranUiIntent.SetAudioRepeatMode -> {
+                updateState { copy(audioRepeatMode = intent.mode) }
+            }
+            is QuranUiIntent.PlaySurahAudio -> {
+                // Play verse-by-verse starting from startAyahNumber instead of downloading entire surah
+                onIntent(QuranUiIntent.PlayAyahAudio(intent.surahNumber, intent.startAyahNumber))
+            }
+            is QuranUiIntent.PlayAyahAudio -> {
+                val surah = currentState.surahs.find { it.number == intent.surahNumber }
+                    ?: QuranData.surahs.find { it.number == intent.surahNumber }
+                val surahName = surah?.nameLatin ?: "Surah ${intent.surahNumber}"
+                val ayahs = if (currentState.currentSurah?.number != intent.surahNumber) {
+                    QuranData.getAyahsForSurah(intent.surahNumber)
+                } else {
+                    currentState.currentAyahs
+                }
+                val qari = currentState.selectedQari
+
+                val ayahUrl = audioRepository.getAyahAudioUrl(qari, intent.surahNumber, intent.ayahNumber)
+                val track = AudioTrack(
+                    id = "ayah_${intent.surahNumber}_${intent.ayahNumber}",
+                    title = "Surah $surahName Ayat ${intent.ayahNumber}",
+                    subtitle = "Lantunan ${qari.name}",
+                    urlOrPath = ayahUrl
+                )
+                updateState {
+                    copy(
+                        currentSurah = if (currentSurah?.number != intent.surahNumber) surah ?: currentSurah else currentSurah,
+                        currentAyahs = if (currentSurah?.number != intent.surahNumber) ayahs else currentAyahs,
+                        isAudioLoading = true,
+                        activeAyahNumber = intent.ayahNumber,
+                        activeAudioTrack = track
+                    )
+                }
+                onIntent(QuranUiIntent.PlayAudio(track))
+            }
+            is QuranUiIntent.SeekToAyah -> {
+                val activeAudio = currentState.activeChapterAudio
+                if (activeAudio != null) {
+                    val timing = activeAudio.verseTimings.find { it.ayahNumber == intent.ayahNumber }
+                    if (timing != null) {
+                        audioPlayer?.seekTo(timing.timestampFromMs)
+                    }
+                }
+            }
             is QuranUiIntent.PlayAudio -> {
+                updateState { copy(activeAudioTrack = intent.track) }
                 analyticsTracker.logEvent(
                     AnalyticsEvents.AUDIO_PLAYBACK_STARTED,
                     mapOf(
@@ -196,6 +312,35 @@ class QuranViewModel(
             }
             is QuranUiIntent.RefreshData -> {
                 loadInitialData()
+            }
+        }
+    }
+
+    private fun handleTrackCompleted() {
+        val track = audioPlayer?.currentTrack?.value ?: currentState.activeAudioTrack ?: return
+        if (track.id.startsWith("ayah_")) {
+            val parts = track.id.split("_")
+            val surah = parts.getOrNull(1)?.toIntOrNull() ?: return
+            val ayah = parts.getOrNull(2)?.toIntOrNull() ?: return
+
+            when (currentState.audioRepeatMode) {
+                QuranAudioRepeatMode.REPEAT_AYAH -> {
+                    onIntent(QuranUiIntent.PlayAyahAudio(surah, ayah))
+                }
+                QuranAudioRepeatMode.REPEAT_SURAH -> {
+                    val surahMeta = QuranData.surahs.find { it.number == surah }
+                    val totalAyahs = surahMeta?.numberOfAyahs ?: 0
+                    if (ayah < totalAyahs) {
+                        onIntent(QuranUiIntent.PlayAyahAudio(surah, ayah + 1))
+                    } else if (surah < 114) {
+                        onIntent(QuranUiIntent.PlayAyahAudio(surah + 1, 1))
+                    } else {
+                        updateState { copy(activeAyahNumber = null) }
+                    }
+                }
+                QuranAudioRepeatMode.OFF -> {
+                    updateState { copy(activeAyahNumber = null) }
+                }
             }
         }
     }

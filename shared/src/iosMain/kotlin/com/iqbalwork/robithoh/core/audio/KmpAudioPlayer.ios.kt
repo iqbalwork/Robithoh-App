@@ -112,10 +112,28 @@ class IosAudioPlayer(
         } catch (_: Throwable) {}
     }
 
+    private fun resetPlayer() {
+        stopProgressTracker()
+        endObserver?.let {
+            NSNotificationCenter.defaultCenter.removeObserver(it)
+            endObserver = null
+        }
+        val p = avPlayer
+        avPlayer?.pause()
+        avPlayer = null
+        if (globalActivePlayer == p) {
+            globalActivePlayer = null
+            globalEndObserver = null
+            globalActiveInstance = null
+        }
+    }
+
     override fun play(track: AudioTrack) {
-        stop()
+        resetPlayer()
         _currentTrack.value = track
         _playbackState.value = AudioPlaybackState.BUFFERING
+        _currentPositionMs.value = 0L
+        _durationMs.value = 0L
 
         scope.launch(Dispatchers.Default) {
             val fileUrl = resolveUrlOrPath(track.urlOrPath)
@@ -195,19 +213,7 @@ class IosAudioPlayer(
     }
 
     override fun stop() {
-        stopProgressTracker()
-        endObserver?.let {
-            NSNotificationCenter.defaultCenter.removeObserver(it)
-            endObserver = null
-        }
-        val p = avPlayer
-        avPlayer?.pause()
-        avPlayer = null
-        if (globalActivePlayer == p) {
-            globalActivePlayer = null
-            globalEndObserver = null
-            globalActiveInstance = null
-        }
+        resetPlayer()
         _currentTrack.value = null
         _playbackState.value = AudioPlaybackState.IDLE
         _currentPositionMs.value = 0L

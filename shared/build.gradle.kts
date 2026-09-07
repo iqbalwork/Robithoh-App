@@ -90,6 +90,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(libs.sqldelight.sqlite.driver)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         commonTest.dependencies {
