@@ -170,7 +170,17 @@ object QuranPageLookup {
             surahName = surahName,
             surahNumber = sStart,
             arabicSurahName = arabicName,
-            ayahRangeText = ayahRangeText
+            ayahRangeText = ayahRangeText,
+            startAyah = aStart,
+            endAyah = aEnd
         )
+    }
+
+    fun getFirstAyahOnPage(pageNumber: Int): Pair<Int, Int> {
+        val page = pageNumber.coerceIn(1, TOTAL_PAGES)
+        val offset = (page - 1) * 6
+        val sStart = pageBoundaries[offset + 2]
+        val aStart = pageBoundaries[offset + 3]
+        return Pair(sStart, aStart)
     }
 }

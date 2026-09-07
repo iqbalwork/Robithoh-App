@@ -11,7 +11,16 @@ class AndroidQuranPageCacheManager(
     private fun getPagesDir(): File {
         val ctx = contextProvider()
         val baseDir = ctx?.filesDir ?: File(System.getProperty("java.io.tmpdir") ?: ".", "robithoh_quran")
-        val dir = File(baseDir, "quran_pages")
+
+        // Clean legacy Madinah cache if it exists to free storage and ensure Kemenag assets are loaded
+        val legacyDir = File(baseDir, "quran_pages")
+        if (legacyDir.exists()) {
+            try {
+                legacyDir.deleteRecursively()
+            } catch (_: Exception) {}
+        }
+
+        val dir = File(baseDir, "quran_pages_kemenag")
         if (!dir.exists()) {
             dir.mkdirs()
         }

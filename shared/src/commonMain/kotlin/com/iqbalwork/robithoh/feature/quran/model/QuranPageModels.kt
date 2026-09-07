@@ -41,5 +41,7 @@ data class PageMeta(
     val surahName: String,
     val surahNumber: Int,
     val arabicSurahName: String = "",
-    val ayahRangeText: String = ""
+    val ayahRangeText: String = "",
+    val startAyah: Int = 1,
+    val endAyah: Int = 1
 )

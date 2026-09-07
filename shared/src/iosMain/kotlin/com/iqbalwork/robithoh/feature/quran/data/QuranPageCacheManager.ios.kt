@@ -27,7 +27,13 @@ class IosQuranPageCacheManager : QuranPageCacheManager {
             true
         ).firstOrNull() as? String ?: NSTemporaryDirectory()
 
-        val pagesDir = "$appSupportDir/QuranPages"
+        // Clean legacy Madinah cache if it exists
+        val legacyPagesDir = "$appSupportDir/QuranPages"
+        if (fileManager.fileExistsAtPath(legacyPagesDir)) {
+            fileManager.removeItemAtPath(legacyPagesDir, error = null)
+        }
+
+        val pagesDir = "$appSupportDir/QuranPagesKemenag"
         if (!fileManager.fileExistsAtPath(pagesDir)) {
             fileManager.createDirectoryAtPath(
                 path = pagesDir,

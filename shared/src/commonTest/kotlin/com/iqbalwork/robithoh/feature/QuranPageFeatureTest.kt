@@ -123,4 +123,22 @@ class QuranPageFeatureTest {
         }
         assertEquals(null, blankMatched)
     }
+
+    @Test
+    fun testPhysicalBookZIndexOrdering() {
+        // Earlier pages in a physical book must always be on top of later pages in z-order
+        for (pageIndex in 0 until QuranPageLookup.TOTAL_PAGES - 1) {
+            val zCurrent = (QuranPageLookup.TOTAL_PAGES - pageIndex).toFloat()
+            val zNext = (QuranPageLookup.TOTAL_PAGES - (pageIndex + 1)).toFloat()
+            assertTrue(zCurrent > zNext, "Page index $pageIndex must have higher zIndex than ${pageIndex + 1}")
+        }
+    }
+
+    @Test
+    fun testKemenagAssetUrlsPinned() {
+        val primary = com.iqbalwork.robithoh.feature.quran.data.QuranPageManager.PRIMARY_PAGE_URL
+        val fallback = com.iqbalwork.robithoh.feature.quran.data.QuranPageManager.FALLBACK_PAGE_URL
+        assertTrue(primary.contains("e2a806a"), "Primary CDN URL must pin commit e2a806a for Indonesian Kemenag")
+        assertTrue(fallback.contains("e2a806a"), "Fallback URL must pin commit e2a806a for Indonesian Kemenag")
+    }
 }

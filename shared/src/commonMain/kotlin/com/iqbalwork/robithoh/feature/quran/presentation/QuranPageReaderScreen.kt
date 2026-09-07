@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -62,11 +63,25 @@ import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.feature.quran.data.MushafDownloadState
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.zIndex
+import com.iqbalwork.robithoh.core.device.rememberScreenOrientationController
 import com.iqbalwork.robithoh.feature.quran.data.QuranData
 import com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup
 import com.iqbalwork.robithoh.feature.quran.data.QuranPageManager
 import com.iqbalwork.robithoh.feature.quran.model.QuranPageMapping
 import com.iqbalwork.robithoh.feature.quran.presentation.component.MushafPageView
+import kotlin.math.PI
+import kotlin.math.absoluteValue
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sin
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,6 +101,22 @@ fun QuranPageReaderScreen(
     val appSettingsRepo = rememberAppSettingsRepository()
     val appSettings by appSettingsRepo.settings.collectAsState()
 
+    val orientationController = rememberScreenOrientationController()
+    val handleBack = {
+        orientationController.resetToDefault()
+        onBackClick()
+    }
+
+    com.iqbalwork.robithoh.navigation.BackHandler {
+        handleBack()
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            orientationController.resetToDefault()
+        }
+    }
+
     // Pager state (0-indexed: page 0 is Halaman 1, reversed layout for RTL Mushaf feel)
     val startPage = (initialPageNumber - 1).coerceIn(0, QuranPageLookup.TOTAL_PAGES - 1)
     val pagerState = rememberPagerState(initialPage = startPage) { QuranPageLookup.TOTAL_PAGES }
@@ -98,6 +129,7 @@ fun QuranPageReaderScreen(
     // Dialog & sheet visibility
     var showGoToSheet by rememberSaveable { mutableStateOf(false) }
     var showDownloadSheet by rememberSaveable { mutableStateOf(false) }
+    var hasCheckedDownloadPrompt by rememberSaveable { mutableStateOf(false) }
     val downloadState by pageManager.downloadState.collectAsState()
 
     // Selected Ayah for options sheet
@@ -135,10 +167,13 @@ fun QuranPageReaderScreen(
         pageManager.prefetchPages(currentPageNumber)
     }
 
-    // Check whether to show first-time download suggestion
+    // Check whether to show first-time download suggestion (only once per session)
     LaunchedEffect(Unit) {
-        if (!appSettings.hideMushafDownloadPrompt && !pageManager.isAllDownloaded()) {
-            showDownloadSheet = true
+        if (!hasCheckedDownloadPrompt) {
+            hasCheckedDownloadPrompt = true
+            if (!appSettings.hideMushafDownloadPrompt && !pageManager.isAllDownloaded()) {
+                showDownloadSheet = true
+            }
         }
     }
 
@@ -147,7 +182,7 @@ fun QuranPageReaderScreen(
             .fillMaxSize()
             .background(if (isDark) DarkCanvas else Color(0xFFFBF9F4))
     ) {
-        // Horizontal Pager for Mushaf Pages
+        // Horizontal Pager for Mushaf Pages with 3D Book Turn animation
         HorizontalPager(
             state = pagerState,
             reverseLayout = true,
@@ -162,20 +197,241 @@ fun QuranPageReaderScreen(
                 pageMapping = pageManager.getPageMapping(pageNum)
             }
 
-            MushafPageView(
-                pageNumber = pageNum,
-                pageMapping = pageMapping,
-                pageImage = pageImage,
-                selectedAyah = if (currentPageNumber == pageNum) selectedAyah else null,
-                activeAudioAyah = if (currentPageNumber == pageNum) activeAudioAyah else null,
-                onAyahClick = { surah, ayah ->
-                    selectedAyah = Pair(surah, ayah)
-                },
-                onBackgroundClick = {
-                    isFullscreen = !isFullscreen
-                },
-                modifier = Modifier.fillMaxSize()
-            )
+            // Calculate page offset for authentic physical book page curl effect
+            val pageOffset = ((pagerState.currentPage - pageIndex) + pagerState.currentPageOffsetFraction)
+            val clampedOffset = pageOffset.coerceIn(-1f, 1f)
+            val isRightPage = (pageNum % 2 == 1)
+
+            // Menentukan apakah transisi yang sedang aktif adalah intra-spread (Slide) atau inter-spread (Wattpad Paper Curl)
+            // Transisi aktif dengan halaman berikutnya (swipe forward, clampedOffset > 0):
+            // - Jika halaman ganjil (kanan): ke halaman genap (kiri) -> Intra-spread (Slide)
+            // - Jika halaman genap (kiri): ke halaman ganjil (kanan lembar baru) -> Inter-spread (Curl)
+            // Transisi aktif dengan halaman sebelumnya (swipe backward/entering, clampedOffset < 0):
+            // - Jika halaman genap (kiri): dari halaman ganjil (kanan) -> Intra-spread (Slide)
+            // - Jika halaman ganjil (kanan): dari halaman genap (kiri lembar lama) -> Inter-spread (Curl, stationary underneath)
+            val isSlideMode = (clampedOffset > 0f && isRightPage) || (clampedOffset < 0f && !isRightPage)
+            val isCurlTurningLeaf = (clampedOffset > 0f && !isRightPage)
+            val isCurlUnderneathLeaf = (clampedOffset < 0f && isRightPage)
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .zIndex((QuranPageLookup.TOTAL_PAGES - pageIndex).toFloat())
+                    .graphicsLayer {
+                        cameraDistance = 24f * density
+
+                        if (isSlideMode) {
+                            // MODE SLIDE: Geser horizontal berdampingan murni (Intra-Spread)
+                            // Biarkan HorizontalPager menggeser kedua halaman secara natural tanpa penahanan
+                            translationX = 0f
+                            translationY = 0f
+                            rotationY = 0f
+                            rotationZ = 0f
+                            scaleX = 1f
+                            scaleY = 1f
+                            alpha = 1f
+                        } else if (isCurlTurningLeaf) {
+                            // MODE WATTPAD PAPER CURL: Lembaran kertas genap membalik ke kanan (poros tulang jilid)
+                            val progress = clampedOffset.coerceIn(0f, 1f)
+
+                            // Poros pada tulang jilid di sisi kanan
+                            transformOrigin = TransformOrigin(1f, 0.5f)
+
+                            // Rotasi 3D progresif: dimulai dari 0 derajat hingga terlipat -82 derajat
+                            val rotationAngle = -82f * (progress * (1.2f - 0.2f * progress))
+                            rotationY = rotationAngle.coerceIn(-90f, 0f)
+
+                            // Kelenturan lengkungan kertas vertikal (kertas agak melengkung di tengah tarikan)
+                            val flexFactor = sin(progress * PI.toFloat())
+                            scaleY = 1f - (0.045f * flexFactor)
+                            translationY = -4f * flexFactor * density
+
+                            // Sedikit kemiringan Z alami seperti kertas ditarik dari sudut tengah
+                            rotationZ = 1.2f * flexFactor
+
+                            translationX = 0f
+                            scaleX = 1f
+                            alpha = 1f
+                        } else if (isCurlUnderneathLeaf) {
+                            // MODE LEMBARAN DI BAWAH: Halaman ganjil diam di tempat, tersingkap oleh lembaran atas
+                            val progress = clampedOffset.coerceIn(-1f, 0f)
+
+                            // Tahan posisi halaman agar tetap diam di bawah lembaran yang sedang melipat
+                            translationX = -progress * size.width
+                            translationY = 0f
+                            rotationY = 0f
+                            rotationZ = 0f
+
+                            // Kedalaman halus saat tersingkap (sedikit scale-up saat terbuka)
+                            val depthScale = 0.97f + (0.03f * (1f + progress))
+                            scaleX = depthScale
+                            scaleY = depthScale
+                            alpha = 1f
+                        } else {
+                            // Halaman settled atau di luar jangkauan transisi aktif
+                            translationX = 0f
+                            translationY = 0f
+                            rotationY = 0f
+                            rotationZ = 0f
+                            scaleX = 1f
+                            scaleY = 1f
+                            alpha = 1f
+                        }
+                    }
+                    .drawWithContent {
+                        drawContent()
+
+                        if (isCurlTurningLeaf) {
+                            val progress = clampedOffset.coerceIn(0f, 1f)
+                            val flexFactor = sin(progress * PI.toFloat())
+
+                            // 1. Garis kilau lekukan kertas bergerak (Moving Crease Highlight & Inner Shadow)
+                            // Saat kertas dilipat, silinder lekukan bergerak dari sisi kiri ke sisi kanan (tulang jilid)
+                            val foldX = size.width * (1f - progress)
+                            val creaseWidth = (36.dp.toPx() * (1f + flexFactor * 0.5f)).coerceAtLeast(10f)
+
+                            // Kilau putih di puncak lengkungan silinder kertas
+                            drawRect(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color.Transparent,
+                                        Color.Black.copy(alpha = 0.14f * flexFactor),
+                                        Color.White.copy(alpha = 0.32f * flexFactor),
+                                        Color.Black.copy(alpha = 0.10f * flexFactor),
+                                        Color.Transparent
+                                    ),
+                                    startX = (foldX - creaseWidth).coerceAtLeast(0f),
+                                    endX = (foldX + creaseWidth).coerceAtMost(size.width)
+                                ),
+                                topLeft = Offset((foldX - creaseWidth).coerceAtLeast(0f), 0f),
+                                size = Size(creaseWidth * 2f, size.height)
+                            )
+
+                            // 2. Ambient dimming pada kertas yang terlipat membelakangi pencahayaan
+                            if (progress > 0.05f) {
+                                val dimAlpha = (0.24f * progress).coerceIn(0f, 0.24f)
+                                drawRect(
+                                    color = Color.Black.copy(alpha = dimAlpha),
+                                    size = size
+                                )
+                            }
+
+                            // 3. Bayangan jatuh tajam di tepi kertas yang terangkat
+                            val edgeShadowWidth = 28.dp.toPx()
+                            drawRect(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color.Black.copy(alpha = 0.22f * flexFactor),
+                                        Color.Transparent
+                                    ),
+                                    startX = 0f,
+                                    endX = edgeShadowWidth
+                                ),
+                                topLeft = Offset.Zero,
+                                size = Size(edgeShadowWidth, size.height)
+                            )
+                        } else if (isCurlUnderneathLeaf) {
+                            val progress = (-clampedOffset).coerceIn(0f, 1f) // 0 saat mulai tersingkap, 1 saat tertutup penuh
+                            val revealProgress = 1f - progress // 0 saat tertutup, 1 saat terbuka penuh
+
+                            // 1. Bayangan jatuh dari lembaran atas yang sedang melipat ke atas halaman bawah
+                            val edgeX = size.width * revealProgress
+                            val castShadowWidth = 42.dp.toPx()
+
+                            if (progress > 0.01f) {
+                                drawRect(
+                                    brush = Brush.horizontalGradient(
+                                        colors = listOf(
+                                            Color.Transparent,
+                                            Color.Black.copy(alpha = 0.30f * progress)
+                                        ),
+                                        startX = (edgeX - castShadowWidth).coerceAtLeast(0f),
+                                        endX = edgeX
+                                    ),
+                                    topLeft = Offset((edgeX - castShadowWidth).coerceAtLeast(0f), 0f),
+                                    size = Size(castShadowWidth, size.height)
+                                )
+
+                                // 2. Ambient shadow pada area yang masih tertutup lembaran atas
+                                drawRect(
+                                    color = Color.Black.copy(alpha = 0.12f * progress),
+                                    topLeft = Offset(edgeX, 0f),
+                                    size = Size((size.width - edgeX).coerceAtLeast(0f), size.height)
+                                )
+                            }
+                        }
+                    }
+            ) {
+                MushafPageView(
+                    pageNumber = pageNum,
+                    pageMapping = pageMapping,
+                    pageImage = pageImage,
+                    selectedAyah = if (currentPageNumber == pageNum) selectedAyah else null,
+                    activeAudioAyah = if (currentPageNumber == pageNum) activeAudioAyah else null,
+                    onAyahClick = { surah, ayah ->
+                        selectedAyah = Pair(surah, ayah)
+                    },
+                    onBackgroundClick = {
+                        isFullscreen = !isFullscreen
+                    },
+                    onDoubleTap = {
+                        orientationController.toggleOrientation()
+                    },
+                    onPinchOut = {
+                        orientationController.setLandscape()
+                    },
+                    onPinchIn = {
+                        orientationController.setPortrait()
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
+
+                // 1. Bayangan Tulang Jilid Mushaf Fisik (Spine Gutter Shadow & Crease)
+                // Halaman ganjil: jilid buku di kiri; Halaman genap: jilid buku di kanan
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(32.dp)
+                        .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                        .background(
+                            Brush.horizontalGradient(
+                                if (isRightPage) {
+                                    listOf(
+                                        Color.Black.copy(alpha = 0.22f),
+                                        Color.Black.copy(alpha = 0.08f),
+                                        Color.Black.copy(alpha = 0.02f),
+                                        Color.Transparent
+                                    )
+                                } else {
+                                    listOf(
+                                        Color.Transparent,
+                                        Color.Black.copy(alpha = 0.02f),
+                                        Color.Black.copy(alpha = 0.08f),
+                                        Color.Black.copy(alpha = 0.22f)
+                                    )
+                                }
+                            )
+                        )
+                )
+
+                // Garis lipatan jahitan jilid (Spine stitch groove) di sisi jilid
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(1.5.dp)
+                        .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                        .background(Color.Black.copy(alpha = 0.15f))
+                )
+
+                // Garis potong tepi luar kertas (Clean outer paper margin) di sisi berlawanan jilid
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .width(1.dp)
+                        .align(if (isRightPage) Alignment.CenterEnd else Alignment.CenterStart)
+                        .background(Color.Black.copy(alpha = 0.05f))
+                )
+            }
         }
 
         // Top Bar Overlay
@@ -190,17 +446,20 @@ fun QuranPageReaderScreen(
                 shadowElevation = 4.dp,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                val sideText = if (currentPageNumber % 2 == 1) "Kanan" else "Kiri"
                 IslamicHeader(
-                    title = "Hal. $currentPageNumber • ${pageMeta.surahName}",
+                    title = "Hal. $currentPageNumber ($sideText) • ${pageMeta.surahName}",
                     subtitle = "Juz ${pageMeta.juz} • ${pageMeta.ayahRangeText}",
                     arabicTitle = pageMeta.arabicSurahName,
-                    onBackClick = onBackClick,
+                    onBackClick = handleBack,
                     showBottomDivider = false,
                     actions = {
-                        // Switch to Text Reader button
+                        // Switch to Text Reader button (Smart Sync: specific ayah or page start ayah)
                         IconButton(
                             onClick = {
-                                onSwitchToTextMode(pageMeta.surahNumber, 1)
+                                val targetSurah = selectedAyah?.first ?: pageMeta.surahNumber
+                                val targetAyah = selectedAyah?.second ?: pageMeta.startAyah
+                                onSwitchToTextMode(targetSurah, targetAyah)
                             }
                         ) {
                             Surface(
@@ -257,8 +516,9 @@ fun QuranPageReaderScreen(
                 color = Color.Black.copy(alpha = 0.45f),
                 shape = RoundedCornerShape(16.dp)
             ) {
+                val sideText = if (currentPageNumber % 2 == 1) "Kanan" else "Kiri"
                 Text(
-                    text = "Hal. $currentPageNumber • Juz ${pageMeta.juz}",
+                    text = "Hal. $currentPageNumber ($sideText) • Juz ${pageMeta.juz}",
                     color = PutihBersih,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Medium,

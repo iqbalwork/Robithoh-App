@@ -7,7 +7,16 @@ class JvmQuranPageCacheManager : QuranPageCacheManager {
     private fun getPagesDir(): File {
         val userHome = System.getProperty("user.home") ?: "."
         val baseDir = File(userHome, ".robithoh")
-        val dir = File(baseDir, "quran_pages")
+
+        // Clean legacy Madinah cache if it exists
+        val legacyDir = File(baseDir, "quran_pages")
+        if (legacyDir.exists()) {
+            try {
+                legacyDir.deleteRecursively()
+            } catch (_: Exception) {}
+        }
+
+        val dir = File(baseDir, "quran_pages_kemenag")
         if (!dir.exists()) {
             dir.mkdirs()
         }
@@ -15,7 +24,7 @@ class JvmQuranPageCacheManager : QuranPageCacheManager {
     }
 
     private fun getDevPagesDir(): File? {
-        val devDir = File("/home/iqbalf/Projects/Robithoh/quran-page")
+        val devDir = File("/home/iqbalf/Projects/Robithoh/Robithoh-Docs/quran-page")
         return if (devDir.exists() && devDir.isDirectory) devDir else null
     }
 

@@ -57,8 +57,8 @@ class QuranPageManager(
     private var downloadJob: Job? = null
 
     companion object {
-        const val PRIMARY_PAGE_URL = "https://cdn.jsdelivr.net/gh/iqbalwork/Robithoh-Docs@main/quran-page"
-        const val FALLBACK_PAGE_URL = "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/quran-page"
+        const val PRIMARY_PAGE_URL = "https://cdn.jsdelivr.net/gh/iqbalwork/Robithoh-Docs@e2a806a/quran-page"
+        const val FALLBACK_PAGE_URL = "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/e2a806a/quran-page"
     }
 
     private fun putMemoryImage(pageNumber: Int, bmp: ImageBitmap) {

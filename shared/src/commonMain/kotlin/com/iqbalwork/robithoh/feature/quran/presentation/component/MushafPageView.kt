@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -18,9 +19,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +46,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.feature.quran.model.AyahBlock
 import com.iqbalwork.robithoh.feature.quran.model.QuranPageMapping
+import kotlin.math.hypot
 import kotlin.math.min
 import kotlin.math.roundToInt
 
@@ -54,7 +59,10 @@ fun MushafPageView(
     activeAudioAyah: Pair<Int, Int>?,
     onAyahClick: (surah: Int, ayah: Int) -> Unit,
     onBackgroundClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDoubleTap: (() -> Unit)? = null,
+    onPinchOut: (() -> Unit)? = null,
+    onPinchIn: (() -> Unit)? = null
 ) {
     val isDark = RabithohTheme.colors.isDark
     val bgTheme = if (isDark) DarkCanvas else Color(0xFFFBF9F4) // Warm cream mushaf paper tint in light mode
@@ -75,126 +83,199 @@ fun MushafPageView(
         modifier = modifier
             .fillMaxSize()
             .background(bgTheme),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.TopCenter
     ) {
         val displayW = constraints.maxWidth.toFloat()
         val displayH = constraints.maxHeight.toFloat()
+        val isLandscape = displayW > displayH
 
         val viewportW = (pageMapping?.viewportWidth ?: 1080).toFloat()
         val viewportH = (pageMapping?.viewportHeight ?: 1745).toFloat()
 
-        val scale = min(displayW / viewportW, displayH / viewportH)
+        // In landscape, scale to fit the entire width so Arabic typography is large and easy to read.
+        // In portrait, scale to fit both width & height so the entire page is visible.
+        val scale = if (isLandscape) {
+            displayW / viewportW
+        } else {
+            min(displayW / viewportW, displayH / viewportH)
+        }
         val renderedW = viewportW * scale
         val renderedH = viewportH * scale
-        val offsetX = (displayW - renderedW) / 2f
-        val offsetY = (displayH - renderedH) / 2f
+        val offsetX = if (isLandscape) 0f else (displayW - renderedW) / 2f
+        val offsetY = if (isLandscape) 0f else (displayH - renderedH) / 2f
 
-        // Touch handling container
+        val scrollState = rememberScrollState()
+
+        // Reset scroll position when page changes
+        LaunchedEffect(pageNumber) {
+            if (isLandscape) {
+                scrollState.scrollTo(0)
+            }
+        }
+
+        // Touch and gesture container
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .pointerInput(pageMapping, scale, offsetX, offsetY) {
-                    detectTapGestures { tapOffset ->
-                        val localX = tapOffset.x - offsetX
-                        val localY = tapOffset.y - offsetY
-
-                        // Check if tap falls inside rendered mushaf bounds
-                        if (localX >= 0 && localX <= renderedW && localY >= 0 && localY <= renderedH) {
-                            val unscaledX = (localX / scale).roundToInt()
-                            val unscaledY = (localY / scale).roundToInt()
-
-                            val matchedBlock = pageMapping?.data?.find { block ->
-                                unscaledY in block.top..(block.top + block.height) &&
-                                unscaledX in block.left..(block.left + block.width)
+                .then(
+                    if (isLandscape) Modifier.verticalScroll(scrollState)
+                    else Modifier
+                )
+                // Pinch detection (Pinch out -> Landscape, Pinch in -> Portrait)
+                .pointerInput(onPinchIn, onPinchOut) {
+                    awaitEachGesture {
+                        var triggered = false
+                        var initialDistance = -1f
+                        do {
+                            val event = awaitPointerEvent()
+                            val activePointers = event.changes.filter { it.pressed }
+                            if (activePointers.size >= 2) {
+                                val p1 = activePointers[0].position
+                                val p2 = activePointers[1].position
+                                val dist = hypot(p1.x - p2.x, p1.y - p2.y)
+                                if (initialDistance < 0f) {
+                                    initialDistance = dist
+                                } else if (!triggered && initialDistance > 20f) {
+                                    val ratio = dist / initialDistance
+                                    if (ratio > 1.25f) {
+                                        triggered = true
+                                        onPinchOut?.invoke()
+                                    } else if (ratio < 0.78f) {
+                                        triggered = true
+                                        onPinchIn?.invoke()
+                                    }
+                                }
+                            } else {
+                                initialDistance = -1f
                             }
-
-                            if (matchedBlock != null) {
-                                onAyahClick(matchedBlock.surah, matchedBlock.ayah)
-                                return@detectTapGestures
-                            }
-                        }
-
-                        // Tapped on margins or empty header/footer -> toggle fullscreen controls
-                        onBackgroundClick()
+                        } while (event.changes.any { it.pressed })
                     }
+                }
+                // Tap, Double tap & Long press detection
+                .pointerInput(pageMapping, scale, offsetX, offsetY, isLandscape) {
+                    detectTapGestures(
+                        onDoubleTap = {
+                            onDoubleTap?.invoke()
+                        },
+                        onLongPress = { tapOffset ->
+                            val currentScrollY = if (isLandscape) scrollState.value else 0
+                            val localX = tapOffset.x - offsetX
+                            val localY = (tapOffset.y + currentScrollY) - offsetY
+
+                            // Long press on ayah selects and highlights it
+                            if (localX >= 0 && localX <= renderedW && localY >= 0 && localY <= renderedH) {
+                                val unscaledX = (localX / scale).roundToInt()
+                                val unscaledY = (localY / scale).roundToInt()
+
+                                val matchedBlock = pageMapping?.data?.find { block ->
+                                    unscaledY in block.top..(block.top + block.height) &&
+                                    unscaledX in block.left..(block.left + block.width)
+                                }
+
+                                if (matchedBlock != null) {
+                                    try {
+                                        com.iqbalwork.robithoh.core.designsystem.getHapticFeedback().performClick()
+                                    } catch (_: Throwable) {}
+                                    onAyahClick(matchedBlock.surah, matchedBlock.ayah)
+                                }
+                            }
+                        },
+                        onTap = {
+                            // Tap doang hanya untuk show/hide top bar & controls
+                            onBackgroundClick()
+                        }
+                    )
                 }
         ) {
-            // Mushaf Image Layer
-            if (pageImage != null) {
-                val density = androidx.compose.ui.platform.LocalDensity.current
-                val imgWidthDp = with(density) { renderedW.toDp() }
-                val imgHeightDp = with(density) { renderedH.toDp() }
-                Image(
-                    bitmap = pageImage,
-                    contentDescription = "Mushaf Halaman $pageNumber",
-                    modifier = Modifier
-                        .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                        .size(imgWidthDp, imgHeightDp)
-                )
-            } else {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        CircularProgressIndicator(
-                            color = MerahMerdeka,
-                            strokeWidth = 3.dp,
-                            modifier = Modifier.size(40.dp)
-                        )
-                        Spacer(modifier = Modifier.height(12.dp))
-                        Text(
-                            text = "Memuat Halaman $pageNumber...",
-                            color = SlateMuted,
-                            fontSize = 13.sp
-                        )
+            val density = androidx.compose.ui.platform.LocalDensity.current
+            val imgWidthDp = with(density) { renderedW.toDp() }
+            val imgHeightDp = with(density) { renderedH.toDp() }
+
+            Box(
+                modifier = if (isLandscape) {
+                    Modifier.size(imgWidthDp, imgHeightDp)
+                } else {
+                    Modifier.fillMaxSize()
+                }
+            ) {
+                // Mushaf Image Layer
+                if (pageImage != null) {
+                    Image(
+                        bitmap = pageImage,
+                        contentDescription = "Mushaf Halaman $pageNumber",
+                        modifier = if (isLandscape) {
+                            Modifier.size(imgWidthDp, imgHeightDp)
+                        } else {
+                            Modifier
+                                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                .size(imgWidthDp, imgHeightDp)
+                        }
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator(
+                                color = MerahMerdeka,
+                                strokeWidth = 3.dp,
+                                modifier = Modifier.size(40.dp)
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(
+                                text = "Memuat Halaman $pageNumber...",
+                                color = SlateMuted,
+                                fontSize = 13.sp
+                            )
+                        }
                     }
                 }
-            }
 
-            // Canvas Overlay for Ayah Highlights
-            val targetHighlight = activeAudioAyah ?: selectedAyah
-            if (targetHighlight != null && pageMapping != null) {
-                val (surah, ayah) = targetHighlight
-                val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }
+                // Canvas Overlay for Ayah Highlights
+                val targetHighlight = activeAudioAyah ?: selectedAyah
+                if (targetHighlight != null && pageMapping != null) {
+                    val (surah, ayah) = targetHighlight
+                    val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }
 
-                if (matchingBlocks.isNotEmpty()) {
-                    val isAudioHighlight = (activeAudioAyah != null)
-                    val fillColor = if (isAudioHighlight) {
-                        MerahMerdeka.copy(alpha = audioPulseAlpha)
-                    } else {
-                        EmasKhidmat.copy(alpha = 0.32f)
-                    }
-                    val strokeColor = if (isAudioHighlight) {
-                        MerahMerdeka.copy(alpha = 0.85f)
-                    } else {
-                        EmasKhidmat.copy(alpha = 0.85f)
-                    }
+                    if (matchingBlocks.isNotEmpty()) {
+                        val isAudioHighlight = (activeAudioAyah != null)
+                        val fillColor = if (isAudioHighlight) {
+                            MerahMerdeka.copy(alpha = audioPulseAlpha)
+                        } else {
+                            EmasKhidmat.copy(alpha = 0.32f)
+                        }
+                        val strokeColor = if (isAudioHighlight) {
+                            MerahMerdeka.copy(alpha = 0.85f)
+                        } else {
+                            EmasKhidmat.copy(alpha = 0.85f)
+                        }
 
-                    Canvas(modifier = Modifier.fillMaxSize()) {
-                        val cornerRadius = CornerRadius(6f * scale, 6f * scale)
-                        for (block in matchingBlocks) {
-                            val rectX = offsetX + (block.left * scale)
-                            val rectY = offsetY + (block.top * scale)
-                            val rectW = block.width * scale
-                            val rectH = block.height * scale
+                        Canvas(modifier = Modifier.fillMaxSize()) {
+                            val cornerRadius = CornerRadius(6f * scale, 6f * scale)
+                            for (block in matchingBlocks) {
+                                val rectX = offsetX + (block.left * scale)
+                                val rectY = offsetY + (block.top * scale)
+                                val rectW = block.width * scale
+                                val rectH = block.height * scale
 
-                            // Fill
-                            drawRoundRect(
-                                color = fillColor,
-                                topLeft = Offset(rectX, rectY),
-                                size = Size(rectW, rectH),
-                                cornerRadius = cornerRadius
-                            )
+                                // Fill
+                                drawRoundRect(
+                                    color = fillColor,
+                                    topLeft = Offset(rectX, rectY),
+                                    size = Size(rectW, rectH),
+                                    cornerRadius = cornerRadius
+                                )
 
-                            // Stroke outline
-                            drawRoundRect(
-                                color = strokeColor,
-                                topLeft = Offset(rectX, rectY),
-                                size = Size(rectW, rectH),
-                                cornerRadius = cornerRadius,
-                                style = Stroke(width = 1.5f * scale)
-                            )
+                                // Stroke outline
+                                drawRoundRect(
+                                    color = strokeColor,
+                                    topLeft = Offset(rectX, rectY),
+                                    size = Size(rectW, rectH),
+                                    cornerRadius = cornerRadius,
+                                    style = Stroke(width = 1.5f * scale)
+                                )
+                            }
                         }
                     }
                 }

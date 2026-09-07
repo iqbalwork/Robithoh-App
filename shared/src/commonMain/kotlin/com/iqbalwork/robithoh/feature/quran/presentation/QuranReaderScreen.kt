@@ -257,7 +257,19 @@ fun QuranReaderScreen(
                     if (onSwitchToMushafMode != null) {
                         IconButton(
                             onClick = {
-                                val targetPage = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForSurah(currentSurahNumber)
+                                val visibleAyah = listState.layoutInfo.visibleItemsInfo
+                                    .mapNotNull { itemInfo ->
+                                        val keyStr = itemInfo.key as? String ?: return@mapNotNull null
+                                        val parts = keyStr.split("_")
+                                        if (parts.size == 2) {
+                                            val sNum = parts[0].toIntOrNull()
+                                            val aNum = parts[1].toIntOrNull()
+                                            if (sNum != null && aNum != null) aNum else null
+                                        } else null
+                                    }
+                                    .firstOrNull() ?: 1
+
+                                val targetPage = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForAyah(currentSurahNumber, visibleAyah)
                                 onSwitchToMushafMode(targetPage)
                             }
                         ) {

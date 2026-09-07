@@ -267,7 +267,11 @@ fun App(
                     initialAyahNumber = key.ayahNumber,
                     onBack = onBackAction,
                     onSwitchToMushafMode = { pageNumber ->
-                        backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                        if (backstack.isNotEmpty()) {
+                            backstack[backstack.lastIndex] = ScreenKey.QuranPageReader(pageNumber)
+                        } else {
+                            backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                        }
                     }
                 )
             }
@@ -277,7 +281,11 @@ fun App(
                     initialAyahNumber = key.targetAyahNumber,
                     onBack = onBackAction,
                     onSwitchToTextMode = { surahNumber, ayahNumber ->
-                        backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                        if (backstack.isNotEmpty()) {
+                            backstack[backstack.lastIndex] = ScreenKey.QuranSurah(surahNumber, ayahNumber)
+                        } else {
+                            backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                        }
                     }
                 )
             }
