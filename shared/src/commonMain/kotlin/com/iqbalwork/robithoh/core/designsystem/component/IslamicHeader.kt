@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -134,5 +135,31 @@ fun IslamicHeader(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun IslamicHeaderPreview() {
+    RabithohTheme(darkTheme = false) {
+        IslamicHeader(
+            title = "Al-Qur'an Digital",
+            subtitle = "114 Surah, Shalawat & Panduan Ziarah",
+            arabicTitle = "الْقُرْآنُ",
+            onBackClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun IslamicHeaderDarkPreview() {
+    RabithohTheme(darkTheme = true) {
+        IslamicHeader(
+            title = "Al-Qur'an Digital",
+            subtitle = "114 Surah, Shalawat & Panduan Ziarah",
+            arabicTitle = "الْقُرْآنُ",
+            onBackClick = {}
+        )
     }
 }

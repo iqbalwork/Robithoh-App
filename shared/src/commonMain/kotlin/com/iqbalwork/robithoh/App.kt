@@ -30,6 +30,7 @@ import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
 import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
 import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
 import com.iqbalwork.robithoh.navigation.QuranListScreen
+import com.iqbalwork.robithoh.navigation.QuranPageReaderScreen
 import com.iqbalwork.robithoh.navigation.QuranSurahScreen
 import com.iqbalwork.robithoh.navigation.ScreenKey
 import com.iqbalwork.robithoh.navigation.ScreenKeyListSaver
@@ -254,6 +255,9 @@ fun App(
                     onSurahClick = { surahNumber, ayahNumber ->
                         backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                     },
+                    onMushafClick = { pageNumber ->
+                        backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                    },
                     onBack = onBackAction
                 )
             }
@@ -261,7 +265,20 @@ fun App(
                 QuranSurahScreen(
                     surahNumber = key.surahNumber,
                     initialAyahNumber = key.ayahNumber,
-                    onBack = onBackAction
+                    onBack = onBackAction,
+                    onSwitchToMushafMode = { pageNumber ->
+                        backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                    }
+                )
+            }
+            entry<ScreenKey.QuranPageReader> { key ->
+                QuranPageReaderScreen(
+                    pageNumber = key.pageNumber,
+                    initialAyahNumber = key.targetAyahNumber,
+                    onBack = onBackAction,
+                    onSwitchToTextMode = { surahNumber, ayahNumber ->
+                        backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                    }
                 )
             }
             entry<ScreenKey.Settings> { _ ->

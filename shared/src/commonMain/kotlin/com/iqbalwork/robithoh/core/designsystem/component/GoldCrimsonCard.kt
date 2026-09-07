@@ -7,9 +7,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
@@ -128,6 +129,39 @@ fun GoldCrimsonCard(
                     .padding(contentPadding),
                 content = content
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun GoldCrimsonCardPreview() {
+    RabithohTheme(darkTheme = false) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
+                Text("Gold Border Variant")
+            }
+            GoldCrimsonCard(variant = GoldCrimsonCardVariant.CRIMSON_HERO) {
+                Text("Crimson Hero Variant", color = PutihBersih)
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun GoldCrimsonCardDarkPreview() {
+    RabithohTheme(darkTheme = true) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            GoldCrimsonCard(variant = GoldCrimsonCardVariant.GOLD_BORDER) {
+                Text("Dark Gold Border Variant")
+            }
         }
     }
 }

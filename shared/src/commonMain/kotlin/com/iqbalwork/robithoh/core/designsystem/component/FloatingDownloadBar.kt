@@ -24,6 +24,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -211,5 +212,23 @@ private fun formatMb(value: Double): String {
         "${rounded.toLong()}"
     } else {
         "$rounded"
+    }
+}
+
+@Preview
+@Composable
+private fun FloatingDownloadBarPreview() {
+    RabithohTheme(darkTheme = false) {
+        FloatingDownloadBar(
+            downloadState = DownloadProgressState.Downloading(
+                trackId = "1",
+                fileName = "al_fatihah.mp3",
+                title = "Surah Al-Fatihah",
+                bytesDownloaded = 2500000L,
+                totalBytes = 5000000L,
+                progress = 0.5f
+            ),
+            onCancelClick = {}
+        )
     }
 }

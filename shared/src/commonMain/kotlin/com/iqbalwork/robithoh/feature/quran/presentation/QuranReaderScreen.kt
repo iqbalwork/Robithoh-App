@@ -94,7 +94,8 @@ fun QuranReaderScreen(
     surahNumber: Int,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    initialAyahNumber: Int? = null
+    initialAyahNumber: Int? = null,
+    onSwitchToMushafMode: ((pageNumber: Int) -> Unit)? = null
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
@@ -253,6 +254,24 @@ fun QuranReaderScreen(
                 onBackClick = onBackClick,
                 showBottomDivider = false,
                 actions = {
+                    if (onSwitchToMushafMode != null) {
+                        IconButton(
+                            onClick = {
+                                val targetPage = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForSurah(currentSurahNumber)
+                                onSwitchToMushafMode(targetPage)
+                            }
+                        ) {
+                            Surface(
+                                color = MerahMerdeka.copy(alpha = 0.12f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("📖", fontSize = 14.sp)
+                                }
+                            }
+                        }
+                    }
                     IconButton(
                         onClick = { showGoToSheet = true },
                         modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_goto")
@@ -466,6 +485,15 @@ fun QuranReaderScreen(
             onConfirm = { targetSurahNumber, targetAyahNumber ->
                 showGoToSheet = false
                 jumpTo(targetSurahNumber, targetAyahNumber)
+            },
+            onConfirmPage = { targetPage ->
+                showGoToSheet = false
+                if (onSwitchToMushafMode != null) {
+                    onSwitchToMushafMode(targetPage)
+                } else {
+                    val meta = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageMeta(targetPage)
+                    jumpTo(meta.surahNumber, 1)
+                }
             }
         )
     }

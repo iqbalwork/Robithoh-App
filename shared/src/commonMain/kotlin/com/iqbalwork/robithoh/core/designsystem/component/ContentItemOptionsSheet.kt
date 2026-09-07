@@ -21,6 +21,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -64,90 +65,118 @@ fun ContentItemOptionsSheet(
         containerColor = if (isDark) DarkSurface else PutihBersih,
         shape = RabithohTheme.shapes.bottomSheetShape
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 24.dp)
-        ) {
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                Surface(
-                    color = MerahMerdeka,
-                    shape = RoundedCornerShape(20.dp),
-                    border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.7f))
+        ContentItemOptionsSheetContent(
+            title = title,
+            onDismiss = onDismiss,
+            subtitle = subtitle,
+            onCopy = onCopy,
+            copyLabel = copyLabel,
+            onShare = onShare,
+            shareLabel = shareLabel,
+            customOptions = customOptions
+        )
+    }
+}
+
+@Composable
+fun ContentItemOptionsSheetContent(
+    title: String,
+    onDismiss: () -> Unit,
+    subtitle: String? = null,
+    onCopy: (() -> Unit)? = null,
+    copyLabel: String = "Salin Teks",
+    onShare: (() -> Unit)? = null,
+    shareLabel: String = "Bagikan",
+    customOptions: List<ContentItemOption> = emptyList(),
+    modifier: Modifier = Modifier
+) {
+    val isDark = RabithohTheme.colors.isDark
+    val textColor = if (isDark) PutihBersih else SlateCharcoalText
+    val dividerColor = if (isDark) DarkBorder else BorderSubtle
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+            .padding(bottom = 24.dp)
+    ) {
+        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Surface(
+                color = MerahMerdeka,
+                shape = RoundedCornerShape(20.dp),
+                border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.7f))
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                    ) {
+                    Text(
+                        text = title,
+                        color = PutihBersih,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center
+                    )
+                    if (!subtitle.isNullOrBlank()) {
                         Text(
-                            text = title,
-                            color = PutihBersih,
-                            fontSize = 13.sp,
-                            fontWeight = FontWeight.SemiBold,
+                            text = subtitle,
+                            color = EmasMuda,
+                            fontSize = 11.sp,
                             textAlign = TextAlign.Center
                         )
-                        if (!subtitle.isNullOrBlank()) {
-                            Text(
-                                text = subtitle,
-                                color = EmasMuda,
-                                fontSize = 11.sp,
-                                textAlign = TextAlign.Center
-                            )
-                        }
                     }
                 }
             }
+        }
 
-            Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
-            // Custom Options (e.g. Play Murotal, Open Tasbih)
-            customOptions.forEach { option ->
-                ContentOptionRow(
-                    icon = option.icon,
-                    label = option.label,
-                    enabled = option.enabled,
-                    onClick = {
-                        onDismiss()
-                        option.onClick()
-                    }
-                )
-            }
+        // Custom Options (e.g. Play Murotal, Open Tasbih)
+        customOptions.forEach { option ->
+            ContentOptionRow(
+                icon = option.icon,
+                label = option.label,
+                enabled = option.enabled,
+                onClick = {
+                    onDismiss()
+                    option.onClick()
+                }
+            )
+        }
 
-            // Share Action
-            if (onShare != null) {
-                ContentOptionRow(
-                    icon = "📤",
-                    label = shareLabel,
-                    onClick = {
-                        onDismiss()
-                        onShare()
-                    }
-                )
-            }
+        // Share Action
+        if (onShare != null) {
+            ContentOptionRow(
+                icon = "📤",
+                label = shareLabel,
+                onClick = {
+                    onDismiss()
+                    onShare()
+                }
+            )
+        }
 
-            // Copy Action
-            if (onCopy != null) {
-                ContentOptionRow(
-                    icon = "📋",
-                    label = copyLabel,
-                    onClick = {
-                        onDismiss()
-                        onCopy()
-                    }
-                )
-            }
+        // Copy Action
+        if (onCopy != null) {
+            ContentOptionRow(
+                icon = "📋",
+                label = copyLabel,
+                onClick = {
+                    onDismiss()
+                    onCopy()
+                }
+            )
+        }
 
-            Spacer(modifier = Modifier.height(8.dp))
-            HorizontalDivider(color = dividerColor)
-            Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
+        HorizontalDivider(color = dividerColor)
+        Spacer(modifier = Modifier.height(8.dp))
 
-            TextButton(
-                onClick = onDismiss,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Tutup", color = textColor, fontWeight = FontWeight.Medium)
-            }
+        TextButton(
+            onClick = onDismiss,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Tutup", color = textColor, fontWeight = FontWeight.Medium)
         }
     }
 }
@@ -179,5 +208,23 @@ private fun ContentOptionRow(
             Text(icon, fontSize = 14.sp)
         }
         Text(label, fontSize = 15.sp, fontWeight = FontWeight.Medium, color = textColor)
+    }
+}
+
+@Preview
+@Composable
+private fun ContentItemOptionsSheetPreview() {
+    RabithohTheme(darkTheme = false) {
+        ContentItemOptionsSheetContent(
+            title = "Dzikir Ba'da Sholat",
+            subtitle = "Suryalaya",
+            onDismiss = {},
+            onCopy = {},
+            onShare = {},
+            customOptions = listOf(
+                ContentItemOption(icon = "▶", label = "Putar Audio", onClick = {}),
+                ContentItemOption(icon = "📿", label = "Buka di Tasbih", onClick = {})
+            )
+        )
     }
 }

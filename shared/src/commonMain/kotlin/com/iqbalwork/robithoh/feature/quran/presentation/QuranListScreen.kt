@@ -66,6 +66,7 @@ fun QuranListScreen(
     viewModel: QuranViewModel,
     onSurahClick: (Int) -> Unit,
     onBackClick: () -> Unit,
+    onMushafClick: ((Int) -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     BackHandler {
@@ -81,7 +82,22 @@ fun QuranListScreen(
                 title = "Al-Qur'an Digital",
                 subtitle = "114 Surah, Shalawat & Panduan Ziarah",
                 arabicTitle = "الْقُرْآنُ الْكَرِيمُ",
-                onBackClick = onBackClick
+                onBackClick = onBackClick,
+                actions = {
+                    if (onMushafClick != null) {
+                        androidx.compose.material3.IconButton(onClick = { onMushafClick(1) }) {
+                            androidx.compose.material3.Surface(
+                                color = MerahMerdeka.copy(alpha = 0.12f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("📖", fontSize = 14.sp)
+                                }
+                            }
+                        }
+                    }
+                }
             )
         },
         bottomBar = {

@@ -110,7 +110,8 @@ fun TasbihScreen(
 @Composable
 fun QuranListScreen(
     onSurahClick: (Int, Int?) -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onMushafClick: ((Int) -> Unit)? = null
 ) {
     BackHandler {
         onBack()
@@ -125,6 +126,7 @@ fun QuranListScreen(
     com.iqbalwork.robithoh.feature.library.ui.KitabTabContent(
         lastReadBookmark = state.lastReadBookmark,
         onNavigateToSurah = onSurahClick,
+        onNavigateToMushaf = onMushafClick,
         onBack = onBack
     )
 }
@@ -133,7 +135,8 @@ fun QuranListScreen(
 fun QuranSurahScreen(
     surahNumber: Int,
     onBack: () -> Unit,
-    initialAyahNumber: Int? = null
+    initialAyahNumber: Int? = null,
+    onSwitchToMushafMode: ((pageNumber: Int) -> Unit)? = null
 ) {
     BackHandler {
         onBack()
@@ -148,7 +151,33 @@ fun QuranSurahScreen(
         viewModel = viewModel,
         surahNumber = surahNumber,
         initialAyahNumber = initialAyahNumber,
-        onBackClick = onBack
+        onBackClick = onBack,
+        onSwitchToMushafMode = onSwitchToMushafMode
+    )
+}
+
+@Composable
+fun QuranPageReaderScreen(
+    pageNumber: Int,
+    initialAyahNumber: Int? = null,
+    onBack: () -> Unit,
+    onSwitchToTextMode: (surahNumber: Int, ayahNumber: Int) -> Unit
+) {
+    BackHandler {
+        onBack()
+    }
+    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val viewModel: com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel = viewModel(key = "quran_mushaf_view") {
+        com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel(
+            com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl(database)
+        )
+    }
+    com.iqbalwork.robithoh.feature.quran.presentation.QuranPageReaderScreen(
+        viewModel = viewModel,
+        initialPageNumber = pageNumber,
+        initialAyahNumber = initialAyahNumber,
+        onBackClick = onBack,
+        onSwitchToTextMode = onSwitchToTextMode
     )
 }
 

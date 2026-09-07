@@ -361,3 +361,37 @@ fun FloatingTasbihOverlay(
         )
     }
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun FloatingTasbihOverlayCollapsedPreview() {
+    RabithohTheme {
+        FloatingTasbihOverlay(
+            state = TasbihUiState(
+                currentCount = 33,
+                targetCount = 165,
+                isFloatingExpanded = false,
+                isFloatingVisible = true
+            ),
+            onIntent = {},
+            onOpenFullScreen = {}
+        )
+    }
+}
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun FloatingTasbihOverlayExpandedPreview() {
+    RabithohTheme {
+        FloatingTasbihOverlay(
+            state = TasbihUiState(
+                currentCount = 33,
+                targetCount = 165,
+                isFloatingExpanded = true,
+                isFloatingVisible = true
+            ),
+            onIntent = {},
+            onOpenFullScreen = {}
+        )
+    }
+}
