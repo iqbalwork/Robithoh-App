@@ -1,6 +1,8 @@
 package com.iqbalwork.robithoh.feature.quran.presentation
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -56,6 +58,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
 import com.iqbalwork.robithoh.navigation.BackHandler
@@ -66,6 +69,7 @@ fun QuranListScreen(
     viewModel: QuranViewModel,
     onSurahClick: (Int) -> Unit,
     onBackClick: () -> Unit,
+    onMushafClick: ((Int) -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     BackHandler {
@@ -81,7 +85,22 @@ fun QuranListScreen(
                 title = "Al-Qur'an Digital",
                 subtitle = "114 Surah, Shalawat & Panduan Ziarah",
                 arabicTitle = "الْقُرْآنُ الْكَرِيمُ",
-                onBackClick = onBackClick
+                onBackClick = onBackClick,
+                actions = {
+                    if (onMushafClick != null) {
+                        androidx.compose.material3.IconButton(onClick = { onMushafClick(1) }) {
+                            androidx.compose.material3.Surface(
+                                color = MerahMerdeka.copy(alpha = 0.12f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("📖", fontSize = 14.sp)
+                                }
+                            }
+                        }
+                    }
+                }
             )
         },
         bottomBar = {
@@ -116,6 +135,12 @@ fun QuranListScreen(
                         onSurahClick = { surahNumber ->
                             viewModel.onIntent(QuranUiIntent.SelectSurah(surahNumber))
                             onSurahClick(surahNumber)
+                        },
+                        onPlaySurah = { surahNumber ->
+                            viewModel.onIntent(QuranUiIntent.PlaySurahAudio(surahNumber))
+                        },
+                        onTogglePlayPause = {
+                            viewModel.onIntent(QuranUiIntent.TogglePlayPauseAudio)
                         },
                         onSearchChange = { viewModel.onIntent(QuranUiIntent.SearchSurahs(it)) }
                     )
@@ -205,6 +230,8 @@ private fun QuranNavigationTabs(
 private fun SurahsTabContent(
     state: QuranUiState,
     onSurahClick: (Int) -> Unit,
+    onPlaySurah: (Int) -> Unit = {},
+    onTogglePlayPause: () -> Unit = {},
     onSearchChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -272,15 +299,16 @@ private fun SurahsTabContent(
             OutlinedTextField(
                 value = state.searchQuery,
                 onValueChange = onSearchChange,
-                modifier = Modifier.fillMaxWidth(),
                 placeholder = {
                     Text(
-                        text = "Cari 114 Surah (cth. Yasin, Al-Mulk)...",
+                        text = "Cari surat (latin / arti)...",
                         fontSize = 13.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        color = if (isDark) DarkMuted else SlateMuted
                     )
                 },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
                 shape = RoundedCornerShape(12.dp),
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
@@ -294,7 +322,23 @@ private fun SurahsTabContent(
 
         // Surah Items List
         items(state.surahs, key = { it.number }) { surah ->
-            SurahItemCard(surah = surah, onClick = { onSurahClick(surah.number) })
+            val isPlaying = state.activeAudioTrack?.id == "surah_${surah.number}" &&
+                    state.audioPlaybackState == AudioPlaybackState.PLAYING
+            SurahItemCard(
+                surah = surah,
+                isPlaying = isPlaying,
+                onClick = { onSurahClick(surah.number) },
+                onPlayClick = {
+                    if (isPlaying) {
+                        onTogglePlayPause()
+                    } else if (state.activeAudioTrack?.id == "surah_${surah.number}" &&
+                        state.audioPlaybackState == AudioPlaybackState.PAUSED) {
+                        onTogglePlayPause()
+                    } else {
+                        onPlaySurah(surah.number)
+                    }
+                }
+            )
         }
     }
 }
@@ -302,14 +346,19 @@ private fun SurahsTabContent(
 @Composable
 private fun SurahItemCard(
     surah: SurahMeta,
+    isPlaying: Boolean = false,
     onClick: () -> Unit,
+    onPlayClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
 
     GoldCrimsonCard(
         modifier = modifier,
-        variant = GoldCrimsonCardVariant.GOLD_BORDER,
+        variant = if (isPlaying) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.GOLD_BORDER,
+        customBackgroundColor = if (isPlaying) (if (isDark) EmasKhidmat.copy(alpha = 0.15f) else Color(0xFFFFFBEB)) else null,
+        customBorderColor = if (isPlaying) EmasKhidmat else null,
+        customBorderWidth = if (isPlaying) 1.5.dp else 1.dp,
         onClick = onClick,
         contentPadding = PaddingValues(14.dp)
     ) {
@@ -322,14 +371,14 @@ private fun SurahItemCard(
                 modifier = Modifier
                     .size(40.dp)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6)),
+                    .background(if (isPlaying) EmasKhidmat else (if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6))),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "${surah.number}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
-                    color = MerahMerdeka
+                    color = if (isPlaying) PutihBersih else MerahMerdeka
                 )
             }
 
@@ -362,6 +411,27 @@ private fun SurahItemCard(
                     fontSize = 18.sp
                 )
             )
+
+            // Play Murottal Button
+            if (onPlayClick != null) {
+                Spacer(modifier = Modifier.width(10.dp))
+                Box(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .clip(CircleShape)
+                        .background(if (isPlaying) MerahMerdeka else (if (isDark) DarkSurface else Color(0xFFF3F4F6)))
+                        .border(BorderStroke(1.dp, if (isPlaying) EmasKhidmat else (if (isDark) DarkBorder else SlateBorder)), CircleShape)
+                        .clickable { onPlayClick() },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = if (isPlaying) "⏸" else "▶",
+                        color = if (isPlaying) PutihBersih else EmasKhidmat,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
         }
     }
 }

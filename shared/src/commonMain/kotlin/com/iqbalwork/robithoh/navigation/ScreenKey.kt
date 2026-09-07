@@ -33,6 +33,9 @@ sealed interface ScreenKey : NavKey {
     data class QuranSurah(val surahNumber: Int = 1, val ayahNumber: Int? = null) : ScreenKey
 
     @Serializable
+    data class QuranPageReader(val pageNumber: Int = 1, val targetAyahNumber: Int? = null) : ScreenKey
+
+    @Serializable
     data object Settings : ScreenKey
 
     @Serializable

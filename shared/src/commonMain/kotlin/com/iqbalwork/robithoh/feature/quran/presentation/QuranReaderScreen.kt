@@ -9,10 +9,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -27,15 +30,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -74,17 +78,19 @@ import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihAbuBackground
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
-import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
+import com.iqbalwork.robithoh.core.designsystem.theme.SlateBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
+import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.core.model.AudioTrack
 import com.iqbalwork.robithoh.feature.quran.model.Ayah
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import com.iqbalwork.robithoh.feature.quran.ui.QariPickerSheet
+import com.iqbalwork.robithoh.feature.quran.ui.QuranAudioBottomBar
 import com.iqbalwork.robithoh.navigation.BackHandler
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -94,7 +100,8 @@ fun QuranReaderScreen(
     surahNumber: Int,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    initialAyahNumber: Int? = null
+    initialAyahNumber: Int? = null,
+    onSwitchToMushafMode: ((pageNumber: Int) -> Unit)? = null
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
@@ -157,31 +164,63 @@ fun QuranReaderScreen(
         }
     }
 
-    // Automatically tracks and marks the topmost visible ayah on screen as "Terakhir Dibaca"
-    LaunchedEffect(state.currentAyahs, surah, pendingScrollAyah) {
-        if (state.currentAyahs.isEmpty() || surah == null) return@LaunchedEffect
-        if (pendingScrollAyah != null) return@LaunchedEffect
+    // Parse active audio ayah from track ID (e.g. "ayah_2_142")
+    val activeAudioAyah = remember(state.activeAudioTrack) {
+        val id = state.activeAudioTrack?.id ?: return@remember null
+        val parts = id.split("_")
+        if (parts.size >= 3 && parts[0] == "ayah") {
+            val s = parts[1].toIntOrNull()
+            val a = parts[2].toIntOrNull()
+            if (s != null && a != null) Pair(s, a) else null
+        } else null
+    }
 
-        snapshotFlow {
-            val rawIndex = listState.firstVisibleItemIndex - ayahListOffset
-            val safeIndex = rawIndex.coerceIn(0, state.currentAyahs.lastIndex)
-            state.currentAyahs.getOrNull(safeIndex)
+    val currentActiveAyahNumber = activeAudioAyah?.let { (surahNum, ayahNum) ->
+        if (surahNum == currentSurahNumber) ayahNum else null
+    } ?: state.activeAyahNumber
+
+    val isAudioActive = state.audioPlaybackState == AudioPlaybackState.PLAYING ||
+            state.audioPlaybackState == AudioPlaybackState.BUFFERING
+
+    // Auto-scroll to currently reciting ayah when audio is playing or buffering
+    LaunchedEffect(currentActiveAyahNumber, isAudioActive) {
+        val target = currentActiveAyahNumber
+        if (target != null && isAudioActive && state.currentAyahs.isNotEmpty()) {
+            val index = state.currentAyahs.indexOfFirst { it.numberInSurah == target }
+            if (index >= 0) {
+                listState.animateScrollToItem((index + ayahListOffset).coerceAtLeast(0))
+            }
         }
-            .filterNotNull()
-            .distinctUntilChanged()
-            .collect { visibleAyah ->
-                val current = state.lastReadBookmark
-                if (current == null || current.surahNumber != visibleAyah.surahNumber || current.ayahNumber != visibleAyah.numberInSurah) {
-                    viewModel.onIntent(
-                        QuranUiIntent.SaveBookmark(
-                            surahNumber = visibleAyah.surahNumber,
-                            ayahNumber = visibleAyah.numberInSurah,
-                            surahName = surah.nameLatin,
-                            showToast = false
+    }
+
+    // Menandai terakhir dibaca untuk item paling atas dieksekusi ketika onDestroy (onDispose) page-nya,
+    // bukan ketika halaman dibuka atau ketika pengguna melakukan scroll.
+    val currentSurahForDispose by rememberUpdatedState(surah)
+    val currentAyahsForDispose by rememberUpdatedState(state.currentAyahs)
+
+    DisposableEffect(Unit) {
+        onDispose {
+            val surahToSave = currentSurahForDispose
+            val ayahsToSave = currentAyahsForDispose
+            if (ayahsToSave.isNotEmpty() && surahToSave != null) {
+                val rawIndex = listState.firstVisibleItemIndex - ayahListOffset
+                val safeIndex = rawIndex.coerceIn(0, ayahsToSave.lastIndex)
+                val visibleAyah = ayahsToSave.getOrNull(safeIndex)
+                if (visibleAyah != null) {
+                    val current = state.lastReadBookmark
+                    if (current == null || current.surahNumber != visibleAyah.surahNumber || current.ayahNumber != visibleAyah.numberInSurah) {
+                        viewModel.onIntent(
+                            QuranUiIntent.SaveBookmark(
+                                surahNumber = visibleAyah.surahNumber,
+                                ayahNumber = visibleAyah.numberInSurah,
+                                surahName = surahToSave.nameLatin,
+                                showToast = false
+                            )
                         )
-                    )
+                    }
                 }
             }
+        }
     }
 
     // Switches to a surah/ayat without navigating: same surah just scrolls, a different
@@ -195,6 +234,19 @@ fun QuranReaderScreen(
         } else {
             pendingScrollAyah = targetAyahNumber
             viewModel.onIntent(QuranUiIntent.SelectSurah(targetSurahNumber))
+        }
+    }
+
+    // Auto-switch surah if auto-play advances to the next surah
+    LaunchedEffect(state.activeAudioTrack) {
+        val trackId = state.activeAudioTrack?.id ?: return@LaunchedEffect
+        if (trackId.startsWith("ayah_")) {
+            val parts = trackId.split("_")
+            val playingSurah = parts.getOrNull(1)?.toIntOrNull()
+            val playingAyah = parts.getOrNull(2)?.toIntOrNull()
+            if (playingSurah != null && playingSurah != currentSurahNumber) {
+                jumpTo(playingSurah, playingAyah ?: 1)
+            }
         }
     }
 
@@ -224,6 +276,13 @@ fun QuranReaderScreen(
                 shapeType = SpotlightShapeType.ROUNDED_RECT,
                 cornerRadius = 16.dp,
                 padding = 4.dp
+            ),
+            SpotlightStep(
+                id = "quran_mushaf",
+                title = "Beralih ke Mode Mushaf",
+                description = "Ketuk tombol 📖 ini untuk membaca Al-Qur'an dalam tampilan halaman mushaf digital—persis seperti kitab fisik, lengkap dengan navigasi halaman dan download offline.",
+                shapeType = SpotlightShapeType.CIRCLE,
+                padding = 6.dp
             )
         )
     }
@@ -253,6 +312,37 @@ fun QuranReaderScreen(
                 onBackClick = onBackClick,
                 showBottomDivider = false,
                 actions = {
+                    if (onSwitchToMushafMode != null) {
+                        IconButton(
+                            onClick = {
+                                val visibleAyah = listState.layoutInfo.visibleItemsInfo
+                                    .mapNotNull { itemInfo ->
+                                        val keyStr = itemInfo.key as? String ?: return@mapNotNull null
+                                        val parts = keyStr.split("_")
+                                        if (parts.size == 2) {
+                                            val sNum = parts[0].toIntOrNull()
+                                            val aNum = parts[1].toIntOrNull()
+                                            if (sNum != null && aNum != null) aNum else null
+                                        } else null
+                                    }
+                                    .firstOrNull() ?: 1
+
+                                val targetPage = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForAyah(currentSurahNumber, visibleAyah)
+                                onSwitchToMushafMode(targetPage)
+                            },
+                            modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_mushaf")
+                        ) {
+                            Surface(
+                                color = MerahMerdeka.copy(alpha = 0.12f),
+                                shape = CircleShape,
+                                modifier = Modifier.size(32.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Text("📖", fontSize = 14.sp)
+                                }
+                            }
+                        }
+                    }
                     IconButton(
                         onClick = { showGoToSheet = true },
                         modifier = Modifier.spotlightAnchor(quranSpotlightState, "quran_goto")
@@ -281,24 +371,6 @@ fun QuranReaderScreen(
                             }
                         }
                     }
-                    if (surah?.audioUrl != null) {
-                        IconButton(
-                            onClick = {
-                                viewModel.onIntent(
-                                    QuranUiIntent.PlayAudio(
-                                        AudioTrack(
-                                            id = "surah_${surah.number}",
-                                            title = "Murottal Surah ${surah.nameLatin}",
-                                            subtitle = "Al-Qur'an 30 Juz",
-                                            urlOrPath = surah.audioUrl
-                                        )
-                                    )
-                                )
-                            }
-                        ) {
-                            Text("▶", color = EmasKhidmat, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        }
-                    }
                 }
             )
             SurahTabStrip(
@@ -309,122 +381,158 @@ fun QuranReaderScreen(
             )
           }
         },
-        bottomBar = {
-            // Persistent Mini Audio Bar
-            MiniFloatingAudioBar(
-                track = state.activeAudioTrack,
-                playbackState = state.audioPlaybackState,
-                currentPositionMs = state.audioPositionMs,
-                durationMs = state.audioDurationMs,
-                onPlayPauseClick = { viewModel.onIntent(QuranUiIntent.TogglePlayPauseAudio) },
-                onBarClick = {},
-                onCloseClick = { viewModel.onIntent(QuranUiIntent.StopAudio) }
-            )
-        },
         containerColor = readerTheme.backgroundColor
     ) { paddingValues ->
-        LazyColumn(
-            state = listState,
+        val navBarBottomInset = WindowInsets.safeDrawing.asPaddingValues().calculateBottomPadding()
+
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
-            contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
+                .padding(top = paddingValues.calculateTopPadding())
         ) {
-            // Surah Header Banner
-            item {
-                GoldCrimsonCard(
-                    variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                    contentPadding = PaddingValues(16.dp)
-                ) {
-                    Text(
-                        text = surah?.nameArabic ?: "",
-                        style = RabithohTheme.typography.arabicLarge.copy(
-                            color = EmasMuda,
-                            fontSize = 26.sp,
-                            textAlign = TextAlign.Center
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Text(
-                        text = "Surah ${surah?.nameLatin ?: ""} • ${surah?.indonesianMeaning ?: ""}",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            color = PutihBersih,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                    if (surah?.revelationType != null) {
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                            Surface(
-                                color = Color.White.copy(alpha = 0.18f),
-                                shape = RoundedCornerShape(12.dp)
-                            ) {
-                                Text(
-                                    text = surah.revelationType.label,
-                                    fontSize = 11.sp,
-                                    fontWeight = FontWeight.SemiBold,
-                                    color = EmasMuda,
-                                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Basmalah (kecuali Al-Fatihah dan At-Taubah)
-            if (hasBasmalahHeader) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                contentPadding = PaddingValues(
+                    top = 12.dp,
+                    bottom = 90.dp + if (navBarBottomInset > 20.dp) navBarBottomInset + 4.dp else 12.dp
+                )
+            ) {
+                // Surah Header Banner
                 item {
                     GoldCrimsonCard(
-                        variant = GoldCrimsonCardVariant.GOLD_BORDER,
-                        customBackgroundColor = readerTheme.cardBackgroundColor,
-                        customBorderColor = readerTheme.cardBorderColor,
-                        contentPadding = PaddingValues(12.dp)
+                        variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                        contentPadding = PaddingValues(16.dp)
                     ) {
                         Text(
-                            text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-                            style = RabithohTheme.typography.arabicMedium.copy(
-                                color = readerTheme.arabicTextColor,
-                                fontSize = (22 * fontScale).sp,
+                            text = surah?.nameArabic ?: "",
+                            style = RabithohTheme.typography.arabicLarge.copy(
+                                color = EmasMuda,
+                                fontSize = 26.sp,
                                 textAlign = TextAlign.Center
                             ),
                             modifier = Modifier.fillMaxWidth()
                         )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(
+                            text = "Surah ${surah?.nameLatin ?: ""} • ${surah?.indonesianMeaning ?: ""}",
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                color = PutihBersih,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        if (surah?.revelationType != null) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                                Surface(
+                                    color = Color.White.copy(alpha = 0.18f),
+                                    shape = RoundedCornerShape(12.dp)
+                                ) {
+                                    Text(
+                                        text = surah.revelationType.label,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = EmasMuda,
+                                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                                    )
+                                }
+                            }
+                        }
                     }
+                }
+
+                // Basmalah (kecuali Al-Fatihah dan At-Taubah)
+                if (hasBasmalahHeader) {
+                    item {
+                        GoldCrimsonCard(
+                            variant = GoldCrimsonCardVariant.GOLD_BORDER,
+                            customBackgroundColor = readerTheme.cardBackgroundColor,
+                            customBorderColor = readerTheme.cardBorderColor,
+                            contentPadding = PaddingValues(12.dp)
+                        ) {
+                            Text(
+                                text = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+                                style = RabithohTheme.typography.arabicMedium.copy(
+                                    color = readerTheme.arabicTextColor,
+                                    fontSize = (22 * fontScale).sp,
+                                    textAlign = TextAlign.Center
+                                ),
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
+                }
+
+                item {
+                    IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
+                }
+
+                // Ayahs list
+                items(state.currentAyahs, key = { "${it.surahNumber}_${it.numberInSurah}" }) { ayah ->
+                    val isLastRead = state.lastReadBookmark?.let {
+                        it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
+                    } ?: false
+                    val isFirstAyah = state.currentAyahs.firstOrNull()?.let {
+                        it.surahNumber == ayah.surahNumber && it.numberInSurah == ayah.numberInSurah
+                    } ?: false
+                    val isPlaying = currentActiveAyahNumber == ayah.numberInSurah && isAudioActive
+
+                    AyahItemCard(
+                        ayah = ayah,
+                        surahName = surah?.nameLatin ?: "Surah $currentSurahNumber",
+                        fontScale = fontScale,
+                        showLatin = showLatin,
+                        showTranslation = showTranslation,
+                        isLastRead = isLastRead,
+                        isPlaying = isPlaying,
+                        readerTheme = readerTheme,
+                        onClick = { selectedAyahForOptions = ayah },
+                        modifier = Modifier.let { mod ->
+                            if (isFirstAyah) mod.spotlightAnchor(quranSpotlightState, "quran_verse_action")
+                            else mod
+                        }
+                    )
                 }
             }
 
-            item {
-                IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
-            }
-
-            // Ayahs list
-            items(state.currentAyahs, key = { "${it.surahNumber}_${it.numberInSurah}" }) { ayah ->
-                val isLastRead = state.lastReadBookmark?.let {
-                    it.surahNumber == ayah.surahNumber && it.ayahNumber == ayah.numberInSurah
-                } ?: false
-                val isFirstAyah = state.currentAyahs.firstOrNull()?.let {
-                    it.surahNumber == ayah.surahNumber && it.numberInSurah == ayah.numberInSurah
-                } ?: false
-
-                AyahItemCard(
-                    ayah = ayah,
-                    surahName = surah?.nameLatin ?: "Surah $currentSurahNumber",
-                    fontScale = fontScale,
-                    showLatin = showLatin,
-                    showTranslation = showTranslation,
-                    isLastRead = isLastRead,
-                    readerTheme = readerTheme,
-                    onClick = { selectedAyahForOptions = ayah },
-                    modifier = Modifier.let { mod ->
-                        if (isFirstAyah) mod.spotlightAnchor(quranSpotlightState, "quran_verse_action")
-                        else mod
-                    }
+            // Floating Audio Bottom Bar Dock
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        bottom = if (navBarBottomInset > 20.dp) navBarBottomInset + 4.dp else 12.dp
+                    )
+            ) {
+                QuranAudioBottomBar(
+                    selectedQari = state.selectedQari,
+                    playbackState = state.audioPlaybackState,
+                    isAudioLoading = state.isAudioLoading,
+                    repeatMode = state.audioRepeatMode,
+                    currentPositionMs = state.audioPositionMs,
+                    durationMs = state.audioDurationMs,
+                    activeAyahNumber = currentActiveAyahNumber,
+                    surahName = surah?.nameLatin,
+                    onPlayPauseClick = {
+                        if (state.audioPlaybackState == AudioPlaybackState.PLAYING ||
+                            state.audioPlaybackState == AudioPlaybackState.PAUSED
+                        ) {
+                            viewModel.onIntent(QuranUiIntent.TogglePlayPauseAudio)
+                        } else {
+                            val startAyah = currentActiveAyahNumber ?: 1
+                            viewModel.onIntent(QuranUiIntent.PlayAyahAudio(currentSurahNumber, startAyah))
+                        }
+                    },
+                    onToggleRepeatMode = { viewModel.onIntent(QuranUiIntent.ToggleAudioRepeatMode) },
+                    onQariClick = { viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(true)) },
+                    customBackgroundColor = readerTheme.backgroundColor
                 )
             }
         }
@@ -466,6 +574,15 @@ fun QuranReaderScreen(
             onConfirm = { targetSurahNumber, targetAyahNumber ->
                 showGoToSheet = false
                 jumpTo(targetSurahNumber, targetAyahNumber)
+            },
+            onConfirmPage = { targetPage ->
+                showGoToSheet = false
+                if (onSwitchToMushafMode != null) {
+                    onSwitchToMushafMode(targetPage)
+                } else {
+                    val meta = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageMeta(targetPage)
+                    jumpTo(meta.surahNumber, 1)
+                }
             }
         )
     }
@@ -497,19 +614,12 @@ fun QuranReaderScreen(
             ayahNumber = ayah.numberInSurah,
             onDismiss = { selectedAyahForOptions = null },
             onPlayMurotal = {
-                val audioUrl = ayah.audioUrl ?: surah?.audioUrl
-                if (audioUrl != null) {
-                    viewModel.onIntent(
-                        QuranUiIntent.PlayAudio(
-                            AudioTrack(
-                                id = "ayah_${ayah.surahNumber}_${ayah.numberInSurah}",
-                                title = "Murottal $currentSurahName Ayat ${ayah.numberInSurah}",
-                                subtitle = "Al-Qur'an 30 Juz",
-                                urlOrPath = audioUrl
-                            )
-                        )
+                viewModel.onIntent(
+                    QuranUiIntent.PlayAyahAudio(
+                        surahNumber = ayah.surahNumber,
+                        ayahNumber = ayah.numberInSurah
                     )
-                }
+                )
             },
             onMarkLastRead = {
                 viewModel.onIntent(
@@ -523,8 +633,17 @@ fun QuranReaderScreen(
             },
             onShare = { shareAction(shareText) },
             onCopy = { clipboardManager.setText(AnnotatedString(shareText)) },
-            playMurotalEnabled = ayah.audioUrl != null || surah?.audioUrl != null,
+            playMurotalEnabled = true,
             isLastRead = isAyahLastRead
+        )
+    }
+
+    if (state.isQariPickerVisible) {
+        QariPickerSheet(
+            selectedQari = state.selectedQari,
+            availableQaris = state.availableQaris,
+            onSelectQari = { viewModel.onIntent(QuranUiIntent.SelectQari(it)) },
+            onDismiss = { viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(false)) }
         )
     }
 
@@ -549,6 +668,8 @@ private fun SurahTabStrip(
         surahs.indexOfFirst { it.number == currentSurahNumber }
     }
 
+    // reverseLayout: surah 1 ada di kanan (RTL). Scroll-target di-mirror: index 0 = kanan.
+    // Dengan reverseLayout, animateScrollToItem(n) akan scroll ke posisi yang benar.
     LaunchedEffect(currentIndex) {
         if (currentIndex >= 0) {
             listState.animateScrollToItem(maxOf(0, currentIndex - 1))
@@ -561,6 +682,7 @@ private fun SurahTabStrip(
     ) {
         LazyRow(
             state = listState,
+            reverseLayout = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -597,24 +719,33 @@ private fun AyahItemCard(
     showLatin: Boolean,
     showTranslation: Boolean,
     isLastRead: Boolean = false,
+    isPlaying: Boolean = false,
     readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val isDark = readerTheme.isDark
-    val cardBg = if (isLastRead) readerTheme.lastReadCardBackgroundColor else readerTheme.cardBackgroundColor
-    val cardBorder = if (isLastRead) readerTheme.lastReadCardBorderColor else readerTheme.cardBorderColor
+    val cardBg = when {
+        isPlaying -> if (isDark) EmasKhidmat.copy(alpha = 0.18f) else Color(0xFFFFFBEB)
+        isLastRead -> readerTheme.lastReadCardBackgroundColor
+        else -> readerTheme.cardBackgroundColor
+    }
+    val cardBorder = when {
+        isPlaying -> EmasKhidmat
+        isLastRead -> readerTheme.lastReadCardBorderColor
+        else -> readerTheme.cardBorderColor
+    }
 
     GoldCrimsonCard(
         modifier = modifier,
-        variant = if (isLastRead) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.SURFACE_CLEAN,
+        variant = if (isPlaying || isLastRead) GoldCrimsonCardVariant.GOLD_BORDER else GoldCrimsonCardVariant.SURFACE_CLEAN,
         customBackgroundColor = cardBg,
         customBorderColor = cardBorder,
-        customBorderWidth = if (isLastRead) 1.5.dp else 1.dp,
+        customBorderWidth = if (isPlaying || isLastRead) 1.5.dp else 1.dp,
         contentPadding = PaddingValues(16.dp),
         onClick = onClick
     ) {
-        // Top Header in Ayah Card (Ayah Number & Last Read Marker)
+        // Top Header in Ayah Card (Ayah Number & Last Read / Playing Marker)
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -625,8 +756,11 @@ private fun AyahItemCard(
                     .size(34.dp)
                     .clip(CircleShape)
                     .background(
-                        if (isLastRead) MerahMerdeka
-                        else (if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6))
+                        when {
+                            isPlaying -> EmasKhidmat
+                            isLastRead -> MerahMerdeka
+                            else -> if (isDark) DarkSurfaceVariant else Color(0xFFF3F4F6)
+                        }
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -634,28 +768,54 @@ private fun AyahItemCard(
                     text = "${ayah.numberInSurah}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 13.sp,
-                    color = if (isLastRead) PutihBersih else MerahMerdeka
+                    color = if (isPlaying || isLastRead) PutihBersih else MerahMerdeka
                 )
             }
 
-            if (isLastRead) {
-                Surface(
-                    color = if (isDark) MerahMerdeka.copy(alpha = 0.2f) else Color(0xFFFFF1F2),
-                    shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, if (isDark) MerahMerdeka.copy(alpha = 0.5f) else MerahMerdeka.copy(alpha = 0.6f))
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                if (isPlaying) {
+                    Surface(
+                        color = EmasKhidmat,
+                        shape = RoundedCornerShape(12.dp)
                     ) {
-                        Text("🔖", fontSize = 11.sp)
-                        Text(
-                            text = "Terakhir Dibaca",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka
-                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                        ) {
+                            Text("🔊", fontSize = 10.sp)
+                            Text(
+                                text = "Murottal",
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = PutihBersih
+                            )
+                        }
+                    }
+                }
+
+                if (isLastRead) {
+                    Surface(
+                        color = if (isDark) MerahMerdeka.copy(alpha = 0.2f) else Color(0xFFFFF1F2),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, if (isDark) MerahMerdeka.copy(alpha = 0.5f) else MerahMerdeka.copy(alpha = 0.6f))
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                        ) {
+                            Text("🔖", fontSize = 11.sp)
+                            Text(
+                                text = "Terakhir Dibaca",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) Color(0xFFFCA5A5) else MerahMerdeka
+                            )
+                        }
                     }
                 }
             }

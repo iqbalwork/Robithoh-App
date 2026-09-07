@@ -465,3 +465,15 @@ private fun DrawScope.drawCenterPivot(
         center = Offset(center.x - 1.5.dp.toPx(), center.y - 1.5.dp.toPx())
     )
 }
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun QiblaDialComponentPreview() {
+    RabithohTheme {
+        QiblaDialComponent(
+            deviceHeading = 45f,
+            qiblaAzimuth = 295.0,
+            isAligned = false
+        )
+    }
+}

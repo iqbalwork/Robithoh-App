@@ -20,7 +20,9 @@ data class AppSettings(
     val hasCompletedOnboarding: Boolean = false,
     val hasSeenReaderSpotlight: Boolean = false,
     val hasSeenPrayerSpotlight: Boolean = false,
-    val hasSeenQuranSpotlight: Boolean = false
+    val hasSeenQuranSpotlight: Boolean = false,
+    val hideMushafDownloadPrompt: Boolean = false,
+    val hasSeenQuranPageSpotlight: Boolean = false
 )
 
 /**
@@ -43,13 +45,22 @@ class AppSettingsRepository(
         coroutineScope.launch(dispatcher) {
             try {
                 val entity = db.robithohDatabaseQueries.getAppSettings().executeAsOneOrNull()
+                val hidePromptBookmark = db.robithohDatabaseQueries
+                    .getBookmarkByItem("settings", "hide_mushaf_download_prompt")
+                    .executeAsOneOrNull()
+                val hidePrompt = hidePromptBookmark?.page_or_surah == 1L
+
                 if (entity != null) {
                     _settings.value = AppSettings(
                         hasCompletedOnboarding = entity.has_completed_onboarding == 1L,
                         hasSeenReaderSpotlight = entity.has_seen_reader_spotlight == 1L,
                         hasSeenPrayerSpotlight = entity.has_seen_prayer_spotlight == 1L,
-                        hasSeenQuranSpotlight = entity.has_seen_quran_spotlight == 1L
+                        hasSeenQuranSpotlight = entity.has_seen_quran_spotlight == 1L,
+                        hideMushafDownloadPrompt = hidePrompt,
+                        hasSeenQuranPageSpotlight = entity.has_seen_quran_page_spotlight == 1L
                     )
+                } else if (hidePrompt) {
+                    _settings.value = _settings.value.copy(hideMushafDownloadPrompt = true)
                 }
             } catch (_: Exception) {
                 // Table not ready or query failed, keep defaults
@@ -77,6 +88,31 @@ class AppSettingsRepository(
         persist()
     }
 
+    fun setQuranPageSpotlightSeen(seen: Boolean = true) {
+        _settings.value = _settings.value.copy(hasSeenQuranPageSpotlight = seen)
+        persist()
+    }
+
+    fun setHideMushafDownloadPrompt(hide: Boolean = true) {
+        _settings.value = _settings.value.copy(hideMushafDownloadPrompt = hide)
+        val db = database ?: return
+        coroutineScope.launch(dispatcher) {
+            try {
+                db.robithohDatabaseQueries.insertOrUpdateBookmark(
+                    id = 9999L,
+                    item_type = "settings",
+                    item_id = "hide_mushaf_download_prompt",
+                    title = "hide_mushaf_download_prompt",
+                    subtitle = "",
+                    page_or_surah = if (hide) 1L else 0L,
+                    verse_or_section = 0L,
+                    created_at = 0L,
+                    updated_at = 0L
+                )
+            } catch (_: Exception) {}
+        }
+    }
+
     private fun persist() {
         val db = database ?: return
         val current = _settings.value
@@ -86,7 +122,8 @@ class AppSettingsRepository(
                     hasCompletedOnboarding = if (current.hasCompletedOnboarding) 1L else 0L,
                     hasSeenReaderSpotlight = if (current.hasSeenReaderSpotlight) 1L else 0L,
                     hasSeenPrayerSpotlight = if (current.hasSeenPrayerSpotlight) 1L else 0L,
-                    hasSeenQuranSpotlight = if (current.hasSeenQuranSpotlight) 1L else 0L
+                    hasSeenQuranSpotlight = if (current.hasSeenQuranSpotlight) 1L else 0L,
+                    hasSeenQuranPageSpotlight = if (current.hasSeenQuranPageSpotlight) 1L else 0L
                 )
             } catch (_: Exception) {
                 // Ignore persistence failure

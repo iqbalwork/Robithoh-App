@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -199,4 +200,46 @@ private fun formatMs(ms: Long): String {
     val minutes = totalSeconds / 60
     val seconds = totalSeconds % 60
     return "$minutes:${seconds.toString().padStart(2, '0')}"
+}
+
+@Preview
+@Composable
+private fun MiniFloatingAudioBarPreview() {
+    RabithohTheme(darkTheme = false) {
+        MiniFloatingAudioBar(
+            track = AudioTrack(
+                id = "1",
+                title = "Surah Al-Fatihah",
+                subtitle = "Misyari Rasyid Al-Afasy",
+                urlOrPath = ""
+            ),
+            playbackState = AudioPlaybackState.PLAYING,
+            currentPositionMs = 45000,
+            durationMs = 90000,
+            onPlayPauseClick = {},
+            onBarClick = {},
+            onCloseClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun MiniFloatingAudioBarDarkPreview() {
+    RabithohTheme(darkTheme = true) {
+        MiniFloatingAudioBar(
+            track = AudioTrack(
+                id = "1",
+                title = "Surah Al-Fatihah",
+                subtitle = "Misyari Rasyid Al-Afasy",
+                urlOrPath = ""
+            ),
+            playbackState = AudioPlaybackState.PLAYING,
+            currentPositionMs = 45000,
+            durationMs = 90000,
+            onPlayPauseClick = {},
+            onBarClick = {},
+            onCloseClick = {}
+        )
+    }
 }

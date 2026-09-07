@@ -43,6 +43,13 @@ class NavigationScreenKeyTest {
         val serializedQibla = json.encodeToString(qibla)
         val deserializedQibla = json.decodeFromString<ScreenKey>(serializedQibla)
         assertEquals(ScreenKey.Qibla, deserializedQibla)
+
+        val pageReader: ScreenKey = ScreenKey.QuranPageReader(pageNumber = 77, targetAyahNumber = 1)
+        val serializedPage = json.encodeToString(pageReader)
+        val deserializedPage = json.decodeFromString<ScreenKey>(serializedPage)
+        assertEquals(pageReader, deserializedPage)
+        assertTrue(deserializedPage is ScreenKey.QuranPageReader)
+        assertEquals(77, (deserializedPage as ScreenKey.QuranPageReader).pageNumber)
     }
 
     @Test
