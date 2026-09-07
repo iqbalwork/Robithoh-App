@@ -80,8 +80,8 @@ fun MushafPageView(
         val displayW = constraints.maxWidth.toFloat()
         val displayH = constraints.maxHeight.toFloat()
 
-        val viewportW = (pageMapping?.viewportWidth ?: 2600).toFloat()
-        val viewportH = (pageMapping?.viewportHeight ?: 4206).toFloat()
+        val viewportW = (pageMapping?.viewportWidth ?: 1080).toFloat()
+        val viewportH = (pageMapping?.viewportHeight ?: 1745).toFloat()
 
         val scale = min(displayW / viewportW, displayH / viewportH)
         val renderedW = viewportW * scale

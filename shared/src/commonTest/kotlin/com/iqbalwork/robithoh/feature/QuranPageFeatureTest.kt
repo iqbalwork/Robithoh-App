@@ -73,22 +73,22 @@ class QuranPageFeatureTest {
 
     @Test
     fun testCoordinateUnprojectionAndHitTesting() {
-        // Simulated Page 1: Ayah 1 block in 2600 x 4206 space
+        // Simulated Page 1: Ayah 1 block in 1080 x 1745 space
         val page1Mapping = QuranPageMapping(
-            viewportWidth = 2600,
-            viewportHeight = 4206,
+            viewportWidth = 1080,
+            viewportHeight = 1745,
             data = listOf(
                 AyahBlock(surah = 1, ayah = 1, blok = 1, top = 472, left = 192, width = 694, height = 119),
                 AyahBlock(surah = 1, ayah = 2, blok = 1, top = 591, left = 348, width = 538, height = 112)
             )
         )
 
-        // Simulate mobile viewport 1080 x 2400 (aspect ratio different from 2600 x 4206)
+        // Simulate mobile viewport 1080 x 2400 (aspect ratio different from 1080 x 1745)
         val displayW = 1080f
         val displayH = 2400f
-        val scale = min(displayW / 2600f, displayH / 4206f)
-        val renderedW = 2600f * scale
-        val renderedH = 4206f * scale
+        val scale = min(displayW / 1080f, displayH / 1745f)
+        val renderedW = 1080f * scale
+        val renderedH = 1745f * scale
         val offsetX = (displayW - renderedW) / 2f
         val offsetY = (displayH - renderedH) / 2f
 

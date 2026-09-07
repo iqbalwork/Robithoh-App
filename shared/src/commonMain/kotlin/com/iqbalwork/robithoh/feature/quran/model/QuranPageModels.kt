@@ -5,15 +5,15 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class QuranPageMapping(
-    val viewportWidth: Int = 2600,
-    val viewportHeight: Int = 4206,
+    val viewportWidth: Int = 1080,
+    val viewportHeight: Int = 1745,
     val data: List<AyahBlock>
 )
 
 @Serializable
 data class ConsolidatedPageMappings(
-    val viewportWidth: Int = 2600,
-    val viewportHeight: Int = 4206,
+    val viewportWidth: Int = 1080,
+    val viewportHeight: Int = 1745,
     val pages: Map<String, List<AyahBlock>>
 )
 

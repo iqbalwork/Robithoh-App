@@ -93,8 +93,8 @@ class QuranPageManager(
         val mapped = consolidatedMappings?.pages?.get(pageNumber.toString())
         if (mapped != null) {
             val mapping = QuranPageMapping(
-                viewportWidth = consolidatedMappings?.viewportWidth ?: 2600,
-                viewportHeight = consolidatedMappings?.viewportHeight ?: 4206,
+                viewportWidth = consolidatedMappings?.viewportWidth ?: 1080,
+                viewportHeight = consolidatedMappings?.viewportHeight ?: 1745,
                 data = mapped
             )
             mappingCache[pageNumber] = mapping
