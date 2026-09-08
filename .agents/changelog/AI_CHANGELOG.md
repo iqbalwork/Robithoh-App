@@ -6,6 +6,16 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Liturgical Document Sync Notifications Update
+- **Date**: 2026-03-31
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Replaced in-app popup toast overlay card (`DocumentSyncOverlay`) with live high-priority heads-up system notifications (`DocumentSyncNotifier`) with silent auto-check guard.
+- **Changes**:
+  - `DocumentSyncNotifier.kt`: Added `isManual` flag parameter to `notifySyncState(state, isManual)` to distinguish background app-launch checks from explicit user/update actions.
+  - `DocumentSyncNotifier.android.kt`: Silenced notifications on automatic app launch when 0 files need updating (`isManual = false` and `updatedCount = 0`). High-priority popups only trigger when documents actually update (`updatedCount > 0`) or when manually requested (`isManual = true`).
+  - `DocumentSyncManager.kt`: Passed `isManual` flag during state transitions (`Checking`, `Syncing`, `Success`, `Error`).
+  - `.agents/adr/0005-document-sync-notifications.md`: Created ADR-0005 for document sync system notifications.
+
 ### Import & FQN Conventions Update
 - **Date**: 2026-03-31
 - **Author**: AI Assistant & Iqbal Fauzi

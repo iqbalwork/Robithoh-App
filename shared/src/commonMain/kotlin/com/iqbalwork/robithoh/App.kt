@@ -12,11 +12,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavKey
@@ -38,10 +36,10 @@ import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
 import com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
+import com.iqbalwork.robithoh.core.notification.rememberDocumentSyncNotifier
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager
 import com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen
-import com.iqbalwork.robithoh.feature.reader.ui.component.DocumentSyncOverlay
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel
@@ -79,7 +77,6 @@ fun App(
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
             mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
-        val coroutineScope = rememberCoroutineScope()
 
         val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
@@ -107,11 +104,13 @@ fun App(
         val documentRepository = remember(database) {
             MarkdownDocumentRepository(database = database)
         }
-        val documentSyncManager = remember(database, documentRepository) {
+        val documentSyncNotifier = rememberDocumentSyncNotifier()
+        val documentSyncManager = remember(database, documentRepository, documentSyncNotifier) {
             DocumentSyncManager(
                 httpClient = createKtorHttpClient(),
                 database = database,
-                repository = documentRepository
+                repository = documentRepository,
+                notifier = documentSyncNotifier
             )
         }
 
@@ -385,15 +384,6 @@ fun App(
                             rememberViewModelStoreNavEntryDecorator<NavKey>()
                         ),
                         entryProvider = entries
-                    )
-
-                    DocumentSyncOverlay(
-                        syncManager = documentSyncManager,
-                        onRetry = {
-                            coroutineScope.launch {
-                                documentSyncManager.syncDocuments(force = true)
-                            }
-                        }
                     )
                 }
             }

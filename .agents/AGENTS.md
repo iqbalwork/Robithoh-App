@@ -74,6 +74,7 @@ Full history documented in [`adr/`](adr/).
 - **[ADR-0002: Compose Multiplatform & MVI Presentation Architecture](adr/0002-cmp-mvi-presentation-architecture.md)** — 100% shared declarative UI with strict Screen/Content separation.
 - **[ADR-0003: Multiplatform Audio Engine (`KmpAudioPlayer`) Bridging Media3 & AVPlayer](adr/0003-kmp-audio-player-expect-actual.md)** — Foreground service audio on Android and AVPlayer audio session on iOS.
 - **[ADR-0004: 8 Android Home Screen Widgets via Glance & AppWidgetProvider](adr/0004-glance-home-screen-widgets.md)** — Interactive prayer, tasbih, Quran bookmark, and Tanbih widgets with broadcast update synchronization.
+- **[ADR-0005: System Notifications for Liturgical Document Sync Progress](adr/0005-document-sync-notifications.md)** — Replacing toast overlay UI with live activity progress system notifications.
 
 ---
 

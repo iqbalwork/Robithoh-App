@@ -7,7 +7,7 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `8`)
-* **Current Focus**: Standardized Import Discipline (No inline FQNs in Kotlin code) & Knowledge Base Update.
+* **Current Focus**: Document Sync System Notifications (`DocumentSyncNotifier` live activity notifications replacing toast popup).
 * **Codebase Health**:
   - `shared` module: Clean architecture, explicit import convention enforced, 30+ passing unit test suites.
   - `androidApp`: 8 Glance widgets implemented, dual flavors (`staging`, `production`), `:androidApp:assembleStagingDebug` verified.

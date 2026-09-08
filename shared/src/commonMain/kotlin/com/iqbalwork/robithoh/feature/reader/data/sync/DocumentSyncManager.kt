@@ -1,6 +1,8 @@
 package com.iqbalwork.robithoh.feature.reader.data.sync
 
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
+import com.iqbalwork.robithoh.core.notification.DocumentSyncNotifier
+import com.iqbalwork.robithoh.core.notification.createDocumentSyncNotifier
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -34,10 +36,16 @@ class DocumentSyncManager(
     private val httpClient: HttpClient,
     private val database: RobithohDatabase,
     private val repository: MarkdownDocumentRepository,
+    private val notifier: DocumentSyncNotifier = createDocumentSyncNotifier(),
     private val json: Json = Json { ignoreUnknownKeys = true; isLenient = true }
 ) {
     private val _syncState = MutableStateFlow<DocumentSyncState>(DocumentSyncState.Idle)
     val syncState: StateFlow<DocumentSyncState> = _syncState.asStateFlow()
+
+    private fun updateState(newState: DocumentSyncState, isManual: Boolean) {
+        _syncState.value = newState
+        notifier.notifySyncState(newState, isManual)
+    }
 
     companion object {
         const val PRIMARY_MANIFEST_URL = "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/manifest.json"
@@ -46,11 +54,14 @@ class DocumentSyncManager(
     }
 
     @OptIn(ExperimentalResourceApi::class, ExperimentalTime::class)
-    suspend fun syncDocuments(force: Boolean = false): Result<Int> = withContext(Dispatchers.Default) {
+    suspend fun syncDocuments(
+        force: Boolean = false,
+        isManual: Boolean = force
+    ): Result<Int> = withContext(Dispatchers.Default) {
         if (_syncState.value is DocumentSyncState.Syncing || _syncState.value is DocumentSyncState.Checking) {
             return@withContext Result.success(0)
         }
-        _syncState.value = DocumentSyncState.Checking()
+        updateState(DocumentSyncState.Checking(), isManual)
 
         try {
             // 1. Pastikan baseline hash tersimpan di database jika database masih kosong
@@ -72,7 +83,7 @@ class DocumentSyncManager(
             }
 
             if (docsToUpdate.isEmpty()) {
-                _syncState.value = DocumentSyncState.Success(0)
+                updateState(DocumentSyncState.Success(0), isManual)
                 return@withContext Result.success(0)
             }
 
@@ -80,10 +91,13 @@ class DocumentSyncManager(
             val now = Clock.System.now().toEpochMilliseconds()
 
             for ((index, remoteDoc) in docsToUpdate.withIndex()) {
-                _syncState.value = DocumentSyncState.Syncing(
-                    current = index + 1,
-                    total = docsToUpdate.size,
-                    currentFileName = remoteDoc.fileName
+                updateState(
+                    DocumentSyncState.Syncing(
+                        current = index + 1,
+                        total = docsToUpdate.size,
+                        currentFileName = remoteDoc.fileName
+                    ),
+                    isManual
                 )
 
                 val content = downloadDocumentContent(remoteDoc)
@@ -104,10 +118,10 @@ class DocumentSyncManager(
                 }
             }
 
-            _syncState.value = DocumentSyncState.Success(updatedCount)
+            updateState(DocumentSyncState.Success(updatedCount), isManual)
             Result.success(updatedCount)
         } catch (e: Exception) {
-            _syncState.value = DocumentSyncState.Error(e.message ?: "Unknown sync error")
+            updateState(DocumentSyncState.Error(e.message ?: "Unknown sync error"), isManual)
             Result.failure(e)
         }
     }
