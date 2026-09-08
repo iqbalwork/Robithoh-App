@@ -49,6 +49,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import androidx.compose.foundation.BorderStroke
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMarunGelap
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.database.rememberRobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
@@ -80,7 +81,7 @@ fun HomeTabContent(
     onOpenSheet: (String) -> Unit,
     viewModel: AmaliyahViewModel? = null
 ) {
-    val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+    val database = rememberRobithohDatabase()
     val vm = viewModel ?: remember(database) {
         AmaliyahViewModel(database = database)
     }

@@ -1,5 +1,7 @@
 package com.iqbalwork.robithoh.di
 
+import com.iqbalwork.robithoh.core.analytics.AnalyticsTracker
+import com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.context.startKoin
@@ -9,7 +11,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<CoroutineDispatcher> { Dispatchers.Default }
-    single<com.iqbalwork.robithoh.core.analytics.AnalyticsTracker> { com.iqbalwork.robithoh.core.analytics.getAnalyticsTracker() }
+    single<AnalyticsTracker> { getAnalyticsTracker() }
 }
 
 fun appModules(): List<Module> = listOf(

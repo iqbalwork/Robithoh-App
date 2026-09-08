@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasMuda
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 
 enum class IslamicDividerMotif(val symbol: String) {
     CRESCENT_STAR("☪"),
@@ -101,7 +102,7 @@ fun IslamicDivider(
 @Preview
 @Composable
 private fun IslamicDividerPreview() {
-    com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme {
+    RabithohTheme {
         Column(modifier = Modifier.padding(16.dp)) {
             IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
             IslamicDivider(motif = IslamicDividerMotif.CRESCENT_STAR)
