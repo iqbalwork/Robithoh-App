@@ -375,7 +375,7 @@ Nawaytu Shouma ghodin ‘an adaa-i fardhi syahri romadhoonaa haadzihis-sanati li
 
 Alloohhumma Sholli ‘alaa Sayyidina Muhammad
 
-*Artinya :Ya Alloh, berikanlah selalu Rahmat-Mu kepada Junjunanku Rosululloh Muhammad Sholallohu ‘alaihi wasalam’.*
+*Artinya :Ya اَللّهُ, berikanlah selalu Rahmat-Mu kepada Junjunanku Rosululloh Muhammad Sholallohu ‘alaihi wasalam’.*
 
 Dan dijawab :
 
@@ -383,7 +383,7 @@ Dan dijawab :
 
 Allohhuma Sholli wa Sallim wa Barik ‘Alaihh
 
-*Artinya :Ya Alloh, limpahkan pula Rahmat-Mu kepada keluarganya.*
+*Artinya :Ya اَللّهُ, limpahkan pula Rahmat-Mu kepada keluarganya.*
 
 - Pada setiap 4 roka’at membaca do’a :
 

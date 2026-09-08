@@ -61,7 +61,7 @@ Kemudian bangun dari sujud, duduk seperti semula dengan membaca Istiqfar 70x, de
 
 Robbighfir warham wa tajawaz ‘amma ta’lamu fa innaka antal azizul a’zhom
 
-Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada Alloh dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
+Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada اَللّهُ dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
 
 Catatan: Sholat ini diawali dengan puasa pada hari kamisnya.
 
@@ -139,9 +139,9 @@ Niat Nisfu Sa’ban                   :
 
 Bacaan : Setelah Al-Fatihah membaca Al-Ikhlas 10x tiap rakaat
 
-Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syeikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 rakaat (50 kali salam) dan setiap rakaat setelah AL- Fatihah membaca surat AL-Ikhlas (Qulhu) sebanyak 10x. Sholat Nisfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari اللّه SWT.
+Menurut Kitab Al-Guniyah Litholibi Thariqil – Haq yang dikarang oleh Tuan Syeikh Abdul Qodir jilid 1 halaman 192 adalah jumlahnya 100 rakaat (50 kali salam) dan setiap rakaat setelah AL- Fatihah membaca surat AL-Ikhlas (Qulhu) sebanyak 10x. Sholat Nisfu Sya’ban ini disebut juga Sholat Khoir, karena banyaknya keutamaan dan pahala dari اَللّهُ SWT.
 
-Sebagaimana diriwayatkan oleh Al Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : *“Barang siapa yang mengerjakan Sholat pada malam Nisfu Sya’ban, maka اللّه SWT akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, اللّه SWT mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan اللّه SWT”.*
+Sebagaimana diriwayatkan oleh Al Hasan Rohimulloh bahwa 30 sahabat berkata kepada ku : *“Barang siapa yang mengerjakan Sholat pada malam Nisfu Sya’ban, maka اَللّهُ SWT akan melirik kepadanya sebanyak 70 lirikan dan setiap lirikan, اَللّهُ SWT mengabulkan 70 kebutuhan. Dan pemberian yang terendah adalah ampunan اَللّهُ SWT”.*
 
 ---
 
@@ -175,7 +175,7 @@ Rokaat 20: An-Nas 1-6
 
 Alloohhumma Sholli ‘alaa Sayyidina Muhammad
 
-*Artinya : Ya Alloh, berikanlah selalu Rahmat-Mu kepada Junjunanku Rosululloh Muhammad Sholallohu ‘alaihi wasalam’*
+*Artinya : Ya اَللّهُ, berikanlah selalu Rahmat-Mu kepada Junjunanku Rosululloh Muhammad Sholallohu ‘alaihi wasalam’*
 
 Dan dijawab :
 
@@ -183,7 +183,7 @@ Dan dijawab :
 
 Allohhuma Sholli wa Sallim wa Barik ‘Alaihh
 
-*Artinya : Ya Alloh, limpahkan pula Rahmat-Mu kepada keluarganya*
+*Artinya : Ya اَللّهُ, limpahkan pula Rahmat-Mu kepada keluarganya*
 
 - Pada setiap 4 raka’at membaca do’a:
 
@@ -231,7 +231,7 @@ Membaca do’a 3x
 
 بِرَحْمَتِكَ يَا اَرْحَمَ الرَّا حِمِيْنَ
 
-Allohumma sholli wasallimu ‘ala sayyidinaa muhammadin wadfa’ ‘anna minal balail mubromi innaka ‘ala kulli syaiin qodiirin allohumma inni a’udzubika bikalimatika waddami wAllohmi wal ‘udmi waljuluidi wal ‘uruuqi subhanaka idzaa qodoita amron an taquula lahu kun fayaquunu (Allohu akbar 3 x) birohmatika yaa arhamarroo himiina
+Allohumma sholli wasallimu ‘ala sayyidinaa muhammadin wadfa’ ‘anna minal balail mubromi innaka ‘ala kulli syaiin qodiirin allohumma inni a’udzubika bikalimatika waddami wallahmi wal ‘udmi waljuluidi wal ‘uruuqi subhanaka idzaa qodoita amron an taquula lahu kun fayaquunu (Allohu akbar 3 x) birohmatika yaa arhamarroo himiina
 
 Sholat ini dilakukan jika ikhwan tidak melakukan sholat istianah (dafilbalai) yang setiap bada Isya, Shubuh dan bada Isrok
 
@@ -247,7 +247,7 @@ Niatnya :
 
 Usholii sunnatan laelatul qodar rok’aataeni lillahi ta’aalaa Allohu akbar.
 
-*Artinya : Sengaja aku sholat sunah laelatul qodar dua rakaat karena Alloh ta’ala.*
+*Artinya : Sengaja aku sholat sunah laelatul qodar dua rakaat karena اَللّهُ ta’ala.*
 
 Bacaan nya : Alfatihah 1x, At-Takatsur 1x, Al-Ikhlas 3x bacaan setiap rokaatnya. (Dilaksanakan sesudah sholat tarawih)
 
@@ -257,7 +257,7 @@ Sesudah selesai doanya:
 
 Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 3x
 
-*Artinya : Yaa Alloh sesungguhnya Engkau pemaaf, suka memaafkan maka maafkanlah kami.*
+*Artinya : Yaa اَللّهُ sesungguhnya Engkau pemaaf, suka memaafkan maka maafkanlah kami.*
 
 ۞۞۞
 

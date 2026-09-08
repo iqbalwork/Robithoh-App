@@ -21,6 +21,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -105,7 +109,7 @@ fun QuranReaderScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
-    val listState = rememberLazyListState()
+    val listState = rememberPersistedLazyListState("quran_reader_${state.currentSurah?.number ?: surahNumber}")
     val coroutineScope = rememberCoroutineScope()
 
     // Load the surah this screen was entered with. Switching surahs afterwards (tab strip,
@@ -535,6 +539,21 @@ fun QuranReaderScreen(
                     customBackgroundColor = readerTheme.backgroundColor
                 )
             }
+
+            ScrollToTopButton(
+                visible = listState.shouldShowScrollToTop(),
+                onClick = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(0)
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        bottom = if (state.audioPlaybackState != AudioPlaybackState.IDLE) 120.dp else 24.dp,
+                        end = 16.dp
+                    )
+            )
         }
     }
 

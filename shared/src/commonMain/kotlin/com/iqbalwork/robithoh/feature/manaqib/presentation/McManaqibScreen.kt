@@ -21,8 +21,13 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -55,19 +60,23 @@ fun McManaqibScreen(
     val activeLang = if (selectedLanguage == LiturgyLanguage.ARABIC) LiturgyLanguage.INDONESIAN else selectedLanguage
 
     val isSunda = activeLang == LiturgyLanguage.SUNDANESE
+    val listState = rememberPersistedLazyListState("mc_manaqib_list")
+    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(14.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
-    ) {
-        item {
-            LanguageTabSwitch(
-                selectedLanguage = activeLang,
-                onLanguageSelected = onLanguageSelected,
-                languages = availableLanguages,
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
+        ) {
+            item {
+                LanguageTabSwitch(
+                    selectedLanguage = activeLang,
+                    onLanguageSelected = onLanguageSelected,
+                    languages = availableLanguages,
                 modifier = Modifier.padding(bottom = 4.dp)
             )
         }
@@ -361,6 +370,19 @@ Kata Pangersa Abah : Menyebut secara lisan satu persatu hajat kita, berarti mend
                 }
             }
         }
+
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
+}
 }
 }
