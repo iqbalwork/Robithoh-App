@@ -11,13 +11,50 @@
 		0CD2B55F3041B0B000032564 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD2B55E3041B0B000032564 /* FirebaseAnalyticsCore */; };
 		0CD2B5613041B0B000032564 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD2B5603041B0B000032564 /* FirebaseAppDistribution-Beta */; };
 		0CD2B5633041B0B000032564 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD2B5623041B0B000032564 /* FirebaseCrashlytics */; };
+		0CE97515304EF68B00C5E450 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE97514304EF68B00C5E450 /* WidgetKit.framework */; };
+		0CE97517304EF68B00C5E450 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE97516304EF68B00C5E450 /* SwiftUI.framework */; };
+		0CE97526304EF68C00C5E450 /* RobithohWidgetsExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0CE97512304EF68B00C5E450 /* RobithohWidgetsExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0CE97524304EF68C00C5E450 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913E61AAA2B53F446E37D0AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0CE97511304EF68B00C5E450;
+			remoteInfo = RobithohWidgetsExtensionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0CE97527304EF68C00C5E450 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0CE97526304EF68C00C5E450 /* RobithohWidgetsExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		9581EB43A5A042E37AE7B0DC /* Robithoh App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Robithoh App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE97512304EF68B00C5E450 /* RobithohWidgetsExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RobithohWidgetsExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CE97514304EF68B00C5E450 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		0CE97516304EF68B00C5E450 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		9581EB43A5A042E37AE7B0DC /* Robithoh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Robithoh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0CE9752B304EF68C00C5E450 /* Exceptions for "RobithohWidgetsExtension" folder in "RobithohWidgetsExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0CE97511304EF68B00C5E450 /* RobithohWidgetsExtensionExtension */;
+		};
 		DE02B7281728F10AACFF30D8 /* Exceptions for "iosApp" folder in "iosApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -28,6 +65,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0CE97518304EF68B00C5E450 /* RobithohWidgetsExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0CE9752B304EF68C00C5E450 /* Exceptions for "RobithohWidgetsExtension" folder in "RobithohWidgetsExtensionExtension" target */,
+			);
+			path = RobithohWidgetsExtension;
+			sourceTree = "<group>";
+		};
 		55424586A6F12B8843472509 /* iosApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -44,6 +89,17 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0CE9750F304EF68B00C5E450 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CE97517304EF68B00C5E450 /* SwiftUI.framework in Frameworks */,
+				0CE97515304EF68B00C5E450 /* WidgetKit.framework in Frameworks */,
+				0CD2B55D3041B0B000032564 /* FirebaseAnalytics in Frameworks */,
+				0CD2B55F3041B0B000032564 /* FirebaseAnalyticsCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		480CB24C9A99E870F876AC47 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,11 +114,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CE97513304EF68B00C5E450 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CE97514304EF68B00C5E450 /* WidgetKit.framework */,
+				0CE97516304EF68B00C5E450 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D6E8F77CE35714DADF1048AD = {
 			isa = PBXGroup;
 			children = (
 				C35B8EF3855841160F670A0F /* Configuration */,
 				55424586A6F12B8843472509 /* iosApp */,
+				0CE97518304EF68B00C5E450 /* RobithohWidgetsExtension */,
+				0CE97513304EF68B00C5E450 /* Frameworks */,
 				D7460FB3BB217BACAE17F7AE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,7 +137,8 @@
 		D7460FB3BB217BACAE17F7AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9581EB43A5A042E37AE7B0DC /* Robithoh App.app */,
+				9581EB43A5A042E37AE7B0DC /* Robithoh.app */,
+				0CE97512304EF68B00C5E450 /* RobithohWidgetsExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,6 +146,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0CE97511304EF68B00C5E450 /* RobithohWidgetsExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CE9752A304EF68C00C5E450 /* Build configuration list for PBXNativeTarget "RobithohWidgetsExtensionExtension" */;
+			buildPhases = (
+				0CE9750E304EF68B00C5E450 /* Sources */,
+				0CE9750F304EF68B00C5E450 /* Frameworks */,
+				0CE97510304EF68B00C5E450 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0CE97518304EF68B00C5E450 /* RobithohWidgetsExtension */,
+			);
+			name = RobithohWidgetsExtensionExtension;
+			packageProductDependencies = (
+				0CD2B55C3041B0B000032564 /* FirebaseAnalytics */,
+				0CD2B55E3041B0B000032564 /* FirebaseAnalyticsCore */,
+			);
+			productName = RobithohWidgetsExtensionExtension;
+			productReference = 0CE97512304EF68B00C5E450 /* RobithohWidgetsExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		16CB6BA22F7E1EAB0E81333B /* iosApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51BEB7B16D33F49FC18A6B35 /* Build configuration list for PBXNativeTarget "iosApp" */;
@@ -86,10 +178,12 @@
 				3ABE581C8A969366214F8412 /* Sources */,
 				480CB24C9A99E870F876AC47 /* Frameworks */,
 				C3D78256F8D6D23A6F214338 /* Resources */,
+				0CE97527304EF68C00C5E450 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0CE97525304EF68C00C5E450 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				55424586A6F12B8843472509 /* iosApp */,
@@ -102,7 +196,7 @@
 				0CD2B5623041B0B000032564 /* FirebaseCrashlytics */,
 			);
 			productName = iosApp;
-			productReference = 9581EB43A5A042E37AE7B0DC /* Robithoh App.app */;
+			productReference = 9581EB43A5A042E37AE7B0DC /* Robithoh.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -112,9 +206,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					0CE97511304EF68B00C5E450 = {
+						CreatedOnToolsVersion = 26.6;
+					};
 					16CB6BA22F7E1EAB0E81333B = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -138,11 +235,19 @@
 			projectRoot = "";
 			targets = (
 				16CB6BA22F7E1EAB0E81333B /* iosApp */,
+				0CE97511304EF68B00C5E450 /* RobithohWidgetsExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0CE97510304EF68B00C5E450 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C3D78256F8D6D23A6F214338 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -175,6 +280,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0CE9750E304EF68B00C5E450 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3ABE581C8A969366214F8412 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -184,7 +296,77 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0CE97525304EF68C00C5E450 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0CE97511304EF68B00C5E450 /* RobithohWidgetsExtensionExtension */;
+			targetProxy = 0CE97524304EF68C00C5E450 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0CE97528304EF68C00C5E450 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TFDK53B7N2;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RobithohWidgetsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqbalwork.robithoh.RobithohWidgetsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0CE97529304EF68C00C5E450 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RobithohWidgetsExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqbalwork.robithoh.RobithohWidgetsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		11F8BF98CE06FA8C47388F9C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = C35B8EF3855841160F670A0F /* Configuration */;
@@ -372,6 +554,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0CE9752A304EF68C00C5E450 /* Build configuration list for PBXNativeTarget "RobithohWidgetsExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CE97528304EF68C00C5E450 /* Debug */,
+				0CE97529304EF68C00C5E450 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		51BEB7B16D33F49FC18A6B35 /* Build configuration list for PBXNativeTarget "iosApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

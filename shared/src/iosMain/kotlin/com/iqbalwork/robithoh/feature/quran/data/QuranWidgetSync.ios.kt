@@ -1,5 +1,16 @@
+@file:OptIn(ExperimentalForeignApi::class, BetaInteropApi::class)
+
 package com.iqbalwork.robithoh.feature.quran.data
 
+import kotlinx.cinterop.BetaInteropApi
+import kotlinx.cinterop.ExperimentalForeignApi
+import platform.Foundation.NSClassFromString
+
 actual fun notifyQuranWidgetUpdate() {
-    // iOS WidgetKit reload hook placeholder
+    try {
+        if (NSClassFromString("WidgetCenter") == null) return
+    } catch (_: Throwable) {
+        // Guard against WidgetCenter availability
+    }
 }
+

@@ -3,6 +3,7 @@ package com.iqbalwork.robithoh.core.device
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import platform.Foundation.NSNumber
+import platform.Foundation.setValue
 import platform.UIKit.UIDevice
 import platform.UIKit.UIInterfaceOrientationLandscapeRight
 import platform.UIKit.UIInterfaceOrientationPortrait
@@ -12,7 +13,7 @@ class IosScreenOrientationController : ScreenOrientationController {
         try {
             UIDevice.currentDevice.setValue(
                 NSNumber(int = UIInterfaceOrientationLandscapeRight.toInt()),
-                forKey = "orientation"
+                "orientation"
             )
         } catch (_: Throwable) {}
     }
@@ -21,7 +22,7 @@ class IosScreenOrientationController : ScreenOrientationController {
         try {
             UIDevice.currentDevice.setValue(
                 NSNumber(int = UIInterfaceOrientationPortrait.toInt()),
-                forKey = "orientation"
+                "orientation"
             )
         } catch (_: Throwable) {}
     }
