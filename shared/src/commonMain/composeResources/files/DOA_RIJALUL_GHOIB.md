@@ -60,6 +60,6 @@
 > Dan dukunglah aku dalam menunaikan hajatku  
 > *(Ucapkan niat dan hajatnya...)*  
 > Atas seidzin Nabi Muhammad SAW  
-> Selamatkanlah kami Yaa اللّه di dunia dan di akhirat  
-> Semoga اللّه menambah rahmat-Nya atas Nabi Khidr AS  
+> Selamatkanlah kami Yaa اَللّهُ di dunia dan di akhirat  
+> Semoga اَللّهُ menambah rahmat-Nya atas Nabi Khidr AS  
 > Al-Fatihah.

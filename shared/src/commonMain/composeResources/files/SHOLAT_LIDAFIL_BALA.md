@@ -40,6 +40,6 @@ dilanjutkan dengan membaca do’a 3x :
 
 بِرَحْمَتِكَ يَا اَرْحَمَ الرَّا حِمِيْنَ
 
-Allohumma sholli wasallimu ‘ala sayyidinaa muhammadin wadfa’ ‘anna minal balail mubromi innaka ‘ala kulli syaiin qodiirin allohumma inni a’udzubika bikalimatika waddami wAllohmi wal ‘udmi waljuluidi wal ‘uruuqi subhanaka idzaa qodoita amron an taquula lahu kun fayaquunu (Allohu akbar 3x) birohmatika yaa arhamarroo himiina
+Allohumma sholli wasallimu ‘ala sayyidinaa muhammadin wadfa’ ‘anna minal balail mubromi innaka ‘ala kulli syaiin qodiirin allohumma inni a’udzubika bikalimatika waddami wallahmi wal ‘udmi waljuluidi wal ‘uruuqi subhanaka idzaa qodoita amron an taquula lahu kun fayaquunu (Allohu akbar 3x) birohmatika yaa arhamarroo himiina
 
 *Sholat ini dilakukan jika ikhwan tidak melakukan sholat istianah (dafilbalai) yang setiap ba’da Isya, Shubuh dan ba’da Isroq.*

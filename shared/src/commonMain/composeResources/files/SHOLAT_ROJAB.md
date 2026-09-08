@@ -68,7 +68,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Allohumma laa maani’a limaa a’thoita wa laa mu’thiya limaa mana’ta wa laa yangfa’u dzal dzaddi mingkal jaddu
 
-Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
+Artinya: “Tiada Tuhan selain اَللّهُ , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اَللّهُ mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اَللّهُ.
 
 ---
 
@@ -102,7 +102,7 @@ Dan setelah selesai sholat 12 roka’at (6x salam) kemudian membaca sholawat 70x
 
 Allohumma sholli ‘alaa sayyidinaa Muhammadinin Nabiyyil Ummiyyi wa ‘alaa aalihi wa shohbihi wa sallim
 
-Artinya: ” Ya Alloh curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya. ”
+Artinya: ” Ya اَللّهُ curahkanlah Rohmat dan Kesejahteraan kepada pemimpin kami Muhammad dan juga kepada keluarganya dan sahabatnya. ”
 
 Setelah sholat kemudian bersujud sambil membaca Tasbih 70x dengan bacaan Tasbih sebagai berikut:
 
@@ -110,7 +110,7 @@ Setelah sholat kemudian bersujud sambil membaca Tasbih 70x dengan bacaan Tasbih 
 
 Subbuhun quudusun robbul malaaikati war ruuhi
 
-Artinya: ” Maha Suci اللّه Tuhan para malaikat dan ruh. ”
+Artinya: ” Maha Suci اَللّهُ Tuhan para malaikat dan ruh. ”
 
 Kemudian bangun dari sujud, duduk seperti semula dengan membaca Istigfar 70x, dengan bacaan sebagai berikut:
 
@@ -120,13 +120,13 @@ Robbighfir warham wa tajawaz ‘amma ta’lamu fa innaka angtal ‘aziizul a’z
 
 Artinya: Wahai Tuhan ku ampunilah , sayangilah , perkenankanlah, kami dari yang Engkau ketahui maka sesungguhnya Engkau Maha Perkasa lagi Maha Agung.
 
-Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada Alloh dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
+Kemudian sujud kembali dan membaca Tasbih 70x seperti di atas ketika sujud mohonkan ampunan kepada اَللّهُ dan mohon segala apa yang dikehendaki untuk kebaikan dunia dan akhirat.
 
 سُبُّوْحٌ قُدُّوْسٌ رَبُّ الْمَلآئِكَةِ وَالرُّوْحِ
 
 Subbuhun quudusun robbul malaaikati war ruuhi
 
-Artinya: ” Maha Suci اللّه Tuhan para malaikat dan ruh. ”
+Artinya: ” Maha Suci اَللّهُ Tuhan para malaikat dan ruh. ”
 
 ---
 
@@ -156,7 +156,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illallohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyii wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Illahan waahidan ahadan shomadan fardan witron lam yattakhidz shoohibatan wa laa waladan.
 
-Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
+Artinya: “Tiada Tuhan selain اَللّهُ , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اَللّهُ mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اَللّهُ.
 
 ---
 
@@ -186,7 +186,7 @@ Setiap dua roka’at setelah salam membaca doa :
 
 Laa ilaaha illalloohu wahdahu laa syariika lah, lahul mulku wa lahul hamdu yuhyi wa yumiitu wa huwa hayyun laa yamuutu biyadihil khoiru wa huwa ‘alaa kulli syai-in qodiir. Wa sholallohu ‘alaa sayyidinaa Muhammadin wa’alaa aalihittoohiriina wa laa haula wa laa quwwata illa billahil ‘aliyyil ‘adzhim.
 
-Artinya: “Tiada Tuhan selain اللّه , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اللّه mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اللّه.
+Artinya: “Tiada Tuhan selain اَللّهُ , tiada sekutu bagi-Nya , hanya milik-Nya lah kekuasaan-Nya , hanya milik-Nya lah segala pujian, Dia menghidupkan dan mematikan dan Dia Maha Kuasa atas segala sesuatu , Semoga اَللّهُ mencurahkan Rahmatnya kepada Nabi Muhammad Sholallohu ‘alaihi wa sallam dan juga kepada keluarganya yang suci, tiada daya dan upaya kecuali milik اَللّهُ.
 
 ---
 
@@ -198,7 +198,7 @@ Wirid yang dibaca setiap setelah Maghrib dibulan rojab.
 
 Subhanallohil hayyil qoyyumi 100x
 
-Artinya : Maha Suci اللّه Yang Maha Hidup lagi Maha Memelihara.
+Artinya : Maha Suci اَللّهُ Yang Maha Hidup lagi Maha Memelihara.
 
  - Dari tanggal 11 sampai 20 membaca :
 
@@ -206,7 +206,7 @@ Artinya : Maha Suci اللّه Yang Maha Hidup lagi Maha Memelihara.
 
 Subhanallohil ahadish shomad 100x
 
-Artinya : Maha Suci اللّه Yang Tunggal dan tempat Meminta.
+Artinya : Maha Suci اَللّهُ Yang Tunggal dan tempat Meminta.
 
  - Dari tanggal 21 sampai tanggal 30 membaca :
 
@@ -214,7 +214,7 @@ Artinya : Maha Suci اللّه Yang Tunggal dan tempat Meminta.
 
 Subhanallohir rouuf 100x
 
-Artinya : Maha Suci اللّه Yang Maha Pengasih (Penyantun).
+Artinya : Maha Suci اَللّهُ Yang Maha Pengasih (Penyantun).
 
 Do’a Bulan Rojab :
 
@@ -222,6 +222,6 @@ Do’a Bulan Rojab :
 
 Allohumma thohhir lisaanii, minal kidzbi, wa qolbii minan nifaaqi, wa ‘amalii minar riyaa’i, wa bashorii minal khiyaanati, Fa innaka ta’lamu khooinatal a’yun wa maa tukhfish shuduur.
 
-Artinya : Ya Alloh , sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikan lah penglihatanku dari khiyanah sesungguhnmya Engkau mengetahui yang mengelabui mata dan yang tersimpan didalam hati.
+Artinya : Ya اَللّهُ , sucikan lisanku dari dusta, sucikan hatiku dari kemunafikan, sucikan amalku dari riya dan sucikan lah penglihatanku dari khiyanah sesungguhnmya Engkau mengetahui yang mengelabui mata dan yang tersimpan didalam hati.
 
 ۞۞۞

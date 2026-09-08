@@ -16,7 +16,7 @@ Birohmatikal waasi’ah, wa ‘aafinaa wa’fu ‘annaa, wa ‘alaa thoo’atika
 
 بِنُوْرِكَ يَا اَللهُ
 
-binuurika yaa اللّه
+binuurika yaa اَللّهُ
 
 يَآ أَرْحَمَ الرَّاحِمِيْنَ إرْحَمْنَا ٣
 

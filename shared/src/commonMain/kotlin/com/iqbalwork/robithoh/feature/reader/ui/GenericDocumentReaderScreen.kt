@@ -20,6 +20,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -105,10 +108,10 @@ fun GenericDocumentReaderScreen(
     }
 
     val coroutineScope = rememberCoroutineScope()
-    val listState = rememberLazyListState()
+    var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
+    val listState = rememberPersistedLazyListState("doc_reader_$currentDocId")
 
     val initialCachedDoc = remember(documentId) { repository.getCachedDocument(documentId) }
-    var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
     var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
     val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
@@ -442,6 +445,18 @@ fun GenericDocumentReaderScreen(
                     }
                 }
             }
+
+            ScrollToTopButton(
+                visible = listState.shouldShowScrollToTop(),
+                onClick = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(0)
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(bottom = if (isDzikirDoc) 90.dp else 24.dp, end = 16.dp)
+            )
 
             if (isDzikirDoc) {
                 com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
@@ -1058,6 +1073,8 @@ private fun SingleContinuousDocumentCard(
                                     cleanText.startsWith("Dengan menyebut", ignoreCase = true) ||
                                     cleanText.startsWith("Yaa اللّه", ignoreCase = true) ||
                                     cleanText.startsWith("Ya اللّه", ignoreCase = true) ||
+                                    cleanText.startsWith("Yaa اَللّهُ", ignoreCase = true) ||
+                                    cleanText.startsWith("Ya اَللّهُ", ignoreCase = true) ||
                                     cleanText.startsWith("Yaa Alloh", ignoreCase = true) ||
                                     cleanText.startsWith("Ya Alloh", ignoreCase = true) ||
                                     cleanText.startsWith("Tuhanku", ignoreCase = true) ||

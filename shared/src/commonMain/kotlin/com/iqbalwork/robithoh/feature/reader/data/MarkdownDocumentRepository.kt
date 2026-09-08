@@ -671,6 +671,8 @@ class MarkdownDocumentRepository(
                                            cleanForDetection.startsWith("Aku memohon", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Yaa اللّه", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Ya اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa اَللّهُ", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya اَللّهُ", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Yaa Alloh", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Ya Alloh", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Tuhanku", ignoreCase = true) ||

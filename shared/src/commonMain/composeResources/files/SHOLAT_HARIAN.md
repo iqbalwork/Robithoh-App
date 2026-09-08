@@ -40,7 +40,7 @@ Niat Sholat  :
 
 Ushollii sunnata syukril wudluu’i rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Taala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ Taala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -57,7 +57,7 @@ Niat Sholat :
 
 Ushollii sunnata tahiyyatil masjidi rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -73,7 +73,7 @@ Niat Sholat :
 
 Ushollii sunnatat taubati rok’ataini lillahi ta’aala
 
-Artinya: Saya niat sholat sunnah Taubat dua roka’at karena Alloh ta’ala.*
+Artinya: Saya niat sholat sunnah Taubat dua roka’at karena اَللّهُ ta’ala.*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : An-Nisaa’ ayat 64
 
@@ -100,7 +100,7 @@ Niat Sholat  :
 
 Ushollii sunnatal haajati rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Hajat dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Hajat dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Al-Ikhlash (11x)
 
@@ -168,7 +168,7 @@ Setelah selesai                        :
 
 Yaa ubaidillah agitsni bi idznillaah. Wayaa syaikha Tsaqolain aghitsni’ wamdudnii fii qodloo’i hawaa’iji*…. (sebutkan hajatnya)
 
-**Artinya :** Wahai ‘UbaidAlloh, tolonglah aku dengan Izin Alloh, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
+**Artinya :** Wahai ‘UbaidAlloh, tolonglah aku dengan Izin اَللّهُ, Wahai Syaikhos Tsaqolain, tolonglah aku, bantulah aku dalam tercapainya hajatku ini (sebutkan hajatnya).
 
 Setelah ziarah kepada Syaikh Abdul Qodir Al-Zaelani, q.s. lalu membaca Do’a sebagai berikut :
 
@@ -178,7 +178,7 @@ Alloohumma lakal kullu, wabikal kullu, wa minkal kullu, wa ilaikal  kullu, wa A
 
 Bikaroomati sayyidisy Syaikh Muhammad Abdul Gaos Saefullohil Masluul. qoddasalloohu sirroh. Alfaatihah.
 
-*“Ya Alloh, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”*
+*“Ya اَللّهُ, untuk-Mu segala hal, dengan-Mu segala hal, dari-Mu segala hal, kepada-Mu segala hal, Engkaulah segala hal dan segala-segalanya, dengan Rahmat-Mu Wahai Zat Yang Maha Mengasihi orang-orang yang mengasihi”*
 
 ---
 
@@ -192,7 +192,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahajjudi rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahajjud dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahajjud dua roka’at karena اَللّهُ Ta’ala.*
 
 Bacaan Sholat                                     :
 
@@ -224,7 +224,7 @@ Alloohumma bihaqqi shalatit Tahajjudi, wa bihaqqi Bismillahirrahmanirrahim, wa b
 
 Washollalloohu ‘alaa sayyidinaa Muhammadin wa ‘alaa aalihii wa ash haabihii wa ‘alaa saairil anbiyaa i wal mursaliin, wa ‘alaa aalihim wa ash haabihim ajma’in. birohmatika yaa arharroohimiin.*”
 
-*Ya Alloh dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad SAW, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya Alloh jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah Alloh tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.*
+*Ya اَللّهُ dengan Hak Sholat Tahajjud, dengan Hak Bismillahirrahmanirrohim, dan dengan Hak Tuan dan Pangeran kami Muhammad SAW, jadikanlah aku, istriku (suamiku), dan anak-anakku termasuk dalam golongan Hamba-Hamba-Mu yang sholeh. Ya اَللّهُ jadikanlah keimananku selalu menyelimuti hatiku, berikanlah keyakinan yang terus menerus, hingga tidak ada yang dapat menimpaku kecuali sesuatu yang telah اَللّهُ tetapkan kepadaku, dengan Rahmat-Mu wahai Zat yang Maha Mengasihi orang-orang yang mengasihi.*
 
 ---
 
@@ -236,7 +236,7 @@ Niat Sholat :
 
 Ushollii sunnatat tasbiihi rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Tasbih dua roka’at karena Alloh Ta’ala.*
+Artinya : Saya niat sholat sunnah Tasbih dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca surat : Al-Ikhlash :
  - Roka’at 1 = surat Al-Ikhlas sebanyak 4x
@@ -268,7 +268,7 @@ Bacaan Lafadz Tasbih             :
 
 Subhaanallohi wal hamdu lillaahi wa  laa ilaaha illalloohi walloohu Akbar
 
-Artinya : Maha Suci Alloh, Segala Puji bagi Alloh, Tidak ada tuhan kecuali Alloh, Alloh Maha Besar.*
+Artinya : Maha Suci اَللّهُ, Segala Puji bagi اَللّهُ, Tidak ada tuhan kecuali اَللّهُ, اَللّهُ Maha Besar.*
 
 ---
 
@@ -282,7 +282,7 @@ Niat Sholat                              :
 
 Ushollii sunnatal witri tsalaasa roka’aatin lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Witir tiga roka’at karena Alloh Ta’ala.*                                :
+Artinya : Saya niat sholat sunnah Witir tiga roka’at karena اَللّهُ Ta’ala.*                                :
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : Al-A’laa
 
@@ -368,9 +368,9 @@ Wa Naj-jinaa Minal Qoumizh Zhoolimiin,
 
 Washollalloohu ‘alaa sayyidinaa Muhammadin wa ‘alaa aalihii wa ash haabihii wa ‘alaa saairil anbiyaa i wal mursaliin, wa ‘alaa aalihim wa ashaabihim ajma’in.
 
-*Ya Alloh berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).*
+*Ya اَللّهُ berilah kami petunjuk sebagaimana orang yang telah Engkau beri petunjuk. Berilah kami keselamatan, sebagaimana orang yang telah Engkau beri keselamatan. Jadilah wali bagi kami, sebagaimana Engkau telah menjadi wali bagi hamba-Mu yang Engkau kehendaki. Berkahilah untuk kami terhadap apa yang telah Engkau berikan kepada kami.  Dengan Rahmat-Mu, lindungi dan singkirkanlah kami dari keburukan apa yang telah Engkau takdirkan. Sesungguhnya Engkau yang menetapkan dan tidak ada yang menjatuhkan ketetapan untuk-Mu. Sesungguhnya tidak akan terhina orang yang Engkau jadikan wali-Mu. Tidak akan mulia orang yang menjadi musuh-Mu. Maha Mulia dan Maha Tinggi Engkau wahai Tuhan kami. Untuk-Mu lah segala pujian atas semua yang telah Engkau tetapkan. Kami mohon ampunan-Mu, kami bertaubat kepada-Mu dengan taubat yang sungguh-sungguh (Taubatan Nashuha).*
 
-*Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga Alloh curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.*
+*Kami berlindung dengan Sang Pemilik Kemuliaan dan Keperkasaan. Kami berjaga dengan Sang Pemilik Kerajaan dan Alam Malakut. Kami berpasrah kepada Zat Yang Maha Hidup, yang tidak akan pernah mati. Selamatkanlah kami dari kaum yang zholim. Dan semoga اَللّهُ curahkan Rahmat serta keselamatan atas Tuan kami Muhammad, sang Nabi yang Ummi, juga atas keluarga dan sahabatnya.*
 
 Setelah selesai amaliyah malam lanjut dzikir harian, kemudian berdzikir hingga menjelang subuh perbanyak membaca do’a dibawah ini:
 
@@ -407,7 +407,7 @@ Niat Sholat  :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -424,7 +424,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -442,7 +442,7 @@ Niat Sholat                           :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -462,7 +462,7 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 ---
 
@@ -475,7 +475,7 @@ Niat Sholat :
 اُصَلِّي سُنَّةَ الصُّبْحِ رَكْعَتَيْنِ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatas subhi rok’ataini lillaahi ta’alaa
-Artinya : Saya niat sholat sunnah Subuh dua roka’at karena Alloh Ta’ala.*
+Artinya : Saya niat sholat sunnah Subuh dua roka’at karena اَللّهُ Ta’ala.*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Qodar
 
@@ -503,7 +503,7 @@ Niat Sholat :
 
 Ushollii sunnata lidaf’il balaa’i rok’ataini lillaahi ta’alaa
 
-Artinya : Saya niat sholat sunnah Lidaf’il Bala’ dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Lidaf’il Bala’ dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Insyiroh
 
@@ -527,7 +527,7 @@ Niat Sholat :
 
 Ushollii fardhus shubhi rok’ataini adaa’an lillaahi ta’aala
 
-Artinya : Saya niat sholat fardhu subuh dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat fardhu subuh dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ad-Dhuha
 
@@ -853,7 +853,7 @@ Wahai orang yang sampai kepada muridnya ketika permohonan bantuan disampaikan, m
 
 “ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
 **Artinya:**
-Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+Segala puji bagi اَللّهُ yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
 
 ۞۞۞
 
@@ -882,7 +882,7 @@ Niat Sholat :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Taala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ Taala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -899,7 +899,7 @@ Niat Sholat :
 اُصَلِّي سُنَّةَ الضُّحَى اَرْبَعَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatad dhuha arba’a rok’ataini lillaahi ta’aala
-Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena اَللّهُ Ta’ala*
 
 Setelah Al-Fatihah membaca surat berikut :
 
@@ -936,7 +936,7 @@ Niat Sholat :
 اُصَلِّي سُنَّةَ الضُّحَى اَرْبَعَ رَكَعَاتٍ لِلّٰهِ تَعَالٰى
 
 Ushollii sunnatad dhuha arba’a rok’ataini lillaahi ta’aala
-Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Dhuha empat roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at kelima setelah Al-Fatihah membaca surat : Ad-Dhuha
 
@@ -976,7 +976,7 @@ Niat Sholat :
 
 Ushollii sunnatan likifaarotil bauli rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Kifarotil Baul dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Kifarotil Baul dua roka’at karena اَللّهُ Ta’ala*
 
  - Pada setiap roka’at setelah Al-Fatihah membaca : Al -Kautsar (7x)
 
@@ -1001,7 +1001,7 @@ Asy Syura : 19
 
 “Alloohu lathiifum bi ’ibaadihi yarzuku may yasyaa’u wa Huwal Qowiyyul ‘Aziizu”.
 
-**Artinya :** (19.) Alloh Mahalembut terhadap hamba-hamba-Nya; Dia memberi rezeki kepada siapa yang Dia kehendaki dan Dia Mahakuat, Mahaperkasa.
+**Artinya :** (19.) اَللّهُ Mahalembut terhadap hamba-hamba-Nya; Dia memberi rezeki kepada siapa yang Dia kehendaki dan Dia Mahakuat, Mahaperkasa.
 
 ## WAKTU DZUHUR
 
@@ -1030,7 +1030,7 @@ Niat Sholat  :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’alaa
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1047,7 +1047,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1065,7 +1065,7 @@ Niat Sholat                           :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -1085,7 +1085,7 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 ---
 
@@ -1097,7 +1097,7 @@ Niat Sholat :
 
 Ushollii sunnatad dzuhri rok’ataini qobliyatan lillaahi ta’aala
 
-Artinya:Saya niat sholat sunnah qobliyah dhuhur dua roka’at karena Alloh ta’ala*
+Artinya:Saya niat sholat sunnah qobliyah dhuhur dua roka’at karena اَللّهُ ta’ala*
 
 ---
 
@@ -1109,7 +1109,7 @@ Niat Sholat :
 
 Ushollii fardho dzuhri arba’a raka’aatin adaa’an lillaahi ta’aala
 
-Artinya :Saya niat sholat fardhu dhuhur empat roka’at karena Alloh ta’ala*
+Artinya :Saya niat sholat fardhu dhuhur empat roka’at karena اَللّهُ ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Kafirun
 
@@ -1136,7 +1136,7 @@ Niat Sholat :
 
 Usholli sunnatad dzuhri rok’ataini ba’diyatan lillahi ta’aala
 
-Artinya :Saya niat sholat sunnah ba’da Dzuhur dua roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat sunnah ba’da Dzuhur dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1166,7 +1166,7 @@ Niat Sholat  :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi Ta’alaa
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1183,7 +1183,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1201,7 +1201,7 @@ Niat Sholat :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -1221,11 +1221,11 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 “ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
 **Artinya:**
-Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+Segala puji bagi اَللّهُ yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
 
 ---
 
@@ -1239,7 +1239,7 @@ Niat Sholat :
 
 Ushollii sunnatal ashri rok’ataini lillaahi ta’aala
 
-Artinya :Saya niat sholat sunnah Ashar dua roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat sunnah Ashar dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1253,7 +1253,7 @@ Niat Sholat :
 
 Usholli fardhol ashri arba’aroka’atin lillahi ta’aala
 
-Artinya :Saya niat sholat fardhu Ashar empat roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat fardhu Ashar empat roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Ashr
 
@@ -1312,7 +1312,7 @@ Niat Sholat  :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi Ta’alaa
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh ta’ala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1329,7 +1329,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1347,7 +1347,7 @@ Niat Sholat :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -1367,11 +1367,11 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 “ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
 **Artinya:**
-Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+Segala puji bagi اَللّهُ yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
 
 ---
 
@@ -1383,7 +1383,7 @@ Niat Sholat :
 
 Ushollii Sunnata Qobla magribi Rok’ataini Lillahi Ta’ala
 
-Artinya : Saya niat sholat sunnah qobla magrib Lillahi Ta’ala dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah qobla magrib Lillahi Ta’ala dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1397,7 +1397,7 @@ Niat Sholat :
 
 Usholli fardlo magribi tsalasa rokaatin Lillahi Ta’ala
 
-Artinya : Saya niat sholat fardu magrib tiga rokaat karena Alloh Ta’ala*
+Artinya : Saya niat sholat fardu magrib tiga rokaat karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Al-Kafirun
 
@@ -1424,7 +1424,7 @@ Niat Sholat :
 
 Usholli Sunnatal maghribi rok’ataini ba’diyatan lillahi ta’aala
 
-Artinya : Saya niat sholat sunnah ba’da magrib dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah ba’da magrib dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1511,7 +1511,7 @@ Setelah salam dilanjutkan membaca Istighfar (15x), dan Do’a untuk Orang Tua (1
 
 Bismillaahirrohmaanirrohiim*Alloohummaghfirlii waliwaalidayya warhamhumaa kamaa robayaanii shoghiiroo (15x)
 
-**Artinya :***Ya Alloh ampunilah dosaku dan dosa kedua orang tuaku serta kasihilah mereka berdua seperti mereka mengasihiku sewaktu kecil*
+**Artinya :***Ya اَللّهُ ampunilah dosaku dan dosa kedua orang tuaku serta kasihilah mereka berdua seperti mereka mengasihiku sewaktu kecil*
 
 **Kemudian dilanjutkan dengan sholawat berikut 15x :**
 
@@ -1519,9 +1519,9 @@ Bismillaahirrohmaanirrohiim*Alloohummaghfirlii waliwaalidayya warhamhumaa kamaa 
 
 Alloohumma Sholli ‘alan-Nabiyyil Haa-syimiyyi Muhammadiw wa ’alaa Aa-lihii wa Sallim Taslii-maa (15x)
 
-**Artinya :***Ya Alloh, berikanlah rahmat serta salam kepada keturunan bangsawan Hasyim, yakni Muhammad beserta keluarganya, semoga tetap selamat dan sejahtera*
+**Artinya :***Ya اَللّهُ, berikanlah rahmat serta salam kepada keturunan bangsawan Hasyim, yakni Muhammad beserta keluarganya, semoga tetap selamat dan sejahtera*
 
-Kemudian Ucapkan do’a *“Yaa Alloh jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta sholawat hambamu ini disampaikan kepada orang tua Hamba”*
+Kemudian Ucapkan do’a *“Yaa اَللّهُ jadikanlah Sholat Birrul Waalidain ku ini , Istiqfar , do’a serta sholawat hambamu ini disampaikan kepada orang tua Hamba”*
 
 ---
 
@@ -1563,7 +1563,7 @@ Niat Sholat                           :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -1583,11 +1583,11 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 “ Alhamdulillahilladziii faddholanaa ‘alaaa katsiirimm min ibaadihil mu’miniiin”
 **Artinya:**
-Segala puji bagi alloh yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
+Segala puji bagi اَللّهُ yang melebihkan kami dari banyak hamba-hamba-Nya yang beriman. (QS. An-Naml 27: Ayat 15)
 
 ---
 
@@ -1616,7 +1616,7 @@ Niat Sholat :
 
 Ushollii*s*unnata*l isya’i r*ok’ataini qobliyatan l*illahi*t*a’*a*ala
 
-Artinya :Saya niat sholat sunnah qobliyah isya dua roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat sunnah qobliyah isya dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek.
 
@@ -1630,7 +1630,7 @@ Niat Sholat :
 
 Usholli fardhol isya’i arba’aroka’atin adaa’an lillahi ta’aala
 
-Artinya :Saya niat sholat fardhu isya empat roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat fardhu isya empat roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : Al-Fiil
 
@@ -1655,7 +1655,7 @@ Niat Sholat :
 
 Usholli sunnatal isya’i*r*ok’ataini ba’diyatan lillahi ta’aala
 
-Artinya :Saya niat sholat sunnah ba’da isya dua roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat sunnah ba’da isya dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1669,7 +1669,7 @@ Niat Sholat :
 
 Ushollii sunnata lidaf’il balaa’i rok’ataini lillaahi ta‘a*a*la
 
-**Artinya :***Saya niat sholat sunnah Daf’il Bala’ dua roka’at karena Alloh Ta’ala*
+**Artinya :***Saya niat sholat sunnah Daf’il Bala’ dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca : Ayat Kursi, Al-Ikhlas, Al-Falaq & An-Naas.
 
@@ -1720,7 +1720,7 @@ Niat Sholat :
 
 Ushollii sunnatan syukri lailatul qodar rok’ataini lillaahi ta’aala
 
-Artinya :Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena Alloh Ta’ala*
+Artinya :Saya niat sholat sunnah syukur lailatul qodar dua roka’at karena اَللّهُ Ta’ala*
 
  - Setelah Al-Fatihah membaca :At-Takatsur (1x) & Al-Ikhlash (3x)
 
@@ -1744,7 +1744,7 @@ Dilanjutkan dengan Do’a :
 
 Allohumma innaka afuwwun tuhibbul afwa fa’fuannaa 26x
 
-Artinya : Yaa Alloh , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.*
+Artinya : Yaa اَللّهُ , sesungguhnya Engkau Dzat Maha Pengampun lagi Maha Mulia dan suka Mengampuni, ampunilah kami wahai Dzat Yang Maha Mulia.*
 
 ## SEBELUM TIDUR
 
@@ -1770,7 +1770,7 @@ Niat Sholat  :
 
 Ushollii sunnatan lisyukril wudluu’i rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Syukrul Wudhu dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1787,7 +1787,7 @@ Niat Sholat :
 
 Ushollii sunnatat tahiyyatil masjid rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Tahiyyatul Masjid dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Surat Pendek
 
@@ -1805,7 +1805,7 @@ Niat Sholat                           :
 
 Ushollii sunnata syukrin ni’imati rok’ataini lillaahi ta’aala
 
-Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Syukrun Ni’mat dua roka’at karena اَللّهُ Ta’ala*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat :Ibrahim (Ayat 34)
 
@@ -1825,7 +1825,7 @@ Setelah Salam langsung sujud sambil berdo’a : :
 
 Allohumma laka sajadtu wa bika aamantu, wa laka aslamtu, sajada wajhiya lilladhi khalqahu, wa sawwarahu, wa shaqqa sam’ahu wa basarahu, tabaarak-Allohu ahsanul khaaliqeen.
 
-Artinya:“Ya, Alloh untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia Alloh pencipta yang paling baik”.*
+Artinya:“Ya, اَللّهُ untuk-mu aku bersujud, kepada-Mu aku beriman dan aku serahkan diriku kepada-Mu, telah bersujud wajahku kepada yang telah menciptakannya, membentuk rupanya, memberikan pendengaran dan penglihatanya, maha mulia اَللّهُ pencipta yang paling baik”.*
 
 ---
 
@@ -1839,7 +1839,7 @@ Niat Sholat :
 
 Ushollii sunnatat taubati rok’ataini lillahi ta’aala
 
-Artinya: Saya niat sholat sunnah Taubat dua roka’at karena Alloh ta’ala.*
+Artinya: Saya niat sholat sunnah Taubat dua roka’at karena اَللّهُ ta’ala.*
 
  - Roka’at pertama setelah Al-Fatihah membaca surat : An-Nisaa’ ayat 64
 
@@ -1867,7 +1867,7 @@ Niat :
 
 Ushollii sunnatal istikhoroti rok’ataini  lillaahi ta’alaa
 
-Artinya : Saya niat sholat sunnah Istikharoh dua roka’at karena Alloh Ta’ala*
+Artinya : Saya niat sholat sunnah Istikharoh dua roka’at karena اَللّهُ Ta’ala*
 
  - Setiap roka’at setelah Al-Fatihah membaca surat : Ayat kursi (1x) & Al-Ikhlas (7x).
 
@@ -1899,7 +1899,7 @@ Niat Sholat  :
 
 Ushollii sunnatal haajati rok’ataini lillaahi ta’aala
 
-Artinya: Saya niat sholat sunnah Hajat dua roka’at karena Alloh Ta’ala.*
+Artinya: Saya niat sholat sunnah Hajat dua roka’at karena اَللّهُ Ta’ala.*
 
  - Setelah Al-Fatihah membaca : Al-Ikhlash (11x)
 
