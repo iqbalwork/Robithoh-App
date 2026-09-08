@@ -18,7 +18,14 @@ import robithohapp.shared.generated.resources.Res
 
 sealed interface DocumentSyncState {
     data object Idle : DocumentSyncState
-    data object Syncing : DocumentSyncState
+    data class Checking(val message: String = "Memeriksa pembaruan naskah...") : DocumentSyncState
+    data class Syncing(
+        val current: Int = 0,
+        val total: Int = 0,
+        val currentFileName: String = ""
+    ) : DocumentSyncState {
+        val progress: Float get() = if (total > 0) current.toFloat() / total.toFloat() else 0f
+    }
     data class Success(val updatedCount: Int) : DocumentSyncState
     data class Error(val message: String) : DocumentSyncState
 }
@@ -33,17 +40,17 @@ class DocumentSyncManager(
     val syncState: StateFlow<DocumentSyncState> = _syncState.asStateFlow()
 
     companion object {
-        const val PRIMARY_MANIFEST_URL = "https://cdn.jsdelivr.net/gh/iqbalwork/Robithoh-Docs@main/manifest.json"
-        const val FALLBACK_MANIFEST_URL = "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/manifest.json"
-        const val PAGES_MANIFEST_URL = "https://iqbalwork.github.io/Robithoh-Docs/manifest.json"
+        const val PRIMARY_MANIFEST_URL = "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/manifest.json"
+        const val FALLBACK_MANIFEST_URL = "https://iqbalwork.github.io/Robithoh-Docs/manifest.json"
+        const val CDN_MANIFEST_URL = "https://cdn.jsdelivr.net/gh/iqbalwork/Robithoh-Docs@main/manifest.json"
     }
 
     @OptIn(ExperimentalResourceApi::class, ExperimentalTime::class)
     suspend fun syncDocuments(force: Boolean = false): Result<Int> = withContext(Dispatchers.Default) {
-        if (_syncState.value is DocumentSyncState.Syncing) {
+        if (_syncState.value is DocumentSyncState.Syncing || _syncState.value is DocumentSyncState.Checking) {
             return@withContext Result.success(0)
         }
-        _syncState.value = DocumentSyncState.Syncing
+        _syncState.value = DocumentSyncState.Checking()
 
         try {
             // 1. Pastikan baseline hash tersimpan di database jika database masih kosong
@@ -59,30 +66,41 @@ class DocumentSyncManager(
                 .executeAsList()
                 .associate { it.file_name to it.sha256 }
 
+            val docsToUpdate = remoteManifest.documents.filter { remoteDoc ->
+                val currentHash = cachedHashes[remoteDoc.fileName]
+                force || currentHash == null || currentHash != remoteDoc.sha256
+            }
+
+            if (docsToUpdate.isEmpty()) {
+                _syncState.value = DocumentSyncState.Success(0)
+                return@withContext Result.success(0)
+            }
+
             var updatedCount = 0
             val now = Clock.System.now().toEpochMilliseconds()
 
-            for (remoteDoc in remoteManifest.documents) {
-                val currentHash = cachedHashes[remoteDoc.fileName]
-                val needsUpdate = force || currentHash == null || currentHash != remoteDoc.sha256
+            for ((index, remoteDoc) in docsToUpdate.withIndex()) {
+                _syncState.value = DocumentSyncState.Syncing(
+                    current = index + 1,
+                    total = docsToUpdate.size,
+                    currentFileName = remoteDoc.fileName
+                )
 
-                if (needsUpdate) {
-                    val content = downloadDocumentContent(remoteDoc)
-                    if (content != null) {
-                        val docId = repository.allDocuments
-                            .firstOrNull { it.fileName.equals(remoteDoc.fileName, ignoreCase = true) }
-                            ?.id ?: remoteDoc.fileName.removeSuffix(".md").lowercase()
+                val content = downloadDocumentContent(remoteDoc)
+                if (content != null) {
+                    val docId = repository.allDocuments
+                        .firstOrNull { it.fileName.equals(remoteDoc.fileName, ignoreCase = true) }
+                        ?.id ?: remoteDoc.fileName.removeSuffix(".md").lowercase()
 
-                        database.robithohDatabaseQueries.insertOrUpdateCachedDocument(
-                            id = docId,
-                            file_name = remoteDoc.fileName,
-                            sha256 = remoteDoc.sha256,
-                            content = content,
-                            updated_at = now
-                        )
-                        repository.invalidateCache(remoteDoc.fileName)
-                        updatedCount++
-                    }
+                    database.robithohDatabaseQueries.insertOrUpdateCachedDocument(
+                        id = docId,
+                        file_name = remoteDoc.fileName,
+                        sha256 = remoteDoc.sha256,
+                        content = content,
+                        updated_at = now
+                    )
+                    repository.invalidateCache(remoteDoc.fileName)
+                    updatedCount++
                 }
             }
 
@@ -125,12 +143,15 @@ class DocumentSyncManager(
     }
 
     private suspend fun fetchRemoteManifest(): DocumentManifest? {
-        val urls = listOf(PRIMARY_MANIFEST_URL, FALLBACK_MANIFEST_URL, PAGES_MANIFEST_URL)
+        val urls = listOf(PRIMARY_MANIFEST_URL, FALLBACK_MANIFEST_URL, CDN_MANIFEST_URL)
         for (url in urls) {
             try {
-                val responseText = httpClient.get(url).bodyAsText()
-                if (responseText.isNotBlank()) {
-                    return json.decodeFromString<DocumentManifest>(responseText)
+                val response = httpClient.get(url)
+                if (response.status.value in 200..299) {
+                    val responseText = response.bodyAsText()
+                    if (responseText.isNotBlank()) {
+                        return json.decodeFromString<DocumentManifest>(responseText)
+                    }
                 }
             } catch (_: Exception) {
                 // Coba URL cadangan
@@ -140,13 +161,16 @@ class DocumentSyncManager(
     }
 
     private suspend fun downloadDocumentContent(doc: ManifestDocumentItem): String? {
-        val urls = listOfNotNull(doc.url, doc.rawUrl, doc.pagesUrl)
+        val urls = listOfNotNull(doc.rawUrl, doc.pagesUrl, doc.url)
         for (url in urls) {
             if (url.isBlank()) continue
             try {
-                val text = httpClient.get(url).bodyAsText()
-                if (text.isNotBlank()) {
-                    return text
+                val response = httpClient.get(url)
+                if (response.status.value in 200..299) {
+                    val text = response.bodyAsText()
+                    if (text.isNotBlank() && !text.contains("Package size exceeded")) {
+                        return text
+                    }
                 }
             } catch (_: Exception) {
                 // Coba URL cadangan

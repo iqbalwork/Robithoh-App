@@ -1,5 +1,6 @@
 package com.iqbalwork.robithoh
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -11,9 +12,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavKey
@@ -60,6 +63,7 @@ fun App(
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
             mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
+        val coroutineScope = rememberCoroutineScope()
 
         val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
@@ -235,6 +239,7 @@ fun App(
                     documentId = key.documentId,
                     tasbihViewModel = tasbihViewModel,
                     repository = documentRepository,
+                    syncManager = documentSyncManager,
                     onNavigateToTasbih = { count, target, title ->
                         backstack.add(
                             ScreenKey.Tasbih(
@@ -355,15 +360,26 @@ fun App(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ) {
-                NavDisplay(
-                    backStack = backstack,
-                    onBack = onBackAction,
-                    entryDecorators = listOf(
-                        rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
-                        rememberViewModelStoreNavEntryDecorator<NavKey>()
-                    ),
-                    entryProvider = entries
-                )
+                Box(modifier = Modifier.fillMaxSize()) {
+                    NavDisplay(
+                        backStack = backstack,
+                        onBack = onBackAction,
+                        entryDecorators = listOf(
+                            rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+                            rememberViewModelStoreNavEntryDecorator<NavKey>()
+                        ),
+                        entryProvider = entries
+                    )
+
+                    com.iqbalwork.robithoh.feature.reader.ui.component.DocumentSyncOverlay(
+                        syncManager = documentSyncManager,
+                        onRetry = {
+                            coroutineScope.launch {
+                                documentSyncManager.syncDocuments(force = true)
+                            }
+                        }
+                    )
+                }
             }
         }
     }

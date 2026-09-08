@@ -101,7 +101,8 @@ fun GenericDocumentReaderScreen(
     onBack: () -> Unit,
     onNavigateToTasbih: ((count: Int, target: Int, title: String) -> Unit)? = null,
     repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() },
-    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
+    syncManager: com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager? = null
 ) {
     BackHandler {
         onBack()
@@ -148,6 +149,17 @@ fun GenericDocumentReaderScreen(
                 parsedDoc = repository.loadDocumentContent(docInfo)
             }
             isLoading = false
+        }
+    }
+
+    if (syncManager != null) {
+        val syncState by syncManager.syncState.collectAsState()
+        LaunchedEffect(syncState) {
+            if (syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Success) {
+                docInfo?.let { doc ->
+                    parsedDoc = repository.loadDocumentContent(doc)
+                }
+            }
         }
     }
 
@@ -244,6 +256,36 @@ fun GenericDocumentReaderScreen(
                         }
                     },
                     actions = {
+                        if (syncManager != null) {
+                            val syncState by syncManager.syncState.collectAsState()
+                            val isSyncing = syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Checking ||
+                                syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Syncing
+
+                            IconButton(
+                                onClick = {
+                                    if (!isSyncing) {
+                                        coroutineScope.launch {
+                                            syncManager.syncDocuments(force = true)
+                                        }
+                                    }
+                                }
+                            ) {
+                                if (isSyncing) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(18.dp),
+                                        strokeWidth = 2.dp,
+                                        color = Color.White
+                                    )
+                                } else {
+                                    Text(
+                                        text = "↻",
+                                        color = Color.White,
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                        }
                         IconButton(
                             onClick = { showSettingsDialog = true },
                             modifier = Modifier.spotlightAnchor(spotlightState, "font_theme")
