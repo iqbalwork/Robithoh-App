@@ -6,12 +6,13 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
@@ -39,7 +39,7 @@ fun ScrollToTopButton(
     visible: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    size: Dp = 44.dp
+    label: String = "Ke Atas"
 ) {
     val haptic = getHapticFeedback()
 
@@ -53,7 +53,6 @@ fun ScrollToTopButton(
 
         Surface(
             modifier = Modifier
-                .size(size)
                 .clip(CircleShape)
                 .clickable {
                     haptic.performClick()
@@ -64,19 +63,27 @@ fun ScrollToTopButton(
             border = BorderStroke(1.5.dp, EmasKhidmat.copy(alpha = if (isDark) 0.8f else 0.6f)),
             shadowElevation = 6.dp
         ) {
-            Box(
+            Row(
                 modifier = Modifier
                     .background(
                         Brush.linearGradient(
                             listOf(MerahMerdeka, MerahMarunGelap)
                         )
-                    ),
-                contentAlignment = Alignment.Center
+                    )
+                    .padding(horizontal = 14.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 Text(
                     text = "▲",
                     color = EmasMuda,
-                    fontSize = 14.sp,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = label,
+                    color = EmasMuda,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
