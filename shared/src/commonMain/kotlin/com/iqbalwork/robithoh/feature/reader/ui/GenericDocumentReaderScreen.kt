@@ -46,6 +46,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -59,6 +60,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -94,6 +96,20 @@ import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
 import com.iqbalwork.robithoh.navigation.BackHandler
 import kotlinx.coroutines.launch
 
+internal val VerseCountersSaver: Saver<Map<Int, Int>, List<String>> = Saver(
+    save = { map -> map.map { "${it.key}:${it.value}" } },
+    restore = { list ->
+        list.mapNotNull { entry ->
+            val colonIndex = entry.indexOf(':')
+            if (colonIndex > 0) {
+                val k = entry.substring(0, colonIndex).toIntOrNull()
+                val v = entry.substring(colonIndex + 1).toIntOrNull()
+                if (k != null && v != null) k to v else null
+            } else null
+        }.toMap()
+    }
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenericDocumentReaderScreen(
@@ -111,6 +127,12 @@ fun GenericDocumentReaderScreen(
     val coroutineScope = rememberCoroutineScope()
     var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
     val listState = rememberPersistedLazyListState("doc_reader_$currentDocId")
+    var verseCounters by rememberSaveable(
+        currentDocId,
+        stateSaver = VerseCountersSaver
+    ) {
+        mutableStateOf(emptyMap<Int, Int>())
+    }
 
     val initialCachedDoc = remember(documentId) { repository.getCachedDocument(documentId) }
     var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
@@ -247,6 +269,7 @@ fun GenericDocumentReaderScreen(
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp,
                             maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             color = Color.White
                         )
                     },
@@ -466,6 +489,14 @@ fun GenericDocumentReaderScreen(
                                         ) {
                                             VerseReadingCard(
                                                 verse = verse,
+                                                countProgress = verseCounters[verse.index] ?: 0,
+                                                onCountChange = { newCount ->
+                                                    verseCounters = if (newCount <= 0) {
+                                                        verseCounters - verse.index
+                                                    } else {
+                                                        verseCounters + (verse.index to newCount)
+                                                    }
+                                                },
                                                 fontScale = fontScale,
                                                 isCentered = isDoaDoc,
                                                 readerTheme = readerTheme,
@@ -569,6 +600,20 @@ fun GenericDocumentReaderScreen(
                         }
                     )
                 )
+                val currentCount = verseCounters[verse.index] ?: 0
+                if (currentCount > 0) {
+                    add(
+                        ContentItemOption(
+                            icon = "🔄",
+                            label = "Reset Hitungan ($currentCount/${verse.repeatCount}x)",
+                            onClick = {
+                                hapticFeedback.performClick()
+                                verseCounters = verseCounters - verse.index
+                                selectedVerseForOptions = null
+                            }
+                        )
+                    )
+                }
             }
         }
 
@@ -1253,12 +1298,13 @@ private fun SingleContinuousDocumentCard(
 @Composable
 private fun VerseReadingCard(
     verse: LiturgyVerse,
+    countProgress: Int,
+    onCountChange: (Int) -> Unit,
     fontScale: Float,
     isCentered: Boolean = false,
     readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: (() -> Unit)? = null
 ) {
-    var countProgress by remember(verse.index) { mutableStateOf(0) }
     val hapticFeedback = remember { getHapticFeedback() }
 
     Card(
@@ -1288,7 +1334,7 @@ private fun VerseReadingCard(
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier.clickable {
                                 val nextProgress = (countProgress + 1) % (verse.repeatCount + 1)
-                                countProgress = nextProgress
+                                onCountChange(nextProgress)
                                 if (nextProgress >= verse.repeatCount) {
                                     hapticFeedback.performMilestone()
                                 } else {
