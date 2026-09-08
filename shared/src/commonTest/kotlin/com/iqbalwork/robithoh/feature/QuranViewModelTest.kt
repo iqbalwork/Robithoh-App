@@ -4,9 +4,14 @@ import com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl
 import com.iqbalwork.robithoh.feature.quran.presentation.QuranTab
 import com.iqbalwork.robithoh.feature.quran.presentation.QuranUiIntent
 import com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
+import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -15,13 +20,20 @@ import kotlin.test.assertTrue
 
 class QuranViewModelTest {
 
+    private val testDispatcher = StandardTestDispatcher()
     private lateinit var repository: QuranRepositoryImpl
     private lateinit var viewModel: QuranViewModel
 
     @BeforeTest
     fun setup() {
+        Dispatchers.setMain(testDispatcher)
         repository = QuranRepositoryImpl()
         viewModel = QuranViewModel(repository)
+    }
+
+    @AfterTest
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test

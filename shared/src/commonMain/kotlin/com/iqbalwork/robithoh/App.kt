@@ -12,24 +12,37 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.iqbalwork.robithoh.core.audio.createAudioCacheManager
+import com.iqbalwork.robithoh.core.audio.createAudioDownloader
+import com.iqbalwork.robithoh.core.audio.createAudioPlayer
 import com.iqbalwork.robithoh.core.database.rememberRobithohDatabase
+import com.iqbalwork.robithoh.core.designsystem.InitHapticContext
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.network.createKtorHttpClient
+import com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler
 import com.iqbalwork.robithoh.core.presentation.LocalScrollPositionStore
 import com.iqbalwork.robithoh.core.presentation.ScrollPositionStore
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
+import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
+import com.iqbalwork.robithoh.core.notification.rememberDocumentSyncNotifier
+import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
+import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager
+import com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel
 import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.MainAppContainer
 import com.iqbalwork.robithoh.navigation.MainTab
@@ -43,27 +56,27 @@ import com.iqbalwork.robithoh.navigation.ScreenKey
 import com.iqbalwork.robithoh.navigation.ScreenKeyListSaver
 import com.iqbalwork.robithoh.navigation.SettingsScreen
 import com.iqbalwork.robithoh.navigation.TasbihScreen
+import com.iqbalwork.robithoh.navigation.WidgetNavTarget
 
 @Composable
 fun App(
     initialDestination: String? = null,
     initialSurahNumber: Int = 1,
     initialAyahNumber: Int = 1,
-    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null,
+    widgetNavTarget: WidgetNavTarget? = null,
     onCheckForUpdates: () -> Unit = {},
     onOpenPlayStore: () -> Unit = {}
 ) {
     var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
     RabithohTheme(darkTheme = isDarkMode) {
-        com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
+        InitHapticContext()
         val scrollPositionStore = rememberSaveable(saver = ScrollPositionStore.Saver) {
             ScrollPositionStore()
         }
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
             mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
-        val coroutineScope = rememberCoroutineScope()
 
         val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
@@ -75,27 +88,29 @@ fun App(
         LaunchedEffect(appSettings) {
             if (!isSettingsLoaded) isSettingsLoaded = true
         }
-        val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
-        val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
-            com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
+        val alarmScheduler = rememberPrayerAlarmScheduler()
+        val amaliyahViewModel: AmaliyahViewModel = viewModel {
+            AmaliyahViewModel(
                 database = database,
                 alarmScheduler = alarmScheduler
             )
         }
-        val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel {
-            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
+        val tasbihViewModel: TasbihViewModel = viewModel {
+            TasbihViewModel(database = database)
         }
-        val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
-        val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
-        val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
+        val sharedCacheManager = remember { createAudioCacheManager() }
+        val sharedDownloader = remember { createAudioDownloader(sharedCacheManager) }
+        val sharedAudioPlayer = remember { createAudioPlayer() }
         val documentRepository = remember(database) {
-            com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository(database = database)
+            MarkdownDocumentRepository(database = database)
         }
-        val documentSyncManager = remember(database, documentRepository) {
-            com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager(
-                httpClient = com.iqbalwork.robithoh.core.network.createKtorHttpClient(),
+        val documentSyncNotifier = rememberDocumentSyncNotifier()
+        val documentSyncManager = remember(database, documentRepository, documentSyncNotifier) {
+            DocumentSyncManager(
+                httpClient = createKtorHttpClient(),
                 database = database,
-                repository = documentRepository
+                repository = documentRepository,
+                notifier = documentSyncNotifier
             )
         }
 
@@ -235,7 +250,7 @@ fun App(
                 )
             }
             entry<ScreenKey.DocumentReader> { key ->
-                com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
+                GenericDocumentReaderScreen(
                     documentId = key.documentId,
                     tasbihViewModel = tasbihViewModel,
                     repository = documentRepository,
@@ -253,7 +268,7 @@ fun App(
                 )
             }
             entry<ScreenKey.Langgam> { _ ->
-                com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
+                LanggamScreen(
                     audioPlayer = sharedAudioPlayer,
                     cacheManager = sharedCacheManager,
                     audioDownloader = sharedDownloader,
@@ -264,7 +279,7 @@ fun App(
                 LaunchedEffect(key) {
                     if (key.initialCount != null) {
                         tasbihViewModel.onIntent(
-                            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SyncData(
+                            TasbihUiIntent.SyncData(
                                 count = key.initialCount,
                                 target = key.targetCount,
                                 dzikirTitle = key.dzikirTitle
@@ -348,7 +363,7 @@ fun App(
                 )
             }
             entry<ScreenKey.Qibla> { _ ->
-                com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen(
+                QiblaScreen(
                     onBack = onBackAction,
                     viewModel = amaliyahViewModel
                 )
@@ -369,15 +384,6 @@ fun App(
                             rememberViewModelStoreNavEntryDecorator<NavKey>()
                         ),
                         entryProvider = entries
-                    )
-
-                    com.iqbalwork.robithoh.feature.reader.ui.component.DocumentSyncOverlay(
-                        syncManager = documentSyncManager,
-                        onRetry = {
-                            coroutineScope.launch {
-                                documentSyncManager.syncDocuments(force = true)
-                            }
-                        }
                     )
                 }
             }

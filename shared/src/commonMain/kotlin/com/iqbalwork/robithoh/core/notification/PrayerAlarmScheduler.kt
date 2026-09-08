@@ -1,6 +1,7 @@
 package com.iqbalwork.robithoh.core.notification
 
 import androidx.compose.runtime.Composable
+import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
 
@@ -10,7 +11,7 @@ interface PrayerAlarmScheduler {
     fun stopActiveAdzan()
     fun testTriggerNotification(
         prayerName: String,
-        mode: com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationMode,
+        mode: PrayerNotificationMode,
         voiceId: String,
         customPath: String?,
         volume: Float
