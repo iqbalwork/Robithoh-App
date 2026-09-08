@@ -22,7 +22,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -61,51 +66,68 @@ fun KhotamanScreen(
     var selectedStepForOptions by remember { mutableStateOf<KhotamanStep?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val listState = rememberPersistedLazyListState("khotaman_screen_list")
+    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
-    ) {
-        item {
-            GoldCrimsonCard(
-                variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                contentPadding = PaddingValues(16.dp)
-            ) {
-                Text(
-                    text = "PANDUAN KHOTAMAN TQN",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = EmasMuda,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Amalan Khotaman mingguan/dua mingguan ikhwan MTQN Suryalaya Sirnarasa PPKN untuk pensucian jiwa dan peningkatan derajat ma'rifat.",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = PutihBersih,
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
+        ) {
+            item {
+                GoldCrimsonCard(
+                    variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                    contentPadding = PaddingValues(16.dp)
+                ) {
+                    Text(
+                        text = "PANDUAN KHOTAMAN TQN",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = EmasMuda,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Text(
+                        text = "Amalan Khotaman mingguan/dua mingguan ikhwan MTQN Suryalaya Sirnarasa PPKN untuk pensucian jiwa dan peningkatan derajat ma'rifat.",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = PutihBersih,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+
+            item {
+                IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
+            }
+
+            items(steps, key = { it.stepNumber }) { step ->
+                KhotamanStepCard(
+                    step = step,
+                    onClick = { selectedStepForOptions = step }
                 )
             }
         }
 
-        item {
-            IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
-        }
-
-        items(steps, key = { it.stepNumber }) { step ->
-            KhotamanStepCard(
-                step = step,
-                onClick = { selectedStepForOptions = step }
-            )
-        }
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 
     selectedStepForOptions?.let { step ->

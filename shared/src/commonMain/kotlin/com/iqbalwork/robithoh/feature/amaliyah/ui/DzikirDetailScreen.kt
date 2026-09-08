@@ -25,9 +25,13 @@ import androidx.compose.ui.text.AnnotatedString
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.core.designsystem.theme.ReaderTheme
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirItem
+import kotlinx.coroutines.launch
 import com.iqbalwork.robithoh.feature.amaliyah.model.DzikirType
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiState
@@ -48,6 +52,8 @@ fun DzikirDetailScreen(
     val fontScale = readerSettings.fontScale
     val readerTheme = readerSettings.resolveTheme(isDark)
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
+    val listState = rememberPersistedLazyListState("dzikir_detail_${state.activeDzikirType.name}")
+    val coroutineScope = rememberCoroutineScope()
 
     val currentDzikirList = if (state.activeDzikirType == DzikirType.JAHR) {
         state.dzikirJahrList
@@ -96,6 +102,7 @@ fun DzikirDetailScreen(
                 .padding(padding)
         ) {
             LazyColumn(
+                state = listState,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(horizontal = 16.dp),
@@ -200,6 +207,18 @@ fun DzikirDetailScreen(
         }
 
         // Floating Tasbih Overlay (Expandable Floating Widget)
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 90.dp, end = 16.dp)
+        )
+
         com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
             state = tasbihState,
             onIntent = resolvedTasbihViewModel::onIntent,

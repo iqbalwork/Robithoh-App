@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,7 +20,10 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.iqbalwork.robithoh.core.database.rememberRobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.presentation.LocalScrollPositionStore
+import com.iqbalwork.robithoh.core.presentation.ScrollPositionStore
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
@@ -50,11 +54,14 @@ fun App(
 
     RabithohTheme(darkTheme = isDarkMode) {
         com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
+        val scrollPositionStore = rememberSaveable(saver = ScrollPositionStore.Saver) {
+            ScrollPositionStore()
+        }
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
             mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
 
-        val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
         val appSettings by appSettingsRepository.settings.collectAsState()
         // Tracks whether AppSettings has been loaded from DB at least once.
@@ -343,19 +350,21 @@ fun App(
             }
         }
 
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            NavDisplay(
-                backStack = backstack,
-                onBack = onBackAction,
-                entryDecorators = listOf(
-                    rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
-                    rememberViewModelStoreNavEntryDecorator<NavKey>()
-                ),
-                entryProvider = entries
-            )
+        CompositionLocalProvider(LocalScrollPositionStore provides scrollPositionStore) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                NavDisplay(
+                    backStack = backstack,
+                    onBack = onBackAction,
+                    entryDecorators = listOf(
+                        rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+                        rememberViewModelStoreNavEntryDecorator<NavKey>()
+                    ),
+                    entryProvider = entries
+                )
+            }
         }
     }
 }

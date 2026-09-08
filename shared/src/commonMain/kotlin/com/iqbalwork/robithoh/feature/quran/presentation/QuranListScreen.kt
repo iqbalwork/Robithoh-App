@@ -19,6 +19,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -236,14 +241,18 @@ private fun SurahsTabContent(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
+    val listState = rememberPersistedLazyListState("quran_list_surahs")
+    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
-    ) {
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
+        ) {
         // Last Read Hero Card
         if (state.lastReadBookmark != null) {
             item {
@@ -340,6 +349,19 @@ private fun SurahsTabContent(
                 }
             )
         }
+    }
+
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 }
 

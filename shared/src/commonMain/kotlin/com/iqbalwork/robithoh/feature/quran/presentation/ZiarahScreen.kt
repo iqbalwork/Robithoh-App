@@ -1,6 +1,7 @@
 package com.iqbalwork.robithoh.feature.quran.presentation
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -32,7 +35,11 @@ import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCard
 import com.iqbalwork.robithoh.core.designsystem.component.GoldCrimsonCardVariant
 import com.iqbalwork.robithoh.core.designsystem.component.IslamicDivider
 import com.iqbalwork.robithoh.core.designsystem.component.IslamicDividerMotif
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurfaceVariant
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
@@ -55,52 +62,69 @@ fun ZiarahScreen(
     var selectedSectionForOptions by remember { mutableStateOf<ZiarahSection?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val listState = rememberPersistedLazyListState("quran_ziarah_list")
+    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(14.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
-    ) {
-        item {
-            GoldCrimsonCard(
-                variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                contentPadding = PaddingValues(16.dp)
-            ) {
-                Text(
-                    text = "PANDUAN & ADAB ZIARAH",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = EmasMuda,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Tata cara, adab batin, dan bacaan doa ziarah kubur umum serta ziarah maqam Waliyullah per kaifiyat MTQN Suryalaya Sirnarasa PPKN.",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = PutihBersih,
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
+        ) {
+            item {
+                GoldCrimsonCard(
+                    variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                    contentPadding = PaddingValues(16.dp)
+                ) {
+                    Text(
+                        text = "PANDUAN & ADAB ZIARAH",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = EmasMuda,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Tata cara, adab batin, dan bacaan doa ziarah kubur umum serta ziarah maqam Waliyullah per kaifiyat MTQN Suryalaya Sirnarasa PPKN.",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = PutihBersih,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+
+            item {
+                IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
+            }
+
+            items(sections, key = { it.id }) { section ->
+                ZiarahCard(
+                    section = section,
+                    isDark = isDark,
+                    onClick = { selectedSectionForOptions = section }
                 )
             }
         }
 
-        item {
-            IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
-        }
-
-        items(sections, key = { it.id }) { section ->
-            ZiarahCard(
-                section = section,
-                isDark = isDark,
-                onClick = { selectedSectionForOptions = section }
-            )
-        }
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 
     selectedSectionForOptions?.let { section ->

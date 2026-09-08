@@ -26,6 +26,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -110,18 +115,23 @@ fun KitabTabContent(
         Color(0xFFFFF9C4)
     )
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 120.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    val listState = rememberPersistedLazyListState("kitab_tab_list")
+    val coroutineScope = rememberCoroutineScope()
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .background(if (isDark) DarkCanvas else PaperBackgroundLight),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
+                bottom = 120.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
         // 1. Header
         item {
             Row(
@@ -400,5 +410,18 @@ fun KitabTabContent(
         item {
             Spacer(modifier = Modifier.height(64.dp))
         }
+    }
+
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 120.dp, end = 16.dp)
+        )
     }
 }

@@ -54,3 +54,7 @@ keystore.properties
 
 # Maestro
 .maestro/
+
+# Antigravity / Agents
+.agents/
+
