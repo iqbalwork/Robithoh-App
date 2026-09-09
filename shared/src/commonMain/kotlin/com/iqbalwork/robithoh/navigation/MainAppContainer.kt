@@ -47,7 +47,6 @@ import com.iqbalwork.robithoh.core.location.rememberLocationProvider
 import com.iqbalwork.robithoh.core.model.AudioPlaybackState
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahUiIntent
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
-import com.iqbalwork.robithoh.feature.home.ui.DoaModalBottomSheet
 import com.iqbalwork.robithoh.feature.home.ui.HomeTabContent
 import com.iqbalwork.robithoh.feature.home.ui.ManaqibModalBottomSheet
 import com.iqbalwork.robithoh.feature.home.ui.SholatModalBottomSheet
@@ -318,14 +317,6 @@ fun MainAppContainer(
         }
         "tahlil" -> {
             TahlilZiyarohModalBottomSheet(
-                onItemClick = { docId ->
-                    onNavigateToDocument(docId)
-                },
-                onDismiss = { onSheetChange(null) }
-            )
-        }
-        "doa" -> {
-            DoaModalBottomSheet(
                 onItemClick = { docId ->
                     onNavigateToDocument(docId)
                 },

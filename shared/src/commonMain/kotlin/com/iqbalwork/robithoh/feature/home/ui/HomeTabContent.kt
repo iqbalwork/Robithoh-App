@@ -261,7 +261,7 @@ fun HomeTabContent(
                                             "sholat" -> onOpenSheet("sholat")
                                             "sholawat" -> onOpenSheet("sholawat")
                                             "tahlil" -> onOpenSheet("tahlil")
-                                            "doa" -> onOpenSheet("doa")
+                                            "doa" -> onNavigateToDocument("doa_list")
                                             else -> onNavigateToDocument("dzikir_tqn")
                                         }
                                     }
