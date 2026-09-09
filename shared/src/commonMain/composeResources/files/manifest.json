@@ -1,7 +1,7 @@
 {
-  "version": 8,
-  "updatedAt": "2026-09-09T14:22:28Z",
-  "totalDocuments": 54,
+  "version": 10,
+  "updatedAt": "2026-09-09T14:36:54Z",
+  "totalDocuments": 58,
   "documents": [
     {
       "fileName": "AMALIYAH_DZULHIJJAH.md",
@@ -108,6 +108,14 @@
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/AMJAD.md"
     },
     {
+      "fileName": "DOA_ANTARA_DUA_KHUTBAH.md",
+      "sha256": "1e6b2b0794c6169b692bd1868977429ae51e89a91084cf8189ca6131ef6af0ad",
+      "size": 1070,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_ANTARA_DUA_KHUTBAH.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_ANTARA_DUA_KHUTBAH.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DOA_ANTARA_DUA_KHUTBAH.md"
+    },
+    {
       "fileName": "DOA_ISTIGHOTSAH.md",
       "sha256": "0ef8b9efe8f8de94756b314a0367d0d9c5bfd9ef9341eabfc0e8eb3e8ddd6e9f",
       "size": 2615,
@@ -170,6 +178,22 @@
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SEBELUM_MAKAN.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SEBELUM_MAKAN.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DOA_SEBELUM_MAKAN.md"
+    },
+    {
+      "fileName": "DOA_SELEPAS_SALAM.md",
+      "sha256": "9240aaa18c8ac253a81b6deef8fe3de9ee5d509acf598b61cedf4f7a4feffcf4",
+      "size": 593,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SELEPAS_SALAM.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SELEPAS_SALAM.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DOA_SELEPAS_SALAM.md"
+    },
+    {
+      "fileName": "DOA_SETELAH_BADA_JUMAT.md",
+      "sha256": "52a52e306a0e1de6010b601002fffc89b88dbd7a5c3ca3b4201a87d21798e0de",
+      "size": 1321,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SETELAH_BADA_JUMAT.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DOA_SETELAH_BADA_JUMAT.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DOA_SETELAH_BADA_JUMAT.md"
     },
     {
       "fileName": "DOA_TURUN_HUJAN.md",
@@ -258,6 +282,14 @@
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/MC_MANAQIB_SUNDA.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/MC_MANAQIB_SUNDA.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/MC_MANAQIB_SUNDA.md"
+    },
+    {
+      "fileName": "NADZOM_SHOLAWAT_BANI_HASYIM.md",
+      "sha256": "aa4b228423984d05b8d26e461f72a76ed6c32a6904c758ca5d36243cc171db8b",
+      "size": 933,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/NADZOM_SHOLAWAT_BANI_HASYIM.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/NADZOM_SHOLAWAT_BANI_HASYIM.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/NADZOM_SHOLAWAT_BANI_HASYIM.md"
     },
     {
       "fileName": "SALAM_KEPADA_WALI_MURSYID.md",
@@ -357,8 +389,8 @@
     },
     {
       "fileName": "SHOLAWAT_BANI_HASYIM.md",
-      "sha256": "476e06f5e07ef3b108864059178ceae4f689ad52d4a5f572972d2ea7966690a2",
-      "size": 524,
+      "sha256": "10a76b78bb1a047022d298cddfe997b7f5a5427756cc5ad37cf096ad65c74b0e",
+      "size": 1331,
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/SHOLAWAT_BANI_HASYIM.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/SHOLAWAT_BANI_HASYIM.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/SHOLAWAT_BANI_HASYIM.md"
