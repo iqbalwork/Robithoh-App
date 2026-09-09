@@ -6,6 +6,20 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Dedicated Doa List Screen & Live Search
+- **Date**: 2025-02-17
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Transformed the Doa menu from a Modal Bottom Sheet into a dedicated MVI screen (`DoaListScreen`) with real-time text query search and filtering.
+- **Changes**:
+  - `ScreenKey.kt`: Added `data object DoaList : ScreenKey`.
+  - `feature/doa/presentation/DoaMvi.kt`: Created `DoaUiState`, `DoaUiIntent` (`SearchDoa`, `SelectDocument`), and `DoaUiEffect`.
+  - `feature/doa/presentation/DoaViewModel.kt`: Created `DoaViewModel` to query and filter Doa & Ziarah documents from `MarkdownDocumentRepository`.
+  - `feature/doa/ui/DoaListContent.kt`: Created `DoaListContent` composable with `IslamicHeader`, `OutlinedTextField` search bar, and `GoldCrimsonCard` prayer list.
+  - `feature/doa/ui/DoaListScreen.kt`: Created `DoaListScreen` stateful wrapper handling `BackHandler` and navigation effects.
+  - `HomeTabContent.kt`, `MainAppContainer.kt`, `App.kt`: Updated navigation routes so tapping "Doa" opens `DoaListScreen`.
+  - `ModalBottomSheets.kt`: Removed deprecated `DoaModalBottomSheet`.
+  - `.agents/adr/0006-doa-list-screen-and-search.md`: Documented ADR-0006.
+
 ### Liturgical Document Sync Notifications Update
 - **Date**: 2026-03-31
 - **Author**: AI Assistant & Iqbal Fauzi

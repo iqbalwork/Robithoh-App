@@ -75,6 +75,7 @@ Full history documented in [`adr/`](adr/).
 - **[ADR-0003: Multiplatform Audio Engine (`KmpAudioPlayer`) Bridging Media3 & AVPlayer](adr/0003-kmp-audio-player-expect-actual.md)** — Foreground service audio on Android and AVPlayer audio session on iOS.
 - **[ADR-0004: 8 Android Home Screen Widgets via Glance & AppWidgetProvider](adr/0004-glance-home-screen-widgets.md)** — Interactive prayer, tasbih, Quran bookmark, and Tanbih widgets with broadcast update synchronization.
 - **[ADR-0005: System Notifications for Liturgical Document Sync Progress](adr/0005-document-sync-notifications.md)** — Replacing toast overlay UI with live activity progress system notifications.
+- **[ADR-0006: Dedicated Doa List Screen with Live Search Capability](adr/0006-doa-list-screen-and-search.md)** — Transitioning Doa menu from a modal bottom sheet to a dedicated MVI screen with live search.
 
 ---
 

@@ -55,6 +55,9 @@ sealed interface ScreenKey : NavKey {
 
     @Serializable
     data object Qibla : ScreenKey
+
+    @Serializable
+    data object DoaList : ScreenKey
 }
 
 /**

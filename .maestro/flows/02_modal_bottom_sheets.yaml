@@ -62,17 +62,16 @@ appId: com.iqbalwork.robithoh
 - extendedWaitUntil:
     notVisible: "TAHLIL TQN"
 
-# 5. Sheet Doa
+# 5. Halaman Doa & Ziarah
 - tapOn: "Doa"
 - extendedWaitUntil:
-    visible: "SALAM WALI MURSYID"
+    visible: "Doa & Ziarah"
     timeout: 5000
-- assertVisible: "SALAM WALI MURSYID"
-- assertVisible: "DOA RIJALUL GHOIB"
-- assertVisible: "ZIYAROH ROSUL"
-- assertVisible: "DOA ISTIGHOTSAH"
-- assertVisible: "AMALIYAH SEBELUM TIDUR"
-- takeScreenshot: screenshots/07_sheet_doa
+- assertVisible: "Doa & Ziarah"
+- assertVisible: "Salam Kepada Wali Mursyid"
+- assertVisible: "Doa Rijalul Ghoib"
+- assertVisible: "Doa Istighotsah"
+- takeScreenshot: screenshots/07_screen_doa
 - back
 - extendedWaitUntil:
-    notVisible: "SALAM WALI MURSYID"
+    notVisible: "Doa & Ziarah"

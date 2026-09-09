@@ -318,49 +318,6 @@ fun TahlilZiyarohModalBottomSheet(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun DoaModalBottomSheet(
-    onItemClick: (String) -> Unit,
-    onDismiss: () -> Unit
-) {
-    val items = listOf(
-        SheetMenuItem("Salam Wali Mursyid", "salam_wali_mursyid"),
-        SheetMenuItem("Doa Rijalul Ghoib", "doa_rijalul_ghoib"),
-        SheetMenuItem("Ziyaroh Rosul", "sholawat_jiyaaroh"),
-        SheetMenuItem("Doa Istighotsah", "doa_istighotsah")
-    )
-
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = if (RabithohTheme.colors.isDark) DarkSurface else Color.White,
-        shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 36.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Text(
-                text = "Doa",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextCharcoal
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-
-            items.forEach { item ->
-                SheetMenuButton(
-                    title = item.title,
-                    onClick = { onItemClick(item.documentId) }
-                )
-            }
-        }
-    }
-}
-
 @Composable
 fun SheetMenuButton(
     title: String,

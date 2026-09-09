@@ -391,6 +391,60 @@ class MarkdownDocumentRepository(
             arabicTitle = "كِتَابُ الزِّيَارَةِ",
             iconName = "dziarah_umum"
         ),
+        LiturgyDocument(
+            id = "doa_turun_hujan",
+            title = "Doa Ketika Turun Hujan",
+            subtitle = "Doa memohon kebaikan & perlindungan saat turun hujan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_TURUN_HUJAN.md",
+            arabicTitle = "دُعَاءُ نُزُولِ الْمَطَرِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_sebelum_makan",
+            title = "Doa Sebelum Makan",
+            subtitle = "Doa memohon keberkahan rizki dunia & akhirat",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SEBELUM_MAKAN.md",
+            arabicTitle = "دُعَاءُ قَبْلَ الطَّعَامِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_minum_air_zamzam",
+            title = "Doa Minum Air Zamzam",
+            subtitle = "Doa minum air zamzam Sirnarasa memohon ilmu & kesembuhan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_MINUM_AIR_ZAMZAM.md",
+            arabicTitle = "دُعَاءُ شُرْبِ مَاءِ زَمْزَمَ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_keluar_rumah",
+            title = "Doa Keluar Rumah",
+            subtitle = "Doa & adab melangkah keluar rumah dalam keadaan berwudhu",
+            category = "Doa & Ziarah",
+            fileName = "DOA_KELUAR_RUMAH.md",
+            arabicTitle = "دُعَاءُ الْخُرُوجِ مِنَ الْبَيْتِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_masuk_rumah",
+            title = "Doa Masuk Rumah",
+            subtitle = "Doa masuk rumah & adab mendahulukan kaki kanan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_MASUK_RUMAH.md",
+            arabicTitle = "دُعَاءُ دُخُولِ الْبَيْتِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "wirid_kemalaikatan",
+            title = "Wirid Kemalaikatan",
+            subtitle = "Wirid asmaul husna & tawassul malaikat berdasarkan hari lahir",
+            category = "Doa & Ziarah",
+            fileName = "WIRID_KEMALAIKATAN.md",
+            arabicTitle = "وِرْدُ الْمَلَائِكَةِ",
+            iconName = "doa"
+        ),
 
         // Amaliyah 12 Bulan Hijriyah
         LiturgyDocument(id = "amaliyah_muharrom", title = "Amaliyah Bulan Muharrom", subtitle = "Awal tahun baru Islam & Asyura 10 Muharrom", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_MUHARROM.md", arabicTitle = "عَمَلِيَّةُ الْمُحَرَّمِ", iconName = "muharrom"),

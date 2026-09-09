@@ -7,13 +7,13 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `8`)
-* **Current Focus**: Document Sync System Notifications (`DocumentSyncNotifier` live activity notifications replacing toast popup).
+* **Current Focus**: Dedicated Doa List Screen with Live Search (`DoaListScreen` & `DoaViewModel` in `feature/doa`).
 * **Codebase Health**:
-  - `shared` module: Clean architecture, explicit import convention enforced, 30+ passing unit test suites.
+  - `shared` module: Clean architecture, explicit import convention enforced, 115 passing unit test suites.
   - `androidApp`: 8 Glance widgets implemented, dual flavors (`staging`, `production`), `:androidApp:assembleStagingDebug` verified.
   - `iosApp`: SwiftUI wrapper running Compose Multiplatform UI (`ContentView.swift`).
   - `E2E`: Full Maestro test suite in `.maestro/` (10 flows verified).
-  - `Linters & Tools`: `verify_build.sh`, `check_hardcoded_strings.sh`, and `run_maestro.sh` verified.
+  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` verified.
 
 ---
 

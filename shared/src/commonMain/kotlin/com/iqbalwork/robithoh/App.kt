@@ -33,6 +33,7 @@ import com.iqbalwork.robithoh.core.presentation.LocalScrollPositionStore
 import com.iqbalwork.robithoh.core.presentation.ScrollPositionStore
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
 import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.feature.doa.ui.DoaListScreen
 import com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
@@ -227,6 +228,8 @@ fun App(
                     onNavigateToDocument = { docId ->
                         if (docId == "quran_list") {
                             backstack.add(ScreenKey.QuranList)
+                        } else if (docId == "doa_list") {
+                            backstack.add(ScreenKey.DoaList)
                         } else {
                             backstack.add(ScreenKey.DocumentReader(docId))
                         }
@@ -265,6 +268,14 @@ fun App(
                         )
                     },
                     onBack = onBackAction
+                )
+            }
+            entry<ScreenKey.DoaList> { _ ->
+                DoaListScreen(
+                    onDocumentClick = { docId ->
+                        backstack.add(ScreenKey.DocumentReader(docId))
+                    },
+                    onBackClick = onBackAction
                 )
             }
             entry<ScreenKey.Langgam> { _ ->
