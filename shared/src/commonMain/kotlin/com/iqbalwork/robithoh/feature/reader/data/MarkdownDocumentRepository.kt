@@ -436,6 +436,15 @@ class MarkdownDocumentRepository(
             arabicTitle = "دُعَاءُ دُخُولِ الْبَيْتِ",
             iconName = "doa"
         ),
+        LiturgyDocument(
+            id = "wirid_kemalaikatan",
+            title = "Wirid Kemalaikatan",
+            subtitle = "Wirid asmaul husna & tawassul malaikat berdasarkan hari lahir",
+            category = "Doa & Ziarah",
+            fileName = "WIRID_KEMALAIKATAN.md",
+            arabicTitle = "وِرْدُ الْمَلَائِكَةِ",
+            iconName = "doa"
+        ),
 
         // Amaliyah 12 Bulan Hijriyah
         LiturgyDocument(id = "amaliyah_muharrom", title = "Amaliyah Bulan Muharrom", subtitle = "Awal tahun baru Islam & Asyura 10 Muharrom", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_MUHARROM.md", arabicTitle = "عَمَلِيَّةُ الْمُحَرَّمِ", iconName = "muharrom"),

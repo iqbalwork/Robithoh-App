@@ -46,6 +46,7 @@ class DoaViewModelTest {
         assertTrue(docIds.contains("doa_minum_air_zamzam"), "Doa minum air zamzam must be loaded")
         assertTrue(docIds.contains("doa_keluar_rumah"), "Doa keluar rumah must be loaded")
         assertTrue(docIds.contains("doa_masuk_rumah"), "Doa masuk rumah must be loaded")
+        assertTrue(docIds.contains("wirid_kemalaikatan"), "Wirid kemalaikatan must be loaded")
     }
 
     @Test
@@ -67,6 +68,12 @@ class DoaViewModelTest {
         filtered = viewModel.uiState.value.filteredDocuments
         assertEquals(1, filtered.size)
         assertEquals("doa_minum_air_zamzam", filtered.first().id)
+
+        // Search "malaikat"
+        viewModel.onIntent(DoaUiIntent.SearchDoa("malaikat"))
+        filtered = viewModel.uiState.value.filteredDocuments
+        assertEquals(1, filtered.size)
+        assertEquals("wirid_kemalaikatan", filtered.first().id)
 
         // Search "rumah" (should match both keluar rumah & masuk rumah)
         viewModel.onIntent(DoaUiIntent.SearchDoa("rumah"))

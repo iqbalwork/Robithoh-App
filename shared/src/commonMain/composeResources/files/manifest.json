@@ -1,7 +1,7 @@
 {
-  "version": 6,
-  "updatedAt": "2026-09-09T14:17:16Z",
-  "totalDocuments": 53,
+  "version": 8,
+  "updatedAt": "2026-09-09T14:22:28Z",
+  "totalDocuments": 54,
   "documents": [
     {
       "fileName": "AMALIYAH_DZULHIJJAH.md",
@@ -426,6 +426,14 @@
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TAWASSUL_TQN.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TAWASSUL_TQN.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/TAWASSUL_TQN.md"
+    },
+    {
+      "fileName": "WIRID_KEMALAIKATAN.md",
+      "sha256": "c871dc6e56accd3d7a8aa33239318c4b41589608c32d46c5b37969877eed240c",
+      "size": 1825,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/WIRID_KEMALAIKATAN.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/WIRID_KEMALAIKATAN.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/WIRID_KEMALAIKATAN.md"
     }
   ]
 }
