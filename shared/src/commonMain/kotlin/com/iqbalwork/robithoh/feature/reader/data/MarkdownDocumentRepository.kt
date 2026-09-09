@@ -606,8 +606,9 @@ class MarkdownDocumentRepository(
         var index = 1
 
         fun extractRepeatCount(text: String): Int {
-            val match = Regex("""\((?:x|\s*)*([0-9]+|[٠-٩]+)(?:x|\s*)*\)""", RegexOption.IGNORE_CASE).find(text)
-                ?: Regex("""\b([0-9]+)x\b""", RegexOption.IGNORE_CASE).find(text)
+            // Support Indonesian thousand-separator format e.g. (16.641x) or 16.641x
+            val match = Regex("""\(([0-9][0-9.]*[0-9]|[0-9]+|[٠-٩][٠-٩.]*[٠-٩]|[٠-٩]+)x?\)""", RegexOption.IGNORE_CASE).find(text)
+                ?: Regex("""(?<![0-9.])([0-9][0-9.]*[0-9]|[0-9]+)x(?![0-9])""", RegexOption.IGNORE_CASE).find(text)
             if (match != null) {
                 val numStr = match.groupValues[1]
                 val westernNum = numStr.map { c ->
@@ -616,7 +617,7 @@ class MarkdownDocumentRepository(
                         '٥' -> '5'; '٦' -> '6'; '٧' -> '7'; '٨' -> '8'; '٩' -> '9'
                         else -> c
                     }
-                }.joinToString("")
+                }.joinToString("").replace(".", "") // Remove thousand separators before parsing
                 return westernNum.toIntOrNull() ?: 1
             }
             return 1
