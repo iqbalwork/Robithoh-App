@@ -47,6 +47,10 @@ class DoaViewModelTest {
         assertTrue(docIds.contains("doa_keluar_rumah"), "Doa keluar rumah must be loaded")
         assertTrue(docIds.contains("doa_masuk_rumah"), "Doa masuk rumah must be loaded")
         assertTrue(docIds.contains("wirid_kemalaikatan"), "Wirid kemalaikatan must be loaded")
+        assertTrue(docIds.contains("doa_selepas_salam"), "Doa selepas salam must be loaded")
+        assertTrue(docIds.contains("nadzom_sholawat_bani_hasyim"), "Nadzom bani hasyim must be loaded")
+        assertTrue(docIds.contains("doa_antara_dua_khutbah"), "Doa antara dua khutbah must be loaded")
+        assertTrue(docIds.contains("doa_setelah_bada_jumat"), "Amaliyah ba'da jumat must be loaded")
     }
 
     @Test
@@ -74,6 +78,24 @@ class DoaViewModelTest {
         filtered = viewModel.uiState.value.filteredDocuments
         assertEquals(1, filtered.size)
         assertEquals("wirid_kemalaikatan", filtered.first().id)
+
+        // Search "salam"
+        viewModel.onIntent(DoaUiIntent.SearchDoa("salam sholat"))
+        filtered = viewModel.uiState.value.filteredDocuments
+        assertEquals(1, filtered.size)
+        assertEquals("doa_selepas_salam", filtered.first().id)
+
+        // Search "khutbah"
+        viewModel.onIntent(DoaUiIntent.SearchDoa("khutbah"))
+        filtered = viewModel.uiState.value.filteredDocuments
+        assertEquals(1, filtered.size)
+        assertEquals("doa_antara_dua_khutbah", filtered.first().id)
+
+        // Search "jumat"
+        viewModel.onIntent(DoaUiIntent.SearchDoa("ba'da jum'at"))
+        filtered = viewModel.uiState.value.filteredDocuments
+        assertEquals(1, filtered.size)
+        assertEquals("doa_setelah_bada_jumat", filtered.first().id)
 
         // Search "rumah" (should match both keluar rumah & masuk rumah)
         viewModel.onIntent(DoaUiIntent.SearchDoa("rumah"))

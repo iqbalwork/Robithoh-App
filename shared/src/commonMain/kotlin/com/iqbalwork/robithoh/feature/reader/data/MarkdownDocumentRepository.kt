@@ -445,6 +445,42 @@ class MarkdownDocumentRepository(
             arabicTitle = "وِرْدُ الْمَلَائِكَةِ",
             iconName = "doa"
         ),
+        LiturgyDocument(
+            id = "doa_selepas_salam",
+            title = "Doa Selepas Salam Sholat",
+            subtitle = "Doa syukur penghilang kesedihan (Al Khoir 38 ~ QS. Fathir: 34)",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SELEPAS_SALAM.md",
+            arabicTitle = "دُعَاءُ بَعْدَ السَّلَامِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "nadzom_sholawat_bani_hasyim",
+            title = "Nadzom Sholawat Bani Hasyim",
+            subtitle = "Nadzom pembuka sebelum membaca Sholawat Bani Hasyim",
+            category = "Doa & Ziarah",
+            fileName = "NADZOM_SHOLAWAT_BANI_HASYIM.md",
+            arabicTitle = "نَظْمُ صَلَوَاتِ بَنِي هَاشِمٍ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_antara_dua_khutbah",
+            title = "Doa di Antara Dua Khuthbah",
+            subtitle = "Doa khutbah Jum'at memohon kemenangan, kesabaran & menemani para nabi",
+            category = "Doa & Ziarah",
+            fileName = "DOA_ANTARA_DUA_KHUTBAH.md",
+            arabicTitle = "دُعَاءُ بَيْنَ الْخُطْبَتَيْنِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_setelah_bada_jumat",
+            title = "Amaliyah Setelah Ba'da Jum'at",
+            subtitle = "Doa Ya Ghoniyyu Ya Hamiid dibaca 4x seusai sholat sunnah ba'da Jum'at",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SETELAH_BADA_JUMAT.md",
+            arabicTitle = "دُعَاءُ بَعْدَ جُمُعَةٍ",
+            iconName = "doa"
+        ),
 
         // Amaliyah 12 Bulan Hijriyah
         LiturgyDocument(id = "amaliyah_muharrom", title = "Amaliyah Bulan Muharrom", subtitle = "Awal tahun baru Islam & Asyura 10 Muharrom", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_MUHARROM.md", arabicTitle = "عَمَلِيَّةُ الْمُحَرَّمِ", iconName = "muharrom"),
@@ -570,8 +606,9 @@ class MarkdownDocumentRepository(
         var index = 1
 
         fun extractRepeatCount(text: String): Int {
-            val match = Regex("""\((?:x|\s*)*([0-9]+|[٠-٩]+)(?:x|\s*)*\)""", RegexOption.IGNORE_CASE).find(text)
-                ?: Regex("""\b([0-9]+)x\b""", RegexOption.IGNORE_CASE).find(text)
+            // Support Indonesian thousand-separator format e.g. (16.641x) or 16.641x
+            val match = Regex("""\(([0-9][0-9.]*[0-9]|[0-9]+|[٠-٩][٠-٩.]*[٠-٩]|[٠-٩]+)x?\)""", RegexOption.IGNORE_CASE).find(text)
+                ?: Regex("""(?<![0-9.])([0-9][0-9.]*[0-9]|[0-9]+)x(?![0-9])""", RegexOption.IGNORE_CASE).find(text)
             if (match != null) {
                 val numStr = match.groupValues[1]
                 val westernNum = numStr.map { c ->
@@ -580,7 +617,7 @@ class MarkdownDocumentRepository(
                         '٥' -> '5'; '٦' -> '6'; '٧' -> '7'; '٨' -> '8'; '٩' -> '9'
                         else -> c
                     }
-                }.joinToString("")
+                }.joinToString("").replace(".", "") // Remove thousand separators before parsing
                 return westernNum.toIntOrNull() ?: 1
             }
             return 1
