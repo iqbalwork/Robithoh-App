@@ -1,7 +1,7 @@
 {
-  "version": 12,
-  "updatedAt": "2026-09-09T15:10:22Z",
-  "totalDocuments": 58,
+  "version": 14,
+  "updatedAt": "2026-09-10T00:44:14Z",
+  "totalDocuments": 59,
   "documents": [
     {
       "fileName": "AMALIYAH_DZULHIJJAH.md",
@@ -106,6 +106,14 @@
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/AMJAD.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/AMJAD.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/AMJAD.md"
+    },
+    {
+      "fileName": "DAFTAR_DZIKIR_TASBIH.md",
+      "sha256": "053f76befa2796fc5ee2ca4109a261a469d8c591a595367d652fbf65ac714404",
+      "size": 2600,
+      "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DAFTAR_DZIKIR_TASBIH.md",
+      "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DAFTAR_DZIKIR_TASBIH.md",
+      "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DAFTAR_DZIKIR_TASBIH.md"
     },
     {
       "fileName": "DOA_ANTARA_DUA_KHUTBAH.md",
@@ -429,16 +437,16 @@
     },
     {
       "fileName": "TANBIH_INDONESIA.md",
-      "sha256": "c01712a11c8c06edd7a1e2fa8cba61783973915f5b911f1241a819858cce1a4b",
-      "size": 6893,
+      "sha256": "3e105a3c2d2a4f3ea5317b6f04b6f7fe8a51d3fe91ddc39adef653eab1057ea3",
+      "size": 6951,
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TANBIH_INDONESIA.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TANBIH_INDONESIA.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/TANBIH_INDONESIA.md"
     },
     {
       "fileName": "TANBIH_SUNDA.md",
-      "sha256": "3573ac29a957f91a7a59fa4a881180d99b9a5273ab9f65da1c19c1d6f0004e63",
-      "size": 6476,
+      "sha256": "62c92f3591b4bc2a082a8595695e159a134780e0bb9784c3e6a6959ab76cee6e",
+      "size": 6542,
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TANBIH_SUNDA.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/TANBIH_SUNDA.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/TANBIH_SUNDA.md"
