@@ -164,4 +164,45 @@ class TasbihViewModelTest {
         assertEquals("dzikir_jahr", state.selectedDzikirId)
         assertFalse(state.isTargetReached)
     }
+
+    @Test
+    fun testWiridKemalaikatanPresets() {
+        val fakeHaptic = FakeHapticFeedback()
+        val viewModel = TasbihViewModel(hapticFeedback = fakeHaptic)
+
+        val days = listOf("ahad", "senin", "selasa", "rabu", "kamis", "jumat", "sabtu")
+        val expectedTargets = listOf(222, 333, 444, 555, 666, 777, 888)
+
+        for (i in days.indices) {
+            val presetId = "wirid_kemalaikatan_${days[i]}"
+            val preset = viewModel.currentState.availablePresets.find { it.id == presetId }
+            assertNotNull(preset, "Preset $presetId should exist")
+            assertEquals(expectedTargets[i], preset.defaultTarget)
+
+            viewModel.onIntent(TasbihUiIntent.SelectDzikir(preset))
+            assertEquals(presetId, viewModel.currentState.selectedDzikirId)
+            assertEquals(expectedTargets[i], viewModel.currentState.targetCount)
+            assertEquals(preset.arabic, viewModel.currentState.selectedDzikirArabic)
+        }
+    }
+
+    @Test
+    fun testSyncDataWiridKemalaikatanDayMatching() {
+        val fakeHaptic = FakeHapticFeedback()
+        val viewModel = TasbihViewModel(hapticFeedback = fakeHaptic)
+
+        viewModel.onIntent(
+            TasbihUiIntent.SyncData(
+                count = 50,
+                target = 222,
+                dzikirTitle = "Hari Lahir Ahad (Setiap Sabtu Malam)"
+            )
+        )
+
+        val state = viewModel.currentState
+        assertEquals("wirid_kemalaikatan_ahad", state.selectedDzikirId)
+        assertEquals("حَيٌّ قَيُّومٌ", state.selectedDzikirArabic)
+        assertEquals(222, state.targetCount)
+        assertEquals(50, state.currentCount)
+    }
 }

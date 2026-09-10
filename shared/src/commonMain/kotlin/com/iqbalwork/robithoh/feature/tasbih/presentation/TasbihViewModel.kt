@@ -9,6 +9,7 @@ import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.KmpHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
+import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,13 +17,17 @@ import kotlinx.coroutines.launch
 class TasbihViewModel(
     private val hapticFeedback: KmpHapticFeedback = getHapticFeedback(),
     private val database: RobithohDatabase? = null,
+    private val repository: MarkdownDocumentRepository? = null,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val analyticsTracker: AnalyticsTracker = getAnalyticsTracker()
 ) : MviViewModel<TasbihUiState, TasbihUiIntent, TasbihUiEffect>(
     TasbihUiState()
 ) {
 
+    private val docRepo = repository ?: MarkdownDocumentRepository(database = database)
+
     init {
+        loadPresets()
         loadInitialProgress(currentState.selectedDzikirId)
     }
 
@@ -60,18 +65,48 @@ class TasbihViewModel(
             is TasbihUiIntent.ToggleFloatingExpand -> updateState { copy(isFloatingExpanded = !isFloatingExpanded) }
             is TasbihUiIntent.SetFloatingExpanded -> updateState { copy(isFloatingExpanded = intent.expanded) }
             is TasbihUiIntent.SetFloatingVisible -> updateState { copy(isFloatingVisible = intent.visible) }
+            is TasbihUiIntent.ReloadPresets -> loadPresets()
             is TasbihUiIntent.SyncData -> handleSyncData(intent)
+        }
+    }
+
+    fun loadPresets() {
+        viewModelScope.launch(dispatcher) {
+            try {
+                val presets = docRepo.loadTasbihPresets()
+                if (presets.isNotEmpty()) {
+                    updateState {
+                        val currentSelected = presets.find { it.id == selectedDzikirId }
+                        if (currentSelected != null) {
+                            copy(
+                                availablePresets = presets,
+                                selectedDzikirTitle = currentSelected.title,
+                                selectedDzikirArabic = currentSelected.arabic
+                            )
+                        } else {
+                            copy(availablePresets = presets)
+                        }
+                    }
+                }
+            } catch (_: Exception) {}
         }
     }
 
     private fun handleSyncData(intent: TasbihUiIntent.SyncData) {
         val target = intent.target ?: currentState.targetCount
         val lap = if (target > 0) intent.count / target else currentState.lapCount
-        val matchedPreset = currentState.availablePresets.find {
+        val matchedPreset = currentState.availablePresets.find { preset ->
             intent.dzikirTitle != null && (
-                it.title.equals(intent.dzikirTitle, ignoreCase = true) ||
-                intent.dzikirTitle.contains(it.title, ignoreCase = true) ||
-                it.title.contains(intent.dzikirTitle, ignoreCase = true)
+                preset.title.equals(intent.dzikirTitle, ignoreCase = true) ||
+                intent.dzikirTitle.contains(preset.title, ignoreCase = true) ||
+                preset.title.contains(intent.dzikirTitle, ignoreCase = true) ||
+                (intent.dzikirTitle.contains("Ahad", ignoreCase = true) && preset.id.contains("ahad")) ||
+                (intent.dzikirTitle.contains("Senin", ignoreCase = true) && preset.id.contains("senin")) ||
+                (intent.dzikirTitle.contains("Selasa", ignoreCase = true) && preset.id.contains("selasa")) ||
+                (intent.dzikirTitle.contains("Rabu", ignoreCase = true) && preset.id.contains("rabu")) ||
+                (intent.dzikirTitle.contains("Kamis", ignoreCase = true) && preset.id.contains("kamis")) ||
+                ((intent.dzikirTitle.contains("Jum'at", ignoreCase = true) || intent.dzikirTitle.contains("Jumat", ignoreCase = true)) && preset.id.contains("jumat")) ||
+                (intent.dzikirTitle.contains("Sabtu", ignoreCase = true) && preset.id.contains("sabtu"))
             )
         }
         val title = matchedPreset?.title ?: intent.dzikirTitle ?: currentState.selectedDzikirTitle

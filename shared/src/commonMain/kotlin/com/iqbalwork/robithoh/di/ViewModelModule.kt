@@ -12,6 +12,7 @@ import com.iqbalwork.robithoh.feature.manaqib.presentation.ManaqibViewModel
 import com.iqbalwork.robithoh.feature.quran.data.QuranRepository
 import com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl
 import com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel
+import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel
 import org.koin.dsl.module
 
@@ -44,6 +45,7 @@ val viewModelModule = module {
         TasbihViewModel(
             hapticFeedback = getHapticFeedback(),
             database = getOrNull<RobithohDatabase>(),
+            repository = getOrNull<MarkdownDocumentRepository>(),
             dispatcher = get()
         )
     }

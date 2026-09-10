@@ -175,27 +175,28 @@ fun TasbihContent(
                     }
                 }
 
-                // Preset Targets Row: 165x and Kustom
+                // Preset Targets Row: Default Target and Kustom
+                val defaultTarget = state.availablePresets.find { it.id == state.selectedDzikirId }?.defaultTarget ?: 165
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    val is165 = state.targetCount == 165
+                    val isDefault = state.targetCount == defaultTarget
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = if (is165) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
-                        border = if (is165) BorderStroke(1.dp, EmasKhidmat) else null,
+                        color = if (isDefault) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
+                        border = if (isDefault) BorderStroke(1.dp, EmasKhidmat) else null,
                         modifier = Modifier
                             .weight(1f)
-                            .clickable { onIntent(TasbihUiIntent.SetTarget(165)) }
+                            .clickable { onIntent(TasbihUiIntent.SetTarget(defaultTarget)) }
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier.padding(vertical = 12.dp)
                         ) {
                             Text(
-                                text = "165x",
-                                color = if (is165) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
+                                text = "${defaultTarget}x",
+                                color = if (isDefault) PutihBersih else (if (isDark) PutihBersih else SlateCharcoalText),
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp
                             )
@@ -203,7 +204,7 @@ fun TasbihContent(
                     }
 
                     // Custom Target Button
-                    val isCustom = state.targetCount != 165
+                    val isCustom = state.targetCount != defaultTarget
                     Surface(
                         shape = RoundedCornerShape(12.dp),
                         color = if (isCustom) MerahMerdeka else (if (isDark) DarkSurfaceVariant else Color(0xFFE9ECEF)),
@@ -414,6 +415,7 @@ fun TasbihContent(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {

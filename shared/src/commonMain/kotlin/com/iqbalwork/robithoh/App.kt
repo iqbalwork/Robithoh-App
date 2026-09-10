@@ -40,6 +40,7 @@ import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
 import com.iqbalwork.robithoh.core.notification.rememberDocumentSyncNotifier
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager
+import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState
 import com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
@@ -96,15 +97,18 @@ fun App(
                 alarmScheduler = alarmScheduler
             )
         }
+        val documentRepository = remember(database) {
+            MarkdownDocumentRepository(database = database)
+        }
         val tasbihViewModel: TasbihViewModel = viewModel {
-            TasbihViewModel(database = database)
+            TasbihViewModel(
+                database = database,
+                repository = documentRepository
+            )
         }
         val sharedCacheManager = remember { createAudioCacheManager() }
         val sharedDownloader = remember { createAudioDownloader(sharedCacheManager) }
         val sharedAudioPlayer = remember { createAudioPlayer() }
-        val documentRepository = remember(database) {
-            MarkdownDocumentRepository(database = database)
-        }
         val documentSyncNotifier = rememberDocumentSyncNotifier()
         val documentSyncManager = remember(database, documentRepository, documentSyncNotifier) {
             DocumentSyncManager(
@@ -115,8 +119,16 @@ fun App(
             )
         }
 
-        LaunchedEffect(Unit) {
+        LaunchedEffect(documentSyncManager) {
             documentSyncManager.syncDocuments()
+        }
+
+        LaunchedEffect(documentSyncManager) {
+            documentSyncManager.syncState.collect { state ->
+                if (state is DocumentSyncState.Success && state.updatedCount > 0) {
+                    tasbihViewModel.onIntent(TasbihUiIntent.ReloadPresets)
+                }
+            }
         }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
