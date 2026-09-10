@@ -1,9 +1,11 @@
 package com.iqbalwork.robithoh
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,10 +21,30 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.iqbalwork.robithoh.core.audio.createAudioCacheManager
+import com.iqbalwork.robithoh.core.audio.createAudioDownloader
+import com.iqbalwork.robithoh.core.audio.createAudioPlayer
+import com.iqbalwork.robithoh.core.database.rememberRobithohDatabase
+import com.iqbalwork.robithoh.core.designsystem.InitHapticContext
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
+import com.iqbalwork.robithoh.core.network.createKtorHttpClient
+import com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler
+import com.iqbalwork.robithoh.core.presentation.LocalScrollPositionStore
+import com.iqbalwork.robithoh.core.presentation.ScrollPositionStore
 import com.iqbalwork.robithoh.core.settings.rememberAppSettingsRepository
+import com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel
+import com.iqbalwork.robithoh.feature.doa.ui.DoaListScreen
+import com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
+import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
+import com.iqbalwork.robithoh.core.notification.rememberDocumentSyncNotifier
+import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
+import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager
+import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState
+import com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen
 import com.iqbalwork.robithoh.feature.splash.SplashScreen
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel
 import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.navigation.MainAppContainer
 import com.iqbalwork.robithoh.navigation.MainTab
@@ -30,58 +52,83 @@ import com.iqbalwork.robithoh.navigation.PrayerAdjustmentsScreen
 import com.iqbalwork.robithoh.navigation.PrayerCalculationMethodScreen
 import com.iqbalwork.robithoh.navigation.ProfilePesantrenScreen
 import com.iqbalwork.robithoh.navigation.QuranListScreen
+import com.iqbalwork.robithoh.navigation.QuranPageReaderScreen
 import com.iqbalwork.robithoh.navigation.QuranSurahScreen
 import com.iqbalwork.robithoh.navigation.ScreenKey
 import com.iqbalwork.robithoh.navigation.ScreenKeyListSaver
 import com.iqbalwork.robithoh.navigation.SettingsScreen
 import com.iqbalwork.robithoh.navigation.TasbihScreen
+import com.iqbalwork.robithoh.navigation.WidgetNavTarget
 
 @Composable
 fun App(
     initialDestination: String? = null,
     initialSurahNumber: Int = 1,
     initialAyahNumber: Int = 1,
-    widgetNavTarget: com.iqbalwork.robithoh.navigation.WidgetNavTarget? = null,
+    widgetNavTarget: WidgetNavTarget? = null,
     onCheckForUpdates: () -> Unit = {},
     onOpenPlayStore: () -> Unit = {}
 ) {
     var isDarkMode by rememberSaveable { mutableStateOf(false) }
 
     RabithohTheme(darkTheme = isDarkMode) {
-        com.iqbalwork.robithoh.core.designsystem.InitHapticContext()
+        InitHapticContext()
+        val scrollPositionStore = rememberSaveable(saver = ScrollPositionStore.Saver) {
+            ScrollPositionStore()
+        }
         val backstack = rememberSaveable(saver = ScreenKeyListSaver) {
             mutableStateListOf<NavKey>(ScreenKey.Splash)
         }
 
-        val database = com.iqbalwork.robithoh.core.database.rememberRobithohDatabase()
+        val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
         val appSettings by appSettingsRepository.settings.collectAsState()
-        val alarmScheduler = com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler()
-        val amaliyahViewModel: com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel = viewModel {
-            com.iqbalwork.robithoh.feature.amaliyah.presentation.AmaliyahViewModel(
+        // Tracks whether AppSettings has been loaded from DB at least once.
+        // Without this, the 2.2s splash may finish before the async DB read completes,
+        // causing hasCompletedOnboarding to read as false even for returning users.
+        var isSettingsLoaded by rememberSaveable { mutableStateOf(false) }
+        LaunchedEffect(appSettings) {
+            if (!isSettingsLoaded) isSettingsLoaded = true
+        }
+        val alarmScheduler = rememberPrayerAlarmScheduler()
+        val amaliyahViewModel: AmaliyahViewModel = viewModel {
+            AmaliyahViewModel(
                 database = database,
                 alarmScheduler = alarmScheduler
             )
         }
-        val tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel = viewModel {
-            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel(database = database)
-        }
-        val sharedCacheManager = remember { com.iqbalwork.robithoh.core.audio.createAudioCacheManager() }
-        val sharedDownloader = remember { com.iqbalwork.robithoh.core.audio.createAudioDownloader(sharedCacheManager) }
-        val sharedAudioPlayer = remember { com.iqbalwork.robithoh.core.audio.createAudioPlayer() }
         val documentRepository = remember(database) {
-            com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository(database = database)
+            MarkdownDocumentRepository(database = database)
         }
-        val documentSyncManager = remember(database, documentRepository) {
-            com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager(
-                httpClient = com.iqbalwork.robithoh.core.network.createKtorHttpClient(),
+        val tasbihViewModel: TasbihViewModel = viewModel {
+            TasbihViewModel(
                 database = database,
                 repository = documentRepository
             )
         }
+        val sharedCacheManager = remember { createAudioCacheManager() }
+        val sharedDownloader = remember { createAudioDownloader(sharedCacheManager) }
+        val sharedAudioPlayer = remember { createAudioPlayer() }
+        val documentSyncNotifier = rememberDocumentSyncNotifier()
+        val documentSyncManager = remember(database, documentRepository, documentSyncNotifier) {
+            DocumentSyncManager(
+                httpClient = createKtorHttpClient(),
+                database = database,
+                repository = documentRepository,
+                notifier = documentSyncNotifier
+            )
+        }
 
-        LaunchedEffect(Unit) {
+        LaunchedEffect(documentSyncManager) {
             documentSyncManager.syncDocuments()
+        }
+
+        LaunchedEffect(documentSyncManager) {
+            documentSyncManager.syncState.collect { state ->
+                if (state is DocumentSyncState.Success && state.updatedCount > 0) {
+                    tasbihViewModel.onIntent(TasbihUiIntent.ReloadPresets)
+                }
+            }
         }
 
         // Hoisted here (App() is the true root — never disposed by NavDisplay)
@@ -146,8 +193,12 @@ fun App(
 
         val entries = entryProvider<NavKey> {
             entry<ScreenKey.Splash> { _ ->
-                SplashScreen(
-                    onSplashFinished = {
+                // splashDone is set to true when the 2.2s animation finishes.
+                // We delay routing until BOTH splash animation is done AND settings are loaded from DB.
+                var splashDone by rememberSaveable { mutableStateOf(false) }
+
+                LaunchedEffect(splashDone, isSettingsLoaded) {
+                    if (splashDone && isSettingsLoaded) {
                         backstack.clear()
                         if (!appSettings.hasCompletedOnboarding) {
                             backstack.add(ScreenKey.Onboarding)
@@ -160,6 +211,10 @@ fun App(
                             }
                         }
                     }
+                }
+
+                SplashScreen(
+                    onSplashFinished = { splashDone = true }
                 )
             }
             entry<ScreenKey.Onboarding> { _ ->
@@ -185,6 +240,8 @@ fun App(
                     onNavigateToDocument = { docId ->
                         if (docId == "quran_list") {
                             backstack.add(ScreenKey.QuranList)
+                        } else if (docId == "doa_list") {
+                            backstack.add(ScreenKey.DoaList)
                         } else {
                             backstack.add(ScreenKey.DocumentReader(docId))
                         }
@@ -208,10 +265,11 @@ fun App(
                 )
             }
             entry<ScreenKey.DocumentReader> { key ->
-                com.iqbalwork.robithoh.feature.reader.ui.GenericDocumentReaderScreen(
+                GenericDocumentReaderScreen(
                     documentId = key.documentId,
                     tasbihViewModel = tasbihViewModel,
                     repository = documentRepository,
+                    syncManager = documentSyncManager,
                     onNavigateToTasbih = { count, target, title ->
                         backstack.add(
                             ScreenKey.Tasbih(
@@ -224,8 +282,16 @@ fun App(
                     onBack = onBackAction
                 )
             }
+            entry<ScreenKey.DoaList> { _ ->
+                DoaListScreen(
+                    onDocumentClick = { docId ->
+                        backstack.add(ScreenKey.DocumentReader(docId))
+                    },
+                    onBackClick = onBackAction
+                )
+            }
             entry<ScreenKey.Langgam> { _ ->
-                com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen(
+                LanggamScreen(
                     audioPlayer = sharedAudioPlayer,
                     cacheManager = sharedCacheManager,
                     audioDownloader = sharedDownloader,
@@ -236,7 +302,7 @@ fun App(
                 LaunchedEffect(key) {
                     if (key.initialCount != null) {
                         tasbihViewModel.onIntent(
-                            com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihUiIntent.SyncData(
+                            TasbihUiIntent.SyncData(
                                 count = key.initialCount,
                                 target = key.targetCount,
                                 dzikirTitle = key.dzikirTitle
@@ -254,6 +320,10 @@ fun App(
                     onSurahClick = { surahNumber, ayahNumber ->
                         backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
                     },
+                    onMushafClick = { pageNumber ->
+                        backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                    },
+                    audioPlayer = sharedAudioPlayer,
                     onBack = onBackAction
                 )
             }
@@ -261,7 +331,30 @@ fun App(
                 QuranSurahScreen(
                     surahNumber = key.surahNumber,
                     initialAyahNumber = key.ayahNumber,
-                    onBack = onBackAction
+                    audioPlayer = sharedAudioPlayer,
+                    onBack = onBackAction,
+                    onSwitchToMushafMode = { pageNumber ->
+                        if (backstack.isNotEmpty()) {
+                            backstack[backstack.lastIndex] = ScreenKey.QuranPageReader(pageNumber)
+                        } else {
+                            backstack.add(ScreenKey.QuranPageReader(pageNumber))
+                        }
+                    }
+                )
+            }
+            entry<ScreenKey.QuranPageReader> { key ->
+                QuranPageReaderScreen(
+                    pageNumber = key.pageNumber,
+                    initialAyahNumber = key.targetAyahNumber,
+                    audioPlayer = sharedAudioPlayer,
+                    onBack = onBackAction,
+                    onSwitchToTextMode = { surahNumber, ayahNumber ->
+                        if (backstack.isNotEmpty()) {
+                            backstack[backstack.lastIndex] = ScreenKey.QuranSurah(surahNumber, ayahNumber)
+                        } else {
+                            backstack.add(ScreenKey.QuranSurah(surahNumber, ayahNumber))
+                        }
+                    }
                 )
             }
             entry<ScreenKey.Settings> { _ ->
@@ -293,26 +386,30 @@ fun App(
                 )
             }
             entry<ScreenKey.Qibla> { _ ->
-                com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen(
+                QiblaScreen(
                     onBack = onBackAction,
                     viewModel = amaliyahViewModel
                 )
             }
         }
 
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            NavDisplay(
-                backStack = backstack,
-                onBack = onBackAction,
-                entryDecorators = listOf(
-                    rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
-                    rememberViewModelStoreNavEntryDecorator<NavKey>()
-                ),
-                entryProvider = entries
-            )
+        CompositionLocalProvider(LocalScrollPositionStore provides scrollPositionStore) {
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    NavDisplay(
+                        backStack = backstack,
+                        onBack = onBackAction,
+                        entryDecorators = listOf(
+                            rememberSaveableStateHolderNavEntryDecorator<NavKey>(),
+                            rememberViewModelStoreNavEntryDecorator<NavKey>()
+                        ),
+                        entryProvider = entries
+                    )
+                }
+            }
         }
     }
 }

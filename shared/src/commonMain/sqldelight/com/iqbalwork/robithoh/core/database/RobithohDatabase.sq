@@ -256,7 +256,8 @@ CREATE TABLE AppSettingsEntity (
     has_completed_onboarding INTEGER NOT NULL DEFAULT 0,
     has_seen_reader_spotlight INTEGER NOT NULL DEFAULT 0,
     has_seen_prayer_spotlight INTEGER NOT NULL DEFAULT 0,
-    has_seen_quran_spotlight INTEGER NOT NULL DEFAULT 0
+    has_seen_quran_spotlight INTEGER NOT NULL DEFAULT 0,
+    has_seen_quran_page_spotlight INTEGER NOT NULL DEFAULT 0
 );
 
 getAppSettings:
@@ -264,8 +265,8 @@ SELECT * FROM AppSettingsEntity WHERE id = 1 LIMIT 1;
 
 insertOrUpdateAppSettings:
 INSERT OR REPLACE INTO AppSettingsEntity(
-    id, has_completed_onboarding, has_seen_reader_spotlight, has_seen_prayer_spotlight, has_seen_quran_spotlight
-) VALUES (1, :hasCompletedOnboarding, :hasSeenReaderSpotlight, :hasSeenPrayerSpotlight, :hasSeenQuranSpotlight);
+    id, has_completed_onboarding, has_seen_reader_spotlight, has_seen_prayer_spotlight, has_seen_quran_spotlight, has_seen_quran_page_spotlight
+) VALUES (1, :hasCompletedOnboarding, :hasSeenReaderSpotlight, :hasSeenPrayerSpotlight, :hasSeenQuranSpotlight, :hasSeenQuranPageSpotlight);
 
 updateOnboardingCompleted:
 UPDATE AppSettingsEntity
@@ -285,5 +286,10 @@ WHERE id = 1;
 updateQuranSpotlightSeen:
 UPDATE AppSettingsEntity
 SET has_seen_quran_spotlight = :seen
+WHERE id = 1;
+
+updateQuranPageSpotlightSeen:
+UPDATE AppSettingsEntity
+SET has_seen_quran_page_spotlight = :seen
 WHERE id = 1;
 

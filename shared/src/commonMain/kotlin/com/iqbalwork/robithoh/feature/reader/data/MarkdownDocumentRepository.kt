@@ -4,6 +4,8 @@ import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyDocument
 import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
 import com.iqbalwork.robithoh.feature.reader.model.ParsedDocument
+import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihDzikirPreset
+import com.iqbalwork.robithoh.feature.tasbih.presentation.defaultTasbihPresets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -391,6 +393,96 @@ class MarkdownDocumentRepository(
             arabicTitle = "كِتَابُ الزِّيَارَةِ",
             iconName = "dziarah_umum"
         ),
+        LiturgyDocument(
+            id = "doa_turun_hujan",
+            title = "Doa Ketika Turun Hujan",
+            subtitle = "Doa memohon kebaikan & perlindungan saat turun hujan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_TURUN_HUJAN.md",
+            arabicTitle = "دُعَاءُ نُزُولِ الْمَطَرِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_sebelum_makan",
+            title = "Doa Sebelum Makan",
+            subtitle = "Doa memohon keberkahan rizki dunia & akhirat",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SEBELUM_MAKAN.md",
+            arabicTitle = "دُعَاءُ قَبْلَ الطَّعَامِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_minum_air_zamzam",
+            title = "Doa Minum Air Zamzam",
+            subtitle = "Doa minum air zamzam Sirnarasa memohon ilmu & kesembuhan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_MINUM_AIR_ZAMZAM.md",
+            arabicTitle = "دُعَاءُ شُرْبِ مَاءِ زَمْزَمَ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_keluar_rumah",
+            title = "Doa Keluar Rumah",
+            subtitle = "Doa & adab melangkah keluar rumah dalam keadaan berwudhu",
+            category = "Doa & Ziarah",
+            fileName = "DOA_KELUAR_RUMAH.md",
+            arabicTitle = "دُعَاءُ الْخُرُوجِ مِنَ الْبَيْتِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_masuk_rumah",
+            title = "Doa Masuk Rumah",
+            subtitle = "Doa masuk rumah & adab mendahulukan kaki kanan",
+            category = "Doa & Ziarah",
+            fileName = "DOA_MASUK_RUMAH.md",
+            arabicTitle = "دُعَاءُ دُخُولِ الْبَيْتِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "wirid_kemalaikatan",
+            title = "Wirid Kemalaikatan",
+            subtitle = "Wirid asmaul husna & tawassul malaikat berdasarkan hari lahir",
+            category = "Doa & Ziarah",
+            fileName = "WIRID_KEMALAIKATAN.md",
+            arabicTitle = "وِرْدُ الْمَلَائِكَةِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_selepas_salam",
+            title = "Doa Selepas Salam Sholat",
+            subtitle = "Doa syukur penghilang kesedihan (Al Khoir 38 ~ QS. Fathir: 34)",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SELEPAS_SALAM.md",
+            arabicTitle = "دُعَاءُ بَعْدَ السَّلَامِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "nadzom_sholawat_bani_hasyim",
+            title = "Nadzom Sholawat Bani Hasyim",
+            subtitle = "Nadzom pembuka sebelum membaca Sholawat Bani Hasyim",
+            category = "Doa & Ziarah",
+            fileName = "NADZOM_SHOLAWAT_BANI_HASYIM.md",
+            arabicTitle = "نَظْمُ صَلَوَاتِ بَنِي هَاشِمٍ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_antara_dua_khutbah",
+            title = "Doa di Antara Dua Khuthbah",
+            subtitle = "Doa khutbah Jum'at memohon kemenangan, kesabaran & menemani para nabi",
+            category = "Doa & Ziarah",
+            fileName = "DOA_ANTARA_DUA_KHUTBAH.md",
+            arabicTitle = "دُعَاءُ بَيْنَ الْخُطْبَتَيْنِ",
+            iconName = "doa"
+        ),
+        LiturgyDocument(
+            id = "doa_setelah_bada_jumat",
+            title = "Amaliyah Setelah Ba'da Jum'at",
+            subtitle = "Doa Ya Ghoniyyu Ya Hamiid dibaca 4x seusai sholat sunnah ba'da Jum'at",
+            category = "Doa & Ziarah",
+            fileName = "DOA_SETELAH_BADA_JUMAT.md",
+            arabicTitle = "دُعَاءُ بَعْدَ جُمُعَةٍ",
+            iconName = "doa"
+        ),
 
         // Amaliyah 12 Bulan Hijriyah
         LiturgyDocument(id = "amaliyah_muharrom", title = "Amaliyah Bulan Muharrom", subtitle = "Awal tahun baru Islam & Asyura 10 Muharrom", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_MUHARROM.md", arabicTitle = "عَمَلِيَّةُ الْمُحَرَّمِ", iconName = "muharrom"),
@@ -404,7 +496,18 @@ class MarkdownDocumentRepository(
         LiturgyDocument(id = "amaliyah_romadhon", title = "Amaliyah Bulan Romadhon", subtitle = "Bulan Puasa, Tarowih, Tadarus & Lailatul Qodar", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_ROMADHON.md", arabicTitle = "عَمَلِيَّةُ رَمَضَانَ", iconName = "romadhon"),
         LiturgyDocument(id = "amaliyah_syawal", title = "Amaliyah Bulan Syawal", subtitle = "Idul Fitri & puasa sunnah 6 hari Syawal", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_SYAWAL.md", arabicTitle = "عَمَلِيَّةُ شَوَّالٍ", iconName = "syawal"),
         LiturgyDocument(id = "amaliyah_dzulqodah", title = "Amaliyah Bulan Dzulqo'dah", subtitle = "Bulan Hapit & persiapan haji", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_DZULQODAH.md", arabicTitle = "عَمَلِيَّةُ ذِي الْقَعْدَةِ", iconName = "dzulqodah"),
-        LiturgyDocument(id = "amaliyah_dzulhijjah", title = "Amaliyah Bulan Dzulhijjah", subtitle = "Bulan Haji, Idul Adha & Hari Tasyriq", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_DZULHIJJAH.md", arabicTitle = "عَمَلِيَّةُ ذِي الْحِجَّةِ", iconName = "dzulhijjah")
+        LiturgyDocument(id = "amaliyah_dzulhijjah", title = "Amaliyah Bulan Dzulhijjah", subtitle = "Bulan Haji, Idul Adha & Hari Tasyriq", category = "12 Bulan Hijriyah", fileName = "AMALIYAH_DZULHIJJAH.md", arabicTitle = "عَمَلِيَّةُ ذِي الْحِجَّةِ", iconName = "dzulhijjah"),
+
+        // Tasbih Digital Presets
+        LiturgyDocument(
+            id = TASBIH_DOCUMENT_ID,
+            title = "Daftar Wirid & Dzikir",
+            subtitle = "Koleksi wirid dan dzikir tasbih digital",
+            category = "Tasbih",
+            fileName = TASBIH_DOCUMENT_FILENAME,
+            arabicTitle = "أَذْكَارُ التَّسْبِيحِ",
+            iconName = "tasbih"
+        )
     )
 
     private val documentCache = mutableMapOf<String, ParsedDocument>()
@@ -499,7 +602,7 @@ class MarkdownDocumentRepository(
         parsed
     }
 
-    private fun parseMarkdownToVerses(rawMarkdown: String): List<LiturgyVerse> {
+    internal fun parseMarkdownToVerses(rawMarkdown: String): List<LiturgyVerse> {
         val verses = mutableListOf<LiturgyVerse>()
         val blocks = rawMarkdown.replace("\r\n", "\n").split(Regex("\n\n+"))
 
@@ -516,8 +619,9 @@ class MarkdownDocumentRepository(
         var index = 1
 
         fun extractRepeatCount(text: String): Int {
-            val match = Regex("""\((?:x|\s*)*([0-9]+|[٠-٩]+)(?:x|\s*)*\)""", RegexOption.IGNORE_CASE).find(text)
-                ?: Regex("""\b([0-9]+)x\b""", RegexOption.IGNORE_CASE).find(text)
+            // Support Indonesian thousand-separator format e.g. (16.641x) or 16.641x or . ٤x
+            val match = Regex("""\(([0-9٠-٩][0-9.٠-٩]*[0-9٠-٩]|[0-9٠-٩]+)\s*x?\)""", RegexOption.IGNORE_CASE).find(text)
+                ?: Regex("""(?<![0-9.٠-٩])([0-9٠-٩][0-9.٠-٩]*[0-9٠-٩]|[0-9٠-٩]+)\s*x(?![0-9٠-٩])""", RegexOption.IGNORE_CASE).find(text)
             if (match != null) {
                 val numStr = match.groupValues[1]
                 val westernNum = numStr.map { c ->
@@ -526,7 +630,7 @@ class MarkdownDocumentRepository(
                         '٥' -> '5'; '٦' -> '6'; '٧' -> '7'; '٨' -> '8'; '٩' -> '9'
                         else -> c
                     }
-                }.joinToString("")
+                }.joinToString("").replace(".", "") // Remove thousand separators before parsing
                 return westernNum.toIntOrNull() ?: 1
             }
             return 1
@@ -583,9 +687,18 @@ class MarkdownDocumentRepository(
                 "robbanaa", "robbii", "shobran", "yassir", "angzilnaa", "afrigh", "a'udzu", "al-fatihah",
                 "al faatihah", "alfatihah", "laṭīfum", "yarzuqu", "bainakum", "shohhan", "saddaw", "kaf-hha",
                 "mungzalam", "bainana", "assholatu", "wassalamualaika", "wassalaamu", "assalaamu", "asshaalaatu",
-                "sayyidal", "syakolaini", "kaunaini", "ahmadu", "tooha", "thaha", "yaasiin", "habiballoh", "karimalloh"
+                "sayyidal", "syakolaini", "kaunaini", "ahmadu", "tooha", "thaha", "yaasiin", "habiballoh", "karimalloh",
+                "hayyun", "qoyyuum", "rohmaanur", "rohiim", "malikun", "qudduusun", "kabiirun", "muta'al",
+                "pattaahun", "rozzakun", "syadiidun", "dzuuquwwatin", "qowiyyun", "qodiirun", "yayil", "malaikat"
             )
-            return translitKeywords.any { lower.contains(it) } || text.contains("‘") || text.contains("’") || (lower.contains("aa") && lower.contains("ii")) || (lower.contains("uu") && lower.contains("ii"))
+            val hasTranslitKeyword = translitKeywords.any { lower.contains(it) }
+            val hasArabicSpecialChars = text.contains("‘") || text.contains("’") || text.contains("'") ||
+                text.contains("ā") || text.contains("ī") || text.contains("ū") || text.contains("ḥ") ||
+                text.contains("ṣ") || text.contains("ḍ") || text.contains("ṭ") || text.contains("ẓ")
+            val hasLongVowels = lower.contains("aa") || lower.contains("ii") || lower.contains("uu") || lower.contains("oo") || lower.contains("ee")
+            val hasArabicNunation = Regex("""\b\w+(un|in|an)\b""").containsMatchIn(lower)
+            val hasDoubledConsonants = Regex("""(bb|dd|ff|gg|hh|jj|kk|ll|mm|nn|qq|rr|ss|tt|ww|yy|zz)""").containsMatchIn(lower)
+            return hasTranslitKeyword || hasArabicSpecialChars || hasLongVowels || (hasArabicNunation && hasDoubledConsonants)
         }
 
         var inTawajuhSection = false
@@ -596,6 +709,12 @@ class MarkdownDocumentRepository(
             val trimmed = rawBlock.trim()
             if (trimmed.isEmpty() || trimmed == "---" || trimmed == "***" || trimmed == "۞۞۞") {
                 continue
+            }
+
+            // Always check for repeat count in any block
+            val blockRepeatCount = extractRepeatCount(trimmed)
+            if (blockRepeatCount > currentRepeatCount) {
+                currentRepeatCount = blockRepeatCount
             }
 
             // Headings
@@ -615,6 +734,10 @@ class MarkdownDocumentRepository(
                 inTawajuhSection = false
                 inLatinSection = heading.contains("Transliterasi", ignoreCase = true) || heading.contains("Latin", ignoreCase = true)
                 inTranslationSection = heading.contains("Terjemahan", ignoreCase = true) || heading.contains("Artinya", ignoreCase = true)
+                val count = extractRepeatCount(heading)
+                if (count > currentRepeatCount) {
+                    currentRepeatCount = count
+                }
                 continue
             }
 
@@ -655,11 +778,6 @@ class MarkdownDocumentRepository(
                     flushVerse()
                 }
 
-                val count = extractRepeatCount(trimmed)
-                if (count > currentRepeatCount) {
-                    currentRepeatCount = count
-                }
-
                 if (currentArabic.isNotEmpty()) {
                     currentArabic.append("\n\n")
                 }
@@ -671,6 +789,8 @@ class MarkdownDocumentRepository(
                                            cleanForDetection.startsWith("Aku memohon", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Yaa اللّه", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Ya اللّه", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Yaa اَللّهُ", ignoreCase = true) ||
+                                           cleanForDetection.startsWith("Ya اَللّهُ", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Yaa Alloh", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Ya Alloh", ignoreCase = true) ||
                                            cleanForDetection.startsWith("Tuhanku", ignoreCase = true) ||
@@ -699,10 +819,6 @@ class MarkdownDocumentRepository(
                                     inTawajuhSection
 
                 if ((inLatinSection || isTransliterationLike(cleanForDetection)) && !isExplicitTranslation) {
-                    val count = extractRepeatCount(trimmed)
-                    if (count > currentRepeatCount) {
-                        currentRepeatCount = count
-                    }
                     if (currentLatin.isNotEmpty()) currentLatin.append("\n\n")
                     currentLatin.append(cleanForDetection)
                 } else if (isInstruction) {
@@ -727,5 +843,152 @@ class MarkdownDocumentRepository(
         }
 
         return verses
+    }
+
+    companion object {
+        const val TASBIH_DOCUMENT_FILENAME = "DAFTAR_DZIKIR_TASBIH.md"
+        const val TASBIH_DOCUMENT_ID = "daftar_dzikir_tasbih"
+    }
+
+    @OptIn(ExperimentalResourceApi::class)
+    suspend fun loadTasbihPresets(): List<TasbihDzikirPreset> = withContext(Dispatchers.Default) {
+        val cachedInDb = try {
+            database?.robithohDatabaseQueries
+                ?.getCachedDocumentByFileName(TASBIH_DOCUMENT_FILENAME)
+                ?.executeAsOneOrNull()
+        } catch (_: Exception) {
+            null
+        }
+
+        val rawText = if (cachedInDb != null && cachedInDb.content.isNotBlank()) {
+            cachedInDb.content
+        } else {
+            try {
+                val bytes = Res.readBytes("files/$TASBIH_DOCUMENT_FILENAME")
+                bytes.decodeToString()
+            } catch (_: Exception) {
+                null
+            }
+        }
+
+        if (rawText.isNullOrBlank()) {
+            return@withContext defaultTasbihPresets
+        }
+
+        val parsed = parseMarkdownToTasbihPresets(rawText)
+        if (parsed.isNotEmpty()) parsed else defaultTasbihPresets
+    }
+
+    internal fun parseMarkdownToTasbihPresets(rawMarkdown: String): List<TasbihDzikirPreset> {
+        val presets = mutableListOf<TasbihDzikirPreset>()
+        val lines = rawMarkdown.replace("\r\n", "\n").lines()
+
+        var currentTitle: String? = null
+        var currentTarget = 165
+        val currentArabic = mutableListOf<String>()
+        val currentVirtue = mutableListOf<String>()
+
+        fun generatePresetId(title: String): String {
+            val lower = title.lowercase()
+            return when {
+                lower.contains("tahlil") -> "tahlil_tqn"
+                lower.contains("tasbih") && lower.contains("tahmid") -> "tasbih_tahmid"
+                lower.contains("hauqolah") -> "hauqolah"
+                lower.contains("munjiyat") -> "shalawat_munjiyat"
+                lower.contains("istighfar") -> "istighfar_tqn"
+                lower.contains("bani hasyim") -> "shalawat_bani_hasyim"
+                lower.contains("ahad") -> "wirid_kemalaikatan_ahad"
+                lower.contains("senin") -> "wirid_kemalaikatan_senin"
+                lower.contains("selasa") -> "wirid_kemalaikatan_selasa"
+                lower.contains("rabu") -> "wirid_kemalaikatan_rabu"
+                lower.contains("kamis") -> "wirid_kemalaikatan_kamis"
+                lower.contains("jum'at") || lower.contains("jumat") -> "wirid_kemalaikatan_jumat"
+                lower.contains("sabtu") -> "wirid_kemalaikatan_sabtu"
+                else -> lower.replace(Regex("[^a-z0-9]+"), "_").trim('_')
+            }
+        }
+
+        fun extractRepeatCount(text: String): Int? {
+            val match = Regex("""\(([0-9٠-٩][0-9.٠-٩]*[0-9٠-٩]|[0-9٠-٩]+)\s*x?\)""", RegexOption.IGNORE_CASE).find(text)
+                ?: Regex("""(?<![0-9.٠-٩])([0-9٠-٩][0-9.٠-٩]*[0-9٠-٩]|[0-9٠-٩]+)\s*x(?![0-9٠-٩])""", RegexOption.IGNORE_CASE).find(text)
+            if (match != null) {
+                val numStr = match.groupValues[1]
+                val westernNum = numStr.map { c ->
+                    when (c) {
+                        '٠' -> '0'; '١' -> '1'; '٢' -> '2'; '٣' -> '3'; '٤' -> '4'
+                        '٥' -> '5'; '٦' -> '6'; '٧' -> '7'; '٨' -> '8'; '٩' -> '9'
+                        else -> c
+                    }
+                }.joinToString("").replace(".", "")
+                return westernNum.toIntOrNull()
+            }
+            return null
+        }
+
+        fun flushPreset() {
+            val title = currentTitle?.trim()
+            val arabic = currentArabic.joinToString("\n").trim()
+            val virtue = currentVirtue.joinToString(" ").trim().removeSurrounding("*").trim()
+
+            if (!title.isNullOrBlank() && arabic.isNotBlank()) {
+                val id = generatePresetId(title)
+                presets.add(
+                    TasbihDzikirPreset(
+                        id = id,
+                        title = title,
+                        arabic = arabic,
+                        defaultTarget = currentTarget,
+                        virtue = virtue
+                    )
+                )
+            }
+            currentTitle = null
+            currentTarget = 165
+            currentArabic.clear()
+            currentVirtue.clear()
+        }
+
+        for (rawLine in lines) {
+            val line = rawLine.trim()
+            if (line.isEmpty() || line == "---" || line == "***" || line == "۞۞۞") continue
+
+            if (line.startsWith("##")) {
+                flushPreset()
+                val rawHeading = line.trimStart('#').trim()
+                val countInHeading = extractRepeatCount(rawHeading)
+                if (countInHeading != null) {
+                    currentTarget = countInHeading
+                }
+                currentTitle = rawHeading
+                    .replace(Regex("""\s*\([0-9٠-٩.]+\s*x?\)""", RegexOption.IGNORE_CASE), "")
+                    .replace(Regex("""\s+[0-9٠-٩.]+\s*x\b""", RegexOption.IGNORE_CASE), "")
+                    .trim()
+                continue
+            }
+
+            if (line.startsWith("#")) {
+                continue
+            }
+
+            if (currentTitle != null) {
+                val standaloneCount = extractRepeatCount(line)
+                if (standaloneCount != null && (line.startsWith("(") || line.endsWith("x") || line.endsWith("x)"))) {
+                    currentTarget = standaloneCount
+                    continue
+                }
+
+                val arabicCharCount = line.count { c -> c in '\u0600'..'\u06FF' || c in '\u0750'..'\u077F' || c in '\u08A0'..'\u08FF' }
+                val isArabic = arabicCharCount >= 3 && (arabicCharCount.toFloat() / line.length.toFloat()) > 0.20
+
+                if (isArabic) {
+                    currentArabic.add(line)
+                } else {
+                    currentVirtue.add(line)
+                }
+            }
+        }
+        flushPreset()
+
+        return presets
     }
 }

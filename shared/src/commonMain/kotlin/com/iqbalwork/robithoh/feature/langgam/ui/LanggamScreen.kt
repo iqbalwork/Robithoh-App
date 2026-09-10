@@ -33,6 +33,11 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -47,6 +52,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.audio.AudioCacheManager
@@ -92,6 +98,7 @@ fun LanggamScreen(
 
     val isDark = RabithohTheme.colors.isDark
     val scope = rememberCoroutineScope()
+    val listState = rememberPersistedLazyListState("langgam_list")
     val currentTrack by audioPlayer.currentTrack.collectAsState()
     val playbackState by audioPlayer.playbackState.collectAsState()
     val currentPositionMs by audioPlayer.currentPositionMs.collectAsState()
@@ -120,7 +127,9 @@ fun LanggamScreen(
                         "Langgam MTQN Suryalaya Sirnarasa PPKN III",
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
-                        fontSize = 18.sp
+                        fontSize = 18.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 },
                 navigationIcon = {
@@ -140,111 +149,128 @@ fun LanggamScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            LazyColumn(
+            Box(
                 modifier = Modifier
                     .weight(1f)
-                    .fillMaxWidth(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                    .fillMaxWidth()
             ) {
-                item {
-                    Card(
-                        shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
-                        border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
-                        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                LazyColumn(
+                    state = listState,
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    item {
+                        Card(
+                            shape = RoundedCornerShape(16.dp),
+                            colors = CardDefaults.cardColors(containerColor = if (isDark) DarkSurface else Color.White),
+                            border = if (isDark) BorderStroke(1.dp, DarkBorder) else null,
+                            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
+                            modifier = Modifier.fillMaxWidth()
                         ) {
-                            Surface(
-                                color = if (isDark) DarkSurfaceVariant else MerahMerdeka.copy(alpha = 0.1f),
-                                shape = CircleShape,
-                                modifier = Modifier.size(44.dp)
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text("🎵", fontSize = 20.sp)
+                                Surface(
+                                    color = if (isDark) DarkSurfaceVariant else MerahMerdeka.copy(alpha = 0.1f),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(44.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text("🎵", fontSize = 20.sp)
+                                    }
                                 }
-                            }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Column {
-                                Text(
-                                    "Langgam & Irama Tilawah",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 15.sp,
-                                    color = if (isDark) PutihBersih else TextCharcoal
-                                )
-                                Text(
-                                    "Bimbingan langgam bacaan sholat & dzikir Pangersa Abah Aos Ra. Qs.",
-                                    fontSize = 12.sp,
-                                    color = if (isDark) DarkMuted else TextMuted,
-                                    lineHeight = 16.sp
-                                )
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Column {
+                                    Text(
+                                        "Langgam & Irama Tilawah",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 15.sp,
+                                        color = if (isDark) PutihBersih else TextCharcoal
+                                    )
+                                    Text(
+                                        "Bimbingan langgam bacaan sholat & dzikir Pangersa Abah Aos Ra. Qs.",
+                                        fontSize = 12.sp,
+                                        color = if (isDark) DarkMuted else TextMuted,
+                                        lineHeight = 16.sp
+                                    )
+                                }
                             }
                         }
                     }
-                }
 
-                items(LanggamRepository.langgamList, key = { it.id }) { item ->
-                    val isCurrent = currentTrack?.id == item.id
-                    val isPlaying = isCurrent && playbackState == AudioPlaybackState.PLAYING
-                    val isCurrentDownloading = downloadState is DownloadProgressState.Downloading &&
-                            (downloadState as DownloadProgressState.Downloading).trackId == item.id
-                    val downloadProgress = if (isCurrentDownloading) {
-                        (downloadState as DownloadProgressState.Downloading).progress
-                    } else 0f
+                    items(LanggamRepository.langgamList, key = { it.id }) { item ->
+                        val isCurrent = currentTrack?.id == item.id
+                        val isPlaying = isCurrent && playbackState == AudioPlaybackState.PLAYING
+                        val isCurrentDownloading = downloadState is DownloadProgressState.Downloading &&
+                                (downloadState as DownloadProgressState.Downloading).trackId == item.id
+                        val downloadProgress = if (isCurrentDownloading) {
+                            (downloadState as DownloadProgressState.Downloading).progress
+                        } else 0f
 
-                    // Check if file is downloaded (re-evaluated on cacheVersion change)
-                    val isDownloaded = remember(item.fileName, cacheVersion) {
-                        cacheManager.isDownloaded(item.fileName)
-                    }
+                        // Check if file is downloaded (re-evaluated on cacheVersion change)
+                        val isDownloaded = remember(item.fileName, cacheVersion) {
+                            cacheManager.isDownloaded(item.fileName)
+                        }
 
-                    LanggamTrackCard(
-                        item = item,
-                        isDark = isDark,
-                        isCurrent = isCurrent,
-                        isPlaying = isPlaying,
-                        isDownloaded = isDownloaded,
-                        isDownloading = isCurrentDownloading,
-                        downloadProgress = downloadProgress,
-                        onClick = {
-                            if (isCurrent) {
-                                if (isPlaying) audioPlayer.pause() else audioPlayer.resume()
-                            } else {
-                                if (isDownloaded) {
-                                    val path = cacheManager.getLocalFilePath(item.fileName)
-                                    audioPlayer.play(item.toAudioTrack(path))
+                        LanggamTrackCard(
+                            item = item,
+                            isDark = isDark,
+                            isCurrent = isCurrent,
+                            isPlaying = isPlaying,
+                            isDownloaded = isDownloaded,
+                            isDownloading = isCurrentDownloading,
+                            downloadProgress = downloadProgress,
+                            onClick = {
+                                if (isCurrent) {
+                                    if (isPlaying) audioPlayer.pause() else audioPlayer.resume()
                                 } else {
-                                    scope.launch {
-                                        val result = audioDownloader.downloadAudio(
-                                            trackId = item.id,
-                                            title = item.title,
-                                            remoteUrl = item.remoteUrl,
-                                            fileName = item.fileName,
-                                            expectedSizeBytes = item.sizeBytes
-                                        )
-                                        if (result.isSuccess) {
-                                            cacheVersion++
-                                            val localPath = result.getOrNull()
-                                            audioPlayer.play(item.toAudioTrack(localPath))
+                                    if (isDownloaded) {
+                                        val path = cacheManager.getLocalFilePath(item.fileName)
+                                        audioPlayer.play(item.toAudioTrack(path))
+                                    } else {
+                                        scope.launch {
+                                            val result = audioDownloader.downloadAudio(
+                                                trackId = item.id,
+                                                title = item.title,
+                                                remoteUrl = item.remoteUrl,
+                                                fileName = item.fileName,
+                                                expectedSizeBytes = item.sizeBytes
+                                            )
+                                            if (result.isSuccess) {
+                                                cacheVersion++
+                                                val localPath = result.getOrNull()
+                                                audioPlayer.play(item.toAudioTrack(localPath))
+                                            }
                                         }
                                     }
                                 }
+                            },
+                            onDeleteClick = {
+                                cacheManager.delete(item.fileName)
+                                cacheVersion++
+                                if (isCurrent) {
+                                    audioPlayer.stop()
+                                }
                             }
-                        },
-                        onDeleteClick = {
-                            cacheManager.delete(item.fileName)
-                            cacheVersion++
-                            if (isCurrent) {
-                                audioPlayer.stop()
-                            }
-                        }
-                    )
+                        )
+                    }
                 }
+
+                ScrollToTopButton(
+                    visible = listState.shouldShowScrollToTop(),
+                    onClick = {
+                        scope.launch {
+                            listState.animateScrollToItem(0)
+                        }
+                    },
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(bottom = 16.dp, end = 16.dp)
+                )
             }
 
             // Floating Download Progress Bar (if downloading)

@@ -26,6 +26,11 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.rememberCoroutineScope
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
+import kotlinx.coroutines.launch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -72,6 +77,7 @@ import com.iqbalwork.robithoh.navigation.BackHandler
 fun KitabTabContent(
     onNavigateToSurah: (Int, Int?) -> Unit,
     lastReadBookmark: QuranBookmark? = null,
+    onNavigateToMushaf: ((Int) -> Unit)? = null,
     onBack: (() -> Unit)? = null
 ) {
     if (onBack != null) {
@@ -109,18 +115,23 @@ fun KitabTabContent(
         Color(0xFFFFF9C4)
     )
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(if (isDark) DarkCanvas else PaperBackgroundLight),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
-            bottom = 120.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
+    val listState = rememberPersistedLazyListState("kitab_tab_list")
+    val coroutineScope = rememberCoroutineScope()
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .background(if (isDark) DarkCanvas else PaperBackgroundLight),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding() + 16.dp,
+                bottom = 120.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
         // 1. Header
         item {
             Row(
@@ -178,17 +189,52 @@ fun KitabTabContent(
                     }
                 }
 
-                Surface(
-                    color = if (isDark) DarkSurfaceVariant else Color(0xFFDDF5E6),
-                    shape = RoundedCornerShape(20.dp)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = "الْقُرْآنُ الْكَرِيمُ",
-                        color = if (isDark) EmasMuda else Color(0xFF1E824C),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
-                    )
+                    if (onNavigateToMushaf != null) {
+                        Surface(
+                            color = MerahMerdeka.copy(alpha = 0.12f),
+                            shape = RoundedCornerShape(20.dp),
+                            modifier = Modifier.clickable {
+                                val targetPage = if (lastReadBookmark != null) {
+                                    com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageForAyah(
+                                        lastReadBookmark.surahNumber,
+                                        lastReadBookmark.ayahNumber
+                                    )
+                                } else 1
+                                onNavigateToMushaf(targetPage)
+                            }
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                            ) {
+                                Text("📖", fontSize = 12.sp)
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = "Mushaf",
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = MerahMerdeka
+                                )
+                            }
+                        }
+                    }
+
+                    Surface(
+                        color = if (isDark) DarkSurfaceVariant else Color(0xFFDDF5E6),
+                        shape = RoundedCornerShape(20.dp)
+                    ) {
+                        Text(
+                            text = "الْقُرْآنُ",
+                            color = if (isDark) EmasMuda else Color(0xFF1E824C),
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                        )
+                    }
                 }
             }
         }
@@ -364,5 +410,18 @@ fun KitabTabContent(
         item {
             Spacer(modifier = Modifier.height(64.dp))
         }
+    }
+
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 120.dp, end = 16.dp)
+        )
     }
 }

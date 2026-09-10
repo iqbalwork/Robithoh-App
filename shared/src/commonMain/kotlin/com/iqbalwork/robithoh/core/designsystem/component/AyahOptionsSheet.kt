@@ -21,6 +21,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -55,70 +56,121 @@ fun AyahOptionsSheet(
     isLastRead: Boolean = false
 ) {
     val isDark = RabithohTheme.colors.isDark
-    val textColor = if (isDark) PutihBersih else SlateCharcoalText
-    val dividerColor = if (isDark) DarkBorder else BorderSubtle
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         containerColor = if (isDark) DarkSurface else PutihBersih,
-        shape = RabithohTheme.shapes.bottomSheetShape
+        dragHandle = null
     ) {
-        Column(
+        AyahOptionsSheetContent(
+            surahName = surahName,
+            ayahNumber = ayahNumber,
+            onDismiss = onDismiss,
+            onPlayMurotal = onPlayMurotal,
+            onMarkLastRead = onMarkLastRead,
+            onShare = onShare,
+            onCopy = onCopy,
+            playMurotalEnabled = playMurotalEnabled,
+            isLastRead = isLastRead
+        )
+    }
+}
+
+@Composable
+fun AyahOptionsSheetContent(
+    surahName: String,
+    ayahNumber: Int,
+    onDismiss: () -> Unit,
+    onPlayMurotal: () -> Unit,
+    onMarkLastRead: () -> Unit,
+    onShare: () -> Unit,
+    onCopy: () -> Unit,
+    playMurotalEnabled: Boolean = true,
+    isLastRead: Boolean = false,
+    modifier: Modifier = Modifier
+) {
+    val isDark = RabithohTheme.colors.isDark
+    val textColor = if (isDark) PutihBersih else SlateCharcoalText
+    val dividerColor = if (isDark) DarkBorder else BorderSubtle
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 24.dp, vertical = 20.dp)
+    ) {
+        // Handle bar
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 24.dp)
+                .size(width = 36.dp, height = 4.dp)
+                .background(EmasKhidmat.copy(alpha = 0.5f), RoundedCornerShape(2.dp))
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Title: Surah & Ayah info
+        Text(
+            text = "$surahName : Ayat $ayahNumber",
+            fontWeight = FontWeight.Bold,
+            fontSize = 17.sp,
+            color = textColor
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+        HorizontalDivider(color = dividerColor)
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // 1. Play Murotal
+        AyahOptionRow(
+            icon = "▶",
+            label = "Putar Murotal Ayat Ini",
+            onClick = {
+                onPlayMurotal()
+                onDismiss()
+            },
+            enabled = playMurotalEnabled
+        )
+
+        // 2. Tandai Terakhir Dibaca
+        AyahOptionRow(
+            icon = if (isLastRead) "★" else "☆",
+            label = if (isLastRead) "Sudah Ditandai Terakhir Dibaca" else "Tandai Terakhir Dibaca",
+            onClick = {
+                onMarkLastRead()
+                onDismiss()
+            }
+        )
+
+        // 3. Salin Teks Ayat
+        AyahOptionRow(
+            icon = "📋",
+            label = "Salin Teks Ayat",
+            onClick = {
+                onCopy()
+                onDismiss()
+            }
+        )
+
+        // 4. Bagikan Ayat
+        AyahOptionRow(
+            icon = "↗",
+            label = "Bagikan Ayat",
+            onClick = {
+                onShare()
+                onDismiss()
+            }
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+        HorizontalDivider(color = dividerColor)
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Dismiss Button
+        TextButton(
+            onClick = onDismiss,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                Surface(
-                    color = MerahMerdeka,
-                    shape = RoundedCornerShape(20.dp),
-                    border = BorderStroke(1.dp, EmasKhidmat.copy(alpha = 0.7f))
-                ) {
-                    Text(
-                        text = "$surahName - Ayat $ayahNumber",
-                        color = PutihBersih,
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            AyahOptionRow(
-                icon = "▶",
-                label = "Putar Murotal",
-                enabled = playMurotalEnabled,
-                onClick = { onDismiss(); onPlayMurotal() }
-            )
-            AyahOptionRow(
-                icon = if (isLastRead) "✓" else "🔖",
-                label = if (isLastRead) "Terakhir Dibaca (Tersimpan)" else "Tandai Terakhir Baca",
-                onClick = { onDismiss(); onMarkLastRead() }
-            )
-            AyahOptionRow(
-                icon = "📤",
-                label = "Bagikan Ayat",
-                onClick = { onDismiss(); onShare() }
-            )
-            AyahOptionRow(
-                icon = "📋",
-                label = "Salin Ayat",
-                onClick = { onDismiss(); onCopy() }
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-            HorizontalDivider(color = dividerColor)
-            Spacer(modifier = Modifier.height(8.dp))
-
-            TextButton(
-                onClick = onDismiss,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Tutup", color = textColor, fontWeight = FontWeight.Medium)
-            }
+            Text("Tutup", color = textColor, fontWeight = FontWeight.Medium)
         }
     }
 }
@@ -150,5 +202,38 @@ private fun AyahOptionRow(
             Text(icon, fontSize = 14.sp)
         }
         Text(label, fontSize = 15.sp, fontWeight = FontWeight.Medium, color = textColor)
+    }
+}
+
+@Preview
+@Composable
+private fun AyahOptionsSheetPreview() {
+    RabithohTheme(darkTheme = false) {
+        AyahOptionsSheetContent(
+            surahName = "Al-Fatihah",
+            ayahNumber = 1,
+            onDismiss = {},
+            onPlayMurotal = {},
+            onMarkLastRead = {},
+            onShare = {},
+            onCopy = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun AyahOptionsSheetDarkPreview() {
+    RabithohTheme(darkTheme = true) {
+        AyahOptionsSheetContent(
+            surahName = "Al-Fatihah",
+            ayahNumber = 1,
+            onDismiss = {},
+            onPlayMurotal = {},
+            onMarkLastRead = {},
+            onShare = {},
+            onCopy = {},
+            isLastRead = true
+        )
     }
 }

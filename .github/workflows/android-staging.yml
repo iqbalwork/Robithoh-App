@@ -49,7 +49,7 @@ jobs:
         run: |
           if [ -n "$KEYSTORE_BASE64" ] && [ -n "$KEYSTORE_PASSWORD" ]; then
             echo "Menggunakan release keystore dari GitHub Secrets..."
-            echo "$KEYSTORE_BASE64" | base64 --decode > keystore.jks
+            echo "$KEYSTORE_BASE64" | tr -d '\r\n ' | base64 -di > keystore.jks
             printf "signing_key_location=keystore.jks\nsigning_keystore_password=%s\nsigning_key_alias=%s\nsigning_key_password=%s\n" \
               "$KEYSTORE_PASSWORD" "$KEY_ALIAS" "$KEY_PASSWORD" > keystore.properties
           else

@@ -35,12 +35,32 @@ class AndroidAudioPlayer(
     private val _durationMs = MutableStateFlow(0L)
     override val durationMs: StateFlow<Long> = _durationMs.asStateFlow()
 
+    private var prepareJob: Job? = null
+
+    private fun resetPlayer() {
+        prepareJob?.cancel()
+        prepareJob = null
+        stopProgressTracker()
+        mediaPlayer?.let { player ->
+            try {
+                if (player.isPlaying) {
+                    player.stop()
+                }
+                player.reset()
+                player.release()
+            } catch (_: Exception) {}
+        }
+        mediaPlayer = null
+    }
+
     override fun play(track: AudioTrack) {
-        stop()
+        resetPlayer()
         _currentTrack.value = track
         _playbackState.value = AudioPlaybackState.BUFFERING
+        _currentPositionMs.value = 0L
+        _durationMs.value = 0L
 
-        scope.launch(Dispatchers.IO) {
+        prepareJob = scope.launch(Dispatchers.IO) {
             try {
                 val resolvedPath = if (track.urlOrPath.startsWith("http://") || track.urlOrPath.startsWith("https://") || File(track.urlOrPath).exists()) {
                     track.urlOrPath
@@ -128,17 +148,7 @@ class AndroidAudioPlayer(
     }
 
     override fun stop() {
-        stopProgressTracker()
-        mediaPlayer?.let { player ->
-            try {
-                if (player.isPlaying) {
-                    player.stop()
-                }
-                player.reset()
-                player.release()
-            } catch (_: Exception) {}
-        }
-        mediaPlayer = null
+        resetPlayer()
         _currentTrack.value = null
         _playbackState.value = AudioPlaybackState.IDLE
         _currentPositionMs.value = 0L

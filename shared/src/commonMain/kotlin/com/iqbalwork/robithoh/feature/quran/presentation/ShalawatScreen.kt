@@ -22,7 +22,9 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
 import com.iqbalwork.robithoh.feature.quran.model.ShalawatModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun ShalawatScreen(
@@ -34,52 +36,69 @@ fun ShalawatScreen(
     var selectedShalawatForOptions by remember { mutableStateOf<ShalawatModel?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val listState = rememberPersistedLazyListState("quran_shalawat_list")
+    val coroutineScope = rememberCoroutineScope()
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(14.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
-    ) {
-        item {
-            GoldCrimsonCard(
-                variant = GoldCrimsonCardVariant.CRIMSON_HERO,
-                contentPadding = PaddingValues(16.dp)
-            ) {
-                Text(
-                    text = "KUMPULAN SHALAWAT TQN",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        color = EmasMuda,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Lantunan Shalawat Bani Hasyim, Shalawat Badriyah & Salam Ziarah Rasulullah ﷺ penenteram kalbu dan penyambung tali robithoh.",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = PutihBersih,
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    ),
-                    modifier = Modifier.fillMaxWidth()
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 80.dp)
+        ) {
+            item {
+                GoldCrimsonCard(
+                    variant = GoldCrimsonCardVariant.CRIMSON_HERO,
+                    contentPadding = PaddingValues(16.dp)
+                ) {
+                    Text(
+                        text = "KUMPULAN SHALAWAT TQN",
+                        style = MaterialTheme.typography.titleMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = EmasMuda,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Lantunan Shalawat Bani Hasyim, Shalawat Badriyah & Salam Ziarah Rasulullah ﷺ penenteram kalbu dan penyambung tali robithoh.",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = PutihBersih,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+            }
+
+            item {
+                IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
+            }
+
+            items(shalawatList, key = { it.id }) { item ->
+                ShalawatCard(
+                    item = item,
+                    onClick = { selectedShalawatForOptions = item },
+                    onPlayAudio = { onPlayAudio(item.audioPath, item.title) }
                 )
             }
         }
 
-        item {
-            IslamicDivider(motif = IslamicDividerMotif.RUB_EL_HIZB)
-        }
-
-        items(shalawatList, key = { it.id }) { item ->
-            ShalawatCard(
-                item = item,
-                onClick = { selectedShalawatForOptions = item },
-                onPlayAudio = { onPlayAudio(item.audioPath, item.title) }
-            )
-        }
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 
     selectedShalawatForOptions?.let { item ->

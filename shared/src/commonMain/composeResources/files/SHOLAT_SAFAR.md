@@ -16,7 +16,7 @@ Niat Sholat Qoshor dan Jamak Taqdim Dzuhur dan Ashar :
 
 Ushollii fardhodh-dhuhri rok’ataini qoshron majmuu’an ilaihil ‘ashru mustakbilal ka’bah adaa’an lillaahi ta’aalaa
 
-*Sengaja aku sholat fardhu Dzuhur dua rakaat diqoshor serta dijamak padanya sholat Ashar, menghadap kiblat, tunai karena اللّه Ta'ala.*
+*Sengaja aku sholat fardhu Dzuhur dua rakaat diqoshor serta dijamak padanya sholat Ashar, menghadap kiblat, tunai karena اَللّهُ Ta'ala.*
 
 ---
 
@@ -34,7 +34,7 @@ Ushollii fardlo maghribi tsalaatsa raka’aatim majmuu’an ma’al ‘isyaa’i
 
 *(Jika tidak hafal, niatnya pakai bahasa Indonesia saja).*
 
-*Sengaja aku sholat fardhu Maghrib tiga rakaat dijamak bersama sholat Isya dengan jamak qoshor, menghadap kiblat, tunai karena اللّه Ta'ala.*
+*Sengaja aku sholat fardhu Maghrib tiga rakaat dijamak bersama sholat Isya dengan jamak qoshor, menghadap kiblat, tunai karena اَللّهُ Ta'ala.*
 
   4. Sholat Maghrib 3 rokaat.
   5. Di lanjut sholat Isya 2 rokaat tanpa niat dan iqomah lagi.

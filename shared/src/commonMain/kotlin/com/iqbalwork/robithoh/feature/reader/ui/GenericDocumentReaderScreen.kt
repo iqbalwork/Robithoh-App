@@ -20,6 +20,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
@@ -43,6 +46,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -56,6 +60,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -91,6 +96,20 @@ import com.iqbalwork.robithoh.feature.reader.model.LiturgyVerse
 import com.iqbalwork.robithoh.navigation.BackHandler
 import kotlinx.coroutines.launch
 
+internal val VerseCountersSaver: Saver<Map<Int, Int>, List<String>> = Saver(
+    save = { map -> map.map { "${it.key}:${it.value}" } },
+    restore = { list ->
+        list.mapNotNull { entry ->
+            val colonIndex = entry.indexOf(':')
+            if (colonIndex > 0) {
+                val k = entry.substring(0, colonIndex).toIntOrNull()
+                val v = entry.substring(colonIndex + 1).toIntOrNull()
+                if (k != null && v != null) k to v else null
+            } else null
+        }.toMap()
+    }
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenericDocumentReaderScreen(
@@ -98,17 +117,24 @@ fun GenericDocumentReaderScreen(
     onBack: () -> Unit,
     onNavigateToTasbih: ((count: Int, target: Int, title: String) -> Unit)? = null,
     repository: MarkdownDocumentRepository = remember { MarkdownDocumentRepository() },
-    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null
+    tasbihViewModel: com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel? = null,
+    syncManager: com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager? = null
 ) {
     BackHandler {
         onBack()
     }
 
     val coroutineScope = rememberCoroutineScope()
-    val listState = rememberLazyListState()
+    var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
+    val listState = rememberPersistedLazyListState("doc_reader_$currentDocId")
+    var verseCounters by rememberSaveable(
+        currentDocId,
+        stateSaver = VerseCountersSaver
+    ) {
+        mutableStateOf(emptyMap<Int, Int>())
+    }
 
     val initialCachedDoc = remember(documentId) { repository.getCachedDocument(documentId) }
-    var currentDocId by rememberSaveable(documentId) { mutableStateOf(documentId) }
     var parsedDoc by remember { mutableStateOf(initialCachedDoc) }
     var isLoading by remember { mutableStateOf(parsedDoc == null) }
     val readerSettingsRepository = com.iqbalwork.robithoh.core.settings.rememberReaderSettingsRepository()
@@ -145,6 +171,17 @@ fun GenericDocumentReaderScreen(
                 parsedDoc = repository.loadDocumentContent(docInfo)
             }
             isLoading = false
+        }
+    }
+
+    if (syncManager != null) {
+        val syncState by syncManager.syncState.collectAsState()
+        LaunchedEffect(syncState) {
+            if (syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Success) {
+                docInfo?.let { doc ->
+                    parsedDoc = repository.loadDocumentContent(doc)
+                }
+            }
         }
     }
 
@@ -232,6 +269,7 @@ fun GenericDocumentReaderScreen(
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp,
                             maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             color = Color.White
                         )
                     },
@@ -241,6 +279,36 @@ fun GenericDocumentReaderScreen(
                         }
                     },
                     actions = {
+                        if (syncManager != null) {
+                            val syncState by syncManager.syncState.collectAsState()
+                            val isSyncing = syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Checking ||
+                                syncState is com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncState.Syncing
+
+                            IconButton(
+                                onClick = {
+                                    if (!isSyncing) {
+                                        coroutineScope.launch {
+                                            syncManager.syncDocuments(force = true)
+                                        }
+                                    }
+                                }
+                            ) {
+                                if (isSyncing) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(18.dp),
+                                        strokeWidth = 2.dp,
+                                        color = Color.White
+                                    )
+                                } else {
+                                    Text(
+                                        text = "↻",
+                                        color = Color.White,
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                        }
                         IconButton(
                             onClick = { showSettingsDialog = true },
                             modifier = Modifier.spotlightAnchor(spotlightState, "font_theme")
@@ -421,6 +489,14 @@ fun GenericDocumentReaderScreen(
                                         ) {
                                             VerseReadingCard(
                                                 verse = verse,
+                                                countProgress = verseCounters[verse.index] ?: 0,
+                                                onCountChange = { newCount ->
+                                                    verseCounters = if (newCount <= 0) {
+                                                        verseCounters - verse.index
+                                                    } else {
+                                                        verseCounters + (verse.index to newCount)
+                                                    }
+                                                },
                                                 fontScale = fontScale,
                                                 isCentered = isDoaDoc,
                                                 readerTheme = readerTheme,
@@ -442,6 +518,18 @@ fun GenericDocumentReaderScreen(
                     }
                 }
             }
+
+            ScrollToTopButton(
+                visible = listState.shouldShowScrollToTop(),
+                onClick = {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(0)
+                    }
+                },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(bottom = if (isDzikirDoc) 90.dp else 24.dp, end = 16.dp)
+            )
 
             if (isDzikirDoc) {
                 com.iqbalwork.robithoh.feature.tasbih.ui.component.FloatingTasbihOverlay(
@@ -512,6 +600,20 @@ fun GenericDocumentReaderScreen(
                         }
                     )
                 )
+                val currentCount = verseCounters[verse.index] ?: 0
+                if (currentCount > 0) {
+                    add(
+                        ContentItemOption(
+                            icon = "🔄",
+                            label = "Reset Hitungan ($currentCount/${verse.repeatCount}x)",
+                            onClick = {
+                                hapticFeedback.performClick()
+                                verseCounters = verseCounters - verse.index
+                                selectedVerseForOptions = null
+                            }
+                        )
+                    )
+                }
             }
         }
 
@@ -1058,6 +1160,8 @@ private fun SingleContinuousDocumentCard(
                                     cleanText.startsWith("Dengan menyebut", ignoreCase = true) ||
                                     cleanText.startsWith("Yaa اللّه", ignoreCase = true) ||
                                     cleanText.startsWith("Ya اللّه", ignoreCase = true) ||
+                                    cleanText.startsWith("Yaa اَللّهُ", ignoreCase = true) ||
+                                    cleanText.startsWith("Ya اَللّهُ", ignoreCase = true) ||
                                     cleanText.startsWith("Yaa Alloh", ignoreCase = true) ||
                                     cleanText.startsWith("Ya Alloh", ignoreCase = true) ||
                                     cleanText.startsWith("Tuhanku", ignoreCase = true) ||
@@ -1194,12 +1298,13 @@ private fun SingleContinuousDocumentCard(
 @Composable
 private fun VerseReadingCard(
     verse: LiturgyVerse,
+    countProgress: Int,
+    onCountChange: (Int) -> Unit,
     fontScale: Float,
     isCentered: Boolean = false,
     readerTheme: ReaderTheme = ReaderTheme.WHITE,
     onClick: (() -> Unit)? = null
 ) {
-    var countProgress by remember(verse.index) { mutableStateOf(0) }
     val hapticFeedback = remember { getHapticFeedback() }
 
     Card(
@@ -1229,7 +1334,7 @@ private fun VerseReadingCard(
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier.clickable {
                                 val nextProgress = (countProgress + 1) % (verse.repeatCount + 1)
-                                countProgress = nextProgress
+                                onCountChange(nextProgress)
                                 if (nextProgress >= verse.repeatCount) {
                                     hapticFeedback.performMilestone()
                                 } else {

@@ -52,5 +52,8 @@ keystore.properties
 *.jks
 /keystore/
 
-# Maestro
-.maestro/
+# Maestro & Agents
+!.maestro/
+!.agents/
+.agents/scratch/
+

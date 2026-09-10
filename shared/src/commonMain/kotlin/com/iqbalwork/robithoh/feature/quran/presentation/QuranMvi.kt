@@ -11,11 +11,21 @@ import com.iqbalwork.robithoh.feature.quran.model.ShalawatModel
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
 import com.iqbalwork.robithoh.feature.quran.model.ZiarahSection
 
+import com.iqbalwork.robithoh.feature.quran.model.ChapterAudio
+import com.iqbalwork.robithoh.feature.quran.model.QariList
+import com.iqbalwork.robithoh.feature.quran.model.QariOption
+
 enum class QuranTab(val label: String) {
     SURAHS("114 Surah"),
     SHALAWAT("Koleksi Shalawat"),
     ZIARAH("Panduan Ziarah"),
     BOOKMARKS("Terakhir Dibaca")
+}
+
+enum class QuranAudioRepeatMode {
+    REPEAT_SURAH, // Auto-play next ayah in surah
+    REPEAT_AYAH,  // Repeat current ayah
+    OFF           // Stop after current ayah finishes
 }
 
 data class QuranUiState(
@@ -34,6 +44,13 @@ data class QuranUiState(
     val audioPlaybackState: AudioPlaybackState = AudioPlaybackState.IDLE,
     val audioPositionMs: Long = 0L,
     val audioDurationMs: Long = 0L,
+    val selectedQari: QariOption = QariList.default,
+    val availableQaris: List<QariOption> = QariList.popular,
+    val activeAyahNumber: Int? = null,
+    val activeChapterAudio: ChapterAudio? = null,
+    val audioRepeatMode: QuranAudioRepeatMode = QuranAudioRepeatMode.REPEAT_SURAH,
+    val isQariPickerVisible: Boolean = false,
+    val isAudioLoading: Boolean = false,
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 ) : UiState
@@ -51,6 +68,13 @@ sealed interface QuranUiIntent : UiIntent {
     data class UpdateFontScale(val scale: Float) : QuranUiIntent
     data class ToggleTajwidColors(val enabled: Boolean? = null) : QuranUiIntent
     data class PlayAudio(val track: AudioTrack) : QuranUiIntent
+    data class PlaySurahAudio(val surahNumber: Int, val startAyahNumber: Int = 1) : QuranUiIntent
+    data class PlayAyahAudio(val surahNumber: Int, val ayahNumber: Int) : QuranUiIntent
+    data class SeekToAyah(val ayahNumber: Int) : QuranUiIntent
+    data class SelectQari(val qari: QariOption) : QuranUiIntent
+    data class SetQariPickerVisible(val visible: Boolean) : QuranUiIntent
+    data object ToggleAudioRepeatMode : QuranUiIntent
+    data class SetAudioRepeatMode(val mode: QuranAudioRepeatMode) : QuranUiIntent
     data object TogglePlayPauseAudio : QuranUiIntent
     data object StopAudio : QuranUiIntent
     data object RefreshData : QuranUiIntent
@@ -60,3 +84,4 @@ sealed interface QuranUiEffect : UiEffect {
     data class ShowToast(val message: String) : QuranUiEffect
     data class NavigateToSurah(val surahNumber: Int) : QuranUiEffect
 }
+

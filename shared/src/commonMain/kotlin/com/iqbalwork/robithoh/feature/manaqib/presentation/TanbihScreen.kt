@@ -1,20 +1,33 @@
 package com.iqbalwork.robithoh.feature.manaqib.presentation
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.rememberCoroutineScope
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedScrollState
 import com.iqbalwork.robithoh.feature.manaqib.model.TanbihContent
+import kotlinx.coroutines.launch
 
 @Composable
 fun TanbihScreen(
@@ -24,17 +37,19 @@ fun TanbihScreen(
     modifier: Modifier = Modifier
 ) {
     val isDark = RabithohTheme.colors.isDark
-    val scrollState = rememberScrollState()
+    val scrollState = rememberPersistedScrollState("tanbih_screen")
+    val coroutineScope = rememberCoroutineScope()
 
     val availableLanguages = listOf(LiturgyLanguage.INDONESIAN, LiturgyLanguage.SUNDANESE)
     val activeLang = if (selectedLanguage == LiturgyLanguage.ARABIC) LiturgyLanguage.INDONESIAN else selectedLanguage
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .padding(16.dp)
-    ) {
+    Box(modifier = modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(16.dp)
+        ) {
         LanguageTabSwitch(
             selectedLanguage = activeLang,
             onLanguageSelected = onLanguageSelected,
@@ -133,5 +148,18 @@ fun TanbihScreen(
                 }
             }
         }
+    }
+
+        ScrollToTopButton(
+            visible = scrollState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    scrollState.animateScrollTo(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 }

@@ -50,20 +50,8 @@ actual class DatabaseDriverFactory(private val context: Context) {
                 """.trimIndent(),
                 0
             )
-            try {
-                driver.execute(
-                    null,
-                    "ALTER TABLE PrayerSettingsEntity ADD COLUMN adzan_volume REAL NOT NULL DEFAULT 1.0;",
-                    0
-                )
-            } catch (_: Throwable) {} // kolom sudah ada di instalasi lama -> abaikan
-            try {
-                driver.execute(
-                    null,
-                    "ALTER TABLE PrayerSettingsEntity ADD COLUMN pre_reminder_enabled INTEGER NOT NULL DEFAULT 1;",
-                    0
-                )
-            } catch (_: Throwable) {} // kolom sudah ada di instalasi lama -> abaikan
+            driver.addColumnIfNotExists("PrayerSettingsEntity", "adzan_volume", "REAL NOT NULL DEFAULT 1.0")
+            driver.addColumnIfNotExists("PrayerSettingsEntity", "pre_reminder_enabled", "INTEGER NOT NULL DEFAULT 1")
             driver.execute(
                 null,
                 """

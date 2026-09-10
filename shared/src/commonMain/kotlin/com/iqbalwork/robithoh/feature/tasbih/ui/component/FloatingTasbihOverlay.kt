@@ -182,19 +182,20 @@ fun FloatingTasbihOverlay(
                             }
                         }
 
-                        // Target Selector Row: Preset 165x and Kustom
+                        // Target Selector Row: Preset Default and Kustom
+                        val defaultTarget = state.availablePresets.find { it.id == state.selectedDzikirId }?.defaultTarget ?: 165
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            val is165 = state.targetCount == 165
+                            val isDefault = state.targetCount == defaultTarget
                             Surface(
                                 shape = RoundedCornerShape(10.dp),
-                                color = if (is165) MerahMerdeka else Color(0xFF240609),
-                                border = BorderStroke(1.dp, if (is165) EmasKhidmat else Color(0xFF3D1015)),
+                                color = if (isDefault) MerahMerdeka else Color(0xFF240609),
+                                border = BorderStroke(1.dp, if (isDefault) EmasKhidmat else Color(0xFF3D1015)),
                                 modifier = Modifier
                                     .weight(1f)
-                                    .clickable { onIntent(TasbihUiIntent.SetTarget(165)) }
+                                    .clickable { onIntent(TasbihUiIntent.SetTarget(defaultTarget)) }
                             ) {
                                 Row(
                                     horizontalArrangement = Arrangement.Center,
@@ -202,15 +203,15 @@ fun FloatingTasbihOverlay(
                                     modifier = Modifier.padding(vertical = 6.dp)
                                 ) {
                                     Text(
-                                        text = "165x",
-                                        color = if (is165) PutihBersih else Color.LightGray,
+                                        text = "${defaultTarget}x",
+                                        color = if (isDefault) PutihBersih else Color.LightGray,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 12.sp
                                     )
                                 }
                             }
 
-                            val isCustom = state.targetCount != 165
+                            val isCustom = state.targetCount != defaultTarget
                             Surface(
                                 shape = RoundedCornerShape(10.dp),
                                 color = if (isCustom) MerahMerdeka else Color(0xFF240609),
@@ -358,6 +359,40 @@ fun FloatingTasbihOverlay(
                     Text("Batal")
                 }
             }
+        )
+    }
+}
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun FloatingTasbihOverlayCollapsedPreview() {
+    RabithohTheme {
+        FloatingTasbihOverlay(
+            state = TasbihUiState(
+                currentCount = 33,
+                targetCount = 165,
+                isFloatingExpanded = false,
+                isFloatingVisible = true
+            ),
+            onIntent = {},
+            onOpenFullScreen = {}
+        )
+    }
+}
+
+@org.jetbrains.compose.ui.tooling.preview.Preview
+@Composable
+private fun FloatingTasbihOverlayExpandedPreview() {
+    RabithohTheme {
+        FloatingTasbihOverlay(
+            state = TasbihUiState(
+                currentCount = 33,
+                targetCount = 165,
+                isFloatingExpanded = true,
+                isFloatingVisible = true
+            ),
+            onIntent = {},
+            onOpenFullScreen = {}
         )
     }
 }

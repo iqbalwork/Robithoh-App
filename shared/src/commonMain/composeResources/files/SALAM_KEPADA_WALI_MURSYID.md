@@ -50,5 +50,5 @@
 > yang orang-orang sezamannya adalah keluarganya  
 > yang diturunkan pertolongan karena doanya  
 > yang dikucurkan limpah susu karena keberkahannya  
-> beserta rahmat Allah dan keberkahan-Nya,  
+> beserta rahmat اَللّهُ dan keberkahan-Nya,  
 > Al-Fatihah.

@@ -19,9 +19,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.*
+import com.iqbalwork.robithoh.core.designsystem.component.ScrollToTopButton
+import com.iqbalwork.robithoh.core.designsystem.component.shouldShowScrollToTop
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.*
+import com.iqbalwork.robithoh.core.presentation.rememberPersistedLazyListState
 import com.iqbalwork.robithoh.feature.manaqib.model.SilsilahNode
+import kotlinx.coroutines.launch
 
 @Composable
 fun TawassulSilsilahScreen(
@@ -35,16 +39,20 @@ fun TawassulSilsilahScreen(
     var selectedNodeForOptions by remember { mutableStateOf<SilsilahNode?>(null) }
     val clipboardManager = LocalClipboardManager.current
     val shareAction = rememberShareTextAction()
+    val listState = rememberPersistedLazyListState("tawassul_silsilah_list")
+    val coroutineScope = rememberCoroutineScope()
 
     val tawassulArabic = "إِلَى حَضْرَةِ النَّبِيِّ الْمُصْطَفَى سَيِّدِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى آلِهِ وَأَصْحَابِهِ وَأَزْوَاجِهِ وَذُرِّيَّاتِهِ وَأَهْلِ بَيْتِهِ الْكِرَامِ، وَإِلَى أَرْوَاحِ جَمِيعِ سِلْسِلَةِ السَّادَاتِ الْقَادِرِيَّةِ وَالنَّقْشَبَنْدِيَّةِ خُصُوصًا سُلْطَانَ الْأَوْلِيَاءِ سَيِّدَنَا الشَّيْخَ عَبْدَ الْقَادِرِ الْجَيْلَانِيَّ وَسَيِّدَنَا الشَّيْخَ عَبْدَ اللَّهِ مُبَارَكْ وَسَيِّدَنَا الشَّيْخَ أَحْمَدَ صَاحِبَ الْوَفَاءِ تَاجَ الْعَارِفِينَ وَسَيِّدَنَا الشَّيْخَ مُحَمَّدَ عَبْدَ الْغَوْثِ سَيْفَ اللَّهِ مَسْلُولْ رَضِيَ اللَّهُ عَنْهُمْ أَجْمَعِينَ... الْفَاتِحَة"
 
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
-    ) {
+    Box(modifier = modifier.fillMaxSize()) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(top = 12.dp, bottom = 32.dp)
+        ) {
         // Tawassul Card
         item {
             GoldCrimsonCard(
@@ -117,6 +125,19 @@ fun TawassulSilsilahScreen(
                 onClick = { selectedNodeForOptions = node }
             )
         }
+    }
+
+        ScrollToTopButton(
+            visible = listState.shouldShowScrollToTop(),
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(bottom = 24.dp, end = 16.dp)
+        )
     }
 
     if (isTawassulOptionsOpen) {
