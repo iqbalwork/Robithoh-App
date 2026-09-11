@@ -6,11 +6,11 @@
 
 ## 📌 Current Status
 
-* **Project Version**: `1.2.0` (Code `8`)
-* **Current Focus**: R8 ProGuard Optimization Improvement & Codebase Maintenance.
+* **Project Version**: `1.2.0` (Code `10`)
+* **Current Focus**: Google Play In-App Update & Review Lifecycle Fix & Version Code Bump.
 * **Codebase Health**:
   - `shared`: Clean architecture, explicit import convention enforced, 125 passing unit test suites.
-  - `androidApp`: Optimized `proguard-rules.pro` removing redundant package-wide keep rules to maximize R8 shrinking & obfuscation, 8 Glance widgets implemented, dual flavors (`staging`, `production`), `:androidApp:assembleDebug` verified.
+  - `androidApp`: InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode bumped to 10, ProGuard rules updated for Play Core, 8 Glance widgets implemented, dual flavors (`staging`, `production`).
   - `iosApp`: SwiftUI wrapper running Compose Multiplatform UI (`ContentView.swift`).
   - `E2E`: Full Maestro test suite in `.maestro/` (10 flows verified).
   - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` verified.

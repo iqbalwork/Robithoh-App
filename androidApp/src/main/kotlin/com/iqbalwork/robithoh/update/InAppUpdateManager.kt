@@ -22,9 +22,10 @@ import com.google.android.play.core.install.model.UpdateAvailability
  */
 class InAppUpdateManager(
     private val activity: ComponentActivity,
-    private val onUpdateDownloaded: (() -> Unit)? = null
+    private val onUpdateDownloaded: (() -> Unit)? = null,
 ) {
     private val appUpdateManager: AppUpdateManager = AppUpdateManagerFactory.create(activity)
+    private var isDialogShowing = false
 
     private val updateLauncher: ActivityResultLauncher<IntentSenderRequest> =
         activity.registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
@@ -34,13 +35,25 @@ class InAppUpdateManager(
         }
 
     private val installStateUpdatedListener = InstallStateUpdatedListener { state ->
-        if (state.installStatus() == InstallStatus.DOWNLOADED) {
-            Log.d(TAG, "In-app update package downloaded successfully.")
-            if (onUpdateDownloaded != null) {
-                onUpdateDownloaded.invoke()
-            } else {
-                showUpdateDownloadedDialog()
+        when (state.installStatus()) {
+            InstallStatus.DOWNLOADED -> {
+                Log.d(TAG, "In-app update package downloaded successfully.")
+                if (onUpdateDownloaded != null) {
+                    onUpdateDownloaded.invoke()
+                } else {
+                    showUpdateDownloadedDialog()
+                }
             }
+            InstallStatus.INSTALLING -> {
+                Log.d(TAG, "In-app update is installing...")
+            }
+            InstallStatus.INSTALLED -> {
+                Log.d(TAG, "In-app update installed successfully.")
+            }
+            InstallStatus.FAILED -> {
+                Log.e(TAG, "In-app update install failed with error code: ${state.installErrorCode()}")
+            }
+            else -> {}
         }
     }
 
@@ -60,7 +73,7 @@ class InAppUpdateManager(
     fun checkForUpdates(
         preferImmediate: Boolean = false,
         onNoUpdateAvailable: (() -> Unit)? = null,
-        onUnsupported: (() -> Unit)? = null
+        onUnsupported: (() -> Unit)? = null,
     ) {
         try {
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
@@ -80,7 +93,7 @@ class InAppUpdateManager(
         appUpdateInfo: AppUpdateInfo,
         preferImmediate: Boolean,
         onNoUpdateAvailable: (() -> Unit)? = null,
-        onUnsupported: (() -> Unit)? = null
+        onUnsupported: (() -> Unit)? = null,
     ) {
         if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
             val targetUpdateType = if (preferImmediate && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
@@ -109,7 +122,7 @@ class InAppUpdateManager(
             appUpdateManager.startUpdateFlowForResult(
                 appUpdateInfo,
                 updateLauncher,
-                options
+                options,
             )
         } catch (e: Exception) {
             Log.e(TAG, "Failed to start update flow for type $updateType", e)
@@ -123,13 +136,17 @@ class InAppUpdateManager(
     fun onResume() {
         try {
             appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
-                if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                    startUpdateFlow(appUpdateInfo, AppUpdateType.IMMEDIATE)
-                } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                val installStatus = appUpdateInfo.installStatus()
+                if (installStatus == InstallStatus.DOWNLOADED) {
                     if (onUpdateDownloaded != null) {
                         onUpdateDownloaded.invoke()
                     } else {
                         showUpdateDownloadedDialog()
+                    }
+                } else if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    // Avoid re-triggering update flow if update is already installing
+                    if (installStatus != InstallStatus.INSTALLING) {
+                        startUpdateFlow(appUpdateInfo, AppUpdateType.IMMEDIATE)
                     }
                 }
             }.addOnFailureListener { e ->
@@ -155,15 +172,24 @@ class InAppUpdateManager(
      * Displays a dialog prompting the user to install the downloaded update now.
      */
     fun showUpdateDownloadedDialog() {
-        if (activity.isFinishing || activity.isDestroyed) return
+        if (activity.isFinishing || activity.isDestroyed || isDialogShowing) return
 
+        isDialogShowing = true
         AlertDialog.Builder(activity)
             .setTitle("Pembaruan Siap Dipasang")
             .setMessage("Versi terbaru aplikasi Robithoh telah selesai diunduh. Pasang sekarang untuk menerapkan pembaruan?")
-            .setPositiveButton("Pasang & Muat Ulang") { _, _ ->
+            .setPositiveButton("Pasang & Muat Ulang") { dialog, _ ->
+                isDialogShowing = false
+                dialog.dismiss()
                 completeUpdate()
             }
-            .setNegativeButton("Nanti", null)
+            .setNegativeButton("Nanti") { dialog, _ ->
+                isDialogShowing = false
+                dialog.dismiss()
+            }
+            .setOnDismissListener {
+                isDialogShowing = false
+            }
             .setCancelable(false)
             .show()
     }
