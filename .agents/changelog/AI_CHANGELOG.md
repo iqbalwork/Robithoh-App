@@ -6,6 +6,15 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### R8 & ProGuard Optimization Improvement
+- **Date**: 2026-09-10
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Cleaned up overly broad package-wide keep rules in `proguard-rules.pro` to drastically improve R8 shrinking, obfuscation, and optimization rates in Google Play Console.
+- **Changes**:
+  - `androidApp/proguard-rules.pro`: Removed redundant package-wide `-keep class <package>.** { *; }` rules for Compose, SQLDelight, Koin, Media3, Firebase, Play Core, Adhan, Coroutines, and Android Components.
+  - Relying on AAR consumer rules embedded in official dependencies and AAPT2 manifest merger rules for components.
+
+
 ### Dedicated Doa List Screen & Live Search
 - **Date**: 2025-02-17
 - **Author**: AI Assistant & Iqbal Fauzi

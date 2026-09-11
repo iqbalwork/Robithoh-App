@@ -1,0 +1,151 @@
+{
+    "APP_DIR": "/home/iqbalf/Projects/Robithoh/Robithoh App",
+    "APP_NAME": "app_name",
+    "GOAL_NAME": "data_safety_part_5",
+    "PACKAGE_NAME": null,
+    "REPO_ROOT": "/home/iqbalf/Projects/Robithoh/Robithoh App/.agents/skills/play-policy-insights",
+    "TARGET_SDK": null,
+    "TEMP_DIR": "/home/iqbalf/Projects/Robithoh/Robithoh App/.scratch/play_policy_insights_05ed3084-5f22-4bdd-bdbc-c8a023467be9",
+    "data_sources": {
+        "CREDIT_DEBIT_BANK_ACCOUNT_NUMBER": {
+            "description": "Information about a user\u2019s financial accounts such as credit card number.",
+            "findings": [
+                "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/McManaqibScreen.kt (Pattern: iban)"
+            ]
+        }
+    },
+    "disclosure": [
+        "androidApp/src/main/kotlin/com/iqbalwork/robithoh/update/InAppUpdateManager.kt (Pattern: AlertDialog)",
+        "shared/src/androidMain/kotlin/com/iqbalwork/robithoh/core/audio/KmpAudioPlayer.android.kt (Pattern: share)",
+        "shared/src/androidMain/kotlin/com/iqbalwork/robithoh/core/notification/PrayerAdzanService.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/App.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/core/designsystem/component/ContentItemOptionsSheet.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/core/designsystem/component/SurahPickerScreen.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/core/designsystem/theme/Type.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/core/presentation/ScrollPositionStore.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/amaliyah/ui/AdzanVoicePickerSheet.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/amaliyah/ui/DzikirDetailScreen.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/doa/ui/DoaListScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/home/ui/HomeTabContent.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/langgam/ui/LanggamScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/DoaManaqibScreen.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/KhotamanScreen.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/ManaqibDetailScreen.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/ManaqibListScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/manaqib/presentation/TawassulSilsilahScreen.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/onboarding/OnboardingContent.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/prayer/ui/SalatTabContent.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/qibla/ui/QiblaScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/data/QuranPageManager.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/data/QuranRepository.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/QuranListScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/QuranPageReaderScreen.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/QuranReaderScreen.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/ShalawatScreen.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/ZiarahScreen.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/ui/QariPickerSheet.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/reader/data/MarkdownDocumentRepository.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/reader/data/sync/DocumentSyncManager.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/reader/ui/GenericDocumentReaderScreen.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/reader/ui/component/DocumentSyncOverlay.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/splash/SplashContent.kt (Pattern: share)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/tasbih/presentation/TasbihMvi.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/tasbih/presentation/TasbihViewModel.kt (Pattern: Dialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/tasbih/ui/TasbihContent.kt (Pattern: AlertDialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/tasbih/ui/component/FloatingTasbihOverlay.kt (Pattern: AlertDialog)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/navigation/MainAppContainer.kt (Pattern: collect)",
+        "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/navigation/Screens.kt (Pattern: collect)",
+        "shared/src/commonTest/kotlin/com/iqbalwork/robithoh/feature/TasbihViewModelTest.kt (Pattern: Dialog)",
+        "shared/src/iosMain/kotlin/com/iqbalwork/robithoh/core/audio/KmpAudioPlayer.ios.kt (Pattern: share)",
+        "shared/src/iosMain/kotlin/com/iqbalwork/robithoh/core/designsystem/ShareAction.ios.kt (Pattern: share)",
+        "shared/src/iosMain/kotlin/com/iqbalwork/robithoh/core/notification/PrayerAlarmScheduler.ios.kt (Pattern: share)"
+    ],
+    "exact_alarm": [
+        "androidApp/src/main/kotlin/com/iqbalwork/robithoh/widget/PrayerWidgetHelper.kt (Pattern: AlarmManager)",
+        "shared/src/androidMain/kotlin/com/iqbalwork/robithoh/core/notification/PrayerAlarmScheduler.android.kt (Pattern: setExact)"
+    ],
+    "foreground_service": [
+        "shared/src/androidMain/kotlin/com/iqbalwork/robithoh/core/notification/PrayerAdzanService.kt (Pattern: FOREGROUND_SERVICE)",
+        "shared/src/androidMain/kotlin/com/iqbalwork/robithoh/core/notification/PrayerAlarmReceiver.kt (Pattern: startForeground)"
+    ],
+    "found_urls": [],
+    "network_transmission": {
+        "-": [
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/App.kt (Pattern: HttpClient)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/core/network/KtorHttpClient.kt (Pattern: HttpClient)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/di/NetworkModule.kt (Pattern: HttpClient)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/amaliyah/ui/PrayerTimesScreen.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/prayer/ui/SalatTabContent.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/qibla/ui/QiblaScreen.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/data/QuranAudioRepository.kt (Pattern: HttpClient)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/data/QuranPageManager.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/quran/presentation/QuranPageReaderScreen.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/reader/data/sync/DocumentSyncManager.kt (Pattern: fetch)",
+            "shared/src/commonMain/kotlin/com/iqbalwork/robithoh/navigation/MainAppContainer.kt (Pattern: fetch)"
+        ]
+    },
+    "requested_permissions": {
+        "LOCATION": [
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.ACCESS_COARSE_LOCATION"
+        ],
+        "exact_alarm": [
+            "android.permission.USE_EXACT_ALARM",
+            "android.permission.SCHEDULE_EXACT_ALARM"
+        ],
+        "foreground_service": [
+            "android.permission.FOREGROUND_SERVICE"
+        ]
+    },
+    "semantic_files": {
+        "AUDIO": [
+            "IslamicDivider.kt",
+            "IslamicHeader.kt",
+            "AdzanVoicePickerSheet.kt"
+        ],
+        "CONFIG": [
+            "PrayerCalculationConfig.kt"
+        ],
+        "MUSIC": [
+            "KmpAudioPlayer.android.kt",
+            "KmpAudioPlayer.kt",
+            "KmpAudioPlayer.ios.kt",
+            "KmpAudioPlayer.jvm.kt"
+        ],
+        "OTHER_APP_PERFORMANCE": [
+            "DocumentSyncNotifier.android.kt",
+            "PrayerWidgetSync.android.kt",
+            "QuranWidgetSync.android.kt",
+            "TasbihWidgetSync.android.kt",
+            "DocumentSyncNotifier.kt",
+            "PrayerWidgetSync.kt",
+            "QuranWidgetSync.kt",
+            "DocumentSyncManager.kt",
+            "DocumentSyncOverlay.kt",
+            "TasbihWidgetSync.kt",
+            "DocumentSyncTest.kt",
+            "DocumentSyncNotifier.ios.kt",
+            "PrayerWidgetSync.ios.kt",
+            "QuranWidgetSync.ios.kt",
+            "TasbihWidgetSync.ios.kt",
+            "DocumentSyncNotifier.jvm.kt",
+            "PrayerWidgetSync.jvm.kt",
+            "QuranWidgetSync.jvm.kt",
+            "TasbihWidgetSync.jvm.kt"
+        ],
+        "OTHER_AUDIO": [
+            "UiEffect.kt"
+        ],
+        "SUPPORT": [
+            "PrayerWidgetHelper.kt",
+            "QuickAccessWidgetHelper.kt",
+            "QuranWidgetHelper.kt",
+            "TanbihWidgetHelper.kt",
+            "TasbihWidgetHelper.kt"
+        ],
+        "VIDEOS": [
+            "AudioPlaybackState.kt",
+            "AudioPlaybackStateTest.kt"
+        ]
+    }
+}
