@@ -1487,7 +1487,7 @@ data class ReaderDocumentSection(
 
 fun parseDocumentSections(docId: String, rawContent: String): List<ReaderDocumentSection> {
     if (docId.startsWith("manqobah")) {
-        val monthRegex = Regex("""(?m)^###\s+(MUHARROM|SHOOFAR|SHOFAR|ROBI'?UL\s+AWAL|ROBI'?UTS?\s+TSANI|JUMADIL\s+ULA|JUMADITS?\s+TSANIYAH|ROJAB|SYA'?BAN|ROMADHON|SYAWAL|DZULQO'?DAH|DZULHIJJAH|DOA\s+MANQOBAH)""", RegexOption.IGNORE_CASE)
+        val monthRegex = Regex("""(?m)^###\s+(MUHARROM|SHOOFAR|SHOFAR|ROBI'?U?L?\s*AWAL|ROBI'?U?T?S?T?S?ANI|JUMADIL\s*ULA|JUMADIT?S?T?S?ANIYAH|ROJAB|RAJAB|SYA'?BAN|ROMADHON|RAMADHAN|SYAWAL|SYAWWAL|DZULQO'?DAH|DZULHIJJAH|ZULHIJJAH|DOA\s+MANQOBAH)""", RegexOption.IGNORE_CASE)
         val matches = monthRegex.findAll(rawContent).toList()
         if (matches.isEmpty()) {
             return listOf(ReaderDocumentSection(id = "full", title = null, content = rawContent))
