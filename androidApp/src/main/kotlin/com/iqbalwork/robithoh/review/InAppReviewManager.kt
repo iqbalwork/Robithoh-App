@@ -38,6 +38,7 @@ class InAppReviewManager(private val activity: ComponentActivity) {
             reviewManager.requestReviewFlow()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        if (activity.isFinishing || activity.isDestroyed) return@addOnCompleteListener
                         Log.d(TAG, "In-app review flow requested.")
                         reviewManager.launchReviewFlow(activity, task.result)
                             .addOnCompleteListener { Log.d(TAG, "In-app review flow finished.") }

@@ -6,6 +6,16 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Google Play In-App Update & Review Lifecycle Fix
+- **Date**: 2026-09-10
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Fixed infinite "Installing..." / "Memasang pembaruan..." hanging dialog in `InAppUpdateManager` during flexible/immediate updates, added lifecycle guards to `InAppReviewManager`, and bumped build versionCode to 10.
+- **Changes**:
+  - `androidApp/.../update/InAppUpdateManager.kt`: Prevented `onResume()` from re-triggering `startUpdateFlow` when `installStatus == InstallStatus.INSTALLING`, and added `isDialogShowing` flag to prevent `AlertDialog` stacking.
+  - `androidApp/.../review/InAppReviewManager.kt`: Added `activity.isFinishing || activity.isDestroyed` safety check before invoking `launchReviewFlow`.
+  - `androidApp/proguard-rules.pro`: Added keep rules for `com.google.android.play.core.appupdate.**`, `install.**`, and `review.**` packages.
+  - `androidApp/build.gradle.kts`: Bumped `versionCode` default from 9 to 10 (`versionName = "1.2.0"`).
+
 ### R8 & ProGuard Optimization Improvement
 - **Date**: 2026-09-10
 - **Author**: AI Assistant & Iqbal Fauzi
