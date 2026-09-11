@@ -8,7 +8,7 @@ MANQOBAH
 
 ### MUQODIMAH MANQOBAH
 
-السلا م عليكم ورحمت الله وبركته
+السلام عليكم ورحمة الله وبركاته
 
 Assalamu’alaikum warohmatullohi wabarokatuh
 
@@ -31,29 +31,15 @@ WA YAA SYIFAAA ASQOOMIS SAQIIMI.
 
 اَلَآ اِنَّ اَوْلِيَآءَ اللّٰهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُوْنَۚ ۞ اَلَّذِيْنَ اٰمَنُوْا وَكَانُوا يَتَّقُوْنَۗ ۞ لَهُمُ الْبُشْرٰى فِي الْـحَيٰوةِ الدُّنْيَا وَفِي الْآخِرَةِۗ لَا تَبْدِيْلَ لِكَلِمٰتِ اللّٰهِۗ ذٰلِكَ هُوَ الْفَوْزُ الْعَظِيْمُ
 
-*Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim wa laahum yahzanuun. Alladziina aamanuu wakaanuu yattaquun. Lahumul busyroo fil hayaatid dunyaa wa fiil aakhiroh,  laa tabdiila likalimaatillaah, dzaalika huwal fauzul ‘azhiim.*
+Bismillaahirrohmaanirroohim. Alaa inna Auliyaa’alloohi laa khoufun ‘alaihim wa laahum yahzanuun. Alladziina aamanuu wakaanuu yattaquun. Lahumul busyroo fil hayaatid dunyaa wa fiil aakhiroh,  laa tabdiila likalimaatillaah, dzaalika huwal fauzul ‘azhiim.
 
 Sugrining puji anu sampurna, sareng pangalem sagemblengna, eta tetep kagungan اَللّهُ anu mikawelas ka abdi-abdina, anu ngaluhurkeun darajat anu bakti ka Anjeuna.
 
-Rohmat sareng salam anu utami muga tetep ka pangafdol-afdolna Nabi nyaeta Kanjeng Nabi Muhammad SAW anu parantos dikiatan kalawan mu’jizat anu diutus jadi rohmat kasadayana alam, sareng kakulawargina, sareng kasadayana shohabat, sareng kasadayana Auliya اَللّهُ anu parantos diluhurkeun kalawan dipaparin pirang-pirang karomat. Amma ba’du
+Rohmat sareng salam anu utami muga tetep ka pangafdolna Nabi nyaeta Kanjeng Nabi Muhammad SAW anu parantos dikiatan kalawan mu’jizat anu diutus jadi rohmat kasadayana alam, sareng kakulawargina, sareng kasadayana shohabat, sareng kasadayana Auliya اَللّهُ anu parantos diluhurkeun kalawan dipaparin pirang-pirang karomat. Amma ba’du
 
 Maka ieu sapucuk kitab anu kalintang ringkesna, nyarioskeun manaqibna Sulthonul Auliya wa imamil Ulama Sayyid Abdul Qodir Al-Jailani Qs , kenging metik tina kitab ‘Uquudul La’aali Fii Manaqibil Jayli , sareng tina kitab Tafrìhul Khòtir Fì Manàqibis Sayyid ‘Abdul Qòdir.
 
 Mudah-mudahan aya manfaatna ka sadayana dulur anu kersa ngaos atanapi ngadangu kalawan ngagungkeun kanu kagungan ieu manaqib. Mudah-mudahan ku berkahna anu kagungan ieu manaqib, Gusti anu Maha Suci ka urang sadayana (khususna ka shohibul hajat sakulawargi….,) nurunkeun rohmat sareng nulak tina bahla dunya akherat. dihasilkeun pamaksadan diwuwuh kasalametan. Aamiin..
-
-*Ka-MUHARROM*
-*Ka-SHOFAR*
-*Ka-ROBIULAWAL*
-*Ka-ROBIUTSTSANI*
-*Ka-JUMADILULA*
-*Ka-JUMADITSTSANIYAH*
-*Ka-ROJAB*
-*Ka-SYABAN*
-*Ka-ROMADHON*
-*Ka-SYAWAL*
-*Ka-DZULQODAH*
-*Ka-DZULHIJJAH*
-*Ka-DOAMANQOBAH*
 
 ———۞۞۞———
 
@@ -61,7 +47,9 @@ Mudah-mudahan aya manfaatna ka sadayana dulur anu kersa ngaos atanapi ngadangu k
 
 ### MUHARROM
 
-MANQOBAH KA 39 NYARIOSKEUN UNGGAL DATANG TAUN ANYAR SOK ULUK SALAM KA ANJEUNA JEUNG SOK NYARITAKEUN NAON-NAON NU BAKAL KAJADIAN DINA TAUN ETA
+---
+
+### MANQOBAH KA 39 NYARIOSKEUN UNGGAL DATANG TAUN ANYAR SOK ULUK SALAM KA ANJEUNA JEUNG SOK NYARITAKEUN NAON-NAON NU BAKAL KAJADIAN DINA TAUN ETA
 
 Dicarioskeun dina Kitab Bahjatul Asror, Sayyid Abdul Qodir hiji waktos ngalayang di awang-awang di luhureun mangrebu-rebu jalma di majlis anjeuna, bari sasauran kieu:
 
@@ -75,7 +63,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 40 NYARIOSKEUN ANJEUNA DIPAPARIN BUKU PIKEUN NULISKEUN MURID-MURIDNA DUGI KA YAUMIL KIAMAH
+### MANQOBAH KA 40 NYARIOSKEUN ANJEUNA DIPAPARIN BUKU PIKEUN NULISKEUN MURID-MURIDNA DUGI KA YAUMIL KIAMAH
 
 Dicarioskeun dina Kitab Bahjatul Asror, Sayyid Abdul Qodir ngadawuhkeun kieu:
 “Kaula dipaparin buku, ari gedena satungtung paningali, nyaeta pikeun nuliskeun ngaran murid-murid kaula nepi ka poe kiamah, jeung eta murid dipasrahkeun ka kaula, geus jadi kaboga kaula. Lamun murid kaula henteu alus, kaula anu alus. Demi kamulyaan Pangeran kaula, leungeun kaula henteu lesot tina sirah murid kaula, sanajan kaula aya di masyrik, murid kaula aya di maghrib. Lamun murid kaula katembong oratna, tangtu ditutupan ku kaula.
@@ -90,9 +78,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ---
 
-### SHOOFAR
+### SHOFAR
 
-MANQOBAH KA 24 NYARIOSKEUN CALAGEURNA JALMA2 KU NGADAHAR JUJUKUTAN SARENG NGALEUEUT CAI MADROSAHNA SAYYID ABDUL QODIR
+---
+
+### MANQOBAH KA 24 NYARIOSKEUN CALAGEURNA JALMA2 KU NGADAHAR JUJUKUTAN SARENG NGALEUEUT CAI MADROSAHNA SAYYID ABDUL QODIR
 
 Dicarioskeun ku ulama-ulama, di jaman Sayyid Abdul Qodir aya tho’un, nepi ka aya ratus rebuna jalma-jalma anu maraot dina sapoe-sapoena teh, teras arunjukan ka Sayyid Abdul Qodir, dawuhanana:  “Saha-saha jalma anu ngahakan jujukutan madrosah kaula, dicageurkeun ku اَللّهُ tina tho’un”.
 
@@ -104,7 +94,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 27 NYARIOSKEUN NGAGALEUH 40 KUDA ANU SARAE NYAWISAN NU TEU DAMANG
+### MANQOBAH KA 27 NYARIOSKEUN NGAGALEUH 40 KUDA ANU SARAE NYAWISAN NU TEU DAMANG
 
 Dicarioskeun aya hiji jalma ti nagara anu anggang ka Baghdad, sarehna eta jalma teh ngadangu kana kamasyhuranana Sayyid Abdul Qodir, teras anjeuna ngadeuheus sumping ka Baghdad. Barang sumping ka Baghdad, ningali istal kagungan Sayyid Abdul Qodir anu kalintang saena. Tatabanana emas sareng perak, sebrak sareng selana sutra anu kalintang saraena, kudana aya 40 anu moal aya bangsana saena.  Tidinya eta jalma teh ngomong dina hatena:
 “Cenah ieu teh Waliyulloh, tapi buktina tukang Hubud Dunya, piraku aya wali resep-resep teuing kana dunya, anu kieu petana mah henteu pantes disebut Wali”.
@@ -121,11 +111,15 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UL AWAL
+---
 
-MANQOBAH KA 3 NYARIOSKEUN NGAOSNA SAYYID ABDUL QODIR
+### ROBIULAWAL
 
-Saparantos anjeuna ageung, lajeng ngajugjug ka guru-guru anu laluhur, ka alim-alim anu utami. Didinya anjeuna ngalap pirang-pirang elmu sareng sifat-sifat kautamian.
+---
+
+### MANQOBAH KA 3 NYARIOSKEUN NGAOSNA SAYYID ABDUL QODIR
+
+Saparantos anjeuna ageung, lajeng ngajugjug ka guru-guru anu laluhur, ka alim-alim anu utami. Didinya anjeuna ngalap pirang-pirang elmu sareng sifat-sifat ka utamian.
 
 Sadayana guru anjeuna pada nyarioskeun kana calakanana.  Ari ngaosna elmu fiqih ti Abil Wafa Ali Bin Aqil sareng ti Abil Khothob Al-Kaludi sareng ti Abil Husain Muhammad Ibnil Qodli.  Ari ngaosna elmu adab ti Abi Zakariyya At-Tabrizi.  Ari ngaos elmu thorekat ti Syekh Abil Khoir Hamad Bin Muslim Bin Dzirwati Ad-Dibas.  Ari anggoan ku anggoan shufiyahna ku Qodli Abi Sa’id Al-Mubarok.
 
@@ -139,11 +133,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 4 NYARIOSKEUN BUDI PEKERTINA SAYYID ABDUL QODIR
+### MANQOBAH KA 4 NYARIOSKEUN BUDI PEKERTINA SAYYID ABDUL QODIR
 
 Ari akhlakna Sayyid Abdul Qodir, tegesna talajakna eta banget sieun ku اَللّهُ, sahingga gampil pisan kaluar cisocana, sareng diijabah du’ana, pohara barahanana, tebih tina kaawonan, kalintang caketna kana kasaean, barani sareng kukuh dina haq, bengis dina perkara mungkarot, tara bendu karna hawa nafsuna, tara nulungan anu lain karna اَللّهُ, tara nolak kanu jajaluk, sanajan anu nyuhunkeun anggoanana.
 
-Anjeuna kawaris akhlakna akhlak Kangjeng Nabi Muhammad SAW.  Kasepna kawaris kakasepan Kangjeng Nabi Yusuf as.  Benerna bener Sayyidina Abu Bakar Shiddiq ra.  Adilna adil Sayyidina Umar ra.  Hilimna, tegesna kashobaranana shobar Sayyidina Utsman ra.  Kagagahanana sareng kabaranianana Sayyidina Ali Karromalloh Wajhah
+Anjeuna kawaris akhlakna akhlak Kangjeng Nabi Muhammad SAW.  Kasepna kawaris kakasepan Kangjeng Nabi Yusuf as.  Benerna bener Sayyidina Abu Bakar Shiddiq ra.  Adilna adil Sayyidina Umar ra.  Hilimna, tegesna kashobaranana shobar Sayyidina Utsman ra.  Kagagahanana sareng kabaranianana Sayyidina Ali Karromalloh Wajhah.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -151,9 +145,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-ROBI’UTS TSANI
+---
 
-MANQOBAH KA 51 NYARIOSKEUN WASIAT SAYYID ABDUL QODIR
+### ROBIUTSTSANI
+
+---
+
+### MANQOBAH KA 51 NYARIOSKEUN WASIAT SAYYID ABDUL QODIR
 
 Anjeuna parantos wasiat ka putrana anu jenengan Abdur Rozàq kalawan pirang-pirang wasiat.
 
@@ -215,7 +213,7 @@ Jeung kudu nyaho maneh satemen-temena tashowwuf eta diadegkeunana kana 8 perkara
 
 Ari barahan eta dipaparinkeun ka Nabi Ibròhhìm as, ari ridlo ka Nabi Ishàq as, ari shobar ka Nabi Ayyùb as, ari isyarah ka Nabi Zakariyyà as, ari ngumbara ka Nabi Yùsuf as, ari make bangsa bulu ka Nabi Yahyà as, ari leuleuweungan ka Nabi ‘Isà as,  ari faqir ka Kangjeng Nabi Muhammad SAW.
 
-Jeung kudu tembongkeun kumaneh kagagahan kabaranian maneh upama reureujeungan jeung anu beunghar.  Jeung kudu rendah upama reureujeungan jeung faqir.  Jeung maneh kudu ikhlas.  Jeung kudu langgeng nenjo ka اَللّهُ.  Jeung ulah salah sangka ka اَللّهُ tina sakabeh sabab.  Jeung kudu pasrah ka اَللّهُ dina sakabeh hal sakabeh tingkah.  Jeung ulah tatagenan ka hiji jalma lantaran baraya atawa sobat.  Jeung kudu ngakhodaman fuqoro kalawan 3 perkara.
+Jeung kudu tembongkeun kumaneh kagagahan kabaranian maneh upama reureujeungan jeung anu beunghar.  Jeung kudu rendah upama reureujeungan jeung faqir.  Jeung maneh kudu ikhlas.  Jeung kudu langgeng nenjo ka اَللّهُ.  Jeung ulah salah sangka ka اَللّهُ tina sakabeh sabab.  Jeung kudu pasrah ka اَللّهُ dina sakabeh hal sakabeh tingkah. Jeung ulah tatagenan ka hiji jalma lantaran baraya atawa sobat.  Jeung kudu ngakhodaman fuqoro kalawan 3 perkara.
 
 Ka 1:  Tawadlo.
 
@@ -248,7 +246,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 53. NYARIOSKEUN PUPUSNA SAYYID ABDUL QODIR
+### MANQOBAH KA 53. NYARIOSKEUN PUPUSNA SAYYID ABDUL QODIR
 
 Barang parantaos caket kana pupusna Sayyid Abdul Qodir, sumping Malaikat ‘izroil dina waktu surup mata poe nyandak tulisan, addresna: “yashilu hhàdzal maktùbu minal muhibbi ilal mahbùbi”. Hartosna: “Datangna ieu tulisan tinu mikaasih kanu diasih”. Teras eta serat ku malaikat disanggakeun ka putrana, Abdul Wahàb. Barang putrana ningali eta serat, teras nangis. Tidinya teras lebet sareng anjeuna ka Sayyid Abdul Qodir. Ari pupusna dina malem senen ba’da isya, kaping 10 atanapi 11 Silihmulud taun 561 Hijriyyah.
 
@@ -265,56 +263,42 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADIL ULA
+---
 
-MANQOBAH KA 35 NYARIOSKEUN SYEKH AHMAD KANJI JADI MURIDNA SAYYID ABDUL QODIR KALAWAN PITUDUH GURUNA
+### JUMADILULA
 
-Kacarioskeun hiji waktos Syekh Ahmad Kanji nuju abdas, aya kereteg dina manahna yen thorekatna Sayyid Abdul Qodir leuwih dipikaresep tibatan thorekat-thorekat sejena.
+---
 
-Kereteg Syekh Ahmad Kanji kitu teh kauninga ku guruna, Syekh Abi Ishaq Maghribi. Saur guruna:
+### MANQOBAH KA 35 NYARIOSKEUN SYEKH AHMAD KANJI JADI MURIDNA SAYYID ABDUL QODIR KALAWAN PITUDUH GURUNA
+
+Kacarioskeun hiji waktos Syaikh Ahmad Kanji nuju abdas, aya kereteg dina manahna yen thorekatna Sayyid Abdul Qodir leuwih dipikaresep tibatan thorekat-thorekat sejena.
+
+Kereteg Syaikh Ahmad Kanji kitu teh kauninga ku guruna, Syaikh Abi Ishaq Maghribi. Saur guruna:
 “Nyaho maneh martabatna Sayyid Abdul Qodir?”.  Saur Ahmad Kanji:  “Henteu !”.
 
 Saur guruna: “Sayyid Abdul Qodir teh kagungan 12 sifat. Lamun lautan dijieun mangsina, tatangkalan dijieun kalamna, manusa jeung jin jeung malaikat anu nuliskeunana, tangtu moal katuliskeun sahiji sifat oge”.
 
-Barang Syekh Ahmad Kanji ngadangu cariosan guruna kitu teh, anjeuna banget mahabbahna ka Sayyid Abdul Qodir, sareng banget ngarep-ngarepna palay ulah waka pupus upama teu acan lebet kana thorekatna.
+Barang Syaikh Ahmad Kanji ngadangu cariosan guruna kitu teh, anjeuna banget mahabbahna ka Sayyid Abdul Qodir, sareng banget ngarep-ngarepna palay ulah waka pupus upama teu acan lebet kana thorekatna.
 
 Tidinya teras anjeuna angkat ka Baghdad.  Barang nembe dongkap ka hiji gunung di jajahan Ajmir, anjeuna mendak hiji wahangan, teras abdas.
 
 Saparantos abdas teras netepan.  Saparantos netepan anjeuna teras kulem.
 
-Dina kulem anjeuna kasumpingan Sayyid Abdul Qodir nyandak makuta beureum sareng sorban hejo, teras Syekh Ahmad ngadeg ngahurmat ka Sayyid Abdul Qodir.
+Dina kulem anjeuna kasumpingan Sayyid Abdul Qodir nyandak makuta beureum sareng sorban hejo, teras Syaikh Ahmad ngadeg ngahurmat ka Sayyid Abdul Qodir.
 
 “Kadieu sing deukeut”, saur Sayyid Abdul Qodir.
 
-Teras Syekh Ahmad Kanji nyaketan, teras makuta beureum sareng sorban hejo teh dianggokeun ka anjeuna.
+Teras Syaikh Ahmad Kanji nyaketan, teras makuta beureum sareng sorban hejo teh dianggokeun ka anjeuna.
 
 Saur Sayyid Abdul Qodir: “Heh Ahmad Kanji, ayeuna maneh geus jadi anak murid kaula, jeung maneh geus jadi tina satengahna Rizalulloh”.
 
 Les deui Sayyid Abdul Qodir teh henteu aya.
 
-Barang Syekh Ahmad Kanji gugah, makuta sareng sorban aya dina mastakana, teras Syekh Ahmad Kanji syukur ka Gusti اَللّهُ, sareng teras mulih deui ka guruna, nyarioskeun lalakona sareng ningalikeun makutana.
+Barang Syaikh Ahmad Kanji gugah, makuta sareng sorban aya dina mastakana, teras Syaikh Ahmad Kanji syukur ka Gusti اَللّهُ, sareng teras mulih deui ka guruna, nyarioskeun lalakona sareng ningalikeun makutana.
 
-Saur guruna: “Heh Ahmad Kanji, ieu makuta jeung sorban kaberkahan pikeun maneh. Pohara maneh dipikaasihna ku Sayyid Abdul Qodir, jeung ayeuna maneh jadi pangunjulna wali”.
+Saur guruna: “Heh Ahmad Kanji, ieu makuta jeung sorban kaberkahan pikeun maneh. Pohara maneh dipikaasihna ku Sayyid Abdul Qodir, jeung ayeuna maneh jadi pangpunjulna wali”.
 
-Teras Syekh Abi Ishaq Maghribi ngalap berkah, nganggo makuta sareng sorban tea. Tidinya dipasihkeun deui ka Syekh Ahmad.
-
-اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
-
-Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
-
-———۞۞۞———
-
-MANQOBAH KA 36 NYARIOSKEUN SYEKH AHMAD KANJI NGALA SULUH BARANG BADE DISUHUN SULUHNA NGAPUNG KALUHUREUN SIRAH SYEKH AHMAD
-
-Syekh Ahmad Kanji teh khidmahna atanapi padamelanana ngala suluh kangge masak roti faqir-faqir.Barang saparantos nganggo makuta ti SAQ,saur guruna: “Ahmad Kanji,ayeuna mah maneh henteu layak,ngewa ngala suluh,sabab sirah maneh geus dimakutaan ku makuta mulya”.
-
-Tidinya Syek Ahmad Kanji maksa nyuhunkeun widi ti guruna,saur guruna: “Nya ari keukeuh mah,jig bae”.
-
-Tidinya teras Syekh Ahmad Kanji angkat ka gunung,teras ngempelkeun suluh,tidinya teras dibeungkeut.Barang bade disuhun,suluh teh jung ngapung kana luhureun sirah Syekh Ahmad,cicing di awang-awang kira-kira sahasta tina sirahna syekh Ahmad.
-
-Tidinya teras Syekh Ahmad mulih ka guruna.Beungkeutan suluh teh ngalayang bae di awang-awang nuturkeun Syekh Ahmad.
-
-Barang sumping ka guruna,nyaeta Syekh Abi Ishaq Maghribi tea,saur guruna: “Tah Syekh Ahmad,tadi ceuk kaula kumaha,sirah maneh henteu pantes dipake nyuhun suluh,sabab geus ditetepan makuta jeung sorban anu mulya,ti waktu ayeuna meugeus entong deui-deui ngala suluh,maneh ku SAQ geus ditepikeun kana pangkat Rijalulloh”.
+Teras Syaikh Abi Ishaq Maghribi ngalap berkah, nganggo makuta sareng sorban tea. Tidinya dipasihkeun deui ka Syaikh Ahmad.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -322,9 +306,31 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-JUMADITS TSANIYAH
+### MANQOBAH KA 36 NYARIOSKEUN SYEKH AHMAD KANJI NGALA SULUH BARANG BADE DISUHUN SULUHNA NGAPUNG KALUHUREUN SIRAH SYEKH AHMAD
 
-MANQOBAH KA 15 NYARIOSKEUN JENENGAN SAYYID ABDUL QODIR CARA ISMUL A’ZHOM
+Syaikh Ahmad Kanji teh khidmahna atanapi padamelanana ngala suluh kangge masak roti faqir-faqir.Barang saparantos nganggo makuta ti Sayyid Abdul Qodir ,saur guruna: “Ahmad Kanji,ayeuna mah maneh henteu layak,ngewa ngala suluh,sabab sirah maneh geus dimakutaan ku makuta mulya”.
+
+Tidinya Syaikh Ahmad Kanji maksa nyuhunkeun widi ti guruna,saur guruna: “Nya ari keukeuh mah,jig bae”.
+
+Tidinya teras Syaikh Ahmad Kanji angkat ka gunung,teras ngempelkeun suluh,tidinya teras dibeungkeut.Barang bade disuhun,suluh teh jung ngapung kana luhureun sirah Syaikh Ahmad,cicing di awang-awang kira-kira sahasta tina sirahna syaikh Ahmad.
+
+Tidinya teras Syaikh Ahmad mulih ka guruna.Beungkeutan suluh teh ngalayang bae di awang-awang nuturkeun Syaikh Ahmad.
+
+Barang sumping ka guruna,nyaeta Syaikh Abi Ishaq Maghribi tea,saur guruna: “Tah Syaikh Ahmad,tadi ceuk kaula kumaha,sirah maneh henteu pantes dipake nyuhun suluh,sabab geus ditetepan makuta jeung sorban anu mulya,ti waktu ayeuna meugeus entong deui-deui ngala suluh,maneh ku Sayyid Abdul Qodir geus ditepikeun kana pangkat Rijalulloh”.
+
+اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
+
+Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii Fii Kulli Waqtiw Wamakaan.
+
+———۞۞۞———
+
+---
+
+### JUMADITSTSANIYAH
+
+---
+
+### MANQOBAH KA 15 NYARIOSKEUN JENENGAN SAYYID ABDUL QODIR CARA ISMUL A’ZHOM
 
 Dicarioskeun dina kitab Haqoiqul Haqoiq, aya hiji awewe ngadeuheus ka Sayyid Abdul Qodir, teras unjukan pokna:
 “Gusti, abdi teh gaduh anak mung hiji-hijina, ayeuna ti teuleum di laut. Dupi abdi gaduh kayakinan, yen Gusti tiasa ngabalikkeun anak abdi sarta hirup.
@@ -354,7 +360,7 @@ Barang dongkap, anakna geus aya di imahna sarta salamet.
 Tidinya teras Sayyid Abdul Qodir munajat. Piunjukna:
 “Jisim abdi kalintang isinna ku eta awewe, dugi ka tilu kali nembe aya anakna. Kumaha margina, sareng naon hikmahna numawi dielatkeun, dugi ka abdi kawirangan dua kali?”.
 
-Dawuhan Gusti اَللّهُ: “Omongan maneh ka eta awewe kabeh oge bener. Barang mimiti disebutkeun aya teh bener, tapi kakara dikumpulkeun ku malaikat jiwa ragana nu geus pabencar. Ka dua kali oge bener, tapi kakara jejeg anggahotana sarta dihirupan. Ka tilu kalina eta awewe datang ka imahna, geus dihanjatkeun ti laut, didatangkeun ka imahna”.
+Dawuhan Gusti اَللّهُ: “Omongan maneh ka eta awewe kabeh oge bener. Barang mimiti disebutkeun aya teh bener, tapi kakara dikumpulkeun ku malaikat jiwa ragana nu geus pabencar. Ka dua kali oge bener, tapi kakara jejeg anggotana sarta dihirupan. Ka tilu kalina eta awewe datang ka imahna, geus dihanjatkeun ti laut, didatangkeun ka imahna”.
 
 Tidinya teras Sayyid Abdul Qodir unjukan deui:
 “Gusti mah ngadamel makhluk anu sakieu poharana henteu kalawan kasusahan. Nya kitu deui dina ba’atsna ngumpulkeun sakabeh jiwa raga makhluk nu sakitu seueurna mung sakedet netra. Ari ieu mah hiji budak, naon hikmahna Gusti numawi sakitu lamina?”.
@@ -379,7 +385,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 16 NYARIOSKEUN NGAHIRUPKEUN HIJI JALMA TI JERO KUBUR
+### MANQOBAH KA 16 NYARIOSKEUN NGAHIRUPKEUN HIJI JALMA TI JERO KUBUR
 
 Dicarioskeun dina kitab Asroruth Tholibin, Sayyid Abdul Qodir hiji waktos ngalangkung kana hiji tempat.
 
@@ -430,11 +436,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 17 NYARIOSKEUN SAYYID ABDUL QODIR NGAREBUT NYAWA KHODAMNA TI MALAKAL MAUT
+### MANQOBAH KA 17 NYARIOSKEUN SAYYID ABDUL QODIR NGAREBUT NYAWA KHODAMNA TI MALAKAL MAUT
 
 Dicarioskeun ku Abbil Abbas Ahmad Rifa’i:
 
-“Salah sawios khodamna Sayyid Abdul Qodir maot. Teras pamajikanana ngadeuheus ka Sayyid Abdul Qodir, keukeuh nyuhunkeun salakina hayang hirup deui.
+“Salah sawios khodamna Sayyid Abdul Qodir maot. Teras pamajikanana ngadeuheus ka Sayyid Abdul Qodir, keukeuh nyuhunkeun salakina hayang hirup deui.”
 
 Tidinya teras Sayyid Abdul Qodir muroqobah, mangka ningali anjeuna dina alam bathin, malakal maot keur hanjat ka langit nyandak roh nu dicabut dina poe eta, diwadahan dina wadah ma’nawi sarupi zambil.
 
@@ -473,9 +479,11 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ### ROJAB
 
-MANQOBAH KA 11 NYARIOSKEUN NGADAMPALNA KANGJENG NABI KANA PUNDAKNA SAYYID ABDUL QODIR
+---
 
-Dicarioskeun ku Syekh Rosyid Bin Muhammad Al-Junaidi:
+### MANQOBAH KA 11 NYARIOSKEUN NGADAMPALNA KANGJENG NABI KANA PUNDAKNA SAYYID ABDUL QODIR
+
+Dicarioskeun ku Syaikh Rosyid Bin Muhammad Al-Junaidi:
 
 “Dina wengian mi’roj Kangjeng Nabi, sumping malaikat Jibril nyandak buroq.
 
@@ -512,20 +520,24 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-SYA’BAN
+---
 
-MANQOBAH KA 7 NYARIOSKEUN IBADAHNA SAYYID ABDUL QODIR
+### SYABAN
 
-Dawuhan Syekh Abù ‘Abdillah Muhammad Al-Hirowi:
+---
+
+### MANQOBAH KA 7 NYARIOSKEUN IBADAHNA SAYYID ABDUL QODIR
+
+Dawuhan Syaikh Abù ‘Abdillah Muhammad Al-Hirowi:
 “Jisim kuring ngarencangan Sayyid Abdul Qodir kenging 40 taun.
 
-Dina lebet sakitu, anjeuna sok netepan shubuh ku wudhu isya.
+Dina lebet sakitu, anjeuna sok netepan shubuh ku wudlu isya.
 
 Upami anjeuna parantos netepan isya, teras lebet kapangkeng, teras nyepen dipangkeng dugi ka shubuh.
 
 Malah sok sering pisan bangsa raja-raja anu bade nepangan ka anjeuna, upami wengi mah tara tiasa nepangan, kapaksa sok ngantos dugi ka shubuh”.
 
-Dawuhan Syekh Muhammad Al-Hirowi:
+Dawuhan Syaikh Muhammad Al-Hirowi:
 “Hiji wengi jisim kuring nyarengan ka Sayyid Abdul Qodir henteu mondok sakerejep-kerejep acan.
 
 Ari damelna sonten keneh netepan sunnat.
@@ -559,7 +571,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ### ROMADHON
 
-MANQOBAH KA 2 NYARIOSKEUN DIPEDALKEUNANA SAYYID ABDUL QODIR
+---
+
+### MANQOBAH KA 2 NYARIOSKEUN DIPEDALKEUNANA SAYYID ABDUL QODIR
 
 Ari dipedalkeunana di nagara Jailan, nyaeta 1 nagara bawahan Thobristan, dina wengian kaping 1 sasih Romdon taun 471 Hijrah. Ari pupusna di nagara Baghdad kaping 10 Silihmulud taun 561, jadi yuswana mung 91 taun.
 
@@ -587,7 +601,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 32 NYARIOSKEUN BOBORANANA DI 70 BUMI MURIDNA DINA HIJI WAKTOS
+### MANQOBAH KA 32 NYARIOSKEUN BOBORANANA DI 70 BUMI MURIDNA DINA HIJI WAKTOS
 
 Dicarioskeun, dina hiji waktos sasih siyam, Sayyid Abdul Qodir diundang boboran ku 70 murid. Masing-masing palay disumpingan kabumina, sareng itu-ieu henteu tarerangeun pada ngundang ka Sayyid Abdul Qodir.
 
@@ -605,7 +619,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ### SYAWAL
 
-MANQOBAH KA 22 NYARIOSKEUN NGAMERDEKAKEUN ABID SARENG ANGGOANANA
+---
+
+### MANQOBAH KA 22 NYARIOSKEUN NGAMERDEKAKEUN ABID SARENG ANGGOANANA
 
 Dicarioskeun dina sapalihna kitab, Sayyid Abdul Qodir dina saban-saban lebaran sok ngagaleuh pirang-pirang abid.
 
@@ -622,7 +638,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-MANQOBAH KA 33 NYARIOSKEUN NYALAMETKEUN HIJI ISTRI MURIDNA SAYYID ABDUL QODIR TINA KHIANATNA HIJI LALAKI PASEK
+### MANQOBAH KA 33 NYARIOSKEUN NYALAMETKEUN HIJI ISTRI MURIDNA SAYYID ABDUL QODIR TINA KHIANATNA HIJI LALAKI PASEK
 
 Di Baghdad aya hiji istri kalintang geulisna. Eta istri memeh lebet kana golongan muridna Sayyid Abdul Qodir, dipikahayang ku hiji lalaki pasek, sareng kahayangna ku eta istri henteu dilayanan, tapi eta lalaki teh henteu eureun neangan jalan supaya laksana maksudna.
 
@@ -646,13 +662,17 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DZULQO’DAH
+---
 
-MANQOBAH KA 31 NYARIOSKEUN SAYYID ABDUL QODIR NYIUM PANANGAN KANGJENG NABI WAKTOS ZIARAH
+### DZULQO'DAH
+
+---
+
+### MANQOBAH KA 31 NYARIOSKEUN SAYYID ABDUL QODIR NYIUM PANANGAN KANGJENG NABI WAKTOS ZIARAH
 
 Hiji waktos anjeuna angkat ziarah ka eyangna ka Madinah.
 
-Barang sumping ka Hujroh Syarifah, Pakuleman Anu Mulya, anjeuna ngadeg di payuneunana kenging 40 dinten.
+Barang sumping ka Hujroh Syarifah, Pakuleman Anu Mulya, anjeuna ngamukim kenging 40 dinten.
 
 Panangan duanana di kana dadakeun, bari munajat ku ieu 2 bet:
 
@@ -687,7 +707,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ### DZULHIJJAH
 
-MANQOBAH KA 8 NYARIOSKEUN NU DIDAMEL DADASAR PADAMELAN SAYYID ABDUL QODIR
+---
+
+### MANQOBAH KA 8 NYARIOSKEUN NU DIDAMEL DADASAR PADAMELAN SAYYID ABDUL QODIR
 
 Sayyid Abdul Qodir ditaros:
 
@@ -768,15 +790,17 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ———۞۞۞———
 
-DOA MANQOBAH
+---
+
+### DOA MANQOBAH
 
 اِلَى حَضْرَةِ سُلْطَانِ الْاَوْلِيَاءِ وَقُدْوَةِ الْاَصْفِيَاءِ قُطْبِ الرَّبَّانِيْ وَالْغَوْثِ الصَّمَدَنِي السَّيِّدِ الشَّيْخِ عَبْدُالْقَادِرِاَلْجَيْلَانِيْ (اَلْفَاتِحَةْ)
 
-Ila hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbir robani wal ghoutsush shomadani sayyidi assayyid ‘abdul qodir aljailani. *Al-Fatihah*
+Ila hadlroti sulthonil auliya-i wa qudwatil ashfiya-i quthbir robani wal ghoutsush shomadani sayyidi syaikh ‘abdul qodir aljailani. Al-Fatihah
 
-اللّٰهُمَّ صَلِّ وَسَلِّمْ عَلٰى سَيِّدِنَا وَحَبِيْبِنَا وشفعن وَمَوْلَانَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ اَجْمَعِيْنَ اٰمِينْ.
+اللّٰهُمَّ صَلِّ وَسَلِّمْ عَلٰى سَيِّدِنَا وَحَبِيْبِنَا وَشَفِيعِناَ وَمَوْلَانَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهٖ اَجْمَعِيْنَ اٰمِينْ
 
-Allohhumma sholli wa sallim ‘ala sayyidina wa habibina wa syafi’ina wa maulana muhammadiw wa ‘ala alihhi wa ashhabihhi ajma’ina. *Aamiin*
+Allohhumma sholli wa sallim ‘ala sayyidina wa habibina wa syafi’ina wa maulana muhammadiw wa ‘ala alihhi wa ashhabihhi ajma’ina. Aamiin
 
 اَللّٰهُمَّ بِاَسْمَائِكَ الْحُسْنَى, وَبِاَسْمَاءِ نَبِيِّكَ الْمُصْطَفٰى, وَبِاَسْمَاءِ وَلِيِّكَ,
 
@@ -806,18 +830,15 @@ Bihadyihi wa siirotihi wa tawaffanaa bihaa ‘ala sunnatihi , wa laa tahrimnaa f
 
 وَاَتْبَاعِهِ الْغُرِّ الْمُحَجِّلِيْنَ, وَاشْيَاعِهِ السَّابِقِيْنَ, وَاَصْحَابِ الْيَمِيْنَ يٰااَرْحَمَ الرَّاحِمِيْنَ.
 
-وَصَلَّ اللّٰهُ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهِ وَعَلَى سَائِرِ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَعَلٰى اٰلِهِمْ وَاَصْحَابِهِمْ اَجْمَعِيْنَ وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+وَصَلَّى اللّٰهُ عَلٰى سَيِّدِنَا مُحَمَّدٍ وَعَلٰى اٰلِهٖ وَاَصْحَابِهِ وَسَلَّمَ وَعَلَى سَائِرِِ الْأَنْبِيَاءِ وَالْمُرْسَلِيْنَ وَعَلٰى اٰلِهِمْ وَاَصْحَابِهِمْ اَجْمَعِيْنَ وَالْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
 
-بِسْمِ. الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّهمُ . الفَاتِحَة
+بِالْبَرَكَهْ وَالْكَرَمَهْ . الشَّيْخِ مُحَمَّدْ عَبْدُ الْغَوْثِ سَيْفُ اللّٰهِ مَسْلُوْلُ قَدَّسَ اللّٰهُ سِرَّه . اَلْفَاتِحَةْ
 
 Wa atbaa’ihil ghurril muhajjiliina, wa asy-yaa’ihis saabiqiina, wa ash-haabil yamiin yaa arhamar roohimiina.
 
-Washollalloohu alaa sayyidinaa Muhammadin wa alaa aalihii wa ash-haabihi, Wa’ala saa-iril anbiyaa-i wal mursaliin, wa ‘alaa aalihim wa ash-haabihim ajma’iinWal hamdulillahi robbil ‘aalamiin.
+Washollalloohu alaa sayyidinaa Muhammadin wa alaa aalihii wa ash-haabihi, Wa’ala saa-iril anbiyaa-i wal mursaliin, wa ‘alaa aalihim wa ash-haabihim ajma’iin Wal hamdulillahi robbil ‘aalamiin.
 
-Bismi.Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohum.Al-Fatihah.
-
-*Kembali ke atas*
+Bilbarokah wallkaromah. Syaikh Muhammad Abdul Gaos Syaifulloh Maslul Qaddasalloohu Sirrohu.  Al-Fatihah.
 
 ———۞۞۞———
 
-۞۞۞
