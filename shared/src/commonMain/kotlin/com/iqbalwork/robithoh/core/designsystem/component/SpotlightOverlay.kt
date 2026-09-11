@@ -20,10 +20,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -224,6 +228,7 @@ fun SpotlightOverlay(
                 }
         ) {
             val screenHeight = maxHeight
+            val screenHeightPx = with(density) { screenHeight.toPx() }
 
             // 1. Cutout Scrim Canvas
             Canvas(
@@ -238,11 +243,15 @@ fun SpotlightOverlay(
 
                 if (activeRect != null && activeRect.width > 0f && activeRect.height > 0f) {
                     val paddingPx = with(density) { currentStep.padding.toPx() }
+                    // Cap target cutout height to max 35% of screen height to prevent oversized spotlights on long content
+                    val maxCutoutHeightPx = screenHeightPx * 0.35f
+                    val clampedHeightPx = minOf(activeRect.height, maxCutoutHeightPx)
+
                     val expanded = Rect(
                         left = activeRect.left - paddingPx,
                         top = activeRect.top - paddingPx,
                         right = activeRect.right + paddingPx,
-                        bottom = activeRect.bottom + paddingPx
+                        bottom = (activeRect.top + clampedHeightPx) + paddingPx
                     )
 
                     when (currentStep.shapeType) {
@@ -284,31 +293,18 @@ fun SpotlightOverlay(
             }
 
             // 2. Coach Mark Tooltip Card
-            // Decide whether to place card above or below target
+            // Safely dock card at top or bottom with safe system bar insets
             val targetCenterY = activeRect?.center?.y ?: 0f
-            val targetBottom = activeRect?.bottom ?: 0f
-            val targetTop = activeRect?.top ?: 0f
-            val screenHeightPx = with(density) { screenHeight.toPx() }
-
-            val placeBelow = targetCenterY < (screenHeightPx * 0.55f)
-
-            val cardPaddingPx = with(density) { 16.dp.toPx() }
-            val estimatedCardTopPx = if (placeBelow) {
-                (targetBottom + with(density) { currentStep.padding.toPx() } + cardPaddingPx)
-                    .coerceAtMost(screenHeightPx - with(density) { 260.dp.toPx() })
-            } else {
-                (targetTop - with(density) { currentStep.padding.toPx() } - with(density) { 230.dp.toPx() })
-                    .coerceAtLeast(with(density) { 40.dp.toPx() })
-            }
-
-            val cardTopDp = with(density) { estimatedCardTopPx.toDp() }
+            val placeBelow = targetCenterY < (screenHeightPx * 0.45f)
+            val cardAlignment = if (placeBelow) Alignment.BottomCenter else Alignment.TopCenter
 
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .offset(y = cardTopDp),
-                contentAlignment = Alignment.Center
+                    .fillMaxSize()
+                    .statusBarsPadding()
+                    .navigationBarsPadding()
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                contentAlignment = cardAlignment
             ) {
                 Card(
                     shape = RoundedCornerShape(24.dp),
@@ -317,7 +313,9 @@ fun SpotlightOverlay(
                     ),
                     border = BorderStroke(1.5.dp, EmasKhidmat.copy(alpha = 0.6f)),
                     elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = screenHeight * 0.42f)
                 ) {
                     Column(
                         modifier = Modifier
@@ -365,27 +363,34 @@ fun SpotlightOverlay(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
-                        // Title
-                        Text(
-                            text = currentStep.title,
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = if (isDark) PutihBersih else TextCharcoal
-                        )
+                        // Scrollable middle section for title and description
+                        // Keeps card height constrained and accessible even when system font is scaled up
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(1f, fill = false)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(
+                                text = currentStep.title,
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = if (isDark) PutihBersih else TextCharcoal
+                            )
 
-                        Spacer(modifier = Modifier.height(6.dp))
+                            Spacer(modifier = Modifier.height(6.dp))
 
-                        // Description
-                        Text(
-                            text = currentStep.description,
-                            fontSize = 13.sp,
-                            lineHeight = 19.sp,
-                            color = if (isDark) Color(0xFFD1D5DB) else TextMuted
-                        )
+                            Text(
+                                text = currentStep.description,
+                                fontSize = 13.sp,
+                                lineHeight = 19.sp,
+                                color = if (isDark) Color(0xFFD1D5DB) else TextMuted
+                            )
+                        }
 
-                        Spacer(modifier = Modifier.height(18.dp))
+                        Spacer(modifier = Modifier.height(14.dp))
 
                         // Actions: Skip / Previous / Next
                         Row(

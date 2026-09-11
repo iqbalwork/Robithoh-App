@@ -1,0 +1,14 @@
+{
+    "key_files": {
+        "gradles": [
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/build.gradle.kts",
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/settings.gradle.kts",
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/androidApp/build.gradle.kts",
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/shared/build.gradle.kts"
+        ],
+        "manifests": [
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/androidApp/src/main/AndroidManifest.xml",
+            "/home/iqbalf/Projects/Robithoh/Robithoh App/shared/src/androidMain/AndroidManifest.xml"
+        ]
+    }
+}
