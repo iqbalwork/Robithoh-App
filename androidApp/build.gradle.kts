@@ -52,7 +52,7 @@ android {
         applicationId = "com.iqbalwork.robithoh"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 8
+        versionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 9
         versionName = (project.findProperty("versionName") as? String) ?: "1.2.0"
     }
 
