@@ -36,7 +36,7 @@
 }
 
 # ------------------------------------------------------------------------------
-# 4. Library Warnings Suppression
+# 4. Library Warnings Suppression & Keep Rules
 # ------------------------------------------------------------------------------
 -dontwarn app.cash.sqldelight.**
 -dontwarn io.insert.koin.**
@@ -44,3 +44,14 @@
 -dontwarn androidx.media3.**
 -dontwarn com.google.firebase.**
 -dontwarn com.google.android.play.core.**
+
+# ------------------------------------------------------------------------------
+# 5. Google Play In-App Updates & Review Keep Rules
+# ------------------------------------------------------------------------------
+-keep class com.google.android.play.core.appupdate.** { *; }
+-keep class com.google.android.play.core.install.** { *; }
+-keep interface com.google.android.play.core.appupdate.** { *; }
+-keep interface com.google.android.play.core.install.** { *; }
+-keep class com.google.android.play.core.review.** { *; }
+-keep interface com.google.android.play.core.review.** { *; }
+
