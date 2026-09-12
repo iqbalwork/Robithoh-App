@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 
 class PrayerAlarmReceiver : BroadcastReceiver() {
 
@@ -35,7 +36,8 @@ class PrayerAlarmReceiver : BroadcastReceiver() {
 
         val isPreReminder = intent.getBooleanExtra(PrayerAdzanService.EXTRA_IS_PRE_REMINDER, false)
         val prayerName = intent.getStringExtra(PrayerAdzanService.EXTRA_PRAYER_NAME) ?: "Sholat"
-        val locationName = intent.getStringExtra(PrayerAdzanService.EXTRA_LOCATION_NAME) ?: "Wilayah Anda"
+        val rawLoc = intent.getStringExtra(PrayerAdzanService.EXTRA_LOCATION_NAME)
+        val locationName = LocationSanitizer.sanitize(rawLoc)
         val adzanVolume = intent.getFloatExtra(PrayerAdzanService.EXTRA_ADZAN_VOLUME, 1.0f)
 
         if (isPreReminder) {

@@ -4,6 +4,7 @@ import com.batoulapps.adhan2.Coordinates
 import com.batoulapps.adhan2.Madhab
 import com.batoulapps.adhan2.PrayerTimes
 import com.batoulapps.adhan2.data.DateComponents
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
 import com.iqbalwork.robithoh.feature.amaliyah.model.NextPrayerCountdown
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerCalculationMethodItem
@@ -172,6 +173,7 @@ class PrayerTimesCalculator {
 
         val indonesianDate = com.iqbalwork.robithoh.core.datetime.formatIndonesianDate(year, month, day)
         val hijriDate = com.iqbalwork.robithoh.core.datetime.getHijriDateFormatted(year, month, day)
+        val cleanLocationName = LocationSanitizer.sanitize(locationName, latitude, longitude)
 
         return PrayerSchedule(
             dateFormatted = indonesianDate,
@@ -187,7 +189,7 @@ class PrayerTimesCalculator {
             tahajjud = tahajjudFormatted,
             waktal = waktalFormatted,
             timezone = tzLabel,
-            locationName = locationName,
+            locationName = cleanLocationName,
             methodName = method.name
         )
     }

@@ -3,6 +3,7 @@ package com.iqbalwork.robithoh.feature.amaliyah.presentation
 import androidx.lifecycle.viewModelScope
 import com.iqbalwork.robithoh.core.database.RobithohDatabase
 import com.iqbalwork.robithoh.core.datetime.currentLocalDateTime
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 import com.iqbalwork.robithoh.core.presentation.MviViewModel
 import com.iqbalwork.robithoh.feature.amaliyah.data.AmaliyahRepository
 import com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator
@@ -69,8 +70,13 @@ class AmaliyahViewModel(
                 )
             }
             is AmaliyahUiIntent.SetGpsLocation -> {
+                val cleanName = LocationSanitizer.sanitize(
+                    intent.location.locationName,
+                    intent.location.latitude,
+                    intent.location.longitude
+                )
                 val loc = LocationPreset(
-                    name = intent.location.locationName,
+                    name = cleanName,
                     latitude = intent.location.latitude,
                     longitude = intent.location.longitude,
                     timezoneOffset = intent.location.timezoneOffset,
@@ -307,8 +313,13 @@ class AmaliyahViewModel(
                         isya = settings.isya_offset.toInt()
                     )
                     val location = if (settings.custom_lat != null && settings.custom_lng != null) {
+                        val cleanName = LocationSanitizer.sanitize(
+                            settings.custom_location_name,
+                            settings.custom_lat,
+                            settings.custom_lng
+                        )
                         LocationPreset(
-                            name = settings.custom_location_name ?: "Lokasi Tersimpan",
+                            name = cleanName,
                             latitude = settings.custom_lat,
                             longitude = settings.custom_lng,
                             timezoneOffset = settings.custom_timezone_offset ?: 7.0,

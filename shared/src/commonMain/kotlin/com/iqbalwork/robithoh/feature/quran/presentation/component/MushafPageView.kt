@@ -47,10 +47,8 @@ import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
-import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
-import com.iqbalwork.robithoh.feature.quran.model.AyahBlock
 import com.iqbalwork.robithoh.feature.quran.model.QuranPageMapping
 import kotlin.math.hypot
 import kotlin.math.min

@@ -7,11 +7,11 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Quran Page Reader enforced in light mode (authentic mushaf cream paper display even when dark mode is enabled).
+* **Current Focus**: Location name sanitization (replace raw GPS coordinates in notifications & schedules with clean city names like "Kota Bandung").
 * **Codebase Health**:
-  - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all jvm unit tests green.
-  - `androidApp`: AssembleStagingDebug succeeded, Glance widgets intact.
-  - `iosApp`: CoreLocation True North declination setup enabled.
+  - `shared`: Clean architecture, `LocationSanitizerTest` and all 142 multiplatform unit tests passing.
+  - `androidApp`: `androidApp:assembleDebug` succeeded, Glance widgets intact.
+  - `iosApp`: Clean location sanitization integrated into `LocationProvider.ios.kt`.
   - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
 
 ---

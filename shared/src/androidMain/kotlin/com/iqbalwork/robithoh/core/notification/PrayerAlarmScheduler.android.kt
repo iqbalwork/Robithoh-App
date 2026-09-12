@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.iqbalwork.robithoh.core.designsystem.getGlobalAppContext
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 import com.iqbalwork.robithoh.feature.amaliyah.model.AdzanVoices
+import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerNotificationSettings
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerSchedule
 import com.iqbalwork.robithoh.feature.amaliyah.model.PrayerType
@@ -52,12 +54,13 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
             }
 
             val audioFile = voiceOption.getAudioForPrayer(prayerType.label)
+            val cleanLocationName = LocationSanitizer.sanitize(schedule.locationName)
 
             val triggerMillis = computeNextTriggerMillis(timeStr)
             if (triggerMillis != null) {
                 val intent = Intent(context, PrayerAlarmReceiver::class.java).apply {
                     putExtra(PrayerAdzanService.EXTRA_PRAYER_NAME, prayerType.label)
-                    putExtra(PrayerAdzanService.EXTRA_LOCATION_NAME, schedule.locationName)
+                    putExtra(PrayerAdzanService.EXTRA_LOCATION_NAME, cleanLocationName)
                     putExtra(PrayerAdzanService.EXTRA_AUDIO_FILE, audioFile)
                     putExtra(PrayerAdzanService.EXTRA_CUSTOM_AUDIO_PATH, customPath)
                     putExtra(PrayerAdzanService.EXTRA_VOICE_TITLE, voiceTitle)
@@ -263,8 +266,13 @@ class AndroidPrayerAlarmScheduler(private val context: Context) : PrayerAlarmSch
                     isya = settings.isya_offset.toInt()
                 )
                 val location = if (settings.custom_lat != null && settings.custom_lng != null) {
-                    com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset(
-                        name = settings.custom_location_name ?: "Lokasi Tersimpan",
+                    val cleanLocName = LocationSanitizer.sanitize(
+                        settings.custom_location_name,
+                        settings.custom_lat,
+                        settings.custom_lng
+                    )
+                    LocationPreset(
+                        name = cleanLocName,
                         latitude = settings.custom_lat,
                         longitude = settings.custom_lng,
                         timezoneOffset = settings.custom_timezone_offset ?: 7.0,

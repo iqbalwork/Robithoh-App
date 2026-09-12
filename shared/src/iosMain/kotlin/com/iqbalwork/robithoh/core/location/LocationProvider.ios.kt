@@ -95,13 +95,12 @@ class IosLocationProvider : LocationProvider {
             geocoder.reverseGeocodeLocation(location) { placemarks, _ ->
                 if (placemarks != null && placemarks.isNotEmpty()) {
                     val placemark = placemarks.first() as? CLPlacemark
-                    val name = placemark?.locality
-                        ?: placemark?.subAdministrativeArea
+                    val name = placemark?.subAdministrativeArea
+                        ?: placemark?.locality
                         ?: placemark?.administrativeArea
-                        ?: "Lokasi GPS"
-                    continuation.resume(name)
+                    continuation.resume(LocationSanitizer.sanitize(name, lat, lng))
                 } else {
-                    continuation.resume("Lokasi GPS (${((lat * 100).toInt() / 100.0)}, ${((lng * 100).toInt() / 100.0)})")
+                    continuation.resume(LocationSanitizer.findNearestCity(lat, lng))
                 }
             }
         }

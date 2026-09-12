@@ -6,6 +6,24 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Fix Notification & App Location Display (Replace GPS Coordinates with Clean City Names)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Resolved an issue where prayer notifications and prayer schedules displayed raw GPS coordinates like `"Lokasi GPS (-6.87, 107.57)"` instead of human-readable city names like `"Kota Bandung"`.
+- **Changes**:
+  - `LocationSanitizer.kt`:
+    - Created a shared utility in `commonMain` with 50+ major Indonesian city/regency coordinates.
+    - Added `findNearestCity(lat, lng)` calculating Haversine distance to map raw coordinates to the closest Indonesian city when reverse geocoding is offline or unavailable.
+    - Added `sanitize(rawName, lat, lng)` to clean English geocoding suffixes (`"Bandung City"` -> `"Kota Bandung"`, `"Bandung Regency"` -> `"Kabupaten Bandung"`) and resolve raw GPS strings to clean city names.
+  - `LocationProvider.android.kt` & `LocationProvider.ios.kt`:
+    - Integrated `LocationSanitizer` in reverse geocoding fallback paths so location detection returns clean city names (e.g. `"Kota Bandung"`) instead of `"Lokasi GPS (lat, lng)"`.
+  - `PrayerAlarmReceiver.kt` & `PrayerAdzanService.kt`:
+    - Sanitized `EXTRA_LOCATION_NAME` before constructing pre-reminder and adzan notifications, ensuring notifications always show clean location text (e.g., `"Kota Bandung"`).
+  - `PrayerAlarmScheduler.android.kt` & `PrayerWidgetHelper.kt` & `AmaliyahViewModel.kt` & `PrayerTimesCalculator.kt`:
+    - Applied location sanitization across alarm scheduling, DB setting loading, widget calculations, and schedule generation.
+  - `LocationSanitizerTest.kt`:
+    - Added comprehensive unit tests in `commonTest` covering raw coordinate string parsing, English suffix normalization, nearest city matching, and null/blank handling (9/9 tests passing).
+
 ### Enforce Light Mode on Quran Page Reader (`QuranPageReaderScreen`)
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi
