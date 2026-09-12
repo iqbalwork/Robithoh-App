@@ -6,6 +6,8 @@
 	<string>Robithoh</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Aplikasi memerlukan akses lokasi untuk menentukan lokasi Anda dan menghitung arah kiblat serta waktu sholat yang akurat.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

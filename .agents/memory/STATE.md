@@ -7,11 +7,11 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Google Play In-App Update & Review Lifecycle Fix & Version Code Bump.
+* **Current Focus**: Android Splash Screen ANR & Main Thread Blocking Fix, iOS Compass Sensor & True North Location Setup.
 * **Codebase Health**:
   - `shared`: Clean architecture, explicit import convention enforced, 125 passing unit test suites.
-  - `androidApp`: InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode bumped to 10, ProGuard rules updated for Play Core, 8 Glance widgets implemented, dual flavors (`staging`, `production`).
-  - `iosApp`: SwiftUI wrapper running Compose Multiplatform UI (`ContentView.swift`).
+  - `androidApp`: Main thread blocking widget/alarm updates moved to Dispatchers.IO, Geocoder guarded, InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode 10, 8 Glance widgets implemented.
+  - `iosApp`: CoreLocation True North declination setup enabled with LocationWhenInUse usage description in Info.plist.
   - `E2E`: Full Maestro test suite in `.maestro/` (10 flows verified).
   - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` verified.
 

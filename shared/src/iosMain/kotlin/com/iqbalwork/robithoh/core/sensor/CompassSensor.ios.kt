@@ -8,37 +8,30 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import platform.CoreLocation.CLDeviceOrientationPortrait
 import platform.CoreLocation.CLHeading
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedAlways
+import platform.CoreLocation.kCLAuthorizationStatusAuthorizedWhenInUse
+import platform.CoreLocation.kCLAuthorizationStatusNotDetermined
+import platform.Foundation.NSError
 import platform.darwin.NSObject
-import kotlin.math.PI
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.sin
 
 private class IosCompassDelegate(
     private val onHeadingUpdate: (heading: Float, accuracy: CompassAccuracy) -> Unit
 ) : NSObject(), CLLocationManagerDelegateProtocol {
 
-    private var smoothedSin = 0.0
-    private var smoothedCos = 1.0
-    private val alpha = 0.15
-
     override fun locationManager(manager: CLLocationManager, didUpdateHeading: CLHeading) {
-        val rawHeading = if (didUpdateHeading.trueHeading >= 0.0) {
+        // Use trueHeading (True North) when location services provide magnetic declination,
+        // otherwise fall back to magneticHeading (Magnetic North).
+        val headingValue = if (didUpdateHeading.trueHeading >= 0.0) {
             didUpdateHeading.trueHeading
         } else {
             didUpdateHeading.magneticHeading
         }
 
-        if (rawHeading >= 0.0) {
-            val rad = rawHeading * (PI / 180.0)
-            smoothedSin = smoothedSin * (1.0 - alpha) + sin(rad) * alpha
-            smoothedCos = smoothedCos * (1.0 - alpha) + cos(rad) * alpha
-
-            val smoothedHeading = ((atan2(smoothedSin, smoothedCos) * (180.0 / PI)) + 360.0) % 360.0
-
+        if (headingValue >= 0.0) {
             val accuracy = when {
                 didUpdateHeading.headingAccuracy < 0.0 -> CompassAccuracy.UNRELIABLE
                 didUpdateHeading.headingAccuracy <= 15.0 -> CompassAccuracy.HIGH
@@ -46,8 +39,16 @@ private class IosCompassDelegate(
                 else -> CompassAccuracy.LOW
             }
 
-            onHeadingUpdate(smoothedHeading.toFloat(), accuracy)
+            onHeadingUpdate(headingValue.toFloat(), accuracy)
         }
+    }
+
+    override fun locationManager(manager: CLLocationManager, didUpdateLocations: List<*>) {
+        // Location fix acquired, enabling CoreLocation to compute True North magnetic declination
+    }
+
+    override fun locationManager(manager: CLLocationManager, didFailWithError: NSError) {
+        // Ignore location errors for compass heading
     }
 
     override fun locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager): Boolean {
@@ -59,7 +60,19 @@ private class IosCompassDelegate(
 actual fun rememberCompassSensor(): CompassState {
     var compassState by remember { mutableStateOf(CompassState()) }
 
-    DisposableEffect(Unit) {
+    val locationManager = remember { CLLocationManager() }
+    val delegate = remember {
+        IosCompassDelegate { heading, accuracy ->
+            compassState = CompassState(
+                heading = heading,
+                accuracy = accuracy,
+                isAvailable = true,
+                errorMessage = null
+            )
+        }
+    }
+
+    DisposableEffect(locationManager, delegate) {
         if (!CLLocationManager.headingAvailable()) {
             compassState = CompassState(
                 isAvailable = false,
@@ -68,18 +81,21 @@ actual fun rememberCompassSensor(): CompassState {
             return@DisposableEffect onDispose {}
         }
 
-        val locationManager = CLLocationManager()
-        val delegate = IosCompassDelegate { heading, accuracy ->
-            compassState = CompassState(
-                heading = heading,
-                accuracy = accuracy,
-                isAvailable = true,
-                errorMessage = null
-            )
-        }
-
         locationManager.delegate = delegate
         locationManager.headingFilter = 0.5 // Update every 0.5 degree
+        locationManager.headingOrientation = CLDeviceOrientationPortrait
+
+        // Request location permission if not determined so trueHeading (True North) can be calculated
+        val status = locationManager.authorizationStatus
+        if (status == kCLAuthorizationStatusNotDetermined) {
+            locationManager.requestWhenInUseAuthorization()
+        }
+
+        // Request location fix if authorized so CoreLocation can compute magnetic declination for trueHeading
+        if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways) {
+            locationManager.requestLocation()
+        }
+
         locationManager.startUpdatingHeading()
 
         onDispose {
