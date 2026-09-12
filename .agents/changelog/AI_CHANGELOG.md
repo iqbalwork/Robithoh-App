@@ -6,6 +6,135 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Fix Notification & App Location Display (Replace GPS Coordinates with Clean City Names)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Resolved an issue where prayer notifications and prayer schedules displayed raw GPS coordinates like `"Lokasi GPS (-6.87, 107.57)"` instead of human-readable city names like `"Kota Bandung"`.
+- **Changes**:
+  - `LocationSanitizer.kt`:
+    - Created a shared utility in `commonMain` with 50+ major Indonesian city/regency coordinates.
+    - Added `findNearestCity(lat, lng)` calculating Haversine distance to map raw coordinates to the closest Indonesian city when reverse geocoding is offline or unavailable.
+    - Added `sanitize(rawName, lat, lng)` to clean English geocoding suffixes (`"Bandung City"` -> `"Kota Bandung"`, `"Bandung Regency"` -> `"Kabupaten Bandung"`) and resolve raw GPS strings to clean city names.
+  - `LocationProvider.android.kt` & `LocationProvider.ios.kt`:
+    - Integrated `LocationSanitizer` in reverse geocoding fallback paths so location detection returns clean city names (e.g. `"Kota Bandung"`) instead of `"Lokasi GPS (lat, lng)"`.
+  - `PrayerAlarmReceiver.kt` & `PrayerAdzanService.kt`:
+    - Sanitized `EXTRA_LOCATION_NAME` before constructing pre-reminder and adzan notifications, ensuring notifications always show clean location text (e.g., `"Kota Bandung"`).
+  - `PrayerAlarmScheduler.android.kt` & `PrayerWidgetHelper.kt` & `AmaliyahViewModel.kt` & `PrayerTimesCalculator.kt`:
+    - Applied location sanitization across alarm scheduling, DB setting loading, widget calculations, and schedule generation.
+  - `LocationSanitizerTest.kt`:
+    - Added comprehensive unit tests in `commonTest` covering raw coordinate string parsing, English suffix normalization, nearest city matching, and null/blank handling (9/9 tests passing).
+
+### Enforce Light Mode on Quran Page Reader (`QuranPageReaderScreen`)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Ensured the Quran Page reader screen (`QuranPageReaderScreen`) always stays in light mode with authentic mushaf cream paper presentation, even when global dark mode is active.
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Wrapped the screen in `RabithohTheme(darkTheme = false)` so the theme hierarchy, colors, and dialog sheets consistently use light mode tokens.
+    - Imported `DarkSurface` explicitly to adhere to the no-inline-FQN convention.
+
+### Symmetrical Directional Page Curl (Reverse Turn e.g. Page 5 to 4)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Ensured backward inter-spread page turns (e.g. Page 5 to 4, 3 to 2, 7 to 6) apply 3D curl animation to the originating page (Page 5) rather than uncurling the destination page (Page 4), matching forward turn quality identically.
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Tracked gesture start origin using `gestureStartPage` via `snapshotFlow { pagerState.isScrollInProgress }`, guaranteeing the originating page is frozen throughout the entire drag and immune to `currentPage` mid-swipe flips at offset 0.5.
+    - When moving forward (e.g. 4 -> 5): `gestureStartPage <= floorPage`. Page 4 (`floorPage`) curls towards `SpineSide.RIGHT`, revealing Page 5 underneath.
+    - When moving backward (e.g. 5 -> 4): `gestureStartPage > floorPage`. Page 5 (`floorPage + 1`) curls towards `SpineSide.LEFT`, revealing Page 4 underneath.
+    - Inverted progress calculation for backward turns (`curlProgress = 1f - rawProgress`) so the originating leaf curls smoothly from 0.0 to 1.0 as the drag proceeds.
+
+### Full-Page Mushaf Paper Curl Animation & Continuous Sheet Background
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Expanded 3D page curl animation from only the central Quran image bounds to the entire page (`Modifier.fillMaxSize()`).
+- **Changes**:
+  - `CurlRenderer.kt`:
+    - Updated `draw` and `drawPageCurl` to accept `paperColor: Color` and `imageRect: Rect?`.
+    - Rendered physical paper substrate (`paperColor`) across each full-height strip (`canvasH`).
+    - Mapped image calligraphy slices proportionally to the strip projection using `imageRect` coordinates, ensuring calligraphy remains precisely centered and bounded on the curling leaf.
+    - Extended cylindrical cast shadow, specular ridge highlight, and ambient backface dimming to span the entire screen height.
+  - `MushafPageView.kt`:
+    - Expanded Layer 3 (Background paper sheet) to `Modifier.fillMaxSize().background(bgTheme)` when flat.
+    - Sized curl canvas to `Modifier.fillMaxSize()` during turn and passed `imageRect = Rect(offsetX, offsetY, offsetX + renderedW, offsetY + renderedH)` to `drawPageCurl`.
+    - Wrapped Tier A fallback in a full-sized `Box` with `rigidPageFlip` for full-page rigid flipping.
+
+### Dual-Page Mode (Foldable Open Mode & Tablet) 3D Paper Curl Animation
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Enabled authentic 3D paper curl book turn animation on foldable devices in open/unfolded mode and tablets (`maxWidth >= DUAL_PAGE_WIDTH_THRESHOLD`).
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Implemented continuous spread coordinate tracking (`floorSpread`, `curlProgress`, `isTransitioning`) for dual-page spreads.
+    - Added horizontal slide translation neutralization on the active pair of two-page spreads (`isTopCurlingSpread` and `isUnderlyingSpread`).
+    - Wired `leftPageTurnState` to the left page (`SpineSide.RIGHT`) so the left leaf peels from the outer margin toward the central crease, revealing the destination spread's left page beneath it.
+    - Cross-faded the right page of the top spread as the turning leaf crosses the spine, revealing the destination spread's right page seamlessly.
+    - Suppressed `SpineEdgeShadow` on the active curling leaf.
+  - `spec/0001-page-curl-book-turn-animation.md`: Added `REQ-008 (Dual-Page Foldable & Tablet Mode)`.
+
+### Intra-Spread Slide (Odd <-> Even) vs Inter-Spread Book Curl (Even <-> Odd)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Implemented authentic physical book spread transitions in `QuranPageReaderScreen.kt`:
+  - **Intra-spread sliding (Odd $\leftrightarrow$ Even)**: Pages facing each other on the same open two-page spread (1 $\leftrightarrow$ 2, 3 $\leftrightarrow$ 4, 5 $\leftrightarrow$ 6, etc., where `floorPage % 2 == 0`) transition via horizontal slide.
+  - **Inter-spread paper curl (Even $\leftrightarrow$ Odd)**: Turning over a physical paper leaf to reveal the next spread (2 $\leftrightarrow$ 3, 4 $\leftrightarrow$ 5, 6 $\leftrightarrow$ 7, etc., where `floorPage % 2 == 1 && floorPage >= 1`) transitions via 3D paper curl animation.
+- **Changes**:
+  - `PageTurnMath.kt`: Added `isSpreadTurn(floorPage: Int): Boolean` returning `floorPage >= 1 && (floorPage % 2 == 1)`.
+  - `PageTurnMathTest.kt`: Added unit test `testSpreadTurnVersusIntraSpreadSlide()` verifying slide vs curl for all page transitions.
+  - `QuranPageReaderScreen.kt`: Wired `PageTurnMath.isSpreadTurn(floorPage)` to `isCurlEligible`.
+  - `spec/0001-page-curl-book-turn-animation.md`: Updated `REQ-006` specification.
+
+### Underlying Page Visibility Fix During Quran Page Curl Transition
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Resolved issue where next/previous page was not visible underneath the curling sheet during page transitions.
+- **Root Cause & Resolution**:
+  - `MushafPageView.kt`: The root `BoxWithConstraints` was drawing an opaque cream background (`bgTheme = Color(0xFFFBF9F4)`), which completely occluded the underlying leaf at `zIndex = 0f` whenever the top curling page was active. Fixed by switching background to `Color.Transparent` when `pageTurnState != null && pageTurnState.progress > 0.001f`.
+  - `CurlRenderer.kt`: Added solid mushaf paper backing (`Color(0xFFFBF9F4)`) beneath back-face strips before drawing image slices so the turning page remains opaque physical paper while preserving transparency everywhere the sheet has lifted.
+  - `QuranPageReaderScreen.kt`: Optimized `PageTurnState` instantiation without `remember` to ensure instantaneous reactive updates on every drag tick, with accurate dynamic `TurnDirection` calculation.
+  - `verify_build.sh`: Added macOS Android SDK auto-detection path (`$HOME/Library/Android/sdk`).
+
+### Quran Mushaf Page 1 <-> 2 Slide Exemption & Google Play Books Under-Layer Revelation
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Implemented REQ-006 (slide-only transition between Page 1 and Page 2) and REQ-007 (Google Play Books-style under-layer revelation during curl animation) in `QuranPageReaderScreen.kt`.
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Added `beyondViewportPageCount = 1` to `HorizontalPager` to pre-compose and layout adjacent pages in memory.
+    - Implemented continuous page coordinate math: $\text{currentPos} = \text{currentPage} + \text{currentPageOffsetFraction}$, $\text{floorPage} = \lfloor \text{currentPos} \rfloor$, $\text{curlProgress} = \text{currentPos} - \text{floorPage}$.
+    - Added Page 1 <-> 2 slide exemption (`floorPage == 0`): transitions between Page 1 and Page 2 strictly retain horizontal slide translation without neutralization or curl.
+    - Added dual-layer revelation for pages $\ge 2$ (`floorPage >= 1`): top leaf (`pagerIndex == floorPage`) renders with `drawPageCurl` and `zIndex = 1f`, while the destination sheet underneath (`pagerIndex == floorPage + 1`) renders flat at `(0, 0)` with `zIndex = 0f`.
+    - Slide translation neutralization pins both active sheets at `(0, 0)` during turns.
+  - `spec/0001-page-curl-book-turn-animation.md`: Added `REQ-006` and `REQ-007`, and updated Section 7 with continuous page math and dual-layer architecture.
+  - `plan/0001-page-curl-book-turn-animation.md`: Updated Phase 3 and Phase 4 checklist to reflect completed tasks.
+
+### Quran Mushaf Page Curl (Book Turn) Animation Implementation
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Implemented Google Play Books-style paper book curl animation for the Quran Mushaf Reader (`QuranPageReaderScreen`) according to ADR-0007 and spec/0001.
+- **Changes**:
+  - `PageTurnMath.kt`: Created pure Kotlin cylinder curl mathematical engine with fold positioning, dynamic curvature radius decay ($18\% \to 0\%$), strip count adaptation ($24 \dots 64$), vertical perspective taper ($1.5\%$), and bidirectional RTL coordinate mirroring.
+  - `PageTurnMathTest.kt`: Added 7 comprehensive unit tests in `commonTest` verifying fold positioning, radius decay to minimum 1px, strip count bounds, cylinder wrapping and apex ridge detection, back-face flagging past $90^\circ$, and RTL symmetry.
+  - `PageTurnState.kt`: Defined `SpineSide`, `TurnDirection`, `PageTurnTier`, and `PageTurnState` data holders.
+  - `PageTurnStyle.kt`: Defined `PageTurnStyle` enum (`CURL`, `SLIDE`, `NONE`).
+  - `CurlRenderer.kt`: Implemented Tier B DrawScope canvas strip renderer with sub-pixel slicing, $+0.5\text{ px}$ seam overlap protection, dynamic horizontal gradient cast shadow, front-face cosine shading, back-face dimming, and specular ridge crest highlight.
+  - `RigidFlipModifier.kt`: Implemented Tier A hardware-accelerated fallback via `Modifier.graphicsLayer` 3D rotation pinned to the spine edge.
+  - `PageTurnPerformanceGuard.kt`: Implemented frame timing sampler for automatic downgrade from Tier B to Tier A on low-spec hardware.
+  - `MushafPageView.kt`: Added `pageTurnState` parameter, wired `drawPageCurl` and `rigidPageFlip`, suppressed ayah highlight overlays during active curl transitions, and cleaned up inline FQN haptic feedback call.
+  - `QuranPageReaderScreen.kt`: Integrated `HorizontalPager` offset tracking with neutralized slide translation (`graphicsLayer { translationX = pageOffset * size.width }`), hooked in `PageTurnState`, added page turn style quick toggle button (`📖`/`↔️`/`⚡`) to header actions, and cleaned up duplicate `SpineSide` enum and inline `BackHandler` FQN.
+  - `ADR-0007`: Updated status to `Accepted`.
+
+### Quran Mushaf Page Curl Animation Spec, ADR & Implementation Plan
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Designed the 3D page curl animation engine for the Quran Mushaf reader (`QuranPageReaderScreen`). Authored the formal Technical Specification, ADR-0007, and step-by-step Implementation Plan.
+- **Changes**:
+  - `.agents/adr/0007-page-curl-book-turn-animation.md`: Authored ADR-0007 documenting the two-tier shader-free canvas strip renderer, mathematical model, and zero-network multiplatform constraints.
+  - `.agents/spec/0001-page-curl-book-turn-animation.md`: Authored complete technical specification defining requirements (`REQ`, `SEC`, `PERF`, `CON`, `ACC`), cylinder wrap equations, vertical perspective taper, and dynamic lighting/shadow models.
+  - `.agents/plan/0001-page-curl-book-turn-animation.md`: Created sequenced task breakdown covering Core Math, Design System components, Reader integration, and testing.
+  - `.agents/AGENTS.md` & `.agents/CLAUDE.md`: Registered ADR-0007 and indexed `.agents/spec/`.
+  - `.agents/memory/STATE.md`: Updated active focus to ADR-0007 & Page Curl implementation.
+
 ### Android Splash Screen & ANR Fix + iOS Compass & Location Improvements
 - **Date**: 2026-09-10
 - **Author**: AI Assistant & Iqbal Fauzi

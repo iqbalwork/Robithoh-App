@@ -18,6 +18,7 @@ import com.iqbalwork.robithoh.R
 import com.iqbalwork.robithoh.core.database.DatabaseDriverFactory
 import com.iqbalwork.robithoh.core.database.createDatabase
 import com.iqbalwork.robithoh.core.datetime.currentLocalDateTime
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 import com.iqbalwork.robithoh.feature.amaliyah.domain.PrayerTimesCalculator
 import com.iqbalwork.robithoh.feature.amaliyah.model.LocationPreset
 import com.iqbalwork.robithoh.feature.amaliyah.model.NextPrayerCountdown
@@ -88,25 +89,36 @@ object PrayerWidgetHelper {
                         if (bestLoc != null) {
                             customLat = bestLoc.latitude
                             customLng = bestLoc.longitude
-                            if (customLocName.isNullOrBlank() || customLocName == "Lokasi GPS") {
+                            if (customLocName.isNullOrBlank() || customLocName.contains("Lokasi GPS", ignoreCase = true)) {
                                 try {
                                     val geocoder = Geocoder(context, Locale.getDefault())
                                     @Suppress("DEPRECATION")
                                     val addresses = geocoder.getFromLocation(bestLoc.latitude, bestLoc.longitude, 1)
                                     if (!addresses.isNullOrEmpty()) {
                                         val addr = addresses[0]
-                                        customLocName = addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: "Lokasi GPS"
+                                        val raw = addr.subAdminArea ?: addr.locality ?: addr.adminArea
+                                        customLocName = LocationSanitizer.sanitize(raw, bestLoc.latitude, bestLoc.longitude)
+                                    } else {
+                                        customLocName = LocationSanitizer.findNearestCity(bestLoc.latitude, bestLoc.longitude)
                                     }
-                                } catch (_: Throwable) {}
+                                } catch (_: Throwable) {
+                                    customLocName = LocationSanitizer.findNearestCity(bestLoc.latitude, bestLoc.longitude)
+                                }
                             }
                         }
                     } catch (_: Throwable) {}
                 }
             }
 
+            val cleanLocName = LocationSanitizer.sanitize(
+                customLocName,
+                customLat,
+                customLng
+            )
+
             val location = if (customLat != null && customLng != null) {
                 LocationPreset(
-                    name = customLocName ?: "Lokasi Tersimpan",
+                    name = cleanLocName,
                     latitude = customLat,
                     longitude = customLng,
                     timezoneOffset = settings?.custom_timezone_offset ?: 7.0,

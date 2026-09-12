@@ -56,4 +56,6 @@ keystore.properties
 !.maestro/
 !.agents/
 .agents/scratch/
+__pycache__/
+*.pyc
 

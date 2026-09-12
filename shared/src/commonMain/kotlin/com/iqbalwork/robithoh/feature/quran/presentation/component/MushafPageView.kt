@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
@@ -38,13 +39,16 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnState
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnTier
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.drawPageCurl
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.rigidPageFlip
+import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
-import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
-import com.iqbalwork.robithoh.feature.quran.model.AyahBlock
 import com.iqbalwork.robithoh.feature.quran.model.QuranPageMapping
 import kotlin.math.hypot
 import kotlin.math.min
@@ -62,7 +66,8 @@ fun MushafPageView(
     modifier: Modifier = Modifier,
     onDoubleTap: (() -> Unit)? = null,
     onPinchOut: (() -> Unit)? = null,
-    onPinchIn: (() -> Unit)? = null
+    onPinchIn: (() -> Unit)? = null,
+    pageTurnState: PageTurnState? = null
 ) {
     val isDark = RabithohTheme.colors.isDark
     val bgTheme = if (isDark) DarkCanvas else Color(0xFFFBF9F4) // Warm cream mushaf paper tint in light mode
@@ -79,10 +84,13 @@ fun MushafPageView(
         label = "audio_alpha"
     )
 
+    val isActivelyCurling = pageTurnState != null && pageTurnState.progress > 0.001f
+    val effectiveBg = if (isActivelyCurling) Color.Transparent else bgTheme
+
     BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
-            .background(bgTheme),
+            .background(effectiveBg),
         contentAlignment = Alignment.TopCenter
     ) {
         val displayW = constraints.maxWidth.toFloat()
@@ -174,7 +182,7 @@ fun MushafPageView(
 
                                 if (matchedBlock != null) {
                                     try {
-                                        com.iqbalwork.robithoh.core.designsystem.getHapticFeedback().performClick()
+                                        getHapticFeedback().performClick()
                                     } catch (_: Throwable) {}
                                     onAyahClick(matchedBlock.surah, matchedBlock.ayah)
                                 }
@@ -198,42 +206,29 @@ fun MushafPageView(
                     Modifier.fillMaxSize()
                 }
             ) {
-                // Mushaf Image Layer
-                if (pageImage != null) {
-                    Image(
-                        bitmap = pageImage,
-                        contentDescription = "Mushaf Halaman $pageNumber",
+                val isTurning = pageTurnState != null && pageTurnState.progress > 0.001f
+
+                // -----------------------------------------------------------------
+                // LAYER 3: Background Layer (Physical Paper Sheet)
+                // When flat, renders the authentic mushaf paper background across full page.
+                // When transitioning (curling), paper substrate is drawn per-strip across full page.
+                // -----------------------------------------------------------------
+                if (!isTurning) {
+                    Box(
                         modifier = if (isLandscape) {
                             Modifier.size(imgWidthDp, imgHeightDp)
                         } else {
-                            Modifier
-                                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                                .size(imgWidthDp, imgHeightDp)
+                            Modifier.fillMaxSize()
                         }
+                            .background(bgTheme)
                     )
-                } else {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            CircularProgressIndicator(
-                                color = MerahMerdeka,
-                                strokeWidth = 3.dp,
-                                modifier = Modifier.size(40.dp)
-                            )
-                            Spacer(modifier = Modifier.height(12.dp))
-                            Text(
-                                text = "Memuat Halaman $pageNumber...",
-                                color = SlateMuted,
-                                fontSize = 13.sp
-                            )
-                        }
-                    }
                 }
 
-                // Canvas Overlay for Ayah Highlights
-                val targetHighlight = activeAudioAyah ?: selectedAyah
+                // -----------------------------------------------------------------
+                // LAYER 2: Second Layer (Marker when Long Tap of Ayah / Audio Recitation)
+                // Renders highlighter marker on paper, underneath the calligraphy ink.
+                // -----------------------------------------------------------------
+                val targetHighlight = if (isTurning) null else (activeAudioAyah ?: selectedAyah)
                 if (targetHighlight != null && pageMapping != null) {
                     val (surah, ayah) = targetHighlight
                     val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }
@@ -259,7 +254,7 @@ fun MushafPageView(
                                 val rectW = block.width * scale
                                 val rectH = block.height * scale
 
-                                // Fill
+                                // Marker Fill
                                 drawRoundRect(
                                     color = fillColor,
                                     topLeft = Offset(rectX, rectY),
@@ -267,7 +262,7 @@ fun MushafPageView(
                                     cornerRadius = cornerRadius
                                 )
 
-                                // Stroke outline
+                                // Marker Outline
                                 drawRoundRect(
                                     color = strokeColor,
                                     topLeft = Offset(rectX, rectY),
@@ -276,6 +271,83 @@ fun MushafPageView(
                                     style = Stroke(width = 1.5f * scale)
                                 )
                             }
+                        }
+                    }
+                }
+
+                // -----------------------------------------------------------------
+                // LAYER 1: Top Layer (Quran Image Calligraphy)
+                // Renders crisp Arabic calligraphy on top of the highlighter marker.
+                // When turning, curl animation is applied to the FULL PAGE sheet.
+                // -----------------------------------------------------------------
+                if (pageImage != null) {
+                    if (isTurning && !isLandscape) {
+                        when (pageTurnState.activeTier) {
+                            PageTurnTier.TIER_B_CURL -> {
+                                Canvas(
+                                    modifier = Modifier.fillMaxSize()
+                                ) {
+                                    drawPageCurl(
+                                        image = pageImage,
+                                        progress = pageTurnState.progress,
+                                        spineSide = pageTurnState.spineSide,
+                                        paperColor = bgTheme,
+                                        imageRect = Rect(
+                                            offsetX,
+                                            offsetY,
+                                            offsetX + renderedW,
+                                            offsetY + renderedH
+                                        )
+                                    )
+                                }
+                            }
+                            PageTurnTier.TIER_A_RIGID -> {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(bgTheme)
+                                        .rigidPageFlip(pageTurnState.progress, pageTurnState.spineSide)
+                                ) {
+                                    Image(
+                                        bitmap = pageImage,
+                                        contentDescription = "Mushaf Halaman $pageNumber",
+                                        modifier = Modifier
+                                            .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                            .size(imgWidthDp, imgHeightDp)
+                                    )
+                                }
+                            }
+                        }
+                    } else {
+                        Image(
+                            bitmap = pageImage,
+                            contentDescription = "Mushaf Halaman $pageNumber",
+                            modifier = if (isLandscape) {
+                                Modifier.size(imgWidthDp, imgHeightDp)
+                            } else {
+                                Modifier
+                                    .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                    .size(imgWidthDp, imgHeightDp)
+                            }
+                        )
+                    }
+                } else {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator(
+                                color = MerahMerdeka,
+                                strokeWidth = 3.dp,
+                                modifier = Modifier.size(40.dp)
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(
+                                text = "Memuat Halaman $pageNumber...",
+                                color = SlateMuted,
+                                fontSize = 13.sp
+                            )
                         }
                     }
                 }

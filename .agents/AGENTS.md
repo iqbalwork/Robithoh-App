@@ -36,6 +36,7 @@ Quick index of project knowledge base, architectural conventions, and AI agent p
 
 ## 🛠️ Harness & Tools
 
+* **Technical Specifications**: [`spec/`](spec/) (formal requirements, constraints & geometry specifications).
 * **Loop Engineering Protocol**: [`rules/loop-protocol.md`](rules/loop-protocol.md) (autonomous closed-loop cycle).
 * **MVI Architecture Linter**: [`tools/check_mvi_architecture.sh`](tools/check_mvi_architecture.sh) (verifies UDF & Screen/Content separation).
 * **Sacred Text SHA-256 Guard**: [`tools/check_sacred_texts.sh`](tools/check_sacred_texts.sh) (protects Arabic liturgical texts & SQLite schema).
@@ -76,6 +77,7 @@ Full history documented in [`adr/`](adr/).
 - **[ADR-0004: 8 Android Home Screen Widgets via Glance & AppWidgetProvider](adr/0004-glance-home-screen-widgets.md)** — Interactive prayer, tasbih, Quran bookmark, and Tanbih widgets with broadcast update synchronization.
 - **[ADR-0005: System Notifications for Liturgical Document Sync Progress](adr/0005-document-sync-notifications.md)** — Replacing toast overlay UI with live activity progress system notifications.
 - **[ADR-0006: Dedicated Doa List Screen with Live Search Capability](adr/0006-doa-list-screen-and-search.md)** — Transitioning Doa menu from a modal bottom sheet to a dedicated MVI screen with live search.
+- **[ADR-0007: Page Curl (Book Turn) Animation for the Quran Mushaf Reader](adr/0007-page-curl-book-turn-animation.md)** — Two-tier shader-free page curl driven by HorizontalPager for the single-page Quran reader.
 
 ---
 

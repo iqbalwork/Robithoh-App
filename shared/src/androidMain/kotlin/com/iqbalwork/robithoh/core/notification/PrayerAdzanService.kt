@@ -13,6 +13,7 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.iqbalwork.robithoh.core.location.LocationSanitizer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -76,7 +77,8 @@ class PrayerAdzanService : Service() {
             }
             ACTION_PLAY_ADZAN -> {
                 val prayerName = intent.getStringExtra(EXTRA_PRAYER_NAME) ?: "Sholat"
-                val locationName = intent.getStringExtra(EXTRA_LOCATION_NAME) ?: "Wilayah Anda"
+                val rawLoc = intent.getStringExtra(EXTRA_LOCATION_NAME)
+                val locationName = LocationSanitizer.sanitize(rawLoc)
                 val audioFile = intent.getStringExtra(EXTRA_AUDIO_FILE) ?: "adzan_misyari_rasyid.mp3"
                 val customPath = intent.getStringExtra(EXTRA_CUSTOM_AUDIO_PATH)
                 val voiceTitle = intent.getStringExtra(EXTRA_VOICE_TITLE) ?: "Adzan"

@@ -142,17 +142,13 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
             val addresses = geocoder.getFromLocation(lat, lng, 1)
             if (!addresses.isNullOrEmpty()) {
                 val addr = addresses[0]
-                var rawName = addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: "Lokasi GPS"
-                if (rawName.endsWith(" City", ignoreCase = true)) {
-                    val base = rawName.substring(0, rawName.length - 5).trim()
-                    rawName = "Kota $base"
-                }
-                rawName
+                val rawName = addr.subAdminArea ?: addr.locality ?: addr.adminArea
+                LocationSanitizer.sanitize(rawName, lat, lng)
             } else {
-                "Lokasi GPS (${formatCoord(lat)}, ${formatCoord(lng)})"
+                LocationSanitizer.findNearestCity(lat, lng)
             }
-        } catch (e: Exception) {
-            "Lokasi GPS (${formatCoord(lat)}, ${formatCoord(lng)})"
+        } catch (_: Exception) {
+            LocationSanitizer.findNearestCity(lat, lng)
         }
 
         UserLocation(
@@ -162,10 +158,6 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
             timezoneOffset = tzOffset,
             isGps = true
         )
-    }
-
-    private fun formatCoord(value: Double): String {
-        return ((value * 100).toInt() / 100.0).toString()
     }
 }
 

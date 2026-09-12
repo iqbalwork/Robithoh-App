@@ -7,13 +7,12 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Android Splash Screen ANR & Main Thread Blocking Fix, iOS Compass Sensor & True North Location Setup.
+* **Current Focus**: Location name sanitization (replace raw GPS coordinates in notifications & schedules with clean city names like "Kota Bandung").
 * **Codebase Health**:
-  - `shared`: Clean architecture, explicit import convention enforced, 125 passing unit test suites.
-  - `androidApp`: Main thread blocking widget/alarm updates moved to Dispatchers.IO, Geocoder guarded, InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode 10, 8 Glance widgets implemented.
-  - `iosApp`: CoreLocation True North declination setup enabled with LocationWhenInUse usage description in Info.plist.
-  - `E2E`: Full Maestro test suite in `.maestro/` (10 flows verified).
-  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` verified.
+  - `shared`: Clean architecture, `LocationSanitizerTest` and all 142 multiplatform unit tests passing.
+  - `androidApp`: `androidApp:assembleDebug` succeeded, Glance widgets intact.
+  - `iosApp`: Clean location sanitization integrated into `LocationProvider.ios.kt`.
+  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
 
 ---
 
