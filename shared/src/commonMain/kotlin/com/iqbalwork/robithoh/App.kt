@@ -83,13 +83,6 @@ fun App(
         val database = rememberRobithohDatabase()
         val appSettingsRepository = rememberAppSettingsRepository()
         val appSettings by appSettingsRepository.settings.collectAsState()
-        // Tracks whether AppSettings has been loaded from DB at least once.
-        // Without this, the 2.2s splash may finish before the async DB read completes,
-        // causing hasCompletedOnboarding to read as false even for returning users.
-        var isSettingsLoaded by rememberSaveable { mutableStateOf(false) }
-        LaunchedEffect(appSettings) {
-            if (!isSettingsLoaded) isSettingsLoaded = true
-        }
         val alarmScheduler = rememberPrayerAlarmScheduler()
         val amaliyahViewModel: AmaliyahViewModel = viewModel {
             AmaliyahViewModel(
@@ -197,8 +190,8 @@ fun App(
                 // We delay routing until BOTH splash animation is done AND settings are loaded from DB.
                 var splashDone by rememberSaveable { mutableStateOf(false) }
 
-                LaunchedEffect(splashDone, isSettingsLoaded) {
-                    if (splashDone && isSettingsLoaded) {
+                LaunchedEffect(splashDone, appSettings.isLoaded) {
+                    if (splashDone && appSettings.isLoaded) {
                         backstack.clear()
                         if (!appSettings.hasCompletedOnboarding) {
                             backstack.add(ScreenKey.Onboarding)

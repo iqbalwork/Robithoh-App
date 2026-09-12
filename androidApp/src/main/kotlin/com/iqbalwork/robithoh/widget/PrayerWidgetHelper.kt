@@ -88,14 +88,17 @@ object PrayerWidgetHelper {
                         if (bestLoc != null) {
                             customLat = bestLoc.latitude
                             customLng = bestLoc.longitude
-                            try {
-                                val geocoder = Geocoder(context, Locale.getDefault())
-                                val addresses = geocoder.getFromLocation(bestLoc.latitude, bestLoc.longitude, 1)
-                                if (!addresses.isNullOrEmpty()) {
-                                    val addr = addresses[0]
-                                    customLocName = addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: customLocName ?: "Lokasi GPS"
-                                }
-                            } catch (_: Throwable) {}
+                            if (customLocName.isNullOrBlank() || customLocName == "Lokasi GPS") {
+                                try {
+                                    val geocoder = Geocoder(context, Locale.getDefault())
+                                    @Suppress("DEPRECATION")
+                                    val addresses = geocoder.getFromLocation(bestLoc.latitude, bestLoc.longitude, 1)
+                                    if (!addresses.isNullOrEmpty()) {
+                                        val addr = addresses[0]
+                                        customLocName = addr.subAdminArea ?: addr.locality ?: addr.adminArea ?: "Lokasi GPS"
+                                    }
+                                } catch (_: Throwable) {}
+                            }
                         }
                     } catch (_: Throwable) {}
                 }
