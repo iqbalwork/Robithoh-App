@@ -404,8 +404,8 @@ fun QuranPageReaderScreen(
                     // Page Turn & Curl Calculation via Continuous Coordinate Math
                     val currentPos = pagerState.currentPage + pagerState.currentPageOffsetFraction
                     val floorPage = floor(currentPos.toDouble()).toInt().coerceIn(0, totalPages - 1)
-                    val curlProgress = (currentPos - floorPage).coerceIn(0f, 1f)
-                    val isTransitioning = (curlProgress > 0.001f && curlProgress < 0.999f)
+                    val rawProgress = (currentPos - floorPage).coerceIn(0f, 1f)
+                    val isTransitioning = (rawProgress > 0.001f && rawProgress < 0.999f)
 
                     // In a physical mushaf:
                     // - Intra-spread transitions (1 <-> 2, 3 <-> 4, 5 <-> 6, ...) slide across the open spread.
@@ -413,21 +413,32 @@ fun QuranPageReaderScreen(
                     val isSpreadTurn = PageTurnMath.isSpreadTurn(floorPage)
                     val isCurlEligible = (pageTurnStyle == PageTurnStyle.CURL && !isDualPage && isSpreadTurn)
 
+                    // Symmetrical Direction Tracking:
+                    // Determine which page originated the transition:
+                    // - Forward (e.g. Page 4 to 5): settledPage is floorPage (Page 4). Page 4 curls to reveal Page 5.
+                    // - Backward (e.g. Page 5 to 4): settledPage is floorPage + 1 (Page 5). Page 5 curls to reveal Page 4!
+                    val startPage = if (pagerState.settledPage in floorPage..(floorPage + 1)) {
+                        pagerState.settledPage
+                    } else {
+                        pagerState.currentPage
+                    }
+                    val isCurlingFloorPage = (startPage == floorPage)
+
+                    val curlingPageIndex = if (isCurlingFloorPage) floorPage else (floorPage + 1)
+                    val underlyingPageIndex = if (isCurlingFloorPage) (floorPage + 1) else floorPage
+                    val curlProgress = if (isCurlingFloorPage) rawProgress else (1f - rawProgress)
+
                     val pageSpineSide = if (isRightPage) SpineSide.LEFT else SpineSide.RIGHT
 
-                    // Determine role in the active transition pair:
-                    // - pagerIndex == floorPage: Top leaf that curls to reveal the underlying sheet
-                    // - pagerIndex == floorPage + 1: Stationary underlying sheet beneath the curl
-                    // - other: outside active pair
-                    val isTopCurlingLeaf = isCurlEligible && isTransitioning && (pagerIndex == floorPage)
-                    val isUnderlyingLeaf = isCurlEligible && isTransitioning && (pagerIndex == floorPage + 1)
+                    val isTopCurlingLeaf = isCurlEligible && isTransitioning && (pagerIndex == curlingPageIndex)
+                    val isUnderlyingLeaf = isCurlEligible && isTransitioning && (pagerIndex == underlyingPageIndex)
                     val shouldNeutralize = isTopCurlingLeaf || isUnderlyingLeaf
 
                     val pageTurnState = if (isTopCurlingLeaf) {
                         PageTurnState(
                             progress = curlProgress,
                             spineSide = pageSpineSide,
-                            direction = if (pagerState.currentPageOffsetFraction < 0f) TurnDirection.BACKWARD else TurnDirection.FORWARD,
+                            direction = if (isCurlingFloorPage) TurnDirection.FORWARD else TurnDirection.BACKWARD,
                             activeTier = performanceGuard.activeTier
                         )
                     } else null

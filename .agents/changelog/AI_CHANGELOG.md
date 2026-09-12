@@ -6,6 +6,17 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Symmetrical Directional Page Curl (Reverse Turn e.g. Page 5 to 4)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Ensured backward inter-spread page turns (e.g. Page 5 to 4, 3 to 2, 7 to 6) apply 3D curl animation to the originating page (Page 5) rather than uncurling the destination page (Page 4).
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Tracked transition origin using `startPage` (resolved from `pagerState.settledPage in floorPage..(floorPage + 1)` falling back to `currentPage`).
+    - When moving forward (e.g. 4 -> 5): Page 4 (`floorPage`) curls towards `SpineSide.RIGHT`, revealing Page 5 underneath.
+    - When moving backward (e.g. 5 -> 4): Page 5 (`floorPage + 1`) curls towards `SpineSide.LEFT`, revealing Page 4 underneath.
+    - Inverted progress calculation for backward turns (`curlProgress = 1f - rawProgress`) so the originating leaf curls smoothly from 0.0 to 1.0 as the drag proceeds.
+
 ### Full-Page Mushaf Paper Curl Animation & Continuous Sheet Background
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi
