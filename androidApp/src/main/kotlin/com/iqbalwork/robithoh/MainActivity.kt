@@ -22,6 +22,14 @@ import com.iqbalwork.robithoh.core.notification.AndroidPrayerAlarmScheduler
 import com.iqbalwork.robithoh.navigation.WidgetNavTarget
 import com.iqbalwork.robithoh.review.InAppReviewManager
 import com.iqbalwork.robithoh.update.InAppUpdateManager
+import com.iqbalwork.robithoh.widget.PrayerWidgetHelper
+import com.iqbalwork.robithoh.widget.QuickAccessWidgetHelper
+import com.iqbalwork.robithoh.widget.QuranWidgetHelper
+import com.iqbalwork.robithoh.widget.TanbihWidgetHelper
+import com.iqbalwork.robithoh.widget.TasbihWidgetHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private lateinit var inAppUpdateManager: InAppUpdateManager
@@ -98,15 +106,18 @@ class MainActivity : ComponentActivity() {
             manager?.createNotificationChannels(listOf(adzanChannel, pushChannel))
         }
 
-        // Ensure alarm schedule is active from database
-        try {
-            AndroidPrayerAlarmScheduler.rescheduleFromDatabase(this)
-            com.iqbalwork.robithoh.widget.PrayerWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.TasbihWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.TanbihWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.QuranWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.QuickAccessWidgetHelper.updateAllWidgets(this)
-        } catch (_: Throwable) {}
+        // Ensure alarm schedule is active from database and widgets updated asynchronously
+        val appContext = applicationContext
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                AndroidPrayerAlarmScheduler.rescheduleFromDatabase(appContext)
+                PrayerWidgetHelper.updateAllWidgets(appContext)
+                TasbihWidgetHelper.updateAllWidgets(appContext)
+                TanbihWidgetHelper.updateAllWidgets(appContext)
+                QuranWidgetHelper.updateAllWidgets(appContext)
+                QuickAccessWidgetHelper.updateAllWidgets(appContext)
+            } catch (_: Throwable) {}
+        }
 
         handleWidgetNavigation(intent)
 
@@ -152,13 +163,16 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        try {
-            com.iqbalwork.robithoh.widget.PrayerWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.TasbihWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.TanbihWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.QuranWidgetHelper.updateAllWidgets(this)
-            com.iqbalwork.robithoh.widget.QuickAccessWidgetHelper.updateAllWidgets(this)
-        } catch (_: Throwable) {}
+        val appContext = applicationContext
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                PrayerWidgetHelper.updateAllWidgets(appContext)
+                TasbihWidgetHelper.updateAllWidgets(appContext)
+                TanbihWidgetHelper.updateAllWidgets(appContext)
+                QuranWidgetHelper.updateAllWidgets(appContext)
+                QuickAccessWidgetHelper.updateAllWidgets(appContext)
+            } catch (_: Throwable) {}
+        }
         if (::inAppUpdateManager.isInitialized) {
             inAppUpdateManager.onResume()
         }
