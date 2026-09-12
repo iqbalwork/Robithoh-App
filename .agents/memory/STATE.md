@@ -7,9 +7,9 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Page Curl Animation: Single-page mode (slide vs curl), Dual-page foldable open mode / tablet, and Full-Page paper sheet curl animation completely implemented and verified.
+* **Current Focus**: Quran Page Reader enforced in light mode (authentic mushaf cream paper display even when dark mode is enabled).
 * **Codebase Health**:
-  - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all unit tests green.
+  - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all jvm unit tests green.
   - `androidApp`: AssembleStagingDebug succeeded, Glance widgets intact.
   - `iosApp`: CoreLocation True North declination setup enabled.
   - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.

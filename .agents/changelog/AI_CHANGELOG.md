@@ -6,15 +6,24 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Enforce Light Mode on Quran Page Reader (`QuranPageReaderScreen`)
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Ensured the Quran Page reader screen (`QuranPageReaderScreen`) always stays in light mode with authentic mushaf cream paper presentation, even when global dark mode is active.
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Wrapped the screen in `RabithohTheme(darkTheme = false)` so the theme hierarchy, colors, and dialog sheets consistently use light mode tokens.
+    - Imported `DarkSurface` explicitly to adhere to the no-inline-FQN convention.
+
 ### Symmetrical Directional Page Curl (Reverse Turn e.g. Page 5 to 4)
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi
-- **Scope**: Ensured backward inter-spread page turns (e.g. Page 5 to 4, 3 to 2, 7 to 6) apply 3D curl animation to the originating page (Page 5) rather than uncurling the destination page (Page 4).
+- **Scope**: Ensured backward inter-spread page turns (e.g. Page 5 to 4, 3 to 2, 7 to 6) apply 3D curl animation to the originating page (Page 5) rather than uncurling the destination page (Page 4), matching forward turn quality identically.
 - **Changes**:
   - `QuranPageReaderScreen.kt`:
-    - Tracked transition origin using `startPage` (resolved from `pagerState.settledPage in floorPage..(floorPage + 1)` falling back to `currentPage`).
-    - When moving forward (e.g. 4 -> 5): Page 4 (`floorPage`) curls towards `SpineSide.RIGHT`, revealing Page 5 underneath.
-    - When moving backward (e.g. 5 -> 4): Page 5 (`floorPage + 1`) curls towards `SpineSide.LEFT`, revealing Page 4 underneath.
+    - Tracked gesture start origin using `gestureStartPage` via `snapshotFlow { pagerState.isScrollInProgress }`, guaranteeing the originating page is frozen throughout the entire drag and immune to `currentPage` mid-swipe flips at offset 0.5.
+    - When moving forward (e.g. 4 -> 5): `gestureStartPage <= floorPage`. Page 4 (`floorPage`) curls towards `SpineSide.RIGHT`, revealing Page 5 underneath.
+    - When moving backward (e.g. 5 -> 4): `gestureStartPage > floorPage`. Page 5 (`floorPage + 1`) curls towards `SpineSide.LEFT`, revealing Page 4 underneath.
     - Inverted progress calculation for backward turns (`curlProgress = 1f - rawProgress`) so the originating leaf curls smoothly from 0.0 to 1.0 as the drag proceeds.
 
 ### Full-Page Mushaf Paper Curl Animation & Continuous Sheet Background

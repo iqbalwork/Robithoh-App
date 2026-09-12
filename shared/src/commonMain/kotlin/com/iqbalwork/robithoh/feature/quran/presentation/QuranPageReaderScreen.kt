@@ -37,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -67,6 +68,7 @@ import com.iqbalwork.robithoh.core.designsystem.component.rememberSpotlightState
 import com.iqbalwork.robithoh.core.designsystem.component.spotlightAnchor
 import com.iqbalwork.robithoh.core.designsystem.rememberShareTextAction
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
+import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
@@ -98,7 +100,9 @@ fun QuranPageReaderScreen(
     onSwitchToTextMode: (surahNumber: Int, ayahNumber: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val state by viewModel.uiState.collectAsState()
+    // Memastikan halaman Mushaf Quran Page selalu tampil dalam mode terang (light mode)
+    RabithohTheme(darkTheme = false) {
+        val state by viewModel.uiState.collectAsState()
     val isDark = RabithohTheme.colors.isDark
     val coroutineScope = rememberCoroutineScope()
     val pageManager = remember { QuranPageManager() }
@@ -215,6 +219,17 @@ fun QuranPageReaderScreen(
         }
         val pagerPageCount = if (isDualPage) (totalPages + 1) / 2 else totalPages
         val pagerState = rememberPagerState(initialPage = initialIndex) { pagerPageCount }
+
+        // Lacak halaman awal sebelum gesture scroll dimulai agar arah curl tidak terbalik di tengah drag
+        var gestureStartPage by remember { mutableStateOf(initialIndex) }
+        LaunchedEffect(pagerState) {
+            snapshotFlow { pagerState.isScrollInProgress }
+                .collect { inProgress ->
+                    if (!inProgress) {
+                        gestureStartPage = pagerState.currentPage
+                    }
+                }
+        }
 
         // currentPageNumber = nomor halaman ganjil (kanan) yang sedang aktif
         val currentPageNumber = if (isDualPage) {
@@ -415,14 +430,11 @@ fun QuranPageReaderScreen(
 
                     // Symmetrical Direction Tracking:
                     // Determine which page originated the transition:
-                    // - Forward (e.g. Page 4 to 5): settledPage is floorPage (Page 4). Page 4 curls to reveal Page 5.
-                    // - Backward (e.g. Page 5 to 4): settledPage is floorPage + 1 (Page 5). Page 5 curls to reveal Page 4!
-                    val startPage = if (pagerState.settledPage in floorPage..(floorPage + 1)) {
-                        pagerState.settledPage
-                    } else {
-                        pagerState.currentPage
-                    }
-                    val isCurlingFloorPage = (startPage == floorPage)
+                    // - Forward (e.g. Page 4 to 5): gestureStartPage <= floorPage (Page 4).
+                    //   Page 4 curls towards SpineSide.RIGHT (rawProgress 0 -> 1), Page 5 is revealed underneath.
+                    // - Backward (e.g. Page 5 to 4): gestureStartPage > floorPage (Page 5).
+                    //   Page 5 curls towards SpineSide.LEFT (progress 1 - rawProgress: 0 -> 1), Page 4 is revealed underneath!
+                    val isCurlingFloorPage = (gestureStartPage <= floorPage)
 
                     val curlingPageIndex = if (isCurlingFloorPage) floorPage else (floorPage + 1)
                     val underlyingPageIndex = if (isCurlingFloorPage) (floorPage + 1) else floorPage
@@ -537,7 +549,7 @@ fun QuranPageReaderScreen(
                 modifier = Modifier.align(Alignment.TopCenter)
             ) {
                 Surface(
-                    color = if (isDark) com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface.copy(alpha = 0.95f) else PutihBersih.copy(alpha = 0.95f),
+                    color = if (isDark) DarkSurface.copy(alpha = 0.95f) else PutihBersih.copy(alpha = 0.95f),
                     shadowElevation = 4.dp,
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -821,6 +833,7 @@ fun QuranPageReaderScreen(
                 viewModel.onIntent(QuranUiIntent.SetQariPickerVisible(false))
             }
         )
+    }
     }
 }
 
