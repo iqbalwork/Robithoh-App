@@ -1,6 +1,6 @@
+import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
-import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -52,7 +52,7 @@ android {
         applicationId = "com.iqbalwork.robithoh"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 10
+        versionCode = (project.findProperty("versionCode") as? String)?.toIntOrNull() ?: 11
         versionName = (project.findProperty("versionName") as? String) ?: "1.2.0"
     }
 
