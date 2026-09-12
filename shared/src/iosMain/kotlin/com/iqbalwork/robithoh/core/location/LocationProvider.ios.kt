@@ -79,6 +79,7 @@ class IosLocationProvider : LocationProvider {
             continuation.invokeOnCancellation {
                 locationManager.stopUpdatingLocation()
                 locationManager.delegate = null
+                delegate.hashCode()
             }
         }
     }

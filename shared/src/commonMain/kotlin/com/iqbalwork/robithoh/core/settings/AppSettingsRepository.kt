@@ -22,7 +22,8 @@ data class AppSettings(
     val hasSeenPrayerSpotlight: Boolean = false,
     val hasSeenQuranSpotlight: Boolean = false,
     val hideMushafDownloadPrompt: Boolean = false,
-    val hasSeenQuranPageSpotlight: Boolean = false
+    val hasSeenQuranPageSpotlight: Boolean = false,
+    val isLoaded: Boolean = false
 )
 
 /**
@@ -41,7 +42,11 @@ class AppSettingsRepository(
     }
 
     private fun loadSettings() {
-        val db = database ?: return
+        val db = database
+        if (db == null) {
+            _settings.value = _settings.value.copy(isLoaded = true)
+            return
+        }
         coroutineScope.launch(dispatcher) {
             try {
                 val entity = db.robithohDatabaseQueries.getAppSettings().executeAsOneOrNull()
@@ -57,13 +62,20 @@ class AppSettingsRepository(
                         hasSeenPrayerSpotlight = entity.has_seen_prayer_spotlight == 1L,
                         hasSeenQuranSpotlight = entity.has_seen_quran_spotlight == 1L,
                         hideMushafDownloadPrompt = hidePrompt,
-                        hasSeenQuranPageSpotlight = entity.has_seen_quran_page_spotlight == 1L
+                        hasSeenQuranPageSpotlight = entity.has_seen_quran_page_spotlight == 1L,
+                        isLoaded = true
                     )
                 } else if (hidePrompt) {
-                    _settings.value = _settings.value.copy(hideMushafDownloadPrompt = true)
+                    _settings.value = _settings.value.copy(
+                        hideMushafDownloadPrompt = true,
+                        isLoaded = true
+                    )
+                } else {
+                    _settings.value = _settings.value.copy(isLoaded = true)
                 }
             } catch (_: Exception) {
-                // Table not ready or query failed, keep defaults
+                // Table not ready or query failed, keep defaults but mark as loaded
+                _settings.value = _settings.value.copy(isLoaded = true)
             }
         }
     }

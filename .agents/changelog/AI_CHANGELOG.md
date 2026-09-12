@@ -6,6 +6,16 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Android Splash Screen & ANR Fix + iOS Compass & Location Improvements
+- **Date**: 2026-09-10
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Fixed Android Splash Screen hanging/ANR caused by main thread blocking calls, fixed `AppSettings` database state loading race condition, and added True North geocoding/heading permissions on iOS.
+- **Changes**:
+  - `MainActivity.kt`: Moved `rescheduleFromDatabase` and widget updates (`PrayerWidgetHelper`, `TasbihWidgetHelper`, `TanbihWidgetHelper`, `QuranWidgetHelper`, `QuickAccessWidgetHelper`) off the UI thread into `CoroutineScope(Dispatchers.IO).launch` during `onCreate()` and `onResume()`.
+  - `PrayerWidgetHelper.kt`: Guarded `Geocoder.getFromLocation()` to only reverse-geocode when location name is missing, avoiding blocking synchronous network calls.
+  - `AppSettingsRepository.kt` & `App.kt`: Added explicit `isLoaded: Boolean` flag to `AppSettings` to ensure Splash Screen waits until the SQLite database read completes before routing.
+  - `CompassSensor.ios.kt` & `Info.plist`: Added location authorization request and `requestLocation()` so CoreLocation can compute magnetic declination for True North heading calculations.
+
 ### Google Play In-App Update & Review Lifecycle Fix
 - **Date**: 2026-09-10
 - **Author**: AI Assistant & Iqbal Fauzi
