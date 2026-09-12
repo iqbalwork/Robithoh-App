@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
@@ -211,17 +212,15 @@ fun MushafPageView(
 
                 // -----------------------------------------------------------------
                 // LAYER 3: Background Layer (Physical Paper Sheet)
-                // When flat, renders the authentic mushaf paper background.
-                // When transitioning (curling), paper substrate is drawn per-strip.
+                // When flat, renders the authentic mushaf paper background across full page.
+                // When transitioning (curling), paper substrate is drawn per-strip across full page.
                 // -----------------------------------------------------------------
                 if (!isTurning) {
                     Box(
                         modifier = if (isLandscape) {
                             Modifier.size(imgWidthDp, imgHeightDp)
                         } else {
-                            Modifier
-                                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                                .size(imgWidthDp, imgHeightDp)
+                            Modifier.fillMaxSize()
                         }
                             .background(bgTheme)
                     )
@@ -281,33 +280,44 @@ fun MushafPageView(
                 // -----------------------------------------------------------------
                 // LAYER 1: Top Layer (Quran Image Calligraphy)
                 // Renders crisp Arabic calligraphy on top of the highlighter marker.
+                // When turning, curl animation is applied to the FULL PAGE sheet.
                 // -----------------------------------------------------------------
                 if (pageImage != null) {
                     if (isTurning && !isLandscape) {
                         when (pageTurnState.activeTier) {
                             PageTurnTier.TIER_B_CURL -> {
                                 Canvas(
-                                    modifier = Modifier
-                                        .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                                        .size(imgWidthDp, imgHeightDp)
+                                    modifier = Modifier.fillMaxSize()
                                 ) {
                                     drawPageCurl(
                                         image = pageImage,
                                         progress = pageTurnState.progress,
-                                        spineSide = pageTurnState.spineSide
+                                        spineSide = pageTurnState.spineSide,
+                                        paperColor = bgTheme,
+                                        imageRect = Rect(
+                                            offsetX,
+                                            offsetY,
+                                            offsetX + renderedW,
+                                            offsetY + renderedH
+                                        )
                                     )
                                 }
                             }
                             PageTurnTier.TIER_A_RIGID -> {
-                                Image(
-                                    bitmap = pageImage,
-                                    contentDescription = "Mushaf Halaman $pageNumber",
+                                Box(
                                     modifier = Modifier
-                                        .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                                        .size(imgWidthDp, imgHeightDp)
+                                        .fillMaxSize()
                                         .background(bgTheme)
                                         .rigidPageFlip(pageTurnState.progress, pageTurnState.spineSide)
-                                )
+                                ) {
+                                    Image(
+                                        bitmap = pageImage,
+                                        contentDescription = "Mushaf Halaman $pageNumber",
+                                        modifier = Modifier
+                                            .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                            .size(imgWidthDp, imgHeightDp)
+                                    )
+                                }
                             }
                         }
                     } else {

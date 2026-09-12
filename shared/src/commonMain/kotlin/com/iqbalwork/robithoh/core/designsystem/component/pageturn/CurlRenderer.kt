@@ -1,6 +1,7 @@
 package com.iqbalwork.robithoh.core.designsystem.component.pageturn
 
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -25,6 +26,8 @@ object CurlRenderer {
      * @param image The pre-rendered mushaf page bitmap.
      * @param progress Normalized page turn progress from 0.0 (unturned) to 1.0 (turn complete).
      * @param spineSide Which edge the page is bound to ([SpineSide.LEFT] or [SpineSide.RIGHT]).
+     * @param paperColor Background physical paper color filling the full page.
+     * @param imageRect Bounding rectangle of the Quran image within the full page canvas.
      * @param stripCount Number of vertical strips. Defaults to adaptive count from [PageTurnMath.stripCountFor].
      */
     fun draw(
@@ -32,6 +35,8 @@ object CurlRenderer {
         image: ImageBitmap,
         progress: Float,
         spineSide: SpineSide = SpineSide.LEFT,
+        paperColor: Color = Color(0xFFFBF9F4),
+        imageRect: Rect? = null,
         stripCount: Int = PageTurnMath.stripCountFor(drawScope.size.width)
     ) {
         val p = progress.coerceIn(0f, 1f)
@@ -39,12 +44,19 @@ object CurlRenderer {
         val canvasH = drawScope.size.height
         if (canvasW <= 0f || canvasH <= 0f) return
 
-        // At rest, draw flat image directly with zero slicing overhead
+        val imgRect = imageRect ?: Rect(0f, 0f, canvasW, canvasH)
+
+        // At rest, draw flat paper substrate and image directly with zero slicing overhead
         if (p <= 0.001f) {
+            drawScope.drawRect(
+                color = paperColor,
+                topLeft = Offset.Zero,
+                size = Size(canvasW, canvasH)
+            )
             drawScope.drawImage(
                 image = image,
-                dstOffset = IntOffset.Zero,
-                dstSize = IntSize(canvasW.roundToInt(), canvasH.roundToInt())
+                dstOffset = IntOffset(imgRect.left.roundToInt(), imgRect.top.roundToInt()),
+                dstSize = IntSize(imgRect.width.roundToInt(), imgRect.height.roundToInt())
             )
             return
         }
@@ -57,8 +69,6 @@ object CurlRenderer {
 
         // 2. Vertical strip slicing and cylindrical projection
         val stripW = canvasW / stripCount
-        val imgW = image.width.toFloat()
-        val imgStripW = imgW / stripCount
 
         // Determine drawing order for painter's algorithm:
         // SpineSide.LEFT: Flat part is at 0..fold (low index), curl folds over towards 0 (high index).
@@ -72,10 +82,6 @@ object CurlRenderer {
         }
 
         for (i in indices) {
-            val srcX = (i * imgStripW).roundToInt().coerceIn(0, image.width - 1)
-            val srcXEnd = ((i + 1) * imgStripW).roundToInt().coerceIn(srcX + 1, image.width)
-            val srcWidth = srcXEnd - srcX
-
             val x0 = i * stripW
             val x1 = (i + 1) * stripW
             val xMid = (x0 + x1) / 2f
@@ -92,21 +98,41 @@ object CurlRenderer {
             val stripDestH = canvasH * scaleY
             val stripTop = (canvasH - stripDestH) / 2f
 
-            // Layer 3: Physical paper substrate for each strip
+            // Layer 3: Physical paper substrate for each strip across full page height
             drawScope.drawRect(
-                color = Color(0xFFFBF9F4),
+                color = paperColor,
                 topLeft = Offset(screenLeft, stripTop),
                 size = Size(stripDestW, stripDestH)
             )
 
-            // Render strip slice
-            drawScope.drawImage(
-                image = image,
-                srcOffset = IntOffset(srcX, 0),
-                srcSize = IntSize(srcWidth, image.height),
-                dstOffset = IntOffset(screenLeft.roundToInt(), stripTop.roundToInt()),
-                dstSize = IntSize(max(1, stripDestW.roundToInt()), stripDestH.roundToInt())
-            )
+            // Layer 1: Quran Image Calligraphy slice (if strip overlaps imageRect)
+            val overlapX0 = max(x0, imgRect.left)
+            val overlapX1 = min(x1, imgRect.right)
+            if (overlapX1 > overlapX0 && imgRect.width > 0f && imgRect.height > 0f) {
+                val srcX = (((overlapX0 - imgRect.left) / imgRect.width) * image.width)
+                    .roundToInt().coerceIn(0, image.width - 1)
+                val srcXEnd = (((overlapX1 - imgRect.left) / imgRect.width) * image.width)
+                    .roundToInt().coerceIn(srcX + 1, image.width)
+                val srcWidth = srcXEnd - srcX
+
+                val fracX0 = (overlapX0 - x0) / stripW
+                val fracX1 = (overlapX1 - x0) / stripW
+                val imgSliceLeft = screenLeft + fracX0 * stripDestW
+                val imgSliceW = (fracX1 - fracX0) * stripDestW
+
+                val fracY0 = imgRect.top / canvasH
+                val fracH = imgRect.height / canvasH
+                val imgSliceTop = stripTop + fracY0 * stripDestH
+                val imgSliceH = fracH * stripDestH
+
+                drawScope.drawImage(
+                    image = image,
+                    srcOffset = IntOffset(srcX, 0),
+                    srcSize = IntSize(srcWidth, image.height),
+                    dstOffset = IntOffset(imgSliceLeft.roundToInt(), imgSliceTop.roundToInt()),
+                    dstSize = IntSize(max(1, imgSliceW.roundToInt()), max(1, imgSliceH.roundToInt()))
+                )
+            }
 
             // Lighting & Shading pass
             if (projMid.isBackFace) {
@@ -230,7 +256,17 @@ fun DrawScope.drawPageCurl(
     image: ImageBitmap,
     progress: Float,
     spineSide: SpineSide = SpineSide.LEFT,
+    paperColor: Color = Color(0xFFFBF9F4),
+    imageRect: Rect? = null,
     stripCount: Int = PageTurnMath.stripCountFor(size.width)
 ) {
-    CurlRenderer.draw(this, image, progress, spineSide, stripCount)
+    CurlRenderer.draw(
+        drawScope = this,
+        image = image,
+        progress = progress,
+        spineSide = spineSide,
+        paperColor = paperColor,
+        imageRect = imageRect,
+        stripCount = stripCount
+    )
 }

@@ -7,7 +7,7 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Page Curl Animation: Single-page mode (slide vs curl) and Dual-page foldable open mode / tablet support completely implemented and verified.
+* **Current Focus**: Page Curl Animation: Single-page mode (slide vs curl), Dual-page foldable open mode / tablet, and Full-Page paper sheet curl animation completely implemented and verified.
 * **Codebase Health**:
   - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all unit tests green.
   - `androidApp`: AssembleStagingDebug succeeded, Glance widgets intact.

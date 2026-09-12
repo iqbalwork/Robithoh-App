@@ -6,6 +6,21 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Full-Page Mushaf Paper Curl Animation & Continuous Sheet Background
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Expanded 3D page curl animation from only the central Quran image bounds to the entire page (`Modifier.fillMaxSize()`).
+- **Changes**:
+  - `CurlRenderer.kt`:
+    - Updated `draw` and `drawPageCurl` to accept `paperColor: Color` and `imageRect: Rect?`.
+    - Rendered physical paper substrate (`paperColor`) across each full-height strip (`canvasH`).
+    - Mapped image calligraphy slices proportionally to the strip projection using `imageRect` coordinates, ensuring calligraphy remains precisely centered and bounded on the curling leaf.
+    - Extended cylindrical cast shadow, specular ridge highlight, and ambient backface dimming to span the entire screen height.
+  - `MushafPageView.kt`:
+    - Expanded Layer 3 (Background paper sheet) to `Modifier.fillMaxSize().background(bgTheme)` when flat.
+    - Sized curl canvas to `Modifier.fillMaxSize()` during turn and passed `imageRect = Rect(offsetX, offsetY, offsetX + renderedW, offsetY + renderedH)` to `drawPageCurl`.
+    - Wrapped Tier A fallback in a full-sized `Box` with `rigidPageFlip` for full-page rigid flipping.
+
 ### Dual-Page Mode (Foldable Open Mode & Tablet) 3D Paper Curl Animation
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi
