@@ -57,7 +57,9 @@ fi
 if [ -z "${ANDROID_HOME:-}" ]; then
     if [ -d "/home/iqbalf/Android/Sdk" ]; then
         export ANDROID_HOME="/home/iqbalf/Android/Sdk"
-        export ANDROID_SDK_ROOT="/home/iqbalf/Android/Sdk"
+    elif [ -d "$HOME/Library/Android/sdk" ]; then
+        export ANDROID_HOME="$HOME/Library/Android/sdk"
+        export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
     elif [ -d "$HOME/Android/Sdk" ]; then
         export ANDROID_HOME="$HOME/Android/Sdk"
         export ANDROID_SDK_ROOT="$HOME/Android/Sdk"

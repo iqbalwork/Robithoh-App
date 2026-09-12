@@ -42,11 +42,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnMath
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnPerformanceGuard
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnState
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnStyle
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.SpineSide
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.TurnDirection
+import com.iqbalwork.robithoh.navigation.BackHandler
 import com.iqbalwork.robithoh.core.designsystem.component.AyahOptionsSheet
 import com.iqbalwork.robithoh.core.designsystem.component.DownloadMushafSheet
 import com.iqbalwork.robithoh.core.designsystem.component.GoToSurahAyahSheet
@@ -73,6 +82,7 @@ import com.iqbalwork.robithoh.feature.quran.presentation.component.MushafPageVie
 import com.iqbalwork.robithoh.feature.quran.ui.QariPickerSheet
 import com.iqbalwork.robithoh.feature.quran.ui.QuranAudioBottomBar
 import kotlinx.coroutines.launch
+import kotlin.math.floor
 
 // Threshold (dp) di mana mode dual-page diaktifkan.
 // 600dp = Window size Medium: mencakup foldable terbuka (portrait) & tablet.
@@ -145,9 +155,13 @@ fun QuranPageReaderScreen(
         onBackClick()
     }
 
-    com.iqbalwork.robithoh.navigation.BackHandler {
+    BackHandler {
         handleBack()
     }
+
+    // Page Turn state & performance guard
+    var pageTurnStyle by rememberSaveable { mutableStateOf(PageTurnStyle.CURL) }
+    val performanceGuard = remember { PageTurnPerformanceGuard() }
 
     DisposableEffect(Unit) {
         onDispose {
@@ -250,6 +264,7 @@ fun QuranPageReaderScreen(
             HorizontalPager(
                 state = pagerState,
                 reverseLayout = true,
+                beyondViewportPageCount = 1,
                 modifier = Modifier.fillMaxSize()
             ) { pagerIndex ->
                 if (isDualPage) {
@@ -333,7 +348,58 @@ fun QuranPageReaderScreen(
 
                     val isRightPage = (pageNum % 2 == 1)
 
-                    Box(modifier = Modifier.fillMaxSize()) {
+                    // Page Turn & Curl Calculation via Continuous Coordinate Math
+                    val currentPos = pagerState.currentPage + pagerState.currentPageOffsetFraction
+                    val floorPage = floor(currentPos.toDouble()).toInt().coerceIn(0, totalPages - 1)
+                    val curlProgress = (currentPos - floorPage).coerceIn(0f, 1f)
+                    val isTransitioning = (curlProgress > 0.001f && curlProgress < 0.999f)
+
+                    // In a physical mushaf:
+                    // - Intra-spread transitions (1 <-> 2, 3 <-> 4, 5 <-> 6, ...) slide across the open spread.
+                    // - Inter-spread transitions (2 <-> 3, 4 <-> 5, 6 <-> 7, ...) flip the physical paper leaf (3D curl).
+                    val isSpreadTurn = PageTurnMath.isSpreadTurn(floorPage)
+                    val isCurlEligible = (pageTurnStyle == PageTurnStyle.CURL && !isDualPage && isSpreadTurn)
+
+                    val pageSpineSide = if (isRightPage) SpineSide.LEFT else SpineSide.RIGHT
+
+                    // Determine role in the active transition pair:
+                    // - pagerIndex == floorPage: Top leaf that curls to reveal the underlying sheet
+                    // - pagerIndex == floorPage + 1: Stationary underlying sheet beneath the curl
+                    // - other: outside active pair
+                    val isTopCurlingLeaf = isCurlEligible && isTransitioning && (pagerIndex == floorPage)
+                    val isUnderlyingLeaf = isCurlEligible && isTransitioning && (pagerIndex == floorPage + 1)
+                    val shouldNeutralize = isTopCurlingLeaf || isUnderlyingLeaf
+
+                    val pageTurnState = if (isTopCurlingLeaf) {
+                        PageTurnState(
+                            progress = curlProgress,
+                            spineSide = pageSpineSide,
+                            direction = if (pagerState.currentPageOffsetFraction < 0f) TurnDirection.BACKWARD else TurnDirection.FORWARD,
+                            activeTier = performanceGuard.activeTier
+                        )
+                    } else null
+
+                    val itemZIndex = when {
+                        isTopCurlingLeaf -> 1f
+                        isUnderlyingLeaf -> 0f
+                        else -> 0f
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .zIndex(itemZIndex)
+                            .then(
+                                if (shouldNeutralize) {
+                                    Modifier.graphicsLayer {
+                                        // Counteract default horizontal slide translation so pages stay pinned at (0, 0)
+                                        translationX = ((pagerIndex - pagerState.currentPage) - pagerState.currentPageOffsetFraction) * size.width
+                                    }
+                                } else {
+                                    Modifier
+                                }
+                            )
+                    ) {
                         MushafPageView(
                             pageNumber = pageNum,
                             pageMapping = pageMapping,
@@ -345,53 +411,56 @@ fun QuranPageReaderScreen(
                             onDoubleTap = { orientationController.toggleOrientation() },
                             onPinchOut = { orientationController.setLandscape() },
                             onPinchIn = { orientationController.setPortrait() },
+                            pageTurnState = pageTurnState,
                             modifier = Modifier.fillMaxSize()
                         )
 
-                        // Bayangan Tulang Jilid Mushaf Fisik
-                        Box(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .width(32.dp)
-                                .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
-                                .background(
-                                    Brush.horizontalGradient(
-                                        if (isRightPage) {
-                                            listOf(
-                                                Color.Black.copy(alpha = 0.22f),
-                                                Color.Black.copy(alpha = 0.08f),
-                                                Color.Black.copy(alpha = 0.02f),
-                                                Color.Transparent
-                                            )
-                                        } else {
-                                            listOf(
-                                                Color.Transparent,
-                                                Color.Black.copy(alpha = 0.02f),
-                                                Color.Black.copy(alpha = 0.08f),
-                                                Color.Black.copy(alpha = 0.22f)
-                                            )
-                                        }
+                        // Bayangan Tulang Jilid Mushaf Fisik (hanya ditampilkan saat flat atau pada halaman di bawah)
+                        if (!isTopCurlingLeaf || curlProgress <= 0.05f) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(32.dp)
+                                    .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                                    .background(
+                                        Brush.horizontalGradient(
+                                            if (isRightPage) {
+                                                listOf(
+                                                    Color.Black.copy(alpha = 0.22f),
+                                                    Color.Black.copy(alpha = 0.08f),
+                                                    Color.Black.copy(alpha = 0.02f),
+                                                    Color.Transparent
+                                                )
+                                            } else {
+                                                listOf(
+                                                    Color.Transparent,
+                                                    Color.Black.copy(alpha = 0.02f),
+                                                    Color.Black.copy(alpha = 0.08f),
+                                                    Color.Black.copy(alpha = 0.22f)
+                                                )
+                                            }
+                                        )
                                     )
-                                )
-                        )
+                            )
 
-                        // Garis lipatan jahitan jilid (Spine stitch groove)
-                        Box(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .width(1.5.dp)
-                                .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
-                                .background(Color.Black.copy(alpha = 0.15f))
-                        )
+                            // Garis lipatan jahitan jilid (Spine stitch groove)
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(1.5.dp)
+                                    .align(if (isRightPage) Alignment.CenterStart else Alignment.CenterEnd)
+                                    .background(Color.Black.copy(alpha = 0.15f))
+                            )
 
-                        // Garis potong tepi luar kertas
-                        Box(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .width(1.dp)
-                                .align(if (isRightPage) Alignment.CenterEnd else Alignment.CenterStart)
-                                .background(Color.Black.copy(alpha = 0.05f))
-                        )
+                            // Garis potong tepi luar kertas
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(1.dp)
+                                    .align(if (isRightPage) Alignment.CenterEnd else Alignment.CenterStart)
+                                    .background(Color.Black.copy(alpha = 0.05f))
+                            )
+                        }
                     }
                 }
             }
@@ -459,6 +528,33 @@ fun QuranPageReaderScreen(
                                 ) {
                                     Box(contentAlignment = Alignment.Center) {
                                         Text(if (pageManager.isAllDownloaded()) "💾" else "📥", fontSize = 14.sp)
+                                    }
+                                }
+                            }
+
+                            IconButton(
+                                onClick = {
+                                    pageTurnStyle = when (pageTurnStyle) {
+                                        PageTurnStyle.CURL -> PageTurnStyle.SLIDE
+                                        PageTurnStyle.SLIDE -> PageTurnStyle.NONE
+                                        PageTurnStyle.NONE -> PageTurnStyle.CURL
+                                    }
+                                }
+                            ) {
+                                Surface(
+                                    color = MerahMerdeka.copy(alpha = 0.12f),
+                                    shape = CircleShape,
+                                    modifier = Modifier.size(32.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(
+                                            when (pageTurnStyle) {
+                                                PageTurnStyle.CURL -> "📖"
+                                                PageTurnStyle.SLIDE -> "↔️"
+                                                PageTurnStyle.NONE -> "⚡"
+                                            },
+                                            fontSize = 14.sp
+                                        )
                                     }
                                 }
                             }
@@ -665,8 +761,6 @@ fun QuranPageReaderScreen(
 }
 
 // ── Helper: sisi bayangan jilid ──────────────────────────────────────────────
-
-private enum class SpineSide { LEFT, RIGHT }
 
 @Composable
 private fun BoxScope.SpineEdgeShadow(side: SpineSide, modifier: Modifier = Modifier) {

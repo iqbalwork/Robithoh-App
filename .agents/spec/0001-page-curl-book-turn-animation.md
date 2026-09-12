@@ -51,6 +51,8 @@ To provide an authentic, skeuomorphic paper page turn experience for the digital
 - **REQ-003**: The animation MUST support programmatic page turns (e.g. from Surah/Ayah selection or audio recitation auto-scroll) with a natural physics easing curve.
 - **REQ-004**: When the turn completes ($p = 1.0$), the page MUST settle perfectly flat without any residual curved edge or visual distortion.
 - **REQ-005**: The user MUST be able to choose their preferred page turn style (`CURL`, `SLIDE`, `NONE`) in App Settings.
+- **REQ-006 (Intra-Spread Slide vs Inter-Spread Leaf Turn)**: Transitions between pages on the same open spread (Odd $\leftrightarrow$ Even: 1 $\leftrightarrow$ 2, 3 $\leftrightarrow$ 4, 5 $\leftrightarrow$ 6, etc.) MUST exclusively use standard horizontal slide translation (`SLIDE`). Transitions between spreads that flip physical paper leaves (Even $\leftrightarrow$ Odd: 2 $\leftrightarrow$ 3, 4 $\leftrightarrow$ 5, 6 $\leftrightarrow$ 7, etc.) MUST use the 3D paper curl animation (`CURL`). Formally evaluated as: `PageTurnMath.isSpreadTurn(floorPage) == (floorPage >= 1 && floorPage % 2 == 1)`.
+- **REQ-007 (Under-Layer Revelation)**: During any active curl animation, the destination page (underlying sheet) MUST be rendered stationary directly beneath the curling top sheet throughout the entire transition ($0.0 < p < 1.0$), matching Google Play Books. `beyondViewportPageCount = 1` MUST be configured to guarantee neighbor pre-rendering.
 
 ### 3.2 Sacred Text & Visual Integrity (Core Rule 4)
 - **SEC-001**: Arabic liturgical script, vowel marks (harakat), and tajwid notations MUST NOT be blurred, clipped, or distorted during the curl.
@@ -196,42 +198,30 @@ fun Modifier.rigidPageFlip(
 
 ## 7. Gesture & Pager Integration
 
-Integration maintains the existing `HorizontalPager(reverseLayout = true)` as the single source of truth:
+Integration maintains `HorizontalPager(reverseLayout = true, beyondViewportPageCount = 1)` as the gesture driver and single source of truth:
 
-```kotlin
-val pagerState = rememberPagerState(pageCount = { totalPages })
+### 7.1 Continuous Page Tracking & Selective Curl Activation
+Compose `PagerState` defines continuous position without discontinuities across drag boundaries:
+$$\text{currentPos} = \text{pagerState.currentPage} + \text{pagerState.currentPageOffsetFraction}$$
+$$\text{floorPage} = \lfloor \text{currentPos} \rfloor, \quad p = \text{currentPos} - \text{floorPage}$$
 
-HorizontalPager(
-    state = pagerState,
-    reverseLayout = true,
-    modifier = Modifier.fillMaxSize()
-) { pagerIndex ->
-    val pageNum = pagerIndex + 1
-    val isRightPage = (pageNum % 2 == 1)
-    
-    // Offset fraction relative to this page (-1.0 .. 1.0)
-    val pageOffset = (pagerIndex - pagerState.currentPage) - pagerState.currentPageOffsetFraction
-    
-    // Neutralize standard HorizontalPager translation slide
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .graphicsLayer {
-                translationX = -pageOffset * size.width
-            }
-    ) {
-        MushafPageView(
-            pageNumber = pageNum,
-            pageImage = pageImage,
-            pageTurnProgress = pageOffset.coerceIn(0f, 1f),
-            spineSide = if (isRightPage) SpineSide.RIGHT else SpineSide.LEFT,
-            // ...
-        )
-    }
-}
-```
+1. **Page 1 <-> Page 2 Exemption (REQ-006)**:
+   - When $\text{floorPage} == 0$ (the transition between Page 1 and Page 2):
+     `isCurlActive = false`.
+     Standard horizontal translation slide is retained without neutralization.
+2. **Pages >= 2 Curl Animation**:
+   - When $\text{floorPage} \ge 1$ (transitions between Page 2 and Page 3, Page 3 and Page 2, etc.):
+     `isCurlActive = true`.
+     - **Top Turning Sheet** ($\text{pagerIndex} == \text{floorPage}$):
+       Renders with `drawPageCurl(progress = p, spineSide = ...)` and `zIndex(1f)`.
+     - **Underlying Stationary Sheet** ($\text{pagerIndex} == \text{floorPage} + 1$):
+       Renders flat with `pageTurnState = null` and `zIndex(0f)`.
+     - **Translation Neutralization**:
+       Both sheets neutralize horizontal pager slide:
+       $$\text{translationX} = \left[(\text{pagerIndex} - \text{pagerState.currentPage}) - \text{pagerState.currentPageOffsetFraction}\right] \times \text{size.width}$$
+       This pins both sheets precisely at $(0, 0)$, enabling the top sheet to curl and reveal the stationary sheet directly below it, matching Google Play Books.
 
-### 7.1 Snap & Fling Curve
+### 7.2 Snap & Fling Curve
 Programmatic transitions and fling snaps run with duration **$420\text{ ms}$** using the following easing curve:
 $$\text{CubicBezierEasing}(0.22\text{f}, 0.90\text{f}, 0.24\text{f}, 1.00\text{f})$$
 

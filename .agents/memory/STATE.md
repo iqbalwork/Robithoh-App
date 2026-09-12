@@ -7,13 +7,12 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: ADR-0007 & Implementation Plan: Page Curl (Book Turn) Animation for Quran Mushaf Reader.
+* **Current Focus**: Page Curl Animation: Intra-spread slide (Odd <-> Even) vs inter-spread book curl (Even <-> Odd) and Google Play Books under-layer revelation completely resolved and verified.
 * **Codebase Health**:
-  - `shared`: Clean architecture, explicit import convention enforced, 125 passing unit test suites.
-  - `androidApp`: Main thread blocking widget/alarm updates moved to Dispatchers.IO, Geocoder guarded, InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode 10, 8 Glance widgets implemented.
-  - `iosApp`: CoreLocation True North declination setup enabled with LocationWhenInUse usage description in Info.plist.
-  - `E2E`: Full Maestro test suite in `.maestro/` (10 flows verified).
-  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` verified.
+  - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all unit tests green.
+  - `androidApp`: AssembleStagingDebug succeeded, Glance widgets intact.
+  - `iosApp`: CoreLocation True North declination setup enabled.
+  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
 
 ---
 

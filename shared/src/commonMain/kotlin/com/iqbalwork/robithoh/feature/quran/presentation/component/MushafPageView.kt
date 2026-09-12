@@ -38,6 +38,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnState
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.PageTurnTier
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.drawPageCurl
+import com.iqbalwork.robithoh.core.designsystem.component.pageturn.rigidPageFlip
+import com.iqbalwork.robithoh.core.designsystem.getHapticFeedback
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
@@ -62,7 +67,8 @@ fun MushafPageView(
     modifier: Modifier = Modifier,
     onDoubleTap: (() -> Unit)? = null,
     onPinchOut: (() -> Unit)? = null,
-    onPinchIn: (() -> Unit)? = null
+    onPinchIn: (() -> Unit)? = null,
+    pageTurnState: PageTurnState? = null
 ) {
     val isDark = RabithohTheme.colors.isDark
     val bgTheme = if (isDark) DarkCanvas else Color(0xFFFBF9F4) // Warm cream mushaf paper tint in light mode
@@ -79,10 +85,13 @@ fun MushafPageView(
         label = "audio_alpha"
     )
 
+    val isActivelyCurling = pageTurnState != null && pageTurnState.progress > 0.001f
+    val effectiveBg = if (isActivelyCurling) Color.Transparent else bgTheme
+
     BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
-            .background(bgTheme),
+            .background(effectiveBg),
         contentAlignment = Alignment.TopCenter
     ) {
         val displayW = constraints.maxWidth.toFloat()
@@ -174,7 +183,7 @@ fun MushafPageView(
 
                                 if (matchedBlock != null) {
                                     try {
-                                        com.iqbalwork.robithoh.core.designsystem.getHapticFeedback().performClick()
+                                        getHapticFeedback().performClick()
                                     } catch (_: Throwable) {}
                                     onAyahClick(matchedBlock.surah, matchedBlock.ayah)
                                 }
@@ -200,17 +209,46 @@ fun MushafPageView(
             ) {
                 // Mushaf Image Layer
                 if (pageImage != null) {
-                    Image(
-                        bitmap = pageImage,
-                        contentDescription = "Mushaf Halaman $pageNumber",
-                        modifier = if (isLandscape) {
-                            Modifier.size(imgWidthDp, imgHeightDp)
-                        } else {
-                            Modifier
-                                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-                                .size(imgWidthDp, imgHeightDp)
+                    val isTurning = pageTurnState != null && pageTurnState.progress > 0.001f
+                    if (isTurning && !isLandscape) {
+                        when (pageTurnState.activeTier) {
+                            PageTurnTier.TIER_B_CURL -> {
+                                Canvas(
+                                    modifier = Modifier
+                                        .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                        .size(imgWidthDp, imgHeightDp)
+                                ) {
+                                    drawPageCurl(
+                                        image = pageImage,
+                                        progress = pageTurnState.progress,
+                                        spineSide = pageTurnState.spineSide
+                                    )
+                                }
+                            }
+                            PageTurnTier.TIER_A_RIGID -> {
+                                Image(
+                                    bitmap = pageImage,
+                                    contentDescription = "Mushaf Halaman $pageNumber",
+                                    modifier = Modifier
+                                        .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                        .size(imgWidthDp, imgHeightDp)
+                                        .rigidPageFlip(pageTurnState.progress, pageTurnState.spineSide)
+                                )
+                            }
                         }
-                    )
+                    } else {
+                        Image(
+                            bitmap = pageImage,
+                            contentDescription = "Mushaf Halaman $pageNumber",
+                            modifier = if (isLandscape) {
+                                Modifier.size(imgWidthDp, imgHeightDp)
+                            } else {
+                                Modifier
+                                    .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                    .size(imgWidthDp, imgHeightDp)
+                            }
+                        )
+                    }
                 } else {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -232,8 +270,9 @@ fun MushafPageView(
                     }
                 }
 
-                // Canvas Overlay for Ayah Highlights
-                val targetHighlight = activeAudioAyah ?: selectedAyah
+                // Canvas Overlay for Ayah Highlights (suppressed during active page turn)
+                val isActivelyTurning = pageTurnState != null && pageTurnState.progress > 0.001f && pageTurnState.progress < 0.999f
+                val targetHighlight = if (isActivelyTurning) null else (activeAudioAyah ?: selectedAyah)
                 if (targetHighlight != null && pageMapping != null) {
                     val (surah, ayah) = targetHighlight
                     val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }

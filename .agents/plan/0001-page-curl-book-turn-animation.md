@@ -80,18 +80,23 @@
   - Real-time frame timing sampler for automatic downgrade if frame drops occur.
 
 ### Phase 3: Quran Mushaf Reader Integration
-- [ ] Update `MushafPageView.kt`:
+- [x] Update `MushafPageView.kt`:
   - Accept `pageTurnState: PageTurnState?`.
   - When turn is active ($p > 0$):
     - Render image via `drawPageCurl` (or `rigidPageFlip`).
     - Suppress the ayah highlight `Canvas` overlay for the duration of the turn animation.
 - [ ] Update `QuranPageReaderScreen.kt`:
-  - Map `pagerState.currentPageOffsetFraction` and `pagerIndex` to calculate curl progress and spine side.
-  - Neutralize default horizontal translation via `Modifier.graphicsLayer { translationX = -offset * size.width }`.
-  - Integrate user preference `PageTurnStyle` and system reduced-motion check.
+  - Add `beyondViewportPageCount = 1` to `HorizontalPager`.
+  - Compute continuous page position: $\text{currentPos} = \text{currentPage} + \text{currentPageOffsetFraction}$.
+  - Implement Page 1 <-> 2 slide exemption: when $\text{floorPage} == 0$, retain classic horizontal slide without curl or translation neutralization.
+  - Implement dual-layer revelation for pages $\ge 2$ ($\text{floorPage} \ge 1$):
+    - Top sheet (`pagerIndex == floorPage`): renders with `drawPageCurl` with `zIndex = 1f`.
+    - Underlying sheet (`pagerIndex == floorPage + 1`): renders flat with `zIndex = 0f`.
+    - Neutralize slide on both active sheets: $\text{translationX} = \text{itemOffset} \times \text{size.width}$.
 
 ### Phase 4: Quality & Verification
-- [ ] Run mathematical test suite: `./gradlew :shared:testDebugUnitTest --tests "*PageTurnMathTest*"`
-- [ ] Run full project validation: `.agents/tools/verify_build.sh`
-- [ ] Verify no regressions on sacred Arabic liturgical text and SQLite schemas.
+- [x] Run mathematical test suite: `./gradlew :shared:jvmTest --tests "*PageTurnMathTest*"`
+- [ ] Run full project validation: `bash .agents/tools/verify_build.sh --fast`
+- [ ] Verify no regressions on sacred Arabic liturgical text and SQLite schemas: `bash .agents/tools/check_sacred_texts.sh --check`
+- [ ] Verify MVI and hardcoded string linters.
 - [ ] Document changes in `.agents/changelog/AI_CHANGELOG.md` and `.agents/memory/STATE.md`.

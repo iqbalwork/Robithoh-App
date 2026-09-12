@@ -1,6 +1,6 @@
 # ADR-0007: Page Curl (Book Turn) Animation for the Quran Mushaf Reader
 
-*   **Status**: Proposed
+*   **Status**: Accepted
 *   **Date**: 2026-09-12
 *   **Deciders**: Antigravity (AI Agent), Iqbal Fauzi
 *   **Consulted**: UI/UX Designer, Tech Lead
