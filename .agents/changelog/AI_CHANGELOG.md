@@ -6,6 +6,17 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Quran Mushaf Page Curl Animation Spec, ADR & Implementation Plan
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Designed the 3D page curl animation engine for the Quran Mushaf reader (`QuranPageReaderScreen`). Authored the formal Technical Specification, ADR-0007, and step-by-step Implementation Plan.
+- **Changes**:
+  - `.agents/adr/0007-page-curl-book-turn-animation.md`: Authored ADR-0007 documenting the two-tier shader-free canvas strip renderer, mathematical model, and zero-network multiplatform constraints.
+  - `.agents/spec/0001-page-curl-book-turn-animation.md`: Authored complete technical specification defining requirements (`REQ`, `SEC`, `PERF`, `CON`, `ACC`), cylinder wrap equations, vertical perspective taper, and dynamic lighting/shadow models.
+  - `.agents/plan/0001-page-curl-book-turn-animation.md`: Created sequenced task breakdown covering Core Math, Design System components, Reader integration, and testing.
+  - `.agents/AGENTS.md` & `.agents/CLAUDE.md`: Registered ADR-0007 and indexed `.agents/spec/`.
+  - `.agents/memory/STATE.md`: Updated active focus to ADR-0007 & Page Curl implementation.
+
 ### Android Splash Screen & ANR Fix + iOS Compass & Location Improvements
 - **Date**: 2026-09-10
 - **Author**: AI Assistant & Iqbal Fauzi

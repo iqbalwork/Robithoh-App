@@ -7,7 +7,7 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Android Splash Screen ANR & Main Thread Blocking Fix, iOS Compass Sensor & True North Location Setup.
+* **Current Focus**: ADR-0007 & Implementation Plan: Page Curl (Book Turn) Animation for Quran Mushaf Reader.
 * **Codebase Health**:
   - `shared`: Clean architecture, explicit import convention enforced, 125 passing unit test suites.
   - `androidApp`: Main thread blocking widget/alarm updates moved to Dispatchers.IO, Geocoder guarded, InAppUpdateManager & InAppReviewManager lifecycle fixed, versionCode 10, 8 Glance widgets implemented.

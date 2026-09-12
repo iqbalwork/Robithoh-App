@@ -35,6 +35,7 @@ Quick index of project knowledge base, architectural conventions, and AI agent p
 
 ## 🛠️ Harness & Tools
 
+* **Technical Specifications**: [`spec/`](spec/) (formal requirements, constraints & geometry specifications).
 * **Memory**: [`memory/STATE.md`](memory/STATE.md) (active session context & pending roadmap).
 * **Implementation Plans**: Granular step-by-step task lists saved in [`plan/`](plan/) before execution.
 * **Verification Pipeline**: [`tools/verify_build.sh`](tools/verify_build.sh) (compilation & allTests runner).
@@ -69,6 +70,9 @@ Full history documented in [`adr/`](adr/).
 - **[ADR-0002: Compose Multiplatform & MVI Presentation Architecture](adr/0002-cmp-mvi-presentation-architecture.md)** — 100% shared declarative UI with strict Screen/Content separation.
 - **[ADR-0003: Multiplatform Audio Engine (`KmpAudioPlayer`) Bridging Media3 & AVPlayer](adr/0003-kmp-audio-player-expect-actual.md)** — Foreground service audio on Android and AVPlayer audio session on iOS.
 - **[ADR-0004: 8 Android Home Screen Widgets via Glance & AppWidgetProvider](adr/0004-glance-home-screen-widgets.md)** — Interactive prayer, tasbih, Quran bookmark, and Tanbih widgets with broadcast update synchronization.
+- **[ADR-0005: System Notifications for Liturgical Document Sync Progress](adr/0005-document-sync-notifications.md)** — Replacing toast overlay UI with live activity progress system notifications.
+- **[ADR-0006: Dedicated Doa List Screen with Live Search Capability](adr/0006-doa-list-screen-and-search.md)** — Transitioning Doa menu from a modal bottom sheet to a dedicated MVI screen with live search.
+- **[ADR-0007: Page Curl (Book Turn) Animation for the Quran Mushaf Reader](adr/0007-page-curl-book-turn-animation.md)** — Two-tier shader-free page curl driven by HorizontalPager for the single-page Quran reader.
 
 ---
 
