@@ -6,6 +6,19 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Dual-Page Mode (Foldable Open Mode & Tablet) 3D Paper Curl Animation
+- **Date**: 2026-09-12
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Enabled authentic 3D paper curl book turn animation on foldable devices in open/unfolded mode and tablets (`maxWidth >= DUAL_PAGE_WIDTH_THRESHOLD`).
+- **Changes**:
+  - `QuranPageReaderScreen.kt`:
+    - Implemented continuous spread coordinate tracking (`floorSpread`, `curlProgress`, `isTransitioning`) for dual-page spreads.
+    - Added horizontal slide translation neutralization on the active pair of two-page spreads (`isTopCurlingSpread` and `isUnderlyingSpread`).
+    - Wired `leftPageTurnState` to the left page (`SpineSide.RIGHT`) so the left leaf peels from the outer margin toward the central crease, revealing the destination spread's left page beneath it.
+    - Cross-faded the right page of the top spread as the turning leaf crosses the spine, revealing the destination spread's right page seamlessly.
+    - Suppressed `SpineEdgeShadow` on the active curling leaf.
+  - `spec/0001-page-curl-book-turn-animation.md`: Added `REQ-008 (Dual-Page Foldable & Tablet Mode)`.
+
 ### Intra-Spread Slide (Odd <-> Even) vs Inter-Spread Book Curl (Even <-> Odd)
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi

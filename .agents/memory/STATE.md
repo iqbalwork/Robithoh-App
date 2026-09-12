@@ -7,7 +7,7 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Page Curl Animation: Intra-spread slide (Odd <-> Even) vs inter-spread book curl (Even <-> Odd) and Google Play Books under-layer revelation completely resolved and verified.
+* **Current Focus**: Page Curl Animation: Single-page mode (slide vs curl) and Dual-page foldable open mode / tablet support completely implemented and verified.
 * **Codebase Health**:
   - `shared`: Clean architecture, explicit import convention enforced, PageTurnMath unit tests (8/8) passing, all unit tests green.
   - `androidApp`: AssembleStagingDebug succeeded, Glance widgets intact.

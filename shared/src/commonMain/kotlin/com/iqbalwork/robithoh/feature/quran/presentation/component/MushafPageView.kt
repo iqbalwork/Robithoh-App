@@ -207,9 +207,82 @@ fun MushafPageView(
                     Modifier.fillMaxSize()
                 }
             ) {
-                // Mushaf Image Layer
+                val isTurning = pageTurnState != null && pageTurnState.progress > 0.001f
+
+                // -----------------------------------------------------------------
+                // LAYER 3: Background Layer (Physical Paper Sheet)
+                // When flat, renders the authentic mushaf paper background.
+                // When transitioning (curling), paper substrate is drawn per-strip.
+                // -----------------------------------------------------------------
+                if (!isTurning) {
+                    Box(
+                        modifier = if (isLandscape) {
+                            Modifier.size(imgWidthDp, imgHeightDp)
+                        } else {
+                            Modifier
+                                .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
+                                .size(imgWidthDp, imgHeightDp)
+                        }
+                            .background(bgTheme)
+                    )
+                }
+
+                // -----------------------------------------------------------------
+                // LAYER 2: Second Layer (Marker when Long Tap of Ayah / Audio Recitation)
+                // Renders highlighter marker on paper, underneath the calligraphy ink.
+                // -----------------------------------------------------------------
+                val targetHighlight = if (isTurning) null else (activeAudioAyah ?: selectedAyah)
+                if (targetHighlight != null && pageMapping != null) {
+                    val (surah, ayah) = targetHighlight
+                    val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }
+
+                    if (matchingBlocks.isNotEmpty()) {
+                        val isAudioHighlight = (activeAudioAyah != null)
+                        val fillColor = if (isAudioHighlight) {
+                            MerahMerdeka.copy(alpha = audioPulseAlpha)
+                        } else {
+                            EmasKhidmat.copy(alpha = 0.32f)
+                        }
+                        val strokeColor = if (isAudioHighlight) {
+                            MerahMerdeka.copy(alpha = 0.85f)
+                        } else {
+                            EmasKhidmat.copy(alpha = 0.85f)
+                        }
+
+                        Canvas(modifier = Modifier.fillMaxSize()) {
+                            val cornerRadius = CornerRadius(6f * scale, 6f * scale)
+                            for (block in matchingBlocks) {
+                                val rectX = offsetX + (block.left * scale)
+                                val rectY = offsetY + (block.top * scale)
+                                val rectW = block.width * scale
+                                val rectH = block.height * scale
+
+                                // Marker Fill
+                                drawRoundRect(
+                                    color = fillColor,
+                                    topLeft = Offset(rectX, rectY),
+                                    size = Size(rectW, rectH),
+                                    cornerRadius = cornerRadius
+                                )
+
+                                // Marker Outline
+                                drawRoundRect(
+                                    color = strokeColor,
+                                    topLeft = Offset(rectX, rectY),
+                                    size = Size(rectW, rectH),
+                                    cornerRadius = cornerRadius,
+                                    style = Stroke(width = 1.5f * scale)
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // -----------------------------------------------------------------
+                // LAYER 1: Top Layer (Quran Image Calligraphy)
+                // Renders crisp Arabic calligraphy on top of the highlighter marker.
+                // -----------------------------------------------------------------
                 if (pageImage != null) {
-                    val isTurning = pageTurnState != null && pageTurnState.progress > 0.001f
                     if (isTurning && !isLandscape) {
                         when (pageTurnState.activeTier) {
                             PageTurnTier.TIER_B_CURL -> {
@@ -232,6 +305,7 @@ fun MushafPageView(
                                     modifier = Modifier
                                         .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
                                         .size(imgWidthDp, imgHeightDp)
+                                        .background(bgTheme)
                                         .rigidPageFlip(pageTurnState.progress, pageTurnState.spineSide)
                                 )
                             }
@@ -266,55 +340,6 @@ fun MushafPageView(
                                 color = SlateMuted,
                                 fontSize = 13.sp
                             )
-                        }
-                    }
-                }
-
-                // Canvas Overlay for Ayah Highlights (suppressed during active page turn)
-                val isActivelyTurning = pageTurnState != null && pageTurnState.progress > 0.001f && pageTurnState.progress < 0.999f
-                val targetHighlight = if (isActivelyTurning) null else (activeAudioAyah ?: selectedAyah)
-                if (targetHighlight != null && pageMapping != null) {
-                    val (surah, ayah) = targetHighlight
-                    val matchingBlocks = pageMapping.data.filter { it.surah == surah && it.ayah == ayah }
-
-                    if (matchingBlocks.isNotEmpty()) {
-                        val isAudioHighlight = (activeAudioAyah != null)
-                        val fillColor = if (isAudioHighlight) {
-                            MerahMerdeka.copy(alpha = audioPulseAlpha)
-                        } else {
-                            EmasKhidmat.copy(alpha = 0.32f)
-                        }
-                        val strokeColor = if (isAudioHighlight) {
-                            MerahMerdeka.copy(alpha = 0.85f)
-                        } else {
-                            EmasKhidmat.copy(alpha = 0.85f)
-                        }
-
-                        Canvas(modifier = Modifier.fillMaxSize()) {
-                            val cornerRadius = CornerRadius(6f * scale, 6f * scale)
-                            for (block in matchingBlocks) {
-                                val rectX = offsetX + (block.left * scale)
-                                val rectY = offsetY + (block.top * scale)
-                                val rectW = block.width * scale
-                                val rectH = block.height * scale
-
-                                // Fill
-                                drawRoundRect(
-                                    color = fillColor,
-                                    topLeft = Offset(rectX, rectY),
-                                    size = Size(rectW, rectH),
-                                    cornerRadius = cornerRadius
-                                )
-
-                                // Stroke outline
-                                drawRoundRect(
-                                    color = strokeColor,
-                                    topLeft = Offset(rectX, rectY),
-                                    size = Size(rectW, rectH),
-                                    cornerRadius = cornerRadius,
-                                    style = Stroke(width = 1.5f * scale)
-                                )
-                            }
                         }
                     }
                 }

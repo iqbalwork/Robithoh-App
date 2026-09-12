@@ -92,14 +92,12 @@ object CurlRenderer {
             val stripDestH = canvasH * scaleY
             val stripTop = (canvasH - stripDestH) / 2f
 
-            // Paper backing for back face so turned leaf is physical opaque paper
-            if (projMid.isBackFace) {
-                drawScope.drawRect(
-                    color = Color(0xFFFBF9F4),
-                    topLeft = Offset(screenLeft, stripTop),
-                    size = Size(stripDestW, stripDestH)
-                )
-            }
+            // Layer 3: Physical paper substrate for each strip
+            drawScope.drawRect(
+                color = Color(0xFFFBF9F4),
+                topLeft = Offset(screenLeft, stripTop),
+                size = Size(stripDestW, stripDestH)
+            )
 
             // Render strip slice
             drawScope.drawImage(

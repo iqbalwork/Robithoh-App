@@ -291,14 +291,89 @@ fun QuranPageReaderScreen(
 
                     val isCurrentSpread = (pagerIndex == pagerState.currentPage)
 
-                    Row(modifier = Modifier.fillMaxSize()) {
-                        // Halaman Kiri (Genap)
-                        Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
-                            if (hasLeftPage) {
+                    // Continuous Coordinate Spread Tracking for Dual-Page (Foldable / Tablet)
+                    val currentPos = pagerState.currentPage + pagerState.currentPageOffsetFraction
+                    val floorSpread = floor(currentPos.toDouble()).toInt().coerceIn(0, pagerPageCount - 1)
+                    val curlProgress = (currentPos - floorSpread).coerceIn(0f, 1f)
+                    val isTransitioning = (curlProgress > 0.001f && curlProgress < 0.999f)
+                    val isCurlEligible = (pageTurnStyle == PageTurnStyle.CURL)
+
+                    val isTopCurlingSpread = isCurlEligible && isTransitioning && (pagerIndex == floorSpread)
+                    val isUnderlyingSpread = isCurlEligible && isTransitioning && (pagerIndex == floorSpread + 1)
+                    val shouldNeutralize = isTopCurlingSpread || isUnderlyingSpread
+
+                    val leftPageTurnState = if (isTopCurlingSpread) {
+                        PageTurnState(
+                            progress = curlProgress,
+                            spineSide = SpineSide.RIGHT,
+                            direction = if (pagerState.currentPageOffsetFraction < 0f) TurnDirection.BACKWARD else TurnDirection.FORWARD,
+                            activeTier = performanceGuard.activeTier
+                        )
+                    } else null
+
+                    val rightPageAlpha = if (isTopCurlingSpread) {
+                        if (curlProgress <= 0.4f) 1f else (1f - ((curlProgress - 0.4f) / 0.6f)).coerceIn(0f, 1f)
+                    } else 1f
+
+                    val spreadZIndex = when {
+                        isTopCurlingSpread -> 1f
+                        isUnderlyingSpread -> 0f
+                        else -> 0f
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .zIndex(spreadZIndex)
+                            .then(
+                                if (shouldNeutralize) {
+                                    Modifier.graphicsLayer {
+                                        translationX = ((pagerIndex - pagerState.currentPage) - pagerState.currentPageOffsetFraction) * size.width
+                                    }
+                                } else {
+                                    Modifier
+                                }
+                            )
+                    ) {
+                        Row(modifier = Modifier.fillMaxSize()) {
+                            // Halaman Kiri (Genap)
+                            Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
+                                if (hasLeftPage) {
+                                    MushafPageView(
+                                        pageNumber = leftPageNum,
+                                        pageMapping = leftMapping,
+                                        pageImage = leftImage,
+                                        selectedAyah = if (isCurrentSpread) selectedAyah else null,
+                                        activeAudioAyah = if (isCurrentSpread) activeAudioAyah else null,
+                                        onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
+                                        onBackgroundClick = { isFullscreen = !isFullscreen },
+                                        onDoubleTap = { orientationController.toggleOrientation() },
+                                        onPinchOut = { orientationController.setLandscape() },
+                                        onPinchIn = { orientationController.setPortrait() },
+                                        pageTurnState = leftPageTurnState,
+                                        modifier = Modifier.fillMaxSize()
+                                    )
+
+                                    if (!isTopCurlingSpread || curlProgress <= 0.05f) {
+                                        SpineEdgeShadow(side = SpineSide.RIGHT)
+                                    }
+                                }
+                            }
+
+                            // Garis Jilid Tengah (Spine)
+                            SpineCenterDivider(isDark = isDark)
+
+                            // Halaman Kanan (Ganjil)
+                            Box(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .fillMaxHeight()
+                                    .graphicsLayer { alpha = rightPageAlpha }
+                            ) {
                                 MushafPageView(
-                                    pageNumber = leftPageNum,
-                                    pageMapping = leftMapping,
-                                    pageImage = leftImage,
+                                    pageNumber = rightPageNum,
+                                    pageMapping = rightMapping,
+                                    pageImage = rightImage,
                                     selectedAyah = if (isCurrentSpread) selectedAyah else null,
                                     activeAudioAyah = if (isCurrentSpread) activeAudioAyah else null,
                                     onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
@@ -309,30 +384,8 @@ fun QuranPageReaderScreen(
                                     modifier = Modifier.fillMaxSize()
                                 )
 
-                                SpineEdgeShadow(side = SpineSide.RIGHT)
+                                SpineEdgeShadow(side = SpineSide.LEFT)
                             }
-                        }
-
-                        // Garis Jilid Tengah (Spine)
-                        SpineCenterDivider(isDark = isDark)
-
-                        // Halaman Kanan (Ganjil)
-                        Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
-                            MushafPageView(
-                                pageNumber = rightPageNum,
-                                pageMapping = rightMapping,
-                                pageImage = rightImage,
-                                selectedAyah = if (isCurrentSpread) selectedAyah else null,
-                                activeAudioAyah = if (isCurrentSpread) activeAudioAyah else null,
-                                onAyahClick = { surah, ayah -> selectedAyah = Pair(surah, ayah) },
-                                onBackgroundClick = { isFullscreen = !isFullscreen },
-                                onDoubleTap = { orientationController.toggleOrientation() },
-                                onPinchOut = { orientationController.setLandscape() },
-                                onPinchIn = { orientationController.setPortrait() },
-                                modifier = Modifier.fillMaxSize()
-                            )
-
-                            SpineEdgeShadow(side = SpineSide.LEFT)
                         }
                     }
                 } else {
