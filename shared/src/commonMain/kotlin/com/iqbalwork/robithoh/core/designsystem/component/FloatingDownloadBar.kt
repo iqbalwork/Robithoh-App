@@ -28,6 +28,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import org.jetbrains.compose.resources.stringResource
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.floating_download_failed
+import robithohapp.shared.generated.resources.floating_download_title
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -133,7 +137,7 @@ fun FloatingDownloadBar(
                                 }
 
                                 Text(
-                                    text = "Mengunduh ${downloadState.title}...",
+                                    text = stringResource(Res.string.floating_download_title, downloadState.title),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.sp,
                                     color = if (isDark) PutihBersih else TextCharcoal,
@@ -161,7 +165,7 @@ fun FloatingDownloadBar(
                             }
                             is DownloadProgressState.Error -> {
                                 Text(
-                                    text = "Gagal mengunduh audio",
+                                    text = stringResource(Res.string.floating_download_failed),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.sp,
                                     color = MerahMerdeka,

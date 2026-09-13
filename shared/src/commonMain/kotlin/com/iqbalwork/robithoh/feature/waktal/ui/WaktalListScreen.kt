@@ -72,6 +72,9 @@ fun WaktalListScreen(
         onTriggerSync = {
             vm.onIntent(WaktalListUiIntent.TriggerSync)
         },
+        onResetFilters = {
+            vm.onIntent(WaktalListUiIntent.ResetFilters)
+        },
         onBackClick = onBackClick,
         modifier = modifier
     )

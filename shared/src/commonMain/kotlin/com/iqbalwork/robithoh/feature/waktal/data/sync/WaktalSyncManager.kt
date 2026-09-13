@@ -1,6 +1,7 @@
 package com.iqbalwork.robithoh.feature.waktal.data.sync
 
 import com.iqbalwork.robithoh.feature.waktal.data.WaktalRepository
+import com.iqbalwork.robithoh.feature.waktal.data.remote.WakilTalqinItemDto
 import com.iqbalwork.robithoh.feature.waktal.data.remote.WaktalApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,24 +27,49 @@ class WaktalSyncManager(
     suspend fun syncWaktalDirectory(force: Boolean = false): Result<Int> = withContext(Dispatchers.Default) {
         _syncState.value = WaktalSyncState.Checking()
         try {
-            val manifest = apiService.checkVersionManifest()
-            val remoteWaktal = manifest.entities["waktal"]
-            val remoteVersion = remoteWaktal?.versionCode ?: 1
+            var remoteVersion = 1
+            var checksum: String? = null
+
+            try {
+                val manifest = apiService.checkVersionManifest()
+                val remoteWaktal = manifest.entities["waktal"]
+                remoteVersion = remoteWaktal?.versionCode ?: 1
+                checksum = remoteWaktal?.checksum
+            } catch (e: Exception) {
+                println("[WaktalSyncManager] Manifest check error: ${e.message}")
+            }
+
             val localVersion = repository.getLocalVersionCode()
 
             if (force || remoteVersion > localVersion) {
                 _syncState.value = WaktalSyncState.Syncing(0, 0)
-                val response = apiService.fetchWaktalDelta()
-                val items = response.data ?: emptyList()
+                var items: List<WakilTalqinItemDto> = emptyList()
 
-                repository.saveWaktalSnapshot(
-                    items = items,
-                    versionCode = remoteVersion,
-                    checksum = remoteWaktal?.checksum
-                )
+                try {
+                    val deltaResponse = apiService.fetchWaktalDelta()
+                    items = deltaResponse.data ?: emptyList()
+                } catch (e: Exception) {
+                    println("[WaktalSyncManager] Delta fetch error: ${e.message}, trying list API...")
+                    try {
+                        val listResponse = apiService.fetchWaktalList(perPage = 100)
+                        items = listResponse.data ?: emptyList()
+                    } catch (e2: Exception) {
+                        println("[WaktalSyncManager] List API fetch error: ${e2.message}")
+                    }
+                }
 
-                _syncState.value = WaktalSyncState.Success(items.size)
-                Result.success(items.size)
+                if (items.isNotEmpty()) {
+                    repository.saveWaktalSnapshot(
+                        items = items,
+                        versionCode = if (remoteVersion > localVersion) remoteVersion else localVersion + 1,
+                        checksum = checksum
+                    )
+                    _syncState.value = WaktalSyncState.Success(items.size)
+                    Result.success(items.size)
+                } else {
+                    _syncState.value = WaktalSyncState.Success(0)
+                    Result.success(0)
+                }
             } else {
                 _syncState.value = WaktalSyncState.Success(0)
                 Result.success(0)

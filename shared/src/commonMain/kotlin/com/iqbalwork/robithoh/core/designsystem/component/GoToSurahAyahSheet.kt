@@ -44,7 +44,10 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.*
 import com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup
 import com.iqbalwork.robithoh.feature.quran.model.SurahMeta
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.go_to_surah_ayah_header
 
 enum class GoToTab(val title: String) {
     SURAH("Surat & Ayat"),
@@ -111,7 +114,7 @@ fun GoToSurahAyahSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                text = "Menuju ke",
+                text = stringResource(Res.string.go_to_surah_ayah_header),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = textColor

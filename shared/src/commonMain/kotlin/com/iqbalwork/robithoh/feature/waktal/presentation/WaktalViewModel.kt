@@ -6,6 +6,7 @@ import com.iqbalwork.robithoh.feature.waktal.data.WaktalRepository
 import com.iqbalwork.robithoh.feature.waktal.data.sync.WaktalSyncManager
 import com.iqbalwork.robithoh.feature.waktal.domain.HaversineDistance
 import com.iqbalwork.robithoh.feature.waktal.domain.WakilTalqin
+import com.iqbalwork.robithoh.feature.waktal.domain.WaktalStatus
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -19,6 +20,7 @@ class WaktalViewModel(
     init {
         loadData()
         observeSyncState()
+        checkAutoSync()
     }
 
     override fun onIntent(intent: WaktalListUiIntent) {
@@ -53,6 +55,16 @@ class WaktalViewModel(
             }
             WaktalListUiIntent.TriggerSync -> {
                 triggerManualSync()
+            }
+            WaktalListUiIntent.ResetFilters -> {
+                updateState {
+                    copy(
+                        selectedStatus = WaktalStatus.SEMUA,
+                        selectedProvince = null,
+                        isSortByDistance = false
+                    )
+                }
+                applyFilters()
             }
         }
     }
@@ -118,6 +130,17 @@ class WaktalViewModel(
             }
 
             updateState { copy(filteredItems = filtered) }
+        }
+    }
+
+    private fun checkAutoSync() {
+        viewModelScope.launch {
+            val result = syncManager.syncWaktalDirectory(force = false)
+            result.onSuccess { count ->
+                if (count > 0) {
+                    loadData()
+                }
+            }
         }
     }
 

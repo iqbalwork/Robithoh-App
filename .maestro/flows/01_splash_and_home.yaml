@@ -29,6 +29,7 @@ appId: com.iqbalwork.robithoh
 - assertVisible: "Doa"
 - assertVisible: "Silsilah"
 - assertVisible: "Tahlil & Ziyaroh"
+- assertVisible: "Wakil Talqin"
 
 # 4. Scroll ke bawah untuk melihat Untaian Mutiara Tanbih
 - scroll

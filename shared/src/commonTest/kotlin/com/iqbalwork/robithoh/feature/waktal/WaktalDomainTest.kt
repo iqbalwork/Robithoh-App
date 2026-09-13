@@ -80,4 +80,41 @@ class WaktalDomainTest {
         assertNull(waktalWafat.whatsappUrl)
         assertNull(waktalWafat.mapIntentUri)
     }
+
+    @Test
+    fun testNormalizedFotoUrl() {
+        fun createWaktal(fotoUrl: String?) = WakilTalqin(
+            id = 1, nomorUrut = 1, namaLengkap = "Test", namaResmi = "Test",
+            gelarDepan = null, gelarBelakang = null, status = WaktalStatus.AKTIF,
+            tahunWafat = null, nomorTelepon = null, nomorWhatsapp = null,
+            fotoUrl = fotoUrl, provinsi = "Jabar", kotaKabupaten = "Bandung",
+            kecamatan = null, alamatLengkap = null, latitude = null, longitude = null,
+            majlisBinaan = null, biografiSingkat = null
+        )
+
+        assertNull(createWaktal(null).normalizedFotoUrl)
+        assertNull(createWaktal("  ").normalizedFotoUrl)
+
+        val expectedBase = "http://192.168.101.7:8000"
+
+        assertEquals(
+            "$expectedBase/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png",
+            createWaktal("http://localhost:8000/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png").normalizedFotoUrl
+        )
+
+        assertEquals(
+            "$expectedBase/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png",
+            createWaktal("http://127.0.0.1:8000/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png").normalizedFotoUrl
+        )
+
+        assertEquals(
+            "$expectedBase/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png",
+            createWaktal("https://api.robithoh.id/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png").normalizedFotoUrl
+        )
+
+        assertEquals(
+            "$expectedBase/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png",
+            createWaktal("/storage/waktal/1-KH-M-Sholeh-Mukhtar-Hujatul-Arifin.png").normalizedFotoUrl
+        )
+    }
 }

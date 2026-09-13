@@ -6,11 +6,53 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
-### Multiplatform Build Configuration via BuildKonfig
+### Interactive Fullscreen Image Viewer with Pinch-to-Zoom & Swipe-to-Dismiss
+- **Date**: 2026-09-14
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Added global fullscreen `ImageViewerManager` and `ZoomableImage` component supporting pinch-to-zoom, panning, double-tap zoom, and swipe-down-to-dismiss with background alpha fading.
+- **Changes**:
+  - `ImageViewerManager.kt`: Created global singleton state manager (`activeImage`, `show(model)`, `hide()`, `isVisible`) in `core/designsystem/component`.
+  - `ZoomableImage.kt`: Created interactive `ZoomableImage` composable in `core/designsystem/component` supporting pinch-to-zoom (`1f` to `4f`), double-tap toggle zoom, constrained panning, velocity-based swipe-down dismiss, and asynchronous `ImageBitmap` loading from network URLs, `ImageBitmap`, `Painter`, or `DrawableResource`.
+  - `App.kt`: Integrated global image viewer overlay at top-level `Box` with `AnimatedVisibility`, `BackHandler` back button interception, and status-bar padded close button (`IconButton`).
+  - `WaktalAvatar.kt`: Enabled tap-to-view interaction on Wakil Talqin avatar images to trigger `ImageViewerManager.show(...)`.
+
+### Waktal Image Base URL & IP Address Configuration (192.168.101.7:8000)
+- **Date**: 2026-09-13
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Fixed `BuildKonfig` string generation formatting and image URL normalization so local dev server images (`http://192.168.101.7:8000/storage/waktal/...`) load properly on connected Android devices.
+- **Changes**:
+  - `shared/build.gradle.kts`: Removed escaped double-quote escaping `\"` in `buildConfigField(STRING, ...)` values so BuildKonfig generates clean String literals (`"http://192.168.101.7:8000"`) instead of strings containing literal quote characters.
+  - `WakilTalqin.kt`: Enhanced `normalizedFotoUrl` logic to strip quotes, extract `/storage/` paths cleanly from `localhost`, `127.0.0.1`, `api.robithoh.id`, `api.robithoh.com`, and any local IP, replacing them with `BuildKonfig.BASE_URL` (`http://192.168.101.7:8000`).
+  - `WaktalApiService.kt`: Sanitized `baseUrl` by stripping residual quote characters before constructing API endpoints (`/api/v1`).
+  - `WaktalAvatar.kt`: Added space encoding (`url.replace(" ", "%20")`) to ensure filenames with spaces load without Ktor URL parsing errors.
+  - `WaktalDomainTest.kt`: Added `testNormalizedFotoUrl` verifying all URL normalization scenarios.
+  - `androidApp/src/main/AndroidManifest.xml` & `shared/src/androidMain/AndroidManifest.xml`: Added `android:usesCleartextTraffic="true"` to `<application>` and declared `INTERNET` permission to allow unencrypted HTTP communication with the local development server (`192.168.101.7:8000`).
+
+### Waktal Directory Filter BottomSheet, Search Input Clear Button, & Dynamic Image Normalization
+- **Date**: 2026-09-13
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Consolidated Waktal search filters into a ModalBottomSheet accessed via a button beside the search bar, added search clear (X) button, and implemented dynamic image URL normalization against BuildKonfig BASE_URL with KMP image caching.
+- **Changes**:
+  - `WaktalFilterSheet.kt`: Created new ModalBottomSheet component combining status, sort by distance, and province filters with reset and apply controls.
+  - `WaktalListContent.kt`: Placed filter button side-by-side with search text field using `OutlinedIconButton` component and Material Icons (`Icons.Default.Tune`, `Icons.Default.Search`, `Icons.Default.Close`), added clear '✕' trailing button in search field, active filter badge & summary chips, and wired bottom sheet.
+  - `shared/build.gradle.kts` & `libs.versions.toml`: Configured `material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }` (`1.7.3`) and `libs.material.icons.extended` matching `talangraga-umroh-mobile` dependency pattern.
+  - `WakilTalqin.kt`: Added `normalizedFotoUrl` property normalizing `localhost`/`127.0.0.1` and relative paths to `BuildKonfig.BASE_URL`.
+  - `WaktalAvatar.kt`: Created asynchronous network image component with thread-safe `WaktalImageLoaderCache` using Ktor and `decodeToImageBitmap()`.
+  - `WaktalCard.kt` & `WaktalDetailContent.kt`: Integrated `WaktalAvatar` to display avatar images in list and detail views.
+  - `WaktalListMvi.kt` & `WaktalViewModel.kt`: Added `ResetFilters` intent handling.
+
+### Home Grid Menu Re-ordering & Tahlil & Ziyaroh Menu Restoration
+- **Date**: 2026-09-13
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Re-added "Tahlil & Ziyaroh" menu item to `HomeTabContent.kt` menu grid and repositioned "Wakil Talqin" to the last position in the grid as the newest feature.
+- **Changes**:
+  - `shared/src/commonMain/kotlin/com/iqbalwork/robithoh/feature/home/ui/HomeTabContent.kt`: Added `HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")` back to `menuGridItems` list, and moved `HomeGridMenuItem("waktal", "Wakil Talqin", "👳‍♂️")` to the bottom of the list.
+  - `.maestro/flows/01_splash_and_home.yaml`: Added `- assertVisible: "Wakil Talqin"` assertion alongside `"Tahlil & Ziyaroh"`.
 - **Date**: 2026-09-13
 - **Author**: AI Assistant & Iqbal Fauzi
 - **Scope**: Implemented type-safe Kotlin Multiplatform build configuration plugin BuildKonfig (`com.codingfeline.buildkonfig`) for `stagingDebug`, `stagingRelease`, `productionDebug`, and `productionRelease` environments across `:shared` and `:androidApp`.
 - **Changes**:
+  - `shared/build.gradle.kts`: Updated `BASE_URL` for `defaultConfigs`, `stagingDebug`, and `stagingRelease` from `https://staging-api.robithoh.com` to `http://192.168.101.7:8000` for local server API testing.
   - `libs.versions.toml`: Added `buildkonfig = "0.22.0"` and plugin alias `buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }`.
   - `build.gradle.kts`: Added `alias(libs.plugins.buildkonfig) apply false`.
   - `shared/build.gradle.kts`: Applied `alias(libs.plugins.buildkonfig)` plugin and configured `buildkonfig` block for `stagingDebug`, `stagingRelease`, `productionDebug`, and `productionRelease` with `BASE_URL`, `ENVIRONMENT`, and `IS_DEBUG` fields. Default fallback set to `stagingDebug` for local development.
@@ -18,9 +60,20 @@ All changes, architectural updates, and significant refactorings made by AI agen
   - `BuildKonfigTest.kt`: Added unit test in `commonTest` verifying BuildKonfig generated properties exist and are non-empty.
   - `ADR-0009`: Authored [ADR-0009: Multiplatform Build Configuration via BuildKonfig](adr/0009-multiplatform-buildkonfig-environment-configuration.md).
 
-### Waktal (Wakil Talqin) Directory & Offline-First Sync Engine
+### Waktal (Wakil Talqin) Directory & Ktor Network Logging
 - **Date**: 2026-09-13
 - **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Enabled auto-reseed for full 399 CMS records, added fallback API sync in WaktalSyncManager, and integrated Ktor Client Logging plugin.
+- **Changes**:
+  - `WaktalRepository.kt`: Updated `ensureSeedLoaded()` so if local SQLite database count < 100 (e.g. device previously held old 5 dummy items), old database is automatically cleared and re-seeded with all 399 records from `waktal_seed.json`.
+  - `WaktalSyncManager.kt`: Added API sync fallback logic in `syncWaktalDirectory()` trying `fetchWaktalDelta()` first, and falling back to `fetchWaktalList(perPage = 100)` when needed to fetch live CMS records directly into SQLite.
+  - `libs.versions.toml` & `shared/build.gradle.kts`: Added `ktor-client-logging` plugin dependency.
+  - `KtorHttpClient.kt`: Installed Ktor `Logging` plugin with `Logger.SIMPLE` and `LogLevel.BODY` when `BuildKonfig.IS_DEBUG` is true.
+  - `WaktalApiService.kt`: Added explicit `println` log tags `[WaktalApiService]` for endpoint requests (`/sync/version-manifest`, `/sync/delta/waktal`, `/waktal`, `/waktal/$id`).
+  - `waktal_seed.json`: Extracted and pre-bundled complete 399 Waktal records from Robithoh-CMS (`wakil_talqins_seed.json`).
+  - `WaktalViewModel.kt`: Added `checkAutoSync()` on initialization for silent background manifest version checking against CMS when online.
+  - `WaktalListContent.kt`: Replaced top bar refresh action button with `PullToRefreshBox` gesture for intuitive pull-to-sync experience.
+  - `ADR-0008`, `0002-waktal-directory-and-sync-engine.md`, `0002-waktal-directory-and-offline-sync.md`: Updated ADR status to Accepted and synchronized technical specification and plan.
 - **Scope**: Implemented full offline-first directory module for ulama Wakil Talqin (Waktal) TQN Suryalaya - Sirnarasa, with on-device GPS proximity sorting, remote CMS sync engine, MVI presentation, and Navigation3 integration.
 - **Changes**:
   - `RobithohDatabase.sq`: Added `WakilTalqinEntity` & `WaktalSyncManifestEntity` tables, indices, and SQL queries.

@@ -19,7 +19,7 @@ class WaktalRepository(
     suspend fun ensureSeedLoaded() = withContext(Dispatchers.Default) {
         val db = database ?: return@withContext
         val currentItems = db.robithohDatabaseQueries.getAllWakilTalqin().executeAsList()
-        if (currentItems.isNotEmpty()) return@withContext
+        if (currentItems.size >= 100) return@withContext
 
         try {
             val bytes = Res.readBytes("files/waktal_seed.json")
@@ -27,6 +27,9 @@ class WaktalRepository(
             val seedItems = json.decodeFromString<List<WakilTalqinItemDto>>(seedText)
 
             db.transaction {
+                if (currentItems.isNotEmpty() && currentItems.size < 100) {
+                    db.robithohDatabaseQueries.deleteAllWakilTalqin()
+                }
                 val now = 1740000000L
                 seedItems.forEach { item ->
                     db.robithohDatabaseQueries.insertOrReplaceWakilTalqin(

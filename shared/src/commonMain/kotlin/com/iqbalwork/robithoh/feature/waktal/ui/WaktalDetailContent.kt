@@ -1,20 +1,15 @@
 package com.iqbalwork.robithoh.feature.waktal.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -25,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,8 +33,16 @@ import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.waktal.presentation.WaktalDetailUiState
+import com.iqbalwork.robithoh.feature.waktal.ui.components.WaktalAvatar
 import com.iqbalwork.robithoh.feature.waktal.ui.components.WaktalQuickActions
 import com.iqbalwork.robithoh.feature.waktal.ui.components.WaktalStatusBadge
+import org.jetbrains.compose.resources.stringResource
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.waktal_biografi_title
+import robithohapp.shared.generated.resources.waktal_detail_subtitle
+import robithohapp.shared.generated.resources.waktal_domisili_title
+import robithohapp.shared.generated.resources.waktal_majlis_title
+import robithohapp.shared.generated.resources.waktal_no_urut
 
 @Composable
 fun WaktalDetailContent(
@@ -60,7 +62,7 @@ fun WaktalDetailContent(
         topBar = {
             IslamicHeader(
                 title = item?.namaResmi ?: "Detail Profil Ulama",
-                subtitle = "Profil Ulama Wakil Talqin TQN",
+                subtitle = stringResource(Res.string.waktal_detail_subtitle),
                 onBackClick = onBackClick
             )
         }
@@ -111,18 +113,11 @@ fun WaktalDetailContent(
                                 .padding(20.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(80.dp)
-                                    .clip(CircleShape)
-                                    .background(if (isDark) DarkBorder else Color(0xFFFFF1F2)),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text(
-                                    text = "👳‍♂️",
-                                    fontSize = 40.sp
-                                )
-                            }
+                            WaktalAvatar(
+                                url = item.normalizedFotoUrl,
+                                sizeDp = 80,
+                                emojiSizeSp = 40
+                            )
 
                             Spacer(modifier = Modifier.height(12.dp))
 
@@ -136,7 +131,7 @@ fun WaktalDetailContent(
                             item.nomorUrut?.let { urut ->
                                 Spacer(modifier = Modifier.height(2.dp))
                                 Text(
-                                    text = "No. Urut Waktal #$urut",
+                                    text = stringResource(Res.string.waktal_no_urut, urut),
                                     fontSize = 12.sp,
                                     color = MerahMerdeka,
                                     fontWeight = FontWeight.SemiBold
@@ -190,7 +185,7 @@ fun WaktalDetailContent(
                                 .padding(16.dp)
                         ) {
                             Text(
-                                text = "Informasi Domisili & Sekretariat",
+                                text = stringResource(Res.string.waktal_domisili_title),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MerahMerdeka
@@ -214,7 +209,7 @@ fun WaktalDetailContent(
                                     color = if (isDark) DarkBorder else Color(0xFFF1F5F9)
                                 )
                                 Text(
-                                    text = "Majlis Binaan",
+                                    text = stringResource(Res.string.waktal_majlis_title),
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MerahMerdeka
@@ -233,7 +228,7 @@ fun WaktalDetailContent(
                                     color = if (isDark) DarkBorder else Color(0xFFF1F5F9)
                                 )
                                 Text(
-                                    text = "Biografi & Riwayat",
+                                    text = stringResource(Res.string.waktal_biografi_title),
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MerahMerdeka
@@ -257,23 +252,22 @@ fun WaktalDetailContent(
 @Composable
 private fun InfoRow(label: String, value: String) {
     val isDark = isSystemInDarkTheme()
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
     ) {
         Text(
             text = label,
-            fontSize = 13.sp,
-            color = if (isDark) Color(0xFFA1A1AA) else TextMuted,
-            modifier = Modifier.width(120.dp)
+            fontSize = 12.sp,
+            color = if (isDark) Color(0xFFA1A1AA) else TextMuted
         )
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
             text = value,
             fontSize = 13.sp,
             fontWeight = FontWeight.Medium,
-            color = if (isDark) Color.White else TextCharcoal,
-            modifier = Modifier.weight(1f)
+            color = if (isDark) Color.White else TextCharcoal
         )
     }
 }

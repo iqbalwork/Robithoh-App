@@ -1,5 +1,7 @@
 package com.iqbalwork.robithoh
 
+import com.iqbalwork.robithoh.shared.BuildKonfig
+
 actual fun appVersionName(): String {
     val fromBuildConfig = try {
         val clazz = Class.forName("com.iqbalwork.robithoh.BuildConfig")
@@ -35,5 +37,5 @@ actual fun appVersionName(): String {
         return fromPackageInfo
     }
 
-    return "1.1.0"
+    return BuildKonfig.VERSION_NAME
 }

@@ -8,14 +8,21 @@ import io.ktor.client.request.parameter
 
 class WaktalApiService(
     private val httpClient: HttpClient,
-    private val baseUrl: String = BuildKonfig.BASE_URL
+    baseUrl: String = BuildKonfig.BASE_URL
 ) {
+    private val apiBaseUrl: String = run {
+        val trimmed = baseUrl.replace("\"", "").trimEnd('/')
+        if (trimmed.endsWith("/api/v1")) trimmed else "$trimmed/api/v1"
+    }
+
     suspend fun checkVersionManifest(): SyncManifestResponseDto {
-        return httpClient.get("$baseUrl/sync/version-manifest").body()
+        println("[WaktalApiService] GET $apiBaseUrl/sync/version-manifest")
+        return httpClient.get("$apiBaseUrl/sync/version-manifest").body()
     }
 
     suspend fun fetchWaktalDelta(): BaseApiResponse<List<WakilTalqinItemDto>> {
-        return httpClient.get("$baseUrl/sync/delta/waktal").body()
+        println("[WaktalApiService] GET $apiBaseUrl/sync/delta/waktal")
+        return httpClient.get("$apiBaseUrl/sync/delta/waktal").body()
     }
 
     suspend fun fetchWaktalList(
@@ -28,19 +35,21 @@ class WaktalApiService(
         page: Int = 1,
         perPage: Int = 20
     ): BaseApiResponse<List<WakilTalqinItemDto>> {
-        return httpClient.get("$baseUrl/waktal") {
-            parameter("search", search)
+        println("[WaktalApiService] GET $apiBaseUrl/waktal (search=$search, status=$status, provinsi=$provinsi, kota=$kota, lat=$lat, lng=$lng)")
+        return httpClient.get("$apiBaseUrl/waktal") {
+            if (!search.isNullOrBlank()) parameter("search", search)
             parameter("status", status)
-            parameter("provinsi", provinsi)
-            parameter("kota", kota)
-            parameter("lat", lat)
-            parameter("lng", lng)
+            if (!provinsi.isNullOrBlank()) parameter("provinsi", provinsi)
+            if (!kota.isNullOrBlank()) parameter("kota", kota)
+            if (lat != null) parameter("lat", lat)
+            if (lng != null) parameter("lng", lng)
             parameter("page", page)
             parameter("per_page", perPage)
         }.body()
     }
 
     suspend fun fetchWaktalDetail(id: Int): BaseApiResponse<WakilTalqinItemDto> {
-        return httpClient.get("$baseUrl/waktal/$id").body()
+        println("[WaktalApiService] GET $apiBaseUrl/waktal/$id")
+        return httpClient.get("$apiBaseUrl/waktal/$id").body()
     }
 }

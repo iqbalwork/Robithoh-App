@@ -1,7 +1,17 @@
 package com.iqbalwork.robithoh
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -14,7 +24,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavKey
@@ -26,6 +40,8 @@ import com.iqbalwork.robithoh.core.audio.createAudioDownloader
 import com.iqbalwork.robithoh.core.audio.createAudioPlayer
 import com.iqbalwork.robithoh.core.database.rememberRobithohDatabase
 import com.iqbalwork.robithoh.core.designsystem.InitHapticContext
+import com.iqbalwork.robithoh.core.designsystem.component.ImageViewerManager
+import com.iqbalwork.robithoh.core.designsystem.component.ZoomableImage
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.network.createKtorHttpClient
 import com.iqbalwork.robithoh.core.notification.rememberPrayerAlarmScheduler
@@ -419,6 +435,61 @@ fun App(
                         ),
                         entryProvider = entries
                     )
+
+                    // Global Fullscreen Image Viewer Overlay
+                    val activeImage = ImageViewerManager.activeImage
+                    var backgroundAlpha by remember { mutableStateOf(1f) }
+
+                    LaunchedEffect(activeImage) {
+                        if (activeImage != null) backgroundAlpha = 1f
+                    }
+
+                    BackHandler(enabled = activeImage != null) {
+                        ImageViewerManager.hide()
+                    }
+
+                    AnimatedVisibility(
+                        visible = activeImage != null,
+                        enter = fadeIn(),
+                        exit = fadeOut(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .zIndex(999f)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color.Black.copy(alpha = backgroundAlpha))
+                        ) {
+                            if (activeImage != null) {
+                                ZoomableImage(
+                                    model = activeImage,
+                                    onDismiss = {
+                                        ImageViewerManager.hide()
+                                    },
+                                    onDragChange = { progress ->
+                                        backgroundAlpha = (1f - progress * 4).coerceIn(0f, 1f)
+                                    }
+                                )
+                            }
+
+                            if (backgroundAlpha > 0.8f) {
+                                IconButton(
+                                    onClick = { ImageViewerManager.hide() },
+                                    modifier = Modifier
+                                        .align(Alignment.TopEnd)
+                                        .padding(16.dp)
+                                        .statusBarsPadding()
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Close,
+                                        contentDescription = "Tutup",
+                                        tint = Color.White
+                                    )
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

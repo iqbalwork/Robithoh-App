@@ -7,9 +7,9 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Multiplatform Build Configuration via BuildKonfig (`stagingDebug`, `stagingRelease`, `productionDebug`, `productionRelease`).
+* **Current Focus**: Fixed Android Cleartext (HTTP) network policy (`usesCleartextTraffic="true"`) and added `INTERNET` permission for local development server `http://192.168.101.7:8000`.
 * **Codebase Health**:
-  - `shared`: Clean architecture, `BuildKonfigTest`, `HaversineDistanceTest`, `WaktalDomainTest`, and all multiplatform unit tests passing.
+  - `shared`: Clean architecture, `WaktalFilterSheet`, `WaktalAvatar`, `WaktalImageLoaderCache`, `normalizedFotoUrl` with local IP normalization, and 150 multiplatform unit tests passing.
   - `androidApp`: `assembleStagingDebug`, `assembleStagingRelease`, and `assembleProductionDebug` succeeded.
   - `Linters & Tools`: `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` 100% verified.
 

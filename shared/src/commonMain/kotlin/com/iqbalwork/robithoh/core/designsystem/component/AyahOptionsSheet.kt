@@ -28,6 +28,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.BorderSubtle
+import org.jetbrains.compose.resources.stringResource
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.ayah_options_copy_text
+import robithohapp.shared.generated.resources.ayah_options_play_murottal
+import robithohapp.shared.generated.resources.ayah_options_share_text
+import robithohapp.shared.generated.resources.ayah_options_title_format
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
@@ -110,7 +116,7 @@ fun AyahOptionsSheetContent(
 
         // Title: Surah & Ayah info
         Text(
-            text = "$surahName : Ayat $ayahNumber",
+            text = stringResource(Res.string.ayah_options_title_format, surahName, ayahNumber),
             fontWeight = FontWeight.Bold,
             fontSize = 17.sp,
             color = textColor
@@ -123,7 +129,7 @@ fun AyahOptionsSheetContent(
         // 1. Play Murotal
         AyahOptionRow(
             icon = "▶",
-            label = "Putar Murotal Ayat Ini",
+            label = stringResource(Res.string.ayah_options_play_murottal),
             onClick = {
                 onPlayMurotal()
                 onDismiss()
@@ -144,7 +150,7 @@ fun AyahOptionsSheetContent(
         // 3. Salin Teks Ayat
         AyahOptionRow(
             icon = "📋",
-            label = "Salin Teks Ayat",
+            label = stringResource(Res.string.ayah_options_copy_text),
             onClick = {
                 onCopy()
                 onDismiss()
@@ -154,7 +160,7 @@ fun AyahOptionsSheetContent(
         // 4. Bagikan Ayat
         AyahOptionRow(
             icon = "↗",
-            label = "Bagikan Ayat",
+            label = stringResource(Res.string.ayah_options_share_text),
             onClick = {
                 onShare()
                 onDismiss()

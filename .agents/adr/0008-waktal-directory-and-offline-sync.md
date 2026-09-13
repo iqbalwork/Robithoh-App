@@ -1,6 +1,6 @@
 # ADR-0008: Waktal (Wakil Talqin) Directory & Offline-First Sync Architecture
 
-*   **Status**: Proposed
+*   **Status**: Accepted
 *   **Date**: 2026-09-13
 *   **Deciders**: Antigravity, Iqbal Fauzi
 *   **Consulted**: Core Mobile Team, Robithoh Backend & CMS Team
@@ -10,7 +10,7 @@
 
 ## 1. Context and Problem Statement
 
-Majlis Pembina Tarbiyyah Islamiyyah (MPTI) dan Tarekat Qodiriyyah Naqsyabandiyyah (TQN) Pondok Pesantren Suryalaya - Sirnarasa memiliki direktori resmi ulama **Wakil Talqin (Waktal)**—tokoh-tokoh yang diberikan amanah dan mandat khusus oleh Pangersa Abah Sepuh dan Pangersa Abah Anom untuk membimbing pengamalan dzikir talqin. Direktori ini mencakup sekitar 398 ulama (baik yang masih sugeng/aktif maupun yang sudah wafat/almarhum).
+Majlis Pembina Tarbiyyah Islamiyyah (MPTI) dan Tarekat Qodiriyyah Naqsyabandiyyah (TQN) Pondok Pesantren Suryalaya - Sirnarasa memiliki direktori resmi ulama **Wakil Talqin (Waktal)**—tokoh-tokoh yang diberikan amanah dan mandat khusus oleh Pangersa Abah Sepuh dan Pangersa Abah Anom untuk membimbing pengamalan dzikir talqin. Direktori ini mencakup 399 ulama (baik yang masih sugeng/aktif maupun yang sudah wafat/almarhum) yang telah lengkap disinkronkan dari Robithoh-CMS.
 
 Aplikasi Robithoh memerlukan modul direktori Wakil Talqin agar ikhwan/akhwat dapat:
 1. Menemukan ulama Wakil Talqin di sekitar domisili mereka (berdasarkan jarak terdekat / GPS).
@@ -18,11 +18,12 @@ Aplikasi Robithoh memerlukan modul direktori Wakil Talqin agar ikhwan/akhwat dap
 3. Memfilter berdasarkan status keaktifan (`aktif` / `wafat`) dan wilayah.
 4. Melihat profil lengkap, biografi singkat, riwayat penugasan, foto portrait, serta kontak resmi.
 5. Melakukan aksi cepat: panggilan telepon langsung (`tel:`), perpesanan WhatsApp resmi (`https://wa.me/`), serta navigasi lokasi sekretariat/majlis via Google Maps / Apple Maps.
+6. Melakukan pembaruan data secara fleksibel via gestur **Swipe-to-Refresh** (Pull-to-Refresh) langsung pada layar direktori Waktal.
 
 ### Constraints & Challenges
 * **Core Rule 1 (100% Offline-First Architecture)**: Robithoh App tidak boleh bergantung pada koneksi internet untuk membaca direktori. Pengguna di daerah pelosok atau saat offline harus tetap bisa mencari dan membaca profil Waktal lengkap beserta penghitungan jarak terdekat.
 * **Dynamic CMS Updates**: Data Wakil Talqin dapat bertambah atau diperbarui oleh pengurus melalui Robithoh CMS (`API_CONTRACT_WAKTAL.md`).
-* **Performance**: Pencarian teks dan penghitungan jarak 398+ data harus instan tanpa freeze (frame budget < 16.6 ms).
+* **Performance**: Pencarian teks dan penghitungan jarak 399 data harus instan tanpa freeze (frame budget < 16.6 ms).
 
 ---
 
@@ -31,16 +32,16 @@ Aplikasi Robithoh memerlukan modul direktori Wakil Talqin agar ikhwan/akhwat dap
 Kami memutuskan untuk mengimplementasikan modul Wakil Talqin dengan arsitektur **Hybrid Offline-First Sync** dan **Compose Multiplatform MVI**:
 
 ### 2.1 100% Pre-Bundled Offline Baseline + SQLite Storage
-1. Data awal (398 records) dikemas dalam berkas JSON seed pre-bundled (`waktal_seed.json`) di `composeResources`.
+1. Data awal 399 records dikemas dalam berkas JSON seed pre-bundled (`waktal_seed.json`) di `composeResources` diekstrak dari Robithoh-CMS (`wakil_talqins_seed.json`).
 2. Pada instalasi pertama (first run) atau saat tabel lokal kosong, database SQLite lokal (`RobithohDatabase.sq` via CashApp SQLDelight) otomatis melakukan seeding ke dalam tabel `WakilTalqinEntity`.
 3. Seluruh pencarian, pemfilteran provinsi/kota, dan sorting dilakukan langsung terhadap basis data SQLite lokal atau in-memory filtered flow, memastikan ketersediaan 100% tanpa jaringan.
 
-### 2.2 Remote Synchronization Engine (`WaktalSyncManager`)
+### 2.2 Remote Synchronization Engine (`WaktalSyncManager`) & Swipe-to-Refresh UI
 1. Sinkronisasi data menggunakan endpoint CMS sesuai `API_CONTRACT_WAKTAL.md`:
    - `GET /api/v1/sync/version-manifest`: Memeriksa apakah `version_code` server lebih baru daripada `version_code` lokal di `WaktalSyncManifestEntity`.
    - `GET /api/v1/sync/delta/waktal`: Jika ada pembaruan versi, mengunduh full snapshot data Waktal terbaru.
 2. Proses pembaruan ke SQLite dijalankan dalam database transaction tunggal (`batch insert/replace`) untuk menjamin integritas data (ACID).
-3. Siklus sinkronisasi menyediakan state reaktif `DocumentSyncState` / `WaktalSyncState` (`Idle`, `Checking`, `Syncing`, `Success`, `Error`) yang dapat dipicu manual dari tombol refresh UI atau otomatis di background saat ada internet.
+3. Siklus sinkronisasi dipicu secara alami via gestur **Swipe-to-Refresh** (`PullToRefreshBox`) pada halaman direktori Waktal, menggantikan tombol ikon refresh pada top app bar untuk tampilan antarmuka yang lebih bersih (*clean UI*).
 
 ### 2.3 On-Device Proximity Calculation (Client-Side Haversine)
 1. Perhitungan jarak ulama terhadap posisi perangkat pengguna dilakukan secara lokal di perangkat menggunakan formula **Spherical Haversine**.

@@ -1,3 +1,6 @@
 package com.iqbalwork.robithoh
 
-actual fun appVersionName(): String = "1.1.0"
+import com.iqbalwork.robithoh.shared.BuildKonfig
+
+actual fun appVersionName(): String = BuildKonfig.VERSION_NAME
+

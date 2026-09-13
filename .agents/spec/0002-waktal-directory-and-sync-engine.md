@@ -98,7 +98,7 @@ data class WakilTalqin(
     *   Tapping **Petunjuk Arah / Peta** MUST trigger the native map application (Google Maps / Apple Maps) using `geo:{lat},{lng}`.
     *   If a field is null/blank, the corresponding button MUST be disabled or cleanly hidden.
 *   **REQ-009 (Sync Engine)**: When network connectivity is active, the app MUST query `GET /api/v1/sync/version-manifest`. If server `version_code` > local `version_code`, the app downloads `GET /api/v1/sync/delta/waktal` and atomically updates the local SQLite database.
-*   **REQ-010 (Manual Pull-to-Refresh)**: The directory screen MUST support pull-to-refresh or a refresh icon button to trigger sync on demand.
+*   **REQ-010 (Swipe-to-Refresh Gesture)**: The directory screen MUST support native Swipe-to-Refresh (via Compose Material3 `PullToRefreshBox`) to trigger synchronization on demand, replacing top app bar action icons.
 *   **REQ-011 (Pagination & Virtualization)**: The directory list MUST utilize Compose `LazyColumn` with key-based item identity (`key = { it.id }`) for stutter-free scrolling.
 *   **REQ-012 (Home Integration)**: A prominent entry button MUST be added to `HomeTabContent` grid menus to open the Waktal directory.
 

@@ -29,6 +29,7 @@ sealed interface WaktalListUiIntent : UiIntent {
     data class SetUserLocation(val lat: Double, val lng: Double) : WaktalListUiIntent
     data class SelectWaktal(val id: Int) : WaktalListUiIntent
     data object TriggerSync : WaktalListUiIntent
+    data object ResetFilters : WaktalListUiIntent
 }
 
 sealed interface WaktalListUiEffect : UiEffect {

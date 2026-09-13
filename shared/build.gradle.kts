@@ -51,9 +51,11 @@ kotlin {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
+            implementation(libs.material.icons.extended)
             implementation(libs.compose.ui)
             implementation(libs.compose.components.resources)
             implementation(libs.compose.uiToolingPreview)
+            implementation(compose.preview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.kotlinx.coroutines.core)
@@ -71,9 +73,11 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
         }
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
+            implementation(compose.preview)
             implementation(libs.compose.uiTooling)
             implementation(libs.androidx.activity.compose)
             implementation(libs.kotlinx.coroutines.android)
@@ -117,33 +121,38 @@ buildkonfig {
     exposeObjectWithName = "BuildKonfig"
 
     defaultConfigs {
-        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
-        buildConfigField(STRING, "ENVIRONMENT", "\"stagingDebug\"")
+        buildConfigField(STRING, "BASE_URL", "http://192.168.101.7:8000")
+        buildConfigField(STRING, "ENVIRONMENT", "stagingDebug")
         buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+        buildConfigField(STRING, "VERSION_NAME", "1.2.0")
     }
 
     defaultConfigs("stagingDebug") {
-        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
-        buildConfigField(STRING, "ENVIRONMENT", "\"stagingDebug\"")
+        buildConfigField(STRING, "BASE_URL", "http://192.168.101.7:8000")
+        buildConfigField(STRING, "ENVIRONMENT", "stagingDebug")
         buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+        buildConfigField(STRING, "VERSION_NAME", "1.2.0")
     }
 
     defaultConfigs("stagingRelease") {
-        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
-        buildConfigField(STRING, "ENVIRONMENT", "\"stagingRelease\"")
+        buildConfigField(STRING, "BASE_URL", "http://192.168.101.7:8000")
+        buildConfigField(STRING, "ENVIRONMENT", "stagingRelease")
         buildConfigField(BOOLEAN, "IS_DEBUG", "false")
+        buildConfigField(STRING, "VERSION_NAME", "1.2.0")
     }
 
     defaultConfigs("productionDebug") {
-        buildConfigField(STRING, "BASE_URL", "\"https://api.robithoh.com\"")
-        buildConfigField(STRING, "ENVIRONMENT", "\"productionDebug\"")
+        buildConfigField(STRING, "BASE_URL", "https://api.robithoh.com")
+        buildConfigField(STRING, "ENVIRONMENT", "productionDebug")
         buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+        buildConfigField(STRING, "VERSION_NAME", "1.2.0")
     }
 
     defaultConfigs("productionRelease") {
-        buildConfigField(STRING, "BASE_URL", "\"https://api.robithoh.com\"")
-        buildConfigField(STRING, "ENVIRONMENT", "\"productionRelease\"")
+        buildConfigField(STRING, "BASE_URL", "https://api.robithoh.com")
+        buildConfigField(STRING, "ENVIRONMENT", "productionRelease")
         buildConfigField(BOOLEAN, "IS_DEBUG", "false")
+        buildConfigField(STRING, "VERSION_NAME", "1.2.0")
     }
 }
 

@@ -3,6 +3,7 @@ package com.iqbalwork.robithoh.feature.waktal.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,9 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -20,25 +19,29 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.waktal.domain.WakilTalqin
+import org.jetbrains.compose.resources.stringResource
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.waktal_card_distance
+import robithohapp.shared.generated.resources.waktal_card_no
 
 @Composable
 fun WaktalCard(
     item: WakilTalqin,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    index: Int? = null
 ) {
     val isDark = isSystemInDarkTheme()
+    val displayNo = item.nomorUrut ?: index?.plus(1)
 
     Card(
         modifier = modifier
@@ -56,42 +59,49 @@ fun WaktalCard(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Profile Silhouette / Initial Avatar
-            Box(
-                modifier = Modifier
-                    .size(52.dp)
-                    .clip(CircleShape)
-                    .background(if (isDark) DarkBorder else Color(0xFFFFF1F2)),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "👳‍♂️",
-                    fontSize = 26.sp
-                )
-            }
+            // Profile Avatar
+            WaktalAvatar(
+                url = item.normalizedFotoUrl,
+                sizeDp = 52,
+                emojiSizeSp = 26
+            )
 
             Spacer(modifier = Modifier.width(14.dp))
 
             Column(modifier = Modifier.weight(1f)) {
+                // Top Header Row: Nomor Urut (Left) & Status Badge (Right)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = item.namaResmi,
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = if (isDark) Color.White else TextCharcoal,
-                        modifier = Modifier.weight(1f)
-                    )
-
-                    Spacer(modifier = Modifier.width(6.dp))
+                    if (displayNo != null) {
+                        Text(
+                            text = stringResource(Res.string.waktal_card_no, displayNo),
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MerahMerdeka
+                        )
+                    } else {
+                        Spacer(modifier = Modifier.width(1.dp))
+                    }
 
                     WaktalStatusBadge(
                         status = item.status,
                         tahunWafat = item.tahunWafat
                     )
                 }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Main Title / Name (Full Width)
+                Text(
+                    text = item.namaResmi,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = if (isDark) Color.White else TextCharcoal,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
                 Spacer(modifier = Modifier.height(4.dp))
 
@@ -122,7 +132,7 @@ fun WaktalCard(
                             .padding(horizontal = 6.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "📍 $distanceText dari Anda",
+                            text = stringResource(Res.string.waktal_card_distance, distanceText),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = Color(0xFF2563EB)

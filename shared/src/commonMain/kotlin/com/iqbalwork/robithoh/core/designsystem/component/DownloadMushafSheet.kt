@@ -49,6 +49,15 @@ import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
 import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
+import org.jetbrains.compose.resources.stringResource
+import robithohapp.shared.generated.resources.Res
+import robithohapp.shared.generated.resources.download_mushaf_desc
+import robithohapp.shared.generated.resources.download_mushaf_dont_show_again
+import robithohapp.shared.generated.resources.download_mushaf_progress
+import robithohapp.shared.generated.resources.download_mushaf_size_info
+import robithohapp.shared.generated.resources.download_mushaf_subtitle
+import robithohapp.shared.generated.resources.download_mushaf_success
+import robithohapp.shared.generated.resources.download_mushaf_title
 import com.iqbalwork.robithoh.feature.quran.data.MushafDownloadState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -81,7 +90,7 @@ fun DownloadMushafSheet(
                 .padding(bottom = 32.dp)
         ) {
             Text(
-                text = "Unduh Seluruh Halaman Mushaf",
+                text = stringResource(Res.string.download_mushaf_title),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = if (isDark) PutihBersih else SlateCharcoalText
@@ -115,14 +124,14 @@ fun DownloadMushafSheet(
 
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Mushaf Madinah 15 Baris",
+                            text = stringResource(Res.string.download_mushaf_subtitle),
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 15.sp,
                             color = if (isDark) PutihBersih else SlateCharcoalText
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Ukuran file: ~117 MB (604 Halaman)",
+                            text = stringResource(Res.string.download_mushaf_size_info),
                             fontSize = 13.sp,
                             color = if (isDark) DarkMuted else SlateMuted
                         )
@@ -133,7 +142,7 @@ fun DownloadMushafSheet(
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Unduh 604 halaman mushaf agar Anda dapat membaca Al-Qur'an secara luring (offline) tanpa kuota internet dengan transisi antar halaman yang sangat cepat.",
+                text = stringResource(Res.string.download_mushaf_desc),
                 fontSize = 13.sp,
                 lineHeight = 19.sp,
                 color = if (isDark) DarkMuted else SlateMuted
@@ -149,7 +158,7 @@ fun DownloadMushafSheet(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
-                                text = "Mengunduh: ${downloadState.downloadedPages} / ${downloadState.totalPages}",
+                                text = stringResource(Res.string.download_mushaf_progress, downloadState.downloadedPages, downloadState.totalPages),
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = if (isDark) PutihBersih else SlateCharcoalText
@@ -188,7 +197,7 @@ fun DownloadMushafSheet(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "✅ Seluruh mushaf berhasil diunduh!",
+                            text = stringResource(Res.string.download_mushaf_success),
                             fontWeight = FontWeight.SemiBold,
                             color = EmasKhidmat,
                             fontSize = 15.sp
@@ -261,7 +270,7 @@ fun DownloadMushafSheet(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Jangan tampilkan lagi",
+                            text = stringResource(Res.string.download_mushaf_dont_show_again),
                             fontSize = 14.sp,
                             color = if (isDark) PutihBersih else SlateCharcoalText
                         )

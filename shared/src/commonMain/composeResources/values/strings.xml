@@ -1,4 +1,59 @@
 <resources>
     <string name="waktal_directory_title">Direktori Wakil Talqin</string>
     <string name="waktal_directory_subtitle">Ulama Waktal TQN Suryalaya - Sirnarasa</string>
+
+    <!-- Waktal UI Strings -->
+    <string name="waktal_header_title">Wakil Talqin</string>
+    <string name="waktal_detail_subtitle">Profil Ulama Wakil Talqin TQN</string>
+    <string name="waktal_search_placeholder">Cari nama, kota, majelis...</string>
+    <string name="waktal_sync_downloading">Mengunduh pembaruan data Waktal...</string>
+    <string name="waktal_empty_title">Data Wakil Talqin tidak ditemukan</string>
+    <string name="waktal_empty_subtitle">Coba ubah kata kunci pencarian atau filter wilayah Anda.</string>
+    <string name="waktal_no_urut">No. Urut Waktal #%1$d</string>
+    <string name="waktal_card_no">No. #%1$s</string>
+    <string name="waktal_card_distance">📍 %1$s dari Anda</string>
+    <string name="waktal_domisili_title">Informasi Domisili &amp; Sekretariat</string>
+    <string name="waktal_majlis_title">Majlis Binaan</string>
+    <string name="waktal_biografi_title">Biografi &amp; Riwayat</string>
+
+    <!-- Waktal Filter Sheet -->
+    <string name="waktal_filter_title">Filter Wakil Talqin</string>
+    <string name="waktal_filter_subtitle">Sesuaikan pencarian Wakil Talqin</string>
+    <string name="waktal_filter_reset">Reset</string>
+    <string name="waktal_filter_status">Status Keberadaan</string>
+    <string name="waktal_filter_sort">Urutan</string>
+    <string name="waktal_filter_nearest">📍 Jarak Terdekat</string>
+    <string name="waktal_filter_province">Wilayah / Provinsi</string>
+    <string name="waktal_filter_all_provinces">Semua Wilayah</string>
+    <string name="waktal_filter_apply">Terapkan Filter</string>
+
+    <!-- Ayah Options Sheet -->
+    <string name="ayah_options_title_format">%1$s : Ayat %2$d</string>
+    <string name="ayah_options_play_murottal">Putar Murotal Ayat Ini</string>
+    <string name="ayah_options_copy_text">Salin Teks Ayat</string>
+    <string name="ayah_options_share_text">Bagikan Ayat</string>
+
+    <!-- Download Mushaf Sheet -->
+    <string name="download_mushaf_title">Unduh Seluruh Halaman Mushaf</string>
+    <string name="download_mushaf_subtitle">Mushaf Madinah 15 Baris</string>
+    <string name="download_mushaf_size_info">Ukuran file: ~117 MB (604 Halaman)</string>
+    <string name="download_mushaf_desc">Unduh 604 halaman mushaf agar Anda dapat membaca Al-Qur\'an secara luring (offline) tanpa kuota internet dengan transisi antar halaman yang sangat cepat.</string>
+    <string name="download_mushaf_progress">Mengunduh: %1$d / %2$d</string>
+    <string name="download_mushaf_success">☑ Seluruh mushaf berhasil diunduh!</string>
+    <string name="download_mushaf_dont_show_again">Jangan tampilkan lagi</string>
+
+    <!-- Audio Download Bar -->
+    <string name="floating_download_title">Mengunduh %1$s...</string>
+    <string name="floating_download_failed">Gagal mengunduh audio</string>
+
+    <!-- Go To Surah Ayah -->
+    <string name="go_to_surah_ayah_header">Menuju ke</string>
+
+    <!-- Reader Settings -->
+    <string name="reader_settings_title">Pengaturan Teks &amp; Bacaan</string>
+    <string name="reader_settings_bg_title">Warna Latar Bacaan</string>
+    <string name="reader_theme_white">Putih</string>
+    <string name="reader_theme_sepia">Sepia</string>
+    <string name="reader_theme_khaki">Khaki</string>
+    <string name="reader_theme_dark">Gelap</string>
 </resources>
