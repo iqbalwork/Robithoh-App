@@ -37,6 +37,8 @@ import com.iqbalwork.robithoh.feature.doa.ui.DoaListScreen
 import com.iqbalwork.robithoh.feature.langgam.ui.LanggamScreen
 import com.iqbalwork.robithoh.feature.onboarding.OnboardingScreen
 import com.iqbalwork.robithoh.feature.qibla.ui.QiblaScreen
+import com.iqbalwork.robithoh.feature.waktal.ui.WaktalDetailScreen
+import com.iqbalwork.robithoh.feature.waktal.ui.WaktalListScreen
 import com.iqbalwork.robithoh.core.notification.rememberDocumentSyncNotifier
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.reader.data.sync.DocumentSyncManager
@@ -235,6 +237,8 @@ fun App(
                             backstack.add(ScreenKey.QuranList)
                         } else if (docId == "doa_list") {
                             backstack.add(ScreenKey.DoaList)
+                        } else if (docId == "waktal_list") {
+                            backstack.add(ScreenKey.WaktalList)
                         } else {
                             backstack.add(ScreenKey.DocumentReader(docId))
                         }
@@ -382,6 +386,20 @@ fun App(
                 QiblaScreen(
                     onBack = onBackAction,
                     viewModel = amaliyahViewModel
+                )
+            }
+            entry<ScreenKey.WaktalList> { _ ->
+                WaktalListScreen(
+                    onWaktalClick = { id ->
+                        backstack.add(ScreenKey.WaktalDetail(id))
+                    },
+                    onBackClick = onBackAction
+                )
+            }
+            entry<ScreenKey.WaktalDetail> { key ->
+                WaktalDetailScreen(
+                    id = key.id,
+                    onBackClick = onBackAction
                 )
             }
         }

@@ -58,6 +58,12 @@ sealed interface ScreenKey : NavKey {
 
     @Serializable
     data object DoaList : ScreenKey
+
+    @Serializable
+    data object WaktalList : ScreenKey
+
+    @Serializable
+    data class WaktalDetail(val id: Int) : ScreenKey
 }
 
 /**

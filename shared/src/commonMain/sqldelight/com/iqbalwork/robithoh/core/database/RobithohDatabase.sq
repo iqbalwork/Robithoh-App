@@ -293,3 +293,85 @@ UPDATE AppSettingsEntity
 SET has_seen_quran_page_spotlight = :seen
 WHERE id = 1;
 
+-- Wakil Talqin Entity (Directory of Ulama Wakil Talqin TQN)
+CREATE TABLE WakilTalqinEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    nomor_urut INTEGER,
+    nama_lengkap TEXT NOT NULL,
+    nama_resmi TEXT NOT NULL,
+    gelar_depan TEXT,
+    gelar_belakang TEXT,
+    status TEXT NOT NULL,
+    status_label TEXT NOT NULL,
+    tahun_wafat INTEGER,
+    nomor_telepon TEXT,
+    nomor_whatsapp TEXT,
+    foto_url TEXT,
+    negara TEXT NOT NULL DEFAULT 'Indonesia',
+    provinsi TEXT NOT NULL,
+    kota_kabupaten TEXT NOT NULL,
+    kecamatan TEXT,
+    alamat_lengkap TEXT,
+    latitude REAL,
+    longitude REAL,
+    majlis_binaan TEXT,
+    biografi_singkat TEXT,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX waktal_status_idx ON WakilTalqinEntity(status);
+CREATE INDEX waktal_provinsi_idx ON WakilTalqinEntity(provinsi);
+CREATE INDEX waktal_kota_idx ON WakilTalqinEntity(kota_kabupaten);
+CREATE INDEX waktal_nama_idx ON WakilTalqinEntity(nama_lengkap);
+
+-- Waktal Sync Manifest Entity
+CREATE TABLE WaktalSyncManifestEntity (
+    id INTEGER NOT NULL PRIMARY KEY DEFAULT 1,
+    version_code INTEGER NOT NULL DEFAULT 1,
+    checksum TEXT,
+    last_synced_at INTEGER NOT NULL
+);
+
+-- Wakil Talqin Queries
+getAllWakilTalqin:
+SELECT * FROM WakilTalqinEntity ORDER BY nomor_urut ASC, id ASC;
+
+getWakilTalqinById:
+SELECT * FROM WakilTalqinEntity WHERE id = :id LIMIT 1;
+
+searchWakilTalqin:
+SELECT * FROM WakilTalqinEntity
+WHERE (:status = 'semua' OR status = :status)
+  AND (:provinsi IS NULL OR provinsi = :provinsi)
+  AND (
+    :query = '' OR
+    nama_lengkap LIKE '%' || :query || '%' OR
+    nama_resmi LIKE '%' || :query || '%' OR
+    majlis_binaan LIKE '%' || :query || '%' OR
+    kota_kabupaten LIKE '%' || :query || '%' OR
+    provinsi LIKE '%' || :query || '%'
+  )
+ORDER BY nomor_urut ASC, id ASC;
+
+getDistinctProvinces:
+SELECT DISTINCT provinsi FROM WakilTalqinEntity WHERE provinsi IS NOT NULL AND provinsi != '' ORDER BY provinsi ASC;
+
+insertOrReplaceWakilTalqin:
+INSERT OR REPLACE INTO WakilTalqinEntity(
+    id, nomor_urut, nama_lengkap, nama_resmi, gelar_depan, gelar_belakang,
+    status, status_label, tahun_wafat, nomor_telepon, nomor_whatsapp,
+    foto_url, negara, provinsi, kota_kabupaten, kecamatan, alamat_lengkap,
+    latitude, longitude, majlis_binaan, biografi_singkat, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getWaktalSyncManifest:
+SELECT * FROM WaktalSyncManifestEntity WHERE id = 1 LIMIT 1;
+
+updateWaktalSyncManifest:
+INSERT OR REPLACE INTO WaktalSyncManifestEntity(id, version_code, checksum, last_synced_at)
+VALUES (1, :versionCode, :checksum, :lastSyncedAt);
+
+deleteAllWakilTalqin:
+DELETE FROM WakilTalqinEntity;
+
+

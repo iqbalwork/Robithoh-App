@@ -94,6 +94,7 @@ fun HomeTabContent(
     val menuGridItems = listOf(
         HomeGridMenuItem("dzikir", "Dzikir", "📖"),
         HomeGridMenuItem("tasbih", "Tasbih Digital", "📿"),
+        HomeGridMenuItem("waktal", "Wakil Talqin", "👳‍♂️"),
         HomeGridMenuItem("khotaman", "Khotaman", "📜"),
         HomeGridMenuItem("manaqib", "Manaqib", "🏛️"),
         HomeGridMenuItem("sholat", "Sholat", "🕌"),
@@ -102,8 +103,7 @@ fun HomeTabContent(
         HomeGridMenuItem("tarhim", "Tarhim", "📢"),
         HomeGridMenuItem("sholawat", "Sholawat", "✨"),
         HomeGridMenuItem("doa", "Doa", "🤲"),
-        HomeGridMenuItem("silsilah", "Silsilah", "🔗"),
-        HomeGridMenuItem("tahlil", "Tahlil & Ziyaroh", "🌿")
+        HomeGridMenuItem("silsilah", "Silsilah", "🔗")
     )
 
     val kutipanHariIni = remember { untaianMutiaraTanbih.random() }
@@ -252,6 +252,7 @@ fun HomeTabContent(
                                         when (item.id) {
                                             "dzikir" -> onNavigateToDocument("dzikir_tqn")
                                             "tasbih" -> onNavigateToTasbih()
+                                            "waktal" -> onNavigateToDocument("waktal_list")
                                             "khotaman" -> onNavigateToDocument("khotaman_tqn")
                                             "tarhim" -> onNavigateToDocument("tarhim_tqn")
                                             "silsilah" -> onNavigateToDocument("silsilah_tqn")

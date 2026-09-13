@@ -23,6 +23,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.coroutines.resume
+import kotlin.time.Duration.Companion.milliseconds
 
 class AndroidLocationProvider(private val context: Context) : LocationProvider {
 
@@ -70,20 +71,23 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
         }
 
         // 2. Request a fresh location update with timeout (6s)
-        val freshLocation = withTimeoutOrNull(6000L) {
-            suspendCancellableCoroutine<Location?> { continuation ->
+        val freshLocation = withTimeoutOrNull(6000L.milliseconds) {
+            suspendCancellableCoroutine { continuation ->
                 val listener = object : android.location.LocationListener {
                     override fun onLocationChanged(location: Location) {
                         try {
                             locationManager.removeUpdates(this)
-                        } catch (_: Exception) {}
+                        } catch (_: Exception) {
+                        }
                         if (continuation.isActive) {
                             continuation.resume(location)
                         }
                     }
 
                     @Deprecated("Deprecated in Java")
-                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+                    }
+
                     override fun onProviderEnabled(provider: String) {}
                     override fun onProviderDisabled(provider: String) {}
                 }
@@ -94,24 +98,39 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
                 // Try NETWORK_PROVIDER first for rapid indoor/wifi fix
                 if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     try {
-                        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, listener, mainLooper)
+                        locationManager.requestSingleUpdate(
+                            LocationManager.NETWORK_PROVIDER,
+                            listener,
+                            mainLooper
+                        )
                         requestedAny = true
-                    } catch (_: Exception) {}
+                    } catch (_: Exception) {
+                    }
                 }
 
                 // Also listen to GPS_PROVIDER for high accuracy
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     try {
-                        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, listener, mainLooper)
+                        locationManager.requestSingleUpdate(
+                            LocationManager.GPS_PROVIDER,
+                            listener,
+                            mainLooper
+                        )
                         requestedAny = true
-                    } catch (_: Exception) {}
+                    } catch (_: Exception) {
+                    }
                 }
 
                 if (!requestedAny && locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
                     try {
-                        locationManager.requestSingleUpdate(LocationManager.PASSIVE_PROVIDER, listener, mainLooper)
+                        locationManager.requestSingleUpdate(
+                            LocationManager.PASSIVE_PROVIDER,
+                            listener,
+                            mainLooper
+                        )
                         requestedAny = true
-                    } catch (_: Exception) {}
+                    } catch (_: Exception) {
+                    }
                 }
 
                 if (!requestedAny) {
@@ -123,7 +142,8 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
                 continuation.invokeOnCancellation {
                     try {
                         locationManager.removeUpdates(listener)
-                    } catch (_: Exception) {}
+                    } catch (_: Exception) {
+                    }
                 }
             }
         }
@@ -132,33 +152,34 @@ class AndroidLocationProvider(private val context: Context) : LocationProvider {
         return locationToUserLocation(resolvedLocation)
     }
 
-    private suspend fun locationToUserLocation(location: Location): UserLocation = withContext(Dispatchers.IO) {
-        val lat = location.latitude
-        val lng = location.longitude
-        val tzOffset = TimeZone.getDefault().rawOffset.toDouble() / 3600000.0
+    private suspend fun locationToUserLocation(location: Location): UserLocation =
+        withContext(Dispatchers.IO) {
+            val lat = location.latitude
+            val lng = location.longitude
+            val tzOffset = TimeZone.getDefault().rawOffset.toDouble() / 3600000.0
 
-        val cityName = try {
-            val geocoder = Geocoder(context, Locale("id", "ID"))
-            val addresses = geocoder.getFromLocation(lat, lng, 1)
-            if (!addresses.isNullOrEmpty()) {
-                val addr = addresses[0]
-                val rawName = addr.subAdminArea ?: addr.locality ?: addr.adminArea
-                LocationSanitizer.sanitize(rawName, lat, lng)
-            } else {
+            val cityName = try {
+                val geocoder = Geocoder(context, Locale("id", "ID"))
+                val addresses = geocoder.getFromLocation(lat, lng, 1)
+                if (!addresses.isNullOrEmpty()) {
+                    val addr = addresses[0]
+                    val rawName = addr.subAdminArea ?: addr.locality ?: addr.adminArea
+                    LocationSanitizer.sanitize(rawName, lat, lng)
+                } else {
+                    LocationSanitizer.findNearestCity(lat, lng)
+                }
+            } catch (_: Exception) {
                 LocationSanitizer.findNearestCity(lat, lng)
             }
-        } catch (_: Exception) {
-            LocationSanitizer.findNearestCity(lat, lng)
-        }
 
-        UserLocation(
-            latitude = lat,
-            longitude = lng,
-            locationName = cityName,
-            timezoneOffset = tzOffset,
-            isGps = true
-        )
-    }
+            UserLocation(
+                latitude = lat,
+                longitude = lng,
+                locationName = cityName,
+                timezoneOffset = tzOffset,
+                isGps = true
+            )
+        }
 }
 
 @Composable

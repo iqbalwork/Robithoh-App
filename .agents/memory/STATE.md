@@ -7,12 +7,11 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Location name sanitization (replace raw GPS coordinates in notifications & schedules with clean city names like "Kota Bandung").
+* **Current Focus**: Multiplatform Build Configuration via BuildKonfig (`stagingDebug`, `stagingRelease`, `productionDebug`, `productionRelease`).
 * **Codebase Health**:
-  - `shared`: Clean architecture, `LocationSanitizerTest` and all 142 multiplatform unit tests passing.
-  - `androidApp`: `androidApp:assembleDebug` succeeded, Glance widgets intact.
-  - `iosApp`: Clean location sanitization integrated into `LocationProvider.ios.kt`.
-  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
+  - `shared`: Clean architecture, `BuildKonfigTest`, `HaversineDistanceTest`, `WaktalDomainTest`, and all multiplatform unit tests passing.
+  - `androidApp`: `assembleStagingDebug`, `assembleStagingRelease`, and `assembleProductionDebug` succeeded.
+  - `Linters & Tools`: `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` 100% verified.
 
 ---
 
@@ -50,6 +49,11 @@
   - [x] `tools/check_sacred_texts.sh` & `rules/sacred_texts_hashes.json`: SHA-256 integrity guard for 49 sacred liturgical files & .sq schemas.
   - [x] `tools/extract_build_errors.py`: Compiler error & test failure diagnostic parser for self-correction loop.
   - [x] `.git/hooks/pre-commit`: Updated pre-commit hook executing 4 automated quality linters before every commit.
+- [x] **BuildKonfig Multiplatform Integration**:
+  - [x] Added `com.codingfeline.buildkonfig` plugin v0.22.0.
+  - [x] Configured `stagingDebug`, `stagingRelease`, `productionDebug`, and `productionRelease` build variants.
+  - [x] Connected `BuildKonfig.BASE_URL` to `WaktalApiService`.
+  - [x] Authored [ADR-0009: Multiplatform Build Configuration via BuildKonfig](adr/0009-multiplatform-buildkonfig-environment-configuration.md).
 
 ---
 

@@ -11,4 +11,5 @@ plugins {
     alias(libs.plugins.googleServices) apply false
     alias(libs.plugins.firebaseCrashlytics) apply false
     alias(libs.plugins.firebaseAppDistribution) apply false
+    alias(libs.plugins.buildkonfig) apply false
 }

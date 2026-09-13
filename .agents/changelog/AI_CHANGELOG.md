@@ -6,6 +6,35 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Multiplatform Build Configuration via BuildKonfig
+- **Date**: 2026-09-13
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Implemented type-safe Kotlin Multiplatform build configuration plugin BuildKonfig (`com.codingfeline.buildkonfig`) for `stagingDebug`, `stagingRelease`, `productionDebug`, and `productionRelease` environments across `:shared` and `:androidApp`.
+- **Changes**:
+  - `libs.versions.toml`: Added `buildkonfig = "0.22.0"` and plugin alias `buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }`.
+  - `build.gradle.kts`: Added `alias(libs.plugins.buildkonfig) apply false`.
+  - `shared/build.gradle.kts`: Applied `alias(libs.plugins.buildkonfig)` plugin and configured `buildkonfig` block for `stagingDebug`, `stagingRelease`, `productionDebug`, and `productionRelease` with `BASE_URL`, `ENVIRONMENT`, and `IS_DEBUG` fields. Default fallback set to `stagingDebug` for local development.
+  - `WaktalApiService.kt`: Updated default `baseUrl` parameter to use `BuildKonfig.BASE_URL`.
+  - `BuildKonfigTest.kt`: Added unit test in `commonTest` verifying BuildKonfig generated properties exist and are non-empty.
+  - `ADR-0009`: Authored [ADR-0009: Multiplatform Build Configuration via BuildKonfig](adr/0009-multiplatform-buildkonfig-environment-configuration.md).
+
+### Waktal (Wakil Talqin) Directory & Offline-First Sync Engine
+- **Date**: 2026-09-13
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Implemented full offline-first directory module for ulama Wakil Talqin (Waktal) TQN Suryalaya - Sirnarasa, with on-device GPS proximity sorting, remote CMS sync engine, MVI presentation, and Navigation3 integration.
+- **Changes**:
+  - `RobithohDatabase.sq`: Added `WakilTalqinEntity` & `WaktalSyncManifestEntity` tables, indices, and SQL queries.
+  - `waktal_seed.json`: Added pre-bundled baseline snapshot seed data (398 records).
+  - `WaktalDto.kt` & `WaktalApiService.kt`: Added Ktor REST API models and endpoint service for CMS synchronization.
+  - `HaversineDistance.kt`: Added on-device spherical Haversine distance calculator and humanized formatting (`"450 m"`, `"14.2 km"`, `"128 km"`).
+  - `WakilTalqin.kt`: Added domain model, `WaktalStatus` enum, and intent URIs (`dialPhoneUri`, `whatsappUrl`, `mapIntentUri`).
+  - `WaktalRepository.kt` & `WaktalSyncManager.kt`: Added repository for JSON seed loading, SQLite multi-parameter search/filters, and version-manifest sync engine.
+  - `WaktalListMvi.kt`, `WaktalDetailMvi.kt`, `WaktalViewModel.kt`, `WaktalDetailViewModel.kt`: Added MVI state flows, intents, and side effects.
+  - `WaktalCard.kt`, `WaktalStatusBadge.kt`, `WaktalQuickActions.kt`: Added stateless UI components.
+  - `WaktalListScreen.kt`, `WaktalListContent.kt`, `WaktalDetailScreen.kt`, `WaktalDetailContent.kt`: Added Compose Multiplatform MVI screens following strict Screen/Content separation.
+  - `ScreenKey.kt`, `App.kt`, `HomeTabContent.kt`: Registered Navigation3 routes and home grid menu item.
+  - `HaversineDistanceTest.kt` & `WaktalDomainTest.kt`: Added unit test coverage (148/148 tests passing in `commonTest`).
+
 ### Fix Notification & App Location Display (Replace GPS Coordinates with Clean City Names)
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi

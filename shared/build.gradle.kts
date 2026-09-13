@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.BOOLEAN
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -105,6 +108,42 @@ sqldelight {
         create("RobithohDatabase") {
             packageName.set("com.iqbalwork.robithoh.core.database")
         }
+    }
+}
+
+buildkonfig {
+    packageName = "com.iqbalwork.robithoh.shared"
+    objectName = "BuildKonfig"
+    exposeObjectWithName = "BuildKonfig"
+
+    defaultConfigs {
+        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
+        buildConfigField(STRING, "ENVIRONMENT", "\"stagingDebug\"")
+        buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+    }
+
+    defaultConfigs("stagingDebug") {
+        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
+        buildConfigField(STRING, "ENVIRONMENT", "\"stagingDebug\"")
+        buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+    }
+
+    defaultConfigs("stagingRelease") {
+        buildConfigField(STRING, "BASE_URL", "\"https://staging-api.robithoh.com\"")
+        buildConfigField(STRING, "ENVIRONMENT", "\"stagingRelease\"")
+        buildConfigField(BOOLEAN, "IS_DEBUG", "false")
+    }
+
+    defaultConfigs("productionDebug") {
+        buildConfigField(STRING, "BASE_URL", "\"https://api.robithoh.com\"")
+        buildConfigField(STRING, "ENVIRONMENT", "\"productionDebug\"")
+        buildConfigField(BOOLEAN, "IS_DEBUG", "true")
+    }
+
+    defaultConfigs("productionRelease") {
+        buildConfigField(STRING, "BASE_URL", "\"https://api.robithoh.com\"")
+        buildConfigField(STRING, "ENVIRONMENT", "\"productionRelease\"")
+        buildConfigField(BOOLEAN, "IS_DEBUG", "false")
     }
 }
 

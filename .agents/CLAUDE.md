@@ -73,6 +73,8 @@ Full history documented in [`adr/`](adr/).
 - **[ADR-0005: System Notifications for Liturgical Document Sync Progress](adr/0005-document-sync-notifications.md)** — Replacing toast overlay UI with live activity progress system notifications.
 - **[ADR-0006: Dedicated Doa List Screen with Live Search Capability](adr/0006-doa-list-screen-and-search.md)** — Transitioning Doa menu from a modal bottom sheet to a dedicated MVI screen with live search.
 - **[ADR-0007: Page Curl (Book Turn) Animation for the Quran Mushaf Reader](adr/0007-page-curl-book-turn-animation.md)** — Two-tier shader-free page curl driven by HorizontalPager for the single-page Quran reader.
+- **[ADR-0008: Waktal (Wakil Talqin) Directory & Offline-First Sync Architecture](adr/0008-waktal-directory-and-offline-sync.md)** — 100% offline-first directory with pre-bundled SQLite seed, Ktor remote sync, client Haversine proximity, and MVI presentation.
+- **[ADR-0009: Multiplatform Build Configuration via BuildKonfig](adr/0009-multiplatform-buildkonfig-environment-configuration.md)** — Type-safe multiplatform environment variables (base URL, environment, debug flag) for stagingDebug, stagingRelease, productionDebug, and productionRelease.
 
 ---
 

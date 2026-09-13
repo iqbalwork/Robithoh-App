@@ -14,6 +14,8 @@ import com.iqbalwork.robithoh.feature.quran.data.QuranRepositoryImpl
 import com.iqbalwork.robithoh.feature.quran.presentation.QuranViewModel
 import com.iqbalwork.robithoh.feature.reader.data.MarkdownDocumentRepository
 import com.iqbalwork.robithoh.feature.tasbih.presentation.TasbihViewModel
+import com.iqbalwork.robithoh.feature.waktal.presentation.WaktalDetailViewModel
+import com.iqbalwork.robithoh.feature.waktal.presentation.WaktalViewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
@@ -62,4 +64,18 @@ val viewModelModule = module {
             audioPlayer = getOrNull<KmpAudioPlayer>()
         )
     }
+
+    factory {
+        WaktalViewModel(
+            repository = get(),
+            syncManager = get()
+        )
+    }
+
+    factory {
+        WaktalDetailViewModel(
+            repository = get()
+        )
+    }
 }
+
