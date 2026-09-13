@@ -1,6 +1,5 @@
 package com.iqbalwork.robithoh.feature.waktal.ui.components
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -40,6 +39,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.DarkMuted
 import com.iqbalwork.robithoh.core.designsystem.theme.EmasKhidmat
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PutihBersih
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateCharcoalText
 import com.iqbalwork.robithoh.core.designsystem.theme.SlateMuted
 import com.iqbalwork.robithoh.feature.waktal.domain.WaktalStatus
@@ -69,7 +69,7 @@ fun WaktalFilterSheet(
     onDismiss: () -> Unit,
     sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     val hasActiveFilters = selectedStatus != WaktalStatus.SEMUA ||
             selectedProvince != null ||
             isSortByDistance

@@ -2,7 +2,6 @@ package com.iqbalwork.robithoh.feature.waktal.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.waktal.domain.WakilTalqin
@@ -40,7 +40,7 @@ fun WaktalCard(
     modifier: Modifier = Modifier,
     index: Int? = null
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     val displayNo = item.nomorUrut ?: index?.plus(1)
 
     Card(

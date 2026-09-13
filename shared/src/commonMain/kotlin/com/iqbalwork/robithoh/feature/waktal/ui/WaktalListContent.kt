@@ -2,7 +2,6 @@ package com.iqbalwork.robithoh.feature.waktal.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -86,7 +85,7 @@ fun WaktalListContent(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     val isRefreshing = state.syncState is WaktalSyncState.Syncing || state.syncState is WaktalSyncState.Checking
     var showFilterSheet by remember { mutableStateOf(false) }
 

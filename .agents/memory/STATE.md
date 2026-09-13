@@ -7,11 +7,10 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Fixed Android Cleartext (HTTP) network policy (`usesCleartextTraffic="true"`) and added `INTERNET` permission for local development server `http://192.168.101.7:8000`.
+* **Current Focus**: Ensured `IslamicHeader` topbar consistently uses Robithoh crimson red (`MerahMarunGelap`) as default background across both light and dark modes (matching Khotaman, Dzikir, and other devotional screens).
 * **Codebase Health**:
-  - `shared`: Clean architecture, `WaktalFilterSheet`, `WaktalAvatar`, `WaktalImageLoaderCache`, `normalizedFotoUrl` with local IP normalization, and 150 multiplatform unit tests passing.
-  - `androidApp`: `assembleStagingDebug`, `assembleStagingRelease`, and `assembleProductionDebug` succeeded.
-  - `Linters & Tools`: `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh` 100% verified.
+  - `shared`: Clean MVI architecture, `IslamicHeader` with signature crimson red header (`MerahMarunGelap`), white title & soft gold subtitle (`EmasMuda`), and 299 multiplatform unit tests passing (`shared:allTests`).
+  - `Linters & Tools`: `check_mvi_architecture.sh` 100% verified.
 
 ---
 

@@ -1,6 +1,5 @@
 package com.iqbalwork.robithoh.feature.waktal.ui
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,6 +29,7 @@ import com.iqbalwork.robithoh.core.designsystem.theme.DarkCanvas
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkSurface
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
 import com.iqbalwork.robithoh.core.designsystem.theme.PaperBackgroundLight
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.designsystem.theme.TextCharcoal
 import com.iqbalwork.robithoh.core.designsystem.theme.TextMuted
 import com.iqbalwork.robithoh.feature.waktal.presentation.WaktalDetailUiState
@@ -53,7 +53,7 @@ fun WaktalDetailContent(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     val item = state.waktal
 
     Scaffold(
@@ -251,7 +251,7 @@ fun WaktalDetailContent(
 
 @Composable
 private fun InfoRow(label: String, value: String) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     Column(
         modifier = Modifier
             .fillMaxWidth()

@@ -1,7 +1,6 @@
 package com.iqbalwork.robithoh.feature.waktal.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.feature.waktal.domain.WaktalStatus
 
 @Composable
@@ -20,7 +20,7 @@ fun WaktalStatusBadge(
     tahunWafat: Int? = null,
     modifier: Modifier = Modifier
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
 
     val (bgColor, textColor, labelText) = when (status) {
         WaktalStatus.AKTIF -> Triple(

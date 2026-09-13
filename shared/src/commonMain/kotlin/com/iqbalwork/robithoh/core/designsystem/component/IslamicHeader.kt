@@ -41,8 +41,10 @@ fun IslamicHeader(
     val actualBg = if (containerColor != Color.Unspecified) {
         containerColor
     } else {
-        if (isDark) DarkSurface else PutihBersih
+        MerahMarunGelap
     }
+
+    val isRedHeader = actualBg == MerahMarunGelap || actualBg == MerahMerdeka || containerColor == Color.Unspecified
 
     Surface(
         modifier = modifier.fillMaxWidth(),
@@ -64,7 +66,7 @@ fun IslamicHeader(
                             text = title,
                             style = MaterialTheme.typography.titleMedium.copy(
                                 fontWeight = FontWeight.Bold,
-                                color = if (isDark) PutihBersih else SlateCharcoalText
+                                color = if (isRedHeader || isDark) PutihBersih else SlateCharcoalText
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -73,7 +75,7 @@ fun IslamicHeader(
                             Text(
                                 text = subtitle,
                                 style = MaterialTheme.typography.bodySmall.copy(
-                                    color = if (isDark) DarkMuted else SlateMuted,
+                                    color = if (isRedHeader || isDark) EmasMuda else SlateMuted,
                                     fontSize = 12.sp
                                 ),
                                 maxLines = 1,
@@ -108,8 +110,8 @@ fun IslamicHeader(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent,
-                    titleContentColor = if (isDark) PutihBersih else SlateCharcoalText,
-                    navigationIconContentColor = MerahMerdeka,
+                    titleContentColor = if (isRedHeader || isDark) PutihBersih else SlateCharcoalText,
+                    navigationIconContentColor = if (isRedHeader || isDark) PutihBersih else MerahMerdeka,
                     actionIconContentColor = EmasKhidmat
                 )
             )
@@ -125,7 +127,7 @@ fun IslamicHeader(
                                 colors = listOf(
                                     Color.Transparent,
                                     EmasKhidmat.copy(alpha = 0.6f),
-                                    MerahMerdeka.copy(alpha = 0.4f),
+                                    EmasMuda.copy(alpha = 0.5f),
                                     EmasKhidmat.copy(alpha = 0.6f),
                                     Color.Transparent
                                 )

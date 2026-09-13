@@ -2,7 +2,6 @@ package com.iqbalwork.robithoh.feature.waktal.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -27,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.iqbalwork.robithoh.core.designsystem.component.ImageViewerManager
 import com.iqbalwork.robithoh.core.designsystem.theme.DarkBorder
 import com.iqbalwork.robithoh.core.designsystem.theme.MerahMerdeka
+import com.iqbalwork.robithoh.core.designsystem.theme.RabithohTheme
 import com.iqbalwork.robithoh.core.network.createKtorHttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -69,7 +69,7 @@ fun WaktalAvatar(
     enableViewerOnTap: Boolean = true,
     onClick: (() -> Unit)? = null
 ) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = RabithohTheme.colors.isDark
     var bitmap by remember(url) { mutableStateOf<ImageBitmap?>(null) }
     var isLoading by remember(url) { mutableStateOf(false) }
 

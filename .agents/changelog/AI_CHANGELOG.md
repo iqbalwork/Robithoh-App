@@ -260,6 +260,14 @@ All changes, architectural updates, and significant refactorings made by AI agen
   - `ModalBottomSheets.kt`: Removed deprecated `DoaModalBottomSheet`.
   - `.agents/adr/0006-doa-list-screen-and-search.md`: Documented ADR-0006.
 
+### IslamicHeader TopBar Red Color Consistency
+- **Date**: 2026-03-31
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Ensured IslamicHeader topbar consistently uses Robithoh crimson red (`MerahMarunGelap`) as default container background in both light and dark modes, matching Khotaman, Dzikir, and other devotional screens.
+- **Changes**:
+  - `IslamicHeader.kt`: Set default background color when unspecified to `MerahMarunGelap` (`#8B0014`) for both light and dark modes, rendering white title text, soft gold subtitle (`EmasMuda`), white back icon, and gold gradient bottom divider.
+  - `WaktalListContent.kt` & `WaktalDetailContent.kt`: Kept `IslamicHeader` usage synchronized with `RabithohTheme.colors.isDark`.
+
 ### Liturgical Document Sync Notifications Update
 - **Date**: 2026-03-31
 - **Author**: AI Assistant & Iqbal Fauzi
