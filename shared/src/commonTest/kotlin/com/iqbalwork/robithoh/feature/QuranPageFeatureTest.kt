@@ -72,6 +72,25 @@ class QuranPageFeatureTest {
     }
 
     @Test
+    fun testFirstAyahOnPage() {
+        val (s1, a1) = QuranPageLookup.getFirstAyahOnPage(1)
+        assertEquals(1, s1)
+        assertEquals(1, a1)
+
+        val (s2, a2) = QuranPageLookup.getFirstAyahOnPage(2)
+        assertEquals(2, s2)
+        assertEquals(1, a2)
+
+        val (s77, a77) = QuranPageLookup.getFirstAyahOnPage(77)
+        assertEquals(4, s77)
+        assertEquals(1, a77)
+
+        val (s604, a604) = QuranPageLookup.getFirstAyahOnPage(604)
+        assertEquals(112, s604)
+        assertEquals(1, a604)
+    }
+
+    @Test
     fun testCoordinateUnprojectionAndHitTesting() {
         // Simulated Page 1: Ayah 1 block in 1080 x 1745 space
         val page1Mapping = QuranPageMapping(

@@ -308,20 +308,15 @@ fun GoToSurahAyahSheet(
                                 val surah = selectedSurah ?: return@Button
                                 val maxAyah = surah.numberOfAyahs
                                 val ayahNumber = ayahText.toIntOrNull()?.coerceIn(1, maxAyah) ?: 1
-                                if (onConfirmPage != null) {
-                                    val page = QuranPageLookup.getPageForAyah(surah.number, ayahNumber)
-                                    onConfirmPage(page)
-                                } else {
-                                    onConfirm(surah.number, ayahNumber)
-                                }
+                                onConfirm(surah.number, ayahNumber)
                             }
                             GoToTab.PAGE -> {
                                 val page = pageText.toIntOrNull()?.coerceIn(1, QuranPageLookup.TOTAL_PAGES) ?: 1
                                 if (onConfirmPage != null) {
                                     onConfirmPage(page)
                                 } else {
-                                    val meta = QuranPageLookup.getPageMeta(page)
-                                    onConfirm(meta.surahNumber, 1)
+                                    val (surahNum, ayahNum) = QuranPageLookup.getFirstAyahOnPage(page)
+                                    onConfirm(surahNum, ayahNum)
                                 }
                             }
                             GoToTab.JUZ -> {
@@ -329,8 +324,8 @@ fun GoToSurahAyahSheet(
                                 if (onConfirmPage != null) {
                                     onConfirmPage(page)
                                 } else {
-                                    val meta = QuranPageLookup.getPageMeta(page)
-                                    onConfirm(meta.surahNumber, 1)
+                                    val (surahNum, ayahNum) = QuranPageLookup.getFirstAyahOnPage(page)
+                                    onConfirm(surahNum, ayahNum)
                                 }
                             }
                         }

@@ -139,7 +139,22 @@ fun QuranReaderScreen(
     var showSettingsDialog by rememberSaveable { mutableStateOf(false) }
     var showGoToSheet by rememberSaveable { mutableStateOf(false) }
     var selectedAyahForOptions by remember { mutableStateOf<Ayah?>(null) }
-    var pendingScrollAyah by rememberSaveable { mutableStateOf(initialAyahNumber) }
+    var pendingScrollAyah by rememberSaveable(surahNumber, initialAyahNumber) { mutableStateOf(initialAyahNumber) }
+
+    // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless Al-Fatihah or At-Taubah.
+    val hasBasmalahHeader = currentSurahNumber != 1 && currentSurahNumber != 9
+    val ayahListOffset = if (hasBasmalahHeader) 3 else 2
+
+    LaunchedEffect(surahNumber, initialAyahNumber) {
+        if (initialAyahNumber != null) {
+            pendingScrollAyah = initialAyahNumber
+            if (state.currentAyahs.isNotEmpty() && currentSurahNumber == surahNumber) {
+                val index = state.currentAyahs.indexOfFirst { it.numberInSurah == initialAyahNumber }
+                listState.scrollToItem(if (index >= 0) index + ayahListOffset else 0)
+                pendingScrollAyah = null
+            }
+        }
+    }
 
     BackHandler {
         if (showSettingsDialog) {
@@ -152,10 +167,6 @@ fun QuranReaderScreen(
             onBackClick()
         }
     }
-
-    // Header items ahead of the ayah list: hero banner + divider, plus Basmalah unless Al-Fatihah or At-Taubah.
-    val hasBasmalahHeader = currentSurahNumber != 1 && currentSurahNumber != 9
-    val ayahListOffset = if (hasBasmalahHeader) 3 else 2
 
     // Fires on first load and every in-place surah switch (state.currentAyahs changes each
     // time), so a pending scroll target set by jumpTo() is applied once the new ayahs arrive.
@@ -585,10 +596,22 @@ fun QuranReaderScreen(
     }
 
     if (showGoToSheet) {
+        val currentVisibleAyah = listState.layoutInfo.visibleItemsInfo
+            .mapNotNull { itemInfo ->
+                val keyStr = itemInfo.key as? String ?: return@mapNotNull null
+                val parts = keyStr.split("_")
+                if (parts.size == 2) {
+                    val sNum = parts[0].toIntOrNull()
+                    val aNum = parts[1].toIntOrNull()
+                    if (sNum != null && aNum != null) aNum else null
+                } else null
+            }
+            .firstOrNull() ?: 1
+
         GoToSurahAyahSheet(
             surahs = state.surahs,
             initialSurahNumber = currentSurahNumber,
-            initialAyahNumber = 1,
+            initialAyahNumber = currentVisibleAyah,
             onDismiss = { showGoToSheet = false },
             onConfirm = { targetSurahNumber, targetAyahNumber ->
                 showGoToSheet = false
@@ -596,12 +619,8 @@ fun QuranReaderScreen(
             },
             onConfirmPage = { targetPage ->
                 showGoToSheet = false
-                if (onSwitchToMushafMode != null) {
-                    onSwitchToMushafMode(targetPage)
-                } else {
-                    val meta = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getPageMeta(targetPage)
-                    jumpTo(meta.surahNumber, 1)
-                }
+                val (surahNum, ayahNum) = com.iqbalwork.robithoh.feature.quran.data.QuranPageLookup.getFirstAyahOnPage(targetPage)
+                jumpTo(surahNum, ayahNum)
             }
         )
     }
