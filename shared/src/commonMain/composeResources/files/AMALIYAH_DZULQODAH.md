@@ -50,9 +50,9 @@ Ini sekelumit manaqib Sulthon Awliya’ Syaikh Abdul Qodir Al Jailani, kutipan d
 
 DZULQO’DAH
 
-Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Saw Dan Mencium Tangan Beliau
+Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Shollallohu 'Alaihi Wasallam Dan Mencium Tangan Beliau
 
-Pada waktu Syaikh Abdul Qodir berziarah ke makam Rosululloh SAW di Madinah Munawwaroh, setibanya di sana beliau langsung masuk ke makam Rosululloh SAW yaitu Hujroh Syarifah. Selama empat puluh hari beliau bermukim di hadapan makam Rosululloh SAW, kedua tangannya diletakkan pada dadanya sambil bermunajat mengharap rahmat اَللّهُ, menumpahkan isi hati nuraninya dengan makna dari bait dibawah ini :
+Pada waktu Syaikh Abdul Qodir berziarah ke makam Rosululloh Shollallohu 'Alaihi Wasallam di Madinah Munawwaroh, setibanya di sana beliau langsung masuk ke makam Rosululloh Shollallohu 'Alaihi Wasallam yaitu Hujroh Syarifah. Selama empat puluh hari beliau bermukim di hadapan makam Rosululloh Shollallohu 'Alaihi Wasallam, kedua tangannya diletakkan pada dadanya sambil bermunajat mengharap rahmat اَللّهُ, menumpahkan isi hati nuraninya dengan makna dari bait dibawah ini :
 
 ذُنُوْبِي كَمَوْجِ الْبَحْرِ بَلْ هِيَ اَكْثَرُ ۞ كَمِثْلِ الْجِبَالِ الشَّامِّ بَلْ هِيَ اَكْبَرُ
 
@@ -76,7 +76,7 @@ Artinya: “Kala jauh dari kekasih, ku utus roh pengganti diri, Ulurkan tanganmu
 
 Kan kukecup sepuas hati, untuk terima syafaat kekasih”.
 
-Selesai beliau meluapkan isi hati nuraninya, tangan Rosululloh SAW yang mulia terulur keluar lalu dipegang, diciumnya sepuas hati dan diletakkan pada ubun-ubun Syaikh.
+Selesai beliau meluapkan isi hati nuraninya, tangan Rosululloh Shollallohu 'Alaihi Wasallam yang mulia terulur keluar lalu dipegang, diciumnya sepuas hati dan diletakkan pada ubun-ubun Syaikh.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 

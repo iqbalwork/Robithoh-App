@@ -56,7 +56,7 @@ Diriwayatkan di dalam kitab “Bahjatul Asror” bahwa Syaikh ‘Abdul Qodir pad
 
 “Tiada terbit matahari melainkan mengucapkan salam kepadaku, pada setiap datang tahun selalu memberi salam kepadaku, dan memberitahukan yang akan terjadi pada tahun itu. Pada setiap datang bulan, memberi salam kepadaku dan Menceritakan apa yang terjadi pada bulan itu. Demikian Pula setiap datang minggu dan hari, minggu dan hari itu memberi salam kepadaku dan memberitahukan yang akan terjadi pada minggu dan hari itu. Demi Dzat اَللّهُ Yang Maha Mulia, orang-orang yang suka dan duka semuanya itu diberitahukan kepadaku.
 
-Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu اَللّهُ dan lautan musyahadah, akulah yang menjadi Hujjah اَللّهُ, akulah yang menjadi pengganti Rosululloh SAW. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”
+Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu اَللّهُ dan lautan musyahadah, akulah yang menjadi Hujjah اَللّهُ, akulah yang menjadi pengganti Rosululloh Shollallohu 'Alaihi Wasallam. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 

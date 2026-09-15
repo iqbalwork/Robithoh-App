@@ -52,13 +52,13 @@ ROJAB
 
 Manqobah Ke-11 : Telapak Kaki Nabi Muhammad SAW Memijak Pundak Syaikh Abdul Qodir Pada Malam Mi’roj
 
-Syaikh Rosyid Al-Junaidi meriwayatkan, pada malam Mi’roj, malaikat datang menghadap Rosululloh SAW membawa buroq. Kakinya bercahaya laksana bulan dan paku telapak kakinya bersinar seperti sinar bintang.
+Syaikh Rosyid Al-Junaidi meriwayatkan, pada malam Mi’roj, malaikat datang menghadap Rosululloh Shollallohu 'Alaihi Wasallam membawa buroq. Kakinya bercahaya laksana bulan dan paku telapak kakinya bersinar seperti sinar bintang.
 
-Dikala buroq itu dihadapkan kepada Rosululloh SAW ia tidak bisa berdiam dan kakinya bergoyang-goyang. Rosululloh SAW. bertanya ” Mengapa kamu tidak diam? Apa kamu tidak mau kukendarai?”. Buroq menjawab: “Demi nyawa hamba yang menjadi penebusnya, hamba tidak menolak, namun ada satu permohonan, yaitu ketika engkau, Rosululloh SAW akan masuk surga, tidak menunggangi yang lain.” Rosululloh SAW. menjawab: “baik, permintaanmu akan kukabulkan”.
+Dikala buroq itu dihadapkan kepada Rosululloh Shollallohu 'Alaihi Wasallam ia tidak bisa berdiam dan kakinya bergoyang-goyang. Rosululloh Shollallohu 'Alaihi Wasallam bertanya ” Mengapa kamu tidak diam? Apa kamu tidak mau kukendarai?”. Buroq menjawab: “Demi nyawa hamba yang menjadi penebusnya, hamba tidak menolak, namun ada satu permohonan, yaitu ketika engkau, Rosululloh Shollallohu 'Alaihi Wasallam akan masuk surga, tidak menunggangi yang lain.” Rosululloh Shollallohu 'Alaihi Wasallam menjawab: “baik, permintaanmu akan kukabulkan”.
 
-Buroq itu masih mengajukan permohonannya: “Hendaknya tangan yang mulia memegang pundak hamba sebagai tanda bukti nanti pada hari kiamat”. Lalu dipegangnya pundak buroq itu oleh Rosululloh SAW. Karena gejolak rasa gembira, jasad buroq itu tidak cukup untuk menampung ruhnya, badannya menjadi empat puluh hasta tingginya. Rosululloh terpaku sebentar melihat badan buroq itu menjadi tinggi, terpaksa Rosululloh SAW memerlukan tangga.
+Buroq itu masih mengajukan permohonannya: “Hendaknya tangan yang mulia memegang pundak hamba sebagai tanda bukti nanti pada hari kiamat”. Lalu dipegangnya pundak buroq itu oleh Rosululloh Shollallohu 'Alaihi Wasallam. Karena gejolak rasa gembira, jasad buroq itu tidak cukup untuk menampung ruhnya, badannya menjadi empat puluh hasta tingginya. Rosululloh terpaku sebentar melihat badan buroq itu menjadi tinggi, terpaksa Rosululloh Shollallohu 'Alaihi Wasallam memerlukan tangga.
 
-Saat itu juga, datanglah Ghoutsul A’zhom Syaikh Abdul Qodir Al Jailani bertekuk lutut di hadapan Rosululloh SAW sambil berkata: “Silahkan pundak hamba dijadikan tangga”. Rosululloh SAW memijakkan kakinya pada pundak Syaikh, dan lalu Rosululloh SAW naik buroq. Di saat itu Rosululloh SAW bersabda: “Sebagaimana telapak kakiku menginjak pundakmu, maka telapak kakimu akan menginjak pundak para waliyulloh”.
+Saat itu juga, datanglah Ghoutsul A’zhom Syaikh Abdul Qodir Al Jailani bertekuk lutut di hadapan Rosululloh Shollallohu 'Alaihi Wasallam sambil berkata: “Silahkan pundak hamba dijadikan tangga”. Rosululloh Shollallohu 'Alaihi Wasallam memijakkan kakinya pada pundak Syaikh, dan lalu Rosululloh Shollallohu 'Alaihi Wasallam naik buroq. Di saat itu Rosululloh Shollallohu 'Alaihi Wasallam bersabda: “Sebagaimana telapak kakiku menginjak pundakmu, maka telapak kakimu akan menginjak pundak para waliyulloh”.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 

@@ -55,7 +55,7 @@ Dicarioskeun dina Kitab Bahjatul Asror, Sayyid Abdul Qodir hiji waktos ngalayang
 
 “Henteu bijil mata poe anging mere salam ka kaula. Jeung unggal datang taun anyar, kudu bae mere salam ka kaula jeung nyaritakeun naon barang anu bakal kajadian dina eta taun. Jeung datang bulan, mere salam ka kaula jeung nyaritakeun naon barang nu bakal kajadian dina eta bulan. Jeung datang minggu jeung poena, mere salam ka kaula jeung nyaritakeun naon-naon barang anu bakal kajadian dina eta minggu jeung poe.
 
-Demi kamulyaan Pangeran kaula, jalma-jalma anu bagja anu cilaka, kabeh diasongkeun ka kaula. Jeung jejelmaan panon kaula aya dina Lauhilmahfuzh, jeung kaula teuleum dina lautan elmuna اَللّهُ jeung lautan musyahadah, jeung kaula hujjahna اَللّهُ ka maraneh. Jeung kaula nu jadi gagantì Rosululloh SAW. Jeung kaula ahli warisna di bumi. Manusa aya guruna, jin aya guruna, malaikat aya guruna, ari kaula guruna kabeh”.
+Demi kamulyaan Pangeran kaula, jalma-jalma anu bagja anu cilaka, kabeh diasongkeun ka kaula. Jeung jejelmaan panon kaula aya dina Lauhilmahfuzh, jeung kaula teuleum dina lautan elmuna اَللّهُ jeung lautan musyahadah, jeung kaula hujjahna اَللّهُ ka maraneh. Jeung kaula nu jadi gagantì Rosululloh Shollallohu 'Alaihi Wasallam. Jeung kaula ahli warisna di bumi. Manusa aya guruna, jin aya guruna, malaikat aya guruna, ari kaula guruna kabeh”.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 

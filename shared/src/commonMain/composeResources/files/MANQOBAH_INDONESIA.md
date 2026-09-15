@@ -60,7 +60,7 @@ Diriwayatkan di dalam kitab “Bahjatul Asror” bahwa Syaikh ‘Abdul Qodir pad
 
 “Tiada terbit matahari melainkan mengucapkan salam kepadaku, pada setiap datang tahun selalu memberi salam kepadaku, dan memberitahukan yang akan terjadi pada tahun itu. Pada setiap datang bulan, memberi salam kepadaku dan Menceritakan apa yang terjadi pada bulan itu. Demikian Pula setiap datang minggu dan hari, minggu dan hari itu memberi salam kepadaku dan memberitahukan yang akan terjadi pada minggu dan hari itu. Demi Dzat اَللّهُ Yang Maha Mulia, orang-orang yang suka dan duka semuanya itu diberitahukan kepadaku.
 
-Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu اَللّهُ dan lautan musyahadah, akulah yang menjadi Hujjah اَللّهُ, akulah yang menjadi pengganti Rosululloh SAW. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”
+Pandangan mataku selalu di Lauhil Mahfud dan aku tenggelam dalam lautan Ilmu اَللّهُ dan lautan musyahadah, akulah yang menjadi Hujjah اَللّهُ, akulah yang menjadi pengganti Rosululloh Shollallohu 'Alaihi Wasallam. Akulah yang menjadi pewarisnya dibumi. Manusia ada gurunya, malaikat ada gurunya, jin ada gurunya, aku guru semuanya.”
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -164,7 +164,7 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 Syaikh Abdul Qodir telah berwasiat kepada putranya yang bernama Abdul Rozak dengan beberapa wasiat, diantaranya :
 
-“Wahai anakku, semoga اَللّهُ melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawakkal kepada اَللّهُ, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh SAW. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
+“Wahai anakku, semoga اَللّهُ melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawakkal kepada اَللّهُ, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh Shollallohu 'Alaihi Wasallam. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
 
 Perihara olehmu kehormatan guru-guru, dan berbuat baiklah kepada orang lain, beri nasihat yang baik kepada orang-orang besar tingkat kedudukanya, demikian pula bagi masyarakat kecil. Jangan suka berbantah-bantahan dengan orang lain kecuali dalam masalah agama.
 
@@ -312,13 +312,13 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ### Manqobah Ke-11 : Telapak Kaki Nabi Muhammad SAW Memijak Pundak Syaikh Abdul Qodir Pada Malam Mi’roj
 
-Syaikh Rosyid Al-Junaidi meriwayatkan, pada malam Mi’roj, malaikat datang menghadap Rosululloh SAW membawa buroq. Kakinya bercahaya laksana bulan dan paku telapak kakinya bersinar seperti sinar bintang.
+Syaikh Rosyid Al-Junaidi meriwayatkan, pada malam Mi’roj, malaikat datang menghadap Rosululloh Shollallohu 'Alaihi Wasallam membawa buroq. Kakinya bercahaya laksana bulan dan paku telapak kakinya bersinar seperti sinar bintang.
 
-Dikala buroq itu dihadapkan kepada Rosululloh SAW ia tidak bisa berdiam dan kakinya bergoyang-goyang. Rosululloh SAW. bertanya ” Mengapa kamu tidak diam? Apa kamu tidak mau kukendarai?”. Buroq menjawab: “Demi nyawa hamba yang menjadi penebusnya, hamba tidak menolak, namun ada satu permohonan, yaitu ketika engkau, Rosululloh SAW akan masuk surga, tidak menunggangi yang lain.” Rosululloh SAW. menjawab: “baik, permintaanmu akan kukabulkan”.
+Dikala buroq itu dihadapkan kepada Rosululloh Shollallohu 'Alaihi Wasallam ia tidak bisa berdiam dan kakinya bergoyang-goyang. Rosululloh Shollallohu 'Alaihi Wasallam bertanya ” Mengapa kamu tidak diam? Apa kamu tidak mau kukendarai?”. Buroq menjawab: “Demi nyawa hamba yang menjadi penebusnya, hamba tidak menolak, namun ada satu permohonan, yaitu ketika engkau, Rosululloh Shollallohu 'Alaihi Wasallam akan masuk surga, tidak menunggangi yang lain.” Rosululloh Shollallohu 'Alaihi Wasallam menjawab: “baik, permintaanmu akan kukabulkan”.
 
-Buroq itu masih mengajukan permohonannya: “Hendaknya tangan yang mulia memegang pundak hamba sebagai tanda bukti nanti pada hari kiamat”. Lalu dipegangnya pundak buroq itu oleh Rosululloh SAW. Karena gejolak rasa gembira, jasad buroq itu tidak cukup untuk menampung ruhnya, badannya menjadi empat puluh hasta tingginya. Rosululloh terpaku sebentar melihat badan buroq itu menjadi tinggi, terpaksa Rosululloh SAW memerlukan tangga.
+Buroq itu masih mengajukan permohonannya: “Hendaknya tangan yang mulia memegang pundak hamba sebagai tanda bukti nanti pada hari kiamat”. Lalu dipegangnya pundak buroq itu oleh Rosululloh Shollallohu 'Alaihi Wasallam. Karena gejolak rasa gembira, jasad buroq itu tidak cukup untuk menampung ruhnya, badannya menjadi empat puluh hasta tingginya. Rosululloh terpaku sebentar melihat badan buroq itu menjadi tinggi, terpaksa Rosululloh Shollallohu 'Alaihi Wasallam memerlukan tangga.
 
-Saat itu juga, datanglah Ghoutsul A’zhom Syaikh Abdul Qodir Al Jailani bertekuk lutut di hadapan Rosululloh SAW sambil berkata: “Silahkan pundak hamba dijadikan tangga”. Rosululloh SAW memijakkan kakinya pada pundak Syaikh, dan lalu Rosululloh SAW naik buroq. Di saat itu Rosululloh SAW bersabda: “Sebagaimana telapak kakiku menginjak pundakmu, maka telapak kakimu akan menginjak pundak para waliyulloh”.
+Saat itu juga, datanglah Ghoutsul A’zhom Syaikh Abdul Qodir Al Jailani bertekuk lutut di hadapan Rosululloh Shollallohu 'Alaihi Wasallam sambil berkata: “Silahkan pundak hamba dijadikan tangga”. Rosululloh Shollallohu 'Alaihi Wasallam memijakkan kakinya pada pundak Syaikh, dan lalu Rosululloh Shollallohu 'Alaihi Wasallam naik buroq. Di saat itu Rosululloh Shollallohu 'Alaihi Wasallam bersabda: “Sebagaimana telapak kakiku menginjak pundakmu, maka telapak kakimu akan menginjak pundak para waliyulloh”.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 
@@ -362,10 +362,10 @@ Sayid Abu Muhammad Abdul Qodir Jaelani dilahirkan di Naif Jailan Irak pada tangg
 
 Pada malam Syaikh di lahirkan ada lima karomah :
 
-1. Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh SAW diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh اَللّهُ. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan اَللّهُ”.
-2. Setelah Rosululloh SAW, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali اَللّهُ selain Imam Ma’shum, di bawah pimpinannya”.
+1. Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh Shollallohu 'Alaihi Wasallam diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh اَللّهُ. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan اَللّهُ”.
+2. Setelah Rosululloh Shollallohu 'Alaihi Wasallam, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali اَللّهُ selain Imam Ma’shum, di bawah pimpinannya”.
 3. Syaikh Abdul Qodir sejak dilahirkan pada siang hari bulan Romadhan menolak untuk menyusu. Menyusunya setelah waktu berbuka puasa.
-4. Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh SAW ketika beliau akan menunggangi buroq pada malam Mi’raj.
+4. Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh Shollallohu 'Alaihi Wasallam ketika beliau akan menunggangi buroq pada malam Mi’raj.
 5. Beliau diliputi cahaya sehingga tidak seorangpun yang mampu melihatnya. Sedang usia ibunya waktu itu 60 tahun, ini juga sesuatu hal yang luar biasa.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
@@ -432,9 +432,9 @@ Alloohumman tsur A’laihin nafahaati war Ridhwaan, Wa’amiddanaa Bi Asroorihii
 
 ---
 
-### Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Saw Dan Mencium Tangan Beliau
+### Manqobah Ke-31: Syaikh Abdul Qodir Berziarah Ke Makam Rosululloh Shollallohu 'Alaihi Wasallam Dan Mencium Tangan Beliau
 
-Pada waktu Syaikh Abdul Qodir berziarah ke makam Rosululloh SAW di Madinah Munawwaroh, setibanya di sana beliau langsung masuk ke makam Rosululloh SAW yaitu Hujroh Syarifah. Selama empat puluh hari beliau bermukim di hadapan makam Rosululloh SAW, kedua tangannya diletakkan pada dadanya sambil bermunajat mengharap rahmat اَللّهُ, menumpahkan isi hati nuraninya dengan makna dari bait dibawah ini :
+Pada waktu Syaikh Abdul Qodir berziarah ke makam Rosululloh Shollallohu 'Alaihi Wasallam di Madinah Munawwaroh, setibanya di sana beliau langsung masuk ke makam Rosululloh Shollallohu 'Alaihi Wasallam yaitu Hujroh Syarifah. Selama empat puluh hari beliau bermukim di hadapan makam Rosululloh Shollallohu 'Alaihi Wasallam, kedua tangannya diletakkan pada dadanya sambil bermunajat mengharap rahmat اَللّهُ, menumpahkan isi hati nuraninya dengan makna dari bait dibawah ini :
 
 ذُنُوْبِي كَمَوْجِ الْبَحْرِ بَلْ هِيَ اَكْثَرُ ۞ كَمِثْلِ الْجِبَالِ الشَّامِّ بَلْ هِيَ اَكْبَرُ
 
@@ -458,7 +458,7 @@ Artinya: “Kala jauh dari kekasih, ku utus roh pengganti diri, Ulurkan tanganmu
 
 Kan kukecup sepuas hati, untuk terima syafaat kekasih”.
 
-Selesai beliau meluapkan isi hati nuraninya, tangan Rosululloh SAW yang mulia terulur keluar lalu dipegang, diciumnya sepuas hati dan diletakkan pada ubun-ubun Syaikh.
+Selesai beliau meluapkan isi hati nuraninya, tangan Rosululloh Shollallohu 'Alaihi Wasallam yang mulia terulur keluar lalu dipegang, diciumnya sepuas hati dan diletakkan pada ubun-ubun Syaikh.
 
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ
 

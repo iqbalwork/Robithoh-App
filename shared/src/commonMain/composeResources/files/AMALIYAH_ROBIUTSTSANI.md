@@ -54,7 +54,7 @@ Manqobah Ke-51 : Wasiat Syaikh Abdul Qodir Kepada Putranya Abdul Rozak
 
 Syaikh Abdul Qodir telah berwasiat kepada putranya yang bernama Abdul Rozak dengan beberapa wasiat, diantaranya :
 
-“Wahai anakku, semoga اَللّهُ melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawak اَللّهُ kepada اَللّهُ, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh SAW. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
+“Wahai anakku, semoga اَللّهُ melimpahkan Taufiq dan Hidayah-Nya kepadamu dan kepada segenap kaum muslimin. Wahai anakku, bertawak اَللّهُ kepada اَللّهُ, pegang syara’ dan laksanakan, dan pelihara batas-batasnya. Ketahui bahwa Thoriqotku dibangun berdasarkan Al-Qur’an dan Sunnah Rosululloh Shollallohu 'Alaihi Wasallam. Hendaknya kamu berjiwa bersih, dermawan, murah hati dan suka memberi pertolongan kepada orang lain dengan jalan kebaikan. Jangan keras hati atau berlaku tidak sopan. Sebaiknya kamu bersikap sabar dan tabah menghadapi segala ujian dan cobaan. Hendaknya kamu mengampuni kesalahan orang lain dan bersikap hormat pada sesama ikhwan dan semua fakir miskin.
 
 Perihara olehmu kehormatan guru-guru, dan berbuat baiklah kepada orang lain, beri nasihat yang baik kepada orang-orang besar tingkat kedudukanya, demikian pula bagi masyarakat kecil. Jangan suka berbantah-bantahan dengan orang lain kecuali dalam masalah agama.
 

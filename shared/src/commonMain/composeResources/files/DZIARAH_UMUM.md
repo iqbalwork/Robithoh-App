@@ -1,4 +1,4 @@
-# DZIARAH UMUM
+# ZIAROH UMUM
 
 ---
 

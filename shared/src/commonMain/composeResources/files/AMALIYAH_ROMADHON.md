@@ -56,13 +56,13 @@ Sayid Abu Muhammad Abdul Qodir Jaelani dilahirkan di Naif Jailan Irak pada tangg
 
 Pada malam Syaikh di lahirkan ada lima karomah :
 
-Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh SAW diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh اَللّهُ. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan اَللّهُ”.
+Ayahnya, yaitu Abi Sholih Musa Janaki, pada malam hari bermimpi dikunjungi Rosululloh Shollallohu 'Alaihi Wasallam diiringi para Sahabat dan Imam Mujtahidin dan para wali. Rosululloh bersabda kepada Abi Sholih Musa Janaki: “Wahai Abi Sholih, engkau akan diberi putra oleh اَللّهُ. Putramu akan mendapat kedudukan yang tinggi di atas para wali sebagaimana kedudukanku diatas para nabi, dan anakmu itu termasuk anakku juga, kesayanganku dan kesayangan اَللّهُ”.
 
-Setelah Rosululloh SAW, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali اَللّهُ selain Imam Ma’shum, di bawah pimpinannya”.
+Setelah Rosululloh Shollallohu 'Alaihi Wasallam, para Nabi yang lainpun datang menghibur ayah Syaikh Abdul Qodir : “Engkau akan mempunyai putra yang akan menjadi Sulthonul Auliya, seluruh wali اَللّهُ selain Imam Ma’shum, di bawah pimpinannya”.
 
 Syaikh Abdul Qodir sejak dilahirkan pada siang hari bulan Romadhan menolak untuk menyusu. Menyusunya setelah waktu berbuka puasa.
 
-Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh SAW ketika beliau akan menunggangi buroq pada malam Mi’raj.
+Di belakang pundak Syaikh Abdul Qodir nampak bekas telapak kaki Rosululloh Shollallohu 'Alaihi Wasallam ketika beliau akan menunggangi buroq pada malam Mi’raj.
 
 Beliau diliputi cahaya sehingga tidak seorangpun yang mampu melihatnya. Sedang usia ibunya waktu itu 60 tahun, ini juga sesuatu hal yang luar biasa.
 اللّٰهُمَّ انْثُـرْ عَلَيْهِ النَّفَحَاتِ وَالرِّضْوَانِ، وَأَمِدَّنَا بِأَسْرَارِهِ فِى كُلِّ وَقْتٍ وَمَكَانِ

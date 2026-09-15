@@ -60,9 +60,9 @@ Allohumma ahyinii miskiinan, wa amitnii miskiinan, wahsyurnii fii jumrotil masaa
 
 *Ya اَللّهُ, hidupkanlah aku dalam keadaan miskin, matikanlah aku dalam keadaan miskin, dan kumpulkanlah aku (pada hari kiamat) bersama rombongan orang-orang miskin*
 
-adalah doa yang diajarkan oleh Rasululloh SAW (HR. Ibnu Majah).
+adalah doa yang diajarkan oleh Rosululloh Shollallohu 'Alaihi Wasallam (HR. Ibnu Majah).
 
-“Dalam ajaran Islam, makna “miskin” di sini bukanlah kekurangan harta atau meminta-minta, melainkan memohon sifat kerendahan hati, khusyuk, dan tawadhu. Rasululloh SAW berdoa agar dijauhkan dari sifat sombong, merasa cukup, dan takabur dengan kekayaan atau kedudukan, sehingga selalu merasa butuh kepada اَللّهُ SWT.
+“Dalam ajaran Islam, makna “miskin” di sini bukanlah kekurangan harta atau meminta-minta, melainkan memohon sifat kerendahan hati, khusyuk, dan tawadhu. Rosululloh Shollallohu 'Alaihi Wasallam berdoa agar dijauhkan dari sifat sombong, merasa cukup, dan takabur dengan kekayaan atau kedudukan, sehingga selalu merasa butuh kepada اَللّهُ SWT.
 
 Do’a ini dapat ditambah dengan do’a-do’a lainnya yang dikehendaki.
 

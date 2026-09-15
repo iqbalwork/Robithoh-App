@@ -45,7 +45,7 @@
 > pemimpin wilayah  
 > penegak ketentuan Ar-Rahman  
 > pewaris kitab  
-> wakil Rasulullah SAW  
+> wakil Rosululloh Shollallohu 'Alaihi Wasallam  
 > yang selalu pergi pulang antara bumi dan langit  
 > yang orang-orang sezamannya adalah keluarganya  
 > yang diturunkan pertolongan karena doanya  

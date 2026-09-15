@@ -1,8 +1,8 @@
-# DZIARAH WALIYULLOH
+# ZIAROH WALIYULLOH
 
 ---
 
-DZIARAH QUBUR WALIYULLOH
+ZIAROH QUBUR WALIYULLOH
 
 Ketika mau masuk pintu gerbang maqom wali, mulai dengan kaki kanan. Jangan mengeluarkan suara dan hidupkan hati dengan *Zikir Khofi*. Berjalanlah dengan khusyu’ sampai ke depan pintu maqom. Sebelum duduk, sampaikan salam dengan lafaz berikut :
 

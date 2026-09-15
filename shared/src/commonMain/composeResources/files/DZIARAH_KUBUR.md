@@ -1,8 +1,8 @@
-# DZIARAH KUBUR
+# ZIAROH KUBUR
 
 ---
 
-Dziarah Kubur
+Ziaroh Kubur
 
 ---
 
