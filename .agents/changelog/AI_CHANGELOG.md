@@ -6,6 +6,17 @@ All changes, architectural updates, and significant refactorings made by AI agen
 
 ## [Unreleased]
 
+### Fix Langgam Audio Subtitle Labels and Ordering (Al-Quraisy & An-Nasr)
+- **Date**: 2026-09-15
+- **Author**: AI Assistant & Iqbal Fauzi
+- **Scope**: Fixed swapped subtitle labels and item ordering between `Al-fatihah + Al-quraisy` and `Al-fatihah + An-nasr` in `LanggamRepository`.
+- **Changes**:
+  - `LanggamRepository.kt`:
+    - Updated `langgam_fatihah_nasr` (`Al-fatihah + An-nasr`) subtitle to `"Maghrib Rakaat 2"` and positioned it directly after Maghrib Rakaat 1 (`Al-fatihah + Al-kafirun`).
+    - Updated `langgam_fatihah_quraisy` (`Al-fatihah + Al-quraisy`) subtitle to `"Isya Rakaat 2"` and positioned it directly after Isya Rakaat 1 (`Al-fatihah + Al-fil`).
+  - `AudioOnDemandTest.kt`:
+    - Added unit test `testLanggamPrayerRakaatSubtitles()` asserting correct subtitles and identifiers for Maghrib Rakaat 1 & 2 and Isya Rakaat 1 & 2.
+
 ### Fix Notification & App Location Display (Replace GPS Coordinates with Clean City Names)
 - **Date**: 2026-09-12
 - **Author**: AI Assistant & Iqbal Fauzi

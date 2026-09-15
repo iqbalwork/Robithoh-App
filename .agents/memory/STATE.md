@@ -7,12 +7,12 @@
 ## 📌 Current Status
 
 * **Project Version**: `1.2.0` (Code `10`)
-* **Current Focus**: Location name sanitization (replace raw GPS coordinates in notifications & schedules with clean city names like "Kota Bandung").
+* **Current Focus**: Langgam audio catalog metadata revision (swapped labels between Al-quraisy [Isya Rakaat 2] and An-nasr [Maghrib Rakaat 2]).
 * **Codebase Health**:
-  - `shared`: Clean architecture, `LocationSanitizerTest` and all 142 multiplatform unit tests passing.
-  - `androidApp`: `androidApp:assembleDebug` succeeded, Glance widgets intact.
-  - `iosApp`: Clean location sanitization integrated into `LocationProvider.ios.kt`.
-  - `Linters & Tools`: `verify_build.sh`, `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
+  - `shared`: Clean architecture, `AudioOnDemandTest.testLanggamPrayerRakaatSubtitles` and all 143 multiplatform unit tests passing.
+  - `androidApp`: Glance widgets intact.
+  - `iosApp`: Clean location sanitization and AVPlayer audio engine intact.
+  - `Linters & Tools`: `check_mvi_architecture.sh`, `check_sacred_texts.sh`, `check_markdown_assets.sh`, `check_hardcoded_strings.sh` 100% verified.
 
 ---
 

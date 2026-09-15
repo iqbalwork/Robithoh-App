@@ -104,15 +104,15 @@ object LanggamRepository {
             arabicCalligraphyText = "الْكَافِرُون"
         ),
         LanggamItem(
-            id = "langgam_fatihah_quraisy",
-            title = "Al-fatihah + Al-quraisy",
+            id = "langgam_fatihah_nasr",
+            title = "Al-fatihah + An-nasr",
             subtitle = "Maghrib Rakaat 2",
-            fileName = "al_fatihah_al_quraisy.mpeg",
-            remoteUrl = "$GITHUB_AUDIO_BASE_URL/al_fatihah_al_quraisy.mpeg",
-            sizeBytes = 441_336L,
-            sizeLabel = "431 KB",
-            drawableName = "al_fatihah_al_quraisy",
-            arabicCalligraphyText = "قُرَيْش"
+            fileName = "al_fatihah_an_nasr.mpeg",
+            remoteUrl = "$GITHUB_AUDIO_BASE_URL/al_fatihah_an_nasr.mpeg",
+            sizeBytes = 355_443L,
+            sizeLabel = "347 KB",
+            drawableName = "al_fatihah_an_nasr",
+            arabicCalligraphyText = "النَّصْر"
         ),
         LanggamItem(
             id = "langgam_fatihah_fil",
@@ -126,15 +126,15 @@ object LanggamRepository {
             arabicCalligraphyText = "الْفِيل"
         ),
         LanggamItem(
-            id = "langgam_fatihah_nasr",
-            title = "Al-fatihah + An-nasr",
+            id = "langgam_fatihah_quraisy",
+            title = "Al-fatihah + Al-quraisy",
             subtitle = "Isya Rakaat 2",
-            fileName = "al_fatihah_an_nasr.mpeg",
-            remoteUrl = "$GITHUB_AUDIO_BASE_URL/al_fatihah_an_nasr.mpeg",
-            sizeBytes = 355_443L,
-            sizeLabel = "347 KB",
-            drawableName = "al_fatihah_an_nasr",
-            arabicCalligraphyText = "النَّصْر"
+            fileName = "al_fatihah_al_quraisy.mpeg",
+            remoteUrl = "$GITHUB_AUDIO_BASE_URL/al_fatihah_al_quraisy.mpeg",
+            sizeBytes = 441_336L,
+            sizeLabel = "431 KB",
+            drawableName = "al_fatihah_al_quraisy",
+            arabicCalligraphyText = "قُرَيْش"
         ),
         LanggamItem(
             id = "langgam_sholat_jumat",

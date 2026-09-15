@@ -37,6 +37,29 @@ class AudioOnDemandTest {
     }
 
     @Test
+    fun testLanggamPrayerRakaatSubtitles() {
+        val nasr = LanggamRepository.findById("langgam_fatihah_nasr")
+        assertNotNull(nasr)
+        assertEquals("Al-fatihah + An-nasr", nasr.title)
+        assertEquals("Maghrib Rakaat 2", nasr.subtitle)
+
+        val quraisy = LanggamRepository.findById("langgam_fatihah_quraisy")
+        assertNotNull(quraisy)
+        assertEquals("Al-fatihah + Al-quraisy", quraisy.title)
+        assertEquals("Isya Rakaat 2", quraisy.subtitle)
+
+        val fil = LanggamRepository.findById("langgam_fatihah_fil")
+        assertNotNull(fil)
+        assertEquals("Al-fatihah + Al-fil", fil.title)
+        assertEquals("Isya Rakaat 1", fil.subtitle)
+
+        val kafirun = LanggamRepository.findById("langgam_fatihah_kafirun")
+        assertNotNull(kafirun)
+        assertEquals("Al-fatihah + Al-kafirun", kafirun.title)
+        assertEquals("Maghrib Rakaat 1", kafirun.subtitle)
+    }
+
+    @Test
     fun testAudioCacheManagerSaveAndDelete() {
         val cacheManager = createAudioCacheManager()
         val testFileName = "test_audio_track.mp3"
