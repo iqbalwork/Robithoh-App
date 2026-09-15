@@ -1,6 +1,6 @@
 {
-  "version": 18,
-  "updatedAt": "2026-09-15T02:38:54Z",
+  "version": 20,
+  "updatedAt": "2026-09-15T13:53:27Z",
   "totalDocuments": 59,
   "documents": [
     {
@@ -109,8 +109,8 @@
     },
     {
       "fileName": "DAFTAR_DZIKIR_TASBIH.md",
-      "sha256": "053f76befa2796fc5ee2ca4109a261a469d8c591a595367d652fbf65ac714404",
-      "size": 2600,
+      "sha256": "49f73278c0174d9302f126c853b1b905c88ba6090ef113c3891089731d39002a",
+      "size": 1347,
       "url": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DAFTAR_DZIKIR_TASBIH.md",
       "rawUrl": "https://raw.githubusercontent.com/iqbalwork/Robithoh-Docs/main/documents/DAFTAR_DZIKIR_TASBIH.md",
       "pagesUrl": "https://iqbalwork.github.io/Robithoh-Docs/documents/DAFTAR_DZIKIR_TASBIH.md"

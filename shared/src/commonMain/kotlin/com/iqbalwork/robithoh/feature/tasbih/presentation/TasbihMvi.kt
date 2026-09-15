@@ -75,57 +75,9 @@ val defaultTasbihPresets: List<TasbihDzikirPreset> = listOf(
         arabic = "اللَّهُمَّ صَلِّ عَلَى النَّبِيِّ الْهَاشِمِيِّ مُحَمَّدٍ وَعَلَى آلِهِ وَسَلِّمْ تَسْلِيمًا",
         defaultTarget = 165,
         virtue = "Shalawat kebanggaan ikhwan dan akhwat pembuka futuh dan mahabbah Rasulullah."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_ahad",
-        title = "Wirid Kemalaikatan: Ahad",
-        arabic = "حَيٌّ قَيُّومٌ",
-        defaultTarget = 222,
-        virtue = "HAYYUN QOYYUUM (222x) • Malaikat Syamsayaa Yayil • Setiap Sabtu malam bagi lahir hari Ahad."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_senin",
-        title = "Wirid Kemalaikatan: Senin",
-        arabic = "رَحْمٰنُ الرَّحِيمُ",
-        defaultTarget = 333,
-        virtue = "ROHMAANUR ROHIIM (333x) • Malaikat Karmayaa Yayil • Setiap Minggu malam bagi lahir hari Senin."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_selasa",
-        title = "Wirid Kemalaikatan: Selasa",
-        arabic = "مَلِكٌ قُدُّوسٌ",
-        defaultTarget = 444,
-        virtue = "MALIKUN QUDDUUSUN (444x) • Malaikat Ruuhayaa Yayil • Setiap Senin malam bagi lahir hari Selasa."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_rabu",
-        title = "Wirid Kemalaikatan: Rabu",
-        arabic = "كَبِيرٌ مُتَعَالٌ",
-        defaultTarget = 555,
-        virtue = "KABIIRUN MUTA'AL (555x) • Malaikat Ruuqoyaa Yayil • Setiap Selasa malam bagi lahir hari Rabu."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_kamis",
-        title = "Wirid Kemalaikatan: Kamis",
-        arabic = "فَتَّاحٌ رَزَّاقٌ",
-        defaultTarget = 666,
-        virtue = "PATTAAHUN ROZZAKUN (666x) • Malaikat Miikayaa Yayil • Setiap Rabu malam bagi lahir hari Kamis."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_jumat",
-        title = "Wirid Kemalaikatan: Jum'at",
-        arabic = "شَدِيدٌ ذُو قُوَّةٍ",
-        defaultTarget = 777,
-        virtue = "SYADIIDUN DZUUQUWWATIN (777x) • Malaikat Jabroyaa Yayil • Setiap Kamis malam bagi lahir hari Jum'at."
-    ),
-    TasbihDzikirPreset(
-        id = "wirid_kemalaikatan_sabtu",
-        title = "Wirid Kemalaikatan: Sabtu",
-        arabic = "قَوِيٌّ قَدِيرٌ",
-        defaultTarget = 888,
-        virtue = "QOWIYYUN QODIIRUN (888x) • Malaikat Lathofa Yaa Yayil • Setiap Jum'at malam bagi lahir hari Sabtu."
     )
 )
+
 
 sealed interface TasbihUiIntent : UiIntent {
     data object Increment : TasbihUiIntent

@@ -76,18 +76,18 @@ class TasbihPresetsDocumentTest {
     }
 
     @Test
-    fun testDefaultTasbihPresets_containsThirteenItems() {
-        assertEquals(13, defaultTasbihPresets.size)
+    fun testDefaultTasbihPresets_containsSixItems() {
+        assertEquals(6, defaultTasbihPresets.size)
         val ids = defaultTasbihPresets.map { it.id }
         assertTrue(ids.contains("tahlil_tqn"))
-        assertTrue(ids.contains("wirid_kemalaikatan_ahad"))
-        assertTrue(ids.contains("wirid_kemalaikatan_senin"))
-        assertTrue(ids.contains("wirid_kemalaikatan_selasa"))
-        assertTrue(ids.contains("wirid_kemalaikatan_rabu"))
-        assertTrue(ids.contains("wirid_kemalaikatan_kamis"))
-        assertTrue(ids.contains("wirid_kemalaikatan_jumat"))
-        assertTrue(ids.contains("wirid_kemalaikatan_sabtu"))
+        assertTrue(ids.contains("tasbih_tahmid"))
+        assertTrue(ids.contains("hauqolah"))
+        assertTrue(ids.contains("shalawat_munjiyat"))
+        assertTrue(ids.contains("istighfar_tqn"))
+        assertTrue(ids.contains("shalawat_bani_hasyim"))
+        assertFalse(ids.contains("wirid_kemalaikatan_ahad"))
     }
+
 
     @Test
     fun testReloadPresetsIntent_updatesAvailablePresets() = runTest {
